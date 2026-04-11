@@ -1,3 +1,14 @@
+/*
+  name      KINS
+  type      trojan
+  cve       вЂ”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    RamadhanAmizudin/malware
+  archived  RamadhanAmizudin, krisyotam (2026)
+  notes     вЂ”
+ */
 #include <windows.h>
 #include "ucl.h"
 
@@ -708,7 +719,7 @@ int UCL::_Compress(LPBYTE pSource, DWORD dwSourceSize, LPBYTE pBuffer, LPDWORD p
   int iRetVal;
   SWD_CONFIG *sc;
   
-  //Выбираем метод сжатия.
+  //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ.
 #if(XLIB_UCL_ONLY_MAX_COMPRESSION > 0)
   sc = (SWD_CONFIG *)&swd_configs[0];
 #else

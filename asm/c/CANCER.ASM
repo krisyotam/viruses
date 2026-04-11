@@ -1,3 +1,14 @@
+; ------------------------------------------------------------
+; name      C
+; type      asm
+; cve       —
+; year      unknown
+; os        DOS
+; authors   unknown
+; source    krisyotam
+; archived  krisyotam (2026)
+; notes     —
+; ------------------------------------------------------------
 	page	,132
 	name	CANCER
 	title	Cancer - a mutation of the V-847 virus

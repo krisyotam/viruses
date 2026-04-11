@@ -1,3 +1,14 @@
+; ------------------------------------------------------------
+; name      M
+; type      asm
+; cve       —
+; year      unknown
+; os        DOS
+; authors   unknown
+; source    krisyotam
+; archived  krisyotam (2026)
+; notes     —
+; ------------------------------------------------------------
 ; File: MIR.COM
 ; File Type: COM
 ; Processor: 8086/87/88   

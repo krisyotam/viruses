@@ -1,3 +1,14 @@
+/*
+  name      Carberp Botnet
+  type      trojan
+  cve       —
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     —
+ */
 <?php
 
 smarty_assign_add('javascript_end', '<script type="text/javascript" src="/js/add_filter.js"></script>');
@@ -92,7 +103,8 @@ if(!empty($Cur['id'])){
 				}
 			}
 			$smarty->assign("errors", $errors);
-		}else{			$_POST['p'] = $item->fields;
+		}else{
+			$_POST['p'] = $item->fields;
 			$_POST['fields'] = count($item->fields['name']);
 			$_POST['name'] = $item->name;
 			$_POST['host'] = $item->host;

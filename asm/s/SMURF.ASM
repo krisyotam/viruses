@@ -1,4 +1,15 @@
-ÄÄÄÄÄÄÄÄÄÍÍÍÍÍÍÍÍÍ>>> Article From Evolution #2 - YAM '92
+; ------------------------------------------------------------
+; name      S
+; type      asm
+; cve       â€”
+; year      unknown
+; os        DOS
+; authors   unknown
+; source    krisyotam
+; archived  krisyotam (2026)
+; notes     â€”
+; ------------------------------------------------------------
+ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½>>> Article From Evolution #2 - YAM '92
 
 Article Title: The Smurf Virus
 Author: Admiral Bailey

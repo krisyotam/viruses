@@ -1,3 +1,14 @@
+; ------------------------------------------------------------
+; name      A
+; type      asm
+; cve       —
+; year      unknown
+; os        DOS
+; authors   unknown
+; source    krisyotam
+; archived  krisyotam (2026)
+; notes     —
+; ------------------------------------------------------------
 From netcom.com!ix.netcom.com!howland.reston.ans.net!cs.utexas.edu!utnut!torn!uunet.ca!uunet.ca!io.org!grin.io.org!scottjp Sat Jan 14 12:10:08 1995
 Xref: netcom.com alt.comp.virus:961
 Path: netcom.com!ix.netcom.com!howland.reston.ans.net!cs.utexas.edu!utnut!torn!uunet.ca!uunet.ca!io.org!grin.io.org!scottjp

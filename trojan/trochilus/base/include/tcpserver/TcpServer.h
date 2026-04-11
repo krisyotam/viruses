@@ -1,3 +1,14 @@
+/*
+  name      Trochilus
+  type      trojan
+  cve       â€”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    RamadhanAmizudin/malware
+  archived  RamadhanAmizudin, krisyotam (2026)
+  notes     â€”
+ */
 #pragma once
 #include <vector>
 #include <set>
@@ -6,7 +17,7 @@
 #include <Winsock2.h>
 #include "TcpServerData.h"
 
-//IPÁÐ±í
+//IPï¿½Ð±ï¿½
 typedef std::set<CString> SingleIPOrNameSet;
 
 class TcpServer
@@ -36,7 +47,7 @@ private:
 		SOCKADDR_IN		addr;
 		SOCKET			socket;
 		BYTE			pSessionData[1];
-	} PER_IO_OPERATION_DATA, *LPPER_IO_OPERATION_DATA;    //¶¨ÒåÒ»¸ö½á¹¹Ìå±£´æIOÊý¾Ý
+	} PER_IO_OPERATION_DATA, *LPPER_IO_OPERATION_DATA;    //ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½ï¿½á¹¹ï¿½å±£ï¿½ï¿½IOï¿½ï¿½ï¿½ï¿½
 
 	typedef std::vector<HANDLE> ThreadHandleList;
 
@@ -65,32 +76,32 @@ private:
 	void RemoveData(LPPER_IO_OPERATION_DATA lpData);
 
 private:
-	BOOL				m_bRunning;				//ÔËÐÐ×´Ì¬
-	UINT				m_port;					//¼àÌý¶Ë¿Ú
-	HANDLE				m_hServerThread;		//·þÎñÏß³Ì
-	HANDLE				m_hTimeCheckThread;		//³ÁÄ¬³¬Ê±¼ì²éÏß³Ì
-	ThreadHandleList	m_workerThreadList;		//¹¤×÷ÕßÏß³Ì¾ä±úÁÐ±í
-	HANDLE				m_hCompletionPort;		//Íê³É¶Ë¿Ú¾ä±ú
-	DWORD				m_dwSessionDataSize;	//»á»°Êý¾Ý´óÐ¡
-	SOCKET				m_sServer;				//¼àÌýsocket
-	DWORD				m_dwSilenceTimeoutS;	//³ÁÄ¬³¬Ê±Ê±¼ä£¨¿Í»§¶ËÁ¬½ÓÉÏºó³ÁÄ¬³¬¹ýÕâ¸öÊ±¼ä£¬¾Í¶Ï¿ªÁ¬½Ó£©
-	DWORD				m_dwWorkerThreadNumCpuMultipe;	//¹¤×÷³µÏß³ÌÊÇcpuºËÊýµÄ¶àÉÙ±¶
-	DWORD				m_dwMaxConnectionPerIP;	//Ã¿IP×î´óÁ¬½ÓÊý INFINITEÎª²»ÏÞÖÆ
+	BOOL				m_bRunning;				//ï¿½ï¿½ï¿½ï¿½×´Ì¬
+	UINT				m_port;					//ï¿½ï¿½ï¿½ï¿½ï¿½Ë¿ï¿½
+	HANDLE				m_hServerThread;		//ï¿½ï¿½ï¿½ï¿½ï¿½ß³ï¿½
+	HANDLE				m_hTimeCheckThread;		//ï¿½ï¿½Ä¬ï¿½ï¿½Ê±ï¿½ï¿½ï¿½ï¿½ß³ï¿½
+	ThreadHandleList	m_workerThreadList;		//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ß³Ì¾ï¿½ï¿½ï¿½Ð±ï¿½
+	HANDLE				m_hCompletionPort;		//ï¿½ï¿½É¶Ë¿Ú¾ï¿½ï¿½
+	DWORD				m_dwSessionDataSize;	//ï¿½á»°ï¿½ï¿½ï¿½Ý´ï¿½Ð¡
+	SOCKET				m_sServer;				//ï¿½ï¿½ï¿½ï¿½socket
+	DWORD				m_dwSilenceTimeoutS;	//ï¿½ï¿½Ä¬ï¿½ï¿½Ê±Ê±ï¿½ä£¨ï¿½Í»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ïºï¿½ï¿½Ä¬ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ä£¬ï¿½Í¶Ï¿ï¿½ï¿½ï¿½ï¿½Ó£ï¿½
+	DWORD				m_dwWorkerThreadNumCpuMultipe;	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ß³ï¿½ï¿½ï¿½cpuï¿½ï¿½ï¿½ï¿½ï¿½Ä¶ï¿½ï¿½Ù±ï¿½
+	DWORD				m_dwMaxConnectionPerIP;	//Ã¿IPï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ INFINITEÎªï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 
-	FnTcpMsgHandler		m_fnCallback;			//ÏûÏ¢´¦Àí»Øµ÷º¯Êý
-	LPVOID				m_lpParameter;			//»Øµ÷º¯ÊýµÄ²ÎÊý
+	FnTcpMsgHandler		m_fnCallback;			//ï¿½ï¿½Ï¢ï¿½ï¿½ï¿½ï¿½ï¿½Øµï¿½ï¿½ï¿½ï¿½ï¿½
+	LPVOID				m_lpParameter;			//ï¿½Øµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä²ï¿½ï¿½ï¿½
 
-	FnTcpDisconnectNotify	m_fnDisconnectNotify;//Á¬½Ó¶Ï¿ªÍ¨Öª»Øµ÷º¯Êý
-	LPVOID				m_lpDisconnectNotifyParameter;//Á¬½Ó¶Ï¿ªÍ¨Öª»Øµ÷º¯ÊýµÄ²ÎÊý
+	FnTcpDisconnectNotify	m_fnDisconnectNotify;//ï¿½ï¿½ï¿½Ó¶Ï¿ï¿½Í¨Öªï¿½Øµï¿½ï¿½ï¿½ï¿½ï¿½
+	LPVOID				m_lpDisconnectNotifyParameter;//ï¿½ï¿½ï¿½Ó¶Ï¿ï¿½Í¨Öªï¿½Øµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä²ï¿½ï¿½ï¿½
 
-	CRITICAL_SECTION	m_dataSection;			//Êý¾Ý·ÃÎÊÁÙ½çÇø
-	OperationDataSet	m_dataSet;				//Êý¾Ýset£¬ÓÃÓÚ´æ´¢overlappedÊý¾Ý
-	IPConnectionsMap	m_ipConnectionsMap;		//Ã¿¸öipÒÑ½¨Á¢µÄÁ¬½ÓÊý Ó³Éä±í
-	ClientSocketList	m_clientSocketList;		//¿Í»§¶ËÌ×½Ó×Ö¼¯ºÏ
-	HANDLE				m_hExitEvent;			//ÍË³öÍ¨Öª
+	CRITICAL_SECTION	m_dataSection;			//ï¿½ï¿½ï¿½Ý·ï¿½ï¿½ï¿½ï¿½Ù½ï¿½ï¿½ï¿½
+	OperationDataSet	m_dataSet;				//ï¿½ï¿½ï¿½ï¿½setï¿½ï¿½ï¿½ï¿½ï¿½Ú´æ´¢overlappedï¿½ï¿½ï¿½ï¿½
+	IPConnectionsMap	m_ipConnectionsMap;		//Ã¿ï¿½ï¿½ipï¿½Ñ½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Ó³ï¿½ï¿½ï¿½
+	ClientSocketList	m_clientSocketList;		//ï¿½Í»ï¿½ï¿½ï¿½ï¿½×½ï¿½ï¿½Ö¼ï¿½ï¿½ï¿½
+	HANDLE				m_hExitEvent;			//ï¿½Ë³ï¿½Í¨Öª
 
-	BOOL				m_bIPSetAvailable;		//ºÚÃûµ¥»òÕß°×Ãûµ¥ÊÇ·ñ¿ÉÓÃ
-	BOOL				m_bIsBlackIPSet;		//ÊÇ·ñÊÇºÚÃûµ¥
-	SingleIPOrNameSet	m_ipSet;				//ºÚÃûµ¥»òÕß°×Ãûµ¥IPÁÐ±í
-	SingleIPOrNameSet	m_nameSet;				//ºÚÃûµ¥»òÕß°ÚÃûµ¥ÓòÃû
+	BOOL				m_bIPSetAvailable;		//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ß°ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ç·ï¿½ï¿½ï¿½ï¿½
+	BOOL				m_bIsBlackIPSet;		//ï¿½Ç·ï¿½ï¿½Çºï¿½ï¿½ï¿½ï¿½ï¿½
+	SingleIPOrNameSet	m_ipSet;				//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ß°ï¿½ï¿½ï¿½ï¿½ï¿½IPï¿½Ð±ï¿½
+	SingleIPOrNameSet	m_nameSet;				//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ß°ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 };

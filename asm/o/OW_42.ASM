@@ -1,3 +1,14 @@
+; ------------------------------------------------------------
+; name      O
+; type      asm
+; cve       —
+; year      unknown
+; os        DOS
+; authors   unknown
+; source    krisyotam
+; archived  krisyotam (2026)
+; notes     —
+; ------------------------------------------------------------
 ;OW-42 virus - TridenT group, edited for Crypt Newsletter 13
 ;
 

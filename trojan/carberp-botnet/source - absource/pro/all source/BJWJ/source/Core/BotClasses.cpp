@@ -1,3 +1,14 @@
+/*
+  name      Carberp Botnet
+  type      trojan
+  cve       вЂ”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     вЂ”
+ */
 
 #include <windows.h>
 
@@ -18,9 +29,9 @@ TBotList::TBotList()
 
 TBotList::~TBotList()
 {
-	// т.к. особенности языка не позволяют "корректно"
-	// вызвать виртуальный метод в деструкторе мы
-	// вынуждены сделать очистку списка и в деструкторе потомка
+	// пїЅ.пїЅ. пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ"
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
     Clear();
 }
 
@@ -38,7 +49,7 @@ void TBotList::DoDelete(void* Item)
 
 void StringsDestroyItem(TBotList*, void* Item)
 {
-	// Функция уничтожает строку
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
     delete (string*)Item;
 }
 //---------------------------------------------------
@@ -58,7 +69,7 @@ TBotStrings::~TBotStrings()
 
 int TBotStrings::PutStr(string *Str)
 {
-	// Фунция вставляет строку
+	// пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
     return FItems.Add(Str);
 }
 //---------------------------------------------------
@@ -77,7 +88,7 @@ int  TBotStrings::Add(const string& Value)
 
 string TBotStrings::MakeValueString(const char* Name, const char* Value)
 {
-	// Функция собирает строку Имя=Значение
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ=пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	DWORD Len = STRA::Length(Name) + ValueDelimeter.Length() + STRA::Length(Value);
 
 	string Line(Len);
@@ -90,7 +101,7 @@ string TBotStrings::MakeValueString(const char* Name, const char* Value)
 
 int TBotStrings::AddValue(const char* Name, const char* Value)
 {
-	// Функция добавляет значение в список
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	if (STRA::IsEmpty(Name))
 		return -1;
 
@@ -177,27 +188,27 @@ void TBotStrings::SetItem(int Index, const string &Item)
 
 string TBotStrings::GetDelimetedText(const  char* Delimeter)
 {
-	// Функция собирает все эементы списка в строку
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	if (Count() == 0) return NULLSTR;
 
 	string D = Delimeter;
 
-	// Расчитываем общую длину строки
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	DWORD Len = 0;
 	int Count = FItems.Count();
 	for (int i = 0; i < Count; i++)
 	{
 		string *S = (string*)FItems[i];
 		Len += S->Length();
-		// для всех строк, кроме последней добавляем символы перевода и
-		// новой строки
+		// пїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ
+		// пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 		if (i < Count - 1)
 			Len += D.Length();
 	}
 
 	string Result(Len);
 
-	// Собираем строки
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	for (int i = 0; i < Count; i++)
 	{
 		string *S = (string*)FItems[i];
@@ -218,8 +229,8 @@ string TBotStrings::GetText()
 
 void TBotStrings::SetText(const char* Text)
 {
-	// функция разбивает многострочный текст на
-	// список строк
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅ
+	// пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 	Clear();
 	if (STRA::IsEmpty(Text)) return;
 
@@ -232,11 +243,11 @@ void TBotStrings::SetText(const char* Text)
 	DWORD StrLen;
 	while (1)
 	{
-		// Ищем конец строки
+		// пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 		End = Start;
 		while (*End != 0 && *End != 10 && *End != 13) End++;
 
-		// Добавляем строку
+		// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 		if (End != Text)
 		{
 			StrLen = End - Start;
@@ -246,7 +257,7 @@ void TBotStrings::SetText(const char* Text)
 
         if (*End == 0) break;
 
-		// Переходим на следующую строку
+		// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 		Flag = 0;
 		while (*End != 0)
 		{
@@ -294,7 +305,7 @@ void TBotStrings::SetDelimetedText(const char* Text, const char* Delimeter)
 
 		if (Pos > 0)
 		{
-			// Добавляем элемент
+			// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
             string Item(Text, Pos);
             Add(Item);
 		}
@@ -309,7 +320,7 @@ void TBotStrings::SetDelimetedText(const char* Text, const char* Delimeter)
 
 string TBotStrings::NameByIndex(int Index)
 {
-	// Функция возвращает имя из строки с индексом
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	string Name;
 
 	DWORD Len = 0;
@@ -327,8 +338,8 @@ string TBotStrings::NameByIndex(int Index)
 
 string TBotStrings::ValueByIndex(int Index)
 {
-	// Функция возвращает значение из строки с
-	// указанным индексом
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 
 	string Value;
 
@@ -346,8 +357,8 @@ string TBotStrings::ValueByIndex(int Index)
 
 bool TBotStrings::IsName(const string& S, DWORD* NameEnd, DWORD* ValueStart)
 {
-	// Функция возвращает истину если строка является
-	// парой Имя Значение
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+	// пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 
 	if (S.IsEmpty() || ValueDelimeter.IsEmpty())
 		return false;
@@ -369,7 +380,7 @@ bool TBotStrings::IsName(const string& S, DWORD* NameEnd, DWORD* ValueStart)
 
 int TBotStrings::SearchName(const char* Name, string* Value)
 {
-	// Функция ищет пизоцию элемента с именем Name;
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ Name;
 	if (STRA::IsEmpty(Name)) return -1;
 
 	for (int i = 0; i < FItems.Count(); i++)
@@ -394,8 +405,8 @@ int TBotStrings::SearchName(const char* Name, string* Value)
 
 string TBotStrings::GetValue(const char* Name)
 {
-	// Функция возвращает значения для элемента
-	// с указанным именем
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+	// пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 
     string Value;
 
@@ -407,7 +418,7 @@ string TBotStrings::GetValue(const char* Name)
 
 void TBotStrings::SetValue(const char* Name, const char* Value)
 {
-	// Функция устанавливает значение для указанного имени
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 	if (STRA::IsEmpty(Name))
 		return;
 	int Pos = SearchName(Name, NULL);
@@ -420,7 +431,7 @@ void TBotStrings::SetValue(const char* Name, const char* Value)
 
 void TBotStrings::SaveToStream(TBotStream* Stream)
 {
-	// етод записывает набор строк в поток данных
+	// пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	if (Stream)
 	{
 		string Buf = GetText();
@@ -431,7 +442,7 @@ void TBotStrings::SaveToStream(TBotStream* Stream)
 
 void TBotStrings::LoadFromStream(TBotStream* Stream)
 {
-	// Функция загружает строки из потока данных
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	Clear();
 	if (Stream)
 	{
@@ -442,23 +453,23 @@ void TBotStrings::LoadFromStream(TBotStream* Stream)
 //---------------------------------------------------
 
 
-/*----------------  Методы для работы со списками элементов -----------------*/
+/*----------------  пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ -----------------*/
 
 DWORD MaxListSize = 4000000;
 
 typedef struct TListRec
 {
-	PDWORD Items;    // Массив элементов
-	DWORD Count;     // Количество элементов в списке
-	DWORD Capacity;  // Количество зарезервированных элементов
-	TFreeItemMethod FreeMethod; // Метод уничтожения элементов
+	PDWORD Items;    // пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+	DWORD Count;     // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
+	DWORD Capacity;  // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+	TFreeItemMethod FreeMethod; // пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 
 } *PListRec;
 
 
 PList List::Create()
 {
-	// Функция создания списка
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	PListRec Result = CreateStruct(TListRec);
 	SetCapacity(Result, 32);
 	return (PList)Result;
@@ -468,7 +479,7 @@ PList List::Create()
 
 void List::Free(PList List)
 {
-    // Функция уничтожения списка
+    // пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
  if (List == NULL)
 		return;
 
@@ -479,12 +490,12 @@ void List::Free(PList List)
 
 void List::Clear(PList List)
 {
-	// Функция очистки списка
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	if (List == NULL)
 		return;
 	PListRec LR = (PListRec)List;
 
-	// Уничтожаем элементы
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	if (LR->FreeMethod != NULL)
 	{
 		DWORD i;
@@ -496,7 +507,7 @@ void List::Clear(PList List)
                 LR->FreeMethod(Item);
 		}
 	}
-    // Очищаем список
+    // пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	HEAP::Free(LR->Items);
 	LR->Items = NULL;
 	LR->Capacity = 0;
@@ -506,7 +517,7 @@ void List::Clear(PList List)
 
 DWORD List::Count(PList List)
 {
-	// Функция возвращает количество элементов списка
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	if (List == NULL)
 		return 0;
 	else
@@ -517,9 +528,9 @@ DWORD List::Count(PList List)
 
 bool ListUpdateCapacity(PListRec List)
 {
-	// Изменить размер выделенной памяти
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 
-	// Расчитываем константу увеличения буфера
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	DWORD Delta;
 	if (List->Capacity > 64)
 		Delta = List->Capacity / 4;
@@ -529,21 +540,21 @@ bool ListUpdateCapacity(PListRec List)
 	else
 		Delta = 4;
 
-	// Устанавливаем новый размер
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
     return List::SetCapacity((PList)List, List->Capacity + Delta);
 }
 //----------------------------------------------------------------------------
 
 bool List::SetCapacity(PList List, DWORD Value)
 {
-	// Изменить размер зарегистрированных элементов
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	if (List == NULL || Value > MaxListSize)
 		return false;
 
 	PListRec LR = (PListRec)List;
 	if (Value > LR->Count && Value != LR->Capacity)
 	{
-        // Создаём новый буфер
+        // пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 		if (HEAP::ReAlloc2((LPVOID &)LR->Items, Value * sizeof(LPVOID)))
 		{
 			LR->Capacity = Value;
@@ -556,7 +567,7 @@ bool List::SetCapacity(PList List, DWORD Value)
 
 int List::Add(PList List, LPVOID Item)
 {
-	// Функция добавляет новый элемент
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	if (List == NULL)
 		return -1;
 	PListRec LR = (PListRec)List;
@@ -574,7 +585,7 @@ int List::Add(PList List, LPVOID Item)
 
 void List::Delete(PList List, DWORD Index)
 {
-	// Функция удаляет элемент из списка
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	if (List == NULL || Index >= ((PListRec)List)->Count)
 		return;
 
@@ -584,24 +595,24 @@ void List::Delete(PList List, DWORD Index)
 	LR->Count--;
 	if (Index < LR->Count)
 	{
-		// Переносим блок памяти находящийся за удалённым элементом
+		// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 		PDWORD Dest = LR->Items;
 		Dest += Index;
 		PDWORD Source = Dest;
 		Source++;
         m_memcpy(Dest, Source, (LR->Count - Index)*sizeof(PDWORD));
 	}
-	// При необходимости уничтожаем элемент
+	// пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	if (Temp != NULL && LR->FreeMethod != NULL)
 		LR->FreeMethod(Temp);
 
 }
 //----------------------------------------------------------------------------
 
-// Извлечь элемент
+// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
  LPVOID List::Extract(PList List, DWORD Index)
  {
-	// Функция  извлекает элемент из списка не уничтожая его
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ  пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ
     PListRec LR = (PListRec)List;
 	if (List == NULL || Index >= LR->Count)
 		return NULL;
@@ -616,7 +627,7 @@ void List::Delete(PList List, DWORD Index)
 
 int List::Remove(PList List, LPVOID Item)
 {
-	// Извлечь из списка элемент
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	int Index = IndexOf(List, Item);
 	if (Index >= 0)
 		Delete(List, Index);
@@ -626,7 +637,7 @@ int List::Remove(PList List, LPVOID Item)
 
 int List::IndexOf(PList List, LPVOID Item)
 {
-	// Функция возвращает позицию элемента в списке
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	if (List == NULL)
 		return -1;
 
@@ -642,7 +653,7 @@ int List::IndexOf(PList List, LPVOID Item)
 
 void List::SetItem(PList List, DWORD Index, LPVOID Item)
 {
-	// Функция устанавливает значение элементу ы указанной позиции Index
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ Index
 	if (List == NULL || Index >= ((PListRec)List)->Count)
 		return;
     PListRec LR = (PListRec)List;
@@ -656,7 +667,7 @@ void List::SetItem(PList List, DWORD Index, LPVOID Item)
 
 LPVOID List::GetItem(PList List, DWORD Index)
 {
-	// Функция возвращает значение элемента из позиции Index
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ Index
 	if (List == NULL || Index >= ((PListRec)List)->Count)
 		return NULL;
 
@@ -666,7 +677,7 @@ LPVOID List::GetItem(PList List, DWORD Index)
 
 void List::SetFreeItemMehod(PList List, TFreeItemMethod Method)
 {
-	// Установить метод автоматического удаления элементов
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	if (List != NULL)
 		((PListRec)List)->FreeMethod = Method;
 }
@@ -674,7 +685,7 @@ void List::SetFreeItemMehod(PList List, TFreeItemMethod Method)
 
 LPVOID List::Last(PList List)
 {
-	// функция возвращает последний элемент списка
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	if (List == NULL) return NULL;
     return List::GetItem(List, List::Count(List) - 1);
 }
@@ -682,7 +693,7 @@ LPVOID List::Last(PList List)
 
 void List::CopyFrom(PList Destination, PList Source)
 {
-	// Функция копирует элементы из списка Source в список Destination
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ Source пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ Destination
 	if (Destination == NULL || Source == NULL)
 		return;
 
@@ -695,7 +706,7 @@ void List::CopyFrom(PList Destination, PList Source)
 
 // ----------------------------------------------------------------------------
 //
-//  Набор функция для работы со списками строк Strings
+//  пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ Strings
 //
 // ----------------------------------------------------------------------------
 
@@ -710,7 +721,7 @@ typedef struct TStringsRec
 
 PStrings Strings::Create()
 {
-	// Создать набор строк
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 	PStringsRec Rec = CreateStruct(TStringsRec);
 
 	Rec->Items = List::Create();
@@ -725,7 +736,7 @@ PStrings Strings::Create()
 
 void Strings::Free(PStrings Strings)
 {
-	// Уничтожить набор строк
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 	if (Strings == NULL)
 		return;
 
@@ -739,7 +750,7 @@ void Strings::Free(PStrings Strings)
 
 void Strings::Clear(PStrings Strings)
 {
-	// Очистить набор строк
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 	if (Strings != NULL)
 		List::Clear(PStringsRec(Strings)->Items);
 }
@@ -747,7 +758,7 @@ void Strings::Clear(PStrings Strings)
 
 DWORD Strings::Count(PStrings Strings)
 {
-	// Получить количество строк
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 	if (Strings == NULL)
 		return 0;
 	return List::Count(PStringsRec(Strings)->Items);
@@ -756,7 +767,7 @@ DWORD Strings::Count(PStrings Strings)
 
 int Strings::Add(PStrings Strings, PCHAR Str, bool Duplicate)
 {
-	// Добавить новую строку
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	if (Strings == NULL)
 		return -1;
 	PCHAR Tmp;
@@ -770,7 +781,7 @@ int Strings::Add(PStrings Strings, PCHAR Str, bool Duplicate)
 
 void Strings::Delete(PStrings Strings, DWORD Index)
 {
-	// Удалить строку
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	if (Strings == NULL)
 		return;
 
@@ -780,7 +791,7 @@ void Strings::Delete(PStrings Strings, DWORD Index)
 
 int Strings::Remove(PStrings Strings, PCHAR Str)
 {
-	// Функция удаляет строку Str из списка
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ Str пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	int Index = IndexOf(Strings, Str);
 	if (Index >= 0)
 		Delete(Strings, Index);
@@ -790,7 +801,7 @@ int Strings::Remove(PStrings Strings, PCHAR Str)
 
 int Strings::IndexOf(PStrings Strings, PCHAR Str)
 {
-    // Функция возвращает позицию строки Str в списке
+    // пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ Str пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	if (Strings == NULL) return -1;
 	PStringsRec R = (PStringsRec)Strings;
 
@@ -808,7 +819,7 @@ int Strings::IndexOf(PStrings Strings, PCHAR Str)
 
 PCHAR Strings::GetItem(PStrings Strings, DWORD Index, bool DuplicateStr)
 {
-	// Получит строку из позиции
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 
 	if (Strings == NULL)
 		return NULL;
@@ -822,8 +833,8 @@ PCHAR Strings::GetItem(PStrings Strings, DWORD Index, bool DuplicateStr)
 
 PCHAR Strings::GetText(PStrings Strings, PCHAR LineDelimeter)
 {
-	// Объеденяет все строки в одну. Если не указан
-	// разделитель то использован разделитель заданный в настройках
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅ. пїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	if (Strings == NULL)
 		return NULL;
 
@@ -833,7 +844,7 @@ PCHAR Strings::GetText(PStrings Strings, PCHAR LineDelimeter)
 	if (Count == 0)
 		return NULL;
 
-	// Инициализируем разделитель строк
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 	PCHAR Del;
 	DWORD DelLen;
 
@@ -852,7 +863,7 @@ PCHAR Strings::GetText(PStrings Strings, PCHAR LineDelimeter)
 	DWORD TotalLen = 0;
 	DWORD i;
 
-	// Рсчитываем длину строки
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	for (i = 0; i < Count; i++)
 	{
 		S = (PCHAR)List::GetItem(SR->Items, i);
@@ -861,7 +872,7 @@ PCHAR Strings::GetText(PStrings Strings, PCHAR LineDelimeter)
 			TotalLen += DelLen;
 	}
 
-	// Собираем строку
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	DWORD L;
 	PCHAR Result = STR::Alloc(TotalLen);
 
@@ -889,16 +900,16 @@ PCHAR Strings::GetText(PStrings Strings, PCHAR LineDelimeter)
 
 void Strings::SetText(PStrings Strings, PCHAR Text)
 {
-	// Функция разбирает текст на строки разделённые символами новой
-	// строки и перевода каретки
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
+	// пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 
 	if (Strings == NULL || Text == NULL)
 		return;
 	PStringsRec SR = (PStringsRec)Strings;
-	// очищаем список
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	List::Clear(SR->Items);
 
-	//Парсим текст
+	//пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 	PCHAR Start = Text;
 	PCHAR End;
 	PCHAR Line;
@@ -907,11 +918,11 @@ void Strings::SetText(PStrings Strings, PCHAR Text)
 	DWORD StrLen;
 	while (*Start != 0)
 	{
-		// Ищем конец строки
+		// пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 		End = Start;
 		while (*End != 0 && *End != 10 && *End != 13) End++;
 
-		// Создаём строку
+		// пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 		StrLen = End - Start;
 		if (StrLen != 0)
 			Line = STR::New(Start, StrLen);
@@ -919,7 +930,7 @@ void Strings::SetText(PStrings Strings, PCHAR Text)
 			Line = NULL;
 		List::Add(SR->Items, Line);
 
-		// Переходим на следующую строку
+		// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 		Flag = 0;
 		while (*End != 0)
 		{
@@ -944,8 +955,8 @@ void Strings::SetText(PStrings Strings, PCHAR Text)
 
 int Strings::AddValue(PStrings Strings, PCHAR Name, PCHAR Value, PCHAR Delimeter)
 {
-	// Добавить в список пару Имя=Значение.
-	// Если не указан разделитель то будет взят из настроек списка (по умолчанию =)
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅ=пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
+	// пїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ (пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ =)
 
 	if (Strings == NULL || Name == NULL)
 		return NULL;
@@ -963,11 +974,11 @@ int Strings::AddValue(PStrings Strings, PCHAR Name, PCHAR Value, PCHAR Delimeter
 
 
 //---------------------------------------------------------------------------
-//  MEMBLOCKS - Функции для работы с блоками памяти, списками блоков
+//  MEMBLOCKS - пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 //---------------------------------------------------------------------------
 PMemBlockList MEMBLOCK::CreateList()
 {
-	// Создать список блоков
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	PMemBlockList List = List::Create();
 	List::SetFreeItemMehod(List, (TFreeItemMethod)FreeBlock);
     List::SetCapacity(List, 64);
@@ -976,14 +987,14 @@ PMemBlockList MEMBLOCK::CreateList()
 
 void MEMBLOCK::FreeList(PMemBlockList List)
 {
-	// Уничтожить список блоков
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	List::Free(List);
 }
 
 
 void MEMBLOCK::FreeBlock(PMemBlock Block)
 {
-	// уничтожить блок памяти
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	if (Block == NULL) return;
 	MemFree(Block->Data);
     FreeStruct(Block);
@@ -991,7 +1002,7 @@ void MEMBLOCK::FreeBlock(PMemBlock Block)
 
 PMemBlock MEMBLOCK::AddBlock(PMemBlockList List, LPVOID Data, DWORD DataSize, bool Copy)
 {
-    // добавить новый блок в список
+    // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	if (List == NULL || Data == NULL || DataSize == 0)
 		return NULL;
 
@@ -1017,7 +1028,7 @@ PMemBlock MEMBLOCK::AddBlock(PMemBlockList List, LPVOID Data, DWORD DataSize, bo
 
 DWORD MEMBLOCK::Size(PMemBlockList List)
 {
-	// Функция подсчитывает общий размер данных всех блоков списка
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	if (List == NULL) return 0;
 	DWORD Sz = 0;
 	DWORD Count = List::Count(List);
@@ -1031,8 +1042,8 @@ DWORD MEMBLOCK::Size(PMemBlockList List)
 
 void MEMBLOCK::BuildToBuf(PMemBlockList List, LPVOID Buf)
 {
-	// Функция копирует данные всех блоков в буфер Buf.
-	// Подразумевается, что Buf может уместить в себе все блоки
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅ Buf.
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅ Buf пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
     if (List == NULL || Buf == NULL) return;
 
 	DWORD Count = List::Count(List);
@@ -1051,7 +1062,7 @@ void MEMBLOCK::BuildToBuf(PMemBlockList List, LPVOID Buf)
 
 PCHAR MEMBLOCK::BuildAsStr(PMemBlockList List, DWORD *TotalSize)
 {
-	// Функция собирает все блоки в строку
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	DWORD StrSize = Size(List);
 	if (TotalSize != NULL)
 		*TotalSize = StrSize;
@@ -1062,7 +1073,7 @@ PCHAR MEMBLOCK::BuildAsStr(PMemBlockList List, DWORD *TotalSize)
     return Str;
 }
 
-// Функция собирает все блоки в строку
+// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 LPVOID MEMBLOCK::BuildAsMem(PMemBlockList List, DWORD *TotalSize)
 {
 	DWORD BufSize = Size(List);
@@ -1070,8 +1081,8 @@ LPVOID MEMBLOCK::BuildAsMem(PMemBlockList List, DWORD *TotalSize)
 		*TotalSize = BufSize;
 	if (BufSize == 0) return NULL;
 
-	// Для совместимости с функциями обработуи строк в конец буфера запишем
-	// ограничивающий ноль
+	// пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
 	LPVOID Buf = MemAlloc(BufSize + 1);
 	BuildToBuf(List, Buf);
 	*((PCHAR)Buf + BufSize) = 0;
@@ -1081,7 +1092,7 @@ LPVOID MEMBLOCK::BuildAsMem(PMemBlockList List, DWORD *TotalSize)
 
 PMemBlock MEMBLOCK::Pack(PMemBlockList List)
 {
-	// Функция объеденяет блоки в один
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅ
 	DWORD Count = List::Count(List);
 	if (Count == 0) return NULL;
 
@@ -1097,7 +1108,7 @@ PMemBlock MEMBLOCK::Pack(PMemBlockList List)
 
 PMemBlock MEMBLOCK::GetBlockByID(PMemBlockList List, DWORD ID)
 {
-	// Получить блок по идентификатору
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	if (List == NULL)
 		return NULL;
 
@@ -1115,7 +1126,7 @@ PMemBlock MEMBLOCK::GetBlockByID(PMemBlockList List, DWORD ID)
 
 PCHAR MEMBLOCK::GetBlockByAsStr(PMemBlockList List, DWORD ID)
 {
-	// Получить блок как строку
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	PMemBlock Block = GetBlockByID(List, ID);
 	if (Block != NULL)
 		return STR::New((PCHAR)Block->Data, Block->Size);
@@ -1125,16 +1136,16 @@ PCHAR MEMBLOCK::GetBlockByAsStr(PMemBlockList List, DWORD ID)
 
 bool MEMBLOCK::ContainBlock(PMemBlockList List, DWORD ID)
 {
-	// Функция вернёт истину если в списке есть блок с указанным идентификатором
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	return GetBlockByID(List, ID) != NULL;
 }
 
 //---------------------------------------------------------------------------
-//  DataFile - методы для работы с файлами данными
+//  DataFile - пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 //---------------------------------------------------------------------------
 
 #pragma pack(push, 1)
-// Заголовок блока данных
+// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 typedef struct TDataBlockHead
 {
 	DWORD Signature;
@@ -1143,15 +1154,15 @@ typedef struct TDataBlockHead
 }*PDataBlockHead;
 #pragma pack(pop)
 
-// Случайное число, сигнатура блока данных
+// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 #define DATA_BLOCK_SIGNATURE  0x40F714CE
 
 
 
 PDataFile DataFile::CreateDataFile(PCHAR FileName, DWORD Signature)
 {
-	// Функция создаёт файл с именем FileName, создаёт структуру описания
-	// файла но при этом ничего в файл не записывает
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ FileName, пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+	// пїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	HANDLE File	= (HANDLE)::pCreateFileA(FileName, GENERIC_WRITE, FILE_SHARE_READ, 0, CREATE_ALWAYS, FILE_ATTRIBUTE_NORMAL, 0);
 	if (File == INVALID_HANDLE_VALUE)
 		return NULL;
@@ -1163,7 +1174,7 @@ PDataFile DataFile::CreateDataFile(PCHAR FileName, DWORD Signature)
 		return NULL;
 	}
 
-	// Инициализируем структуру файла
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
     Rec->FileName = STR::New(FileName);
 	Rec->Handle = File;
     Rec->Blocks = MEMBLOCK::CreateList();
@@ -1176,7 +1187,7 @@ PDataFile DataFile::CreateDataFile(PCHAR FileName, DWORD Signature)
 
 PDataFile DataFile::OpenFile(PCHAR FileName, DWORD Signature)
 {
-	// Функция открывает файл для чтения и читает из него заголовок
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	HANDLE Handle	= (HANDLE)pCreateFileA(FileName, GENERIC_READ, FILE_SHARE_READ, 0, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, 0);
 	if (Handle == INVALID_HANDLE_VALUE)
 		return NULL;
@@ -1190,7 +1201,7 @@ PDataFile DataFile::OpenFile(PCHAR FileName, DWORD Signature)
 
     File->Handle = Handle;
 
-	// Читаем заголовок файла
+	// пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 	DWORD Readed = 0;
 	pReadFile(Handle, &File->Head, sizeof(File->Head), &Readed, NULL);
 	if (Readed != sizeof(File->Head) ||
@@ -1207,7 +1218,7 @@ PDataFile DataFile::OpenFile(PCHAR FileName, DWORD Signature)
 
 void DataFile::CloseFile(PDataFile File)
 {
-	// Функция закрывает файл и уничтожает структуру File
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ File
 	if (File == NULL) return;
 
 	if (File->Handle != NULL)
@@ -1215,14 +1226,14 @@ void DataFile::CloseFile(PDataFile File)
 
     STR::Free(File->FileName);
 
-	// Освобождаем данные структуры
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	MEMBLOCK::FreeList(File->Blocks);
     FreeStruct(File);
 }
 
 bool DataFile::WriteDataFile(PDataFile File)
 {
-	// Записывает данные из структуры File в физический файл
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ File пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
 	if (File == NULL || File->Handle == NULL) return false;
 
 	DWORD Size = sizeof(File->Head);
@@ -1233,10 +1244,10 @@ bool DataFile::WriteDataFile(PDataFile File)
 	return WriteBlocksToFile(File);
 }
 
-// Читает данные из физического файла в структуру File
+// пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ File
 bool DataFile::ReadDataFile(PDataFile File)
 {
-	// Читаем блоки данных
+	// пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	if (File == NULL || File->Handle == NULL)
 		return false;
 
@@ -1246,12 +1257,12 @@ bool DataFile::ReadDataFile(PDataFile File)
 
 void DataFile::AddDataBlock(PDataFile File, DWORD BlockID, LPVOID Data, DWORD DataSize, bool Copy)
 {
-	// Добавить блок данных
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	if (File == NULL) return;
 
-	// Для добавления блока данных не будем пользоваться методом
-	// MEMBLOCK::AddBlock так как он игнорирует пустые блоки, а нам
-	// в любом случае нужно их записывать
+	// пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+	// MEMBLOCK::AddBlock пїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ, пїЅ пїЅпїЅпїЅ
+	// пїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 
 	PMemBlock Block = CreateStruct(TMemBlock);
 	if (Block == NULL) return;
@@ -1284,7 +1295,7 @@ void DataFile::AddDataBlock(PDataFile File, DWORD BlockID, PCHAR StrData)
 
 LPVOID CryptBlockData(PMemBlock Block, LPVOID Key, TCryptMethod Method, PDWORD OutSize)
 {
-	// Зашифровать блок данных, функция дублирует данные перед копированием
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	if (Block == NULL || Block->Size == 0 || Block->Data == NULL ||
 		Key == NULL || Method == NULL)
 		return NULL;
@@ -1304,10 +1315,10 @@ LPVOID CryptBlockData(PMemBlock Block, LPVOID Key, TCryptMethod Method, PDWORD O
 
 bool DataFile::WriteBlocksToFile(PDataFile File)
 {
-	// Записать блоки данных ф файл
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅ
 	if (File == NULL || File->Handle == NULL) return false;
 
-	// Записываем блоки данных в файл
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅ
 	DWORD Count = List::Count(File->Blocks);
 
 	TDataBlockHead BH;
@@ -1325,11 +1336,11 @@ bool DataFile::WriteBlocksToFile(PDataFile File)
 		PMemBlock Block = (PMemBlock)List::GetItem(File->Blocks, i);
 		if (Block == NULL) continue;
 
-		// Инициализируем заголовок
+		// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 		BH.ID   = Block->ID;
 		BH.Size = Block->Size;
 
-		// Записываем заголовок
+		// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 		WriteSize = sizeof(BH);
 		pWriteFile(File->Handle, &BH, WriteSize, &WrittenSize, NULL);
 		if (WriteSize != WrittenSize)
@@ -1338,7 +1349,7 @@ bool DataFile::WriteBlocksToFile(PDataFile File)
 			break;
 		}
 
-		// Записываем данные
+		// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 		FreeBuf = false;
 		Buf = NULL;
 		WriteSize = BH.Size;
@@ -1369,7 +1380,7 @@ bool DataFile::WriteBlocksToFile(PDataFile File)
 
 bool DataFile::ReadBlocksFromFile(PDataFile File)
 {
-	// Записать блоки данных ф файл
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅ
 	if (File == NULL || File->Handle == NULL)
 		return false;
 
@@ -1382,7 +1393,7 @@ bool DataFile::ReadBlocksFromFile(PDataFile File)
     TDataBlockHead BH;
 	while (1)
 	{
-		// Читаем заголовок блока
+		// пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 		Size =sizeof(BH);
 		pReadFile(File->Handle, &BH, Size, &Readed, NULL);
 		if (Readed != Size || BH.Signature != DATA_BLOCK_SIGNATURE)
@@ -1391,7 +1402,7 @@ bool DataFile::ReadBlocksFromFile(PDataFile File)
             break;
 		}
 
-		// Читаем данные
+		// пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 		if (BH.Size != 0)
 		{
 			LPVOID Buf = MemAlloc(BH.Size);
@@ -1409,7 +1420,7 @@ bool DataFile::ReadBlocksFromFile(PDataFile File)
 				break;
 			}
 
-			// Расшифровываем данные
+			// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 			if (File->CryptMode == fcBlock && File->DecryptMethod != NULL)
 				if (!File->DecryptMethod(File->CryptKey, (LPBYTE)Buf, BH.Size, &BH.Size))
 				{
@@ -1423,7 +1434,7 @@ bool DataFile::ReadBlocksFromFile(PDataFile File)
 		}
 	}
 
-	// В случае ошибки чтения очищаем список
+	// пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	if (Error)
 		List::Clear(File->Blocks);
 
@@ -1432,7 +1443,7 @@ bool DataFile::ReadBlocksFromFile(PDataFile File)
 
 bool DataFile::CryptBlocks(PMemBlockList Blocks, LPVOID Key, TCryptMethod Method)
 {
-	// Зашифровать блоки данных
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	if (Blocks == NULL || Key == NULL || Method == NULL)
 		return false;
 
@@ -1467,7 +1478,7 @@ TEventContainer::~TEventContainer()
 
 
 
-// Информация о событии
+// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 struct TEventItem
 {
 	int ID;
@@ -1482,12 +1493,12 @@ void FreeEventItem(TBotList*, LPVOID Item)
 
 
 //-----------------------------------------------------
-//  AttachEvent - Функция подключает событие к
-//                контейнеру событий
+//  AttachEvent - пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ
+//                пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 //-----------------------------------------------------
 int TEventContainer::AttachEvent(int EventId, TBotEvent Event, LPVOID EventData)
 {
-	// Подключаем событие
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	if (Event == NULL) return NULL;
 
 
@@ -1497,7 +1508,7 @@ int TEventContainer::AttachEvent(int EventId, TBotEvent Event, LPVOID EventData)
 		FEvents->OnDelete = FreeEventItem;
 	}
 
-	// Проверяем  наличие такого события в списке
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ  пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	for (int i = 0; i < FEvents->Count(); i++)
 	{
 		TEventItem* Item = (TEventItem*)FEvents->GetItem(i);
@@ -1518,12 +1529,12 @@ int TEventContainer::AttachEvent(int EventId, TBotEvent Event, LPVOID EventData)
 }
 
 //-----------------------------------------------------
-//  DetachEvent - Функция отключает событие от
-//                контейнера событий
+//  DetachEvent - пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ
+//                пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 //-----------------------------------------------------
 void TEventContainer::DetachEvent(int EventIndex)
 {
-	// Отключаем событие
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	if (FEvents && EventIndex >= 0 && EventIndex < FEvents->Count())
 	{
 		TEventItem* Item = (TEventItem*)FEvents->GetItem(EventIndex);
@@ -1536,11 +1547,11 @@ void TEventContainer::DetachEvent(int EventIndex)
 }
 
 //-----------------------------------------------------
-//  CallEvent - Функция вызывает указанное событие
+//  CallEvent - пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 //-----------------------------------------------------
 void TEventContainer::CallEvent(int EventId, LPVOID Param)
 {
-	// Вызываем событие
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	if (FEvents)
 	{
 		for (int i = 0; i < FEvents->Count(); i++)
@@ -1639,9 +1650,9 @@ DWORD TBotStream::WriteString(const string &Str)
 }
 
 //-----------------------------------------------------------
-//  WriteSizedString - Функция записывает строку с заголовком
-//                     размера
-//  Формат [DWORD: Размер][Данные строки]
+//  WriteSizedString - пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+//                     пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+//  пїЅпїЅпїЅпїЅпїЅпїЅ [DWORD: пїЅпїЅпїЅпїЅпїЅпїЅ][пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ]
 //-----------------------------------------------------------
 DWORD TBotStream::WriteSizedString(const char* Str)
 {
@@ -1661,7 +1672,7 @@ DWORD TBotStream::WriteSizedString(const string &Str)
 
 
 //-----------------------------------------------------------
-//  ReadToBuf - Функция загружает данные в буфер
+//  ReadToBuf - пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅ
 //-------------------+----------------------------------------
 LPVOID TBotStream::ReadToBuf(DWORD *aSize)
 {
@@ -1676,7 +1687,7 @@ LPVOID TBotStream::ReadToBuf(DWORD *aSize)
 }
 
 //-----------------------------------------------------------
-//  ReadToString - Функция загружает данные в строку
+//  ReadToString - пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 //-----------------------------------------------------------
 string TBotStream::ReadToString()
 {
@@ -1719,7 +1730,7 @@ string TBotStream::ReadString(DWORD Size)
 
 string TBotStream::ReadSizedString()
 {
-	// Читает строку формата [DWORD: Размер][Строка]
+	// пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ [DWORD: пїЅпїЅпїЅпїЅпїЅпїЅ][пїЅпїЅпїЅпїЅпїЅпїЅ]
 	DWORD Size = 0;
 	Read(&Size, sizeof(Size));
 	string S;
@@ -1741,8 +1752,8 @@ TBotMemoryStream::TBotMemoryStream(LPVOID Mem, DWORD MemSize)
 	FMemory   = (LPBYTE)Mem;
 	FSize     = MemSize;
 	FPosition = 0;
-	// Устанавливаем признак того, что поток связан с внешним буфером
-	// В этом случае класс не будет перевыделять память
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ, пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+	// пїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	FAssigned = true;
 }
 
@@ -1769,8 +1780,8 @@ void TBotMemoryStream::SetPointer(LPBYTE Ptr, DWORD Size)
 
 LPBYTE TBotMemoryStream::Realloc(DWORD &NewCapacity)
 {
-	// Выделяем память.
-	// Память выделяем блоками
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ.
+	// пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 
 	if (FAssigned || NewCapacity == FSize)
 	{
@@ -1778,7 +1789,7 @@ LPBYTE TBotMemoryStream::Realloc(DWORD &NewCapacity)
 		return FMemory;
     }
 
-	// Устанавливается нулевое значение, освобождаем память
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	if (NewCapacity == 0)
 	{
 		if (FMemory)
@@ -1791,7 +1802,7 @@ LPBYTE TBotMemoryStream::Realloc(DWORD &NewCapacity)
         return FMemory;
     }
 
-	/* TODO : Продумать оптимизацию выделения памяти */
+	/* TODO : пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ */
 	const static WORD BlockSize = 4096;
 
     LPBYTE Buf = FMemory;
@@ -1831,7 +1842,7 @@ void TBotMemoryStream::SetSize(DWORD NewSize)
 
 DWORD TBotMemoryStream::Read(void* Buf, DWORD Count)
 {
-	// Читаем порцию данных
+	// пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	DWORD Readed = 0;
 
 	if (FMemory)
@@ -1850,7 +1861,7 @@ DWORD TBotMemoryStream::Write(const void* Buf, DWORD Count)
 
 	DWORD Writen = 0;
 
-    // Определяем размер записываемых данных
+    // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	if (FAssigned)
 	{
 		Writen = (FMemory) ? Min(Count, FSize - FPosition) : 0;
@@ -1867,7 +1878,7 @@ DWORD TBotMemoryStream::Write(const void* Buf, DWORD Count)
 		Writen = (FMemory) ? Count : 0;
     }
 
-	// Записываем данные
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	if (Writen)
 	{
         m_memcpy(FMemory + FPosition, Buf, Writen);
@@ -1915,7 +1926,7 @@ TBotFileStream::TBotFileStream(const char* FileName, WORD Mode)
 	bool Create = (Mode & fcmCreate) != 0;
 
 	DWORD Creation = (Create) ? CREATE_ALWAYS : OPEN_EXISTING;
-	// Определяем режим записи\чтения
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ\пїЅпїЅпїЅпїЅпїЅпїЅ
 
 	WORD AM = Mode & 0x0003;
 	if (AM == 0 && Create)
@@ -1945,7 +1956,7 @@ TBotFileStream::~TBotFileStream()
 
 bool TBotFileStream::Valid()
 {
-	// Функция возвращает истину если файл успешно открыт
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
     return FHandle != NULL;
 }
 
@@ -1990,7 +2001,7 @@ DWORD TBotFileStream::Size()
 
 void TBotFileStream::SetSize(DWORD NewSize)
 {
-	// Функция устанавливает новый размер файла
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 	if (FHandle)
 	{
 		  Seek(NewSize, SO_BEGIN);
@@ -2021,9 +2032,9 @@ TBotCollection::~TBotCollection()
 }
 
 
-// По умолчанию коллекция создаётся потоко НЕ защищённой
-// Для включения потокозащищённости необходимо вызвать данную функцию
-// Соответственно функция должна вызываться до начала работы в потоках
+// пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+// пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 void TBotCollection::SetThreadSafe()
 {
 	if (!FLock)
@@ -2033,36 +2044,36 @@ void TBotCollection::SetThreadSafe()
     }
 }
 
-// Вход в критическую секцию
+// пїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 void TBotCollection::Lock()
 {
 	if (FLock)
         pEnterCriticalSection(FLock);
 }
 
-// Выход из критической секции
+// пїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 void TBotCollection::Unlock()
 {
 	if (FLock)
         pLeaveCriticalSection(FLock);
 }
 
-// Функция входит в критическую секцию и возвращает объект блокировки
+// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 TLock TBotCollection::GetLocker()
 {
 	return FLock;
 }
 
 
-// Вставляем элемент в коллекцию
+// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 void TBotCollection::InsertItem(TBotCollectionItem* Item)
 {
 	if (Item && Item->FOwner != this)
 	{
-		// Извлекаем элемент из другой коллекции
+		// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 		if (Item->FOwner) Item->FOwner->RemoveItem(Item);
 
-		// Блокируем метод
+		// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 		TLock Lock(FLock);
 		//--------------------------------
 
@@ -2071,12 +2082,12 @@ void TBotCollection::InsertItem(TBotCollectionItem* Item)
     }
 }
 
-//Извлекаем элемент из коллекции
+//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 void TBotCollection::RemoveItem(TBotCollectionItem* Item)
 {
 	if (Item && Item->FOwner == this)
 	{
-		// Блокируем метод
+		// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 		TLock Lock(FLock);
 		//--------------------------------
 
@@ -2086,10 +2097,10 @@ void TBotCollection::RemoveItem(TBotCollectionItem* Item)
 }
 
 
-// Функция очищает список элементов
+// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 void TBotCollection::Clear()
 {
-	// Блокируем метод
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 	TLock Lock(FLock);
     //--------------------------------
 
@@ -2104,20 +2115,20 @@ void TBotCollection::Clear()
 }
 
 
-// Функция возвращает кольчество элементов списка
+// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 int TBotCollection::Count()
 {
-	// Блокируем метод
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 	TLock Lock(FLock);
 	//--------------------------------
 
 	return FItems.Count();
 }
 
-// Функция возвращает запрашиваемый элемент
+// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 TBotCollectionItem* TBotCollection::Items(int Index)
 {
-	// Блокируем метод
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 	TLock Lock(FLock);
 	//--------------------------------
 
@@ -2156,7 +2167,7 @@ TBotCollection* TBotCollectionItem::Owner()
 	return FOwner;
 }
 
-// Функция устанавливает владельца элемента
+// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 void TBotCollectionItem::SetOwner(TBotCollection* aOwner)
 {
 	if (aOwner)
@@ -2178,7 +2189,7 @@ TValues::TValues()
 {
 }
 
-// Функция возвращает элемент по его имени
+// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 TValue* TValues::GetItemByName(const char* Name)
 {
 	int Cnt = Count();
@@ -2204,7 +2215,7 @@ void TValues::SetValue(int Index, const string &Value)
 	((TValue*)Items(Index))->Value = Value;
 }
 
-// Устанавливаем значение
+// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 void TValues::SetValue(const char* Name, const string &Value)
 {
 	TValue* V = GetItemByName(Name);
@@ -2215,14 +2226,14 @@ void TValues::SetValue(const char* Name, const string &Value)
 }
 
 
-// Получам значение по индексу
+// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 string TValues::GetValue(int Index)
 {
     return ((TValue*)Items(Index))->Value;
 }
 
 
-// Получам значение по имени
+// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 string TValues::GetValue(const char *Name)
 {
 	TValue* V = GetItemByName(Name);
@@ -2239,31 +2250,31 @@ string TValues::GetValue(const char *Name)
 
 
 //----------------------------------
-//  Ззаголовок данных
+//  пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 //----------------------------------
 #pragma pack(push, 1)
 struct TDataHeader
 {
-	DWORD Type;      // Тип данных
-	DWORD Flags;     // Флаги данных
-	DWORD FlagsEx;   // Дополнительные флаги
-	BYTE  Encrypted; // Данные зашифрованы
-	BYTE  Signed;    // Признак того, что данные подписаны цифровой подписью
-	DWORD NameLen;   // Длина имени системы
+	DWORD Type;      // пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
+	DWORD Flags;     // пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
+	DWORD FlagsEx;   // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
+	BYTE  Encrypted; // пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+	BYTE  Signed;    // пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ, пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+	DWORD NameLen;   // пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 };
 #pragma pack(pop)
 
 
 //----------------------------------
-//  Ззаголовок блока данных
+//  пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 //----------------------------------
 #pragma pack(push, 1)
 struct TDataBlockHeader
 {
-	WORD  Type;      // Тип блока
-    DWORD Size;      // Размер данных
-	DWORD NameID;    // Идентификатор (В зависимости от типа имеет различное назначение)
-	DWORD Reserved;  // Зарезервировано
+	WORD  Type;      // пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
+    DWORD Size;      // пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
+	DWORD NameID;    // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ (пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ)
+	DWORD Reserved;  // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 
 };
 #pragma pack(pop)
@@ -2290,7 +2301,7 @@ TDataFile::~TDataFile()
 }
 
 //-------------------------------------------------------
-//  Close - функция закрывает данные
+//  Close - пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 //-------------------------------------------------------
 void TDataFile::Close()
 {
@@ -2309,7 +2320,7 @@ void TDataFile::Close()
 }
 
 //-------------------------------------------------------
-//  Функция создаёт набор данных в файле
+//  пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅ
 //-------------------------------------------------------
 bool TDataFile::Create(const char* FileName)
 {
@@ -2326,7 +2337,7 @@ bool TDataFile::Create(const char* FileName)
 }
 
 //-------------------------------------------------------
-//  Функция создаёт набор данных в потоке данных
+//  пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 //-------------------------------------------------------
 bool TDataFile::Create(TBotStream *Stream)
 {
@@ -2343,7 +2354,7 @@ bool TDataFile::Create(TBotStream *Stream)
 }
 
 //-------------------------------------------------------
-// Функция открывает набор данных из файла
+// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 //-------------------------------------------------------
 bool TDataFile::Open(const char* FileName)
 {
@@ -2359,12 +2370,12 @@ bool TDataFile::Open(const char* FileName)
 }
 
 //-------------------------------------------------------
-//  Функция открывает набор данных потока данных
+//  пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 //-------------------------------------------------------
 bool TDataFile::Open(TBotStream *Stream)
 {
 	Close();
-	// Читаем заголовок файла
+	// пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 	FStream = Stream;
 	FStreamAssigned = FStream != NULL;
 
@@ -2379,17 +2390,17 @@ bool TDataFile::Open(TBotStream *Stream)
 }
 
 //-------------------------------------------------------
-//  Функция записывает заголовок данных
+//  пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 //-------------------------------------------------------
 bool TDataFile::WriteHeaders()
 {
-	// Записываем сигнатуру и версию
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	TFileHeader H;
 	H.Signature = Signature;
 	H.Version   = Version;
 	bool R = Write(&H, sizeof(H), false, false);
 
-	// Записываем заголовок данных
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	TDataHeader DH;
 	ClearStruct(DH);
 	DH.Type    = Type;
@@ -2398,7 +2409,7 @@ bool TDataFile::WriteHeaders()
 	DH.NameLen = Name.Length();
 	R = R && Write(&DH, sizeof(DH), false, false);
 
-	// Записываем имя набора
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	if (R && DH.NameLen)
 		R = Write(Name.t_str(), Name.Length(), true, false);
 
@@ -2406,19 +2417,19 @@ bool TDataFile::WriteHeaders()
 }
 
 //-------------------------------------------------------
-//  ReadHeaders - Функция читает заголовок файла
+//  ReadHeaders - пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 //-------------------------------------------------------
 bool TDataFile::ReadHeaders()
 {
 	TFileHeader H;
 	bool R = Read(&H, sizeof(H), false, false);
 
-	/* TODO : Пересмотреть проверку версии */
+	/* TODO : пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ */
 	if (!R || H.Signature != Signature || H.Version != Version)
 		return false;
 
 
-	// Читаем заголовок данных
+	// пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	TDataHeader DH;
 	R = Read(&DH, sizeof(DH), false, false);
 
@@ -2439,57 +2450,57 @@ bool TDataFile::ReadHeaders()
 
 
 //-------------------------------------------------------
-//  Функция записывает данные в поток.
-//  Encrypt - Указание шифровать или нет записываемые
-//			  данные
-//  Hash - Указание хэшировать данные. Необходимо для
-//		   цифровой подписи
+//  пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅ.
+//  Encrypt - пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+//			  пїЅпїЅпїЅпїЅпїЅпїЅ
+//  Hash - пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ. пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ
+//		   пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 //-------------------------------------------------------
 bool TDataFile::Write(const void* Buf, DWORD BufSize, bool Encrypt, bool Hash)
 {
 	bool R = false;
 	if (FStream && Buf && BufSize)
 	{
-		// Шифруем данные. Зарезервировано
+		// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ. пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 
-		// Хэшируем данные. Зарезервировано
+		// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ. пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 
-		// Записываем данные
+		// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 		R = FStream->Write(Buf, BufSize) == BufSize;
     }
 	return R;
 }
 
 //-------------------------------------------------------
-//  Функция читает данные из потока
-//  Decrypt - Указание расшифровать или нет записываемые
-//			  данные
-//  Hash - Указание хэшировать данные. Необходимо для
-//		   цифровой подписи
+//  пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
+//  Decrypt - пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+//			  пїЅпїЅпїЅпїЅпїЅпїЅ
+//  Hash - пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ. пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ
+//		   пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 //-------------------------------------------------------
 bool TDataFile::Read(void* Buf, DWORD BufSize, bool Decrypt, bool Hash)
 {
 	bool R = false;
 	if (FStream && Buf && BufSize)
 	{
-		// Читаем данные
+		// пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 		R = FStream->Read(Buf, BufSize) == BufSize;
 
-		// Расшифровываем данные. Зарезервировано
+		// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ. пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 
-		// Хэшируем данные. Зарезервировано
+		// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ. пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	}
 	return R;
 }
 
 
 //-------------------------------------------------------
-//  Функция записывает блок данных
-//  Type       - Тип данных
-//  VarName    - Имя блока данных
-//  VarNameLen - Длина имени
-//  Data       - Указатель на буфер с данными
-//  DataSize   - Размер данных
+//  пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
+//  Type       - пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
+//  VarName    - пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
+//  VarNameLen - пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
+//  Data       - пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+//  DataSize   - пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 //-------------------------------------------------------
 bool TDataFile::Add(WORD Type, const char *Name, LPVOID Data, DWORD DataSize)
 {
@@ -2501,21 +2512,21 @@ bool TDataFile::Add(WORD Type, const char *Name, LPVOID Data, DWORD DataSize)
 	H.Type = Type;
 	H.Size = DataSize;
 
-	// Записываем заголовок
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	bool R = Write(&H, sizeof(H), false, false);
 
-	// Записываем данные
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	R = R && Write(Data, DataSize, true, true);
 	return R;
 }
 
 
 //-------------------------------------------------------
-//  WriteBlock - Функция записывает блок в поток данных
+//  WriteBlock - пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 //-------------------------------------------------------
 bool TDataFile::WriteBlock(const TDataBlock &Block)
 {
-	// Формируем заголовок и записываем его
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ
 
 	return false;
 }
@@ -2535,7 +2546,7 @@ bool TDataFile::ReadBlock(const TDataBlock &Block)
 
 DWORD WINAPI __BotThreadProcedure(LPVOID Owner)
 {
-	// Функция потока
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
     ((TBotThread*)Owner)->Execute();
 	return 0;
 }
@@ -2595,7 +2606,7 @@ bool TBotThread::Terminated()
 
 void TBotThread::Wait()
 {
-	// Функция ожидает завершения потока
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	if (FHandle)
 		pWaitForSingleObject(FHandle, INFINITE);
 }

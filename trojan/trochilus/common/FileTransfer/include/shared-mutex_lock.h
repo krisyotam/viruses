@@ -1,3 +1,14 @@
+/*
+  name      Trochilus
+  type      trojan
+  cve       â€”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    RamadhanAmizudin/malware
+  archived  RamadhanAmizudin, krisyotam (2026)
+  notes     â€”
+ */
 #pragma once
 #include <Windows.h>
 #include <cassert>
@@ -128,9 +139,9 @@ public:
 			this->InitializeSRWLock(&m_srwLock);
 		}
 		else {
-			m_mtxLock = ::CreateMutex(NULL, FALSE, NULL);              // ÄÚ²¿×ÊÔ´·ÃÎÊ»¥³â
-			m_evtShared = ::CreateEvent(NULL, TRUE, FALSE, NULL);      // ¹²Ïí¶Á²¢·¢ÊÂ¼þ
-			m_evtExclusive = ::CreateEvent(NULL, FALSE, FALSE, NULL);  // ¶ÀÕ¼Ð´»¥³âÊÂ¼þ
+			m_mtxLock = ::CreateMutex(NULL, FALSE, NULL);              // ï¿½Ú²ï¿½ï¿½ï¿½Ô´ï¿½ï¿½ï¿½Ê»ï¿½ï¿½ï¿½
+			m_evtShared = ::CreateEvent(NULL, TRUE, FALSE, NULL);      // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Â¼ï¿½
+			m_evtExclusive = ::CreateEvent(NULL, FALSE, FALSE, NULL);  // ï¿½ï¿½Õ¼Ð´ï¿½ï¿½ï¿½ï¿½ï¿½Â¼ï¿½
 			assert(m_mtxLock == INVALID_HANDLE_VALUE || m_evtShared == INVALID_HANDLE_VALUE || m_evtExclusive == INVALID_HANDLE_VALUE);
 		}
 	}

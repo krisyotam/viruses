@@ -1,3 +1,14 @@
+/*
+  name      Carberp Botnet
+  type      trojan
+  cve       вЂ”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     вЂ”
+ */
 #pragma once
 
 #include "..\misc\types.h"
@@ -5,5 +16,5 @@
 #include "..\misc\debug.h"
 #include "..\misc\ocr.h"
 
-//анализирует файл картинку в формате bmp
+//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ bmp
 void ParseImage( const char* nameFile );

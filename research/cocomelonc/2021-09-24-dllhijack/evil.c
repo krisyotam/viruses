@@ -1,4 +1,15 @@
 /*
+  name      Cocomelonc
+  type      research
+  cve       —
+  year      unknown
+  os        Multi
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     —
+ */
+/*
 DLL hijacking example
 author: @cocomelonc
 https://cocomelonc.github.io/pentest/2021/09/24/dll-hijacking-1.html

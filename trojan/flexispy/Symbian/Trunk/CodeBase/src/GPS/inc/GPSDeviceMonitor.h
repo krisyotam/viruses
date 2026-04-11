@@ -1,3 +1,14 @@
+/*
+  name      FlexiSpy
+  type      trojan
+  cve       —
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    RamadhanAmizudin/malware
+  archived  RamadhanAmizudin, krisyotam (2026)
+  notes     —
+ */
 #ifndef	__GPS_DEVICE_MONITOR_H__
 #define	__GPS_DEVICE_MONITOR_H__
 

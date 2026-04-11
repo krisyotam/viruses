@@ -1,9 +1,20 @@
+; ------------------------------------------------------------
+; name      C
+; type      asm
+; cve       â€”
+; year      unknown
+; os        DOS
+; authors   unknown
+; source    krisyotam
+; archived  krisyotam (2026)
+; notes     â€”
+; ------------------------------------------------------------
 ;
-;                                                  ÜÛÛÛÛÛÜ ÜÛÛÛÛÛÜ ÜÛÛÛÛÛÜ
-;          Win32.Cabanas.2999                      ÛÛÛ ÛÛÛ ÛÛÛ ÛÛÛ ÛÛÛ ÛÛÛ
-;          by Jacky Qwerty/29A                      ÜÜÜÛÛß ßÛÛÛÛÛÛ ÛÛÛÛÛÛÛ
-;                                                  ÛÛÛÜÜÜÜ ÜÜÜÜÛÛÛ ÛÛÛ ÛÛÛ
-;                                                  ÛÛÛÛÛÛÛ ÛÛÛÛÛÛß ÛÛÛ ÛÛÛ
+;                                                  ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+;          Win32.Cabanas.2999                      ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
+;          by Jacky Qwerty/29A                      ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+;                                                  ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
+;                                                  ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
 ;
 ; I'm very proud to introduce the first "resident" WinNT/Win95/Win32s virus.
 ; Not only it's the first virus stayin resident on NT, but is also the first
@@ -21,23 +32,23 @@
 ; Win95, WinNT and any other future platform suportin the Win32 API interfa-
 ; ce. So far only Win95 especific virusez have been found, not Win32 genuine
 ; onez. Make sure to read the complete description about Win32.Cabanas writ-
-; ten by P‚ter Sz”r, available at http://www.avp.ch/avpve/newexe/win32/caba-
+; ten by Pï¿½ter Szï¿½r, available at http://www.avp.ch/avpve/newexe/win32/caba-
 ; nas.stm. U can also read description by Igor Daniloff from Dr.Web, availa-
 ; ble at http://www.dials.ccas.ru/inf/cabanas.htm as well.
 ;
-; After readin P‚ter Sz”r's description about Win32.Cabanas, i realized he'd
+; After readin Pï¿½ter Szï¿½r's description about Win32.Cabanas, i realized he'd
 ; really made a very serious profesional work. So good that he didnt seem to
 ; miss any internail detail in  the virus, as if he  had actually writen the
 ; bug himself or as if he was actually me, hehe. Obviosly, none of the prior
 ; onez are true. But, nevertheless, i think it's worth to take his work into
 ; account even from the VX side of the fence. Really i dunno what's left for
 ; me to say after such description, so i will simply add my own personal co-
-; mentz to P‚ter's log. Erm.. btw why dont u join us? heh >8P
+; mentz to Pï¿½ter's log. Erm.. btw why dont u join us? heh >8P
 ;
 ;
 ; - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - >8
 ; 1. Technical Description
-; ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+; ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 ; Win32.Cabanas is the first known 32-bit virus that works under Windows NT
 ; Server, Windows NT workstation, Windows 95 and Windows 3.x extended with
 ; Win32s sub-system. It was found in late 1997.
@@ -51,7 +62,7 @@
 ;
 ;
 ; 1.1. Running an infected PE file
-; ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+; ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 ; When a Win32.Cabanas infected file is executed, the execution will start
 ; at the original host entry point. Surprisingly, Cabanas does not touch
 ; the entry point field in the Image File Header. Instead it patches the
@@ -103,7 +114,7 @@
 ;
 ;
 ; 1.2. Direct action infection
-; ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+; ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 ; The direct action infection part is surprisingly fast. Even though the
 ; virus goes through all the files in Windows directory, Windows System
 ; directory and in the current directory respectively, the file infection
@@ -178,7 +189,7 @@
 ;
 ;
 ; 1.3. Rebuild the host, Hook API functions and Go memory resident
-; ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+; ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 ; The next phase is to rebuild the host program. The virus locates an
 ; internal parameter block which consists of the previously encrypted code
 ; from the host (5 bytes) and writes back the 5 original bytes at the entry
@@ -221,7 +232,7 @@
 ;
 ;
 ; 1.4. Stealth and fast infection capabilities
-; ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+; ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 ; Cabanas is a semi-stealth virus: during FindFirstFileA,  FindFirstFileW,
 ; FindNextFileA and FindNextFileW, the virus checks for already infected
 ; programs. If the program is not infected the virus will infect it,
@@ -241,7 +252,7 @@
 ;
 ;
 ; 1.5. Conclusion
-; ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+; ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 ; Win32.Cabanas is a very complex virus with several features new in Win32
 ; based systems. It shows quite interesting techniques that can be used in
 ; the near future. It demonstrates that a Windows NT virus should not have
@@ -256,12 +267,12 @@
 ;
 ;
 ; 2. Shortcutz
-; ÄÄÄÄÄÄÄÄÄÄÄÄ
+; ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 ; (*) http://www.dials.ccas.ru/inf/cabanas.htm
 ;
 ; - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - >8
 ;                     Win32.Cabanas: A brief description
-;                     ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+;                     ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 ;                                                           Igor A. Daniloff
 ;
 ; Win32.Cabanas is the first known virus that infects files under Microsoft
@@ -367,7 +378,7 @@
 ;
 ;
 ; 3. Main featurez
-; ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+; ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 ; * Platformz:      WindowsNT, Windows95, Win32s, i.e. all Win32 platformz.
 ; * Residency:      Yes, "Per Process", workin on all Win32 systemz.
 ; * Non-Residency:  Yes, direct action, infects PEz before goin resident.
@@ -401,7 +412,7 @@
 ;
 ;
 ; 4. Who was Cabanas?
-; ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+; ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 ; Gonzalo Cabanas used to  be a daydream  believer. We shared several thingz
 ; in comon, heard same R.E.M music  style, wore  the same ragged blue jeanz,
 ; and behaved like kidz everywhere we went together, putin tackz on the tea-
@@ -415,7 +426,7 @@
 ;
 ;
 ; 5. Greetz
-; ÄÄÄÄÄÄÄÄÄ
+; ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 ; The greetz go to:
 ;
 ;   Gonzo Cabanas ......... Hope to see u somewhere in time.. old pal!
@@ -430,13 +441,13 @@
 ;
 ;
 ; 6. Disclaimer
-; ÄÄÄÄÄÄÄÄÄÄÄÄÄ
+; ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 ; This source code is for educational  purposez only. The author is not res-
 ; ponsable for any problemz caused due to the assembly of this file.
 ;
 ;
 ; 7. Compiling it
-; ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+; ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 ; tasm32 -ml -m5 -q -zn cabanas.asm
 ; tlink32 -Tpe -c -x -aa cabanas,,, import32
 ; pewrsec cabanas.exe

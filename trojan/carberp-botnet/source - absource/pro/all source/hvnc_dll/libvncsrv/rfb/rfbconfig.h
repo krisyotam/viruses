@@ -1,3 +1,14 @@
+/*
+  name      Carberp Botnet
+  type      trojan
+  cve       —
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     —
+ */
 ///* Define to the full name and version of this package. */
 //#ifndef LIBVNCSERVER_PACKAGE_STRING
 //#define LIBVNCSERVER_PACKAGE_STRING  "LibVNCServer 0.9.7"

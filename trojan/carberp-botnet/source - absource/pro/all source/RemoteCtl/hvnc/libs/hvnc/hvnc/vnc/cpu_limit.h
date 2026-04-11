@@ -1,3 +1,14 @@
+/*
+  name      Carberp Botnet
+  type      trojan
+  cve       —
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     —
+ */
 #ifndef CPU_LIMIT_H_INCLUDED
 #define CPU_LIMIT_H_INCLUDED
 

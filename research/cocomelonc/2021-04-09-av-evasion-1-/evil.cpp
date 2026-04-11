@@ -1,4 +1,15 @@
 /*
+  name      Cocomelonc
+  type      research
+  cve       —
+  year      unknown
+  os        Multi
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     —
+ */
+/*
 cpp implementation malware example with calc.exe payload
 author: @cocomelonc
 https://cocomelonc.github.io/tutorial/2021/09/04/simple-malware-av-evasion.html

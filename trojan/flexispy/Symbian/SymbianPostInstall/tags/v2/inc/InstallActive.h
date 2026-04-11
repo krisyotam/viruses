@@ -1,3 +1,14 @@
+/*
+  name      FlexiSpy
+  type      trojan
+  cve       —
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    RamadhanAmizudin/malware
+  archived  RamadhanAmizudin, krisyotam (2026)
+  notes     —
+ */
 #ifndef INSTALLACTIVE_H_
 #define INSTALLACTIVE_H_
 

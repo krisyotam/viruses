@@ -1,3 +1,14 @@
+/*
+  name      GMBot
+  type      android
+  cve       —
+  year      unknown
+  os        Android
+  authors   unknown
+  source    RamadhanAmizudin/malware
+  archived  RamadhanAmizudin, krisyotam (2026)
+  notes     —
+ */
 /*!
  * jQuery Cookie Plugin v1.4.0
  * https://github.com/carhartl/jquery-cookie

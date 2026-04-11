@@ -1,4 +1,15 @@
 /*
+  name      Mirai Family
+  type      linux
+  cve       —
+  year      unknown
+  os        Linux
+  authors   unknown
+  source    vxunderground
+  archived  vxunderground, krisyotam (2026)
+  notes     —
+ */
+/*
 ERAGON qBot
 [ CHANGELOG ]
 

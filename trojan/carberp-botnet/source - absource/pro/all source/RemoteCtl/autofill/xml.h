@@ -1,3 +1,14 @@
+/*
+  name      Carberp Botnet
+  type      trojan
+  cve       вЂ”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     вЂ”
+ */
 #ifndef XML_H_INCLUDED
 #define XML_H_INCLUDED
 
@@ -22,12 +33,12 @@ typedef struct _NODE
     BOOLEAN			simply;
 } NODE,*PNODE;
 
-// [in] data - указатель на память с xml-каме
-// [in] len - размер data
-// [out] *handle - указатель в который положим хэндл
+// [in] data - пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ xml-пїЅпїЅпїЅпїЅ
+// [in] len - пїЅпїЅпїЅпїЅпїЅпїЅ data
+// [out] *handle - пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 ULONG XmlParse(PCHAR data, ULONG len,PNODE* handle);
 
-// [in] node - хэндл полученный в XmlParse
+// [in] node - пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ XmlParse
 void XmlFree(PNODE *pnode);
 
 PNODE XmlDuplicateNode(PNODE node);

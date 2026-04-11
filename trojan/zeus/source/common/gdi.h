@@ -1,29 +1,40 @@
 /*
-  Надстрйока над GDI/GDI+
+  name      Zeus
+  type      trojan
+  cve       вЂ”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    RamadhanAmizudin/malware
+  archived  RamadhanAmizudin, krisyotam (2026)
+  notes     вЂ”
+ */
+/*
+  пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ GDI/GDI+
 */
 #pragma once
 
 namespace Gdi
 {
   /*
-    Инициализация.
+    пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
   */
   void init(void);
 
   /*
-    Деинициализация.
+    пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
   */
   void uninit(void);
 
   /*
-    Сохранение HBITMAP в файл.
+    пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ HBITMAP пїЅ пїЅпїЅпїЅпїЅ.
 
-    IN fileName     - файл.
+    IN fileName     - пїЅпїЅпїЅпїЅ.
     IN dc           - DC.
     IN bitmapHandle - HBITMAP.
 
-    Return          - true - в случаи успеха,
-                      false - в случаи провала.
+    Return          - true - пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ,
+                      false - пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
   */
   bool _saveBitmapToFile(const LPWSTR fileName, HDC dc, HBITMAP bitmapHandle);
 

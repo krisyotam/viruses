@@ -1,3 +1,14 @@
+; ------------------------------------------------------------
+; name      M
+; type      asm
+; cve       —
+; year      unknown
+; os        DOS
+; authors   unknown
+; source    krisyotam
+; archived  krisyotam (2026)
+; notes     —
+; ------------------------------------------------------------
 .model tiny                         ;Sets memory model for TASM
 .radix 16                           ;Sets default number system to hexidecimal (base 16)
 .code                               ;starts code section

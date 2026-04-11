@@ -1,3 +1,14 @@
+; ------------------------------------------------------------
+; name      S
+; type      asm
+; cve       —
+; year      unknown
+; os        DOS
+; authors   unknown
+; source    krisyotam
+; archived  krisyotam (2026)
+; notes     —
+; ------------------------------------------------------------
 ;                            Silence of The Lambs v1.0
 ;                (c) The Chronomancer of Demoralized Youth 1992
 ;

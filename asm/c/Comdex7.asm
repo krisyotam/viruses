@@ -1,3 +1,14 @@
+; ------------------------------------------------------------
+; name      C
+; type      asm
+; cve       —
+; year      unknown
+; os        DOS
+; authors   unknown
+; source    krisyotam
+; archived  krisyotam (2026)
+; notes     —
+; ------------------------------------------------------------
 ;	The Comdex exibit guide program
 ;	For the Fall 1991 Comdex Las Vegas Convention
 ;

@@ -1,3 +1,14 @@
+/*
+  name      Carberp Botnet
+  type      trojan
+  cve       вЂ”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     вЂ”
+ */
 // KeysDialog.cpp : implementation file
 //
 
@@ -76,7 +87,7 @@ void CKeysDialog::OnBnClickedOk()
 	bool bEnter;
 	GetDlgItemText(IDC_KEYSTROKE,tmp);
 	CButton *pcb1 = (CButton *) (this->GetDlgItem(IDC_APPEND_ENTER));
- 	// Реализуем переключение
+ 	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
  	if(pcb1->GetCheck() == 1)
  		bEnter=true;
  	else

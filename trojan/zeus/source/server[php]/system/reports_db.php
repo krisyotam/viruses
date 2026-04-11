@@ -1,3 +1,14 @@
+/*
+  name      Zeus
+  type      trojan
+  cve       —
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    RamadhanAmizudin/malware
+  archived  RamadhanAmizudin, krisyotam (2026)
+  notes     —
+ */
 <?php if(!defined('__CP__'))die();
 define('REPORT_PREVIEW_MAX_CHARS', 100); //RњR RєSЃReRјR ° ° P "SЊRЅRѕRμ RєRѕR" Republic ‡ RμSЃS, RІRѕ SЃReRјRІRѕR "RѕRІ RІ RїSЂRμRґRїSЂRѕSЃRјRѕS, SЂRμ context Pe path_source.
 

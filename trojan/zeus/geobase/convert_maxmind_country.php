@@ -1,6 +1,17 @@
+/*
+  name      Zeus
+  type      trojan
+  cve       вЂ”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    RamadhanAmizudin/malware
+  archived  RamadhanAmizudin, krisyotam (2026)
+  notes     вЂ”
+ */
 <?php
 /*
-  Конвертация MaxMind Country CSV в формат [LowIPv4 HighIPv4 Country[3]]
+  пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ MaxMind Country CSV пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ [LowIPv4 HighIPv4 Country[3]]
 
   http://geolite.maxmind.com/download/geoip/database/GeoIPCountryCSV.zip
 */

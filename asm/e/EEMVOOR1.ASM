@@ -1,3 +1,14 @@
+; ------------------------------------------------------------
+; name      E
+; type      asm
+; cve       â€”
+; year      unknown
+; os        DOS
+; authors   unknown
+; source    krisyotam
+; archived  krisyotam (2026)
+; notes     â€”
+; ------------------------------------------------------------
 ;                     The Eem-DOS 5-Voorde Virus
 ;
 ; Smallest COM file infector which works with te folowing principe:
@@ -16,7 +27,7 @@
 ; If you want no registers to change you can add some pushes, but
 ; it'll make the virus much larger.....
 ;
-;       (C)1993 by [DàRkRàY] / TridenT
+;       (C)1993 by [Dï¿½RkRï¿½Y] / TridenT
 ;
 ; BTW This is only a educational source, and this virus should not be
 ; spread, you may publish this file in it's original form.

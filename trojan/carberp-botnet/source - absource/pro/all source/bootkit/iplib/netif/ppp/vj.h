@@ -1,4 +1,15 @@
 /*
+  name      Carberp Botnet
+  type      trojan
+  cve       —
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     —
+ */
+/*
  * Definitions for tcp compression routines.
  *
  * $Id: vj.h,v 1.7 2010/02/22 17:52:09 goldsimon Exp $

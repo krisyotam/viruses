@@ -1,4 +1,15 @@
 /*
+  name      Trochilus
+  type      trojan
+  cve       —
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    RamadhanAmizudin/malware
+  archived  RamadhanAmizudin, krisyotam (2026)
+  notes     —
+ */
+/*
  * PROJECT:     ReactOS advapi32
  * LICENSE:     GPL - See COPYING in the top level directory
  * FILE:        dll/win32/advapi32/service/sctrl.c

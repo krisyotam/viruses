@@ -1,0 +1,2601 @@
+{
+  "android/android.ermac.3": {
+    "archived_by": [
+      "vxunderground",
+      "krisyotam"
+    ],
+    "authors": "unknown",
+    "name": "Android Ermac 3",
+    "os": "Android",
+    "source": "vxunderground/MalwareSourceCode",
+    "type": "android",
+    "year": "unknown"
+  },
+  "android/android.stealer.ermac": {
+    "archived_by": [
+      "vxunderground",
+      "krisyotam"
+    ],
+    "authors": "unknown",
+    "name": "Android Stealer Ermac",
+    "os": "Android",
+    "source": "vxunderground/MalwareSourceCode",
+    "type": "android",
+    "year": "unknown"
+  },
+  "android/android.stealer.hook": {
+    "archived_by": [
+      "vxunderground",
+      "krisyotam"
+    ],
+    "authors": "unknown",
+    "name": "Android Stealer Hook",
+    "os": "Android",
+    "source": "vxunderground/MalwareSourceCode",
+    "type": "android",
+    "year": "unknown"
+  },
+  "android/dendroid": {
+    "archived_by": [
+      "RamadhanAmizudin",
+      "krisyotam"
+    ],
+    "authors": "unknown",
+    "name": "Dendroid",
+    "os": "Android",
+    "source": "RamadhanAmizudin/malware",
+    "type": "android",
+    "year": "unknown"
+  },
+  "android/gmbot": {
+    "archived_by": [
+      "RamadhanAmizudin",
+      "krisyotam"
+    ],
+    "authors": "unknown",
+    "name": "GMBot",
+    "os": "Android",
+    "source": "RamadhanAmizudin/malware",
+    "type": "android",
+    "year": "unknown"
+  },
+  "android/mazar": {
+    "archived_by": [
+      "RamadhanAmizudin",
+      "krisyotam"
+    ],
+    "authors": "unknown",
+    "name": "Mazar",
+    "os": "Android",
+    "source": "RamadhanAmizudin/malware",
+    "type": "android",
+    "year": "unknown"
+  },
+  "asm/0-9": {
+    "archived_by": [
+      "krisyotam"
+    ],
+    "authors": "unknown",
+    "name": "0 9",
+    "os": "DOS",
+    "source": "original",
+    "type": "asm",
+    "year": "unknown"
+  },
+  "asm/a": {
+    "archived_by": [
+      "krisyotam"
+    ],
+    "authors": "unknown",
+    "name": "A",
+    "os": "DOS",
+    "source": "original",
+    "type": "asm",
+    "year": "unknown"
+  },
+  "asm/b": {
+    "archived_by": [
+      "krisyotam"
+    ],
+    "authors": "unknown",
+    "name": "B",
+    "os": "DOS",
+    "source": "original",
+    "type": "asm",
+    "year": "unknown"
+  },
+  "asm/c": {
+    "archived_by": [
+      "krisyotam"
+    ],
+    "authors": "unknown",
+    "name": "C",
+    "os": "DOS",
+    "source": "original",
+    "type": "asm",
+    "year": "unknown"
+  },
+  "asm/d": {
+    "archived_by": [
+      "krisyotam"
+    ],
+    "authors": "unknown",
+    "name": "D",
+    "os": "DOS",
+    "source": "original",
+    "type": "asm",
+    "year": "unknown"
+  },
+  "asm/e": {
+    "archived_by": [
+      "krisyotam"
+    ],
+    "authors": "unknown",
+    "name": "E",
+    "os": "DOS",
+    "source": "original",
+    "type": "asm",
+    "year": "unknown"
+  },
+  "asm/f": {
+    "archived_by": [
+      "krisyotam"
+    ],
+    "authors": "unknown",
+    "name": "F",
+    "os": "DOS",
+    "source": "original",
+    "type": "asm",
+    "year": "unknown"
+  },
+  "asm/g": {
+    "archived_by": [
+      "krisyotam"
+    ],
+    "authors": "unknown",
+    "name": "G",
+    "os": "DOS",
+    "source": "original",
+    "type": "asm",
+    "year": "unknown"
+  },
+  "asm/h": {
+    "archived_by": [
+      "krisyotam"
+    ],
+    "authors": "unknown",
+    "name": "H",
+    "os": "DOS",
+    "source": "original",
+    "type": "asm",
+    "year": "unknown"
+  },
+  "asm/i": {
+    "archived_by": [
+      "krisyotam"
+    ],
+    "authors": "unknown",
+    "name": "I",
+    "os": "DOS",
+    "source": "original",
+    "type": "asm",
+    "year": "unknown"
+  },
+  "asm/j": {
+    "archived_by": [
+      "krisyotam"
+    ],
+    "authors": "unknown",
+    "name": "J",
+    "os": "DOS",
+    "source": "original",
+    "type": "asm",
+    "year": "unknown"
+  },
+  "asm/k": {
+    "archived_by": [
+      "krisyotam"
+    ],
+    "authors": "unknown",
+    "name": "K",
+    "os": "DOS",
+    "source": "original",
+    "type": "asm",
+    "year": "unknown"
+  },
+  "asm/l": {
+    "archived_by": [
+      "krisyotam"
+    ],
+    "authors": "unknown",
+    "name": "L",
+    "os": "DOS",
+    "source": "original",
+    "type": "asm",
+    "year": "unknown"
+  },
+  "asm/legacy-win2k": {
+    "archived_by": [
+      "krisyotam"
+    ],
+    "authors": "unknown",
+    "name": "Legacy Win2k",
+    "os": "DOS",
+    "source": "original",
+    "type": "asm",
+    "year": "unknown"
+  },
+  "asm/legacy-win32": {
+    "archived_by": [
+      "krisyotam"
+    ],
+    "authors": "unknown",
+    "name": "Legacy Win32",
+    "os": "DOS",
+    "source": "original",
+    "type": "asm",
+    "year": "unknown"
+  },
+  "asm/legacy-win95": {
+    "archived_by": [
+      "krisyotam"
+    ],
+    "authors": "unknown",
+    "name": "Legacy Win95",
+    "os": "DOS",
+    "source": "original",
+    "type": "asm",
+    "year": "unknown"
+  },
+  "asm/legacy-win98": {
+    "archived_by": [
+      "krisyotam"
+    ],
+    "authors": "unknown",
+    "name": "Legacy Win98",
+    "os": "DOS",
+    "source": "original",
+    "type": "asm",
+    "year": "unknown"
+  },
+  "asm/legacy-win9x": {
+    "archived_by": [
+      "krisyotam"
+    ],
+    "authors": "unknown",
+    "name": "Legacy Win9x",
+    "os": "DOS",
+    "source": "original",
+    "type": "asm",
+    "year": "unknown"
+  },
+  "asm/legacy-wince": {
+    "archived_by": [
+      "krisyotam"
+    ],
+    "authors": "unknown",
+    "name": "Legacy Wince",
+    "os": "DOS",
+    "source": "original",
+    "type": "asm",
+    "year": "unknown"
+  },
+  "asm/m": {
+    "archived_by": [
+      "krisyotam"
+    ],
+    "authors": "unknown",
+    "name": "M",
+    "os": "DOS",
+    "source": "original",
+    "type": "asm",
+    "year": "unknown"
+  },
+  "asm/n": {
+    "archived_by": [
+      "krisyotam"
+    ],
+    "authors": "unknown",
+    "name": "N",
+    "os": "DOS",
+    "source": "original",
+    "type": "asm",
+    "year": "unknown"
+  },
+  "asm/o": {
+    "archived_by": [
+      "krisyotam"
+    ],
+    "authors": "unknown",
+    "name": "O",
+    "os": "DOS",
+    "source": "original",
+    "type": "asm",
+    "year": "unknown"
+  },
+  "asm/p": {
+    "archived_by": [
+      "krisyotam"
+    ],
+    "authors": "unknown",
+    "name": "P",
+    "os": "DOS",
+    "source": "original",
+    "type": "asm",
+    "year": "unknown"
+  },
+  "asm/q": {
+    "archived_by": [
+      "krisyotam"
+    ],
+    "authors": "unknown",
+    "name": "Q",
+    "os": "DOS",
+    "source": "original",
+    "type": "asm",
+    "year": "unknown"
+  },
+  "asm/r": {
+    "archived_by": [
+      "krisyotam"
+    ],
+    "authors": "unknown",
+    "name": "R",
+    "os": "DOS",
+    "source": "original",
+    "type": "asm",
+    "year": "unknown"
+  },
+  "asm/s": {
+    "archived_by": [
+      "krisyotam"
+    ],
+    "authors": "unknown",
+    "name": "S",
+    "os": "DOS",
+    "source": "original",
+    "type": "asm",
+    "year": "unknown"
+  },
+  "asm/t": {
+    "archived_by": [
+      "krisyotam"
+    ],
+    "authors": "unknown",
+    "name": "T",
+    "os": "DOS",
+    "source": "original",
+    "type": "asm",
+    "year": "unknown"
+  },
+  "asm/u": {
+    "archived_by": [
+      "krisyotam"
+    ],
+    "authors": "unknown",
+    "name": "U",
+    "os": "DOS",
+    "source": "original",
+    "type": "asm",
+    "year": "unknown"
+  },
+  "asm/v": {
+    "archived_by": [
+      "krisyotam"
+    ],
+    "authors": "unknown",
+    "name": "V",
+    "os": "DOS",
+    "source": "original",
+    "type": "asm",
+    "year": "unknown"
+  },
+  "asm/w": {
+    "archived_by": [
+      "krisyotam"
+    ],
+    "authors": "unknown",
+    "name": "W",
+    "os": "DOS",
+    "source": "original",
+    "type": "asm",
+    "year": "unknown"
+  },
+  "asm/x": {
+    "archived_by": [
+      "krisyotam"
+    ],
+    "authors": "unknown",
+    "name": "X",
+    "os": "DOS",
+    "source": "original",
+    "type": "asm",
+    "year": "unknown"
+  },
+  "asm/y": {
+    "archived_by": [
+      "krisyotam"
+    ],
+    "authors": "unknown",
+    "name": "Y",
+    "os": "DOS",
+    "source": "original",
+    "type": "asm",
+    "year": "unknown"
+  },
+  "asm/z": {
+    "archived_by": [
+      "krisyotam"
+    ],
+    "authors": "unknown",
+    "name": "Z",
+    "os": "DOS",
+    "source": "original",
+    "type": "asm",
+    "year": "unknown"
+  },
+  "botnet/grum": {
+    "archived_by": [
+      "RamadhanAmizudin",
+      "krisyotam"
+    ],
+    "authors": "unknown",
+    "name": "Grum",
+    "os": "Windows",
+    "source": "RamadhanAmizudin/malware",
+    "type": "botnet",
+    "year": "unknown"
+  },
+  "botnet/mirai": {
+    "archived_by": [
+      "RamadhanAmizudin",
+      "krisyotam"
+    ],
+    "authors": "unknown",
+    "name": "Mirai",
+    "os": "Linux",
+    "source": "RamadhanAmizudin/malware",
+    "type": "botnet",
+    "year": "unknown"
+  },
+  "engine/bat": {
+    "archived_by": [
+      "vxunderground",
+      "krisyotam"
+    ],
+    "authors": "unknown",
+    "name": "Bat",
+    "os": "Multi",
+    "source": "vxunderground/MalwareSourceCode",
+    "type": "engine",
+    "year": "unknown"
+  },
+  "engine/linux": {
+    "archived_by": [
+      "vxunderground",
+      "krisyotam"
+    ],
+    "authors": "unknown",
+    "name": "Linux",
+    "os": "Multi",
+    "source": "vxunderground/MalwareSourceCode",
+    "type": "engine",
+    "year": "unknown"
+  },
+  "engine/vbs": {
+    "archived_by": [
+      "vxunderground",
+      "krisyotam"
+    ],
+    "authors": "unknown",
+    "name": "Vbs",
+    "os": "Multi",
+    "source": "vxunderground/MalwareSourceCode",
+    "type": "engine",
+    "year": "unknown"
+  },
+  "engine/win32": {
+    "archived_by": [
+      "vxunderground",
+      "krisyotam"
+    ],
+    "authors": "unknown",
+    "name": "Win32",
+    "os": "Multi",
+    "source": "vxunderground/MalwareSourceCode",
+    "type": "engine",
+    "year": "unknown"
+  },
+  "exploit/bleedinglife2": {
+    "archived_by": [
+      "RamadhanAmizudin",
+      "krisyotam"
+    ],
+    "authors": "unknown",
+    "name": "BleedingLife2",
+    "os": "Windows",
+    "source": "RamadhanAmizudin/malware",
+    "type": "exploit",
+    "year": "unknown"
+  },
+  "exploit/crimepack3.1.3": {
+    "archived_by": [
+      "RamadhanAmizudin",
+      "krisyotam"
+    ],
+    "authors": "unknown",
+    "name": "Crimepack3.1.3",
+    "os": "Windows",
+    "source": "RamadhanAmizudin/malware",
+    "type": "exploit",
+    "year": "unknown"
+  },
+  "exploit/equationgroup": {
+    "archived_by": [
+      "RamadhanAmizudin",
+      "krisyotam"
+    ],
+    "authors": "unknown",
+    "name": "EquationGroup",
+    "os": "Windows",
+    "source": "RamadhanAmizudin/malware",
+    "type": "exploit",
+    "year": "unknown"
+  },
+  "exploit/eternalblue": {
+    "archived_by": [
+      "krisyotam"
+    ],
+    "authors": "unknown",
+    "name": "Eternalblue",
+    "os": "Windows",
+    "source": "original",
+    "type": "exploit",
+    "year": "unknown"
+  },
+  "exploit/fancybear": {
+    "archived_by": [
+      "RamadhanAmizudin",
+      "krisyotam"
+    ],
+    "authors": "unknown",
+    "name": "FancyBear",
+    "os": "Windows",
+    "source": "RamadhanAmizudin/malware",
+    "type": "exploit",
+    "year": "unknown"
+  },
+  "exploit/follina": {
+    "archived_by": [
+      "krisyotam"
+    ],
+    "authors": "unknown",
+    "name": "Follina",
+    "os": "Windows",
+    "source": "original",
+    "type": "exploit",
+    "year": "unknown"
+  },
+  "exploit/fuzzbunch": {
+    "archived_by": [
+      "RamadhanAmizudin",
+      "krisyotam"
+    ],
+    "authors": "unknown",
+    "name": "Fuzzbunch",
+    "os": "Windows",
+    "source": "RamadhanAmizudin/malware",
+    "type": "exploit",
+    "year": "unknown"
+  },
+  "exploit/hacking-team": {
+    "archived_by": [
+      "RamadhanAmizudin",
+      "krisyotam"
+    ],
+    "authors": "unknown",
+    "name": "Hacking-Team",
+    "os": "Windows",
+    "source": "RamadhanAmizudin/malware",
+    "type": "exploit",
+    "year": "unknown"
+  },
+  "exploit/mem-inject": {
+    "archived_by": [
+      "krisyotam"
+    ],
+    "authors": "unknown",
+    "name": "Mem Inject",
+    "os": "Windows",
+    "source": "original",
+    "type": "exploit",
+    "year": "unknown"
+  },
+  "exploit/rig": {
+    "archived_by": [
+      "RamadhanAmizudin",
+      "krisyotam"
+    ],
+    "authors": "unknown",
+    "name": "RIG",
+    "os": "Windows",
+    "source": "RamadhanAmizudin/malware",
+    "type": "exploit",
+    "year": "unknown"
+  },
+  "infector/donut-virus": {
+    "archived_by": [
+      "krisyotam"
+    ],
+    "authors": "unknown",
+    "name": "Donut Virus",
+    "os": "Windows",
+    "source": "original",
+    "type": "infector",
+    "year": "unknown"
+  },
+  "infector/elfpie": {
+    "archived_by": [
+      "krisyotam"
+    ],
+    "authors": "unknown",
+    "name": "Elfpie",
+    "os": "Windows",
+    "source": "original",
+    "type": "infector",
+    "year": "unknown"
+  },
+  "infector/nasty": {
+    "archived_by": [
+      "krisyotam"
+    ],
+    "authors": "unknown",
+    "name": "Nasty",
+    "os": "Windows",
+    "source": "original",
+    "type": "infector",
+    "year": "unknown"
+  },
+  "linux/Backdoors": {
+    "archived_by": [
+      "vxunderground",
+      "krisyotam"
+    ],
+    "authors": "unknown",
+    "name": "Backdoors",
+    "os": "Linux",
+    "source": "vxunderground/MalwareSourceCode",
+    "type": "linux",
+    "year": "unknown"
+  },
+  "linux/Botnets": {
+    "archived_by": [
+      "vxunderground",
+      "krisyotam"
+    ],
+    "authors": "unknown",
+    "name": "Botnets",
+    "os": "Linux",
+    "source": "vxunderground/MalwareSourceCode",
+    "type": "linux",
+    "year": "unknown"
+  },
+  "linux/Infectors": {
+    "archived_by": [
+      "vxunderground",
+      "krisyotam"
+    ],
+    "authors": "unknown",
+    "name": "Infectors",
+    "os": "Linux",
+    "source": "vxunderground/MalwareSourceCode",
+    "type": "linux",
+    "year": "unknown"
+  },
+  "linux/Mirai-Family": {
+    "archived_by": [
+      "vxunderground",
+      "krisyotam"
+    ],
+    "authors": "unknown",
+    "name": "Mirai Family",
+    "os": "Linux",
+    "source": "vxunderground/MalwareSourceCode",
+    "type": "linux",
+    "year": "unknown"
+  },
+  "linux/Rootkits": {
+    "archived_by": [
+      "vxunderground",
+      "krisyotam"
+    ],
+    "authors": "unknown",
+    "name": "Rootkits",
+    "os": "Linux",
+    "source": "vxunderground/MalwareSourceCode",
+    "type": "linux",
+    "year": "unknown"
+  },
+  "linux/Tools": {
+    "archived_by": [
+      "vxunderground",
+      "krisyotam"
+    ],
+    "authors": "unknown",
+    "name": "Tools",
+    "os": "Linux",
+    "source": "vxunderground/MalwareSourceCode",
+    "type": "linux",
+    "year": "unknown"
+  },
+  "linux/Trojans": {
+    "archived_by": [
+      "vxunderground",
+      "krisyotam"
+    ],
+    "authors": "unknown",
+    "name": "Trojans",
+    "os": "Linux",
+    "source": "vxunderground/MalwareSourceCode",
+    "type": "linux",
+    "year": "unknown"
+  },
+  "prank/browser-breaker": {
+    "archived_by": [
+      "krisyotam"
+    ],
+    "authors": "unknown",
+    "name": "Browser Breaker",
+    "os": "Multi",
+    "source": "original",
+    "type": "prank",
+    "year": "unknown"
+  },
+  "prank/chaos-devil": {
+    "archived_by": [
+      "krisyotam"
+    ],
+    "authors": "unknown",
+    "name": "Chaos Devil",
+    "os": "Multi",
+    "source": "original",
+    "type": "prank",
+    "year": "unknown"
+  },
+  "prank/cmd-blast": {
+    "archived_by": [
+      "krisyotam"
+    ],
+    "authors": "unknown",
+    "name": "Cmd Blast",
+    "os": "Multi",
+    "source": "original",
+    "type": "prank",
+    "year": "unknown"
+  },
+  "prank/consecutive-normal-punch": {
+    "archived_by": [
+      "krisyotam"
+    ],
+    "authors": "unknown",
+    "name": "Consecutive Normal Punch",
+    "os": "Multi",
+    "source": "original",
+    "type": "prank",
+    "year": "unknown"
+  },
+  "prank/cpu-eater": {
+    "archived_by": [
+      "krisyotam"
+    ],
+    "authors": "unknown",
+    "name": "Cpu Eater",
+    "os": "Multi",
+    "source": "original",
+    "type": "prank",
+    "year": "unknown"
+  },
+  "prank/dark-screen": {
+    "archived_by": [
+      "krisyotam"
+    ],
+    "authors": "unknown",
+    "name": "Dark Screen",
+    "os": "Multi",
+    "source": "original",
+    "type": "prank",
+    "year": "unknown"
+  },
+  "prank/folder-flooder": {
+    "archived_by": [
+      "krisyotam"
+    ],
+    "authors": "unknown",
+    "name": "Folder Flooder",
+    "os": "Multi",
+    "source": "original",
+    "type": "prank",
+    "year": "unknown"
+  },
+  "prank/fork-bomb": {
+    "archived_by": [
+      "krisyotam"
+    ],
+    "authors": "unknown",
+    "name": "Fork Bomb",
+    "os": "Multi",
+    "source": "original",
+    "type": "prank",
+    "year": "unknown"
+  },
+  "prank/memory-crash": {
+    "archived_by": [
+      "krisyotam"
+    ],
+    "authors": "unknown",
+    "name": "Memory Crash",
+    "os": "Multi",
+    "source": "original",
+    "type": "prank",
+    "year": "unknown"
+  },
+  "prank/out-of-control": {
+    "archived_by": [
+      "krisyotam"
+    ],
+    "authors": "unknown",
+    "name": "Out Of Control",
+    "os": "Multi",
+    "source": "original",
+    "type": "prank",
+    "year": "unknown"
+  },
+  "prank/prank-master": {
+    "archived_by": [
+      "krisyotam"
+    ],
+    "authors": "unknown",
+    "name": "Prank Master",
+    "os": "Multi",
+    "source": "original",
+    "type": "prank",
+    "year": "unknown"
+  },
+  "prank/ram-slayer": {
+    "archived_by": [
+      "krisyotam"
+    ],
+    "authors": "unknown",
+    "name": "Ram Slayer",
+    "os": "Multi",
+    "source": "original",
+    "type": "prank",
+    "year": "unknown"
+  },
+  "prank/unclosable": {
+    "archived_by": [
+      "krisyotam"
+    ],
+    "authors": "unknown",
+    "name": "Unclosable",
+    "os": "Multi",
+    "source": "original",
+    "type": "prank",
+    "year": "unknown"
+  },
+  "ransomware/eda2": {
+    "archived_by": [
+      "RamadhanAmizudin",
+      "krisyotam"
+    ],
+    "authors": "unknown",
+    "name": "Eda2",
+    "os": "Windows",
+    "source": "RamadhanAmizudin/malware",
+    "type": "ransomware",
+    "year": "unknown"
+  },
+  "ransomware/hidden-tear": {
+    "archived_by": [
+      "RamadhanAmizudin",
+      "krisyotam"
+    ],
+    "authors": "unknown",
+    "name": "Hidden-tear",
+    "os": "Windows",
+    "source": "RamadhanAmizudin/malware",
+    "type": "ransomware",
+    "year": "unknown"
+  },
+  "ransomware/lockbit": {
+    "archived_by": [
+      "krisyotam"
+    ],
+    "authors": "unknown",
+    "name": "Lockbit",
+    "os": "Windows",
+    "source": "original",
+    "type": "ransomware",
+    "year": "unknown"
+  },
+  "ransomware/wannacry": {
+    "archived_by": [
+      "krisyotam"
+    ],
+    "authors": "unknown",
+    "name": "Wannacry",
+    "os": "Windows",
+    "source": "original",
+    "type": "ransomware",
+    "year": "unknown"
+  },
+  "research/cocomelonc": {
+    "archived_by": [
+      "krisyotam"
+    ],
+    "authors": "unknown",
+    "name": "Cocomelonc",
+    "os": "Multi",
+    "source": "original",
+    "type": "research",
+    "year": "unknown"
+  },
+  "research/compression": {
+    "archived_by": [
+      "vxunderground",
+      "krisyotam"
+    ],
+    "authors": "unknown",
+    "name": "Compression",
+    "os": "Multi",
+    "source": "vxunderground/MalwareSourceCode",
+    "type": "research",
+    "year": "unknown"
+  },
+  "research/cryptor": {
+    "archived_by": [
+      "vxunderground",
+      "krisyotam"
+    ],
+    "authors": "unknown",
+    "name": "Cryptor",
+    "os": "Multi",
+    "source": "vxunderground/MalwareSourceCode",
+    "type": "research",
+    "year": "unknown"
+  },
+  "research/disassembler": {
+    "archived_by": [
+      "vxunderground",
+      "krisyotam"
+    ],
+    "authors": "unknown",
+    "name": "Disassembler",
+    "os": "Multi",
+    "source": "vxunderground/MalwareSourceCode",
+    "type": "research",
+    "year": "unknown"
+  },
+  "rootkit/nidhogg": {
+    "archived_by": [
+      "krisyotam"
+    ],
+    "authors": "unknown",
+    "name": "Nidhogg",
+    "os": "Windows",
+    "source": "original",
+    "type": "rootkit",
+    "year": "unknown"
+  },
+  "rootkit/rovnix": {
+    "archived_by": [
+      "RamadhanAmizudin",
+      "krisyotam"
+    ],
+    "authors": "unknown",
+    "name": "Rovnix",
+    "os": "Windows",
+    "source": "RamadhanAmizudin/malware",
+    "type": "rootkit",
+    "year": "unknown"
+  },
+  "rootkit/zeroaccess": {
+    "archived_by": [
+      "RamadhanAmizudin",
+      "krisyotam"
+    ],
+    "authors": "unknown",
+    "name": "ZeroAccess",
+    "os": "Windows",
+    "source": "RamadhanAmizudin/malware",
+    "type": "rootkit",
+    "year": "unknown"
+  },
+  "trojan/agentbtz": {
+    "archived_by": [
+      "RamadhanAmizudin",
+      "krisyotam"
+    ],
+    "authors": "unknown",
+    "name": "AgentBTZ",
+    "os": "Windows",
+    "source": "RamadhanAmizudin/malware",
+    "type": "trojan",
+    "year": "unknown"
+  },
+  "trojan/alina": {
+    "archived_by": [
+      "RamadhanAmizudin",
+      "krisyotam"
+    ],
+    "authors": "unknown",
+    "name": "Alina",
+    "os": "Windows",
+    "source": "RamadhanAmizudin/malware",
+    "type": "trojan",
+    "year": "unknown"
+  },
+  "trojan/betabot": {
+    "archived_by": [
+      "RamadhanAmizudin",
+      "krisyotam"
+    ],
+    "authors": "unknown",
+    "name": "Betabot",
+    "os": "Windows",
+    "source": "RamadhanAmizudin/malware",
+    "type": "trojan",
+    "year": "unknown"
+  },
+  "trojan/carberp": {
+    "archived_by": [
+      "RamadhanAmizudin",
+      "krisyotam"
+    ],
+    "authors": "unknown",
+    "name": "Carberp",
+    "os": "Windows",
+    "source": "RamadhanAmizudin/malware",
+    "type": "trojan",
+    "year": "unknown"
+  },
+  "trojan/carberp-botnet": {
+    "archived_by": [
+      "krisyotam"
+    ],
+    "authors": "unknown",
+    "name": "Carberp Botnet",
+    "os": "Windows",
+    "source": "original",
+    "type": "trojan",
+    "year": "unknown"
+  },
+  "trojan/crypter": {
+    "archived_by": [
+      "krisyotam"
+    ],
+    "authors": "unknown",
+    "name": "Crypter",
+    "os": "Windows",
+    "source": "original",
+    "type": "trojan",
+    "year": "unknown"
+  },
+  "trojan/crypto-stealer": {
+    "archived_by": [
+      "krisyotam"
+    ],
+    "authors": "unknown",
+    "name": "Crypto Stealer",
+    "os": "Windows",
+    "source": "original",
+    "type": "trojan",
+    "year": "unknown"
+  },
+  "trojan/dexter": {
+    "archived_by": [
+      "RamadhanAmizudin",
+      "krisyotam"
+    ],
+    "authors": "unknown",
+    "name": "Dexter",
+    "os": "Windows",
+    "source": "RamadhanAmizudin/malware",
+    "type": "trojan",
+    "year": "unknown"
+  },
+  "trojan/flexispy": {
+    "archived_by": [
+      "RamadhanAmizudin",
+      "krisyotam"
+    ],
+    "authors": "unknown",
+    "name": "FlexiSpy",
+    "os": "Windows",
+    "source": "RamadhanAmizudin/malware",
+    "type": "trojan",
+    "year": "unknown"
+  },
+  "trojan/generic": {
+    "archived_by": [
+      "vxunderground",
+      "krisyotam"
+    ],
+    "authors": "unknown",
+    "name": "Generic",
+    "os": "Windows",
+    "source": "vxunderground/MalwareSourceCode",
+    "type": "trojan",
+    "year": "unknown"
+  },
+  "trojan/generic.win32.autorun": {
+    "archived_by": [
+      "vxunderground",
+      "krisyotam"
+    ],
+    "authors": "unknown",
+    "name": "Generic Win32 Autorun",
+    "os": "Windows",
+    "source": "vxunderground/MalwareSourceCode",
+    "type": "trojan",
+    "year": "unknown"
+  },
+  "trojan/generic.win32.bitcoinminer": {
+    "archived_by": [
+      "vxunderground",
+      "krisyotam"
+    ],
+    "authors": "unknown",
+    "name": "Generic Win32 Bitcoinminer",
+    "os": "Windows",
+    "source": "vxunderground/MalwareSourceCode",
+    "type": "trojan",
+    "year": "unknown"
+  },
+  "trojan/generic.win32.bublik": {
+    "archived_by": [
+      "vxunderground",
+      "krisyotam"
+    ],
+    "authors": "unknown",
+    "name": "Generic Win32 Bublik",
+    "os": "Windows",
+    "source": "vxunderground/MalwareSourceCode",
+    "type": "trojan",
+    "year": "unknown"
+  },
+  "trojan/generic.win32.cospet": {
+    "archived_by": [
+      "vxunderground",
+      "krisyotam"
+    ],
+    "authors": "unknown",
+    "name": "Generic Win32 Cospet",
+    "os": "Windows",
+    "source": "vxunderground/MalwareSourceCode",
+    "type": "trojan",
+    "year": "unknown"
+  },
+  "trojan/generic.win32.dapato": {
+    "archived_by": [
+      "vxunderground",
+      "krisyotam"
+    ],
+    "authors": "unknown",
+    "name": "Generic Win32 Dapato",
+    "os": "Windows",
+    "source": "vxunderground/MalwareSourceCode",
+    "type": "trojan",
+    "year": "unknown"
+  },
+  "trojan/generic.win32.daws": {
+    "archived_by": [
+      "vxunderground",
+      "krisyotam"
+    ],
+    "authors": "unknown",
+    "name": "Generic Win32 Daws",
+    "os": "Windows",
+    "source": "vxunderground/MalwareSourceCode",
+    "type": "trojan",
+    "year": "unknown"
+  },
+  "trojan/generic.win32.delf": {
+    "archived_by": [
+      "vxunderground",
+      "krisyotam"
+    ],
+    "authors": "unknown",
+    "name": "Generic Win32 Delf",
+    "os": "Windows",
+    "source": "vxunderground/MalwareSourceCode",
+    "type": "trojan",
+    "year": "unknown"
+  },
+  "trojan/generic.win32.demp": {
+    "archived_by": [
+      "vxunderground",
+      "krisyotam"
+    ],
+    "authors": "unknown",
+    "name": "Generic Win32 Demp",
+    "os": "Windows",
+    "source": "vxunderground/MalwareSourceCode",
+    "type": "trojan",
+    "year": "unknown"
+  },
+  "trojan/generic.win32.disabler": {
+    "archived_by": [
+      "vxunderground",
+      "krisyotam"
+    ],
+    "authors": "unknown",
+    "name": "Generic Win32 Disabler",
+    "os": "Windows",
+    "source": "vxunderground/MalwareSourceCode",
+    "type": "trojan",
+    "year": "unknown"
+  },
+  "trojan/generic.win32.distract": {
+    "archived_by": [
+      "vxunderground",
+      "krisyotam"
+    ],
+    "authors": "unknown",
+    "name": "Generic Win32 Distract",
+    "os": "Windows",
+    "source": "vxunderground/MalwareSourceCode",
+    "type": "trojan",
+    "year": "unknown"
+  },
+  "trojan/generic.win32.fakeav": {
+    "archived_by": [
+      "vxunderground",
+      "krisyotam"
+    ],
+    "authors": "unknown",
+    "name": "Generic Win32 Fakeav",
+    "os": "Windows",
+    "source": "vxunderground/MalwareSourceCode",
+    "type": "trojan",
+    "year": "unknown"
+  },
+  "trojan/generic.win32.fraud": {
+    "archived_by": [
+      "vxunderground",
+      "krisyotam"
+    ],
+    "authors": "unknown",
+    "name": "Generic Win32 Fraud",
+    "os": "Windows",
+    "source": "vxunderground/MalwareSourceCode",
+    "type": "trojan",
+    "year": "unknown"
+  },
+  "trojan/generic.win32.fsysna": {
+    "archived_by": [
+      "vxunderground",
+      "krisyotam"
+    ],
+    "authors": "unknown",
+    "name": "Generic Win32 Fsysna",
+    "os": "Windows",
+    "source": "vxunderground/MalwareSourceCode",
+    "type": "trojan",
+    "year": "unknown"
+  },
+  "trojan/generic.win32.gastropod": {
+    "archived_by": [
+      "vxunderground",
+      "krisyotam"
+    ],
+    "authors": "unknown",
+    "name": "Generic Win32 Gastropod",
+    "os": "Windows",
+    "source": "vxunderground/MalwareSourceCode",
+    "type": "trojan",
+    "year": "unknown"
+  },
+  "trojan/generic.win32.hesv": {
+    "archived_by": [
+      "vxunderground",
+      "krisyotam"
+    ],
+    "authors": "unknown",
+    "name": "Generic Win32 Hesv",
+    "os": "Windows",
+    "source": "vxunderground/MalwareSourceCode",
+    "type": "trojan",
+    "year": "unknown"
+  },
+  "trojan/generic.win32.inject": {
+    "archived_by": [
+      "vxunderground",
+      "krisyotam"
+    ],
+    "authors": "unknown",
+    "name": "Generic Win32 Inject",
+    "os": "Windows",
+    "source": "vxunderground/MalwareSourceCode",
+    "type": "trojan",
+    "year": "unknown"
+  },
+  "trojan/generic.win32.jorik": {
+    "archived_by": [
+      "vxunderground",
+      "krisyotam"
+    ],
+    "authors": "unknown",
+    "name": "Generic Win32 Jorik",
+    "os": "Windows",
+    "source": "vxunderground/MalwareSourceCode",
+    "type": "trojan",
+    "year": "unknown"
+  },
+  "trojan/generic.win32.karagany": {
+    "archived_by": [
+      "vxunderground",
+      "krisyotam"
+    ],
+    "authors": "unknown",
+    "name": "Generic Win32 Karagany",
+    "os": "Windows",
+    "source": "vxunderground/MalwareSourceCode",
+    "type": "trojan",
+    "year": "unknown"
+  },
+  "trojan/generic.win32.keylogger": {
+    "archived_by": [
+      "vxunderground",
+      "krisyotam"
+    ],
+    "authors": "unknown",
+    "name": "Generic Win32 Keylogger",
+    "os": "Windows",
+    "source": "vxunderground/MalwareSourceCode",
+    "type": "trojan",
+    "year": "unknown"
+  },
+  "trojan/generic.win32.killav": {
+    "archived_by": [
+      "vxunderground",
+      "krisyotam"
+    ],
+    "authors": "unknown",
+    "name": "Generic Win32 Killav",
+    "os": "Windows",
+    "source": "vxunderground/MalwareSourceCode",
+    "type": "trojan",
+    "year": "unknown"
+  },
+  "trojan/generic.win32.late": {
+    "archived_by": [
+      "vxunderground",
+      "krisyotam"
+    ],
+    "authors": "unknown",
+    "name": "Generic Win32 Late",
+    "os": "Windows",
+    "source": "vxunderground/MalwareSourceCode",
+    "type": "trojan",
+    "year": "unknown"
+  },
+  "trojan/generic.win32.llac": {
+    "archived_by": [
+      "vxunderground",
+      "krisyotam"
+    ],
+    "authors": "unknown",
+    "name": "Generic Win32 Llac",
+    "os": "Windows",
+    "source": "vxunderground/MalwareSourceCode",
+    "type": "trojan",
+    "year": "unknown"
+  },
+  "trojan/generic.win32.pakes": {
+    "archived_by": [
+      "vxunderground",
+      "krisyotam"
+    ],
+    "authors": "unknown",
+    "name": "Generic Win32 Pakes",
+    "os": "Windows",
+    "source": "vxunderground/MalwareSourceCode",
+    "type": "trojan",
+    "year": "unknown"
+  },
+  "trojan/generic.win32.petun": {
+    "archived_by": [
+      "vxunderground",
+      "krisyotam"
+    ],
+    "authors": "unknown",
+    "name": "Generic Win32 Petun",
+    "os": "Windows",
+    "source": "vxunderground/MalwareSourceCode",
+    "type": "trojan",
+    "year": "unknown"
+  },
+  "trojan/generic.win32.pincav": {
+    "archived_by": [
+      "vxunderground",
+      "krisyotam"
+    ],
+    "authors": "unknown",
+    "name": "Generic Win32 Pincav",
+    "os": "Windows",
+    "source": "vxunderground/MalwareSourceCode",
+    "type": "trojan",
+    "year": "unknown"
+  },
+  "trojan/generic.win32.qhost": {
+    "archived_by": [
+      "vxunderground",
+      "krisyotam"
+    ],
+    "authors": "unknown",
+    "name": "Generic Win32 Qhost",
+    "os": "Windows",
+    "source": "vxunderground/MalwareSourceCode",
+    "type": "trojan",
+    "year": "unknown"
+  },
+  "trojan/generic.win32.ransom.blocker": {
+    "archived_by": [
+      "vxunderground",
+      "krisyotam"
+    ],
+    "authors": "unknown",
+    "name": "Generic Win32 Ransom Blocker",
+    "os": "Windows",
+    "source": "vxunderground/MalwareSourceCode",
+    "type": "trojan",
+    "year": "unknown"
+  },
+  "trojan/generic.win32.reconyc": {
+    "archived_by": [
+      "vxunderground",
+      "krisyotam"
+    ],
+    "authors": "unknown",
+    "name": "Generic Win32 Reconyc",
+    "os": "Windows",
+    "source": "vxunderground/MalwareSourceCode",
+    "type": "trojan",
+    "year": "unknown"
+  },
+  "trojan/generic.win32.redator": {
+    "archived_by": [
+      "vxunderground",
+      "krisyotam"
+    ],
+    "authors": "unknown",
+    "name": "Generic Win32 Redator",
+    "os": "Windows",
+    "source": "vxunderground/MalwareSourceCode",
+    "type": "trojan",
+    "year": "unknown"
+  },
+  "trojan/generic.win32.refroso": {
+    "archived_by": [
+      "vxunderground",
+      "krisyotam"
+    ],
+    "authors": "unknown",
+    "name": "Generic Win32 Refroso",
+    "os": "Windows",
+    "source": "vxunderground/MalwareSourceCode",
+    "type": "trojan",
+    "year": "unknown"
+  },
+  "trojan/generic.win32.scar": {
+    "archived_by": [
+      "vxunderground",
+      "krisyotam"
+    ],
+    "authors": "unknown",
+    "name": "Generic Win32 Scar",
+    "os": "Windows",
+    "source": "vxunderground/MalwareSourceCode",
+    "type": "trojan",
+    "year": "unknown"
+  },
+  "trojan/generic.win32.shakblades": {
+    "archived_by": [
+      "vxunderground",
+      "krisyotam"
+    ],
+    "authors": "unknown",
+    "name": "Generic Win32 Shakblades",
+    "os": "Windows",
+    "source": "vxunderground/MalwareSourceCode",
+    "type": "trojan",
+    "year": "unknown"
+  },
+  "trojan/generic.win32.siscos": {
+    "archived_by": [
+      "vxunderground",
+      "krisyotam"
+    ],
+    "authors": "unknown",
+    "name": "Generic Win32 Siscos",
+    "os": "Windows",
+    "source": "vxunderground/MalwareSourceCode",
+    "type": "trojan",
+    "year": "unknown"
+  },
+  "trojan/generic.win32.small": {
+    "archived_by": [
+      "vxunderground",
+      "krisyotam"
+    ],
+    "authors": "unknown",
+    "name": "Generic Win32 Small",
+    "os": "Windows",
+    "source": "vxunderground/MalwareSourceCode",
+    "type": "trojan",
+    "year": "unknown"
+  },
+  "trojan/generic.win32.startpage": {
+    "archived_by": [
+      "vxunderground",
+      "krisyotam"
+    ],
+    "authors": "unknown",
+    "name": "Generic Win32 Startpage",
+    "os": "Windows",
+    "source": "vxunderground/MalwareSourceCode",
+    "type": "trojan",
+    "year": "unknown"
+  },
+  "trojan/generic.win32.stubrc": {
+    "archived_by": [
+      "vxunderground",
+      "krisyotam"
+    ],
+    "authors": "unknown",
+    "name": "Generic Win32 Stubrc",
+    "os": "Windows",
+    "source": "vxunderground/MalwareSourceCode",
+    "type": "trojan",
+    "year": "unknown"
+  },
+  "trojan/generic.win32.sysn": {
+    "archived_by": [
+      "vxunderground",
+      "krisyotam"
+    ],
+    "authors": "unknown",
+    "name": "Generic Win32 Sysn",
+    "os": "Windows",
+    "source": "vxunderground/MalwareSourceCode",
+    "type": "trojan",
+    "year": "unknown"
+  },
+  "trojan/generic.win32.vb": {
+    "archived_by": [
+      "vxunderground",
+      "krisyotam"
+    ],
+    "authors": "unknown",
+    "name": "Generic Win32 Vb",
+    "os": "Windows",
+    "source": "vxunderground/MalwareSourceCode",
+    "type": "trojan",
+    "year": "unknown"
+  },
+  "trojan/generic.win32.vbkrypt": {
+    "archived_by": [
+      "vxunderground",
+      "krisyotam"
+    ],
+    "authors": "unknown",
+    "name": "Generic Win32 Vbkrypt",
+    "os": "Windows",
+    "source": "vxunderground/MalwareSourceCode",
+    "type": "trojan",
+    "year": "unknown"
+  },
+  "trojan/generic.win32.vkhost": {
+    "archived_by": [
+      "vxunderground",
+      "krisyotam"
+    ],
+    "authors": "unknown",
+    "name": "Generic Win32 Vkhost",
+    "os": "Windows",
+    "source": "vxunderground/MalwareSourceCode",
+    "type": "trojan",
+    "year": "unknown"
+  },
+  "trojan/generic.win32.vkont": {
+    "archived_by": [
+      "vxunderground",
+      "krisyotam"
+    ],
+    "authors": "unknown",
+    "name": "Generic Win32 Vkont",
+    "os": "Windows",
+    "source": "vxunderground/MalwareSourceCode",
+    "type": "trojan",
+    "year": "unknown"
+  },
+  "trojan/generic.win32.wmc": {
+    "archived_by": [
+      "vxunderground",
+      "krisyotam"
+    ],
+    "authors": "unknown",
+    "name": "Generic Win32 Wmc",
+    "os": "Windows",
+    "source": "vxunderground/MalwareSourceCode",
+    "type": "trojan",
+    "year": "unknown"
+  },
+  "trojan/generic.win32.wozer": {
+    "archived_by": [
+      "vxunderground",
+      "krisyotam"
+    ],
+    "authors": "unknown",
+    "name": "Generic Win32 Wozer",
+    "os": "Windows",
+    "source": "vxunderground/MalwareSourceCode",
+    "type": "trojan",
+    "year": "unknown"
+  },
+  "trojan/generic.win32.zapchast": {
+    "archived_by": [
+      "vxunderground",
+      "krisyotam"
+    ],
+    "authors": "unknown",
+    "name": "Generic Win32 Zapchast",
+    "os": "Windows",
+    "source": "vxunderground/MalwareSourceCode",
+    "type": "trojan",
+    "year": "unknown"
+  },
+  "trojan/generic.win32.zbot": {
+    "archived_by": [
+      "vxunderground",
+      "krisyotam"
+    ],
+    "authors": "unknown",
+    "name": "Generic Win32 Zbot",
+    "os": "Windows",
+    "source": "vxunderground/MalwareSourceCode",
+    "type": "trojan",
+    "year": "unknown"
+  },
+  "trojan/gozi-isfb": {
+    "archived_by": [
+      "RamadhanAmizudin",
+      "krisyotam"
+    ],
+    "authors": "unknown",
+    "name": "Gozi-ISFB",
+    "os": "Windows",
+    "source": "RamadhanAmizudin/malware",
+    "type": "trojan",
+    "year": "unknown"
+  },
+  "trojan/infostealer": {
+    "archived_by": [
+      "krisyotam"
+    ],
+    "authors": "unknown",
+    "name": "Infostealer",
+    "os": "Windows",
+    "source": "original",
+    "type": "trojan",
+    "year": "unknown"
+  },
+  "trojan/keylogger": {
+    "archived_by": [
+      "krisyotam"
+    ],
+    "authors": "unknown",
+    "name": "Keylogger",
+    "os": "Windows",
+    "source": "original",
+    "type": "trojan",
+    "year": "unknown"
+  },
+  "trojan/kins": {
+    "archived_by": [
+      "RamadhanAmizudin",
+      "krisyotam"
+    ],
+    "authors": "unknown",
+    "name": "KINS",
+    "os": "Windows",
+    "source": "RamadhanAmizudin/malware",
+    "type": "trojan",
+    "year": "unknown"
+  },
+  "trojan/pony": {
+    "archived_by": [
+      "RamadhanAmizudin",
+      "krisyotam"
+    ],
+    "authors": "unknown",
+    "name": "Pony",
+    "os": "Windows",
+    "source": "RamadhanAmizudin/malware",
+    "type": "trojan",
+    "year": "unknown"
+  },
+  "trojan/poshspy": {
+    "archived_by": [
+      "RamadhanAmizudin",
+      "krisyotam"
+    ],
+    "authors": "unknown",
+    "name": "POSHSPY",
+    "os": "Windows",
+    "source": "RamadhanAmizudin/malware",
+    "type": "trojan",
+    "year": "unknown"
+  },
+  "trojan/powerloader": {
+    "archived_by": [
+      "RamadhanAmizudin",
+      "krisyotam"
+    ],
+    "authors": "unknown",
+    "name": "PowerLoader",
+    "os": "Windows",
+    "source": "RamadhanAmizudin/malware",
+    "type": "trojan",
+    "year": "unknown"
+  },
+  "trojan/rdp-thief": {
+    "archived_by": [
+      "krisyotam"
+    ],
+    "authors": "unknown",
+    "name": "Rdp Thief",
+    "os": "Windows",
+    "source": "original",
+    "type": "trojan",
+    "year": "unknown"
+  },
+  "trojan/remote-shell": {
+    "archived_by": [
+      "krisyotam"
+    ],
+    "authors": "unknown",
+    "name": "Remote Shell",
+    "os": "Windows",
+    "source": "original",
+    "type": "trojan",
+    "year": "unknown"
+  },
+  "trojan/stealc.v2.0.0": {
+    "archived_by": [
+      "RamadhanAmizudin",
+      "krisyotam"
+    ],
+    "authors": "unknown",
+    "name": "StealC.v2.0.0",
+    "os": "Windows",
+    "source": "RamadhanAmizudin/malware",
+    "type": "trojan",
+    "year": "unknown"
+  },
+  "trojan/tinba": {
+    "archived_by": [
+      "RamadhanAmizudin",
+      "krisyotam"
+    ],
+    "authors": "unknown",
+    "name": "Tinba",
+    "os": "Windows",
+    "source": "RamadhanAmizudin/malware",
+    "type": "trojan",
+    "year": "unknown"
+  },
+  "trojan/tinynuke": {
+    "archived_by": [
+      "RamadhanAmizudin",
+      "krisyotam"
+    ],
+    "authors": "unknown",
+    "name": "TinyNuke",
+    "os": "Windows",
+    "source": "RamadhanAmizudin/malware",
+    "type": "trojan",
+    "year": "unknown"
+  },
+  "trojan/trochilus": {
+    "archived_by": [
+      "RamadhanAmizudin",
+      "krisyotam"
+    ],
+    "authors": "unknown",
+    "name": "Trochilus",
+    "os": "Windows",
+    "source": "RamadhanAmizudin/malware",
+    "type": "trojan",
+    "year": "unknown"
+  },
+  "trojan/virtool.win32.binder.generic": {
+    "archived_by": [
+      "vxunderground",
+      "krisyotam"
+    ],
+    "authors": "unknown",
+    "name": "Virtool Win32 Binder Generic",
+    "os": "Windows",
+    "source": "vxunderground/MalwareSourceCode",
+    "type": "trojan",
+    "year": "unknown"
+  },
+  "trojan/vx-api": {
+    "archived_by": [
+      "krisyotam"
+    ],
+    "authors": "unknown",
+    "name": "Vx Api",
+    "os": "Windows",
+    "source": "original",
+    "type": "trojan",
+    "year": "unknown"
+  },
+  "trojan/win32.120bot": {
+    "archived_by": [
+      "vxunderground",
+      "krisyotam"
+    ],
+    "authors": "unknown",
+    "name": "Win32 120bot",
+    "os": "Windows",
+    "source": "vxunderground/MalwareSourceCode",
+    "type": "trojan",
+    "year": "unknown"
+  },
+  "trojan/win32.4horsemen": {
+    "archived_by": [
+      "vxunderground",
+      "krisyotam"
+    ],
+    "authors": "unknown",
+    "name": "Win32 4horsemen",
+    "os": "Windows",
+    "source": "vxunderground/MalwareSourceCode",
+    "type": "trojan",
+    "year": "unknown"
+  },
+  "trojan/win32.abot": {
+    "archived_by": [
+      "vxunderground",
+      "krisyotam"
+    ],
+    "authors": "unknown",
+    "name": "Win32 Abot",
+    "os": "Windows",
+    "source": "vxunderground/MalwareSourceCode",
+    "type": "trojan",
+    "year": "unknown"
+  },
+  "trojan/win32.ak": {
+    "archived_by": [
+      "vxunderground",
+      "krisyotam"
+    ],
+    "authors": "unknown",
+    "name": "Win32 Ak",
+    "os": "Windows",
+    "source": "vxunderground/MalwareSourceCode",
+    "type": "trojan",
+    "year": "unknown"
+  },
+  "trojan/win32.bfbot": {
+    "archived_by": [
+      "vxunderground",
+      "krisyotam"
+    ],
+    "authors": "unknown",
+    "name": "Win32 Bfbot",
+    "os": "Windows",
+    "source": "vxunderground/MalwareSourceCode",
+    "type": "trojan",
+    "year": "unknown"
+  },
+  "trojan/win32.bifrose": {
+    "archived_by": [
+      "vxunderground",
+      "krisyotam"
+    ],
+    "authors": "unknown",
+    "name": "Win32 Bifrose",
+    "os": "Windows",
+    "source": "vxunderground/MalwareSourceCode",
+    "type": "trojan",
+    "year": "unknown"
+  },
+  "trojan/win32.blacksun": {
+    "archived_by": [
+      "vxunderground",
+      "krisyotam"
+    ],
+    "authors": "unknown",
+    "name": "Win32 Blacksun",
+    "os": "Windows",
+    "source": "vxunderground/MalwareSourceCode",
+    "type": "trojan",
+    "year": "unknown"
+  },
+  "trojan/win32.c15": {
+    "archived_by": [
+      "vxunderground",
+      "krisyotam"
+    ],
+    "authors": "unknown",
+    "name": "Win32 C15",
+    "os": "Windows",
+    "source": "vxunderground/MalwareSourceCode",
+    "type": "trojan",
+    "year": "unknown"
+  },
+  "trojan/win32.cyberbot": {
+    "archived_by": [
+      "vxunderground",
+      "krisyotam"
+    ],
+    "authors": "unknown",
+    "name": "Win32 Cyberbot",
+    "os": "Windows",
+    "source": "vxunderground/MalwareSourceCode",
+    "type": "trojan",
+    "year": "unknown"
+  },
+  "trojan/win32.darkkomet": {
+    "archived_by": [
+      "vxunderground",
+      "krisyotam"
+    ],
+    "authors": "unknown",
+    "name": "Win32 Darkkomet",
+    "os": "Windows",
+    "source": "vxunderground/MalwareSourceCode",
+    "type": "trojan",
+    "year": "unknown"
+  },
+  "trojan/win32.darkness": {
+    "archived_by": [
+      "vxunderground",
+      "krisyotam"
+    ],
+    "authors": "unknown",
+    "name": "Win32 Darkness",
+    "os": "Windows",
+    "source": "vxunderground/MalwareSourceCode",
+    "type": "trojan",
+    "year": "unknown"
+  },
+  "trojan/win32.dbot": {
+    "archived_by": [
+      "vxunderground",
+      "krisyotam"
+    ],
+    "authors": "unknown",
+    "name": "Win32 Dbot",
+    "os": "Windows",
+    "source": "vxunderground/MalwareSourceCode",
+    "type": "trojan",
+    "year": "unknown"
+  },
+  "trojan/win32.dcibot": {
+    "archived_by": [
+      "vxunderground",
+      "krisyotam"
+    ],
+    "authors": "unknown",
+    "name": "Win32 Dcibot",
+    "os": "Windows",
+    "source": "vxunderground/MalwareSourceCode",
+    "type": "trojan",
+    "year": "unknown"
+  },
+  "trojan/win32.dopebot": {
+    "archived_by": [
+      "vxunderground",
+      "krisyotam"
+    ],
+    "authors": "unknown",
+    "name": "Win32 Dopebot",
+    "os": "Windows",
+    "source": "vxunderground/MalwareSourceCode",
+    "type": "trojan",
+    "year": "unknown"
+  },
+  "trojan/win32.fearso": {
+    "archived_by": [
+      "vxunderground",
+      "krisyotam"
+    ],
+    "authors": "unknown",
+    "name": "Win32 Fearso",
+    "os": "Windows",
+    "source": "vxunderground/MalwareSourceCode",
+    "type": "trojan",
+    "year": "unknown"
+  },
+  "trojan/win32.forbot": {
+    "archived_by": [
+      "vxunderground",
+      "krisyotam"
+    ],
+    "authors": "unknown",
+    "name": "Win32 Forbot",
+    "os": "Windows",
+    "source": "vxunderground/MalwareSourceCode",
+    "type": "trojan",
+    "year": "unknown"
+  },
+  "trojan/win32.hbot": {
+    "archived_by": [
+      "vxunderground",
+      "krisyotam"
+    ],
+    "authors": "unknown",
+    "name": "Win32 Hbot",
+    "os": "Windows",
+    "source": "vxunderground/MalwareSourceCode",
+    "type": "trojan",
+    "year": "unknown"
+  },
+  "trojan/win32.hooker": {
+    "archived_by": [
+      "vxunderground",
+      "krisyotam"
+    ],
+    "authors": "unknown",
+    "name": "Win32 Hooker",
+    "os": "Windows",
+    "source": "vxunderground/MalwareSourceCode",
+    "type": "trojan",
+    "year": "unknown"
+  },
+  "trojan/win32.hupigon": {
+    "archived_by": [
+      "vxunderground",
+      "krisyotam"
+    ],
+    "authors": "unknown",
+    "name": "Win32 Hupigon",
+    "os": "Windows",
+    "source": "vxunderground/MalwareSourceCode",
+    "type": "trojan",
+    "year": "unknown"
+  },
+  "trojan/win32.litmus": {
+    "archived_by": [
+      "vxunderground",
+      "krisyotam"
+    ],
+    "authors": "unknown",
+    "name": "Win32 Litmus",
+    "os": "Windows",
+    "source": "vxunderground/MalwareSourceCode",
+    "type": "trojan",
+    "year": "unknown"
+  },
+  "trojan/win32.minimail": {
+    "archived_by": [
+      "vxunderground",
+      "krisyotam"
+    ],
+    "authors": "unknown",
+    "name": "Win32 Minimail",
+    "os": "Windows",
+    "source": "vxunderground/MalwareSourceCode",
+    "type": "trojan",
+    "year": "unknown"
+  },
+  "trojan/win32.moogly": {
+    "archived_by": [
+      "vxunderground",
+      "krisyotam"
+    ],
+    "authors": "unknown",
+    "name": "Win32 Moogly",
+    "os": "Windows",
+    "source": "vxunderground/MalwareSourceCode",
+    "type": "trojan",
+    "year": "unknown"
+  },
+  "trojan/win32.mystic": {
+    "archived_by": [
+      "vxunderground",
+      "krisyotam"
+    ],
+    "authors": "unknown",
+    "name": "Win32 Mystic",
+    "os": "Windows",
+    "source": "vxunderground/MalwareSourceCode",
+    "type": "trojan",
+    "year": "unknown"
+  },
+  "trojan/win32.nesbot": {
+    "archived_by": [
+      "vxunderground",
+      "krisyotam"
+    ],
+    "authors": "unknown",
+    "name": "Win32 Nesbot",
+    "os": "Windows",
+    "source": "vxunderground/MalwareSourceCode",
+    "type": "trojan",
+    "year": "unknown"
+  },
+  "trojan/win32.njrat": {
+    "archived_by": [
+      "vxunderground",
+      "krisyotam"
+    ],
+    "authors": "unknown",
+    "name": "Win32 Njrat",
+    "os": "Windows",
+    "source": "vxunderground/MalwareSourceCode",
+    "type": "trojan",
+    "year": "unknown"
+  },
+  "trojan/win32.nzm": {
+    "archived_by": [
+      "vxunderground",
+      "krisyotam"
+    ],
+    "authors": "unknown",
+    "name": "Win32 Nzm",
+    "os": "Windows",
+    "source": "vxunderground/MalwareSourceCode",
+    "type": "trojan",
+    "year": "unknown"
+  },
+  "trojan/win32.phatbot": {
+    "archived_by": [
+      "vxunderground",
+      "krisyotam"
+    ],
+    "authors": "unknown",
+    "name": "Win32 Phatbot",
+    "os": "Windows",
+    "source": "vxunderground/MalwareSourceCode",
+    "type": "trojan",
+    "year": "unknown"
+  },
+  "trojan/win32.pinch": {
+    "archived_by": [
+      "vxunderground",
+      "krisyotam"
+    ],
+    "authors": "unknown",
+    "name": "Win32 Pinch",
+    "os": "Windows",
+    "source": "vxunderground/MalwareSourceCode",
+    "type": "trojan",
+    "year": "unknown"
+  },
+  "trojan/win32.pluto": {
+    "archived_by": [
+      "vxunderground",
+      "krisyotam"
+    ],
+    "authors": "unknown",
+    "name": "Win32 Pluto",
+    "os": "Windows",
+    "source": "vxunderground/MalwareSourceCode",
+    "type": "trojan",
+    "year": "unknown"
+  },
+  "trojan/win32.poisonivy": {
+    "archived_by": [
+      "vxunderground",
+      "krisyotam"
+    ],
+    "authors": "unknown",
+    "name": "Win32 Poisonivy",
+    "os": "Windows",
+    "source": "vxunderground/MalwareSourceCode",
+    "type": "trojan",
+    "year": "unknown"
+  },
+  "trojan/win32.ragebot": {
+    "archived_by": [
+      "vxunderground",
+      "krisyotam"
+    ],
+    "authors": "unknown",
+    "name": "Win32 Ragebot",
+    "os": "Windows",
+    "source": "vxunderground/MalwareSourceCode",
+    "type": "trojan",
+    "year": "unknown"
+  },
+  "trojan/win32.rageworm": {
+    "archived_by": [
+      "vxunderground",
+      "krisyotam"
+    ],
+    "authors": "unknown",
+    "name": "Win32 Rageworm",
+    "os": "Windows",
+    "source": "vxunderground/MalwareSourceCode",
+    "type": "trojan",
+    "year": "unknown"
+  },
+  "trojan/win32.rastalbot": {
+    "archived_by": [
+      "vxunderground",
+      "krisyotam"
+    ],
+    "authors": "unknown",
+    "name": "Win32 Rastalbot",
+    "os": "Windows",
+    "source": "vxunderground/MalwareSourceCode",
+    "type": "trojan",
+    "year": "unknown"
+  },
+  "trojan/win32.rbot": {
+    "archived_by": [
+      "vxunderground",
+      "krisyotam"
+    ],
+    "authors": "unknown",
+    "name": "Win32 Rbot",
+    "os": "Windows",
+    "source": "vxunderground/MalwareSourceCode",
+    "type": "trojan",
+    "year": "unknown"
+  },
+  "trojan/win32.reptile": {
+    "archived_by": [
+      "vxunderground",
+      "krisyotam"
+    ],
+    "authors": "unknown",
+    "name": "Win32 Reptile",
+    "os": "Windows",
+    "source": "vxunderground/MalwareSourceCode",
+    "type": "trojan",
+    "year": "unknown"
+  },
+  "trojan/win32.riot": {
+    "archived_by": [
+      "vxunderground",
+      "krisyotam"
+    ],
+    "authors": "unknown",
+    "name": "Win32 Riot",
+    "os": "Windows",
+    "source": "vxunderground/MalwareSourceCode",
+    "type": "trojan",
+    "year": "unknown"
+  },
+  "trojan/win32.rose": {
+    "archived_by": [
+      "vxunderground",
+      "krisyotam"
+    ],
+    "authors": "unknown",
+    "name": "Win32 Rose",
+    "os": "Windows",
+    "source": "vxunderground/MalwareSourceCode",
+    "type": "trojan",
+    "year": "unknown"
+  },
+  "trojan/win32.rreinalo": {
+    "archived_by": [
+      "vxunderground",
+      "krisyotam"
+    ],
+    "authors": "unknown",
+    "name": "Win32 Rreinalo",
+    "os": "Windows",
+    "source": "vxunderground/MalwareSourceCode",
+    "type": "trojan",
+    "year": "unknown"
+  },
+  "trojan/win32.ruffbot": {
+    "archived_by": [
+      "vxunderground",
+      "krisyotam"
+    ],
+    "authors": "unknown",
+    "name": "Win32 Ruffbot",
+    "os": "Windows",
+    "source": "vxunderground/MalwareSourceCode",
+    "type": "trojan",
+    "year": "unknown"
+  },
+  "trojan/win32.rxbot": {
+    "archived_by": [
+      "vxunderground",
+      "krisyotam"
+    ],
+    "authors": "unknown",
+    "name": "Win32 Rxbot",
+    "os": "Windows",
+    "source": "vxunderground/MalwareSourceCode",
+    "type": "trojan",
+    "year": "unknown"
+  },
+  "trojan/win32.sdbot": {
+    "archived_by": [
+      "vxunderground",
+      "krisyotam"
+    ],
+    "authors": "unknown",
+    "name": "Win32 Sdbot",
+    "os": "Windows",
+    "source": "vxunderground/MalwareSourceCode",
+    "type": "trojan",
+    "year": "unknown"
+  },
+  "trojan/win32.shadow": {
+    "archived_by": [
+      "vxunderground",
+      "krisyotam"
+    ],
+    "authors": "unknown",
+    "name": "Win32 Shadow",
+    "os": "Windows",
+    "source": "vxunderground/MalwareSourceCode",
+    "type": "trojan",
+    "year": "unknown"
+  },
+  "trojan/win32.silkrope": {
+    "archived_by": [
+      "vxunderground",
+      "krisyotam"
+    ],
+    "authors": "unknown",
+    "name": "Win32 Silkrope",
+    "os": "Windows",
+    "source": "vxunderground/MalwareSourceCode",
+    "type": "trojan",
+    "year": "unknown"
+  },
+  "trojan/win32.snag": {
+    "archived_by": [
+      "vxunderground",
+      "krisyotam"
+    ],
+    "authors": "unknown",
+    "name": "Win32 Snag",
+    "os": "Windows",
+    "source": "vxunderground/MalwareSourceCode",
+    "type": "trojan",
+    "year": "unknown"
+  },
+  "trojan/win32.spybot": {
+    "archived_by": [
+      "vxunderground",
+      "krisyotam"
+    ],
+    "authors": "unknown",
+    "name": "Win32 Spybot",
+    "os": "Windows",
+    "source": "vxunderground/MalwareSourceCode",
+    "type": "trojan",
+    "year": "unknown"
+  },
+  "trojan/win32.stillcrow": {
+    "archived_by": [
+      "vxunderground",
+      "krisyotam"
+    ],
+    "authors": "unknown",
+    "name": "Win32 Stillcrow",
+    "os": "Windows",
+    "source": "vxunderground/MalwareSourceCode",
+    "type": "trojan",
+    "year": "unknown"
+  },
+  "trojan/win32.svbot": {
+    "archived_by": [
+      "vxunderground",
+      "krisyotam"
+    ],
+    "authors": "unknown",
+    "name": "Win32 Svbot",
+    "os": "Windows",
+    "source": "vxunderground/MalwareSourceCode",
+    "type": "trojan",
+    "year": "unknown"
+  },
+  "trojan/win32.turkojan": {
+    "archived_by": [
+      "vxunderground",
+      "krisyotam"
+    ],
+    "authors": "unknown",
+    "name": "Win32 Turkojan",
+    "os": "Windows",
+    "source": "vxunderground/MalwareSourceCode",
+    "type": "trojan",
+    "year": "unknown"
+  },
+  "trojan/win32.urxbot": {
+    "archived_by": [
+      "vxunderground",
+      "krisyotam"
+    ],
+    "authors": "unknown",
+    "name": "Win32 Urxbot",
+    "os": "Windows",
+    "source": "vxunderground/MalwareSourceCode",
+    "type": "trojan",
+    "year": "unknown"
+  },
+  "trojan/win32.vkont": {
+    "archived_by": [
+      "vxunderground",
+      "krisyotam"
+    ],
+    "authors": "unknown",
+    "name": "Win32 Vkont",
+    "os": "Windows",
+    "source": "vxunderground/MalwareSourceCode",
+    "type": "trojan",
+    "year": "unknown"
+  },
+  "trojan/win32.wisdom": {
+    "archived_by": [
+      "vxunderground",
+      "krisyotam"
+    ],
+    "authors": "unknown",
+    "name": "Win32 Wisdom",
+    "os": "Windows",
+    "source": "vxunderground/MalwareSourceCode",
+    "type": "trojan",
+    "year": "unknown"
+  },
+  "trojan/zeus": {
+    "archived_by": [
+      "RamadhanAmizudin",
+      "krisyotam"
+    ],
+    "authors": "unknown",
+    "name": "Zeus",
+    "os": "Windows",
+    "source": "RamadhanAmizudin/malware",
+    "type": "trojan",
+    "year": "unknown"
+  },
+  "webshell/albania": {
+    "archived_by": [
+      "vxunderground",
+      "krisyotam"
+    ],
+    "authors": "unknown",
+    "name": "Albania",
+    "os": "Multi",
+    "source": "vxunderground/MalwareSourceCode",
+    "type": "webshell",
+    "year": "unknown"
+  },
+  "webshell/c99": {
+    "archived_by": [
+      "vxunderground",
+      "krisyotam"
+    ],
+    "authors": "unknown",
+    "name": "C99",
+    "os": "Multi",
+    "source": "vxunderground/MalwareSourceCode",
+    "type": "webshell",
+    "year": "unknown"
+  },
+  "webshell/crewcorp": {
+    "archived_by": [
+      "vxunderground",
+      "krisyotam"
+    ],
+    "authors": "unknown",
+    "name": "Crewcorp",
+    "os": "Multi",
+    "source": "vxunderground/MalwareSourceCode",
+    "type": "webshell",
+    "year": "unknown"
+  },
+  "webshell/defacetool": {
+    "archived_by": [
+      "vxunderground",
+      "krisyotam"
+    ],
+    "authors": "unknown",
+    "name": "Defacetool",
+    "os": "Multi",
+    "source": "vxunderground/MalwareSourceCode",
+    "type": "webshell",
+    "year": "unknown"
+  },
+  "webshell/infector": {
+    "archived_by": [
+      "vxunderground",
+      "krisyotam"
+    ],
+    "authors": "unknown",
+    "name": "Infector",
+    "os": "Multi",
+    "source": "vxunderground/MalwareSourceCode",
+    "type": "webshell",
+    "year": "unknown"
+  },
+  "webshell/lanker": {
+    "archived_by": [
+      "vxunderground",
+      "krisyotam"
+    ],
+    "authors": "unknown",
+    "name": "Lanker",
+    "os": "Multi",
+    "source": "vxunderground/MalwareSourceCode",
+    "type": "webshell",
+    "year": "unknown"
+  },
+  "webshell/macker": {
+    "archived_by": [
+      "vxunderground",
+      "krisyotam"
+    ],
+    "authors": "unknown",
+    "name": "Macker",
+    "os": "Multi",
+    "source": "vxunderground/MalwareSourceCode",
+    "type": "webshell",
+    "year": "unknown"
+  },
+  "webshell/phpspy": {
+    "archived_by": [
+      "vxunderground",
+      "krisyotam"
+    ],
+    "authors": "unknown",
+    "name": "Phpspy",
+    "os": "Multi",
+    "source": "vxunderground/MalwareSourceCode",
+    "type": "webshell",
+    "year": "unknown"
+  },
+  "webshell/r57": {
+    "archived_by": [
+      "vxunderground",
+      "krisyotam"
+    ],
+    "authors": "unknown",
+    "name": "R57",
+    "os": "Multi",
+    "source": "vxunderground/MalwareSourceCode",
+    "type": "webshell",
+    "year": "unknown"
+  },
+  "worm/i-worm.pluto": {
+    "archived_by": [
+      "vxunderground",
+      "krisyotam"
+    ],
+    "authors": "unknown",
+    "name": "I Worm.pluto",
+    "os": "Windows",
+    "source": "vxunderground/MalwareSourceCode",
+    "type": "worm",
+    "year": "unknown"
+  },
+  "worm/iloveyou": {
+    "archived_by": [
+      "krisyotam"
+    ],
+    "authors": "unknown",
+    "name": "Iloveyou",
+    "os": "Windows",
+    "source": "original",
+    "type": "worm",
+    "year": "unknown"
+  }
+}

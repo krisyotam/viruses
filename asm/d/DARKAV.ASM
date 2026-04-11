@@ -1,3 +1,14 @@
+; ------------------------------------------------------------
+; name      D
+; type      asm
+; cve       —
+; year      unknown
+; os        DOS
+; authors   unknown
+; source    krisyotam
+; archived  krisyotam (2026)
+; notes     —
+; ------------------------------------------------------------
 From netcom.com!ix.netcom.com!netnews Tue Nov 29 09:44:15 1994
 Xref: netcom.com alt.comp.virus:509
 Path: netcom.com!ix.netcom.com!netnews

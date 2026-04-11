@@ -1,6 +1,18 @@
+/*
+  name      Carberp Botnet
+  type      trojan
+  cve       —
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     —
+ */
 <?php
 
-if(!function_exists('load_filters')){	function load_filters($row){
+if(!function_exists('load_filters')){
+	function load_filters($row){
 		global $filters, $flist;
         if(is_object($row)) $row = get_object_vars($row);
 		if(!isset($flist['bf_filter_' . $row['id']])){
@@ -25,7 +37,9 @@ if(!function_exists('load_filters')){	function load_filters($row){
 	}
 }
 
-if(!function_exists('load_flist')){	function load_flist($row){		global $flist;
+if(!function_exists('load_flist')){
+	function load_flist($row){
+		global $flist;
 		if(!empty($row->Name)){
 			$flist[$row->Name] = true;
    	 	}

@@ -1,3 +1,14 @@
+; ------------------------------------------------------------
+; name      P
+; type      asm
+; cve       —
+; year      unknown
+; os        DOS
+; authors   unknown
+; source    krisyotam
+; archived  krisyotam (2026)
+; notes     —
+; ------------------------------------------------------------
 START	SEGMENT
 	ASSUME CS:START,DS:START
 	MOV	BX,80H

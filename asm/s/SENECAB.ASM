@@ -1,3 +1,14 @@
+; ------------------------------------------------------------
+; name      S
+; type      asm
+; cve       â€”
+; year      unknown
+; os        DOS
+; authors   unknown
+; source    krisyotam
+; archived  krisyotam (2026)
+; notes     â€”
+; ------------------------------------------------------------
 ;****************************************************************************
 ; Seneca Virus Strain B
 ;
@@ -240,10 +251,10 @@ infect:
 ; These are different things needed for the virus
 ;---
 ; day messege - just saying its Sen's B-Day
-messege db  'ROc*O`O\cYXO+++S~}*]oxomk1}*L7Nkƒ+**Vo~1}*Zk|~ƒ+',0
+messege db  'ROc*O`O\cYXO+++S~}*]oxomk1}*L7Nkï¿½+**Vo~1}*Zk|~ï¿½+',0
 ; xt messege - Telling the user he uses his computer too much
-messege2 db 'cy*}ryvnx1~*}o*ƒy|*mywz~o|*}y*wmr6s~}*lkn*py|*ƒ'
-         db 'y*kxn*ƒy|*mywz~o|8',0
+messege2 db 'cy*}ryvnx1~*}o*ï¿½y|*mywz~o|*}y*wmr6s~}*lkn*py|*ï¿½'
+         db 'y*kxn*ï¿½y|*mywz~o|8',0
 ; error messege - Saying the exe is no good
 messege3 db 'PK^KV*O\\Y\*77*ObO*s}*Pmuon+++',0
 

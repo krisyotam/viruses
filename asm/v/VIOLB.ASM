@@ -1,3 +1,14 @@
+; ------------------------------------------------------------
+; name      V
+; type      asm
+; cve       â€”
+; year      unknown
+; os        DOS
+; authors   unknown
+; source    krisyotam
+; archived  krisyotam (2026)
+; notes     â€”
+; ------------------------------------------------------------
 ;*****************************************************************************
 ;
 ;		                Violator - Strain B
@@ -21,7 +32,7 @@
 ;		 	   Written by - The High Evolutionary -
 ;				  RABID Head Programmer
 ;
-;                                Revised by: ®Onslaught¯
+;                                Revised by: ï¿½Onslaughtï¿½
 ;                               No affiliation with rabId
 ;
 ;		  Copyright (C) 1990 by RABID Nat'nl Development Corp.

@@ -1,3 +1,14 @@
+/*
+  name      PowerLoader
+  type      trojan
+  cve       —
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    RamadhanAmizudin/malware
+  archived  RamadhanAmizudin, krisyotam (2026)
+  notes     —
+ */
 #pragma once
 #ifndef _STDINT
 #define _STDINT

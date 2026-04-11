@@ -1,3 +1,14 @@
+; ------------------------------------------------------------
+; name      A
+; type      asm
+; cve       —
+; year      unknown
+; os        DOS
+; authors   unknown
+; source    krisyotam
+; archived  krisyotam (2026)
+; notes     —
+; ------------------------------------------------------------
 ; AlphaStrike.2000 or whatever its called by Neurobasher. disasm by retch.
 ; there are no comments. there are no need for comments unless you are lame.
 ;

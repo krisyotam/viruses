@@ -1,3 +1,14 @@
+/*
+  name      Grum
+  type      botnet
+  cve       â€”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    RamadhanAmizudin/malware
+  archived  RamadhanAmizudin, krisyotam (2026)
+  notes     â€”
+ */
 <?php
 include("parameters.php");
 set_time_limit(0);
@@ -6,7 +17,7 @@ set_time_limit(0);
 
 //**************** these are the original comments ***************************
 // ------------------------------------------------------------------------- //
-// Insérer le contenu d'un fichier CSV dans une table MySQL.                 //
+// Insï¿½rer le contenu d'un fichier CSV dans une table MySQL.                 //
 // ------------------------------------------------------------------------- //
 // Auteur: Perrich                                                           //
 // Email:  perrich@club-internet.fr                                          //
@@ -14,7 +25,7 @@ set_time_limit(0);
 // ------------------------------------------------------------------------- //
 // $fileName  : le nom du fichier
 // $tableName : le nom de la table
-// $con       : id de connexion à MySQL (recupéré avec $con = mysql_connect(...)
+// $con       : id de connexion ï¿½ MySQL (recupï¿½rï¿½ avec $con = mysql_connect(...)
 //**************** end of original comments *********************************
 
 function multiple_query($q)

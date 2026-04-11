@@ -1,3 +1,14 @@
+/*
+  name      Carberp Botnet
+  type      trojan
+  cve       —
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     —
+ */
 #ifndef WINVER                          // Specifies that the minimum required platform is Windows Vista.
 #define WINVER 0x0501           // Change this to the appropriate value to target other versions of Windows.
 #endif

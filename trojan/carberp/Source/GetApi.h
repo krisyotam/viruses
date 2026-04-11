@@ -1,3 +1,14 @@
+/*
+  name      Carberp
+  type      trojan
+  cve       вЂ”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    RamadhanAmizudin/malware
+  archived  RamadhanAmizudin, krisyotam (2026)
+  notes     вЂ”
+ */
 #pragma once
 #include <windows.h>
 
@@ -7,7 +18,7 @@
 #define DLL_GDI      15 /* gdi32.dll    */
 #define DLL_GDIPLUS  16 /* gdiplus.dll  */
 #define DLL_CRYPT32  17 /* crypt32.dll  */
-#define DLL_SHLWAPI	 18	/* SHLWAPI.dll  */	/*используеться в ms10_073.cpp*/
+#define DLL_SHLWAPI	 18	/* SHLWAPI.dll  */	/*пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ ms10_073.cpp*/
 #define DLL_IMAGEHLP 19 /* Imagehlp.dll */	
 #define DLL_PSAPI	 20 /* psapi.dll	*/
 #define DLL_OLE32	 21 /* Ole32.dll  */
@@ -658,7 +669,7 @@ inline LPVOID pushargEx(A1 a1, A2 a2, A3 a3, A4 a4, A5 a5, A6 a6, A7 a7, A8 a8,
 
 
 //****************************************************************
-//  Вспомогательные функции
+//  пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 //****************************************************************
 
 #define Min(a,b) (((a) < (b)) ? (a) : (b))
@@ -666,7 +677,7 @@ inline LPVOID pushargEx(A1 a1, A2 a2, A3 a3, A4 a4, A5 a5, A6 a6, A7 a7, A8 a8,
 
 
 //****************************************************************
-//  TBotClass - базовый класс бота
+//  TBotClass - пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
 //****************************************************************
 
 

@@ -1,4 +1,15 @@
 /*
+  name      Carberp Botnet
+  type      trojan
+  cve       —
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     —
+ */
+/*
  * Enumeration of all SSL-specific error codes.
  *
  * ***** BEGIN LICENSE BLOCK *****

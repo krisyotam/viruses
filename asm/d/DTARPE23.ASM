@@ -1,3 +1,14 @@
+; ------------------------------------------------------------
+; name      D
+; type      asm
+; cve       —
+; year      unknown
+; os        DOS
+; authors   unknown
+; source    krisyotam
+; archived  krisyotam (2026)
+; notes     —
+; ------------------------------------------------------------
 @b      macro   char
         mov     ah,0eh
         mov     al,char

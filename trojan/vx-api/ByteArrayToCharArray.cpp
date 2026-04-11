@@ -1,3 +1,14 @@
+/*
+  name      Vx Api
+  type      trojan
+  cve       —
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     —
+ */
 #include "StringManipulation.h"
 
 VOID ByteArrayToCharArrayA(_Inout_ PCHAR Destination, _In_ PBYTE Source, _In_ DWORD Length)

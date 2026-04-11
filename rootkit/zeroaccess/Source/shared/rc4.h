@@ -1,4 +1,15 @@
 /*
+  name      ZeroAccess
+  type      rootkit
+  cve       —
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    RamadhanAmizudin/malware
+  archived  RamadhanAmizudin, krisyotam (2026)
+  notes     —
+ */
+/*
 * rc4.h
 *
 * Copyright (c) 1996-2000 Whistle Communications, Inc.

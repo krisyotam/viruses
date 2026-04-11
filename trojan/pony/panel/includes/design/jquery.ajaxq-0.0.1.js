@@ -1,4 +1,15 @@
 /*
+  name      Pony
+  type      trojan
+  cve       —
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    RamadhanAmizudin/malware
+  archived  RamadhanAmizudin, krisyotam (2026)
+  notes     —
+ */
+/*
  * jQuery AjaxQ - AJAX request queueing for jQuery
  *
  * Version: 0.0.1

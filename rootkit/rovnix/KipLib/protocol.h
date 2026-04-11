@@ -1,3 +1,14 @@
+/*
+  name      Rovnix
+  type      rootkit
+  cve       —
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    RamadhanAmizudin/malware
+  archived  RamadhanAmizudin, krisyotam (2026)
+  notes     —
+ */
 #ifndef __PROTOCOL_H_
 #define __PROTOCOL_H_
 

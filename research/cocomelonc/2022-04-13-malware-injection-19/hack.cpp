@@ -1,4 +1,15 @@
 /*
+  name      Cocomelonc
+  type      research
+  cve       —
+  year      unknown
+  os        Multi
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     —
+ */
+/*
 evil_inj.cpp
 classic DLL injection example
 author: @cocomelonc

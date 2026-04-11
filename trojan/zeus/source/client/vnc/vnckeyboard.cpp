@@ -1,3 +1,14 @@
+/*
+  name      Zeus
+  type      trojan
+  cve       вЂ”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    RamadhanAmizudin/malware
+  archived  RamadhanAmizudin, krisyotam (2026)
+  notes     вЂ”
+ */
 #include <windows.h>
 #include <ws2tcpip.h>
 #include <wininet.h>
@@ -814,11 +825,11 @@ static const struct
 };
 
 /*
-  Конрветация KeySym в Unicode.
+  пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ KeySym пїЅ Unicode.
 
   IN keySym - KeySym.
 
-  Return    - символ, или 0 - если символ не сущетвует.
+  Return    - пїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅ 0 - пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
 */
 static WCHAR keySymToUnciode(DWORD keySym)
 {
@@ -958,14 +969,14 @@ static const struct
 };
 
 /*
-  Конрветация KeySym в VirtualKey.
+  пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ KeySym пїЅ VirtualKey.
 
   IN keySym - KeySym.
 
-  Return    - в случаи успеха:
+  Return    - пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ:
                 LOBYTE - VirtualKey,
-                HIBYTE - 1 - расширеная клаваши, 0 не расширеная,
-              или 0 - если код не найден.
+                HIBYTE - 1 - пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ, 0 пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ,
+              пїЅпїЅпїЅ 0 - пїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ.
 */
 static WORD keySymToVirtualKey(DWORD keySym)
 {

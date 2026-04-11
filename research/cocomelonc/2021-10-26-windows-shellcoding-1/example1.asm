@@ -1,3 +1,14 @@
+; ------------------------------------------------------------
+; name      Cocomelonc
+; type      research
+; cve       —
+; year      unknown
+; os        Multi
+; authors   unknown
+; source    krisyotam
+; archived  krisyotam (2026)
+; notes     —
+; ------------------------------------------------------------
 ; run calc.exe and normal exit
 ; author @cocomelonc
 ; nasm -f elf32 -o example1.o example1.asm

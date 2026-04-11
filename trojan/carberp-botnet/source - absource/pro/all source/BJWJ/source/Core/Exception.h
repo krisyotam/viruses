@@ -1,11 +1,22 @@
+/*
+  name      Carberp Botnet
+  type      trojan
+  cve       вЂ”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     вЂ”
+ */
 #ifndef UUID_12AA994E550245B998FDC6D33FF29BD7
 #define UUID_12AA994E550245B998FDC6D33FF29BD7
 
 
 //
-//	Если IsLogAllException TRUE будут логироваться все исключения.
-//	Если IsLogAllException FALSE будут логироваться критические исключения.
-//	Возвращает TRUE в случаии успеха.	
+//	пїЅпїЅпїЅпїЅ IsLogAllException TRUE пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
+//	пїЅпїЅпїЅпїЅ IsLogAllException FALSE пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
+//	пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ TRUE пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ.	
 //	
 BOOLEAN InitialializeGlogalExceptionLogger(BOOLEAN IsLogAllException);
 

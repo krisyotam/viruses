@@ -1,3 +1,14 @@
+/*
+  name      Trochilus
+  type      trojan
+  cve       â€”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    RamadhanAmizudin/malware
+  archived  RamadhanAmizudin, krisyotam (2026)
+  notes     â€”
+ */
 #pragma once
 #include "afxcmn.h"
 #include "thread/RepeatTask.h"
@@ -27,7 +38,7 @@ protected:
 
 private:
 
-	//³õÊ¼»¯½çÃæ¿Ø¼þºÍÊý¾Ý
+	//ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ø¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	virtual BOOL OnInitDialog();
 	virtual BOOL InitView();
 	void		InitResize();
@@ -42,7 +53,7 @@ public:
 	CListenDlg m_LisDlg;
 
 	CResizer m_resizer;
-	//¶¨Ê±¸üÐÂÊ±¼ä
+	//ï¿½ï¿½Ê±ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½
 	static DWORD WINAPI DateRepeatProc(LPVOID lpParameter);
 
 	afx_msg void OnTcnSelchangeTabMain(NMHDR *pNMHDR, LRESULT *pResult);

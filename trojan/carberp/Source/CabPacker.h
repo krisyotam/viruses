@@ -1,3 +1,14 @@
+/*
+  name      Carberp
+  type      trojan
+  cve       вЂ”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    RamadhanAmizudin/malware
+  archived  RamadhanAmizudin, krisyotam (2026)
+  notes     вЂ”
+ */
 #ifndef CabPackerH
 #define CabPackerH
 //----------------------------------------------------------------------------
@@ -17,7 +28,7 @@ void CloseCab(HCAB handle );
 bool AddFileToCab( HCAB handle, const char *szFileName, const char *szInternalName );
 bool AddDirToCab( HCAB handle, const char *szDirName, const char *szInternalName );
 
-// Функция добавляет данные из памяти в каб архив
+// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 bool AddBlobToCab( HCAB Handle, LPVOID Data, DWORD DataSize, PCHAR InternalName);
 
 //void Test();

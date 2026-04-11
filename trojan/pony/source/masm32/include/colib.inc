@@ -1,3 +1,14 @@
+; ------------------------------------------------------------
+; name      Pony
+; type      trojan
+; cve       —
+; year      unknown
+; os        Windows
+; authors   unknown
+; source    RamadhanAmizudin/malware
+; archived  RamadhanAmizudin, krisyotam (2026)
+; notes     —
+; ------------------------------------------------------------
 ;-------------------------------------------------------------------------------
 ; CoLib.inc   Common data, structures, functions and macros
 ;              to be used as a template for in-process com server objects

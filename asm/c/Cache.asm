@@ -1,3 +1,14 @@
+; ------------------------------------------------------------
+; name      C
+; type      asm
+; cve       —
+; year      unknown
+; os        DOS
+; authors   unknown
+; source    krisyotam
+; archived  krisyotam (2026)
+; notes     —
+; ------------------------------------------------------------
 INTERRUPTS      SEGMENT AT 0H    ;This is where the disk interrupt
         ORG     13H*4            ;holds the address of its service routine
 DISK_INT        LABEL   DWORD

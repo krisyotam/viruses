@@ -1,3 +1,14 @@
+; ------------------------------------------------------------
+; name      H
+; type      asm
+; cve       —
+; year      unknown
+; os        DOS
+; authors   unknown
+; source    krisyotam
+; archived  krisyotam (2026)
+; notes     —
+; ------------------------------------------------------------
 	.radix	16
 
 	;WARNING: THIS IS NOT A BASIC RELEASE BUT A WORK COPY!

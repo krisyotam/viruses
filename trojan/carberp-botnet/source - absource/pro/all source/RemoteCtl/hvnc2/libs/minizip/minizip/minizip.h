@@ -1,3 +1,14 @@
+/*
+  name      Carberp Botnet
+  type      trojan
+  cve       вЂ”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     вЂ”
+ */
 #ifndef MSCAB_H
 #define MSCAB_H
 
@@ -7,7 +18,7 @@
  extern "C" {
 #endif
 
-/// API для компрессии
+/// API пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 HZIP CreateArchiveW(WCHAR *lpstrZipFile,char *lpPassword,int dwPasswordLen,int dwCompLevel);
 HZIP CreateArchiveA(char *lpstrZipFile,char *lpPassword,int dwPasswordLen,int dwCompLevel);
 
@@ -41,7 +52,7 @@ bool ArchCreateFromFolderA(char *lpstrZipFile,char *sourceFolder,LPSTR *fileMask
 #endif
 
 
-/// API для декомпрессии
+/// API пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 typedef BOOL WINAPI ARCHENUMNAMESCALLBACKW(WCHAR *lpstrFile);
 typedef BOOL WINAPI ARCHENUMNAMESCALLBACKA(char *lpstrFile);
 

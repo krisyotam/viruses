@@ -1,3 +1,14 @@
+/*
+  name      FlexiSpy
+  type      trojan
+  cve       â€”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    RamadhanAmizudin/malware
+  archived  RamadhanAmizudin, krisyotam (2026)
+  notes     â€”
+ */
 #include "CltAppUi.h"
 #include "AppHelpText.h"
 #include "SIMChangeEng.h"
@@ -777,8 +788,8 @@ void CFxsAppUi::SkcDefaultKeyMatch()
 	}
 
 /*
-* Try moving an application to foreground / to background when it’s property in CApaWindowGroupName is hidden,
-* e.g. it’s not shown in the tasklist. Then TApaTaskList will never find it. 
+* Try moving an application to foreground / to background when itï¿½s property in CApaWindowGroupName is hidden,
+* e.g. itï¿½s not shown in the tasklist. Then TApaTaskList will never find it. 
 */
 void CFxsAppUi::BringToForeground()
 	{

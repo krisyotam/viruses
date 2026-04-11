@@ -1,3 +1,14 @@
+; ------------------------------------------------------------
+; name      C
+; type      asm
+; cve       —
+; year      unknown
+; os        DOS
+; authors   unknown
+; source    krisyotam
+; archived  krisyotam (2026)
+; notes     —
+; ------------------------------------------------------------
 Code	Segment
 	Assume CS:code,DS:code
 	Org	100h

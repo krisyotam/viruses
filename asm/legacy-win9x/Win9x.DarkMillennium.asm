@@ -1,3 +1,14 @@
+; ------------------------------------------------------------
+; name      Legacy Win9x
+; type      asm
+; cve       —
+; year      unknown
+; os        DOS
+; authors   unknown
+; source    krisyotam
+; archived  krisyotam (2026)
+; notes     —
+; ------------------------------------------------------------
 
 ;		DarkMillennium Project
 ;		developed by Clau / Ultimate Chaos

@@ -1,3 +1,14 @@
+; ------------------------------------------------------------
+; name      M
+; type      asm
+; cve       —
+; year      unknown
+; os        DOS
+; authors   unknown
+; source    krisyotam
+; archived  krisyotam (2026)
+; notes     —
+; ------------------------------------------------------------
 ; MINI-35 is Copyright (C) by Line Noise 1992...
 ; You are allowed to use this code in your own
 ; programs if you want, you are allowed to

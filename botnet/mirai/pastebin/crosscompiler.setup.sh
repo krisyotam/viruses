@@ -1,3 +1,14 @@
+# ------------------------------------------------------------
+# name      Mirai
+# type      botnet
+# cve       —
+# year      unknown
+# os        Linux
+# authors   unknown
+# source    RamadhanAmizudin/malware
+# archived  RamadhanAmizudin, krisyotam (2026)
+# notes     —
+# ------------------------------------------------------------
 # RUN ALL OF THESE AS A PRIVELEGED USER, SINCE WE ARE DOWNLOADING INTO /etc
 
 # You're gay if you don't use Debian

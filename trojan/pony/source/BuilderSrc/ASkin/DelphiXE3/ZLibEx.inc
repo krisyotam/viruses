@@ -1,3 +1,14 @@
+; ------------------------------------------------------------
+; name      Pony
+; type      trojan
+; cve       —
+; year      unknown
+; os        Windows
+; authors   unknown
+; source    RamadhanAmizudin/malware
+; archived  RamadhanAmizudin, krisyotam (2026)
+; notes     —
+; ------------------------------------------------------------
 {*****************************************************************************
 *  ZLibEx.inc                                                                *
 *  copyright (c) 2006-2010 base2 technologies                                *

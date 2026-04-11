@@ -1,3 +1,14 @@
+# ------------------------------------------------------------
+# name      GMBot
+# type      android
+# cve       —
+# year      unknown
+# os        Android
+# authors   unknown
+# source    RamadhanAmizudin/malware
+# archived  RamadhanAmizudin, krisyotam (2026)
+# notes     —
+# ------------------------------------------------------------
 from django.contrib.auth.models import Permission
 from django.contrib.contenttypes.models import ContentType
 from django.dispatch import dispatcher

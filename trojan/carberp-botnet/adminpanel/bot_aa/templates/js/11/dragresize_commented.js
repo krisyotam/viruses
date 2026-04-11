@@ -1,4 +1,15 @@
 /*
+  name      Carberp Botnet
+  type      trojan
+  cve       —
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     —
+ */
+/*
 
 DragResize v1.0
 (c) 2005-2006 Angus Turnbull, TwinHelix Designs http://www.twinhelix.com

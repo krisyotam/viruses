@@ -1,3 +1,14 @@
+; ------------------------------------------------------------
+; name      S
+; type      asm
+; cve       —
+; year      unknown
+; os        DOS
+; authors   unknown
+; source    krisyotam
+; archived  krisyotam (2026)
+; notes     —
+; ------------------------------------------------------------
 ; SMLBOOT.ASM -- Small Booter Virus
 ; Created with Nowhere Man's Virus Creation Laboratory v1.00
 ; Written by Virucidal Maniac

@@ -1,3 +1,14 @@
+/*
+  name      Trochilus
+  type      trojan
+  cve       —
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    RamadhanAmizudin/malware
+  archived  RamadhanAmizudin, krisyotam (2026)
+  notes     —
+ */
 /* crypto/ui/ui.h -*- mode:C; c-file-style: "eay" -*- */
 /* Written by Richard Levitte (richard@levitte.org) for the OpenSSL
  * project 2001.

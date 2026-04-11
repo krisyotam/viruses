@@ -1,3 +1,14 @@
+; ------------------------------------------------------------
+; name      Legacy Win95
+; type      asm
+; cve       —
+; year      unknown
+; os        DOS
+; authors   unknown
+; source    krisyotam
+; archived  krisyotam (2026)
+; notes     —
+; ------------------------------------------------------------
 ; [Win95.Molly.725] - An experimental specimen
 ; Copyright (c) 1999 by Billy Belcebu/iKX
 ;

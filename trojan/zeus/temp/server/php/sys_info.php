@@ -1,3 +1,14 @@
+/*
+  name      Zeus
+  type      trojan
+  cve       —
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    RamadhanAmizudin/malware
+  archived  RamadhanAmizudin, krisyotam (2026)
+  notes     —
+ */
 <?php if(!defined('__CP__'))die();
 $os = php_uname('s').' '.php_uname('r').' '.php_uname('v').', '.php_uname('m');
 $php = phpversion().', '.php_sapi_name();

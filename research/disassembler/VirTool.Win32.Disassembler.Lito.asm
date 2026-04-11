@@ -1,3 +1,14 @@
+; ------------------------------------------------------------
+; name      Disassembler
+; type      research
+; cve       тАФ
+; year      unknown
+; os        Multi
+; authors   unknown
+; source    vxunderground
+; archived  vxunderground, krisyotam (2026)
+; notes     тАФ
+; ------------------------------------------------------------
 ;xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx;
 ;                                                                                  ;
 ;                                                                                  ;
@@ -23,69 +34,69 @@
 ;                                                                                  ;
 ;xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx;
 ;                                                                                  ; 
-;                                   Версия 2.1					   ;                                                
+;                                   я┐╜я┐╜я┐╜я┐╜я┐╜ 2.1					   ;                                                
 ;                                                                                  ; 
 ;xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx;
-;функция _LiTo_                                                                    ;
-;дизассемблирование машинной команды						   ;
-;определение длины машинной команды                                                ;
-;Вход:                                                                             ;
-;esi - адрес разбираемой машинной команды                                          ;
-;edi - указатель на выходную структуру (или буфер) (назовем ее INSTR:)		   ;
-;Выход:                                                                            ;
-;в eax - длина машинной команды.                                                   ;
-;Заметки:                                                                          ;
-;(x) Выходная структура (или буфер) заполняется в процессе дизассемблирования      ;
-;инструкции и должна представлять собой следующее:                                 ;
+;я┐╜ункя┐╜я┐╜ _LiTo_                                                                    ;
+;я┐╜я┐╜я┐╜я┐╜я┐╜семя┐╜я┐╜я┐╜ровя┐╜я┐╜я┐╜я┐╜ я┐╜я┐╜шиня┐╜я┐╜я┐╜ я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜						   ;
+;я┐╜я┐╜редя┐╜я┐╜я┐╜я┐╜я┐╜я┐╜ я┐╜я┐╜я┐╜я┐╜я┐╜ я┐╜я┐╜шиня┐╜я┐╜я┐╜ я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜                                                ;
+;я┐╜ход:                                                                             ;
+;esi - я┐╜я┐╜я┐╜я┐╜ разя┐╜я┐╜раея┐╜я┐╜я┐╜ я┐╜я┐╜шиня┐╜я┐╜я┐╜ я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜                                          ;
+;edi - укая┐╜я┐╜теля┐╜ я┐╜я┐╜ я┐╜я┐╜ходя┐╜я┐╜я┐╜ я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜ (я┐╜я┐╜я┐╜ я┐╜я┐╜я┐╜я┐╜) (я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜ я┐╜я┐╜ INSTR:)		   ;
+;я┐╜я┐╜ход:                                                                            ;
+;я┐╜ eax - я┐╜я┐╜я┐╜я┐╜я┐╜ я┐╜я┐╜шиня┐╜я┐╜я┐╜ я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜.                                                   ;
+;я┐╜я┐╜я┐╜я┐╜тки:                                                                          ;
+;(x) я┐╜я┐╜ходя┐╜я┐╜я┐╜ я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜ (я┐╜я┐╜я┐╜ я┐╜я┐╜я┐╜я┐╜) я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜ я┐╜ я┐╜я┐╜я┐╜я┐╜я┐╜ я┐╜я┐╜я┐╜я┐╜я┐╜семя┐╜я┐╜я┐╜ровя┐╜я┐╜я┐╜я┐╜      ;
+;я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜ции я┐╜ я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜ я┐╜редя┐╜тавя┐╜я┐╜я┐╜я┐╜ собя┐╜я┐╜ слея┐╜я┐╜я┐╜щее:                                 ;
 ;                                                                                  ;
 ;	INSTR1	struct                                                             ;
-;	(+ 00) len_com		db 00h 	      ;	- длина команды;                   ;
-;	(+ 01) flags		dd 00h 	      ;	- выставленные флаги               ;
-;	(+ 05) seg		db 00h 	      ;	- сегмент (если есть);             ;
-;	(+ 06) repx		db 00h 	      ;	- префикс (0F2h/0F3h) (если есть); ;
-;	(+ 07) len_offset	db 00h 	      ;	- размер смещения;                 ;
-;	(+ 08) len_operand	db 00h 	      ;	- размер операнда;                 ;
-;	(+ 09) opcode 		db 00h 	      ;	- опкод (если опкод=0Fh, тогда     ;
-;					      ;	  сюда сохраняется 2-ой опкод, и   ;
-;					      ;	  устанавливается флаг B_OPCODE2); ;
-;	(+ 10) modrm		db 00h 	      ;	- байт MODRM (также, если есть)    ;
-;	(+ 11) sib		db 00h 	      ;	- байт SIB                         ;
-;	(+ 12) offset		db 8 dup (00h);	- смещение инструкции              ;
-;	(+ 20) operand		db 8 dup (00h);	- операнд  инструкции              ;
+;	(+ 00) len_com		db 00h 	      ;	- я┐╜я┐╜я┐╜я┐╜я┐╜ я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜;                   ;
+;	(+ 01) flags		dd 00h 	      ;	- я┐╜я┐╜я┐╜тавя┐╜я┐╜я┐╜я┐╜я┐╜ флая┐╜я┐╜               ;
+;	(+ 05) seg		db 00h 	      ;	- сегя┐╜я┐╜я┐╜я┐╜ (я┐╜сли я┐╜я┐╜я┐╜я┐╜);             ;
+;	(+ 06) repx		db 00h 	      ;	- я┐╜я┐╜фикя┐╜ (0F2h/0F3h) (я┐╜сли я┐╜я┐╜я┐╜я┐╜); ;
+;	(+ 07) len_offset	db 00h 	      ;	- разя┐╜я┐╜я┐╜ смещеня┐╜я┐╜;                 ;
+;	(+ 08) len_operand	db 00h 	      ;	- разя┐╜я┐╜я┐╜ я┐╜я┐╜я┐╜раня┐╜я┐╜;                 ;
+;	(+ 09) opcode 		db 00h 	      ;	- я┐╜я┐╜я┐╜я┐╜я┐╜ (я┐╜сли я┐╜я┐╜я┐╜я┐╜я┐╜=0Fh, тогя┐╜я┐╜     ;
+;					      ;	  я┐╜юда я┐╜я┐╜раня┐╜я┐╜я┐╜я┐╜ 2-я┐╜я┐╜ я┐╜я┐╜я┐╜я┐╜я┐╜, я┐╜   ;
+;					      ;	  я┐╜я┐╜таня┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜ флая┐╜ B_OPCODE2); ;
+;	(+ 10) modrm		db 00h 	      ;	- я┐╜я┐╜я┐╜я┐╜ MODRM (такя┐╜я┐╜, я┐╜сли я┐╜я┐╜я┐╜я┐╜)    ;
+;	(+ 11) sib		db 00h 	      ;	- я┐╜я┐╜я┐╜я┐╜ SIB                         ;
+;	(+ 12) offset		db 8 dup (00h);	- смещеня┐╜я┐╜ я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜ции              ;
+;	(+ 20) operand		db 8 dup (00h);	- я┐╜я┐╜я┐╜раня┐╜  я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜ции              ;
 ;	INSTR1	ends                                                               ;
 ;                                                                                  ;
-;(х) понимаются (пока) только general purpose & fpu instructions                   ;
-;    (остальные - в топку:)!                                                       ;
-;(х) нет проверки на максимальную длину инструкции (15 байт) (нахрен)              ;
-;(х) Как построены эти таблички:                                                   ;
-;	ОЧЕНЬ ПРОСТО: так как в этом дизасме используются флаги с числовым    	   ;
-;	обозначением <=8, то для одного флага достаточно места в половину байта    ;
-;	(максимальное число =8 (B_PREFIX6X) - в двоичном представлении =1000b).    ;
-;	Зная это, просто тупо в один байт запихиваем 2 флага - вот и все. Таким    ;
-;	образом, каждая табличка в 256 байт урезается до 128.                      ;                            
-;(х) Для 32-битного исполняемого кода.						   ;
-;(х) Кто хочет, пусть нафиг сам и добавляет остальные команды и всякие там         ;
-;    проверки.                                                                     ;
+;(я┐╜) я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜ (я┐╜я┐╜я┐╜я┐╜) только general purpose & fpu instructions                   ;
+;    (я┐╜я┐╜таля┐╜я┐╜ - я┐╜ топя┐╜я┐╜:)!                                                       ;
+;(я┐╜) я┐╜я┐╜я┐╜ я┐╜ровя┐╜рки я┐╜я┐╜ я┐╜я┐╜я┐╜симя┐╜я┐╜я┐╜я┐╜я┐╜ я┐╜я┐╜я┐╜я┐╜я┐╜ я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜ции (15 я┐╜я┐╜я┐╜я┐╜) (я┐╜я┐╜я┐╜рен)              ;
+;(я┐╜) я┐╜я┐╜я┐╜ я┐╜я┐╜я┐╜я┐╜роея┐╜я┐╜ я┐╜я┐╜ табя┐╜я┐╜чки:                                                   ;
+;	я┐╜я┐╜я┐╜я┐╜я┐╜ я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜: так я┐╜я┐╜я┐╜ я┐╜ я┐╜том я┐╜я┐╜я┐╜я┐╜сме я┐╜споя┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜ флая┐╜я┐╜ я┐╜ я┐╜слоя┐╜я┐╜    	   ;
+;	я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜ченя┐╜я┐╜я┐╜ <=8, я┐╜ я┐╜я┐╜я┐╜ я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜ флая┐╜я┐╜ я┐╜я┐╜я┐╜я┐╜я┐╜чно я┐╜я┐╜я┐╜я┐╜ я┐╜ я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜ я┐╜я┐╜я┐╜я┐╜    ;
+;	(я┐╜я┐╜я┐╜симя┐╜я┐╜ьноя┐╜ я┐╜сло =8 (B_PREFIX6X) - я┐╜ я┐╜я┐╜я┐╜я┐╜чноя┐╜ я┐╜редя┐╜тавя┐╜я┐╜я┐╜я┐╜я┐╜ =1000b).    ;
+;	я┐╜я┐╜я┐╜я┐╜ я┐╜я┐╜, я┐╜я┐╜я┐╜я┐╜ я┐╜упо я┐╜ я┐╜я┐╜я┐╜я┐╜ я┐╜я┐╜я┐╜я┐╜ я┐╜я┐╜я┐╜я┐╜хивя┐╜я┐╜я┐╜ 2 флая┐╜я┐╜ - я┐╜я┐╜я┐╜ я┐╜ я┐╜я┐╜. я┐╜я┐╜я┐╜я┐╜я┐╜    ;
+;	я┐╜я┐╜разя┐╜я┐╜, я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜ табя┐╜я┐╜чка я┐╜ 256 я┐╜я┐╜я┐╜я┐╜ я┐╜резя┐╜я┐╜я┐╜я┐╜я┐╜ я┐╜я┐╜ 128.                      ;                            
+;(я┐╜) я┐╜я┐╜я┐╜ 32-я┐╜я┐╜тноя┐╜я┐╜ я┐╜споя┐╜я┐╜яемя┐╜я┐╜я┐╜ я┐╜я┐╜я┐╜я┐╜.						   ;
+;(я┐╜) я┐╜я┐╜ я┐╜я┐╜я┐╜, я┐╜я┐╜я┐╜я┐╜я┐╜ я┐╜я┐╜фиг сам я┐╜ я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜ я┐╜я┐╜таля┐╜я┐╜ я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜ я┐╜ я┐╜я┐╜якия┐╜ там         ;
+;    я┐╜ровя┐╜рки.                                                                     ;
 ;xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx;
                                                                                    ;
                                                                                    ;
                                                                                    ;
 ;xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx;
-;				ФИЧИ:                                              ;
-;(+) базонезависимость								   ;
-;(+) упакованные таблички							   ;                                           
+;				я┐╜я┐╜я┐╜я┐╜:                                              ;
+;(+) я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜симя┐╜я┐╜я┐╜я┐╜								   ;
+;(+) упая┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜ табя┐╜я┐╜чки							   ;                                           
 ;                                                                                  ;
-;(-) муторно добавлять новые инструкции						   ;                                                                                                                                                   
+;(-) я┐╜я┐╜я┐╜рно я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜ я┐╜я┐╜я┐╜я┐╜ я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜ции						   ;                                                                                                                                                   
 ;xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx;
                                                                                    ;
                                                                                    ;
                                                                                    ;
 ;xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx;
-;				ИСПОЛЬЗОВАНИЕ:                                     ;
-;1)Подключение:                                                                    ;
+;				я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜:                                     ;
+;1)я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜ченя┐╜я┐╜:                                                                    ;
 ;	lito.asm                                                                   ;
-;2)Вызов:(пример)                                                                  ;
-;	lea	esi,XXXXXXXXh	;адрес команды, чью длину надо узнать		   ;              
+;2)я┐╜ызоя┐╜:(я┐╜римя┐╜я┐╜)                                                                  ;
+;	lea	esi,XXXXXXXXh	;я┐╜я┐╜я┐╜я┐╜ я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜, я┐╜я┐╜я┐╜ я┐╜я┐╜я┐╜я┐╜я┐╜ я┐╜я┐╜я┐╜я┐╜ узня┐╜я┐╜я┐╜		   ;              
 ;	lea	edi,XXXXXXXXh	;lea edi,INSTR1					   ;
 ;	call	LiTo                                                               ;                                                                                                                  
 ;xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx;
@@ -99,15 +110,15 @@ _LiTo_:
 	call	_delta_lito_
 ;===================================================================================
 
-;строка префиксов
+;я┐╜я┐╜рокя┐╜ я┐╜я┐╜фиксов
 pfx:
 db 2Eh,36h,3Eh,26h,64h,65h,0F2h,0F3h,0F0h,66h,67h
 
-SizePfx		equ $-pfx					;длина pfx
+SizePfx		equ $-pfx					;я┐╜я┐╜я┐╜я┐╜я┐╜ pfx
 
 ;===================================================================================
 
-;таблица флагов для однобайтных опкодов
+;табя┐╜я┐╜я┐╜ флая┐╜я┐╜я┐╜ я┐╜я┐╜я┐╜ я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜ я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜
 TableFlags1:
 
 ;  01  23  45  67  89  AB  CD  EF
@@ -131,7 +142,7 @@ db 00h,00h,00h,11h,00h,00h,00h,11h	;0F
 
 ;===================================================================================
 
-;таблица флагов для двухбайтных опкодов
+;табя┐╜я┐╜я┐╜ флая┐╜я┐╜я┐╜ я┐╜я┐╜я┐╜ я┐╜я┐╜я┐╜хбая┐╜я┐╜я┐╜я┐╜ я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜
 TableFlags2:
 
 ;  01  23  45  67  89  AB  CD  EF
@@ -155,14 +166,14 @@ db 00h,00h,00h,00h,00h,00h,00h,00h	;0F
 
 SizeTbl		equ $-pfx
 ;===================================================================================
-;флаги
+;флая┐╜я┐╜
 ;-----------------------------------------------------------------------------------
 B_NONE		equ	00h		;xex
 B_MODRM		equ	01h             ;present byte MODRM
 B_DATA8		equ	02h             ;present imm8,rel8, etc
 B_DATA16	equ	04h             ;present imm16,rel16, etc
-B_PREFIX6X	equ	08h             ;present imm16/imm32 (в зависимости от наличия префикса 0x66 (0x67 для опкодов 0xA0-0xA3))
-B_SEG		equ	10h             ;present segment (пример: 0x2e,0x3E, etc)
+B_PREFIX6X	equ	08h             ;present imm16/imm32 (я┐╜ я┐╜я┐╜я┐╜я┐╜симя┐╜я┐╜я┐╜ я┐╜я┐╜ я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜ я┐╜я┐╜фикя┐╜ 0x66 (0x67 я┐╜я┐╜я┐╜ я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜ 0xA0-0xA3))
+B_SEG		equ	10h             ;present segment (я┐╜римя┐╜я┐╜: 0x2e,0x3E, etc)
 B_PFX66		equ	20h             ;present byte 0x66
 B_PFX67		equ	40h             ;present byte 0x67
 B_LOCK		equ	80h             ;present byte LOCK (0xF0)
@@ -177,18 +188,18 @@ _delta_lito_:
 	cld
 	xor	eax,eax
 	xor	ebx,ebx
-	cdq				        		;в edx: dl(0/1) - нет/есть префикс 0x66
-	                                                        ;	dh(0/1) - нет/есть префикс 0x67
-;xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxBEG поиск префиксовxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+	cdq				        		;я┐╜ edx: dl(0/1) - я┐╜я┐╜я┐╜/я┐╜я┐╜я┐╜я┐╜ я┐╜я┐╜фикя┐╜ 0x66
+	                                                        ;	dh(0/1) - я┐╜я┐╜я┐╜/я┐╜я┐╜я┐╜я┐╜ я┐╜я┐╜фикя┐╜ 0x67
+;xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxBEG я┐╜я┐╜я┐╜я┐╜ я┐╜я┐╜фиксовxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 _nextpfx_:					
-	lodsb                                			;получаем очередной байт команды
+	lodsb                                			;я┐╜я┐╜я┐╜я┐╜чаея┐╜ я┐╜я┐╜редя┐╜я┐╜я┐╜ я┐╜я┐╜я┐╜я┐╜ я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜
 	push	edi
-	lea	edi,[ebp+(pfx-_delta_lito_+SizeTbl)]            ;в edi - адрес строки префиксов
+	lea	edi,[ebp+(pfx-_delta_lito_+SizeTbl)]            ;я┐╜ edi - я┐╜я┐╜я┐╜я┐╜ я┐╜я┐╜рокя┐╜ я┐╜я┐╜фиксов
 	db	6Ah,SizePfx
 	pop	ecx
-	repne	scasb                                           ;есть ли в разбираемой команде префиксы?
+	repne	scasb                                           ;я┐╜я┐╜я┐╜я┐╜ я┐╜я┐╜ я┐╜ разя┐╜я┐╜раея┐╜я┐╜я┐╜ я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜ я┐╜я┐╜фикя┐╜я┐╜?
 	pop	edi
-	jne	_endpfx_                                        ;нет? - на выход
+	jne	_endpfx_                                        ;я┐╜я┐╜я┐╜? - я┐╜я┐╜ я┐╜я┐╜ход
 	cmp	ecx,5
 	jl	_lock_
 	or	bl,B_SEG
@@ -205,17 +216,17 @@ _rep_:
 	or	bx,B_REP
 	mov	byte ptr [edi+06h],al				;rep
 _66_:
-	cmp	al,66h                                          ;иначе смотрим, это 0x66?
+	cmp	al,66h                                          ;я┐╜я┐╜я┐╜я┐╜ смоя┐╜рим, я┐╜я┐╜ 0x66?
 	jne	_67_
 	mov	dl,1
 	or	bl,B_PFX66
 _67_:
-	cmp	al,67h                                          ;иначе, это 0x67?
-	jnz	_nextpfx_                                       ;если нет, то ищем другие префиксы
+	cmp	al,67h                                          ;я┐╜я┐╜я┐╜я┐╜, я┐╜я┐╜ 0x67?
+	jnz	_nextpfx_                                       ;я┐╜сли я┐╜я┐╜я┐╜, я┐╜ я┐╜щем я┐╜я┐╜угия┐╜ я┐╜я┐╜фикя┐╜я┐╜
 	mov	dh,1
 	or	bl,B_PFX67
-	jmp	_nextpfx_                                       ;продолжаем поиск
-;xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxEND поиск префиксовxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+	jmp	_nextpfx_                                       ;я┐╜родя┐╜я┐╜я┐╜я┐╜я┐╜я┐╜ я┐╜я┐╜я┐╜я┐╜
+;xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxEND я┐╜я┐╜я┐╜я┐╜ я┐╜я┐╜фиксовxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 _endpfx_:
 _search_jxx_call_jmp_:
 	mov	ch,al
@@ -228,10 +239,10 @@ _search_jxx_call_jmp_:
 	je	_jxxok_
 	cmp	al,0EBh
 	je	_jxxok_
-	cmp	al,0Fh                                        	;опкод состоит из 2-х байт?
+	cmp	al,0Fh                                        	;я┐╜я┐╜я┐╜я┐╜я┐╜ я┐╜я┐╜тоия┐╜ я┐╜я┐╜ 2-я┐╜ я┐╜я┐╜я┐╜я┐╜?
 	jne	_opcode_
-	lodsb                                                   ;если да, то берем 2-ой байт опкода
-	mov	cl,80h                                          ;и увеличиваем cl=80h
+	lodsb                                                   ;я┐╜сли я┐╜я┐╜, я┐╜ я┐╜я┐╜рем 2-я┐╜я┐╜ я┐╜я┐╜я┐╜я┐╜ я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜
+	mov	cl,80h                                          ;я┐╜ увея┐╜я┐╜чивя┐╜я┐╜я┐╜ cl=80h
 	or	bx,B_OPCODE2
 	mov	ch,al
 	and	ch,11110000b
@@ -244,42 +255,42 @@ _jxxok_:
 _opcode_:
 	xor	ch,ch
         mov	byte ptr [edi+09h],al				;save first opcode
-	lea	ebp,[ebp+ecx+(TableFlags1-_delta_lito_+SizeTbl)];в edi - адрес нужной таблицы флагов(хар-к)
-	cmp	al,0A0h                                         ;если опкод>=0xA0 и опкод<=A3,
+	lea	ebp,[ebp+ecx+(TableFlags1-_delta_lito_+SizeTbl)];я┐╜ edi - я┐╜я┐╜я┐╜я┐╜ я┐╜ужня┐╜я┐╜ табя┐╜я┐╜я┐╜я┐╜ флая┐╜я┐╜я┐╜(я┐╜я┐╜-я┐╜)
+	cmp	al,0A0h                                         ;я┐╜сли я┐╜я┐╜я┐╜я┐╜я┐╜>=0xA0 я┐╜ я┐╜я┐╜я┐╜я┐╜я┐╜<=A3,
 	jl	_01_;jb                                            ;
 	cmp	al,0A3h
 	jg	_01_
 	test	cl,cl
-	jne	_01_;je                                 	;то dl=dh
+	jne	_01_;je                                 	;я┐╜ dl=dh
 	mov	dl,dh						;mov	dl,dh
 ;-----------------------------------------------------------------------------------
 _01_:
 	push	eax
 	shr	eax,1
-	mov	cl,byte ptr [ebp+eax]				;в cl - флаги команды
+	mov	cl,byte ptr [ebp+eax]				;я┐╜ cl - флая┐╜я┐╜ я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜
 	jc	_noCF_
 	shr	cl,4
 _noCF_:
         and	cl,0Fh
-	xor	ebp,ebp				        	;в ebp - будет храниться длина смещения(offset)
+	xor	ebp,ebp				        	;я┐╜ ebp - я┐╜удея┐╜ я┐╜раня┐╜я┐╜я┐╜я┐╜я┐╜ я┐╜я┐╜я┐╜я┐╜я┐╜ смещеня┐╜я┐╜(offset)
 
-;xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxBEG разбор MODRMxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+;xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxBEG разя┐╜я┐╜я┐╜ MODRMxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 
         or	ecx,ebx
 	pop	ebx						;bl=opcode
-	test	cl,B_MODRM                                      ;присутствует ли байт modrm?
-	je	_endmodrm_                                      ;нет? на выход
+	test	cl,B_MODRM                                      ;я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜ я┐╜я┐╜ я┐╜я┐╜я┐╜я┐╜ modrm?
+	je	_endmodrm_                                      ;я┐╜я┐╜я┐╜? я┐╜я┐╜ я┐╜я┐╜ход
 	lodsb                 	  				;al=modrm
 	mov	byte ptr [edi+10],al				;MODRM
 	mov	ah,al
 ;-----------------------------------------------------------------------------------
 	shr	ah,6   						;ah=mod
 ;-----------------------------------------------------------------------------------	
-	test	al,38h    					;далее смотрим, равно ли поле reg==0?
+	test	al,38h    					;я┐╜я┐╜я┐╜я┐╜я┐╜ смоя┐╜рим, равя┐╜я┐╜ я┐╜я┐╜ я┐╜я┐╜я┐╜я┐╜ reg==0?
 	jne	_03_
-	sub	bl,0F6h                                         ;если да, то смотрим на опкод:
-	jne	_02_                                            ;равен ли он 0xF6 или 0xF7(test)?
-	or	cl,B_DATA8                                      ;если да, то устанавливаем нужный флаг
+	sub	bl,0F6h                                         ;я┐╜сли я┐╜я┐╜, я┐╜ смоя┐╜рим я┐╜я┐╜ я┐╜я┐╜я┐╜я┐╜я┐╜:
+	jne	_02_                                            ;равя┐╜я┐╜ я┐╜я┐╜ я┐╜я┐╜ 0xF6 я┐╜я┐╜я┐╜ 0xF7(test)?
+	or	cl,B_DATA8                                      ;я┐╜сли я┐╜я┐╜, я┐╜ я┐╜я┐╜таня┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜ я┐╜ужня┐╜ флая┐╜
 _02_:
 	dec	ebx
 	jne	_03_
@@ -287,33 +298,33 @@ _02_:
 ;-----------------------------------------------------------------------------------	
 _03_:
 	and	al,07h
-	xor	ebx,ebx                                         ;bl отвечает за присутствие байта sib
+	xor	ebx,ebx                                         ;bl я┐╜твечаея┐╜ я┐╜я┐╜ я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜твия┐╜ я┐╜я┐╜я┐╜я┐╜ sib
 	mov	bh,ah                                           ;bh=mod
-	cmp	dh,1                                      	;есть ли в разбираемой команде префикс 0x67?                            		
-	je	_mod00_                                         ;если да, то перескакиваем
-	cmp	al,4                                            ;иначе проверяем,равно ли поле rm==4?
+	cmp	dh,1                                      	;я┐╜я┐╜я┐╜я┐╜ я┐╜я┐╜ я┐╜ разя┐╜я┐╜раея┐╜я┐╜я┐╜ я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜ я┐╜я┐╜фикя┐╜ 0x67?                            		
+	je	_mod00_                                         ;я┐╜сли я┐╜я┐╜, я┐╜ я┐╜я┐╜я┐╜ская┐╜я┐╜я┐╜я┐╜я┐╜я┐╜
+	cmp	al,4                                            ;я┐╜я┐╜я┐╜я┐╜ я┐╜ровя┐╜я┐╜яем,равя┐╜я┐╜ я┐╜я┐╜ я┐╜я┐╜я┐╜я┐╜ rm==4?
 	jne	_mod00_
-	inc	ebx                                             ;если да, то возможно есть sib
+	inc	ebx                                             ;я┐╜сли я┐╜я┐╜, я┐╜ я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜ я┐╜я┐╜я┐╜я┐╜ sib
 ;-----------------------------------------------------------------------------------
 _mod00_:
-	test	ah,ah                                           ;поле mod==0?
+	test	ah,ah                                           ;я┐╜я┐╜я┐╜я┐╜ mod==0?
 	jne	_mod01_
-	dec	dh                                      	;содержит ли команда 0x67?						
-	jne	_nop67_	                                        ;нет? перескакиваем
-	cmp	al,6                                            ;если да, то rm==6?
+	dec	dh                                      	;содя┐╜ржия┐╜ я┐╜я┐╜ я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜ 0x67?						
+	jne	_nop67_	                                        ;я┐╜я┐╜я┐╜? я┐╜я┐╜я┐╜ская┐╜я┐╜я┐╜я┐╜я┐╜я┐╜
+	cmp	al,6                                            ;я┐╜сли я┐╜я┐╜, я┐╜ rm==6?
 	jne	_sib_
-	inc	ebp                                             ;если да, то длина смещения=2(16 bit)
+	inc	ebp                                             ;я┐╜сли я┐╜я┐╜, я┐╜ я┐╜я┐╜я┐╜я┐╜я┐╜ смещеня┐╜я┐╜=2(16 bit)
 	inc	ebp
 _nop67_:
-	cmp	al,5                                            ;иначе, rm==5?
+	cmp	al,5                                            ;я┐╜я┐╜я┐╜я┐╜, rm==5?
 	jne	_sib_
-	add	ebp,4                                           ;если да, то длина оффсета=4 (32 bit)
-	jmp	_sib_                                           ;идем дальше
+	add	ebp,4                                           ;я┐╜сли я┐╜я┐╜, я┐╜ я┐╜я┐╜я┐╜я┐╜я┐╜ я┐╜я┐╜я┐╜я┐╜я┐╜=4 (32 bit)
+	jmp	_sib_                                           ;я┐╜я┐╜я┐╜я┐╜ я┐╜я┐╜я┐╜я┐╜я┐╜
 ;-----------------------------------------------------------------------------------		
 _mod01_:		                                        ;mod==1?
 	dec	ah                                              
 	jne	_mod02_
-	inc	ebp                                             ;да? тогда ebp=1
+	inc	ebp                                             ;я┐╜я┐╜? тогя┐╜я┐╜ ebp=1
 	jmp	_sib_		
 ;-----------------------------------------------------------------------------------	                        
 _mod02_:                                    			;mod==2?
@@ -321,54 +332,54 @@ _mod02_:                                    			;mod==2?
 	jne	_mod03_
 	inc	ebp             				;ebp=2
 	inc	ebp
-	dec	dh                                      	;если есть префикса 0x67, перескакиваем дальше
+	dec	dh                                      	;я┐╜сли я┐╜я┐╜я┐╜я┐╜ я┐╜я┐╜фикя┐╜ 0x67, я┐╜я┐╜я┐╜ская┐╜я┐╜я┐╜я┐╜я┐╜я┐╜ я┐╜я┐╜я┐╜я┐╜я┐╜
 	je	_sib_
-	inc	ebp                                             ;то ebp+=2
+	inc	ebp                                             ;я┐╜ ebp+=2
 	inc	ebp          	
 	inc	ebx
 ;-----------------------------------------------------------------------------------
 _mod03_:                                                        ;mod==3?
-        dec	bl                                              ;если да, тогда sib'а точно нет!
-;xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxEND разбор MODRMxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+        dec	bl                                              ;я┐╜сли я┐╜я┐╜, тогя┐╜я┐╜ sib'я┐╜ я┐╜чно я┐╜я┐╜я┐╜!
+;xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxEND разя┐╜я┐╜я┐╜ MODRMxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 
-;xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxBEG получение SIBxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+;xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxBEG я┐╜я┐╜я┐╜я┐╜ченя┐╜я┐╜ SIBxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 _sib_:
-	dec	bl                                              ;есть ли байт sib?
+	dec	bl                                              ;я┐╜я┐╜я┐╜я┐╜ я┐╜я┐╜ я┐╜я┐╜я┐╜я┐╜ sib?
 	jne	_endmodrm_
 	or	cx,B_SIB
-	lodsb                                                   ;если да, то в al теперь лежит sib(al=sib) 
+	lodsb                                                   ;я┐╜сли я┐╜я┐╜, я┐╜ я┐╜ al тепя┐╜я┐╜я┐╜ я┐╜я┐╜я┐╜я┐╜я┐╜ sib(al=sib) 
 	mov	byte ptr [edi+11],al				;SIB
-	and	al,7                                            ;далее, 
+	and	al,7                                            ;я┐╜я┐╜я┐╜я┐╜я┐╜, 
 	cmp	al,5                                            ;al==5?
 	jne	_endmodrm_
-	test	bh,bh                                           ;если да, то смотрим, поле mod==0?
+	test	bh,bh                                           ;я┐╜сли я┐╜я┐╜, я┐╜ смоя┐╜рим, я┐╜я┐╜я┐╜я┐╜ mod==0?
 	jne	_endmodrm_
-	push	4                                               ;если да, то есть 4-байтовое смещение
+	push	4                                               ;я┐╜сли я┐╜я┐╜, я┐╜ я┐╜я┐╜я┐╜я┐╜ 4-я┐╜я┐╜я┐╜товя┐╜я┐╜ смещеня┐╜я┐╜
 	pop	ebp
-;xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxEND получение SIBxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+;xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxEND я┐╜я┐╜я┐╜я┐╜ченя┐╜я┐╜ SIBxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 
-;xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxBEG флагиxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+;xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxBEG флая┐╜я┐╜xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 _endmodrm_:
         xor	ebx,ebx
-	test	cl,B_DATA8                                  	;есть ли однобайтовое смещение?
+	test	cl,B_DATA8                                  	;я┐╜я┐╜я┐╜я┐╜ я┐╜я┐╜ я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜товя┐╜я┐╜ смещеня┐╜я┐╜?
 	je	_nf1_
 	inc	ebx
 _nf1_:
-	test	cl,B_DATA16                                     ;есть ли двухбайтовое смещение?
+	test	cl,B_DATA16                                     ;я┐╜я┐╜я┐╜я┐╜ я┐╜я┐╜ я┐╜я┐╜я┐╜хбая┐╜товя┐╜я┐╜ смещеня┐╜я┐╜?
 	je	_nf2_
 	inc	ebx
 	inc	ebx
 _nf2_:
-	test	cl,B_PREFIX6X                                   ;есть ли в команде непосредственное значение?
+	test	cl,B_PREFIX6X                                   ;я┐╜я┐╜я┐╜я┐╜ я┐╜я┐╜ я┐╜ я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜ я┐╜я┐╜я┐╜я┐╜я┐╜редя┐╜твея┐╜я┐╜я┐╜я┐╜ я┐╜я┐╜я┐╜ченя┐╜я┐╜?
 	je	_endflag_
-	dec	dl					;есть ли 0x66(0x67 для [0xA0,0xA3]) в разбираемой команде?                                              
+	dec	dl					;я┐╜я┐╜я┐╜я┐╜ я┐╜я┐╜ 0x66(0x67 я┐╜я┐╜я┐╜ [0xA0,0xA3]) я┐╜ разя┐╜я┐╜раея┐╜я┐╜я┐╜ я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜?                                              
 	je	_okp66_
 	inc	ebx
 	inc	ebx
 _okp66_:
         inc	ebx
         inc	ebx
-;xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxEND флагиxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+;xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxEND флая┐╜я┐╜xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 _endflag_:
         push	ecx
         push	edi
@@ -384,15 +395,15 @@ _endflag_:
 	sub	esi,dword ptr [esp+4];eax
 	xchg	esi,eax
 	mov	byte ptr [edi+0],al
-	mov	dword ptr [esp+7*4],eax                         ;сохраняем размер в еах
+	mov	dword ptr [esp+7*4],eax                         ;я┐╜я┐╜раняем разя┐╜я┐╜я┐╜ я┐╜ я┐╜я┐╜я┐╜
 	xchg	ebp,eax
 	mov	byte ptr [edi+7],al
 	mov	byte ptr [edi+8],bl	
 	popad
-	ret	                                               	;выходим:)
+	ret	                                               	;я┐╜я┐╜ходя┐╜я┐╜:)
 ;xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-;Конец функции _LiTo_                                                              ;
+;я┐╜я┐╜я┐╜я┐╜я┐╜ я┐╜ункции _LiTo_                                                              ;
 ;xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 
 
-SizeOfLiTo	equ $-_LiTo_					;размер функции _LiTo_
+SizeOfLiTo	equ $-_LiTo_					;разя┐╜я┐╜я┐╜ я┐╜ункции _LiTo_

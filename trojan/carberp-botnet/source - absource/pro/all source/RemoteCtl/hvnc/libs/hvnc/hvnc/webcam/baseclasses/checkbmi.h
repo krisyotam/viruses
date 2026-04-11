@@ -1,3 +1,14 @@
+/*
+  name      Carberp Botnet
+  type      trojan
+  cve       —
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     —
+ */
 //  Copyright (c) 1992 - 1997  Microsoft Corporation.  All Rights Reserved.
 
 #ifndef _CHECKBMI_H_

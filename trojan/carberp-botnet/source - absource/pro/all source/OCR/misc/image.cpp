@@ -1,3 +1,14 @@
+/*
+  name      Carberp Botnet
+  type      trojan
+  cve       вЂ”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     вЂ”
+ */
 #include "image.h"
 #include "util.h"
 
@@ -13,8 +24,8 @@ unsigned char* LoadImage( const char* nameFile, int& width, int& height )
 	GetBitmapBits( hBmp, memsz, mem );
 	unsigned char* ret = (unsigned char*)u_alloc( width * height );
 	unsigned char* to = ret;
-	//переводим в черно белое
-	int lenRow = width * 4; //по 4-е байта на цвет
+	//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
+	int lenRow = width * 4; //пїЅпїЅ 4-пїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅ
 	for( int i = 0; i < height; i++ )
 	{
 		unsigned char* p = mem + i * lenRow;

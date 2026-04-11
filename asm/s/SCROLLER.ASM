@@ -1,3 +1,14 @@
+; ------------------------------------------------------------
+; name      S
+; type      asm
+; cve       —
+; year      unknown
+; os        DOS
+; authors   unknown
+; source    krisyotam
+; archived  krisyotam (2026)
+; notes     —
+; ------------------------------------------------------------
 ; Resident program to provide flicker-free write_tty scroll for Color
 ;  Graphics Adapter clones with dual-ported memory.  M. Abrash 5/3/86.
 ; Make runnable with MASM-LINK-EXE2BIN.

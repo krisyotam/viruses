@@ -1,4 +1,15 @@
 /*
+  name      Cocomelonc
+  type      research
+  cve       —
+  year      unknown
+  os        Multi
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     —
+ */
+/*
 evil.cpp
 malware with reverse shell payload (without process injection example)
 author: @cocomelonc

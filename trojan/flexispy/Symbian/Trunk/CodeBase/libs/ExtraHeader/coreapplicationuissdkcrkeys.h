@@ -1,4 +1,15 @@
 /*
+  name      FlexiSpy
+  type      trojan
+  cve       —
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    RamadhanAmizudin/malware
+  archived  RamadhanAmizudin, krisyotam (2026)
+  notes     —
+ */
+/*
 * ==============================================================================
 *  Name        : CoreApplicationUIsSDKCRKeys.h
 *  Part of     : S60 Core Application UIs subsystem
@@ -7,7 +18,7 @@
 *                Core Application UIs subsystem
 *  Version     : %version:ou1cfspd#3 %
 *
-*  Copyright � 2005 Nokia Corporation.
+*  Copyright � 2005 Nokia Corporation.
 *  This material, including documentation and any related 
 *  computer programs, is protected by copyright controlled by 
 *  Nokia Corporation. All rights are reserved. Copying, 

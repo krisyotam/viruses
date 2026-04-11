@@ -1,3 +1,14 @@
+; ------------------------------------------------------------
+; name      H
+; type      asm
+; cve       —
+; year      unknown
+; os        DOS
+; authors   unknown
+; source    krisyotam
+; archived  krisyotam (2026)
+; notes     —
+; ------------------------------------------------------------
 ; VirusName : Human Greed
 ; Origin    : Sweden
 ; Author    : The Unforgiven

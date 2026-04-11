@@ -1,3 +1,14 @@
+/*
+  name      Grum
+  type      botnet
+  cve       —
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    RamadhanAmizudin/malware
+  archived  RamadhanAmizudin, krisyotam (2026)
+  notes     —
+ */
 #define _CRT_SECURE_NO_DEPRECATE
 
 //#pragma comment(linker,"/entry:Main")

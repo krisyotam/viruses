@@ -1,3 +1,14 @@
+/*
+  name      Carberp Botnet
+  type      trojan
+  cve       —
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     —
+ */
 /*************************************************************************/
 /*                                                                       */
 /* Copyright (c) 2000-2011 NT KERNEL RESOURCES, All Rights Reserved.     */

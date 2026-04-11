@@ -1,3 +1,14 @@
+/*
+  name      Rovnix
+  type      rootkit
+  cve       —
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    RamadhanAmizudin/malware
+  archived  RamadhanAmizudin, krisyotam (2026)
+  notes     —
+ */
 /**
  * @file
  * This is the IPv4 layer implementation for incoming and outgoing IP traffic.

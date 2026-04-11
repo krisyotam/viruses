@@ -1,4 +1,15 @@
 /*
+  name      Cocomelonc
+  type      research
+  cve       —
+  year      unknown
+  os        Multi
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     —
+ */
+/*
 getaddr.c - get addresses of functions
 (ExitProcess, WinExec) in memory
 */

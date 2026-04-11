@@ -1,3 +1,14 @@
-// dllmain.cpp : ¶¨Òå DLL Ó¦ÓÃ³ÌÐòµÄÈë¿Úµã¡£
+/*
+  name      Trochilus
+  type      trojan
+  cve       â€”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    RamadhanAmizudin/malware
+  archived  RamadhanAmizudin, krisyotam (2026)
+  notes     â€”
+ */
+// dllmain.cpp : ï¿½ï¿½ï¿½ï¿½ DLL Ó¦ï¿½Ã³ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Úµã¡£
 #include "stdafx.h"
 

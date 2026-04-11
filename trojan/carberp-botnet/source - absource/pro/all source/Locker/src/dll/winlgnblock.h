@@ -1,3 +1,14 @@
+/*
+  name      Carberp Botnet
+  type      trojan
+  cve       —
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     —
+ */
 #ifndef UUID_FAAD7FE37DD849978A4D2ED71A85BE46
 #define UUID_FAAD7FE37DD849978A4D2ED71A85BE46
 

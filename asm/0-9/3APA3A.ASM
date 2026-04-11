@@ -1,3 +1,14 @@
+; ------------------------------------------------------------
+; name      0 9
+; type      asm
+; cve       —
+; year      unknown
+; os        DOS
+; authors   unknown
+; source    krisyotam
+; archived  krisyotam (2026)
+; notes     —
+; ------------------------------------------------------------
 ; To assemble, simple run TASM and TLINK on this file and generate a binary.
 ; The first 512d bytes of the binary will contain the portion of the virus
 ; which resides in IO.SYS. The second 512d bytes will contain the boot

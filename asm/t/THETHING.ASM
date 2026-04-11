@@ -1,3 +1,14 @@
+; ------------------------------------------------------------
+; name      T
+; type      asm
+; cve       —
+; year      unknown
+; os        DOS
+; authors   unknown
+; source    krisyotam
+; archived  krisyotam (2026)
+; notes     —
+; ------------------------------------------------------------
 ; VirusName: The thing that should not be
 ; Country  : Sweden
 ; Author   : Metal Militia / Immortal Riot

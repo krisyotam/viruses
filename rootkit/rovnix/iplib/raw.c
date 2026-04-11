@@ -1,3 +1,14 @@
+/*
+  name      Rovnix
+  type      rootkit
+  cve       —
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    RamadhanAmizudin/malware
+  archived  RamadhanAmizudin, krisyotam (2026)
+  notes     —
+ */
 /**
  * @file
  * Implementation of raw protocol PCBs for low-level handling of

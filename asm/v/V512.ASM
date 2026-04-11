@@ -1,3 +1,14 @@
+; ------------------------------------------------------------
+; name      V
+; type      asm
+; cve       —
+; year      unknown
+; os        DOS
+; authors   unknown
+; source    krisyotam
+; archived  krisyotam (2026)
+; notes     —
+; ------------------------------------------------------------
         name    a
 code1   segment byte
         assume  cs:code1,ds:code1

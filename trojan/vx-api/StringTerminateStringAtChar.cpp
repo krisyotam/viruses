@@ -1,3 +1,14 @@
+/*
+  name      Vx Api
+  type      trojan
+  cve       —
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     —
+ */
 #include "StringManipulation.h"
 
 PCHAR StringTerminateStringAtCharA(_Inout_ PCHAR String, _In_ INT Character)

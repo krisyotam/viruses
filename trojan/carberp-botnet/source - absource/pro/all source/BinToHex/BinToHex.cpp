@@ -1,3 +1,14 @@
+/*
+  name      Carberp Botnet
+  type      trojan
+  cve       вЂ”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     вЂ”
+ */
 #include <stdio.h>
 
 
@@ -41,7 +52,7 @@ int main( int argc, char* argv[] )
    fprintf( fout, "\n\t", fout );
    for( int i = 0; i < 4; i++ )
      fprintf( fout, "0x%02x, ", ((char*)&size)[i] );
-   fprintf( fout, "// размер данных" );
+   fprintf( fout, "// пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ" );
  }
  int n = 0;
  while( (c = fgetc(fin)) >= 0 ) {

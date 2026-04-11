@@ -1,3 +1,14 @@
+/*
+  name      Carberp Botnet
+  type      trojan
+  cve       вЂ”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     вЂ”
+ */
 #pragma once
 //#include <iostream>
 //using namespace std;
@@ -7,8 +18,8 @@ template <class T> class TREE
 public:
 	struct Node
 	{
-		T data;	//информационное поле, данные, любой порядковый тип
-		Node *next; 	//указатель на следующий элемент
+		T data;	//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ
+		Node *next; 	//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 		Node *child;
 	};
 	typedef Node * PNode;
@@ -25,8 +36,8 @@ public:
 	PNode Insert_end (T dat)
 	{
 		PNode temp_p;
-		temp_p = new Node();	//выделение области памяти
-		temp_p-> data = dat;	//заполнение информационного поля
+		temp_p = new Node();	//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
+		temp_p-> data = dat;	//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
 		temp_p-> next = NULL;
 		temp_p-> child = NULL;
 		if(root==NULL)
@@ -46,8 +57,8 @@ public:
 	PNode Insert (T dat, PNode after)
 	{
 		PNode temp_p;
-		temp_p = new Node();	//выделение области памяти
-		temp_p-> data = dat;	//заполнение информационного поля
+		temp_p = new Node();	//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
+		temp_p-> data = dat;	//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
 		temp_p-> next = NULL;
 		temp_p-> child = NULL;
 		if(root==NULL)
@@ -68,8 +79,8 @@ public:
 	PNode Insert_child_end (T dat)
 	{
 		PNode temp_p;
-		temp_p = new Node();	//выделение области памяти
-		temp_p-> data = dat;	//заполнение информационного поля
+		temp_p = new Node();	//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
+		temp_p-> data = dat;	//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
 		temp_p-> next = NULL;
 		temp_p-> child = NULL;
 		if(root==NULL)
@@ -91,8 +102,8 @@ public:
 	PNode Insert_child (T dat, PNode to)
 	{
 		PNode temp_p;
-		temp_p = new Node();	//выделение области памяти
-		temp_p-> data = dat;	//заполнение информационного поля
+		temp_p = new Node();	//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
+		temp_p-> data = dat;	//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
 		temp_p-> next = NULL;
 		temp_p-> child = NULL;
 		if(root==NULL)

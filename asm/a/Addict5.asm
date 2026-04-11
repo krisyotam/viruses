@@ -1,3 +1,14 @@
+; ------------------------------------------------------------
+; name      A
+; type      asm
+; cve       —
+; year      unknown
+; os        DOS
+; authors   unknown
+; source    krisyotam
+; archived  krisyotam (2026)
+; notes     —
+; ------------------------------------------------------------
 ; BIT ADDICT Versie 2.00
 ;
 ; Dit virus besmet exe en com-files, en als het opgestart wordt dan reserveert

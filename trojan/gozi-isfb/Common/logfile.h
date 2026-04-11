@@ -1,9 +1,20 @@
+/*
+  name      Gozi-ISFB
+  type      trojan
+  cve       â€”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    RamadhanAmizudin/malware
+  archived  RamadhanAmizudin, krisyotam (2026)
+  notes     â€”
+ */
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // ISFB project. Version 2.13.24.1
 //	
 // module: logfile.h
 // $Revision: 250 $
-// $Date: 2014-06-09 14:26:38 +0400 (Ïí, 09 èþí 2014) $
+// $Date: 2014-06-09 14:26:38 +0400 (ï¿½ï¿½, 09 ï¿½ï¿½ï¿½ 2014) $
 // description:
 //	 Creates and manages log file.
 

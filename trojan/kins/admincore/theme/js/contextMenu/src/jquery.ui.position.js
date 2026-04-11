@@ -1,4 +1,15 @@
 /*
+  name      KINS
+  type      trojan
+  cve       —
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    RamadhanAmizudin/malware
+  archived  RamadhanAmizudin, krisyotam (2026)
+  notes     —
+ */
+/*
  * jQuery UI Position 1.8.13
  *
  * Copyright 2011, AUTHORS.txt (http://jqueryui.com/about)

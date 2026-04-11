@@ -1,3 +1,14 @@
+; ------------------------------------------------------------
+; name      V
+; type      asm
+; cve       —
+; year      unknown
+; os        DOS
+; authors   unknown
+; source    krisyotam
+; archived  krisyotam (2026)
+; notes     —
+; ------------------------------------------------------------
 	page	,132
 	name	V345
 	title	V-345 - a mutation of the V-845 virus

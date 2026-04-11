@@ -1,7 +1,18 @@
+/*
+  name      Trochilus
+  type      trojan
+  cve       â€”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    RamadhanAmizudin/malware
+  archived  RamadhanAmizudin, krisyotam (2026)
+  notes     â€”
+ */
 #pragma once
 #include "MyString.h"
 
-//Êý×éÄ£°å¶¨Òå
+//ï¿½ï¿½ï¿½ï¿½Ä£ï¿½å¶¨ï¿½ï¿½
 template <class ITEM, class ctrlUninit>
 class ItemList
 {

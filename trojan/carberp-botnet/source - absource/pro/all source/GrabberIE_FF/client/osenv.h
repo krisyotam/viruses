@@ -1,11 +1,22 @@
 /*
-  Данные OC.
+  name      Carberp Botnet
+  type      trojan
+  cve       вЂ”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     вЂ”
+ */
+/*
+  пїЅпїЅпїЅпїЅпїЅпїЅ OC.
 */
 #pragma once
 
 namespace OsEnv
 {
-  //Версии OS.
+  //пїЅпїЅпїЅпїЅпїЅпїЅ OS.
   enum
   {
     VERSION_UNKNOWN,
@@ -18,48 +29,48 @@ namespace OsEnv
     VERSION_S2008R2
   };
   
-  //Краткая информация об OC.
+  //пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ OC.
 # pragma pack(push, 1)
   typedef struct
   {
     BYTE version;      //VERSION_*.
     BYTE sp;           //Service Pack.
-    WORD build;        //Номер билда.
-    WORD architecture; //Архитиктура процессора.
+    WORD build;        //пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ.
+    WORD architecture; //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
   }OSINFO;
 # pragma pack(pop)  
   /*
-    Инициализация.
+    пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
   */
   void init(void);
 
   /*
-    Деинициализация.
+    пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
   */
   void uninit(void);
 
   /*
-    Получение текущей версии Windows.
+    пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ Windows.
 
     Return - VERSION_*.
   */
   DWORD _getVersion(void);
 
   /*
-    Получение текущей версии Windows.
+    пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ Windows.
 
-    OUT oi - версия Windows.
+    OUT oi - пїЅпїЅпїЅпїЅпїЅпїЅ Windows.
   */
   void _getVersionEx(OSINFO *oi);
 
   /*
-    Получение директории профиля пользователя по SID.
+    пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ SID.
 
     IN sid     - SID.
-    OUT buffer - буфер для пути, должен быть не менее MAX_PATH.
+    OUT buffer - пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ MAX_PATH.
 
-    Return     - true - путь успешн получен,
-                 false - путь не получен.
+    Return     - true - пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ,
+                 false - пїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
   */
   bool _getUserProfileDirectoryhBySid(PSID sid, LPWSTR buffer);
 };

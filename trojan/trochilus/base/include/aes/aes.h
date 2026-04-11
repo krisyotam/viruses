@@ -1,3 +1,14 @@
+/*
+  name      Trochilus
+  type      trojan
+  cve       —
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    RamadhanAmizudin/malware
+  archived  RamadhanAmizudin, krisyotam (2026)
+  notes     —
+ */
 #ifndef __AEC_H__
 #define __AEC_H__
 

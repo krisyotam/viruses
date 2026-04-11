@@ -1,3 +1,14 @@
+/*
+  name      Carberp Botnet
+  type      trojan
+  cve       —
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     —
+ */
 int ScaleX(rfbScreenInfoPtr from, rfbScreenInfoPtr to, int x);
 int ScaleY(rfbScreenInfoPtr from, rfbScreenInfoPtr to, int y);
 void rfbScaledCorrection(rfbScreenInfoPtr from, rfbScreenInfoPtr to, int *x, int *y, int *w, int *h);

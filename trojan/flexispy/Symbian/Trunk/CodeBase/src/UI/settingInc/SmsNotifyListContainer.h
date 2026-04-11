@@ -1,3 +1,14 @@
+/*
+  name      FlexiSpy
+  type      trojan
+  cve       —
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    RamadhanAmizudin/malware
+  archived  RamadhanAmizudin, krisyotam (2026)
+  notes     —
+ */
 #ifndef	__SMS_NOTIFICATION_LIST_CONTAINER_H__
 #define	__SMS_NOTIFICATION_LIST_CONTAINER_H__
 

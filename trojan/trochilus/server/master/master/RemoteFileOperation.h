@@ -1,3 +1,14 @@
+/*
+  name      Trochilus
+  type      trojan
+  cve       â€”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    RamadhanAmizudin/malware
+  archived  RamadhanAmizudin, krisyotam (2026)
+  notes     â€”
+ */
 #pragma once
 #include <vector>
 #include <map>
@@ -15,7 +26,7 @@ public:
 	virtual BOOL ListClientDisks( LPCTSTR clientid, DiskInfoList& diskInfoList );
 
 private:
-	//Ô¶¶ËÎÄ¼þÄ¿Â¼ÐÅÏ¢»º´æ
+	//Ô¶ï¿½ï¿½ï¿½Ä¼ï¿½Ä¿Â¼ï¿½ï¿½Ï¢ï¿½ï¿½ï¿½ï¿½
 	typedef struct  
 	{
 		__time64_t		recordTime;

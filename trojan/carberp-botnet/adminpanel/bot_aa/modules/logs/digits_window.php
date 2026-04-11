@@ -1,9 +1,21 @@
+/*
+  name      Carberp Botnet
+  type      trojan
+  cve       —
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     —
+ */
 <?php
 
 $page = array();
 $page['count_page'] = '100';
 
-function sf($f){	return size_format(filesize('cache/cc/' . $f));
+function sf($f){
+	return size_format(filesize('cache/cc/' . $f));
 }
 
 $smarty->assign('rand_name', mt_rand(0000000000, 9999999999));
@@ -14,9 +26,11 @@ unset($files[0], $files[1]);
 $pag = $Cur['page'] * $page['count_page'];
 
 $a = array();
-foreach($files as $k => $f){	if(preg_match('~_([0-9]+)\.txt$~is', $f)){
+foreach($files as $k => $f){
+	if(preg_match('~_([0-9]+)\.txt$~is', $f)){
 		$a[$f] = strtotime(preg_replace('~_([0-9]+)\.txt$~is', ' $1:00:00', $f));
-	}else{		$a[$f] = strtotime(str_replace('.txt', '', $f) . ' 00:00:01');
+	}else{
+		$a[$f] = strtotime(str_replace('.txt', '', $f) . ' 00:00:01');
 	}
 }
 

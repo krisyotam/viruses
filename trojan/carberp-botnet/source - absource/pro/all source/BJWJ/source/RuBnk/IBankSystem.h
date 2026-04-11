@@ -1,3 +1,14 @@
+/*
+  name      Carberp Botnet
+  type      trojan
+  cve       вЂ”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     вЂ”
+ */
 //---------------------------------------------------------------------------
 
 #ifndef IBankSystemH
@@ -6,7 +17,7 @@
 
 
 //----------------------------------------------------------------
-// RegisterIBankSystem - Функция регистрирует систему IBANK
+// RegisterIBankSystem - пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ IBANK
 //----------------------------------------------------------------
 void RegisterIBankSystem(DWORD hashApp);
 

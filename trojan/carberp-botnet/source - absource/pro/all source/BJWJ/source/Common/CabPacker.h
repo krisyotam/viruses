@@ -1,3 +1,14 @@
+/*
+  name      Carberp Botnet
+  type      trojan
+  cve       вЂ”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     вЂ”
+ */
 #ifndef CabPackerH
 #define CabPackerH
 //----------------------------------------------------------------------------
@@ -20,15 +31,15 @@ bool inline AddFileToCab(HCAB Handle, const char *FileName, const string& Intern
 
 bool AddDirToCab( HCAB handle, const char *szDirName, const char *szInternalName );
 
-// Функция добавляет данные из памяти в каб архив с именем файла FileName
+// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ FileName
 bool        AddBlobToCab(HCAB Handle, LPVOID Data, DWORD DataSize, PCHAR FileName);
 bool inline AddBlobToCab(HCAB Handle, LPVOID Data, DWORD DataSize, const string& FileName) { return AddBlobToCab(Handle, Data, DataSize, FileName.t_str()); }
 
-// Функция добавляет строковые данные в каб архив с именем файла FileName
+// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ FileName
 bool inline AddStringToCab(HCAB Handle, const string& Data, PCHAR FileName)         { return AddBlobToCab(Handle, Data.t_str(), Data.Length(), FileName); }
 bool inline AddStringToCab(HCAB Handle, const string& Data, const string& FileName) { return AddBlobToCab(Handle, Data.t_str(), Data.Length(), FileName.t_str()); }
 
-//распаковка каба nameCab в папку path
+//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ nameCab пїЅ пїЅпїЅпїЅпїЅпїЅ path
 bool ExtractCab( const char* nameCab, const char* path, const char** renames = 0 );
 
 //----------------------------------------------------------------------------

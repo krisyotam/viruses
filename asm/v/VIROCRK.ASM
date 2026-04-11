@@ -1,7 +1,18 @@
+; ------------------------------------------------------------
+; name      V
+; type      asm
+; cve       â€”
+; year      unknown
+; os        DOS
+; authors   unknown
+; source    krisyotam
+; archived  krisyotam (2026)
+; notes     â€”
+; ------------------------------------------------------------
 
 ;
-; VIROCRK v2.0, (c)1995 ûirogen [NuKE].
-; ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+; VIROCRK v2.0, (c)1995 ï¿½irogen [NuKE].
+; ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 ; Sorry, didn't feel like commenting this. You see, if I go through
 ; the code and comment it then I'll no-doubt end up re-writing half
 ; of it also, and I just haven't got the time.
@@ -539,11 +550,11 @@ disp:
             ret
 
 intro:
- db      cr,lf,'ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¿'
- db      cr,lf,"³ ûirogen's Super-Duper Encryption Cracker ³  [û] FDA Approved"
- db      cr,lf,'³ ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ ³  [û] FCC Class B Appliance'
- db      cr,lf,'³ version 2.0 ; (c)1995 ûirogen [NuKE]     ³  [û] Love Me, Fuck Me, Kill Me'
- db      cr,lf,'ÀÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÙ$'
+ db      cr,lf,'ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä¿'
+ db      cr,lf,"ï¿½ ï¿½irogen's Super-Duper Encryption Cracker ï¿½  [ï¿½] FDA Approved"
+ db      cr,lf,'ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½  [ï¿½] FCC Class B Appliance'
+ db      cr,lf,'ï¿½ version 2.0 ; (c)1995 ï¿½irogen [NuKE]     ï¿½  [ï¿½] Love Me, Fuck Me, Kill Me'
+ db      cr,lf,'ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½$'
 byte_add_msg db     cr,lf,'  Attempting 8-bit ADD/SUB  .$'
 byte_xor_msg db     cr,lf,'  Attempting 8-bit XOR      .$'
 byte_rot_msg db     cr,lf,'  Attempting 8-bit ROR/ROL  .$'

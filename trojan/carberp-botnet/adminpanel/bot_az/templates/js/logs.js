@@ -1,3 +1,14 @@
+/*
+  name      Carberp Botnet
+  type      trojan
+  cve       —
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     —
+ */
 
 function gbwc(id){
 	get_window('/logs/cberfiz-'+id+'.html?window=1', {name:'bot'+id, widht: 800, height: 600});

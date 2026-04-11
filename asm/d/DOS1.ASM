@@ -1,3 +1,14 @@
+; ------------------------------------------------------------
+; name      D
+; type      asm
+; cve       â€”
+; year      unknown
+; os        DOS
+; authors   unknown
+; source    krisyotam
+; archived  krisyotam (2026)
+; notes     â€”
+; ------------------------------------------------------------
 ;DOS1 virus by the TridenT research group - Direct Action appending .COM
 
 ;This virus infects .COM files in the current directory using FCB's.
@@ -15,7 +26,7 @@
 ;And you will have a live copy of the DOS-1 virus.  Please be careful
 ;with it and do not release it.
 
-;-=-=-=-=-=-=-=-=-=-=-=-=-=ð[Begin Debug Script]ð=-=-=-=-=-=-=-=-=-=-=-=-=
+;-=-=-=-=-=-=-=-=-=-=-=-=-=ï¿½[Begin Debug Script]ï¿½=-=-=-=-=-=-=-=-=-=-=-=-=
 ;e100 4d eb 6 90 90
 ;rbx
 ;0
@@ -24,7 +35,7 @@
 ;nvstub.com
 ;w
 ;q
-;-=-=-=-=-=-=-=-=-=-=-=-=-=ð[End Debug Script]ð=-=-=-=-=-=-=-=-=-=-=-=-=
+;-=-=-=-=-=-=-=-=-=-=-=-=-=ï¿½[End Debug Script]ï¿½=-=-=-=-=-=-=-=-=-=-=-=-=
 
 ;Disassembly by Black Wolf
 

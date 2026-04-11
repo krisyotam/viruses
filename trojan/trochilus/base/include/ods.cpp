@@ -1,3 +1,14 @@
+/*
+  name      Trochilus
+  type      trojan
+  cve       â€”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    RamadhanAmizudin/malware
+  archived  RamadhanAmizudin, krisyotam (2026)
+  notes     â€”
+ */
 #include "stdafx.h"
 #include "tstring.h"
 #include "ods.h"
@@ -31,7 +42,7 @@ void OutputFile(LPCTSTR content)
 
 void WriteDebugLog(DWORD dwLastError, LPCSTR file, int codeLine, LOG_LEVEL level, LPCTSTR content, ...)
 {
-	//¸ñÊ½»¯ÈÕÖ¾
+	//ï¿½ï¿½Ê½ï¿½ï¿½ï¿½ï¿½Ö¾
 	TCHAR logContent[ODS_LOG_MAXLENGTH + 1] = {0};
 
 	DWORD dwThreadID = ::GetCurrentThreadId();
@@ -76,7 +87,7 @@ void WriteDebugLog(DWORD dwLastError, LPCSTR file, int codeLine, LOG_LEVEL level
 		}
 	}
 
-// 	//Ð´ÈëÈÕÖ¾
+// 	//Ð´ï¿½ï¿½ï¿½ï¿½Ö¾
 // #ifdef ODS_OUTPUT_STD
 	printf("%s\n", t2a(logContent));
 // #endif

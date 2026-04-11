@@ -1,3 +1,14 @@
+/*
+  name      Zeus
+  type      trojan
+  cve       —
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    RamadhanAmizudin/malware
+  archived  RamadhanAmizudin, krisyotam (2026)
+  notes     —
+ */
 /*  English localization of the expression for console applications.*/
 #pragma once
 

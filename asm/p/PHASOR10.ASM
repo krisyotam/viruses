@@ -1,3 +1,14 @@
+; ------------------------------------------------------------
+; name      P
+; type      asm
+; cve       —
+; year      unknown
+; os        DOS
+; authors   unknown
+; source    krisyotam
+; archived  krisyotam (2026)
+; notes     —
+; ------------------------------------------------------------
 ;
 ; [Phasor] v1.0
 ; Written by Memory Lapse of Phalcon/Skism

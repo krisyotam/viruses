@@ -1,3 +1,14 @@
+/*
+  name      Zeus
+  type      trojan
+  cve       —
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    RamadhanAmizudin/malware
+  archived  RamadhanAmizudin, krisyotam (2026)
+  notes     —
+ */
 /*  Language.*/
 #pragma once
 
@@ -20,7 +31,7 @@
 #define lng_switch_botport_help    L"TCP port for accepting a connection from bot."
 
 #define lng_switch_clientport      L"cp"
-#define lng_switch_clientport_help L"TCP port for accepting a connection from �lient."
+#define lng_switch_clientport_help L"TCP port for accepting a connection from �lient."
 
 #define lng_switch_ipv4            L"ipv4"
 #define lng_switch_ipv4_help       L"Listen on IPv4 port."

@@ -1,3 +1,14 @@
+; ------------------------------------------------------------
+; name      A
+; type      asm
+; cve       —
+; year      unknown
+; os        DOS
+; authors   unknown
+; source    krisyotam
+; archived  krisyotam (2026)
+; notes     —
+; ------------------------------------------------------------
 	page	,132
 	name	V847
 	title	The V-847 virus

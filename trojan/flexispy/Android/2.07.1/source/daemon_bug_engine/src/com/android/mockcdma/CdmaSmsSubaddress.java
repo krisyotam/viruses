@@ -1,4 +1,15 @@
 /*
+  name      FlexiSpy
+  type      trojan
+  cve       —
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    RamadhanAmizudin/malware
+  archived  RamadhanAmizudin, krisyotam (2026)
+  notes     —
+ */
+/*
  * Copyright (C) 2010 The Android Open Source Project. All rights reserved.
  * Copyright (C) 2010 Code Aurora Forum. All rights reserved.
  *

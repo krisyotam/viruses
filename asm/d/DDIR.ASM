@@ -1,3 +1,14 @@
+; ------------------------------------------------------------
+; name      D
+; type      asm
+; cve       —
+; year      unknown
+; os        DOS
+; authors   unknown
+; source    krisyotam
+; archived  krisyotam (2026)
+; notes     —
+; ------------------------------------------------------------
 ;	DDIR.ASM -- Double Column Sorted DIR Command
 ;	========
 ;			(C) Copyright Charles Petzold, 1985

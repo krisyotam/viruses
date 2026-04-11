@@ -1,3 +1,14 @@
+; ------------------------------------------------------------
+; name      P
+; type      asm
+; cve       —
+; year      unknown
+; os        DOS
+; authors   unknown
+; source    krisyotam
+; archived  krisyotam (2026)
+; notes     —
+; ------------------------------------------------------------
 ;*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-
 ;-*      (c) Rock Steady, Viral Developments                             -*
 ;*-      (c) NuKE Software Developement  1991, 1992                      *-

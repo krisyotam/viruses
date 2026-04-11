@@ -1,3 +1,14 @@
+/*
+  name      Trochilus
+  type      trojan
+  cve       â€”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    RamadhanAmizudin/malware
+  archived  RamadhanAmizudin, krisyotam (2026)
+  notes     â€”
+ */
 #pragma once
 #include "afxcmn.h"
 #include "afxwin.h"
@@ -5,21 +16,21 @@
 #include "mfcresize/Resizer.h"
 
 
-// CListenDlg ¶Ô»°¿ò
+// CListenDlg ï¿½Ô»ï¿½ï¿½ï¿½
 
 class CListenDlg : public CDialogEx
 {
 	DECLARE_DYNAMIC(CListenDlg)
 
 public:
-	CListenDlg(CWnd* pParent = NULL);   // ±ê×¼¹¹Ôìº¯Êý
+	CListenDlg(CWnd* pParent = NULL);   // ï¿½ï¿½×¼ï¿½ï¿½ï¿½ìº¯ï¿½ï¿½
 	virtual ~CListenDlg();
 
-// ¶Ô»°¿òÊý¾Ý
+// ï¿½Ô»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	enum { IDD = IDD_DIALOG_LIS };
 
 protected:
-	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV Ö§³Ö
+	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV Ö§ï¿½ï¿½
 
 	void InitView();
 	void InitResize();

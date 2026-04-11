@@ -1,4 +1,15 @@
 /*
+  name      Carberp Botnet
+  type      trojan
+  cve       —
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     —
+ */
+/*
  * This is D3DES (V5.09) by Richard Outerbridge with the double and
  * triple-length support removed for use in VNC.  Also the bytebit[] array
  * has been reversed so that the most significant bit in each byte of the

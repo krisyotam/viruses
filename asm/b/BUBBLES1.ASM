@@ -1,3 +1,14 @@
+; ------------------------------------------------------------
+; name      B
+; type      asm
+; cve       —
+; year      unknown
+; os        DOS
+; authors   unknown
+; source    krisyotam
+; archived  krisyotam (2026)
+; notes     —
+; ------------------------------------------------------------
 ;---------
 ;  Bubbles Virus written by Admiral Bailey
 ;  Using The Instant Virus Production Kit By Admiral Bailey

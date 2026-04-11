@@ -1,3 +1,14 @@
+/*
+  name      Betabot
+  type      trojan
+  cve       —
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    RamadhanAmizudin/malware
+  archived  RamadhanAmizudin, krisyotam (2026)
+  notes     —
+ */
 // Memory Leaks patch from http://explorercanvas.googlecode.com/svn/trunk/ 
 //  svn : r73
 // ------------------------------------------------------------------

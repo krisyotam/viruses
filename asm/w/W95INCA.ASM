@@ -1,3 +1,14 @@
+; ------------------------------------------------------------
+; name      W
+; type      asm
+; cve       —
+; year      unknown
+; os        DOS
+; authors   unknown
+; source    krisyotam
+; archived  krisyotam (2026)
+; notes     —
+; ------------------------------------------------------------
 ;[W95.INCA] coded by Vecna/29A
 ;Copyright 1998 (c) Vecna
 ;Proudly made in Brazil in 29/06/98

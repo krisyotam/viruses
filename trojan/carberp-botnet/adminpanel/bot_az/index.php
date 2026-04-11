@@ -1,3 +1,14 @@
+/*
+  name      Carberp Botnet
+  type      trojan
+  cve       —
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     —
+ */
 <?php
 
 if(@file_exists('scripts/'.$_GET['to'].'/'.$_GET['go'].'.php')){
@@ -103,7 +114,8 @@ if(file_exists('modules/'.$Cur['to'].'/'.$Cur['go'].'.php')){
     }else{
     	$smarty->display('index.tpl', implode('', $Cur));
     }
-}else{	header("Location: /");
+}else{
+	header("Location: /");
 	exit;
 }
 

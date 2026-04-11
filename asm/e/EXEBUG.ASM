@@ -1,3 +1,14 @@
+; ------------------------------------------------------------
+; name      E
+; type      asm
+; cve       â€”
+; year      unknown
+; os        DOS
+; authors   unknown
+; source    krisyotam
+; archived  krisyotam (2026)
+; notes     â€”
+; ------------------------------------------------------------
 From smtp Tue Feb  7 13:18 EST 1995
 Received: from lynx.dac.neu.edu by POBOX.jwu.edu; Tue,  7 Feb 95 13:18 EST
 Received: by lynx.dac.neu.edu (8.6.9/8.6.9) 
@@ -69,13 +80,13 @@ MedDesc DB      0FDh                    ;00115  FD      |Media descriptor
                                         ;               | byte:
                                         ;---------------------------------
                                         ;  F8 = hard disk
-                                        ;  F0 = 3«" 18 sector
-                                        ;  F9 = 3«"  9 sector
-                                        ;  F9 = 5¬" 15 sector
-                                        ;  FC = 5¬" SS 9 sector
-                                        ;  FD = 5¬" DS 9 sector
-                                        ;  FE = 5¬" SS 8 sector
-                                        ;  FF = 5¬: DS 8 sector
+                                        ;  F0 = 3ï¿½" 18 sector
+                                        ;  F9 = 3ï¿½"  9 sector
+                                        ;  F9 = 5ï¿½" 15 sector
+                                        ;  FC = 5ï¿½" SS 9 sector
+                                        ;  FD = 5ï¿½" DS 9 sector
+                                        ;  FE = 5ï¿½" SS 8 sector
+                                        ;  FF = 5ï¿½: DS 8 sector
                                         ;---------------------------------
 FATSect DW      0002h                   ;00116  0200    |Sectors per FAT
 Sct_Trk DW      0009h                   ;00118  0900    |Sectors per track

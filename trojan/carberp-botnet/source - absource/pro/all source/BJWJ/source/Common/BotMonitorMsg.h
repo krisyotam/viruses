@@ -1,6 +1,17 @@
+/*
+  name      Carberp Botnet
+  type      trojan
+  cve       вЂ”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     вЂ”
+ */
 
 //****************************************************************************
-//  Шаблоны для упрощения работы с монитором работоспособности
+//  пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 //****************************************************************************
 
 #include "windows.h"
@@ -11,7 +22,7 @@
 
 
 
-// Макрос получаеня константы монитора
+// пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 #ifdef BOTMONITOR
 	#define BMCONST(ConstName) BotMonitor::ConstName
 #else
@@ -20,7 +31,7 @@
 
 
 
-// Шаблоны вызова сообшений
+// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 template <class MESSAGE, class DATA>
 inline void OutMonitorMessage(MESSAGE Message, DATA Data)
 {
@@ -29,7 +40,7 @@ inline void OutMonitorMessage(MESSAGE Message, DATA Data)
 	#endif
 }
 
-// Шаблоны вызова сообшений
+// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 template <class MESSAGE, class ARG1, class DELIMETER, class ARG2>
 inline void OutMonitorDelimetedMessage(MESSAGE Message, ARG1 Arg1, DELIMETER Delimeter, ARG2 Arg2)
 {
@@ -40,7 +51,7 @@ inline void OutMonitorDelimetedMessage(MESSAGE Message, ARG1 Arg1, DELIMETER Del
 	#endif
 }
 
-// Макросы вывода сообщений монитору работоспособности
+// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 #define MONITOR_MSG OutMonitorMessage<>
 #define MONITOR_DELIMETED_MSG OutMonitorDelimetedMessage<>
 

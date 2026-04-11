@@ -1,3 +1,14 @@
+/*
+  name      Mirai
+  type      botnet
+  cve       —
+  year      unknown
+  os        Linux
+  authors   unknown
+  source    RamadhanAmizudin/malware
+  archived  RamadhanAmizudin, krisyotam (2026)
+  notes     —
+ */
 #include <sys/types.h>
 //#include <bits/syscalls.h>
 #include <sys/syscall.h>

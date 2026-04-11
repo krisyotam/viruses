@@ -1,5 +1,16 @@
+/*
+  name      Trochilus
+  type      trojan
+  cve       â€”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    RamadhanAmizudin/malware
+  archived  RamadhanAmizudin, krisyotam (2026)
+  notes     â€”
+ */
 #pragma once
 
-#define MASTERROR_REPLY_SUCCESS		0	//Ã»ÓÐ´íÎó
-#define MASTERROR_REPLY_TIMEOUT		1	//½ÓÊÜ»ØÓ¦³¬Ê±
-#define MASTERROR_NO_EXPECTED_DATA	2	//Î´ÔÚ»ØÓ¦µÄÊý¾Ý°üÖÐÕÒµ½ÆÚÍûµÄÊý¾Ý
+#define MASTERROR_REPLY_SUCCESS		0	//Ã»ï¿½Ð´ï¿½ï¿½ï¿½
+#define MASTERROR_REPLY_TIMEOUT		1	//ï¿½ï¿½ï¿½Ü»ï¿½Ó¦ï¿½ï¿½Ê±
+#define MASTERROR_NO_EXPECTED_DATA	2	//Î´ï¿½Ú»ï¿½Ó¦ï¿½ï¿½ï¿½ï¿½ï¿½Ý°ï¿½ï¿½ï¿½ï¿½Òµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½

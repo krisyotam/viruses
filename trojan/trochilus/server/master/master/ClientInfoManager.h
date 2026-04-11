@@ -1,37 +1,48 @@
+/*
+  name      Trochilus
+  type      trojan
+  cve       â€”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    RamadhanAmizudin/malware
+  archived  RamadhanAmizudin, krisyotam (2026)
+  notes     â€”
+ */
 #pragma once
 #include <map>
 #include "ClientInfoCallbacks.h"
 #include "thread/RepeatTask.h"
 
 
-//¿Í»§¶Ë»ù±¾ÐÅÏ¢
+//ï¿½Í»ï¿½ï¿½Ë»ï¿½ï¿½ï¿½ï¿½ï¿½Ï¢
 typedef std::map<tstring, MSGSERIALID> MsgSerialIDMap;
 
 typedef struct  
 {
 	BOOL			bValid;
 
-	ULONG			connectIP;	//ºÍ·þÎñ¶ËÁ¬½ÓµÄIP
+	ULONG			connectIP;	//ï¿½Í·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Óµï¿½IP
 	tstring			computerName;
 	tstring			vercode;
-	WIN_VER_DETAIL	windowsVersion;	//²Ù×÷ÏµÍ³
-	BOOL			bX64;	//ÊÇ·ñx64Æ½Ì¨
-	__time64_t		installTime;	//¿Í»§¶Ë°²×°Ê±¼ä
+	WIN_VER_DETAIL	windowsVersion;	//ï¿½ï¿½ï¿½ï¿½ÏµÍ³
+	BOOL			bX64;	//ï¿½Ç·ï¿½x64Æ½Ì¨
+	__time64_t		installTime;	//ï¿½Í»ï¿½ï¿½Ë°ï¿½×°Ê±ï¿½ï¿½
 	TStringVector	localIPList;
 
-	__time64_t		reportTime;	//ÉÏ±¨Ê±¼ä
+	__time64_t		reportTime;	//ï¿½Ï±ï¿½Ê±ï¿½ï¿½
 
-	MSGSERIALID		requestSerialID;	//ÇëÇó¿Í»§¶Ë±¨¸æÊý¾ÝµÄÐòÁÐºÅid
-	__time64_t		requestTime;	//ÇëÇóÉÏ±¨µÄÊ±¼ä
-	tstring			mods;	//¿Í»§¶Ë°²×°µÄÄ£¿éÁÐ±í
-	tstring			groups; //·Ö×éÃû
-	tstring			priv; //È¨ÏÞ
+	MSGSERIALID		requestSerialID;	//ï¿½ï¿½ï¿½ï¿½Í»ï¿½ï¿½Ë±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ýµï¿½ï¿½ï¿½ï¿½Ðºï¿½id
+	__time64_t		requestTime;	//ï¿½ï¿½ï¿½ï¿½ï¿½Ï±ï¿½ï¿½ï¿½Ê±ï¿½ï¿½
+	tstring			mods;	//ï¿½Í»ï¿½ï¿½Ë°ï¿½×°ï¿½ï¿½Ä£ï¿½ï¿½ï¿½Ð±ï¿½
+	tstring			groups; //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	tstring			priv; //È¨ï¿½ï¿½
 	tstring			lang;
 	COMM_NAME		commtype;
 	int				cpunum;
 	int				cpufrep;
 	int				memsize;
-	MsgSerialIDMap	installModMsgIDMap;	//½øÐÐÄ£¿é°²×°µÄÏûÏ¢idÓ³Éä
+	MsgSerialIDMap	installModMsgIDMap;	//ï¿½ï¿½ï¿½ï¿½Ä£ï¿½é°²×°ï¿½ï¿½ï¿½ï¿½Ï¢idÓ³ï¿½ï¿½
 	BOOL bAdd;
 } CLIENT_BASE_INFO;
 

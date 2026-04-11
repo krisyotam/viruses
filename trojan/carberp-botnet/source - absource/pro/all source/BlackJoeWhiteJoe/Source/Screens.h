@@ -1,7 +1,18 @@
+/*
+  name      Carberp Botnet
+  type      trojan
+  cve       вЂ”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     вЂ”
+ */
 void InitScreenLib();
 DWORD WINAPI ScreensThread( LPVOID lpData );
 void destroyScr();
 
 
-/// Функции добавленные при добавлении RuBnk
+/// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ RuBnk
 void GetScreen( LPVOID *lpFile, LPDWORD dwFileSize );

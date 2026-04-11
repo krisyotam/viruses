@@ -1,3 +1,14 @@
+; ------------------------------------------------------------
+; name      S
+; type      asm
+; cve       —
+; year      unknown
+; os        DOS
+; authors   unknown
+; source    krisyotam
+; archived  krisyotam (2026)
+; notes     —
+; ------------------------------------------------------------
 ;The Stealth Virus is a boot sector virus which remains resident in memory
 ;after boot so it can infect disks. It hides itself on the disk and includes
 ;special anti-detection interrupt traps so that it is very difficult to

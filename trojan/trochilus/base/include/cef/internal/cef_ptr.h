@@ -1,3 +1,14 @@
+/*
+  name      Trochilus
+  type      trojan
+  cve       —
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    RamadhanAmizudin/malware
+  archived  RamadhanAmizudin, krisyotam (2026)
+  notes     —
+ */
 // Copyright (c) 2008 Marshall A. Greenblatt. Portions Copyright (c)
 // 2006-2008 Google Inc. All rights reserved.
 //

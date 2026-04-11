@@ -1,4 +1,15 @@
 /*
+  name      Carberp Botnet
+  type      trojan
+  cve       —
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     —
+ */
+/*
  * Various and sundry protocol constants. DON'T CHANGE THESE. These values 
  * are mostly defined by the SSL2, SSL3, or TLS protocol specifications.
  * Cipher kinds and ciphersuites are part of the public API.

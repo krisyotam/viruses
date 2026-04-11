@@ -1,3 +1,14 @@
+; ------------------------------------------------------------
+; name      O
+; type      asm
+; cve       —
+; year      unknown
+; os        DOS
+; authors   unknown
+; source    krisyotam
+; archived  krisyotam (2026)
+; notes     —
+; ------------------------------------------------------------
 ; OMEGA.ASM -- Omega: The End      
 ; Created with Nowhere Man's Virus Creation Laboratory v1.00
 ; Written by Noinger

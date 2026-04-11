@@ -1,3 +1,14 @@
+; ------------------------------------------------------------
+; name      L
+; type      asm
+; cve       —
+; year      unknown
+; os        DOS
+; authors   unknown
+; source    krisyotam
+; archived  krisyotam (2026)
+; notes     —
+; ------------------------------------------------------------
 	PAGE ,132
 VIRUS	SEGMENT PARA PUBLIC 'CODE'
 	ASSUME CS:VIRUS,DS:VIRUS

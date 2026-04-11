@@ -1,3 +1,14 @@
+; ------------------------------------------------------------
+; name      M
+; type      asm
+; cve       —
+; year      unknown
+; os        DOS
+; authors   unknown
+; source    krisyotam
+; archived  krisyotam (2026)
+; notes     —
+; ------------------------------------------------------------
 CODE_SEG        SEGMENT
         ORG     100H                    ;ORG 100H for a .com file
         ASSUME  CS:CODE_SEG,DS:CODE_SEG

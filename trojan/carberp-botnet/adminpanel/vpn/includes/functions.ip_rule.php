@@ -1,6 +1,18 @@
+/*
+  name      Carberp Botnet
+  type      trojan
+  cve       —
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     —
+ */
 <?php
 
-function iprule_decode(){	exec('sudo /sbin/ip rule', $ts);
+function iprule_decode(){
+	exec('sudo /sbin/ip rule', $ts);
 
 	$ip_rule = array();
 	foreach ($ts as $item){
@@ -19,7 +31,8 @@ function iprule_decode(){	exec('sudo /sbin/ip rule', $ts);
 	return $ip_rule;
 }
 
-function iprule_search($prio, $from, $table){	global $ip_rule;
+function iprule_search($prio, $from, $table){
+	global $ip_rule;
 
 	if(isset($ip_rule[$prio])){
 		if($ip_rule[$prio][1] == $from){

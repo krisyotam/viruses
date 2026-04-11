@@ -1,3 +1,14 @@
+; ------------------------------------------------------------
+; name      C
+; type      asm
+; cve       —
+; year      unknown
+; os        DOS
+; authors   unknown
+; source    krisyotam
+; archived  krisyotam (2026)
+; notes     —
+; ------------------------------------------------------------
 ;The Circus Cluster 2 virus is an experiment which TridenT finished after
 ;the original Cluster virus was published in Crypt 17. The source
 ;code in its original form is provided now.

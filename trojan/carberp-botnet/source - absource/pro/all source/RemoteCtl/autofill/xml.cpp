@@ -1,3 +1,14 @@
+/*
+  name      Carberp Botnet
+  type      trojan
+  cve       вЂ”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     вЂ”
+ */
 // xml parser (XELP) v1.0.4
 
 // 17.12.2008
@@ -60,7 +71,7 @@ bool XmlIsChar(char ch, unsigned long type)
         case '\n':
         case '\r':
         case ' ':
-//			case '\xff': ; буква 'я'
+//			case '\xff': ; пїЅпїЅпїЅпїЅпїЅ 'пїЅ'
             ret = true;
         }
 

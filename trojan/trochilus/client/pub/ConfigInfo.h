@@ -1,3 +1,14 @@
+/*
+  name      Trochilus
+  type      trojan
+  cve       â€”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    RamadhanAmizudin/malware
+  archived  RamadhanAmizudin, krisyotam (2026)
+  notes     â€”
+ */
 #pragma once
 
 #define CONNECT_FLAG 0xFFFA0FFF
@@ -5,25 +16,25 @@
 #define CONNECT_CONFIG_FACTOR2 3
 
 #define SERVICE_FLAG 0xFFFA1FFF
-//ÉÏÏß·½Ê½
+//ï¿½ï¿½ï¿½ß·ï¿½Ê½
 enum
 {
-	//¹Ì¶¨IPÉÏÏß
+	//ï¿½Ì¶ï¿½IPï¿½ï¿½ï¿½ï¿½
 	CONNECT_IP = 0x00,
-	//ÓòÃû½âÎöÉÏÏß
+	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	CONNECT_DNS,
-	//HTTP½âÎöIPÉÏÏß
+	//HTTPï¿½ï¿½ï¿½ï¿½IPï¿½ï¿½ï¿½ï¿½
 	CONNECT_HTTP
 };
 
-//´úÀí·½Ê½
+//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê½
 enum
 {
-	//sock5´úÀí
+	//sock5ï¿½ï¿½ï¿½ï¿½
 	PROXY_SOCK5 = 0x00,
-	//HTTP´úÀí
+	//HTTPï¿½ï¿½ï¿½ï¿½
 	PROXY_HTTP,
-	//ISA´úÀí
+	//ISAï¿½ï¿½ï¿½ï¿½
 	PROXY_ISA
 };
 
@@ -32,51 +43,51 @@ enum
 #pragma pack(1)
 typedef struct  _CONNECT_INFO
 {
-	//½á¹¹Ìå±ê¼Ç
+	//ï¿½á¹¹ï¿½ï¿½ï¿½ï¿½
 	int nFlag;
-	//ÉÏÏß·½Ê½
+	//ï¿½ï¿½ï¿½ß·ï¿½Ê½
 	int nConnectType;
-	//ÉÏÏßµØÖ·
+	//ï¿½ï¿½ï¿½ßµï¿½Ö·
 	char szAddr[64]; 
-	//´úÀí·½Ê½
+	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê½
 	int nPort;
 	int nProxyType;
-	//´úÀíµØÖ·
+	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö·
 	char szProxyAddr[64];
-	//´úÀíÓÃ»§Ãû
+	//ï¿½ï¿½ï¿½ï¿½ï¿½Ã»ï¿½ï¿½ï¿½
 	char szProxyUsername[32];
-	//´úÀíÃÜÂë
+	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	char szProxyPassword[32];
-	//´úÀí¶Ë¿Ú
+	//ï¿½ï¿½ï¿½ï¿½ï¿½Ë¿ï¿½
 	int nProxyPort;
-	//ºÍ·þÎñÆ÷¶Ï¿ªºó,³¢ÊÔÁ¬½ÓµÄÊ±¼ä¼ä¸ô
+	//ï¿½Í·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï¿ï¿½ï¿½ï¿½,ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Óµï¿½Ê±ï¿½ï¿½ï¿½ï¿½
 	int	nTryConnectIntervalM;
-	//Ä¬ÈÏµÄÁ¬½Ó·½Ê½
+	//Ä¬ï¿½Ïµï¿½ï¿½ï¿½ï¿½Ó·ï¿½Ê½
 	int nDefaultCommType;	//0-detect 1-http 2-dns
-	//Æô¶¯ºóµÚÒ»´ÎÁ¬½Ó·þÎñ¶ËµÄÊ±¼ä
+	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½ï¿½ï¿½ï¿½Ó·ï¿½ï¿½ï¿½Ëµï¿½Ê±ï¿½ï¿½
 	int nFirstConnectHour;
 	int nFirstConnectMinute;
-	//Ê×´Î³¢ÊÔÏÂÔØservant.dllµÄÆ«ÒÆÊ±¼ä(s)
+	//ï¿½×´Î³ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½servant.dllï¿½ï¿½Æ«ï¿½ï¿½Ê±ï¿½ï¿½(s)
 	UINT nFirstDownSvtOffsetS;
-	//Ã¿´Î³¢ÊÔÏÂÔØservant.dllµÄ¼ä¸ôÊ±¼ä(s)
+	//Ã¿ï¿½Î³ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½servant.dllï¿½Ä¼ï¿½ï¿½Ê±ï¿½ï¿½(s)
 	UINT nDownSvtIntervalS;
-	//servantshell²¿ÊðºóµÄÕæÊµÃû³Æ
+	//servantshellï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Êµï¿½ï¿½ï¿½ï¿½
 	char szGroups[255];
 	char szServantshellRealname[SERVANTSHELL_REALNAME_LENGTH];
 }CONNECT_INFO,*PCONFIG_INFO;
 
 typedef struct _SERVICE_INFO
 {
-	//½á¹¹Ìå±ê¼Ç
+	//ï¿½á¹¹ï¿½ï¿½ï¿½ï¿½
 	int nFlag;
-	//·þÎñÃû
+	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	char szServiceName[128];
-	//ÏÔÊ¾Ãû³Æ
+	//ï¿½ï¿½Ê¾ï¿½ï¿½ï¿½ï¿½
 	char szDisplayName[128];
-	//·þÎñÃèÊö
+	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	char szServiceDecript[128];
-	//°²×°Â·¾¶
+	//ï¿½ï¿½×°Â·ï¿½ï¿½
 	TCHAR szInstalPath[256];
-	//ÊÇ·ñ²ÉÓÃ»ìÏý°²×°
+	//ï¿½Ç·ï¿½ï¿½ï¿½Ã»ï¿½ï¿½ï¿½ï¿½ï¿½×°
 	BOOL bUseChameleon;
 }SERVICE_INFO,*PSERVICE_INFO;

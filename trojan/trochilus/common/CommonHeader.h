@@ -1,3 +1,14 @@
+/*
+  name      Trochilus
+  type      trojan
+  cve       â€”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    RamadhanAmizudin/malware
+  archived  RamadhanAmizudin, krisyotam (2026)
+  notes     â€”
+ */
 #pragma once
 
 #include <TCHAR.h>
@@ -24,19 +35,19 @@
 #	define debugLog 
 #endif
 
-//Õë¶ÔservantshellµÄ¿ª¹Ø
+//ï¿½ï¿½ï¿½servantshellï¿½Ä¿ï¿½ï¿½ï¿½
 #ifndef _DEBUG
 #	define USE_ENCRYPTED_CORE
 #endif
 
-//Õë¶ÔservantµÄ¿ª¹Ø
+//ï¿½ï¿½ï¿½servantï¿½Ä¿ï¿½ï¿½ï¿½
 #ifndef _DEBUG
 #	define DATMODULE
 #endif
 //#define DATMODULE
 
 #ifdef DATMODULE
-#	define DECRYPT_MODULE	//ÊÇ·ñ¶ÔÄ£¿édll½øÐÐ½âÃÜ
+#	define DECRYPT_MODULE	//ï¿½Ç·ï¿½ï¿½Ä£ï¿½ï¿½dllï¿½ï¿½ï¿½Ð½ï¿½ï¿½ï¿½
 #else
-#	define USE_SYS_API		//ÊÇ·ñÊµÓÃÏµÍ³APIÀ´×°ÔØÄ£¿édll
+#	define USE_SYS_API		//ï¿½Ç·ï¿½Êµï¿½ï¿½ÏµÍ³APIï¿½ï¿½×°ï¿½ï¿½Ä£ï¿½ï¿½dll
 #endif

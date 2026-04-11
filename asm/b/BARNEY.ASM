@@ -1,3 +1,14 @@
+; ------------------------------------------------------------
+; name      B
+; type      asm
+; cve       —
+; year      unknown
+; os        DOS
+; authors   unknown
+; source    krisyotam
+; archived  krisyotam (2026)
+; notes     —
+; ------------------------------------------------------------
 From smtp Tue Feb  7 13:16 EST 1995
 Received: from lynx.dac.neu.edu by POBOX.jwu.edu; Tue,  7 Feb 95 13:16 EST
 Received: by lynx.dac.neu.edu (8.6.9/8.6.9) 

@@ -1,17 +1,28 @@
+/*
+  name      Trochilus
+  type      trojan
+  cve       â€”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    RamadhanAmizudin/malware
+  archived  RamadhanAmizudin, krisyotam (2026)
+  notes     â€”
+ */
 #pragma once
 #include <map>
 
 #define TCP_FLAG 0xAFAFBFBF
 
 
-//TCP°üÍ·
+//TCPï¿½ï¿½Í·
 typedef struct
 {
 	DWORD flag;
 	int nSize;
 }TCP_HEADER,*PTCPHEADER;
 
-//TCPð¤°üÊý¾Ý½á¹¹
+//TCPï¿½ï¿½ï¿½ï¿½ï¿½Ý½á¹¹
 typedef struct
 {
 	TCP_HEADER header;

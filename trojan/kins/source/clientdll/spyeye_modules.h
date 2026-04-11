@@ -1,3 +1,14 @@
+/*
+  name      KINS
+  type      trojan
+  cve       вЂ”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    RamadhanAmizudin/malware
+  archived  RamadhanAmizudin, krisyotam (2026)
+  notes     вЂ”
+ */
 #pragma once
 
 #include <Windows.h>
@@ -68,8 +79,8 @@ namespace SpyEye_Modules
 
 	typedef enum 
 	{
-        PLUGIN_OFF,     // Плагин "выключен". Функция Start() не вызывалась
-        PLUGIN_ON       // Плагин "включён". Функция Start() вызывалась
+        PLUGIN_OFF,     // пїЅпїЅпїЅпїЅпїЅпїЅ "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ". пїЅпїЅпїЅпїЅпїЅпїЅпїЅ Start() пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+        PLUGIN_ON       // пїЅпїЅпїЅпїЅпїЅпїЅ "пїЅпїЅпїЅпїЅпїЅпїЅпїЅ". пїЅпїЅпїЅпїЅпїЅпїЅпїЅ Start() пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	} PLUGINState;
 
 	enum

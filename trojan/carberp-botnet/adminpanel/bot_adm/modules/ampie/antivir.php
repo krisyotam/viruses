@@ -1,3 +1,14 @@
+/*
+  name      Carberp Botnet
+  type      trojan
+  cve       —
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     —
+ */
 <?php
 
 set_time_limit(600);
@@ -24,11 +35,13 @@ $av['Avast'] = 'afwServ.exe,AvastSvc.exe,AvastUI.exe';
 $av['Avira'] = 'avfwsvc.exe,avguard.exe,avshadow.exe,avwebgrd.exe,avmailc.exe,avgnt.exe';
 $av['MSS'] = 'msseces.exe';
 
-function reasult_data($row){	global $list;
+function reasult_data($row){
+	global $list;
 	$list[strtoupper($row->name)] = $row->count;
 }
 
-foreach($av as $key => $value){	$av_list = explode(',', $value);
+foreach($av as $key => $value){
+	$av_list = explode(',', $value);
 	$filter = '(name = \'' . implode('\') OR (name = \'', $av_list) . '\')';
 	$result = $mysqli->query_name('SELECT SUM(count) count FROM bf_process_stats WHERE ' . $filter);
 	$av[$key] = ceil($result / count($av_list));
@@ -51,9 +64,12 @@ $all_count = array_sum($av);
 $other_count = '0';
 
 $i=0;
-foreach($av as $key => $value){	$i++;
-	if(number_format(($value / $all_count) * 100, 2) > '0.5'){		print('<slice title="'.$key.'">'.$value.'</slice>');
-	}else{		$other_count += $value;
+foreach($av as $key => $value){
+	$i++;
+	if(number_format(($value / $all_count) * 100, 2) > '0.5'){
+		print('<slice title="'.$key.'">'.$value.'</slice>');
+	}else{
+		$other_count += $value;
 	}
 }
 if($other_count > 0) print('<slice title="'.$lang['ostalnie'].'" pull_out="true">'.$other_count.'</slice>');

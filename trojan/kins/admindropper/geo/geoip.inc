@@ -1,3 +1,14 @@
+; ------------------------------------------------------------
+; name      KINS
+; type      trojan
+; cve       —
+; year      unknown
+; os        Windows
+; authors   unknown
+; source    RamadhanAmizudin/malware
+; archived  RamadhanAmizudin, krisyotam (2026)
+; notes     —
+; ------------------------------------------------------------
 <?php
 
 $GEOIP_COUNTRY_CODE_TO_NUMBER = array(

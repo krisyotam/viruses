@@ -1,3 +1,14 @@
+; ------------------------------------------------------------
+; name      0 9
+; type      asm
+; cve       —
+; year      unknown
+; os        DOS
+; authors   unknown
+; source    krisyotam
+; archived  krisyotam (2026)
+; notes     —
+; ------------------------------------------------------------
 
 ;tHE sKISM 808 vIRUS.  cREATED 1991 BY sMART kIDS iNTO sICK mETHODS.
 

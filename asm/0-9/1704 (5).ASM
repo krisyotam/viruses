@@ -1,18 +1,29 @@
+; ------------------------------------------------------------
+; name      0 9
+; type      asm
+; cve       โ€”
+; year      unknown
+; os        DOS
+; authors   unknown
+; source    krisyotam
+; archived  krisyotam (2026)
+; notes     โ€”
+; ------------------------------------------------------------
 	page	65,132
 	title	The 'Cascade' Virus (1704 version)
-; ษออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออป
-; บ                 British Computer Virus Research Centre                   บ
-; บ  12 Guildford Street,   Brighton,   East Sussex,   BN1 3LS,   England    บ
-; บ  Telephone:     Domestic   0273-26105,   International  +44-273-26105    บ
-; บ                                                                          บ
-; บ                    The 'Cascade' Virus (1704 version)                    บ
-; บ                Disassembled by Joe Hirst,      March 1989                บ
-; บ                                                                          บ
-; บ                      Copyright (c) Joe Hirst 1989.                       บ
-; บ                                                                          บ
-; บ      This listing is only to be made available to virus researchers      บ
-; บ                or software writers on a need-to-know basis.              บ
-; ศออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออผ
+; ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝอป
+; ๏ฟฝ                 British Computer Virus Research Centre                   ๏ฟฝ
+; ๏ฟฝ  12 Guildford Street,   Brighton,   East Sussex,   BN1 3LS,   England    ๏ฟฝ
+; ๏ฟฝ  Telephone:     Domestic   0273-26105,   International  +44-273-26105    ๏ฟฝ
+; ๏ฟฝ                                                                          ๏ฟฝ
+; ๏ฟฝ                    The 'Cascade' Virus (1704 version)                    ๏ฟฝ
+; ๏ฟฝ                Disassembled by Joe Hirst,      March 1989                ๏ฟฝ
+; ๏ฟฝ                                                                          ๏ฟฝ
+; ๏ฟฝ                      Copyright (c) Joe Hirst 1989.                       ๏ฟฝ
+; ๏ฟฝ                                                                          ๏ฟฝ
+; ๏ฟฝ      This listing is only to be made available to virus researchers      ๏ฟฝ
+; ๏ฟฝ                or software writers on a need-to-know basis.              ๏ฟฝ
+; ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝอผ
 
 	; The virus occurs attached to the end of a COM file.  The first
 	; three bytes of the program are stored in the virus, and replaced

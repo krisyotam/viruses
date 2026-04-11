@@ -1,24 +1,35 @@
+/*
+  name      Trochilus
+  type      trojan
+  cve       â€”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    RamadhanAmizudin/malware
+  archived  RamadhanAmizudin, krisyotam (2026)
+  notes     â€”
+ */
 #pragma once
 #include "tstring.h"
 #include "../../../common/CommData.h"
 
-//»ñÈ¡±¾½ø³ÌÖÐÄ³¸öÄ£¿éµÄËùÊôÄ¿Â¼£¬·µ»ØÖµÒÔ\½áÎ²
+//ï¿½ï¿½È¡ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä³ï¿½ï¿½Ä£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä¿Â¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Öµï¿½ï¿½\ï¿½ï¿½Î²
 tstring GetModFilePath(LPCTSTR moduleName);
 
-//»ñÈ¡servant.dllËùÊôÄ¿Â¼£¬·µ»ØÖµÒÔ\½áÎ²
+//ï¿½ï¿½È¡servant.dllï¿½ï¿½ï¿½ï¿½Ä¿Â¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Öµï¿½ï¿½\ï¿½ï¿½Î²
 LPCTSTR GetBinFilepath();
 
-//Òì»ò¼Ó½âÃÜ
+//ï¿½ï¿½ï¿½Ó½ï¿½ï¿½ï¿½
 BOOL XorFibonacciCrypt(const LPVOID lpPlain, DWORD dwPlainLen, LPVOID lpEncrypted, UINT factor0, UINT factor1);
 
-//¸ñÊ½»¯´óÐ¡
+//ï¿½ï¿½Ê½ï¿½ï¿½ï¿½ï¿½Ð¡
 tstring FormatSizeWithUnit(UINT64 size);
 
-//Ê¹ÓÃ¶ººÅ½øÐÐ´óÐ¡¸ñÊ½»¯
+//Ê¹ï¿½Ã¶ï¿½ï¿½Å½ï¿½ï¿½Ð´ï¿½Ð¡ï¿½ï¿½Ê½ï¿½ï¿½
 tstring FormstSizeWithComma(UINT64 size);
 
-//¶ÁÈ¡ÎÄ¼þµ½dataÖÐ
+//ï¿½ï¿½È¡ï¿½Ä¼ï¿½ï¿½ï¿½dataï¿½ï¿½
 BOOL ReadDataFile(LPCTSTR datafile, CommData& data);
 
-//×ª»»ÓïÑÔ
+//×ªï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 tstring TransferLanguage(DWORD cid);

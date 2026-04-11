@@ -1,3 +1,14 @@
+/*
+  name      R57
+  type      webshell
+  cve       —
+  year      unknown
+  os        Multi
+  authors   unknown
+  source    vxunderground
+  archived  vxunderground, krisyotam (2026)
+  notes     —
+ */
 <?php
 
 //Created using ArabianAttacker Website's Hacking Tool Kit

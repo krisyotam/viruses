@@ -1,4 +1,15 @@
 /*
+  name      Lockbit
+  type      ransomware
+  cve       —
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     —
+ */
+/*
 chacha-merged.c version 20080118
 D. J. Bernstein
 Public domain.

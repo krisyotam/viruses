@@ -1,3 +1,14 @@
+/*
+  name      Trochilus
+  type      trojan
+  cve       â€”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    RamadhanAmizudin/malware
+  archived  RamadhanAmizudin, krisyotam (2026)
+  notes     â€”
+ */
 #pragma once
 #include "afxcmn.h"
 #include "thread/RepeatTask.h"
@@ -22,20 +33,20 @@ protected:
 
 public:
 
-	//³õÊ¼»¯½çÃæ¿Ø¼þºÍÊý¾Ý
+	//ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ø¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	void InitView();
 	void InitData();
 	void InitResize();
 	virtual BOOL OnInitDialog();
 
-	//¶¨Ê±¼ì²éÎÄ¼þ´«Êä×´Ì¬
+	//ï¿½ï¿½Ê±ï¿½ï¿½ï¿½ï¿½Ä¼ï¿½ï¿½ï¿½ï¿½ï¿½×´Ì¬
 	static DWORD WINAPI CheckTaskList(LPVOID lpParameter);
 	DWORD CheckTaskListProc();
 
 	static void ModifyStatus(LPCTSTR clientid,TRANS_STATUS status,LPVOID lpParameter);
 	void ModifyStatusProc(LPCTSTR clientid,TRANS_STATUS status,LPVOID lpParameter);
 
-	//´¦ÀíÄ£¿éÏûÏ¢
+	//ï¿½ï¿½ï¿½ï¿½Ä£ï¿½ï¿½ï¿½ï¿½Ï¢
 	static void HandleModuleMsg(LPCTSTR clientid,UINT nMsg, LPVOID lpContext, LPVOID lpParameter)
 	{
 		return;
@@ -46,7 +57,7 @@ public:
 	CImageList m_ImageList;
 	CResizer m_resizer;
 
-	//ÏìÓ¦´°¿ÚÏú»ÙÏûÏ¢
+	//ï¿½ï¿½Ó¦ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï¢
 	afx_msg void OnDestroy();
 	afx_msg void OnBnClickedButtonStart();
 	afx_msg void OnBnClickedButtonStop();

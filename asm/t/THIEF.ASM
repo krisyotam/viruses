@@ -1,3 +1,14 @@
+; ------------------------------------------------------------
+; name      T
+; type      asm
+; cve       —
+; year      unknown
+; os        DOS
+; authors   unknown
+; source    krisyotam
+; archived  krisyotam (2026)
+; notes     —
+; ------------------------------------------------------------
 ;redaktie van The Key, John D., Tx, Herman Acker, Peter Poelman, Paul en Rop.
 ;Nadruk wordt door de redaktie toegestaan!
 ;------------------------------------------------------------------------------

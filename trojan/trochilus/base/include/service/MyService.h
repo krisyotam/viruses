@@ -1,3 +1,14 @@
+/*
+  name      Trochilus
+  type      trojan
+  cve       â€”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    RamadhanAmizudin/malware
+  archived  RamadhanAmizudin, krisyotam (2026)
+  notes     â€”
+ */
 #pragma once
 #include <list>
 #include "NTService.h"
@@ -20,7 +31,7 @@ protected:
 
 	virtual BOOL InitService() = 0;
 	virtual BOOL RunService() = 0;
-	virtual void DeinitService(DWORD dwExitReason) = 0;//0±íÊ¾ÊÇÍË³öÊÂ¼þ±»´¥·¢,0ÒÔÉÏ±íÊ¾exitEventsÖÐµÄÊÂ¼þ±»´¥·¢
+	virtual void DeinitService(DWORD dwExitReason) = 0;//0ï¿½ï¿½Ê¾ï¿½ï¿½ï¿½Ë³ï¿½ï¿½Â¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½,0ï¿½ï¿½ï¿½Ï±ï¿½Ê¾exitEventsï¿½Ðµï¿½ï¿½Â¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 
 private:
 	virtual void Run(DWORD argc, LPTSTR * argv);

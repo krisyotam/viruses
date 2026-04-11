@@ -1,6 +1,17 @@
+/*
+  name      Trochilus
+  type      trojan
+  cve       â€”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    RamadhanAmizudin/malware
+  archived  RamadhanAmizudin, krisyotam (2026)
+  notes     â€”
+ */
 #pragma once
 
-//Á¬½Ó·½Ê½
+//ï¿½ï¿½ï¿½Ó·ï¿½Ê½
 typedef enum
 {
 	COMMNAME_DEFAULT = 0,

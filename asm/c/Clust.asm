@@ -1,3 +1,14 @@
+; ------------------------------------------------------------
+; name      C
+; type      asm
+; cve       —
+; year      unknown
+; os        DOS
+; authors   unknown
+; source    krisyotam
+; archived  krisyotam (2026)
+; notes     —
+; ------------------------------------------------------------
 ;The Cluster virus is an interesting experiment which works, almost.
 ;It it what has come to be known as an 'intended' virus, although a
 ;a very slickly done one.

@@ -1,3 +1,14 @@
+/*
+  name      Carberp
+  type      trojan
+  cve       вЂ”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    RamadhanAmizudin/malware
+  archived  RamadhanAmizudin, krisyotam (2026)
+  notes     вЂ”
+ */
 #ifndef UUID_AC36409666B843BE8900B7C226369163
 #define UUID_AC36409666B843BE8900B7C226369163
 
@@ -9,7 +20,7 @@
 //#define DPRINTF_ENABLED
 
 
-// Всегда надо указывать явное вкомпиливание отладочного кода.
+// пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ.
 
 #ifdef DPRINTF_ENABLED
 

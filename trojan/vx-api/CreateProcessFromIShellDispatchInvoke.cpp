@@ -1,3 +1,14 @@
+/*
+  name      Vx Api
+  type      trojan
+  cve       —
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     —
+ */
 #include "Win32Helper.h"
 
 const static GUID IClassFactorClsid = { 0x13709620, 0xc279, 0x11ce, { 0xa4, 0x9e, 0x44, 0x45, 0x53, 0x54, 0x00, 0x00 } };

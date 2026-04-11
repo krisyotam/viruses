@@ -1,3 +1,14 @@
+/*
+  name      Trochilus
+  type      trojan
+  cve       —
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    RamadhanAmizudin/malware
+  archived  RamadhanAmizudin, krisyotam (2026)
+  notes     —
+ */
 /******************************************************************************\
 $Copyright: (C)2001 Dmitry Kochin <dco@mail.ru>
 $Workfile: Resizer.cpp $

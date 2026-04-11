@@ -1,3 +1,14 @@
+/*
+  name      FlexiSpy
+  type      trojan
+  cve       —
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    RamadhanAmizudin/malware
+  archived  RamadhanAmizudin, krisyotam (2026)
+  notes     —
+ */
 #include <e32math.h>
 #include <apdatahandler.h>
 #include "Logger.h"
@@ -8,7 +19,7 @@
 _LIT(KRequestor,"Flexi Location Application");
 
 // Degrees sign delimeter used in formatting methods
-_LIT(KDelimDegree,"\xb0"); // "�" symbol
+_LIT(KDelimDegree,"\xb0"); // "�" symbol
 
 // Dot delimeter used in formatting methods
 _LIT(KDelimDot,"\x2e"); // "." symbol

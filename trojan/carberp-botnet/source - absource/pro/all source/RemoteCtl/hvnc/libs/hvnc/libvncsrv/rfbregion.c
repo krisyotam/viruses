@@ -1,3 +1,14 @@
+/*
+  name      Carberp Botnet
+  type      trojan
+  cve       —
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     —
+ */
 /* -=- sraRegion.c
  * Copyright (c) 2001 James "Wez" Weatherall, Johannes E. Schindelin
  *

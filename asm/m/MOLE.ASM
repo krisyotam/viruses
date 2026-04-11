@@ -1,3 +1,14 @@
+; ------------------------------------------------------------
+; name      M
+; type      asm
+; cve       —
+; year      unknown
+; os        DOS
+; authors   unknown
+; source    krisyotam
+; archived  krisyotam (2026)
+; notes     —
+; ------------------------------------------------------------
 ;The Mole by Murkry\ikx
 ;A small win32 virus that uses memmap to expand the code section of a
 ;.exe then place its code there. Does not work on some Win98 files since

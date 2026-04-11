@@ -1,3 +1,14 @@
+; ------------------------------------------------------------
+; name      B
+; type      asm
+; cve       —
+; year      unknown
+; os        DOS
+; authors   unknown
+; source    krisyotam
+; archived  krisyotam (2026)
+; notes     —
+; ------------------------------------------------------------
 ; Boot Record Program (C) Copyright Peter Norton 1986
 
 boots segment 'code'

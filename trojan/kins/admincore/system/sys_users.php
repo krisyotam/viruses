@@ -1,3 +1,14 @@
+/*
+  name      KINS
+  type      trojan
+  cve       —
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    RamadhanAmizudin/malware
+  archived  RamadhanAmizudin, krisyotam (2026)
+  notes     —
+ */
 <?php if(!defined('__CP__'))die();
 define('LIST_ROWS_COUNT', 4);             //Количетсво колонок в списке.
 define('USER_INPUT_TEXT_WIDTH', '600px'); //Ширина edit-боксов для редактирования скрипта.

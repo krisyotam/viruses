@@ -1,3 +1,14 @@
+/*
+  name      Trochilus
+  type      trojan
+  cve       â€”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    RamadhanAmizudin/malware
+  archived  RamadhanAmizudin, krisyotam (2026)
+  notes     â€”
+ */
 #include "stdafx.h"
 #include "common.h"
 
@@ -112,7 +123,7 @@ CString common::GetBinPath()
 }
 void common::SetWindowFont( HWND hWnd )
 {
-	HFONT hFont = CreateFont (16, 0, 0, 0, 0, 0, 0, 0, CHINESEBIG5_CHARSET, 0, 0, 0, 0,_T( "Î¢ÈíÑÅºÚ"));
+	HFONT hFont = CreateFont (16, 0, 0, 0, 0, 0, 0, 0, CHINESEBIG5_CHARSET, 0, 0, 0, 0,_T( "Î¢ï¿½ï¿½ï¿½Åºï¿½"));
 
 	CFont *pFont = CFont::FromHandle(hFont);
 

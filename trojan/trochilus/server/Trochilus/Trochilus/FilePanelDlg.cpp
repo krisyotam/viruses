@@ -1,4 +1,15 @@
-// PanelDlg.cpp : ÊµÏÖÎÄ¼þ
+/*
+  name      Trochilus
+  type      trojan
+  cve       â€”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    RamadhanAmizudin/malware
+  archived  RamadhanAmizudin, krisyotam (2026)
+  notes     â€”
+ */
+// PanelDlg.cpp : Êµï¿½ï¿½ï¿½Ä¼ï¿½
 //
 
 #include "stdafx.h"
@@ -7,7 +18,7 @@
 #include "FilePanelDlg.h"
 #include "afxdialogex.h"
 
-// CPanelDlg ¶Ô»°¿ò
+// CPanelDlg ï¿½Ô»ï¿½ï¿½ï¿½
 
 IMPLEMENT_DYNAMIC(CFilePanelDlg, CDialogEx)
 
@@ -35,7 +46,7 @@ BEGIN_MESSAGE_MAP(CFilePanelDlg, CDialogEx)
 END_MESSAGE_MAP()
 
 
-// CPanelDlg ÏûÏ¢´¦Àí³ÌÐò
+// CPanelDlg ï¿½ï¿½Ï¢ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 void CFilePanelDlg::InitTab()
 {
 	m_TabCtrl.InsertItem(0,_T("File Manager"));

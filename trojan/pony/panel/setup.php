@@ -1,3 +1,14 @@
+/*
+  name      Pony
+  type      trojan
+  cve       —
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    RamadhanAmizudin/malware
+  archived  RamadhanAmizudin, krisyotam (2026)
+  notes     —
+ */
 <?php
 
 error_reporting(E_ALL);

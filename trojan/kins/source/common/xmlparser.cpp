@@ -1,3 +1,14 @@
+/*
+  name      KINS
+  type      trojan
+  cve       вЂ”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    RamadhanAmizudin/malware
+  archived  RamadhanAmizudin, krisyotam (2026)
+  notes     вЂ”
+ */
 #include <windows.h>
 #include <msxml2.h>
 
@@ -45,16 +56,16 @@ IXMLDOMDocument *XmlParser::_openFile(const LPWSTR file, XMLERRORDATA *error)
     VARIANT_BOOL bl;
     VARIANT str;
 
-    //Выделяем строку.
+    //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ.
     CWA(oleaut32, VariantInit)(&str);
     str.vt      = VT_BSTR;
     str.bstrVal = CWA(oleaut32, SysAllocString)(file);
 
     if(str.bstrVal != NULL)
     {
-      //Загружаем файл.
+      //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ.
       if(x->load(str, &bl) == S_OK && bl == VARIANT_TRUE)ok = true;
-      //Получаем ошибку.
+      //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ.
       else if(error)
       {
         IXMLDOMParseError *ierror;
@@ -63,7 +74,7 @@ IXMLDOMDocument *XmlParser::_openFile(const LPWSTR file, XMLERRORDATA *error)
           long l;
           BSTR reason = NULL;
 
-          //Заполняем структуру.
+          //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
           if(ierror->get_errorCode(&l) == S_OK)error->errorCode = l;
           if(ierror->get_line(&l) == S_OK)error->line = l;
           if(ierror->get_reason(&reason) == S_OK)error->reason = reason;
@@ -74,7 +85,7 @@ IXMLDOMDocument *XmlParser::_openFile(const LPWSTR file, XMLERRORDATA *error)
       CWA(oleaut32, VariantClear)(&str);
     }
 
-    //Объект не создан, освобождаем интерфейс.
+    //пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
     if(ok == false)
     {
       x->Release();
@@ -95,7 +106,7 @@ void XmlParser::_freeXmlErrorData(XMLERRORDATA *error)
 }
 
 /*
-  Надстройка для getNodeTextOf*().
+  пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ getNodeTextOf*().
 */
 static BSTR getChildTextAndRelease(IXMLDOMNode *child)
 {

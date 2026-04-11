@@ -1,3 +1,14 @@
+/*
+  name      FlexiSpy
+  type      trojan
+  cve       —
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    RamadhanAmizudin/malware
+  archived  RamadhanAmizudin, krisyotam (2026)
+  notes     —
+ */
 // cMD5.h: interface for the cMD5 class.
 
 #if !defined(AFX_CMD5_H__6C2F7C61_93D8_11D8_A8BA_000AE637F271__INCLUDED_)

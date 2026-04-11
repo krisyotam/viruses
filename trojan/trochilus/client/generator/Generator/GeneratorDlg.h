@@ -1,5 +1,16 @@
+/*
+  name      Trochilus
+  type      trojan
+  cve       â€”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    RamadhanAmizudin/malware
+  archived  RamadhanAmizudin, krisyotam (2026)
+  notes     â€”
+ */
 
-// Generate_binDlg.h : Í·ÎÄ¼þ
+// Generate_binDlg.h : Í·ï¿½Ä¼ï¿½
 //
 
 #pragma once
@@ -18,26 +29,26 @@ enum
 	SETUP_TYPE_SPECIFIED
 };
 
-// CGenerate_binDlg ¶Ô»°¿ò
+// CGenerate_binDlg ï¿½Ô»ï¿½ï¿½ï¿½
 class CGeneratorDlg : public CDialogEx
 {
-// ¹¹Ôì
+// ï¿½ï¿½ï¿½ï¿½
 public:
-	CGeneratorDlg(CWnd* pParent = NULL);	// ±ê×¼¹¹Ôìº¯Êý
+	CGeneratorDlg(CWnd* pParent = NULL);	// ï¿½ï¿½×¼ï¿½ï¿½ï¿½ìº¯ï¿½ï¿½
 
-// ¶Ô»°¿òÊý¾Ý
+// ï¿½Ô»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	enum { IDD = IDD_GENERATE_BIN_DIALOG };
 
 	protected:
-	virtual void DoDataExchange(CDataExchange* pDX);	// DDX/DDV Ö§³Ö
+	virtual void DoDataExchange(CDataExchange* pDX);	// DDX/DDV Ö§ï¿½ï¿½
 
 
-// ÊµÏÖ
+// Êµï¿½ï¿½
 protected:
 	void InitDlgEdit();
 	HICON m_hIcon;
 
-	// Éú³ÉµÄÏûÏ¢Ó³Éäº¯Êý
+	// ï¿½ï¿½ï¿½Éµï¿½ï¿½ï¿½Ï¢Ó³ï¿½äº¯ï¿½ï¿½
 	virtual BOOL OnInitDialog();
 	afx_msg void OnPaint();
 	afx_msg HCURSOR OnQueryDragIcon();

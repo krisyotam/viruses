@@ -1,3 +1,14 @@
+/*
+  name      Trojans
+  type      linux
+  cve       —
+  year      unknown
+  os        Linux
+  authors   unknown
+  source    vxunderground
+  archived  vxunderground, krisyotam (2026)
+  notes     —
+ */
 /*	 ......:::: daemon trojo by DeV^AwaY ::::......
  *
  *

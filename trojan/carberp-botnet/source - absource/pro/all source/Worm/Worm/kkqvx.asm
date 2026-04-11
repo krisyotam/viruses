@@ -1,3 +1,14 @@
+; ------------------------------------------------------------
+; name      Carberp Botnet
+; type      trojan
+; cve       —
+; year      unknown
+; os        Windows
+; authors   unknown
+; source    krisyotam
+; archived  krisyotam (2026)
+; notes     —
+; ------------------------------------------------------------
 	.file	"e:\lcc\include\stddef.h"
 _$M0:
 	.file	"e:\projects\progs\petrosjan\bjwj\worm\kkqvx.c"

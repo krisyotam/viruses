@@ -1,3 +1,14 @@
+:: ------------------------------------------------------------
+:: name      Gozi-ISFB
+:: type      trojan
+:: cve       —
+:: year      unknown
+:: os        Windows
+:: authors   unknown
+:: source    RamadhanAmizudin/malware
+:: archived  RamadhanAmizudin, krisyotam (2026)
+:: notes     —
+:: ------------------------------------------------------------
 @echo off
 echo #define g_Version %1 > id.h
 msbuild isfb.sln /t:build /p:Configuration=Release /p:Platform=x64 

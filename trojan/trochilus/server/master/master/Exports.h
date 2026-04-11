@@ -1,7 +1,18 @@
+/*
+  name      Trochilus
+  type      trojan
+  cve       â€”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    RamadhanAmizudin/malware
+  archived  RamadhanAmizudin, krisyotam (2026)
+  notes     â€”
+ */
 #pragma once
 
-//×¢²áÏûÏ¢´¦Àí»Øµ÷º¯Êý
+//×¢ï¿½ï¿½ï¿½ï¿½Ï¢ï¿½ï¿½ï¿½ï¿½ï¿½Øµï¿½ï¿½ï¿½ï¿½ï¿½
 MASTER2_API void RegisterCommMsgHandler(MSGID msgid, FnMsgHandler fnHandler, LPVOID lpParameter);
 
-//Ïò¿Í»§¶Ë·¢ËÍÏûÏ¢£¬¿ÉÒÔÊ¹ÓÃCommDataUtilsÖÐµÄ±ãÀûº¯Êý
+//ï¿½ï¿½Í»ï¿½ï¿½Ë·ï¿½ï¿½ï¿½ï¿½ï¿½Ï¢ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê¹ï¿½ï¿½CommDataUtilsï¿½ÐµÄ±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 MASTER2_API MSGSERIALID SendMessage2Client(LPCTSTR clientid, const LPBYTE pData, DWORD dwSize, BOOL bNeedReply);

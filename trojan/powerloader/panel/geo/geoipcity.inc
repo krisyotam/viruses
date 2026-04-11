@@ -1,3 +1,14 @@
+; ------------------------------------------------------------
+; name      PowerLoader
+; type      trojan
+; cve       —
+; year      unknown
+; os        Windows
+; authors   unknown
+; source    RamadhanAmizudin/malware
+; archived  RamadhanAmizudin, krisyotam (2026)
+; notes     —
+; ------------------------------------------------------------
 <?php
 /* -*- Mode: C; indent-tabs-mode: t; c-basic-offset: 2; tab-width: 2 -*- */
 /* geoipcity.inc

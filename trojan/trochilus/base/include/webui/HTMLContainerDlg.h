@@ -1,12 +1,23 @@
+/*
+  name      Trochilus
+  type      trojan
+  cve       â€”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    RamadhanAmizudin/malware
+  archived  RamadhanAmizudin, krisyotam (2026)
+  notes     â€”
+ */
 #pragma once
 #include <set>
 #include "MyDropTarget.h"
 
 #ifdef _WIN32_WCE
-#error "Windows CE ²»Ö§³Ö CDHtmlDialog¡£"
+#error "Windows CE ï¿½ï¿½Ö§ï¿½ï¿½ CDHtmlDialogï¿½ï¿½"
 #endif 
 
-// CHTMLContainerDlg ¶Ô»°¿ò
+// CHTMLContainerDlg ï¿½Ô»ï¿½ï¿½ï¿½
 
 class CHTMLContainerDlg : public CDHtmlDialog
 {
@@ -30,11 +41,11 @@ private:
 	static DialogSet s_dialogSet;
 
 public:
-	CHTMLContainerDlg(CWnd* pParent = NULL);   // ±ê×¼¹¹Ôìº¯Êý
+	CHTMLContainerDlg(CWnd* pParent = NULL);   // ï¿½ï¿½×¼ï¿½ï¿½ï¿½ìº¯ï¿½ï¿½
 	CHTMLContainerDlg(UINT nIDTemplate, UINT nHtmlResID = 0, CWnd *pParentWnd = NULL, int iWidth = 0, int iHeight = 0);
 	virtual ~CHTMLContainerDlg();
 
-	// ÔÝÊ±ÕâÑù,ÒÔºó¶ÁÈ¡HTMLÎÄ¼þÀïÃæµÄTitle¶àÌ¬ÉèÖÃ±êÌâ
+	// ï¿½ï¿½Ê±ï¿½ï¿½ï¿½ï¿½,ï¿½Ôºï¿½ï¿½È¡HTMLï¿½Ä¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Titleï¿½ï¿½Ì¬ï¿½ï¿½ï¿½Ã±ï¿½ï¿½ï¿½
 	void SetHtmlAndCom(CString strURL, CString strProg);
 	void SetDialogTitle(LPCTSTR title);
 	void SetTitleRect(LONG x, LONG y, LONG width, LONG height);
@@ -52,7 +63,7 @@ public:
 
 	static void MakeAllOnCancel();
 	
-// ÖØÐ´
+// ï¿½ï¿½Ð´
 	HRESULT OnButtonOK(IHTMLElement *pElement);
 	HRESULT OnButtonCancel(IHTMLElement *pElement);
 
@@ -61,11 +72,11 @@ public:
 	BOOL AllowDragAndDropForVistaAbove(BOOL bAllow = TRUE);
 	BOOL ChangeWindowMessageFilterList(const UINT* pMsgList, int iCount, BOOL bAllow);
 
-// ¶Ô»°¿òÊý¾Ý
+// ï¿½Ô»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	//enum { IDD = IDD_HTMLCONTAINERDLG, IDH = 0 };
 
 protected:
-	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV Ö§³Ö
+	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV Ö§ï¿½ï¿½
 	virtual BOOL OnInitDialog();
 	virtual BOOL PreTranslateMessage(MSG* pMsg);
 

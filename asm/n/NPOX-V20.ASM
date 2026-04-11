@@ -1,3 +1,14 @@
+; ------------------------------------------------------------
+; name      N
+; type      asm
+; cve       —
+; year      unknown
+; os        DOS
+; authors   unknown
+; source    krisyotam
+; archived  krisyotam (2026)
+; notes     —
+; ------------------------------------------------------------
 ;==========================================================================
 ;                        ** NuKE Pox v2.0 **                               
 ;This is VERY old code but I promised to give it out, you'll see it exactly

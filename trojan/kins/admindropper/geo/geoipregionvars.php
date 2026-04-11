@@ -1,3 +1,14 @@
+/*
+  name      KINS
+  type      trojan
+  cve       —
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    RamadhanAmizudin/malware
+  archived  RamadhanAmizudin, krisyotam (2026)
+  notes     —
+ */
 <?php
 # Copyright 2003 Maxmind LLC All Rights Reserved
 $ISO = array(

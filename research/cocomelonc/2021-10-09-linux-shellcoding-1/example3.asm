@@ -1,3 +1,14 @@
+; ------------------------------------------------------------
+; name      Cocomelonc
+; type      research
+; cve       —
+; year      unknown
+; os        Multi
+; authors   unknown
+; source    krisyotam
+; archived  krisyotam (2026)
+; notes     —
+; ------------------------------------------------------------
 ; run /bin/sh and normal exit
 ; author @cocomelonc
 ; nasm -f elf32 -o example3.o example3.asm

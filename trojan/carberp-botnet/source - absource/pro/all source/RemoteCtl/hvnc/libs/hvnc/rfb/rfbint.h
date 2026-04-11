@@ -1,3 +1,14 @@
+/*
+  name      Carberp Botnet
+  type      trojan
+  cve       —
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     —
+ */
 #ifndef _RFB_RFBINT_H
 #define _RFB_RFBINT_H 1
 #ifndef _GENERATED_STDINT_H

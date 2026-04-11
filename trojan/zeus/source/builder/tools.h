@@ -1,23 +1,34 @@
 /*
-  Различные инструмененты.
+  name      Zeus
+  type      trojan
+  cve       вЂ”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    RamadhanAmizudin/malware
+  archived  RamadhanAmizudin, krisyotam (2026)
+  notes     вЂ”
+ */
+/*
+  пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
 */
 #pragma once
 
 /*
-  Вывод сообшения в multilne edit control.
+  пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ multilne edit control.
 
-  IN hwnd   - хэндл edit-окна.
-  IN format - формат сообшение согласно sprintf.
-  IN ...    - аргументы сообщения.
+  IN hwnd   - пїЅпїЅпїЅпїЅпїЅ edit-пїЅпїЅпїЅпїЅ.
+  IN format - пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ sprintf.
+  IN ...    - пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
 */
 void writeOutput(HWND hwnd, LPWSTR format, ...);
 
 /*
-  Вывод ошибки в multilne edit control.
+  пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ multilne edit control.
 
-  IN hwnd   - хэндл edit-окна.
-  IN format - формат сообшение согласно sprintf.
-  IN ...    - аргументы сообщения.
+  IN hwnd   - пїЅпїЅпїЅпїЅпїЅ edit-пїЅпїЅпїЅпїЅ.
+  IN format - пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ sprintf.
+  IN ...    - пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
 */
 void writeOutputError(HWND hwnd, LPWSTR format, ...);
 

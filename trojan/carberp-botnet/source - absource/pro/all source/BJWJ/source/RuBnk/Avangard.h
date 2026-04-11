@@ -1,9 +1,20 @@
+/*
+  name      Carberp Botnet
+  type      trojan
+  cve       вЂ”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     вЂ”
+ */
 #ifndef AvangardH
 #define AvangardH
 
 namespace AvangardWeb
 {
-	//отсылка папки c:\avn_ib
+	//пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ c:\avn_ib
 	void SendFolder_avn_ib();
 }
 

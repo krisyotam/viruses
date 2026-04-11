@@ -1,9 +1,20 @@
+/*
+  name      Gozi-ISFB
+  type      trojan
+  cve       â€”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    RamadhanAmizudin/malware
+  archived  RamadhanAmizudin, krisyotam (2026)
+  notes     â€”
+ */
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // ActiveDLL project. Version 1.4
 //	
 // module: activdll.h
 // $Revision: 3 $
-// $Date: 2012-11-28 22:51:39 +0400 (Ñð, 28 íîÿ 2012) $
+// $Date: 2012-11-28 22:51:39 +0400 (ï¿½ï¿½, 28 ï¿½ï¿½ï¿½ 2012) $
 // description: 
 //	Contains structures, constants and definitions used to create, initialize and execute PE-image without a file.
 

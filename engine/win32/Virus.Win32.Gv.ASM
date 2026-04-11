@@ -1,3 +1,14 @@
+; ------------------------------------------------------------
+; name      Win32
+; type      engine
+; cve       —
+; year      unknown
+; os        Multi
+; authors   unknown
+; source    vxunderground
+; archived  vxunderground, krisyotam (2026)
+; notes     —
+; ------------------------------------------------------------
   Gloeobacter violaceus
   by Second Part To Hell/[rRlf]
   www.spth.de.vu

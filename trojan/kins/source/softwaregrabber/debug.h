@@ -1,20 +1,31 @@
+/*
+  name      KINS
+  type      trojan
+  cve       вЂ”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    RamadhanAmizudin/malware
+  archived  RamadhanAmizudin, krisyotam (2026)
+  notes     вЂ”
+ */
 #pragma once
 /*
-  Система для создания и отправки отладочных отчетов на сервер (BO_DEBUG == 2) или локально
+  пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ (BO_DEBUG == 2) пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
   (BO_DEBUG == 1).
 */
 
 #if(BO_DEBUG > 0)
 
-//Тип отчета
+//пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 enum
 {
-	WDDT_INFO,    //Информация.
-	WDDT_WARNING, //Предупреждение
-	WDDT_ERROR    //Ошибка.
+	WDDT_INFO,    //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
+	WDDT_WARNING, //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+	WDDT_ERROR    //пїЅпїЅпїЅпїЅпїЅпїЅ.
 };
 
-//Макросы для быстрого доступа.
+//пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
 #define WDEBUG_PREFIX(t, f) table->debug_WriteString(__FUNCTION__, __FILE__, __LINE__, t, L##f
 #define WDEBUG0(t, f)                                                WDEBUG_PREFIX(t, f))
 #define WDEBUG1(t, f, c1)                                            WDEBUG_PREFIX(t, f), c1)

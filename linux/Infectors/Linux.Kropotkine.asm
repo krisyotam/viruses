@@ -1,3 +1,14 @@
+; ------------------------------------------------------------
+; name      Infectors
+; type      linux
+; cve       —
+; year      unknown
+; os        Linux
+; authors   unknown
+; source    vxunderground
+; archived  vxunderground, krisyotam (2026)
+; notes     —
+; ------------------------------------------------------------
 ;####################################
 ;##      A  64 bit ELF virus       ##
 ;##      By S01den and Sblip       ##

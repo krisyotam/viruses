@@ -1,3 +1,14 @@
+; ------------------------------------------------------------
+; name      K
+; type      asm
+; cve       —
+; year      unknown
+; os        DOS
+; authors   unknown
+; source    krisyotam
+; archived  krisyotam (2026)
+; notes     —
+; ------------------------------------------------------------
 
 memS	equ 1	       ;model small  convertable to COM model
 ;****************	RUNTIME LIBRARY OF KILLDIANA.COM     **************

@@ -1,4 +1,15 @@
 /*
+  name      Carberp Botnet
+  type      trojan
+  cve       вЂ”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     вЂ”
+ */
+/*
  * Hacker Disassembler Engine 32
  * Copyright (c) 2006-2009, Vyacheslav Patkov.
  * All rights reserved.
@@ -81,7 +92,7 @@ typedef struct {
 	union  {
         BYTE  imm8;
 		WORD  imm16;
-		DWORD imm_32; // имя imm32 объявлено в Builder C++
+		DWORD imm_32; // пїЅпїЅпїЅ imm32 пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ Builder C++
 			 } imm;
 	union {
 		BYTE disp8;

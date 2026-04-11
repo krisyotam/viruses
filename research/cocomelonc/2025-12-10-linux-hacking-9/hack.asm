@@ -1,3 +1,14 @@
+; ------------------------------------------------------------
+; name      Cocomelonc
+; type      research
+; cve       —
+; year      unknown
+; os        Multi
+; authors   unknown
+; source    krisyotam
+; archived  krisyotam (2026)
+; notes     —
+; ------------------------------------------------------------
 ; password protected
 ; linux/x64 reverse shell 
 ; password: "meow", connects to 127.0.0.1:4444

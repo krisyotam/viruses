@@ -1,3 +1,14 @@
+; ------------------------------------------------------------
+; name      I
+; type      asm
+; cve       —
+; year      unknown
+; os        DOS
+; authors   unknown
+; source    krisyotam
+; archived  krisyotam (2026)
+; notes     —
+; ------------------------------------------------------------
 ; **************************************************
 ; ***   VIRUS ITALIANO SALTITANTE - A LISTAGEM   ***
 ; *** Desassemblagem obtida por Miguel Vitorino  ***

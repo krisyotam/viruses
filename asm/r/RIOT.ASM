@@ -1,3 +1,14 @@
+; ------------------------------------------------------------
+; name      R
+; type      asm
+; cve       —
+; year      unknown
+; os        DOS
+; authors   unknown
+; source    krisyotam
+; archived  krisyotam (2026)
+; notes     —
+; ------------------------------------------------------------
 ; VirusName : RIOT! - Revolution In Our Time
 ; Country   : Sweden
 ; Author    : The Unforiven / Immortal Riot

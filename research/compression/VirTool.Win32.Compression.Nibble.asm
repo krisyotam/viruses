@@ -1,3 +1,14 @@
+; ------------------------------------------------------------
+; name      Compression
+; type      research
+; cve       —
+; year      unknown
+; os        Multi
+; authors   unknown
+; source    vxunderground
+; archived  vxunderground, krisyotam (2026)
+; notes     —
+; ------------------------------------------------------------
 
 ; BNCE - BlueOwls Nibble Compression Engine
 ; *****************************************

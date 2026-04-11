@@ -1,3 +1,14 @@
+/*
+  name      KINS
+  type      trojan
+  cve       вЂ”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    RamadhanAmizudin/malware
+  archived  RamadhanAmizudin, krisyotam (2026)
+  notes     вЂ”
+ */
 #include <windows.h>
 
 #include "defines.h"
@@ -6,7 +17,7 @@
 #include "languages.h"
 
 /*
-  Обработка вкладки.
+  пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
 */
 INT_PTR CALLBACK toolSettingsProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam)
 {
@@ -17,7 +28,7 @@ INT_PTR CALLBACK toolSettingsProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lPa
       CWA(user32, SetDlgItemTextW)(hwnd, IDC_SETTINGS_LANGUAGE_TITLE, Languages::get(Languages::tool_settings_language_title));
       CWA(user32, SetDlgItemTextW)(hwnd, IDC_SETTINGS_APPLY, Languages::get(Languages::tool_settings_apply));
 
-      //Заполняем языки.
+      //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ.
       {
         const Languages::LANGINFO *langInfo;
         const Languages::LANGINFO *curLangInfo = Languages::getCurLangInfo();
@@ -46,12 +57,12 @@ INT_PTR CALLBACK toolSettingsProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lPa
     {
       switch(LOWORD(wParam))
       {
-        //Применяем настройки.
+        //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
         case IDC_SETTINGS_APPLY:
         {
           bool ok = true;
           
-          //Изменяем язык.
+          //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ.
           {
             HWND cb = CWA(user32, GetDlgItem)(hwnd, IDC_SETTINGS_LANGUAGE);
             int index = (int)CWA(user32, SendMessageW)(cb, CB_GETCURSEL, 0, 0);

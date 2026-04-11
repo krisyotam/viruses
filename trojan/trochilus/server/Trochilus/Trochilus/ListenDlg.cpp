@@ -1,4 +1,15 @@
-// ListenDlg.cpp : ÊµÏÖÎÄ¼þ
+/*
+  name      Trochilus
+  type      trojan
+  cve       â€”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    RamadhanAmizudin/malware
+  archived  RamadhanAmizudin, krisyotam (2026)
+  notes     â€”
+ */
+// ListenDlg.cpp : Êµï¿½ï¿½ï¿½Ä¼ï¿½
 //
 
 #include "stdafx.h"
@@ -8,7 +19,7 @@
 #include "CommNames.h"
 
 
-// CListenDlg ¶Ô»°¿ò
+// CListenDlg ï¿½Ô»ï¿½ï¿½ï¿½
 
 IMPLEMENT_DYNAMIC(CListenDlg, CDialogEx)
 
@@ -76,7 +87,7 @@ BEGIN_MESSAGE_MAP(CListenDlg, CDialogEx)
 END_MESSAGE_MAP()
 
 
-// CListenDlg ÏûÏ¢´¦Àí³ÌÐò
+// CListenDlg ï¿½ï¿½Ï¢ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 
 
 BOOL CListenDlg::OnInitDialog()
@@ -219,7 +230,7 @@ void CListenDlg::OnNMRClickListListen(NMHDR *pNMHDR, LRESULT *pResult)
 void CListenDlg::OnCbnSelendcancelComboProto()
 {
 
-	// TODO: ÔÚ´ËÌí¼Ó¿Ø¼þÍ¨Öª´¦Àí³ÌÐò´úÂë
+	// TODO: ï¿½Ú´ï¿½ï¿½ï¿½ï¿½Ó¿Ø¼ï¿½Í¨Öªï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 }
 
 
@@ -255,5 +266,5 @@ void CListenDlg::OnSize(UINT nType, int cx, int cy)
 {
 	CDialogEx::OnSize(nType, cx, cy);
 	m_resizer.Move();
-	// TODO: ÔÚ´Ë´¦Ìí¼ÓÏûÏ¢´¦Àí³ÌÐò´úÂë
+	// TODO: ï¿½Ú´Ë´ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï¢ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 }

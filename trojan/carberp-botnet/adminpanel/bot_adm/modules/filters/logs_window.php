@@ -1,7 +1,20 @@
+/*
+  name      Carberp Botnet
+  type      trojan
+  cve       —
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     —
+ */
 <?php
 
-if($Cur['x']){	$smarty->assign('rand_name', mt_rand(0000000000, 9999999999));
-}else{	$smarty->assign('rand_name', $Cur['x']);
+if($Cur['x']){
+	$smarty->assign('rand_name', mt_rand(0000000000, 9999999999));
+}else{
+	$smarty->assign('rand_name', $Cur['x']);
 }
 get_function('html_pages');
 $page['count_page'] = 100;

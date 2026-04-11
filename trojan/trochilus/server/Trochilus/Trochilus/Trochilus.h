@@ -1,18 +1,29 @@
+/*
+  name      Trochilus
+  type      trojan
+  cve       â€”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    RamadhanAmizudin/malware
+  archived  RamadhanAmizudin, krisyotam (2026)
+  notes     â€”
+ */
 
-// Trochilus.h : PROJECT_NAME Ó¦ÓÃ³ÌÐòµÄÖ÷Í·ÎÄ¼þ
+// Trochilus.h : PROJECT_NAME Ó¦ï¿½Ã³ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Í·ï¿½Ä¼ï¿½
 //
 
 #pragma once
 
 #ifndef __AFXWIN_H__
-	#error "ÔÚ°üº¬´ËÎÄ¼þÖ®Ç°°üº¬¡°stdafx.h¡±ÒÔÉú³É PCH ÎÄ¼þ"
+	#error "ï¿½Ú°ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä¼ï¿½Ö®Ç°ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½stdafx.hï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ PCH ï¿½Ä¼ï¿½"
 #endif
 
-#include "resource.h"		// Ö÷·ûºÅ
+#include "resource.h"		// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 
 
 // CTrochilusApp:
-// ÓÐ¹Ø´ËÀàµÄÊµÏÖ£¬Çë²ÎÔÄ Trochilus.cpp
+// ï¿½Ð¹Ø´ï¿½ï¿½ï¿½ï¿½Êµï¿½Ö£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Trochilus.cpp
 //
 
 class CTrochilusApp : public CWinApp
@@ -20,11 +31,11 @@ class CTrochilusApp : public CWinApp
 public:
 	CTrochilusApp();
 
-// ÖØÐ´
+// ï¿½ï¿½Ð´
 public:
 	virtual BOOL InitInstance();
 
-// ÊµÏÖ
+// Êµï¿½ï¿½
 
 	DECLARE_MESSAGE_MAP()
 };

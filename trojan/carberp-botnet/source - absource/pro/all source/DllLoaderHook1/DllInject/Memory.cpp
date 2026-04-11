@@ -1,3 +1,14 @@
+/*
+  name      Carberp Botnet
+  type      trojan
+  cve       вЂ”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     вЂ”
+ */
 #include <windows.h>
 
 void *m_memset( void *szBuffer, DWORD dwSym, DWORD dwLen )
@@ -109,7 +120,7 @@ LPVOID MemAlloc( DWORD dwSize )
 
 LPVOID MemAllocAndClear(DWORD Size)
 {
-	// Выделить и очистить память указанного размера
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	if (Size == 0)
     	return NULL;
 

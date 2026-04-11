@@ -1,3 +1,14 @@
+/*
+  name      Carberp Botnet
+  type      trojan
+  cve       —
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     —
+ */
 #include "../../common/protocol.h"
 
 //#define		MALLOC(x)	HeapAlloc(GetProcessHeap(), 0, (x))

@@ -1,4 +1,15 @@
 /*
+  name      Rovnix
+  type      rootkit
+  cve       —
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    RamadhanAmizudin/malware
+  archived  RamadhanAmizudin, krisyotam (2026)
+  notes     —
+ */
+/*
  ***********************************************************************
  ** md5.c -- the source code for MD5 routines                         **
  ** RSA Data Security, Inc. MD5 Message-Digest Algorithm              **

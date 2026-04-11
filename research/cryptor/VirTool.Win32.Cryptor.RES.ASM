@@ -1,3 +1,14 @@
+; ------------------------------------------------------------
+; name      Cryptor
+; type      research
+; cve       —
+; year      unknown
+; os        Multi
+; authors   unknown
+; source    vxunderground
+; archived  vxunderground, krisyotam (2026)
+; notes     —
+; ------------------------------------------------------------
 ; - -[RES.ASM]- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - >8
 ;
 ; Random Encryption Synthezator (RES), by SSR
@@ -145,7 +156,7 @@ encryptor       db      8*4 dup(90h)            ; Buffer for encryptor
 
 		db      0
 		db      'RandomEncryptionSynthezator',0
-		db      '� S.S.R. 1996-97',0
+		db      '� S.S.R. 1996-97',0
 
 init_masks:
 		push    si

@@ -1,3 +1,14 @@
+; ------------------------------------------------------------
+; name      I
+; type      asm
+; cve       —
+; year      unknown
+; os        DOS
+; authors   unknown
+; source    krisyotam
+; archived  krisyotam (2026)
+; notes     —
+; ------------------------------------------------------------
 From netcom.com!ix.netcom.com!howland.reston.ans.net!gatech!bloom-beacon.mit.edu!uhog.mit.edu!rutgers!engr.orst.edu!gaia.ucs.orst.edu!myhost.subdomain.domain!clair Tue Nov 29 09:54:55 1994
 Xref: netcom.com alt.comp.virus:489
 Path: netcom.com!ix.netcom.com!howland.reston.ans.net!gatech!bloom-beacon.mit.edu!uhog.mit.edu!rutgers!engr.orst.edu!gaia.ucs.orst.edu!myhost.subdomain.domain!clair

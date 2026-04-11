@@ -1,4 +1,15 @@
 /*
+  name      Trochilus
+  type      trojan
+  cve       —
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    RamadhanAmizudin/malware
+  archived  RamadhanAmizudin, krisyotam (2026)
+  notes     —
+ */
+/*
 www.sourceforge.net/projects/tinyxml
 Original file by Yves Berquin.
 
@@ -23,7 +34,7 @@ distribution.
 */
 
 /*
- * THIS FILE WAS ALTERED BY Tyge L�vset, 7. April 2005.
+ * THIS FILE WAS ALTERED BY Tyge L�vset, 7. April 2005.
  */
 #include "stdafx.h"
 

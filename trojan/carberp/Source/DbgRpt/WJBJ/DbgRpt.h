@@ -1,3 +1,14 @@
+/*
+  name      Carberp
+  type      trojan
+  cve       —
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    RamadhanAmizudin/malware
+  archived  RamadhanAmizudin, krisyotam (2026)
+  notes     —
+ */
 #ifndef DBGRPT_H
 #define DBGRPT_H
 

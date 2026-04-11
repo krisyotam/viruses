@@ -1,3 +1,14 @@
+/*
+  name      Carberp Botnet
+  type      trojan
+  cve       вЂ”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     вЂ”
+ */
 // DlgNameValue.cpp : implementation file
 //
 
@@ -69,15 +80,15 @@ void ProfilesNameValue::Load(const char* nameFile)
 			{
 				switch( state )
 				{
-					case 0: //имя профиля
+					case 0: //пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 						AddProfile(buf);
 						state = 1;
 						break;
-					case 1: //имя
+					case 1: //пїЅпїЅпїЅ
 						strcpy( buf2, buf );
 						state = 2;
 						break;
-					case 2: //значение
+					case 2: //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 						AddNameValue( buf2, buf );
 						state = 1;
 						break;
@@ -155,7 +166,7 @@ BOOL DlgNameValue::OnInitDialog()
 {
 	CDialog::OnInitDialog();
 
-	CString s(L"Выбор из "), s2(nameFile);
+	CString s(L"пїЅпїЅпїЅпїЅпїЅ пїЅпїЅ "), s2(nameFile);
 	s.Append(s2);
 	s.Append(L".txt");
 	this->SetWindowTextW(s);
@@ -176,8 +187,8 @@ BOOL DlgNameValue::OnInitDialog()
 	}
 
 	lvNameValue.InsertColumn( 0, L"", 0, 0 );
-	lvNameValue.InsertColumn( 1, L"Имя", 0, 150 );
-	lvNameValue.InsertColumn( 2, L"Значение", 0, 250 );
+	lvNameValue.InsertColumn( 1, L"пїЅпїЅпїЅ", 0, 150 );
+	lvNameValue.InsertColumn( 2, L"пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ", 0, 250 );
 
 	lvNameValue.SetExtendedStyle( lvNameValue.GetExtendedStyle() | LVS_EX_FULLROWSELECT );
 

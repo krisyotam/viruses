@@ -1,3 +1,14 @@
+; ------------------------------------------------------------
+; name      T
+; type      asm
+; cve       —
+; year      unknown
+; os        DOS
+; authors   unknown
+; source    krisyotam
+; archived  krisyotam (2026)
+; notes     —
+; ------------------------------------------------------------
 ;TIMID VIRUS asm by Mark Ludwig in 1991.
 ;
 ;-infects .coms only in current directory unless called by dos path statement

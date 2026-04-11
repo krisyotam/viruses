@@ -1,3 +1,14 @@
+; ------------------------------------------------------------
+; name      L
+; type      asm
+; cve       —
+; year      unknown
+; os        DOS
+; authors   unknown
+; source    krisyotam
+; archived  krisyotam (2026)
+; notes     —
+; ------------------------------------------------------------
 	name	Virus
 	title	Disassembly listing of the VHP-648 virus
 	.radix	16

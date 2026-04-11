@@ -1,3 +1,14 @@
+/*
+  name      GMBot
+  type      android
+  cve       —
+  year      unknown
+  os        Android
+  authors   unknown
+  source    RamadhanAmizudin/malware
+  archived  RamadhanAmizudin, krisyotam (2026)
+  notes     —
+ */
 package org.slempo.service.billing;
 
 import java.util.ArrayList;
@@ -69,7 +80,7 @@ public enum CreditCardType {
 	public String concealNumber(String paramString) {
 		int i = Math.min(paramString.length(), -4 + this.length);
 		char[] arrayOfChar = new char[i];
-		Arrays.fill(arrayOfChar, '�');
+		Arrays.fill(arrayOfChar, '�');
 		String str = new String(arrayOfChar);
 		if (i < paramString.length())
 			str = str + paramString.substring(i);

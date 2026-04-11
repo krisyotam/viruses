@@ -1,3 +1,14 @@
+/*
+  name      Crypto Stealer
+  type      trojan
+  cve       —
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     —
+ */
 #define _DEFUG
 #include <stdio.h>
 #include <iostream>

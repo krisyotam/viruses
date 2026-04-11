@@ -1,3 +1,14 @@
+; ------------------------------------------------------------
+; name      J
+; type      asm
+; cve       —
+; year      unknown
+; os        DOS
+; authors   unknown
+; source    krisyotam
+; archived  krisyotam (2026)
+; notes     —
+; ------------------------------------------------------------
 This is the Jerusalem B Virus.
 "JV.MOC"                                                              PAGE  0001
 

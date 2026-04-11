@@ -1,3 +1,14 @@
+/*
+  name      Carberp Botnet
+  type      trojan
+  cve       —
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     —
+ */
 #include <windows.h>
 
 extern "C" __declspec(dllexport) bool SendString(HWND hWnd,TCHAR *lpString)

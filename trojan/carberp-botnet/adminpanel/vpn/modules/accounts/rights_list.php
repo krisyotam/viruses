@@ -1,3 +1,14 @@
+/*
+  name      Carberp Botnet
+  type      trojan
+  cve       —
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     —
+ */
 <?php
 
 $right['main']['index'] = true;
@@ -34,7 +45,9 @@ $right['clients']['download'] = true;
 
 
 //$right['backup']['download'] = true;
-if($_SESSION['hidden'] != 'on' && $_SESSION['user']->login != 'SuperAdmin'){	foreach($right as $key => $value){		if(!file_exists('modules/'.$key.'/')) unset($right[$key]);
+if($_SESSION['hidden'] != 'on' && $_SESSION['user']->login != 'SuperAdmin'){
+	foreach($right as $key => $value){
+		if(!file_exists('modules/'.$key.'/')) unset($right[$key]);
 	}
 }
 

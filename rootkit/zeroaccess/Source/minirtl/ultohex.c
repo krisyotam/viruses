@@ -1,3 +1,14 @@
+/*
+  name      ZeroAccess
+  type      rootkit
+  cve       —
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    RamadhanAmizudin/malware
+  archived  RamadhanAmizudin, krisyotam (2026)
+  notes     —
+ */
 #include "rtltypes.h"
 
 size_t ultohex_a(unsigned long x, char *s)

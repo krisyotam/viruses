@@ -1,3 +1,14 @@
+/*
+  name      Dendroid
+  type      android
+  cve       —
+  year      unknown
+  os        Android
+  authors   unknown
+  source    RamadhanAmizudin/malware
+  archived  RamadhanAmizudin, krisyotam (2026)
+  notes     —
+ */
 /**
  * Version: 1.0 Alpha-1 
  * Build Date: 13-Nov-2007

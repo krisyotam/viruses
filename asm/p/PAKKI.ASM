@@ -1,3 +1,14 @@
+; ------------------------------------------------------------
+; name      P
+; type      asm
+; cve       —
+; year      unknown
+; os        DOS
+; authors   unknown
+; source    krisyotam
+; archived  krisyotam (2026)
+; notes     —
+; ------------------------------------------------------------
 
 ; This is the ashar variant of the classic Pakistani Brain virus. It is large
 ; by today's standards, although it was one of the first.  It is a floppy only

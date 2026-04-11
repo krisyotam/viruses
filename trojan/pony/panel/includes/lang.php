@@ -1,16 +1,27 @@
+/*
+  name      Pony
+  type      trojan
+  cve       вЂ”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    RamadhanAmizudin/malware
+  archived  RamadhanAmizudin, krisyotam (2026)
+  notes     вЂ”
+ */
 <?php
 	$lang = array();
 
 	// admin.php
-	$lang['Next'] = 'Следующая';
-	$lang['Previous'] = 'Предыдущая';
+	$lang['Next'] = 'пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ';
+	$lang['Previous'] = 'пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ';
 
 	// chart.php
-	$lang['Count'] = 'Количество';
-	$lang['Hours'] = 'Часы';
-	$lang['Days'] = 'Дни';
-	$lang['New password additions in the past month'] = 'Добавлено паролей за последний месяц';
-	$lang['New password additions in the past 24 hours'] = 'Добавлено паролей за последние 24 часа';
-	$lang['OS popularity'] = 'Популярность операционных систем';
-	$lang['Additional OS statistics'] = 'Дополнительная статистика по операционным системам';
+	$lang['Count'] = 'пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ';
+	$lang['Hours'] = 'пїЅпїЅпїЅпїЅ';
+	$lang['Days'] = 'пїЅпїЅпїЅ';
+	$lang['New password additions in the past month'] = 'пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ';
+	$lang['New password additions in the past 24 hours'] = 'пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ 24 пїЅпїЅпїЅпїЅ';
+	$lang['OS popularity'] = 'пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ';
+	$lang['Additional OS statistics'] = 'пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ';
 

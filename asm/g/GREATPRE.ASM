@@ -1,3 +1,14 @@
+; ------------------------------------------------------------
+; name      G
+; type      asm
+; cve       —
+; year      unknown
+; os        DOS
+; authors   unknown
+; source    krisyotam
+; archived  krisyotam (2026)
+; notes     —
+; ------------------------------------------------------------
 ;******************************************************************************
 ;
 ; "I'm the great prepender!" - Jest on Queen by Rajaat / Genesis

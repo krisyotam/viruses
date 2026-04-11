@@ -1,3 +1,14 @@
+/*
+  name      Carberp Botnet
+  type      trojan
+  cve       —
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     —
+ */
 <?php
 
 if(empty($Cur['id'])) $Cur['id'] = $_SESSION['user']->id;
@@ -11,7 +22,8 @@ if($Cur['id'] != $_SESSION['user']->id){
 }
 
 
-if(isset($_POST['edit_submit'])){	$user = $mysqli->query('SELECT * FROM bf_users WHERE (id<>\'0\') AND (id=\''.$Cur['id'].'\') LIMIT 1');
+if(isset($_POST['edit_submit'])){
+	$user = $mysqli->query('SELECT * FROM bf_users WHERE (id<>\'0\') AND (id=\''.$Cur['id'].'\') LIMIT 1');
 
 	array_walk($_POST, 'real_escape_string');
 
@@ -21,15 +33,18 @@ if(isset($_POST['edit_submit'])){	$user = $mysqli->query('SELECT * FROM bf_user
 		$bad_form['login'] = 'Логин не может быть пустым.';
 		$FORM_BAD = 1;
 	}else{
-		if($user->login <> $_POST['login']){			$result = $mysqli->query("SELECT login FROM bf_users WHERE (login='".$_POST['login']."')");
-			if($result->login == $_POST['login']){				$bad_form['login'] = 'Логин занят.';
+		if($user->login <> $_POST['login']){
+			$result = $mysqli->query("SELECT login FROM bf_users WHERE (login='".$_POST['login']."')");
+			if($result->login == $_POST['login']){
+				$bad_form['login'] = 'Логин занят.';
 				$FORM_BAD = 1;
 			}
 		}
 	}
 
 	if(!empty($_POST['password'])){
-		if($_POST['password'] <> $_POST['pass_dbl']){			$bad_form['password'] = '"Пароль" и "Повтор пароля" не совподают.';
+		if($_POST['password'] <> $_POST['pass_dbl']){
+			$bad_form['password'] = '"Пароль" и "Повтор пароля" не совподают.';
 			$FORM_BAD = 1;
 		}
 	}
@@ -37,25 +52,32 @@ if(isset($_POST['edit_submit'])){	$user = $mysqli->query('SELECT * FROM bf_user
 	if($FORM_BAD <> 1){
 		$sql_add = '';
         /*
-		if($user->login <> $_POST['login']){			$sql_add .= 'login = \''.$_POST['login'].'\'';
+		if($user->login <> $_POST['login']){
+			$sql_add .= 'login = \''.$_POST['login'].'\'';
 		}
         */
-		if(!empty($_POST['password'])){			if($user->password <> md5($_POST['password'])){				if(!empty($sql_add)) $sql_add .= ',';
+		if(!empty($_POST['password'])){
+			if($user->password <> md5($_POST['password'])){
+				if(!empty($sql_add)) $sql_add .= ',';
 				$sql_add .= 'password = \''.md5($_POST['password']).'\'';
 			}
 		}
 
-		if(!empty($sql_add)){			$sql = 'update bf_users set '.$sql_add.', update_date = CURRENT_TIMESTAMP WHERE (id = \''.$user->id.'\')';
+		if(!empty($sql_add)){
+			$sql = 'update bf_users set '.$sql_add.', update_date = CURRENT_TIMESTAMP WHERE (id = \''.$user->id.'\')';
 
 			if($_SESSION['user']->id == $user->id){
 				//if($user->login <> $_POST['login']) $_SESSION['user']->login = ucfirst($_POST['login']);
 				if(!empty($_POST['password']) && $user->password <> md5($_POST['password'])) $_SESSION['user']->password = md5($_POST['password']);
             }
 
-			if($mysqli->query($sql) == false){				$errors .= '<div>Изменение сейчас невозможно, попробуйте позже.</div>';
-			}else{				$smarty->assign("save", true);
+			if($mysqli->query($sql) == false){
+				$errors .= '<div>Изменение сейчас невозможно, попробуйте позже.</div>';
+			}else{
+				$smarty->assign("save", true);
 			}
-		}else{			$errors .= '<div>Изменение не требуеться.</div>';
+		}else{
+			$errors .= '<div>Изменение не требуеться.</div>';
 		}
 	}else{
 		if(count($bad_form) > 0){

@@ -1,3 +1,14 @@
+/*
+  name      Carberp Botnet
+  type      trojan
+  cve       —
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     —
+ */
 <?php
 $smarty->assign('rand_name', mt_rand(0000000000, 9999999999));
 $smarty->assign('value_name', 'p' . $smarty->tpl_vars['rand_name']->value);
@@ -15,8 +26,10 @@ if(!empty($Cur['id'])){
 	        $_POST['host'] = real_escape_string($_POST['host']);
 	        $_POST['savelog'] = real_escape_string($_POST['savelog']);
 
-            if($_POST['savelog'] == 'on'){            	$_POST['savelog'] = '1';
-            }else{            	$_POST['savelog'] = '0';
+            if($_POST['savelog'] == 'on'){
+            	$_POST['savelog'] = '1';
+            }else{
+            	$_POST['savelog'] = '0';
             }
 
 			if(empty($_POST['name'])){
@@ -57,7 +70,8 @@ if(!empty($Cur['id'])){
 				}
 			}
 			$smarty->assign("errors", $errors);
-		}else{			$_POST['name'] = $item->name;
+		}else{
+			$_POST['name'] = $item->name;
 			$_POST['host'] = $item->host;
 			//$_POST['savelog'] = $item->save_log;
 		}

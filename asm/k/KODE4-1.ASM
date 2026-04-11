@@ -1,3 +1,14 @@
+; ------------------------------------------------------------
+; name      K
+; type      asm
+; cve       —
+; year      unknown
+; os        DOS
+; authors   unknown
+; source    krisyotam
+; archived  krisyotam (2026)
+; notes     —
+; ------------------------------------------------------------
 ;######################################################################
 ;#  Name:  Kode4 version 1.0 (overwritting stage)
 ;#  Author:  Soltan Griss  [YAM]

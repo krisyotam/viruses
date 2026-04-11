@@ -1,3 +1,14 @@
+/*
+  name      Linux
+  type      linux
+  cve       —
+  year      —
+  os        Linux
+  authors   unknown
+  source    unknown
+  archived  krisyotam (2026)
+  notes     —
+ */
 #include <arpa/inet.h>
 #include <sys/wait.h>
 #include <sys/resource.h>

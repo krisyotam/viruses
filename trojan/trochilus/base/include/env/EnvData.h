@@ -1,6 +1,17 @@
+/*
+  name      Trochilus
+  type      trojan
+  cve       â€”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    RamadhanAmizudin/malware
+  archived  RamadhanAmizudin, krisyotam (2026)
+  notes     â€”
+ */
 #pragma once
 
-//²Ù×÷ÏµÍ³±êÊ¶ Ã¶¾ÙÀàÐÍ
+//ï¿½ï¿½ï¿½ï¿½ÏµÍ³ï¿½ï¿½Ê¶ Ã¶ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 typedef enum WIN_VER_DETAIL {
 	WINDOWS_VERSION_NONE = 0,   // 0
 	WINDOWS_VERSION_95,			// 1

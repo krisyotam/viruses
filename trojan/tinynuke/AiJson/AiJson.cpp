@@ -1,3 +1,14 @@
+/*
+  name      TinyNuke
+  type      trojan
+  cve       —
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    RamadhanAmizudin/malware
+  archived  RamadhanAmizudin, krisyotam (2026)
+  notes     —
+ */
 #ifdef _MSC_VER
    #define _CRT_SECURE_NO_WARNINGS
 #endif

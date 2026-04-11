@@ -1,3 +1,14 @@
+; ------------------------------------------------------------
+; name      T
+; type      asm
+; cve       —
+; year      unknown
+; os        DOS
+; authors   unknown
+; source    krisyotam
+; archived  krisyotam (2026)
+; notes     —
+; ------------------------------------------------------------
 ;  Tunneler - written by Conzouler/IR 1995
 ;
 ;  Based on the Rather Small Virus (refer to RSV.ASM for details).

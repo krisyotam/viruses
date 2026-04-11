@@ -1,3 +1,14 @@
+; ------------------------------------------------------------
+; name      W
+; type      asm
+; cve       —
+; year      unknown
+; os        DOS
+; authors   unknown
+; source    krisyotam
+; archived  krisyotam (2026)
+; notes     —
+; ------------------------------------------------------------
 ; Virus name		WWT-02
 ; Description		Attack any COM file in current directory
 ; Comment		Don't change Date/Time, ignore ReadOnly

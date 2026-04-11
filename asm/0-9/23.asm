@@ -1,10 +1,21 @@
+; ------------------------------------------------------------
+; name      0 9
+; type      asm
+; cve       â€”
+; year      unknown
+; os        DOS
+; authors   unknown
+; source    krisyotam
+; archived  krisyotam (2026)
+; notes     â€”
+; ------------------------------------------------------------
 ; The EXEcution III Virus.
 ;
 ; Well, you're now the prouw owner of the smallest virus ever made!
 ; only 23 bytes long and ofcourse again very lame..
 ; But what the heck, it's just an educational piece of code!!
 ;
-; (C) 1993 by [DàRkRàY] of TridenT (Ooooooranje Boooooooven!)
+; (C) 1993 by [Dï¿½RkRï¿½Y] of TridenT (Ooooooranje Boooooooven!)
 ;
 ; Tnx to myself, my assembler, DOS (yuck) and to John Tardy for his
 ; nice try to make the smallest (27 bytes and 25 bytes) virus... gotcha!! ;-))

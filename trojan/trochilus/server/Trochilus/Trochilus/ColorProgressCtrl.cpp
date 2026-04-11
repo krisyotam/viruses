@@ -1,4 +1,15 @@
-// ColorProgressCtrl.cpp : ÊµÏÖÎÄ¼þ
+/*
+  name      Trochilus
+  type      trojan
+  cve       â€”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    RamadhanAmizudin/malware
+  archived  RamadhanAmizudin, krisyotam (2026)
+  notes     â€”
+ */
+// ColorProgressCtrl.cpp : Êµï¿½ï¿½ï¿½Ä¼ï¿½
 //
 
 #include "stdafx.h"
@@ -11,12 +22,12 @@ IMPLEMENT_DYNAMIC(CColorProgressCtrl, CProgressCtrl)
 
 CColorProgressCtrl::CColorProgressCtrl()
 {
-	m_roundRectColor = RGB(116, 158, 210);	//±ß¿òÉ«
-	m_progressColor = RGB(45, 213,79);		//½ø¶ÈÉ«
-	m_nLower = 0;							//ÏÂÏÞ
-	m_nUpper = 100;							//ÉÏÏÞ
-	m_nPos = 0;								//µ±Ç°Î»ÖÃ
-	m_radin = CPoint(0, 0);					//»¡¶È
+	m_roundRectColor = RGB(116, 158, 210);	//ï¿½ß¿ï¿½É«
+	m_progressColor = RGB(45, 213,79);		//ï¿½ï¿½ï¿½ï¿½É«
+	m_nLower = 0;							//ï¿½ï¿½ï¿½ï¿½
+	m_nUpper = 100;							//ï¿½ï¿½ï¿½ï¿½
+	m_nPos = 0;								//ï¿½ï¿½Ç°Î»ï¿½ï¿½
+	m_radin = CPoint(0, 0);					//ï¿½ï¿½ï¿½ï¿½
 }
 
 CColorProgressCtrl::~CColorProgressCtrl()
@@ -30,16 +41,16 @@ END_MESSAGE_MAP()
 
 
 
-// CColorProgressCtrl ÏûÏ¢´¦Àí³ÌÐò
+// CColorProgressCtrl ï¿½ï¿½Ï¢ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 
 
 
-//ÉèÖÃ·¶Î§
+//ï¿½ï¿½ï¿½Ã·ï¿½Î§
 void CColorProgressCtrl::SetRange(short nLower, short nUpper)
 {
 
 }
-//ÉèÖÃÎ»ÖÃ
+//ï¿½ï¿½ï¿½ï¿½Î»ï¿½ï¿½
 void CColorProgressCtrl::SetPos(int nPos)
 {
 	if (nPos < 0 || nPos > m_nUpper)
@@ -49,13 +60,13 @@ void CColorProgressCtrl::SetPos(int nPos)
 	m_nPos = nPos;
 	InvalidateRect(m_wndRect);
 }
-//ÉèÖÃÑÕÉ«
+//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½É«
 void CColorProgressCtrl::SetColor(COLORREF roundRectColor, COLORREF progressColor)
 {
 	m_roundRectColor = roundRectColor;
 	m_progressColor = progressColor;
 }
-//ÉèÖÃ»¡¶È
+//ï¿½ï¿½ï¿½Ã»ï¿½ï¿½ï¿½
 void CColorProgressCtrl::SetRadin(CPoint radin)
 {
 	m_radin = radin;
@@ -65,15 +76,15 @@ void CColorProgressCtrl::SetRadin(CPoint radin)
 void CColorProgressCtrl::OnPaint()
 {
 	CPaintDC dc(this); // device context for painting
-	// TODO: ÔÚ´Ë´¦Ìí¼ÓÏûÏ¢´¦Àí³ÌÐò´úÂë
+	// TODO: ï¿½Ú´Ë´ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï¢ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	GetClientRect(&m_wndRect);
-	//»­±ß¿ò
+	//ï¿½ï¿½ï¿½ß¿ï¿½
 	CPen pen1;
 	pen1.CreatePen(PS_SOLID, 2, m_roundRectColor);
 	CPen *oldPen = dc.SelectObject(&pen1);
 	dc.RoundRect(m_wndRect, m_radin);
 	dc.SelectObject(oldPen);
-	//»­½ø¶È
+	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	CRect rectProgress;
 	CBrush brush;
 	CPen pen2;
@@ -86,5 +97,5 @@ void CColorProgressCtrl::OnPaint()
 	dc.SelectObject(pen2);
 	dc.SelectObject(brush);
 	dc.RoundRect(rectProgress, m_radin);
-	// ²»Îª»æÍ¼ÏûÏ¢µ÷ÓÃ CProgressCtrl::OnPaint()
+	// ï¿½ï¿½Îªï¿½ï¿½Í¼ï¿½ï¿½Ï¢ï¿½ï¿½ï¿½ï¿½ CProgressCtrl::OnPaint()
 }

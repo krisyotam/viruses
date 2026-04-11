@@ -1,3 +1,14 @@
+; ------------------------------------------------------------
+; name      D
+; type      asm
+; cve       —
+; year      unknown
+; os        DOS
+; authors   unknown
+; source    krisyotam
+; archived  krisyotam (2026)
+; notes     —
+; ------------------------------------------------------------
 ;      RAVAGE BSV   Written by RP & muRPhy  October 1996
 ; 	version 9.0 [ New Generation ] -- WIN95 compatible :-)
 ;

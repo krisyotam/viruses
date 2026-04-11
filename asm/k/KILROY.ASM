@@ -1,3 +1,14 @@
+; ------------------------------------------------------------
+; name      K
+; type      asm
+; cve       —
+; year      unknown
+; os        DOS
+; authors   unknown
+; source    krisyotam
+; archived  krisyotam (2026)
+; notes     —
+; ------------------------------------------------------------
 ;The KILROY one-sector boot sector virus will both boot up either MS-DOS or
 ;PC-DOS and it will infect other disks.
 

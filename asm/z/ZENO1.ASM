@@ -1,3 +1,14 @@
+; ------------------------------------------------------------
+; name      Z
+; type      asm
+; cve       —
+; year      unknown
+; os        DOS
+; authors   unknown
+; source    krisyotam
+; archived  krisyotam (2026)
+; notes     —
+; ------------------------------------------------------------
 ;NON-RESIDENT SPAWNER
 
 ; I threw this thing together in less than an hour and haven't looked

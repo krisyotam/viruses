@@ -1,12 +1,23 @@
+/*
+  name      Trochilus
+  type      trojan
+  cve       â€”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    RamadhanAmizudin/malware
+  archived  RamadhanAmizudin, krisyotam (2026)
+  notes     â€”
+ */
 #include "stdafx.h"
 #include "HTMLContainerDlg.h"
-// HTMLContainerDlg.cpp : ÊµÏÖÎÄ¼þ
+// HTMLContainerDlg.cpp : Êµï¿½ï¿½ï¿½Ä¼ï¿½
 //
 
 CCriticalSection	CHTMLContainerDlg::s_mapSection;
 CHTMLContainerDlg::DialogSet CHTMLContainerDlg::s_dialogSet;
 
-// CHTMLContainerDlg ¶Ô»°¿ò
+// CHTMLContainerDlg ï¿½Ô»ï¿½ï¿½ï¿½
 
 IMPLEMENT_DYNCREATE(CHTMLContainerDlg, CDHtmlDialog)
 
@@ -101,9 +112,9 @@ BOOL CHTMLContainerDlg::OnInitDialog()
 	}
 	Navigate(m_strURL);
 
-	m_pBrowserApp->put_Silent(VARIANT_TRUE);//½ûÖ¹½Å±¾´íÎóÌáÊ¾  
+	m_pBrowserApp->put_Silent(VARIANT_TRUE);//ï¿½ï¿½Ö¹ï¿½Å±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê¾  
 	
-	//ÔÚ²»Í¬dpiµÄÇé¿öÏÂ£¬Ê¹ÓÃÏàÍ¬´óÐ¡µÄÏÔÊ¾
+	//ï¿½Ú²ï¿½Í¬dpiï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Â£ï¿½Ê¹ï¿½ï¿½ï¿½ï¿½Í¬ï¿½ï¿½Ð¡ï¿½ï¿½ï¿½ï¿½Ê¾
 	if (m_iWidth > 0 && m_iHeight > 0)
 	{
 		SetWindowPos(NULL, 0, 0, m_iWidth, m_iHeight, SWP_NOMOVE);
@@ -111,7 +122,7 @@ BOOL CHTMLContainerDlg::OnInitDialog()
 
 	if (m_dialogTitle.GetLength() > 0) SetWindowText(m_dialogTitle);
 
-	return TRUE;  // ³ý·Ç½«½¹µãÉèÖÃµ½¿Ø¼þ£¬·ñÔò·µ»Ø TRUE
+	return TRUE;  // ï¿½ï¿½ï¿½Ç½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ãµï¿½ï¿½Ø¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ò·µ»ï¿½ TRUE
 }
 
 BEGIN_MESSAGE_MAP(CHTMLContainerDlg, CDHtmlDialog)
@@ -124,7 +135,7 @@ END_DHTML_EVENT_MAP()
 
 
 
-// CHTMLContainerDlg ÏûÏ¢´¦Àí³ÌÐò
+// CHTMLContainerDlg ï¿½ï¿½Ï¢ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 
 HRESULT CHTMLContainerDlg::OnButtonOK(IHTMLElement* /*pElement*/)
 {
@@ -142,8 +153,8 @@ void CHTMLContainerDlg::OnDocumentComplete(LPDISPATCH pDisp, LPCTSTR szUrl)
 {
 	CDHtmlDialog::OnDocumentComplete(pDisp, szUrl);
 
-	// TODO: ÔÚ´ËÌí¼Ó×¨ÓÃ´úÂëºÍ/»òµ÷ÓÃ»ùÀà
-	//AfxMessageBox(_T("DLL¼ÓÔØÎÄµµ³É¹¦..."));
+	// TODO: ï¿½Ú´ï¿½ï¿½ï¿½ï¿½ï¿½×¨ï¿½Ã´ï¿½ï¿½ï¿½ï¿½/ï¿½ï¿½ï¿½ï¿½Ã»ï¿½ï¿½ï¿½
+	//AfxMessageBox(_T("DLLï¿½ï¿½ï¿½ï¿½ï¿½Äµï¿½ï¿½É¹ï¿½..."));
 }
 
 STDMETHODIMP CHTMLContainerDlg::GetHostInfo(DOCHOSTUIINFO* pInfo)
@@ -163,7 +174,7 @@ STDMETHODIMP CHTMLContainerDlg::GetDropTarget(IDropTarget *pDropTarget, IDropTar
 {
 	*ppDropTarget = (IDropTarget*)&m_droptarget;
  
- 	return S_OK; // ÄãÖ®Ç°·µ»ØE_NOTIMPL£¬½«µ¼ÖÂÄãµÄIDropTarget½Ó¿ÚÔÚÊ×´Î±»µ÷ÓÃºó²»ÔÙµ÷ÓÃ£¬ÒòÎªÒÔºóµ÷ÓÃÄ¬ÈÏÊµÏÖÁË
+ 	return S_OK; // ï¿½ï¿½Ö®Ç°ï¿½ï¿½ï¿½ï¿½E_NOTIMPLï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½IDropTargetï¿½Ó¿ï¿½ï¿½ï¿½ï¿½×´Î±ï¿½ï¿½ï¿½ï¿½Ãºï¿½ï¿½Ùµï¿½ï¿½Ã£ï¿½ï¿½ï¿½Îªï¿½Ôºï¿½ï¿½ï¿½ï¿½Ä¬ï¿½ï¿½Êµï¿½ï¿½ï¿½ï¿½
 }
 
 BOOL CHTMLContainerDlg::CanAccessExternal()
@@ -174,7 +185,7 @@ BOOL CHTMLContainerDlg::CanAccessExternal()
 
 BOOL CHTMLContainerDlg::PreTranslateMessage(MSG* pMsg)  
 {
-	// TODO: ÔÚ´ËÌí¼Ó×¨ÓÃ´úÂëºÍ/»òµ÷ÓÃ»ùÀà
+	// TODO: ï¿½Ú´ï¿½ï¿½ï¿½ï¿½ï¿½×¨ï¿½Ã´ï¿½ï¿½ï¿½ï¿½/ï¿½ï¿½ï¿½ï¿½Ã»ï¿½ï¿½ï¿½
 	if ((pMsg->message == WM_RBUTTONDOWN) || (pMsg->message == WM_RBUTTONDBLCLK))
 	{
 		/*CPoint point(pMsg->pt);
@@ -201,7 +212,7 @@ BOOL CHTMLContainerDlg::PreTranslateMessage(MSG* pMsg)
 				//pmenu->TrackPopupMenu(0,pMsg->pt.x,pMsg->pt.y,this);
 			}
 		}*/
-		return TRUE;//Èç¹ûÏëÍêÈ«ÆÁ±Îµô,²»ÏÔÊ¾ÈÎºÎ²Ëµ¥,Ö±½Ó·µ»ØTRUE¾ÍÐÐ,ÉÏÃæÕâÐ©´úÂëÑÝÊ¾ÁËÔõÃ´¶ÔhtmlÖÐÌØ¶¨IDµÄÔªËØµ¯³ö×Ô¼ºÏëÒªÏÔÊ¾µÄ²Ëµ¥ 
+		return TRUE;//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È«ï¿½ï¿½ï¿½Îµï¿½,ï¿½ï¿½ï¿½ï¿½Ê¾ï¿½ÎºÎ²Ëµï¿½,Ö±ï¿½Ó·ï¿½ï¿½ï¿½TRUEï¿½ï¿½ï¿½ï¿½,ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð©ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê¾ï¿½ï¿½ï¿½ï¿½Ã´ï¿½ï¿½htmlï¿½ï¿½ï¿½Ø¶ï¿½IDï¿½ï¿½Ôªï¿½Øµï¿½ï¿½ï¿½ï¿½Ô¼ï¿½ï¿½ï¿½Òªï¿½ï¿½Ê¾ï¿½Ä²Ëµï¿½ 
 	}
  	else if (pMsg->message == WM_LBUTTONDOWN && m_bTitleRectAvailable)
  	{
@@ -227,7 +238,7 @@ BOOL CHTMLContainerDlg::PreTranslateMessage(MSG* pMsg)
 		switch(pMsg->wParam)
 		{
 		case VK_ESCAPE:
-			return TRUE; //Ö±½Ó·µ»ØTRUE
+			return TRUE; //Ö±ï¿½Ó·ï¿½ï¿½ï¿½TRUE
 			break;
  		case VK_RETURN:
 			TranslateMessage(pMsg);
@@ -260,12 +271,12 @@ void CHTMLContainerDlg::SetWindowEllispeFrame(int nWidthEllipse, int nHeightElli
 	RECT rect;
 	GetWindowRect(&rect);
 
-	// »­Ò»¸öÔ²½Ç¾ØÐÎ¡£
+	// ï¿½ï¿½Ò»ï¿½ï¿½Ô²ï¿½Ç¾ï¿½ï¿½Î¡ï¿½
 	BeginPath(hdcMem);
 	RoundRect(hdcMem, 0, 0, rect.right - rect.left, rect.bottom - rect.top, nWidthEllipse, nHeightEllipse); 
 	EndPath(hdcMem);
 
-	HRGN hRgn = PathToRegion(hdcMem); // ×îºó°ÑÂ·¾¶×ª»»ÎªÇøÓò¡£
+	HRGN hRgn = PathToRegion(hdcMem); // ï¿½ï¿½ï¿½ï¿½Â·ï¿½ï¿½×ªï¿½ï¿½Îªï¿½ï¿½ï¿½ï¿½
 
 	SetWindowRgn(hRgn, TRUE);
 }
@@ -275,7 +286,7 @@ void CHTMLContainerDlg::SetDropCallback( FnDropFilesCallback fnCallback, LPVOID 
 	m_droptarget.SetDropCallback(fnCallback, lpParameter);
 }
 
-//»ñÈ¡JS½Å±¾
+//ï¿½ï¿½È¡JSï¿½Å±ï¿½
 bool CHTMLContainerDlg::GetJScript(CComPtr<IDispatch>& spDisp)
 {
 	HRESULT hr = S_OK;
@@ -304,7 +315,7 @@ bool CHTMLContainerDlg::CallJScript(const CString strFunc)
 	return SUCCEEDED(hr);
 }
 
-//µ÷ÓÃJSº¯Êý
+//ï¿½ï¿½ï¿½ï¿½JSï¿½ï¿½ï¿½ï¿½
 CComVariant CHTMLContainerDlg::CallJScript(const CString strFunc, const CStringArray& paramArray)
 {
 	//Getting IDispatch for Java Script objects
@@ -365,13 +376,13 @@ BOOL CHTMLContainerDlg::SetWindowTop()
 	}
 }
 
-//È¡Ïû´°¿ÚÖÃ¶¥
+//È¡ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ã¶ï¿½
 BOOL CHTMLContainerDlg::CancelWindowTop()
 {
 	return SetWindowPos(&CWnd::wndNoTopMost, 0, 0, 0, 0, SWP_NOMOVE | SWP_NOSIZE);
 }
 
-//×¢Òâ£º»¹ÐèÒªµ÷Õû Á´½ÓÆ÷->Çåµ¥ÎÄ¼þ->ÔÊÐí¸ôÀë = ·ñ
+//×¢ï¿½â£ºï¿½ï¿½ï¿½ï¿½Òªï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½->ï¿½åµ¥ï¿½Ä¼ï¿½->ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ = ï¿½ï¿½
 BOOL CHTMLContainerDlg::AllowDragAndDropForVistaAbove( BOOL bAllow /*= TRUE*/ )
 {
 	static UINT MSGID_ARRAY[] = {

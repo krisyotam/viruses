@@ -1,3 +1,14 @@
+; ------------------------------------------------------------
+; name      Legacy Win2k
+; type      asm
+; cve       —
+; year      unknown
+; os        DOS
+; authors   unknown
+; source    krisyotam
+; archived  krisyotam (2026)
+; notes     —
+; ------------------------------------------------------------
 
 ;win2k.CannaByte.v2 coded by (Super && vallez)
 ;

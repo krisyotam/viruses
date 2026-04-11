@@ -1,3 +1,14 @@
+/*
+  name      Carberp Botnet
+  type      trojan
+  cve       —
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     —
+ */
 #define cairo_append_path _moz_cairo_append_path
 #define cairo_arc _moz_cairo_arc
 #define cairo_arc_negative _moz_cairo_arc_negative

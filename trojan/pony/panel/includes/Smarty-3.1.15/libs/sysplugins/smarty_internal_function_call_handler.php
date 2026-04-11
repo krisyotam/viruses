@@ -1,3 +1,14 @@
+/*
+  name      Pony
+  type      trojan
+  cve       —
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    RamadhanAmizudin/malware
+  archived  RamadhanAmizudin, krisyotam (2026)
+  notes     —
+ */
 <?php
 /**
  * Smarty Internal Plugin Function Call Handler

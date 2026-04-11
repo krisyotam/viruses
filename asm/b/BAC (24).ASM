@@ -1,3 +1,14 @@
+; ------------------------------------------------------------
+; name      B
+; type      asm
+; cve       —
+; year      unknown
+; os        DOS
+; authors   unknown
+; source    krisyotam
+; archived  krisyotam (2026)
+; notes     —
+; ------------------------------------------------------------
 BAC	segment para public 'code'
 	assume	cs:BAC, ds:BAC, es:BAC, ss:NOTHING
 	org	100h		; .COM format

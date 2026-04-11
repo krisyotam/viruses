@@ -1,3 +1,14 @@
+; ------------------------------------------------------------
+; name      F
+; type      asm
+; cve       —
+; year      unknown
+; os        DOS
+; authors   unknown
+; source    krisyotam
+; archived  krisyotam (2026)
+; notes     —
+; ------------------------------------------------------------
 code    segment'code'
 assume  cs:code, ds:code, ss:code, es:code
 org     100h

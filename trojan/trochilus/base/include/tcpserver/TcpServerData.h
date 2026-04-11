@@ -1,14 +1,25 @@
+/*
+  name      Trochilus
+  type      trojan
+  cve       â€”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    RamadhanAmizudin/malware
+  archived  RamadhanAmizudin, krisyotam (2026)
+  notes     â€”
+ */
 #pragma once
 
-//TCPÏûÏ¢µÄ×î´ó³¤¶È
+//TCPï¿½ï¿½Ï¢ï¿½ï¿½ï¿½ï¿½ó³¤¶ï¿½
 #ifndef TCPMSGSIZE
 #	define TCPMSGSIZE	(16 * 1024)
 #endif
 
-//ÏûÏ¢´¦Àí»Øµ÷º¯Êý
+//ï¿½ï¿½Ï¢ï¿½ï¿½ï¿½ï¿½ï¿½Øµï¿½ï¿½ï¿½ï¿½ï¿½
 typedef BOOL (*FnTcpMsgHandler)(SOCKADDR_IN addr, SOCKET clientSocket, const LPBYTE pData, DWORD dwDataSize, LPBYTE pSessionData, LPVOID lpParameter);
 
-//Á¬½Ó¶Ï¿ªÍ¨Öªº¯Êý
+//ï¿½ï¿½ï¿½Ó¶Ï¿ï¿½Í¨Öªï¿½ï¿½ï¿½ï¿½
 typedef enum
 {
 	DISCONNECTREASON_UNKNOWN = 0,

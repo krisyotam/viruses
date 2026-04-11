@@ -1,3 +1,14 @@
+/*
+  name      FlexiSpy
+  type      trojan
+  cve       —
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    RamadhanAmizudin/malware
+  archived  RamadhanAmizudin, krisyotam (2026)
+  notes     —
+ */
 import com.vvt.event.FxEventCentre;
 import com.vvt.event.constant.GPSProvider;
 import com.vvt.gpsc.GPSCapture;

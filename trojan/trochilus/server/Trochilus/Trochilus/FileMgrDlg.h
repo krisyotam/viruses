@@ -1,3 +1,14 @@
+/*
+  name      Trochilus
+  type      trojan
+  cve       â€”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    RamadhanAmizudin/malware
+  archived  RamadhanAmizudin, krisyotam (2026)
+  notes     â€”
+ */
 #pragma once
 #include "afxcmn.h"
 #include "IModule.h"
@@ -14,7 +25,7 @@ public:
 
 	enum { IDD = IDD_DIALOG_FILE };
 
-	//´¦ÀíÄ£¿éÏûÏ¢
+	//ï¿½ï¿½ï¿½ï¿½Ä£ï¿½ï¿½ï¿½ï¿½Ï¢
 	static void CALLBACK HandleModuleMsg(LPCTSTR clientid,UINT nMsg, LPVOID lpContext, LPVOID lpParameter);
 	void HandleModuleMsgProc(UINT nMsg, LPVOID lpContext, LPVOID lpParameter);
 
@@ -22,31 +33,31 @@ protected:
 	virtual void DoDataExchange(CDataExchange* pDX);
 
 
-	//³õÊ¼»¯½çÃæ¿Ø¼þºÍÊý¾Ý
+	//ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ø¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	virtual BOOL OnInitDialog();
 	void InitView();
 	void InitData();
 	void InitResize();
 
-	//ÉèÖÃ¶Ô»°¿ò×Ö¶ÎÃû
+	//ï¿½ï¿½ï¿½Ã¶Ô»ï¿½ï¿½ï¿½ï¿½Ö¶ï¿½ï¿½ï¿½
 	void SetColumn(CListCtrl* list,LPTSTR text,int nCol,int nWidth);
 
-	//½«·´À¡ÄÚÈÝ²åÈëÎÄ¼þÁÐ±í
+	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ý²ï¿½ï¿½ï¿½ï¿½Ä¼ï¿½ï¿½Ð±ï¿½
 	void InsertFileList( char* lpJson,BOOL isRemote);
 
-	//µÃµ½Ô¶³ÌÎÄ¼þÁÐ±í
+	//ï¿½Ãµï¿½Ô¶ï¿½ï¿½ï¿½Ä¼ï¿½ï¿½Ð±ï¿½
 	void GetRemoteList(CString strPath);
 
-	//µÃµ½±¾µØÎÄ¼þÁÐ±í
+	//ï¿½Ãµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä¼ï¿½ï¿½Ð±ï¿½
 	void GetLocalList(CString strPath);
 
-	//µÃµ½ÎÄ¼þÍ¼±ê¾ä±ú
+	//ï¿½Ãµï¿½ï¿½Ä¼ï¿½Í¼ï¿½ï¿½ï¿½ï¿½
 	HICON GetFileIcon(CString strPath);
 
-	//´¦Àí±¾µØÎÄ¼þÁÐ±í
+	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä¼ï¿½ï¿½Ð±ï¿½
 	void HandleLocalFile(UINT nMsg, LPVOID lpContext, LPVOID lpParameter);
 
-	//´¦ÀíÔ¶³ÌÎÄ¼þÁÐ±í
+	//ï¿½ï¿½ï¿½ï¿½Ô¶ï¿½ï¿½ï¿½Ä¼ï¿½ï¿½Ð±ï¿½
 	void HandleRemoteFile(UINT nMsg, LPVOID lpContext, LPVOID lpParameter);
 
 	BOOL IsEquPath(LPCTSTR filename,BOOL isRemote);
@@ -68,21 +79,21 @@ public:
 
 	LPVOID m_panel;
 private:
-	//Ô¶³ÌÄ¿Â¼ÁÐ±íË«»÷
+	//Ô¶ï¿½ï¿½Ä¿Â¼ï¿½Ð±ï¿½Ë«ï¿½ï¿½
 	afx_msg void OnNMDblclkListRdic(NMHDR *pNMHDR, LRESULT *pResult);
-	//±¾µØÄ¿Â¼ÁÐ±íË«»÷
+	//ï¿½ï¿½ï¿½ï¿½Ä¿Â¼ï¿½Ð±ï¿½Ë«ï¿½ï¿½
 	afx_msg void OnNMDblclkListLdic(NMHDR *pNMHDR, LRESULT *pResult);
-	//Ô¶³ÌÉÏ·­Ä¿Â¼°´Å¥
+	//Ô¶ï¿½ï¿½ï¿½Ï·ï¿½Ä¿Â¼ï¿½ï¿½Å¥
 	afx_msg void OnBnClickedButtonRupdic();
-	//±¾µØÉÏ·­Ä¿Â¼°´Å¥
+	//ï¿½ï¿½ï¿½ï¿½ï¿½Ï·ï¿½Ä¿Â¼ï¿½ï¿½Å¥
 	afx_msg void OnBnClickedButtonLupdic();
-	//Ô¶³ÌÄ¿Â¼Ë¢ÐÂ
+	//Ô¶ï¿½ï¿½Ä¿Â¼Ë¢ï¿½ï¿½
 	afx_msg void OnBnClickedButtonRrefresh();
-	//±¾µØÄ¿Â¼Ë¢ÐÂ
+	//ï¿½ï¿½ï¿½ï¿½Ä¿Â¼Ë¢ï¿½ï¿½
 	afx_msg void OnBnClickedButtonLrefresh();
-	//ÉÏ´«ÎÄ¼þ°´Å¥
+	//ï¿½Ï´ï¿½ï¿½Ä¼ï¿½ï¿½ï¿½Å¥
 	afx_msg void OnBnClickedButtonUpload();
-	//ÏÂÔØÎÄ¼þ°´Å¥
+	//ï¿½ï¿½ï¿½ï¿½ï¿½Ä¼ï¿½ï¿½ï¿½Å¥
 	afx_msg void OnBnClickedButtonDown();
 public:
 	afx_msg void OnBnClickedButtonRun();

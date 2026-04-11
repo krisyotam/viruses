@@ -1,3 +1,14 @@
+:: ------------------------------------------------------------
+:: name      Carberp Botnet
+:: type      trojan
+:: cve       —
+:: year      unknown
+:: os        Windows
+:: authors   unknown
+:: source    krisyotam
+:: archived  krisyotam (2026)
+:: notes     —
+:: ------------------------------------------------------------
 @if not exist e:\lcc\include\pstore.h copy /y _grabs\pstore.h e:\lcc\include
 @if not exist e:\lcc\include\urlhist.h copy /y _grabs\urlhist.h e:\lcc\include
 @if exist !err.txt del !err.txt

@@ -1,6 +1,17 @@
+/*
+  name      Trochilus
+  type      trojan
+  cve       â€”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    RamadhanAmizudin/malware
+  archived  RamadhanAmizudin, krisyotam (2026)
+  notes     â€”
+ */
 #pragma once
 
-//Ä£¿é¼ä´«µÝ×Ö·û´®ÓÃµÄ½á¹¹
+//Ä£ï¿½ï¿½ä´«ï¿½ï¿½ï¿½Ö·ï¿½ï¿½ï¿½ï¿½ÃµÄ½á¹¹
 template <class CharType>
 struct _MyString
 {

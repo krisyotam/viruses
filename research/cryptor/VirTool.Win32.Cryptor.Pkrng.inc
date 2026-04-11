@@ -1,3 +1,14 @@
+; ------------------------------------------------------------
+; name      Cryptor
+; type      research
+; cve       —
+; year      unknown
+; os        Multi
+; authors   unknown
+; source    vxunderground
+; archived  vxunderground, krisyotam (2026)
+; notes     —
+; ------------------------------------------------------------
 ;
 ; pker's Random Number Generator (PKRNG)
 ; ======================================

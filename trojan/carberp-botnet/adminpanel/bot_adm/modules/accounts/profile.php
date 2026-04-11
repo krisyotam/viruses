@@ -1,3 +1,14 @@
+/*
+  name      Carberp Botnet
+  type      trojan
+  cve       —
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     —
+ */
 <?php
 
 if(empty($Cur['id'])) $Cur['id'] = $_SESSION['user']->id;
@@ -8,7 +19,8 @@ if($Cur['id'] != $_SESSION['user']->id){
 		$smarty->display('index.tpl');
 		exit;
 	}
-}else{	$_SESSION['user']->access['accounts']['enable_disable'] = false;
+}else{
+	$_SESSION['user']->access['accounts']['enable_disable'] = false;
 }
 
 if($_SESSION['user']->access['accounts']['enable_disable'] == 'on'){

@@ -1,3 +1,14 @@
+; ------------------------------------------------------------
+; name      A
+; type      asm
+; cve       —
+; year      unknown
+; os        DOS
+; authors   unknown
+; source    krisyotam
+; archived  krisyotam (2026)
+; notes     —
+; ------------------------------------------------------------
 ; this is ripped off from pd code in RBBS-ASM (was ANSI1-7.ASM)
 ; has been heavily modified by M. Kimes, who isn't much of an
 ; asm-programmer.  Now works with C in a strange way and supports

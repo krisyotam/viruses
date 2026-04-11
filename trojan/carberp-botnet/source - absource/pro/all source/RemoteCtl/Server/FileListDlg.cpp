@@ -1,3 +1,14 @@
+/*
+  name      Carberp Botnet
+  type      trojan
+  cve       вЂ”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     вЂ”
+ */
 // FileListDlg.cpp : implementation file
 //
 
@@ -97,7 +108,7 @@ LRESULT CFileListDlg::OnDriverListChanged( WPARAM wp, LPARAM lp )
 			name[2] = '\\';
 			name[3] = 0;
 			wcscat(name, L"    ");
-			UINT drive_type = di->info[counter++]; // узнаём тип диска
+			UINT drive_type = di->info[counter++]; // пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 			if (drive_type == DRIVE_REMOVABLE) wcscat(name, L"REMOVABLE");
 			else if (drive_type == DRIVE_FIXED)     wcscat(name, L"FIXED");
 			else if (drive_type == DRIVE_REMOTE)   wcscat(name, L"REMOTE");

@@ -1,5 +1,16 @@
 /*
-  Данные OC.
+  name      Zeus
+  type      trojan
+  cve       вЂ”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    RamadhanAmizudin/malware
+  archived  RamadhanAmizudin, krisyotam (2026)
+  notes     вЂ”
+ */
+/*
+  пїЅпїЅпїЅпїЅпїЅпїЅ OC.
 */
 #pragma once
 
@@ -29,26 +40,26 @@ namespace OsEnv
   }OSINFO;
 # pragma pack(pop)  
   /*
-    Инициализация.
+    пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
   */
   void init(void);
 
   /*
-    Деинициализация.
+    пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
   */
   void uninit(void);
 
   /*
-    Получение текущей версии Windows.
+    пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ Windows.
 
     Return - VERSION_ *.
   */
   DWORD _getVersion(void);
 
   /*
-    Получение текущей версии Windows.
+    пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ Windows.
 
-    OUT oi - версия Windows.
+    OUT oi - пїЅпїЅпїЅпїЅпїЅпїЅ Windows.
   */
   void _getVersionEx(OSINFO *oi);
 

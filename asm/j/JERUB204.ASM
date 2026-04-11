@@ -1,3 +1,14 @@
+; ------------------------------------------------------------
+; name      J
+; type      asm
+; cve       —
+; year      unknown
+; os        DOS
+; authors   unknown
+; source    krisyotam
+; archived  krisyotam (2026)
+; notes     —
+; ------------------------------------------------------------
           Virus : Jerusalem Version B Variant A-204
 Disassembled by : Righard Zwienenberg
                   Steenwijklaan 302

@@ -1,3 +1,14 @@
+; ------------------------------------------------------------
+; name      V
+; type      asm
+; cve       —
+; year      unknown
+; os        DOS
+; authors   unknown
+; source    krisyotam
+; archived  krisyotam (2026)
+; notes     —
+; ------------------------------------------------------------
 From netcom.com!ix.netcom.com!howland.reston.ans.net!sol.ctr.columbia.edu!news.mtu.edu!news.mtu.edu!not-for-mail Mon Nov 14 02:24:29 1994
 Xref: netcom.com alt.comp.virus:240
 Path: netcom.com!ix.netcom.com!howland.reston.ans.net!sol.ctr.columbia.edu!news.mtu.edu!news.mtu.edu!not-for-mail

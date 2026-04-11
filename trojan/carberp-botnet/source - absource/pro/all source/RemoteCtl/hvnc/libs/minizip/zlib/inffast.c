@@ -1,3 +1,14 @@
+/*
+  name      Carberp Botnet
+  type      trojan
+  cve       —
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     —
+ */
 /* inffast.c -- fast decoding
  * Copyright (C) 1995-2008, 2010 Mark Adler
  * For conditions of distribution and use, see copyright notice in zlib.h

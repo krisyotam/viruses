@@ -1,3 +1,14 @@
+; ------------------------------------------------------------
+; name      M
+; type      asm
+; cve       —
+; year      unknown
+; os        DOS
+; authors   unknown
+; source    krisyotam
+; archived  krisyotam (2026)
+; notes     —
+; ------------------------------------------------------------
 ;  MERDE-3:   A resident, non-overwriting .Com infector by the loki-nator
 
 ;Well, here it is, for what it's worth..  It is really kind of a 

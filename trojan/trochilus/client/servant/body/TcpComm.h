@@ -1,3 +1,14 @@
+/*
+  name      Trochilus
+  type      trojan
+  cve       â€”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    RamadhanAmizudin/malware
+  archived  RamadhanAmizudin, krisyotam (2026)
+  notes     â€”
+ */
 #pragma once
 #include "rsa/librsa.h"
 #include "socket/MySocket.h"
@@ -11,7 +22,7 @@ public:
 	TcpComm(BOOL isSecure = FALSE);
 	~TcpComm();
 
-	//ÊµÏÖIComm½Ó¿Ú
+	//Êµï¿½ï¿½ICommï¿½Ó¿ï¿½
 	virtual COMM_NAME GetName() {return COMMNAME_TCP; };
 	virtual BOOL SendAndRecv( ULONG targetIP, const LPBYTE pSendData, DWORD dwSendSize, LPBYTE* pRecvData, DWORD& dwRecvSize );
 

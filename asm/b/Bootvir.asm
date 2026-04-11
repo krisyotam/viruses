@@ -1,3 +1,14 @@
+; ------------------------------------------------------------
+; name      B
+; type      asm
+; cve       —
+; year      unknown
+; os        DOS
+; authors   unknown
+; source    krisyotam
+; archived  krisyotam (2026)
+; notes     —
+; ------------------------------------------------------------
 
                     P/HUN Issue #4, Volume 2: Phile 3 of 11
                     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

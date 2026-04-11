@@ -1,3 +1,14 @@
+; ------------------------------------------------------------
+; name      D
+; type      asm
+; cve       —
+; year      unknown
+; os        DOS
+; authors   unknown
+; source    krisyotam
+; archived  krisyotam (2026)
+; notes     —
+; ------------------------------------------------------------
 TITLE	DRIP	5-26-87	[4-21-88]
 
 ;Goes TSR, activate/toggle with Scroll Lock key.

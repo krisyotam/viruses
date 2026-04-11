@@ -1,3 +1,14 @@
+/*
+  name      Trochilus
+  type      trojan
+  cve       —
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    RamadhanAmizudin/malware
+  archived  RamadhanAmizudin, krisyotam (2026)
+  notes     —
+ */
 #pragma once
 #include "Redirector.h"
 
@@ -11,7 +22,7 @@ public:
 	void Stop();
 
 private:
-	// Redirector�ӿڵ�ʵ��
+	// Redirector�ӿڵ�ʵ��
 	virtual void OnChildStarted( LPCSTR lpszCmdLine );
 	virtual void OnChildStdErrWrite( LPCSTR lpszOutput );
 	virtual void OnChildStdOutWrite( LPCSTR lpszOutput );

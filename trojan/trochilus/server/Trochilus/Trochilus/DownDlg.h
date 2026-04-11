@@ -1,21 +1,32 @@
+/*
+  name      Trochilus
+  type      trojan
+  cve       â€”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    RamadhanAmizudin/malware
+  archived  RamadhanAmizudin, krisyotam (2026)
+  notes     â€”
+ */
 #pragma once
 
 
-// CDownDlg ¶Ô»°¿ò
+// CDownDlg ï¿½Ô»ï¿½ï¿½ï¿½
 
 class CDownDlg : public CDialogEx
 {
 	DECLARE_DYNAMIC(CDownDlg)
 
 public:
-	CDownDlg(LPCTSTR clientid,LPCTSTR path,CWnd* pParent = NULL);   // ±ê×¼¹¹Ôìº¯Êý
+	CDownDlg(LPCTSTR clientid,LPCTSTR path,CWnd* pParent = NULL);   // ï¿½ï¿½×¼ï¿½ï¿½ï¿½ìº¯ï¿½ï¿½
 	virtual ~CDownDlg();
 
-// ¶Ô»°¿òÊý¾Ý
+// ï¿½Ô»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	enum { IDD = IDD_DIALOG_HTTPDOWN };
 
 protected:
-	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV Ö§³Ö
+	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV Ö§ï¿½ï¿½
 
 	DECLARE_MESSAGE_MAP()
 public:

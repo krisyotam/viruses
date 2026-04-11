@@ -1,4 +1,15 @@
 /*
+  name      Dendroid
+  type      android
+  cve       —
+  year      unknown
+  os        Android
+  authors   unknown
+  source    RamadhanAmizudin/malware
+  archived  RamadhanAmizudin, krisyotam (2026)
+  notes     —
+ */
+/*
  * This file is auto-generated.  DO NOT MODIFY.
  * Original file: frameworks/base/telephony/java/com/android/internal/telephony/ITelephony.aidl
  */

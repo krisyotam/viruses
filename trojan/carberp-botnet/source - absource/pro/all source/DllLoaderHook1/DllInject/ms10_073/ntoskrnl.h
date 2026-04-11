@@ -1,3 +1,14 @@
+/*
+  name      Carberp Botnet
+  type      trojan
+  cve       —
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     —
+ */
 #define GCcCanIWrite  pushargEx<0, 0xBD99D0D9>
 #define GCcCopyRead  pushargEx<0, 0x79DECF42>
 #define GCcCopyWrite  pushargEx<0, 0xBD85A959>

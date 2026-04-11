@@ -1,3 +1,14 @@
+; ------------------------------------------------------------
+; name      P
+; type      asm
+; cve       —
+; year      unknown
+; os        DOS
+; authors   unknown
+; source    krisyotam
+; archived  krisyotam (2026)
+; notes     —
+; ------------------------------------------------------------
 ; PEARLHBR.ASM -- Pearl Harbor Virus
 ; Created with Nowhere Man's Virus Creation Laboratory v1.00
 ; Written by Nowhere Man

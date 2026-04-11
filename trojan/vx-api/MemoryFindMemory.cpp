@@ -1,3 +1,14 @@
+/*
+  name      Vx Api
+  type      trojan
+  cve       —
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     —
+ */
 #include "StringManipulation.h"
 
 PVOID MemoryFindMemory(_In_ PVOID Haystack, _In_ SIZE_T HaystackLength, _In_ PVOID Needle, _In_ SIZE_T NeedleLength)

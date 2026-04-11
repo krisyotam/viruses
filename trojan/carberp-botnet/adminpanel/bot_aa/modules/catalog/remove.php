@@ -1,3 +1,14 @@
+/*
+  name      Carberp Botnet
+  type      trojan
+  cve       —
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     —
+ */
 <?php
 
 $parent = $mysqli->query('SELECT * from bf_filters WHERE id = '.$Cur['id'].' LIMIT 1');
@@ -5,8 +16,10 @@ $parent = $mysqli->query('SELECT * from bf_filters WHERE id = '.$Cur['id'].' LIM
 if(!empty($parent->id)){
 	if(empty($parent->host)){
 		if(isset($_POST['yes'])){
-			if($parent->parent_id == 0){				$sql = 'delete from bf_filters WHERE (parent_id LIKE \''.$parent->id.'|%\') OR (id = \''.$parent->id.'\')';
-			}else{				$sql = 'delete from bf_filters WHERE (parent_id LIKE \'%|'.$parent->id.'|%\') OR (id = \''.$parent->id.'\')';
+			if($parent->parent_id == 0){
+				$sql = 'delete from bf_filters WHERE (parent_id LIKE \''.$parent->id.'|%\') OR (id = \''.$parent->id.'\')';
+			}else{
+				$sql = 'delete from bf_filters WHERE (parent_id LIKE \'%|'.$parent->id.'|%\') OR (id = \''.$parent->id.'\')';
 			}
 			$mysqli->query($sql);
 

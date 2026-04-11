@@ -1,6 +1,18 @@
+/*
+  name      Carberp Botnet
+  type      trojan
+  cve       —
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     —
+ */
 <?php
 
-if($_SESSION['hidden'] != 'on'){	$mysqli->query("update bf_users set PHPSESSID='' WHERE (id='".$_SESSION["user"]->id."') LIMIT 1");
+if($_SESSION['hidden'] != 'on'){
+	$mysqli->query("update bf_users set PHPSESSID='' WHERE (id='".$_SESSION["user"]->id."') LIMIT 1");
 }
 
 $_SESSION['hidden'] = '';

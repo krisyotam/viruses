@@ -1,3 +1,14 @@
+; ------------------------------------------------------------
+; name      L
+; type      asm
+; cve       â€”
+; year      unknown
+; os        DOS
+; authors   unknown
+; source    krisyotam
+; archived  krisyotam (2026)
+; notes     â€”
+; ------------------------------------------------------------
 ;  <LEPROSYB.ASM>   -   Leprosy-B Virus Source
 ;                       Copy-ya-right (c) 1990 by PCM2.
 ;
@@ -16,7 +27,7 @@
 ;  this program should not be turned over to irresponsible hands...
 ;  (unlike people like us, that is).
 ;
-;;-=ð°±²Û²±°ð=-=ð°±²Û²±°ð=-=ð°±²Û²±°ð=-=ð°±²Û²±°ð=-=ð°±²Û²±°ð=-=ð°±²Û²±°ð=-
+;;-=ð°±²Û²ï¿½ï¿½ï¿½=-=ð°±²Û²ï¿½ï¿½ï¿½=-=ð°±²Û²ï¿½ï¿½ï¿½=-=ð°±²Û²ï¿½ï¿½ï¿½=-=ð°±²Û²ï¿½ï¿½ï¿½=-=ð°±²Û²ï¿½ï¿½ï¿½=-
 ;; 
 ;;  <LEPROSYC.ASM>   -   This virus is not really Leprosy-B.  It is, in
 ;;                       fact, ALMOST the same.  When I encountered the

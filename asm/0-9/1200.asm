@@ -1,3 +1,14 @@
+; ------------------------------------------------------------
+; name      0 9
+; type      asm
+; cve       —
+; year      unknown
+; os        DOS
+; authors   unknown
+; source    krisyotam
+; archived  krisyotam (2026)
+; notes     —
+; ------------------------------------------------------------
 ;hmm.,.,.,.,without a name.,.,.,.,
 ;this file is much like the 606, only it
 ;is much more harmful...it has a special suprise

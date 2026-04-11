@@ -1,4 +1,15 @@
 #!/usr/bin/env php
+/*
+  name      Carberp Botnet
+  type      trojan
+  cve       вЂ”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     вЂ”
+ */
 <?php
 
 set_time_limit(0);
@@ -99,7 +110,7 @@ function size_format($size, $round = 2, $bps = false) {
     	for ($i=0; $size > 1024 && $i < count($sizes) - 1; $i++) $size /= 1024;
     }else{
     	$size = $size * 8;
-    	$sizes = array(' бит', ' килобит', ' мегабит', ' гигабит', ' терабит', ' pbps', ' ebps', ' zbps', ' tbps');
+    	$sizes = array(' пїЅпїЅпїЅ', ' пїЅпїЅпїЅпїЅпїЅпїЅпїЅ', ' пїЅпїЅпїЅпїЅпїЅпїЅпїЅ', ' пїЅпїЅпїЅпїЅпїЅпїЅпїЅ', ' пїЅпїЅпїЅпїЅпїЅпїЅпїЅ', ' pbps', ' ebps', ' zbps', ' tbps');
     	for ($i=0; $size > 1000 && $i < count($sizes) - 1; $i++) $size /= 1000;
     }
 

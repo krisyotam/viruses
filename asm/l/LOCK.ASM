@@ -1,3 +1,14 @@
+; ------------------------------------------------------------
+; name      L
+; type      asm
+; cve       —
+; year      unknown
+; os        DOS
+; authors   unknown
+; source    krisyotam
+; archived  krisyotam (2026)
+; notes     —
+; ------------------------------------------------------------
 COMMENT*  Change ROR -> ROL in the TWO marked places to produce UNLOCK.ASM  *
 CODE_SEG        SEGMENT
         ASSUME  CS:CODE_SEG

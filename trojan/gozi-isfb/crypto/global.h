@@ -1,3 +1,14 @@
+/*
+  name      Gozi-ISFB
+  type      trojan
+  cve       —
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    RamadhanAmizudin/malware
+  archived  RamadhanAmizudin, krisyotam (2026)
+  notes     —
+ */
 /* GLOBAL.H - RSAREF types and constants
 
 /* Copyright (C) RSA Laboratories, a division of RSA Data Security,

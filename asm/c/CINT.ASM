@@ -1,3 +1,14 @@
+; ------------------------------------------------------------
+; name      C
+; type      asm
+; cve       —
+; year      unknown
+; os        DOS
+; authors   unknown
+; source    krisyotam
+; archived  krisyotam (2026)
+; notes     —
+; ------------------------------------------------------------
 	TITLE	LC Interrupt trap routine
 	NAME	LCINT
 	INCLUDE DOS.MAC			; BE SURE TO INCLUDE THE CORRECT

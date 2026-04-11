@@ -1,3 +1,14 @@
+/*
+  name      Carberp Botnet
+  type      trojan
+  cve       —
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     —
+ */
 function get_cab_window(id, type){
 	get_window('/cabs/index-'+type+'.html?window=1&x='+id, {name:type+''+id, widht: 800, height: 600});
 	return false;

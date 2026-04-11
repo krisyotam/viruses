@@ -1,3 +1,14 @@
+/*
+  name      Carberp Botnet
+  type      trojan
+  cve       —
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     —
+ */
 /*** WARNING - THIS HAS NEVER BEEN FINISHED ***/
 /*****************************************************************************
 * chap.c - Network Challenge Handshake Authentication Protocol program file.

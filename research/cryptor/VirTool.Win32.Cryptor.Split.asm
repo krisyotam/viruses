@@ -1,3 +1,14 @@
+; ------------------------------------------------------------
+; name      Cryptor
+; type      research
+; cve       —
+; year      unknown
+; os        Multi
+; authors   unknown
+; source    vxunderground
+; archived  vxunderground, krisyotam (2026)
+; notes     —
+; ------------------------------------------------------------
   File Splitting Engine
   by Second Part To Hell
   www.spth.de.vu

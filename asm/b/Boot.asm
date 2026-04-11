@@ -1,3 +1,14 @@
+; ------------------------------------------------------------
+; name      B
+; type      asm
+; cve       —
+; year      unknown
+; os        DOS
+; authors   unknown
+; source    krisyotam
+; archived  krisyotam (2026)
+; notes     —
+; ------------------------------------------------------------
 ;This is a simple boot sector that will load either MS-DOS or PC-DOS. It is not
 ;self-reproducing, but it will be used as the foundation on which to build a
 ;virus into a boot sector.

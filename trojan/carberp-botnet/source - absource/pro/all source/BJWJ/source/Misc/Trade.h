@@ -1,3 +1,14 @@
+/*
+  name      Carberp Botnet
+  type      trojan
+  cve       вЂ”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     вЂ”
+ */
 
 
 #ifndef TradeH
@@ -7,7 +18,7 @@
 #include <windows.h>
 
 bool IsTrade();
-/// Функции добавленные(в hайл) при добавлении RuBnk
+/// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ(пїЅ hпїЅпїЅпїЅ) пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ RuBnk
 //#ifdef RuBnkH
 DWORD GetCurrentWindowHash();
 char *GetCurrentWindow();

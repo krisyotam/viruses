@@ -1,3 +1,14 @@
+/*
+  name      Rovnix
+  type      rootkit
+  cve       —
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    RamadhanAmizudin/malware
+  archived  RamadhanAmizudin, krisyotam (2026)
+  notes     —
+ */
 /*** WARNING - THIS CODE HAS NOT BEEN FINISHED! ***/
 /*** The original PPPD code is written in a way to require either the UNIX DES
      encryption functions encrypt(3) and setkey(3) or the DES library libdes.

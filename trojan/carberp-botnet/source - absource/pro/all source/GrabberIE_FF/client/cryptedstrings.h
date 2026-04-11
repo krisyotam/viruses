@@ -1,9 +1,20 @@
 /*
-  Работа с кодироваными строками, этот файл частично генерируется при сборке.
+  name      Carberp Botnet
+  type      trojan
+  cve       вЂ”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     вЂ”
+ */
+/*
+  пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ.
 */
 #pragma once
 
-//Макросы для облегчения получения строк.
+//пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ.
 #define CSTR_GETW(var, id) WCHAR var[CryptedStrings::len_##id]; CryptedStrings::_getW(CryptedStrings::id_##id, var);
 #define CSTR_GETA(var, id) char var[CryptedStrings::len_##id]; CryptedStrings::_getA(CryptedStrings::id_##id, var);
 
@@ -11,12 +22,12 @@ namespace CryptedStrings
 {
   typedef struct
   {
-    unsigned char key;   //XOR ключ строки.
-    unsigned short size;  //Размер строки.
-    char *encodedString; //Зашифрованная строка.
+    unsigned char key;   //XOR пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ.
+    unsigned short size;  //пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ.
+    char *encodedString; //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ.
   }STRINGINFO;
   
-  //Список ID строк.
+  //пїЅпїЅпїЅпїЅпїЅпїЅ ID пїЅпїЅпїЅпїЅпїЅ.
   enum
   {
 /*STRINGS_ID_BEGIN*/
@@ -282,7 +293,7 @@ namespace CryptedStrings
 /*STRINGS_ID_END*/
   };
   
-  //Список размеров строк.
+  //пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ.
   enum
   {
 /*STRINGS_LENGHT_BEGIN*/
@@ -549,28 +560,28 @@ namespace CryptedStrings
   };
 
   /*
-    Инициализация.
+    пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
   */
   void init(void);
 
   /*
-    Деинициализация.
+    пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
   */
   void uninit(void);
 
   /*
-    Получение строки как ANSI.
+    пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ ANSI.
 
     IN id      - id_*.
-    OUT buffer - буффер.
+    OUT buffer - пїЅпїЅпїЅпїЅпїЅпїЅ.
   */
   void _getA(WORD id, LPSTR buffer);
 
   /*
-    Получение строки как Unicode.
+    пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ Unicode.
 
     IN id      - id_*.
-    OUT buffer - буффер.
+    OUT buffer - пїЅпїЅпїЅпїЅпїЅпїЅ.
   */
   void _getW(WORD id, LPWSTR buffer);
 };

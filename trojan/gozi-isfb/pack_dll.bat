@@ -1,3 +1,14 @@
+:: ------------------------------------------------------------
+:: name      Gozi-ISFB
+:: type      trojan
+:: cve       —
+:: year      unknown
+:: os        Windows
+:: authors   unknown
+:: source    RamadhanAmizudin/malware
+:: archived  RamadhanAmizudin, krisyotam (2026)
+:: notes     —
+:: ------------------------------------------------------------
 del %2\client_p.dll
 del %2\Client.bin
 

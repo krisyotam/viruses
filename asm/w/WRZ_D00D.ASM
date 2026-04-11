@@ -1,3 +1,14 @@
+; ------------------------------------------------------------
+; name      W
+; type      asm
+; cve       —
+; year      unknown
+; os        DOS
+; authors   unknown
+; source    krisyotam
+; archived  krisyotam (2026)
+; notes     —
+; ------------------------------------------------------------
 ; PX.ASM : [WaReZ_d00dZ] by [pAgE]
 ; Created wik the Phalcon/Skism Mass-Produced Code Generator
 ; from the configuration file skeleton.cfg

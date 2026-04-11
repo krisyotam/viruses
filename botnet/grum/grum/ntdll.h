@@ -1,3 +1,14 @@
+/*
+  name      Grum
+  type      botnet
+  cve       —
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    RamadhanAmizudin/malware
+  archived  RamadhanAmizudin, krisyotam (2026)
+  notes     —
+ */
 #pragma once
 
 #define RtlOffsetToPointer(B,O) ((PCHAR)(((PCHAR)(B))+((ULONG_PTR)(O))))

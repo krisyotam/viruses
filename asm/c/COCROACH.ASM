@@ -1,3 +1,14 @@
+; ------------------------------------------------------------
+; name      C
+; type      asm
+; cve       —
+; year      unknown
+; os        DOS
+; authors   unknown
+; source    krisyotam
+; archived  krisyotam (2026)
+; notes     —
+; ------------------------------------------------------------
 ; COCROACH.ASM -- CockRoach Virus 1.0
 ; Created with Nowhere Man's Virus Creation Laboratory v1.00
 ; Written by Anonymous Caller

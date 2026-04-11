@@ -1,8 +1,19 @@
-// stdafx.cpp : ж╩╟Эю╗╠Йв╪╟Э╨╛нд╪Ч╣дт╢нд╪Ч
-// inst.pch ╫╚вВн╙т╓╠ЮрКм╥
-// stdafx.obj ╫╚╟Э╨╛т╓╠ЮрКюЮпмпео╒
+/*
+  name      Trochilus
+  type      trojan
+  cve       Б─■
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    RamadhanAmizudin/malware
+  archived  RamadhanAmizudin, krisyotam (2026)
+  notes     Б─■
+ */
+// stdafx.cpp : ж╩О©╫О©╫О©╫О©╫О©╫О©╫в╪О©╫О©╫О©╫О©╫О©╫д╪О©╫О©╫О©╫т╢О©╫д╪О©╫
+// inst.pch О©╫О©╫О©╫О©╫н╙т╓О©╫О©╫О©╫О©╫м╥
+// stdafx.obj О©╫О©╫О©╫О©╫О©╫О©╫т╓О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫о╒
 
 #include "stdafx.h"
 
-// TODO: тз STDAFX.H жп
-// рЩсцхн╨нкЫпХ╣д╦╫╪см╥нд╪Чё╛╤Ь╡╩йгтз╢кнд╪ЧжпрЩсц
+// TODO: О©╫О©╫ STDAFX.H О©╫О©╫
+// О©╫О©╫О©╫О©╫О©╫н╨О©╫О©╫О©╫О©╫О©╫д╦О©╫О©╫О©╫м╥О©╫д╪О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫з╢О©╫О©╫д╪О©╫О©╫О©╫О©╫О©╫О©╫О©╫

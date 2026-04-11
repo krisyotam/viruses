@@ -1,3 +1,14 @@
+; ------------------------------------------------------------
+; name      C
+; type      asm
+; cve       —
+; year      unknown
+; os        DOS
+; authors   unknown
+; source    krisyotam
+; archived  krisyotam (2026)
+; notes     —
+; ------------------------------------------------------------
 ;
 ; Virus   Los Salieris de Charly II (para compilar normal).
 ;	  (Stealth with TBAV, VSAFE, DIR, NC and MEM)

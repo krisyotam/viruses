@@ -1,3 +1,14 @@
+/*
+  name      Trochilus
+  type      trojan
+  cve       â€”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    RamadhanAmizudin/malware
+  archived  RamadhanAmizudin, krisyotam (2026)
+  notes     â€”
+ */
 #include "stdafx.h"
 #include "RepeatTask.h"
 
@@ -47,7 +58,7 @@ BOOL RepeatTask::Start()
 	{
 		::ResetEvent(m_hWaitEvent);
 
-		m_bRunning = TRUE;	//ÕâÀïÉèÖÃÎªTRUEÊÇÎªÁËÏß³ÌÀïÃæÔËĞĞÕı³£
+		m_bRunning = TRUE;	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ÎªTRUEï¿½ï¿½Îªï¿½ï¿½ï¿½ß³ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 		m_hThread = ::CreateThread(NULL, 0, RepeatTask::TaskThread, this, 0, NULL);
 		if (NULL == m_hThread)
 		{

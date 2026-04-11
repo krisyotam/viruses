@@ -1,3 +1,14 @@
+; ------------------------------------------------------------
+; name      V
+; type      asm
+; cve       —
+; year      unknown
+; os        DOS
+; authors   unknown
+; source    krisyotam
+; archived  krisyotam (2026)
+; notes     —
+; ------------------------------------------------------------
 ;These routines were pulled from the VCL as an aid to those who
 ;wish to write themselves some utilities. I have tried to gather
 ;all the essential pieces of the routines, so that you can simply

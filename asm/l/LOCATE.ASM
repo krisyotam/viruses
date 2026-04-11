@@ -1,3 +1,14 @@
+; ------------------------------------------------------------
+; name      L
+; type      asm
+; cve       —
+; year      unknown
+; os        DOS
+; authors   unknown
+; source    krisyotam
+; archived  krisyotam (2026)
+; notes     —
+; ------------------------------------------------------------
 CODE_SEG        SEGMENT
         ASSUME  CS:CODE_SEG,DS:CODE_SEG,ES:CODE_SEG
         ORG     100H                    ;Start off right for a .COM file

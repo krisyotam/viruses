@@ -1,10 +1,21 @@
+/*
+  name      Tinba
+  type      trojan
+  cve       вЂ”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    RamadhanAmizudin/malware
+  archived  RamadhanAmizudin, krisyotam (2026)
+  notes     вЂ”
+ */
 <?php
 
 
 /*
-Создайте новую таблицу со столбцами в правильном порядке. 
-Выполните INSERT INTO new_table SELECT поля-в-желаемом-порядке FROM old_table. 
-Удалите или переименуйте old_table. 
+пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ. 
+пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ INSERT INTO new_table SELECT пїЅпїЅпїЅпїЅ-пїЅ-пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ-пїЅпїЅпїЅпїЅпїЅпїЅпїЅ FROM old_table. 
+пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ old_table. 
 ALTER TABLE new_table RENAME old_table.
 
 INSERT INTO bots2 SELECT bot_uid, bot_os, bot_ip, bot_country, bot_net, bot_supp, bot_supp_sub, time_birth, time_last, time_inj, comment FROM bots1

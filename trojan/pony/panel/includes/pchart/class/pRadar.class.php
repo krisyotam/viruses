@@ -1,3 +1,14 @@
+/*
+  name      Pony
+  type      trojan
+  cve       —
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    RamadhanAmizudin/malware
+  archived  RamadhanAmizudin, krisyotam (2026)
+  notes     —
+ */
 <?php
  /*
      pRadar - class to draw radar charts
@@ -519,7 +530,7 @@
         {
          $LabelX = cos(deg2rad($i+$AxisRotation)) * ($EdgeHeight+$LabelPadding+$TicksLength) + $CenterX;
          $LabelY = sin(deg2rad($i+$AxisRotation)) * ($EdgeHeight+$LabelPadding+$TicksLength) + $CenterY;
-         $Label = $i."�";
+         $Label = $i."�";
 
          if ( $LabelPos == RADAR_LABELS_ROTATED )
           $Object->drawText($LabelX,$LabelY,$Label,array("Angle"=>(360-$i),"Align"=>TEXT_ALIGN_BOTTOMMIDDLE));

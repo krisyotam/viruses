@@ -1,4 +1,15 @@
-// DownDlg.cpp : ÊµÏÖÎÄ¼þ
+/*
+  name      Trochilus
+  type      trojan
+  cve       â€”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    RamadhanAmizudin/malware
+  archived  RamadhanAmizudin, krisyotam (2026)
+  notes     â€”
+ */
+// DownDlg.cpp : Êµï¿½ï¿½ï¿½Ä¼ï¿½
 //
 
 #include "stdafx.h"
@@ -7,7 +18,7 @@
 #include "afxdialogex.h"
 
 
-// CDownDlg ¶Ô»°¿ò
+// CDownDlg ï¿½Ô»ï¿½ï¿½ï¿½
 
 IMPLEMENT_DYNAMIC(CDownDlg, CDialogEx)
 
@@ -33,7 +44,7 @@ BEGIN_MESSAGE_MAP(CDownDlg, CDialogEx)
 END_MESSAGE_MAP()
 
 
-// CDownDlg ÏûÏ¢´¦Àí³ÌÐò
+// CDownDlg ï¿½ï¿½Ï¢ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 
 
 void CDownDlg::OnBnClickedButtonDown()

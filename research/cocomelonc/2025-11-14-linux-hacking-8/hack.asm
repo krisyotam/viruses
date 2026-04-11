@@ -1,3 +1,14 @@
+; ------------------------------------------------------------
+; name      Cocomelonc
+; type      research
+; cve       —
+; year      unknown
+; os        Multi
+; authors   unknown
+; source    krisyotam
+; archived  krisyotam (2026)
+; notes     —
+; ------------------------------------------------------------
 ; linux/x64 null-free bindshell 
 ; with password "meow"
 ; exits on wrong password

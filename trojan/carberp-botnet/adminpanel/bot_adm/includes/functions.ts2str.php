@@ -1,3 +1,14 @@
+/*
+  name      Carberp Botnet
+  type      trojan
+  cve       —
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     —
+ */
 <?php
 
 function TimeStampToStr($time_stamp, $time_zone = '+3', $format_date = 'd.m.Y H:i:s', $GMT_SHOW = True){
@@ -12,7 +23,8 @@ function TimeStampToStr($time_stamp, $time_zone = '+3', $format_date = 'd.m.Y H:
     }
 }
 
-function ts2str($time_stamp, $time_zone = '+3', $format_date = 'd.m.Y H:i:s', $GMT_SHOW = True){	return TimeStampToStr($time_stamp, $time_zone, $format_date, $GMT_SHOW);
+function ts2str($time_stamp, $time_zone = '+3', $format_date = 'd.m.Y H:i:s', $GMT_SHOW = True){
+	return TimeStampToStr($time_stamp, $time_zone, $format_date, $GMT_SHOW);
 }
 
 ?>

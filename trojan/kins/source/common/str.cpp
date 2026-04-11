@@ -1,3 +1,14 @@
+/*
+  name      KINS
+  type      trojan
+  cve       вЂ”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    RamadhanAmizudin/malware
+  archived  RamadhanAmizudin, krisyotam (2026)
+  notes     вЂ”
+ */
 #include <windows.h>
 #include <shlwapi.h>
 
@@ -12,10 +23,10 @@
 #endif
 */
 
-//FIXME: Переопределить размеры из int в DWORD/SIZE_T.
+//FIXME: пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ int пїЅ DWORD/SIZE_T.
 
 
-//Максимальный размер строки для _sprintfExX
+//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ _sprintfExX
 #define MAX_SPRINTF_STRING_SIZE (10 * 1024 * 1024)
 
 static int unicodeToX(DWORD codePage, const LPWSTR source, int sourceSize, LPSTR dest, int destSize)
@@ -24,7 +35,7 @@ static int unicodeToX(DWORD codePage, const LPWSTR source, int sourceSize, LPSTR
   int size = CWA(kernel32, WideCharToMultiByte)(codePage, 0, source, sourceSize, dest, destSize, NULL, NULL);
   if(destSize > 0)
   {
-    if(size >= destSize)size = 0; //Нет места на нулевой символ.
+    if(size >= destSize)size = 0; //пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ.
     dest[size] = 0;
   }
   return size;
@@ -53,7 +64,7 @@ static int xToUnicode(DWORD codePage, const LPSTR source, int sourceSize, LPWSTR
   int size = CWA(kernel32, MultiByteToWideChar)(codePage, 0, source, sourceSize, dest, destSize);
   if(destSize > 0)
   {
-    if(size >= destSize)size = 0; //Нет места на нулевой символ.
+    if(size >= destSize)size = 0; //пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ.
     dest[size] = 0;
   }
   return size;
@@ -77,15 +88,15 @@ static LPWSTR xToUnicodeEx(DWORD codePage, LPSTR source, int size)
 }
 
 /*
-  Общая функция для форматирования Unicode-строк с выделенем памяти.
+  пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ Unicode-пїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ.
   
-  IN OUT buffer   - буфер для записи, должен быть либо валидным, либо указывать на NULL. В случаи
-                    ошибки, буффер не будет возрашен к первоночальному состоянию.
-  IN bufferOffset - текуйщий оффсет в символах в *buffer, с которого нужно начать вносить изменения.
-  IN format       - формат строки.
-  IN arguments    - аргументы для fromat.
+  IN OUT buffer   - пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ NULL. пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
+                    пїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
+  IN bufferOffset - пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ *buffer, пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
+  IN format       - пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ.
+  IN arguments    - пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ fromat.
   
-  Return          - новый полный размер строки, или (DWORD)-1 в случаи ошибки.
+  Return          - пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅ (DWORD)-1 пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ.
 */
 static DWORD vsprintfHelperExW(LPWSTR *buffer, DWORD bufferOffset, const LPWSTR format, va_list arguments)
 {
@@ -106,15 +117,15 @@ static DWORD vsprintfHelperExW(LPWSTR *buffer, DWORD bufferOffset, const LPWSTR 
 }
 
 /*
-  Общая функция для форматирования ANSI-строк с выделенем памяти.
+  пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ ANSI-пїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ.
   
-  IN OUT buffer   - буфер для записи, должен быть либо валидным, либо указывать на NULL. В случаи
-                    ошибки, буффер не будет возрашен к первоночальному состоянию.
-  IN bufferOffset - текуйщий оффсет в символах в *buffer, с которого нужно начать вносить изменения.
-  IN format       - формат строки.
-  IN arguments    - аргументы для fromat.
+  IN OUT buffer   - пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ NULL. пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
+                    пїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
+  IN bufferOffset - пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ *buffer, пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
+  IN format       - пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ.
+  IN arguments    - пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ fromat.
   
-  Return          - новый полный размер строки, или (DWORD)-1 в случаи ошибки.
+  Return          - пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅ (DWORD)-1 пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ.
 */
 static DWORD vsprintfHelperExA(LPSTR *buffer, DWORD bufferOffset, const LPSTR format, va_list arguments)
 {
@@ -330,13 +341,13 @@ void Str::_TrimW(LPWSTR pstrStr)
 #if defined _WIN64
   #define TCharToIntOP1(IntType) (v <<= 4)
 #else
-  #define TCharToIntOP1(IntType) (v = (sizeof(IntType) == sizeof(int) ? v <<= 4 : (IntType)Math::_mul64(v, 8))) //Выбор будет произведен при компиляции.
+  #define TCharToIntOP1(IntType) (v = (sizeof(IntType) == sizeof(int) ? v <<= 4 : (IntType)Math::_mul64(v, 8))) //пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
 #endif
 
 #if defined _WIN64
   #define TCharToIntOP2(IntType) (v *= 10)
 #else
-  #define TCharToIntOP2(IntType) (v = (sizeof(IntType) == sizeof(int) ? v *= 10 : (IntType)Math::_mul64(v, 10))) //Выбор будет произведен при компиляции.
+  #define TCharToIntOP2(IntType) (v = (sizeof(IntType) == sizeof(int) ? v *= 10 : (IntType)Math::_mul64(v, 10))) //пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
 #endif
 
 #define TCharToInt(CharType, IntType)\
@@ -404,13 +415,13 @@ int Str::_ToInt32W(LPWSTR pstrStr, bool *pbSign)
 #if defined _WIN64
   #define IntToTCharOP1(IntType) (dwDigVal = (DWORD)(iNumber % bRadix))
 #else
-  #define IntToTCharOP1(IntType) (dwDigVal = (sizeof(IntType) == sizeof(int) ? (DWORD)(iNumber % bRadix) : (DWORD)Math::_modU64(iNumber, bRadix))) //Выбор будет произведен при компиляции.
+  #define IntToTCharOP1(IntType) (dwDigVal = (sizeof(IntType) == sizeof(int) ? (DWORD)(iNumber % bRadix) : (DWORD)Math::_modU64(iNumber, bRadix))) //пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
 #endif
 
 #if defined _WIN64
   #define IntToTCharOP2(IntType) (iNumber /= bRadix)
 #else
-  #define IntToTCharOP2(IntType) (iNumber = (sizeof(IntType) == sizeof(int) ? iNumber /= bRadix : (IntType)Math::_divU64(iNumber, bRadix))) //Выбор будет произведен при компиляции.
+  #define IntToTCharOP2(IntType) (iNumber = (sizeof(IntType) == sizeof(int) ? iNumber /= bRadix : (IntType)Math::_divU64(iNumber, bRadix))) //пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
 #endif
 
 #define IntToTChar(CharType, IntType)\
@@ -632,7 +643,7 @@ DWORD Str::_splitToStringsA(LPSTR input, DWORD inputSize, LPSTR **strings, DWORD
       curSize = _getCurrentStringSizeA(input, end, &input);
     }
     
-    //Добавление строки.
+    //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ.
     if(!Mem::reallocEx(strings, (count + 1) * sizeof(LPSTR)) || (curSize > 0 && ((*strings)[count] = _CopyExA(cur, curSize)) == NULL))
     {
       Mem::freeArrayOfPointers(strings, count);
@@ -670,7 +681,7 @@ DWORD Str::_splitToStringsW(LPWSTR input, DWORD inputSize, LPWSTR **strings, DWO
       curSize = _getCurrentStringSizeW(input, end, &input);
     }
 
-    //Добавление строки.
+    //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ.
     if(!Mem::reallocEx(strings, (count + 1) * sizeof(LPWSTR)) || (curSize > 0 && ((*strings)[count] = _CopyExW(cur, curSize)) == NULL))
     {
       Mem::freeArrayOfPointers(strings, count);
@@ -763,7 +774,7 @@ LPWSTR Str::_joinArgumentsW(const LPWSTR *args, DWORD argsCount)
   {
     bool quote = false;;
 
-    //Проверяем нужно ли заключать аргумент в кавычки.
+    //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
     {
       LPWSTR p = args[i];
       while(*p != 0)
@@ -777,7 +788,7 @@ LPWSTR Str::_joinArgumentsW(const LPWSTR *args, DWORD argsCount)
       }
     }
 
-    //Выделяем память.
+    //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ.
     int len = _LengthW(args[i]);
     if(!Mem::reallocEx(&output, (outputSize + 1/*space*/ + 1/*"*/ + len + 1/*"*/ + 1/*\0*/) * sizeof(WCHAR)))
     {
@@ -785,7 +796,7 @@ LPWSTR Str::_joinArgumentsW(const LPWSTR *args, DWORD argsCount)
       return NULL;
     }
 
-    //Копируем.
+    //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
     if(i > 0)output[outputSize++] = ' ';
     if(quote)output[outputSize++] = '\"';
     
@@ -847,12 +858,12 @@ int Str::_LengthW(LPCWSTR pstrStr)
 
 int Str::_CompareA(LPCSTR pstrStr1, LPCSTR pstrStr2, int iSize1, int iSize2)
 {
-  //Проверка указателей
+  //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
   if(pstrStr1 == NULL && pstrStr2 != NULL)return -1;
   if(pstrStr1 != NULL && pstrStr2 == NULL)return 1;
   if(pstrStr1 == NULL && pstrStr2 == NULL)return 0;
 
-  //Если оба размера не определены.
+  //пїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
   if(iSize1 == -1 && iSize2 == -1)
   {
     while((iSize1 = *pstrStr1 - *pstrStr2) == 0 && *pstrStr2 != 0)
@@ -866,9 +877,9 @@ int Str::_CompareA(LPCSTR pstrStr1, LPCSTR pstrStr2, int iSize1, int iSize2)
     if(iSize1 == -1)iSize1 = _LengthA(pstrStr1);
     if(iSize2 == -1)iSize2 = _LengthA(pstrStr2);
 
-    //Если размеры не равны, или хотябы один из них равен 0.
+    //пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ 0.
     if(iSize1 != iSize2 || iSize1 == 0 || iSize2 == 0)iSize1 -= iSize2;
-    //Если размеры равны.
+    //пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ.
     else for(int c = 0; c < iSize2; c++)
     {
       if((iSize1 = *pstrStr1 - *pstrStr2) != 0)break;
@@ -882,12 +893,12 @@ int Str::_CompareA(LPCSTR pstrStr1, LPCSTR pstrStr2, int iSize1, int iSize2)
 
 int Str::_CompareW(LPCWSTR pstrStr1, LPCWSTR pstrStr2, int iSize1, int iSize2)
 {
-  //Проверка указателей
+  //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
   if(pstrStr1 == NULL && pstrStr2 != NULL)return -1;
   if(pstrStr1 != NULL && pstrStr2 == NULL)return 1;
   if(pstrStr1 == NULL && pstrStr2 == NULL)return 0;
 
-  //Если оба размера не определены.
+  //пїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
   if(iSize1 == -1 && iSize2 == -1)
   {
     while((iSize1 = *pstrStr1 - *pstrStr2) == 0 && *pstrStr2 != 0)
@@ -901,9 +912,9 @@ int Str::_CompareW(LPCWSTR pstrStr1, LPCWSTR pstrStr2, int iSize1, int iSize2)
     if(iSize1 == -1)iSize1 = _LengthW(pstrStr1);
     if(iSize2 == -1)iSize2 = _LengthW(pstrStr2);
 
-    //Если размеры не равны, или хотябы один из них равен 0.
+    //пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ 0.
     if(iSize1 != iSize2 || iSize1 == 0 || iSize2 == 0)iSize1 -= iSize2;
-    //Если размеры равны.
+    //пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ.
     else for(int c = 0; c < iSize2; c++)
     {
       if((iSize1 = *pstrStr1 - *pstrStr2) != 0)break;
@@ -1023,8 +1034,8 @@ int Str::_vsprintfW(LPWSTR pBuf, int iBufSize, LPCWSTR pstrFormat, va_list argli
 
   if(iSize == -1)
   {
-    //Гении-индусы решили подмениь возрашаемое значение в Vista на -1, в случаи если не хватает
-    //места на всю строку, однако буфер заполняется. Ума устаналивать LastError не хватило...
+    //пїЅпїЅпїЅпїЅпїЅ-пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ Vista пїЅпїЅ -1, пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+    //пїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ. пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ LastError пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ...
     iSize = _LengthW(pBuf);
   }
   else pBuf[iSize] = 0;
@@ -1042,8 +1053,8 @@ int Str::_vsprintfA(LPSTR pBuf, int iBufSize, LPCSTR pstrFormat, va_list arglist
 
   if(iSize == -1)
   {
-    //Гении-индусы решили подмениь возрашаемое значение в Vista на -1, в случаи если не хватает
-    //места на всю строку, однако буфер заполняется. Ума устаналивать LastError не хватило...
+    //пїЅпїЅпїЅпїЅпїЅ-пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ Vista пїЅпїЅ -1, пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+    //пїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ. пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ LastError пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ...
     iSize = _LengthA(pBuf);
   }
   else pBuf[iSize] = 0;
@@ -1209,7 +1220,7 @@ LPSTR Str::_multiStringGetIndexA(LPSTR string, DWORD index)
   for(DWORD i = 0; ; string++)if(*string == 0)
   {
     LPSTR c = string + 1;
-    if(*c == 0)break; //Конец мульти-строки.
+    if(*c == 0)break; //пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ-пїЅпїЅпїЅпїЅпїЅпїЅ.
     if(++i == index)return c;
   }
   return NULL;
@@ -1221,7 +1232,7 @@ LPWSTR Str::_multiStringGetIndexW(LPWSTR string, DWORD index)
   for(DWORD i = 0; ; string++)if(*string == 0)
   {
     LPWSTR c = string + 1;
-    if(*c == 0)break; //Конец мульти-строки.
+    if(*c == 0)break; //пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ-пїЅпїЅпїЅпїЅпїЅпїЅ.
     if(++i == index)return c;
   }
   return NULL;
@@ -1341,14 +1352,14 @@ LPSTR Str::_addSlashesExA(const LPSTR source, SIZE_T size)
 
 SIZE_T Str::_getCurrentStringSizeW(const LPWSTR string, const LPWSTR memEnd, LPWSTR *next)
 {
-  LPWSTR curEnd = string; //Указатель на конец строки (символ \n или конец памяти).
-  SIZE_T curSize;         //Размер текушей строки без символов \n и \r
+  LPWSTR curEnd = string; //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ (пїЅпїЅпїЅпїЅпїЅпїЅ \n пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ).
+  SIZE_T curSize;         //пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ \n пїЅ \r
 
-  //Поиск конца текушей строки.
+  //пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ.
   while(curEnd < memEnd && *curEnd != '\n' && *curEnd != '\r')curEnd++;
   curSize = curEnd - string;
 
-  //Отладка строки.
+  //пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ.
   if(curEnd + 1 < memEnd && curEnd[0] == '\r' && curEnd[1] == '\n')curEnd++;
 
   *next = curEnd + 1;
@@ -1357,14 +1368,14 @@ SIZE_T Str::_getCurrentStringSizeW(const LPWSTR string, const LPWSTR memEnd, LPW
 
 SIZE_T Str::_getCurrentStringSizeA(const LPSTR string, const LPSTR memEnd, LPSTR *next)
 {
-  LPSTR curEnd = string; //Указатель на конец строки (символ \n или конец памяти).
-  SIZE_T curSize;        //Размер текушей строки без символов \n и \r
+  LPSTR curEnd = string; //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ (пїЅпїЅпїЅпїЅпїЅпїЅ \n пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ).
+  SIZE_T curSize;        //пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ \n пїЅ \r
 
-  //Поиск конца текушей строки.
+  //пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ.
   while(curEnd < memEnd && *curEnd != '\n' && *curEnd != '\r')curEnd++;
   curSize = curEnd - string;
 
-  //Отладка строки.
+  //пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ.
   if(curEnd + 1 < memEnd && curEnd[0] == '\r' && curEnd[1] == '\n')curEnd++;
 
   *next = curEnd + 1;
@@ -1413,7 +1424,7 @@ SIZE_T Str::_getCurrentStringSizeA(const LPSTR string, const LPSTR memEnd, LPSTR
 //  md->beginOfMatch = 0;
 //  for(DWORD stringOffset = 0, maskOffset = 0;; stringOffset++, maskOffset++)
 //  {
-//    //Достигнут конец маски.
+//    //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ.
 //    if(maskOffset == md->maskSize)
 //    {
 //      md->endOfMatch = stringOffset;
@@ -1422,10 +1433,10 @@ SIZE_T Str::_getCurrentStringSizeA(const LPSTR string, const LPSTR memEnd, LPSTR
 //
 //    char maskChar = md->mask[maskOffset];
 //
-//    //Просто пропускаем символ.
+//    //пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ.
 //    if(maskChar == md->anyCharSymbol)
 //    {
-//      //Достигли конец строки. Провал...
+//      //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ. пїЅпїЅпїЅпїЅпїЅпїЅ...
 //      if(stringOffset == md->stringSize)
 //      {
 //        md->endOfMatch = stringOffset; 
@@ -1436,14 +1447,14 @@ SIZE_T Str::_getCurrentStringSizeA(const LPSTR string, const LPSTR memEnd, LPSTR
 //    {
 //      while(++maskOffset < md->maskSize && md->mask[maskOffset] == md->anyCharsSymbol);
 //      
-//      //Маска распрострониться до конца строки.
+//      //пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ.
 //      if(maskOffset == md->maskSize)
 //      {
 //        md->endOfMatch = md->stringSize; 
 //        return true;
 //      }
 //      
-//      //Создаем копию структуры со смешением.
+//      //пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
 //      MATCHDATAA subMd;
 //      bool r;
 //
@@ -1473,7 +1484,7 @@ SIZE_T Str::_getCurrentStringSizeA(const LPSTR string, const LPSTR memEnd, LPSTR
 //      
 //      char stringChar = md->string[stringOffset];
 //      
-//      //Меняем регистр.
+//      //пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
 //      if(md->flags & (MATCH_CASE_INSENSITIVE_FAST | MATCH_CASE_INSENSITIVE))
 //      {
 //        if(md->flags & MATCH_CASE_INSENSITIVE_FAST)
@@ -1488,7 +1499,7 @@ SIZE_T Str::_getCurrentStringSizeA(const LPSTR string, const LPSTR memEnd, LPSTR
 //        }
 //      }
 //      
-//      //Символы не равны.
+//      //пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ.
 //      if(maskChar != stringChar)
 //      {
 //        if(md->flags & MATCH_UNIVERSAL_NEWLINE)
@@ -1649,7 +1660,7 @@ StripWildcards:
 	md->beginOfMatch = 0;
 	for(DWORD stringOffset = 0, maskOffset = 0;; stringOffset++, maskOffset++)
 	{
-		//Достигнут конец маски.
+		//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ.
 		if(maskOffset == md->maskSize)
 		{
 			md->endOfMatch = stringOffset;
@@ -1658,10 +1669,10 @@ StripWildcards:
 
 		char maskChar = md->mask[maskOffset];
 
-		//Просто пропускаем символ.
+		//пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ.
 		if(maskChar == md->anyCharSymbol)
 		{
-			//Достигли конец строки. Провал...
+			//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ. пїЅпїЅпїЅпїЅпїЅпїЅ...
 			if(stringOffset == md->stringSize)
 			{
 				md->endOfMatch = stringOffset; 
@@ -1765,7 +1776,7 @@ StripWildcards2:
 
 			char stringChar = md->string[stringOffset];
 
-			//Меняем регистр.
+			//пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
 			if(md->flags & MATCH_CASE_INSENSITIVE_FAST)
 			{
 				maskChar   = engCharToLower(maskChar);
@@ -1777,7 +1788,7 @@ StripWildcards2:
 				stringChar = ((DWORD_PTR)(CharLowerA((LPSTR)stringChar))) & 0xFF;
 			}
 
-			//Символы не равны.
+			//пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ.
 			if(maskChar != stringChar)
 			{
 				if(md->flags & MATCH_UNIVERSAL_NEWLINE)

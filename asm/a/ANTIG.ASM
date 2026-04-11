@@ -1,3 +1,14 @@
+; ------------------------------------------------------------
+; name      A
+; type      asm
+; cve       â€”
+; year      unknown
+; os        DOS
+; authors   unknown
+; source    krisyotam
+; archived  krisyotam (2026)
+; notes     â€”
+; ------------------------------------------------------------
 .286
 .model small
 include push.mac
@@ -247,7 +258,7 @@ scanvir:
 	; cs:last_pag = number of bytes in last page
 	; return bit c if virus is founded
 	; ds:si points to the viruses name
-	; bp,es,di,bx,ax,dx ¬ãá®à
+	; bp,es,di,bx,ax,dx ï¿½ï¿½ï¿½ï¿½
 
         mov     cs:es_main,dx     ; es_main = Start_seg
 

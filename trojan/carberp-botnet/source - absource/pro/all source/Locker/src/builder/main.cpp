@@ -1,3 +1,14 @@
+/*
+  name      Carberp Botnet
+  type      trojan
+  cve       вЂ”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     вЂ”
+ */
 #include <windows.h>
 #include <shlobj.h>
 
@@ -23,10 +34,10 @@ void GetPathDirectory(
   DWORD*        returned_char_length
   )
 {
-  // Ищем директорию в пути.
-  // Примеры: 
-  //   для 'с:\testpath\file1.exe' должно найти 'с:\testpath\'
-  //   для 'file2'                 должно найти ''
+  // пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅ.
+  // пїЅпїЅпїЅпїЅпїЅпїЅпїЅ: 
+  //   пїЅпїЅпїЅ 'пїЅ:\testpath\file1.exe' пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ 'пїЅ:\testpath\'
+  //   пїЅпїЅпїЅ 'file2'                 пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ ''
   const WCHAR* low_limit  = path;
   const WCHAR* high_limit = path + path_char_length;
 
@@ -246,7 +257,7 @@ BOOL CALLBACK DialogProc(HWND hWnd,UINT uMsg,WPARAM wParam,LPARAM lParam)
 
           ofn.lStructSize=sizeof(OPENFILENAME);
           ofn.hwndOwner=hWnd;
-          ofn.lpstrFilter=TEXT("Библиотеки (*.dll)\0*.dll\0Программы (*.exe)\0*.exe\0Все файлы (*.*)\0*.*\0");
+          ofn.lpstrFilter=TEXT("пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ (*.dll)\0*.dll\0пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ (*.exe)\0*.exe\0пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ (*.*)\0*.*\0");
           ofn.Flags=OFN_HIDEREADONLY+OFN_PATHMUSTEXIST+OFN_FILEMUSTEXIST;
           ofn.nMaxFile=MAX_PATH;
           ofn.nFilterIndex=1;

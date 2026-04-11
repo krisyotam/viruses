@@ -1,3 +1,14 @@
+; ------------------------------------------------------------
+; name      0 9
+; type      asm
+; cve       —
+; year      unknown
+; os        DOS
+; authors   unknown
+; source    krisyotam
+; archived  krisyotam (2026)
+; notes     —
+; ------------------------------------------------------------
 ; Basic little bitty program for people learning about the different modes
 ; you can stick on your monitor.  This program will put you into 80*50 on a
 ; VGA monitor, and should be 80*43 on an EGA monitor (I dunno, haven't tested

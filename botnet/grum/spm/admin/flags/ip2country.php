@@ -1,10 +1,21 @@
+/*
+  name      Grum
+  type      botnet
+  cve       â€”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    RamadhanAmizudin/malware
+  archived  RamadhanAmizudin, krisyotam (2026)
+  notes     â€”
+ */
 <?php
 include("parameters.php");
 
 mysql_connect($db_host,$db_user,$db_pass) or die("Unable to connect to database");
 mysql_select_db($database) or die("Unable to select database");
 
-//****** determination IP¨& country - START
+//****** determination IPï¿½& country - START
 $flag="0";
 $country="";
 $ip=$_SERVER["REMOTE_ADDR"];
@@ -26,7 +37,7 @@ if(!($ligne=mysql_fetch_array($resultat)))
 		}
 	}
 
-//****** determination IP¨& country - END
+//****** determination IPï¿½& country - END
 
 
 echo '<div class="top_ip">';

@@ -1,3 +1,14 @@
+/*
+  name      Carberp Botnet
+  type      trojan
+  cve       вЂ”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     вЂ”
+ */
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // BK driver loader project. Version 2.
 //	
@@ -266,7 +277,7 @@ typedef struct _SCSI_PASS_THROUGH_DIRECT_WITH_BUFFER {
 
 #define RAW_READ_CMD    0xBE // ATAPI RAW READ
 #define WHATS_READ      0xF8 // Sync & All Headers & User Data + EDC/ECC
-#define PACKET_LEN      2352 // длина одного сектора
+#define PACKET_LEN      2352 // пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 
 #define	SCSIOP_READ		0x28
 #define	SCSIOP_WRITE	0x2a

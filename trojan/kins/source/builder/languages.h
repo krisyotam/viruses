@@ -1,16 +1,27 @@
+/*
+  name      KINS
+  type      trojan
+  cve       вЂ”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    RamadhanAmizudin/malware
+  archived  RamadhanAmizudin, krisyotam (2026)
+  notes     вЂ”
+ */
 #pragma once
 
 namespace Languages
 {
   typedef struct
   {
-    const LPWSTR name;     //Имя
-    const LPWSTR *strings; //Список строк.
-    WORD stringsCount;     //Кол. строк.
-    WORD id;               //ID языка.
+    const LPWSTR name;     //пїЅпїЅпїЅ
+    const LPWSTR *strings; //пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ.
+    WORD stringsCount;     //пїЅпїЅпїЅ. пїЅпїЅпїЅпїЅпїЅ.
+    WORD id;               //ID пїЅпїЅпїЅпїЅпїЅ.
   }LANGINFO;
 
-  //ID строк.
+  //ID пїЅпїЅпїЅпїЅпїЅ.
   enum
   {
     error_not_enough_memory,
@@ -70,47 +81,47 @@ namespace Languages
   };
   
   /*
-    Инициализация.
+    пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
   */
   void init(void);
 
   /*
-    Деинициализация.
+    пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
   */
   void uninit(void);
 
   /*
-    Получение строки для id.
+    пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ id.
 
     IN id  - ID.
 
-    Return - строка, или NULL.
+    Return - пїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅ NULL.
   */
   LPWSTR get(DWORD id);
 
   /*
-    Сохраняет код языка в качастве языка по умолчанию.
+    пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
 
-    IN langId - код языка.
+    IN langId - пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ.
 
-    Return    - true - если успешно сохранено,
-                false - в случаи ошибки.
+    Return    - true - пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ,
+                false - пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ.
   */
   bool setDefaultLangId(WORD langId);
 
   /*
-    Получение информации о языке.
+    пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅ.
 
-    IN index - индекс языка.
+    IN index - пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ.
 
-    Return   - информация о языке, или NULL если index привысил кол. языков.
+    Return   - пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅ NULL пїЅпїЅпїЅпїЅ index пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ. пїЅпїЅпїЅпїЅпїЅпїЅ.
   */
   const LANGINFO *getLangInfo(WORD index);
 
   /*
-    Получение информации о текущем языке.
+    пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ.
 
-    Return - язык.
+    Return - пїЅпїЅпїЅпїЅ.
   */
   const Languages::LANGINFO *getCurLangInfo(void);
 };

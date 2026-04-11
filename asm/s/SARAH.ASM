@@ -1,3 +1,14 @@
+; ------------------------------------------------------------
+; name      S
+; type      asm
+; cve       —
+; year      unknown
+; os        DOS
+; authors   unknown
+; source    krisyotam
+; archived  krisyotam (2026)
+; notes     —
+; ------------------------------------------------------------
 ; sarah.asm : {Sarah} by Gehenna
 ; Created wik the Phalcon/Skism Mass-Produced Code Generator
 ; from the configuration file sarah.cfg

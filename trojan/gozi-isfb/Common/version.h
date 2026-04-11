@@ -1,3 +1,14 @@
+/*
+  name      Gozi-ISFB
+  type      trojan
+  cve       —
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    RamadhanAmizudin/malware
+  archived  RamadhanAmizudin, krisyotam (2026)
+  notes     —
+ */
 #pragma once
 
 // Modify the following defines if you have to target a platform prior to the ones specified below.

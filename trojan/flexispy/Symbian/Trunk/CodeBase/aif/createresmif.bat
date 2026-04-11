@@ -1,3 +1,14 @@
+:: ------------------------------------------------------------
+:: name      FlexiSpy
+:: type      trojan
+:: cve       —
+:: year      unknown
+:: os        Windows
+:: authors   unknown
+:: source    RamadhanAmizudin/malware
+:: archived  RamadhanAmizudin, krisyotam (2026)
+:: notes     —
+:: ------------------------------------------------------------
 REM You only have to make sure the variable name correctly set to your local path
 
 REM -- Generate for version 9.1 --

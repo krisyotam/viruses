@@ -1,3 +1,14 @@
+; ------------------------------------------------------------
+; name      0 9
+; type      asm
+; cve       —
+; year      unknown
+; os        DOS
+; authors   unknown
+; source    krisyotam
+; archived  krisyotam (2026)
+; notes     —
+; ------------------------------------------------------------
 ; ------------------------------------------------------------------------------
 ;                          - 80hex virus -
 ;              (c) 1994 The Unforgiven/Immortal Riot

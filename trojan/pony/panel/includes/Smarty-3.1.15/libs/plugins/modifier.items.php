@@ -1,18 +1,29 @@
+/*
+  name      Pony
+  type      trojan
+  cve       вЂ”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    RamadhanAmizudin/malware
+  archived  RamadhanAmizudin, krisyotam (2026)
+  notes     вЂ”
+ */
 <?php
 
 function smarty_modifier_items($value = 0)
 {
 	$reminder = $value % 10;
 	if ($value === null || $reminder == 0 || $value == 0 || ($reminder >= 5 && $reminder <= 9) )
-		return 'записей';
+		return 'пїЅпїЅпїЅпїЅпїЅпїЅпїЅ';
 
 	if ($reminder == 1)
-		return 'запись';
+		return 'пїЅпїЅпїЅпїЅпїЅпїЅ';
 
 	if ($reminder == 2 || $reminder == 3 || $reminder == 4)
-		return 'записи';
+		return 'пїЅпїЅпїЅпїЅпїЅпїЅ';
 
-	return 'записей';
+	return 'пїЅпїЅпїЅпїЅпїЅпїЅпїЅ';
 }
 
 ?>

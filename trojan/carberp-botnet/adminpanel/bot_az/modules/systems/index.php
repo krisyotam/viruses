@@ -1,6 +1,18 @@
+/*
+  name      Carberp Botnet
+  type      trojan
+  cve       —
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     —
+ */
 <?php
 
-if($Cur['str'] == 'format_info'){	$smarty->assign('rand_name', mt_rand(0000000000, 9999999999));
+if($Cur['str'] == 'format_info'){
+	$smarty->assign('rand_name', mt_rand(0000000000, 9999999999));
 	$smarty->display('modules/systems/format_info.tpl');
 	exit;
 }

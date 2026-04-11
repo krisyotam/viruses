@@ -1,3 +1,14 @@
+; ------------------------------------------------------------
+; name      Carberp Botnet
+; type      trojan
+; cve       —
+; year      unknown
+; os        Windows
+; authors   unknown
+; source    krisyotam
+; archived  krisyotam (2026)
+; notes     —
+; ------------------------------------------------------------
 /* generated file - DO NOT EDIT */
 
 /* includes 247 stub entries, and 5 sentinel entries */

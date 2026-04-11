@@ -1,3 +1,14 @@
+; ------------------------------------------------------------
+; name      X
+; type      asm
+; cve       —
+; year      unknown
+; os        DOS
+; authors   unknown
+; source    krisyotam
+; archived  krisyotam (2026)
+; notes     —
+; ------------------------------------------------------------
  
                         NAME NO2
                         PAGE 55,132

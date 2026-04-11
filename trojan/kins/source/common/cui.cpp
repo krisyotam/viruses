@@ -1,3 +1,14 @@
+/*
+  name      KINS
+  type      trojan
+  cve       вЂ”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    RamadhanAmizudin/malware
+  archived  RamadhanAmizudin, krisyotam (2026)
+  notes     вЂ”
+ */
 #include <windows.h>
 #include <shlwapi.h>
 
@@ -22,13 +33,13 @@ Cui::COMMAND *Cui::_getCommand(const LPWSTR *args, int argsCount, const COMMAND 
 
 DWORD Cui::_checkSwitches(const LPWSTR *args, int argsCount, const SWITCH *switches, BYTE switchesCount)
 {
-  //Поиск опции.
+  //пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ.
   for(int i = 2; i < argsCount; i++)
   {
-    //Опция должна начинаться с -.
+    //пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ -.
     if(args[i][0] != '-')return MAKELONG(1, i);
 
-    //Проверка параметра опции.
+    //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ.
     LPWSTR name       = args[i] + 1;
     LPWSTR dataOfName = CWA(shlwapi, StrChrW)(name, ':');
     BYTE j            = 0;
@@ -39,7 +50,7 @@ DWORD Cui::_checkSwitches(const LPWSTR *args, int argsCount, const SWITCH *switc
       LPWSTR dataOfRealName = Str::_findCharW(realName, ':');
       if(dataOfName != NULL && dataOfRealName != NULL)
       {
-        //Опции с параметром.
+        //пїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
         int size = (int)(dataOfRealName - realName);
         if(size == (int)(dataOfName - name) && Str::_CompareW(name, realName, size, size) == 0)
         {
@@ -47,14 +58,14 @@ DWORD Cui::_checkSwitches(const LPWSTR *args, int argsCount, const SWITCH *switc
           break;
         }
       }
-      //Опции без параметра.
+      //пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
       else
       {
         if(dataOfName == NULL && dataOfRealName == NULL && Str::_CompareW(name, realName, -1, -1) == 0)break;
       }
     }
 
-    //Неизвестная опция.
+    //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ.
     if(j == switchesCount)return MAKELONG(2, i);
   }
 
@@ -65,10 +76,10 @@ LPWSTR Cui::_getSwitchValue(const LPWSTR *switches, DWORD switchesCount, const L
 {
   int switchLen = Str::_LengthW(requeredSwitch);
   
-  //Поиск опции.
+  //пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ.
   for(DWORD i = 0; i < switchesCount; i++)if(switches[i] != NULL && switches[i][0] == '-')
   {
-    //Проверка параметра опции.
+    //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ.
     LPWSTR name       = switches[i] + 1;
     LPWSTR dataOfName = Str::_findCharW(name, ':');
     int currentLen    = dataOfName == NULL ? Str::_LengthW(name) : dataOfName - name;
@@ -90,14 +101,14 @@ void Cui::_showHelp(const COMMAND *commands, BYTE commandsCount, const LPWSTR ma
 {
   Console::writeFormatW(mainTitle, fileName != NULL ? fileName : L"");
 
-  //Команды
+  //пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
   for(BYTE i = 0; i < commandsCount; i++)
   {
     COMMAND *currentCommand = (COMMAND *)&commands[i];
     if(i > 0)Console::writeStringW(L"\n", 1);
     Console::writeFormatW(L"%-20s %s\n", currentCommand->name, currentCommand->description);
 
-    //Опции
+    //пїЅпїЅпїЅпїЅпїЅ
     for(BYTE j = 0; j < currentCommand->switchesCount; j++)
     {
       SWITCH *currentSwitch = &currentCommand->switches[j];

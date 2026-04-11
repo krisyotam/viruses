@@ -1,9 +1,20 @@
+; ------------------------------------------------------------
+; name      D
+; type      asm
+; cve       â€”
+; year      unknown
+; os        DOS
+; authors   unknown
+; source    krisyotam
+; archived  krisyotam (2026)
+; notes     â€”
+; ------------------------------------------------------------
 ;
-;                                                ÜÛÛÛÛÛÜ ÜÛÛÛÛÛÜ ÜÛÛÛÛÛÜ
-;          DogPaw.720                            ÛÛÛ ÛÛÛ ÛÛÛ ÛÛÛ ÛÛÛ ÛÛÛ
-;          by Jacky Qwerty/29A                    ÜÜÜÛÛß ßÛÛÛÛÛÛ ÛÛÛÛÛÛÛ
-;                                                ÛÛÛÜÜÜÜ ÜÜÜÜÛÛÛ ÛÛÛ ÛÛÛ
-;                                                ÛÛÛÛÛÛÛ ÛÛÛÛÛÛß ÛÛÛ ÛÛÛ
+;                                                ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+;          DogPaw.720                            ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
+;          by Jacky Qwerty/29A                    ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+;                                                ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
+;                                                ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
 ;
 ; This simple DOS virus exploits a certain feature graciosly implemented for
 ; us by Microsoft and which is present in Win95, WinNT and probably OS/2. It
@@ -29,7 +40,7 @@
 ;
 ;
 ; Technical description
-; ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+; ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 ; DogPaw is a resident full stealth EXE infector of DOS, Win3.1, Win95, Win-
 : NT and OS/2 programz. It infects filez on close and execute and disinfects
 ; them on open. I dont like this kind of stealth at all but it was more than
@@ -68,7 +79,7 @@
 ;
 ;
 ; A dog paw tale
-; ÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+; ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 ; Some weekz ago i stole my dady's car to take a short ride around the block
 ; and  i was so nervous  that i almost crashed twice:  the first time with a
 ; huge big garbage truck  (yea even  tho i wear glasez)  and the second time
@@ -87,7 +98,7 @@
 ;
 ;
 ; Greetingz
-; ÄÄÄÄÄÄÄÄÄ
+; ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 ; And finaly the greetingz go to:
 ;
 ;   Casio ......... Yer Rusty was kewl.. but throw 'way that ASIC dude!
@@ -99,13 +110,13 @@
 ;
 ;
 ; Disclaimer
-; ÄÄÄÄÄÄÄÄÄÄ
+; ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 ; This source code is for  educational purposez only. The author is not res-
 ; ponsible for any problemz caused due to the assembly of this file.
 ;
 ;
 ; Compiling it
-; ÄÄÄÄÄÄÄÄÄÄÄÄ
+; ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 ; tasm -ml -m5 -q -zn dogpaw.asm
 ; tlink -t -x dogpaw, dogpaw.exe
 ;

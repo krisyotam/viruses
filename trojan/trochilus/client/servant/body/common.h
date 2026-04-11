@@ -1,9 +1,20 @@
+/*
+  name      Trochilus
+  type      trojan
+  cve       â€”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    RamadhanAmizudin/malware
+  archived  RamadhanAmizudin, krisyotam (2026)
+  notes     â€”
+ */
 #pragma once
 #include <Wtsapi32.h>
 #include "tstring.h"
 
 
-//²Ù×÷ÏµÍ³±êÊ¶ Ã¶¾ÙÀàÐÍ
+//ï¿½ï¿½ï¿½ï¿½ÏµÍ³ï¿½ï¿½Ê¶ Ã¶ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 typedef enum WIN_VER_DETAIL {
 	WINDOWS_VERSION_NONE = 0,   // 0
 	WINDOWS_VERSION_95,			// 1
@@ -23,7 +34,7 @@ typedef enum WIN_VER_DETAIL {
 	WINDOWS_VERSION_2012,		// 15
 } WIN_VER_DETAIL;
 
-//ÓÃ»§»á»°ÐÅÏ¢
+//ï¿½Ã»ï¿½ï¿½á»°ï¿½ï¿½Ï¢
 typedef struct 
 {  
 	DWORD	sessionId;
@@ -33,37 +44,37 @@ typedef struct
 } MY_SESSION_INFO;
 typedef std::vector<MY_SESSION_INFO> SessionInfoList;
 
-//Òì»ò¼Ó½âÃÜ
+//ï¿½ï¿½ï¿½Ó½ï¿½ï¿½ï¿½
 void XorFibonacciCrypt(const LPVOID lpPlain, DWORD dwPlainLen, LPVOID lpEncrypted, UINT factor0, UINT factor1);
 
-//»ñÈ¡½ø³ÌÓÃ»§
+//ï¿½ï¿½È¡ï¿½ï¿½ï¿½ï¿½ï¿½Ã»ï¿½
 LPCTSTR GetProcessUserName(DWORD dwID);
 
-//»ñÈ¡²Ù×÷ÏµÍ³°æ±¾
+//ï¿½ï¿½È¡ï¿½ï¿½ï¿½ï¿½ÏµÍ³ï¿½æ±¾
 WIN_VER_DETAIL GetWindowsVersion();
 
-//»ñÈ¡²Ù×÷ÏµÍ³°æ±¾ºÅ
+//ï¿½ï¿½È¡ï¿½ï¿½ï¿½ï¿½ÏµÍ³ï¿½æ±¾ï¿½ï¿½
 std::wstring GetSystemVersionCode();
 
-//»ñÈ¡²Ù×÷ÏµÍ³Æ½Ì¨
+//ï¿½ï¿½È¡ï¿½ï¿½ï¿½ï¿½ÏµÍ³Æ½Ì¨
 BOOL IsWow64();
 
-//»ñÈ¡±¾»úIPÁÐ±í
+//ï¿½ï¿½È¡ï¿½ï¿½ï¿½ï¿½IPï¿½Ð±ï¿½
 BOOL GetLocalIPList(TStringVector& localIPList);
 
-//²éÑ¯½ø³ÌÓÃ»§Ãû
+//ï¿½ï¿½Ñ¯ï¿½ï¿½ï¿½ï¿½ï¿½Ã»ï¿½ï¿½ï¿½
 //BOOL GetProcessUsername(DWORD dwProcessID, tstring& username);
 
-//»ñÈ¡±¾µØµÇÂ¼ÓÃ»§Ãû
+//ï¿½ï¿½È¡ï¿½ï¿½ï¿½Øµï¿½Â¼ï¿½Ã»ï¿½ï¿½ï¿½
 BOOL GetLogonUserList(SessionInfoList& sessionList);
 
-//»ñÈ¡µ±Ç°½ø³ÌÊÇ·ñÊÇ¹ÜÀíÔ±È¨ÏÞ
+//ï¿½ï¿½È¡ï¿½ï¿½Ç°ï¿½ï¿½ï¿½ï¿½ï¿½Ç·ï¿½ï¿½Ç¹ï¿½ï¿½ï¿½Ô±È¨ï¿½ï¿½
 BOOL IsAdministrator();
 /*
-//byte×ª»»Îªhex
+//byte×ªï¿½ï¿½Îªhex
 void Byte2HEX(const LPBYTE pByteList, DWORD dwLength, tstring& hexString);
 
-//¼ÆËãmd5
+//ï¿½ï¿½ï¿½ï¿½md5
 void GetMD5(LPCVOID lpMem, DWORD dwSize, tstring& md5String);
 */
 

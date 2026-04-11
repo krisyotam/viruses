@@ -1,3 +1,14 @@
+; ------------------------------------------------------------
+; name      D
+; type      asm
+; cve       —
+; year      unknown
+; os        DOS
+; authors   unknown
+; source    krisyotam
+; archived  krisyotam (2026)
+; notes     —
+; ------------------------------------------------------------
 title   DOORS.ASM - Switch Color/Mono Screens On Keyboard Request
 ;
 VECTORS         segment at 0h           ; 8088 / 80286 Interrupt Vector Area

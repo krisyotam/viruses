@@ -1,4 +1,15 @@
-// TransferDlg.cpp : ÊµÏÖÎÄ¼þ
+/*
+  name      Trochilus
+  type      trojan
+  cve       â€”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    RamadhanAmizudin/malware
+  archived  RamadhanAmizudin, krisyotam (2026)
+  notes     â€”
+ */
+// TransferDlg.cpp : Êµï¿½ï¿½ï¿½Ä¼ï¿½
 //
 
 #include "stdafx.h"
@@ -8,7 +19,7 @@
 #include "IconLoader.h"
 #include "thread/RepeatTask.h"
 
-// CTransferDlg ¶Ô»°¿ò
+// CTransferDlg ï¿½Ô»ï¿½ï¿½ï¿½
 
 IMPLEMENT_DYNAMIC(CTransferDlg, CDialogEx)
 
@@ -86,7 +97,7 @@ void CTransferDlg::ModifyStatusProc(LPCTSTR clientid,TRANS_STATUS status,LPVOID 
 	DWORD dwTotalBytes = info.nTotal;
 
 
-	//×Ö½Ú½ø¶È
+	//ï¿½Ö½Ú½ï¿½ï¿½ï¿½
 	CString donebytes;
 	donebytes.Format(_T("%u MB"), dwDoneBytes);
 	CString totalbytes;
@@ -96,7 +107,7 @@ void CTransferDlg::ModifyStatusProc(LPCTSTR clientid,TRANS_STATUS status,LPVOID 
 	int nProcess = (int)(fProcess * (float)100);
 
 
-	//°Ù·ÖÖ®½ø¶È
+	//ï¿½Ù·ï¿½Ö®ï¿½ï¿½ï¿½ï¿½
 	CString process;
 	process.Format(_T("%d / %d"),dwDoneBytes,dwTotalBytes);
 

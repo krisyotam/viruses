@@ -1,3 +1,14 @@
+/*
+  name      Carberp Botnet
+  type      trojan
+  cve       вЂ”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     вЂ”
+ */
 #pragma once
 #include "../common/protocol.h"
 #include "../common/lock.h"
@@ -36,7 +47,7 @@
 
 #define PM_CONTROLS_SEND_COMAND	WM_USER+120
 
-//если WITHOUT_VNC определен, то в релиз не будет включен vnc, а также его не будет в меню
+//пїЅпїЅпїЅпїЅ WITHOUT_VNC пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ vnc, пїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅ
 #define WITHOUT_VNC 
 
 class CClient

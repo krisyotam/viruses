@@ -1,3 +1,14 @@
+/*
+  name      Trochilus
+  type      trojan
+  cve       â€”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    RamadhanAmizudin/malware
+  archived  RamadhanAmizudin, krisyotam (2026)
+  notes     â€”
+ */
 #include "midutils.h"
 #include <afxwin.h>
 #include <afxinet.h>
@@ -72,8 +83,8 @@ static std::wstring s2ws(const std::string& s, int encoding = CP_ACP)
 	return result;
 }
 
-#define	REQUEST_TITLE	_T("IPµØÖ·ÔÚÏß²éÑ¯")
-#define RESULT_TEXT		_T("²éÑ¯½á¹û£º")
+#define	REQUEST_TITLE	_T("IPï¿½ï¿½Ö·ï¿½ï¿½ï¿½ß²ï¿½Ñ¯")
+#define RESULT_TEXT		_T("ï¿½ï¿½Ñ¯ï¿½ï¿½ï¿½ï¿½ï¿½")
 
 MIDUTILS_LIB_API bool GetCountryCityByIp(const wchar_t* lpIPAddress, wchar_t* lpCountryCity, unsigned nMaxLength)
 {
@@ -146,10 +157,10 @@ MIDUTILS_LIB_API bool GetCountryCityByIp(const wchar_t* lpIPAddress, wchar_t* lp
 MIDUTILS_LIB_API bool Filetime2Time(const FILETIME& filetime, __time64_t* pTime)
 {
 	if (NULL == pTime) return FALSE;
-	//×ö¹ýÒ»¸öÊÔÑé£º
-	//__time64_t±äÁ¿1->_gmtime64_s->struct tm ±äÁ¿2->_mktime64->__time64_t±äÁ¿3
-	//·¢ÏÖ±äÁ¿1 ²»µÈÓÚ ±äÁ¿3
-	//Ó¦¸ÃÊÇmktime´¦ÀíµÄÊ±ºò¿¼ÂÇÁËÊ±Çøµ¼ÖÂ£¬ËùÒÔÔÚÕâÀï×öÁËÌØÊâ´¦Àí
+	//ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½ï¿½ï¿½ï¿½é£º
+	//__time64_tï¿½ï¿½ï¿½ï¿½1->_gmtime64_s->struct tm ï¿½ï¿½ï¿½ï¿½2->_mktime64->__time64_tï¿½ï¿½ï¿½ï¿½3
+	//ï¿½ï¿½ï¿½Ö±ï¿½ï¿½ï¿½1 ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½3
+	//Ó¦ï¿½ï¿½ï¿½ï¿½mktimeï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½ï¿½ï¿½ï¿½Â£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½â´¦ï¿½ï¿½
 	TIME_ZONE_INFORMATION timeZoneInfo = {0};
 	if (TIME_ZONE_ID_INVALID == ::GetTimeZoneInformation(&timeZoneInfo))
 	{

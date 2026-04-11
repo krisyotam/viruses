@@ -1,3 +1,14 @@
+; ------------------------------------------------------------
+; name      E
+; type      asm
+; cve       —
+; year      unknown
+; os        DOS
+; authors   unknown
+; source    krisyotam
+; archived  krisyotam (2026)
+; notes     —
+; ------------------------------------------------------------
 ;                      Entwives: Two-in-one by Ender
 ; This virus is a combination of a G^2 COM infector, called Gandalf and 
 ;   the popular Vienna strain.  This virus runs the Vienna code 7/8 

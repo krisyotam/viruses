@@ -1,6 +1,18 @@
+/*
+  name      Carberp Botnet
+  type      trojan
+  cve       —
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     —
+ */
 <?php
 
-function accNumFormat($s, $t = false){	$s = clearNumFormat($s);
+function accNumFormat($s, $t = false){
+	$s = clearNumFormat($s);
 	$a = array();
 	$a[] = substr($s, 0, 5);
 	$a[] = substr($s, 5, 3);
@@ -10,7 +22,8 @@ function accNumFormat($s, $t = false){	$s = clearNumFormat($s);
 	return implode('.', $a);
 }
 
-function clearNumFormat($s){	$s = str_replace('.', '', $s);
+function clearNumFormat($s){
+	$s = str_replace('.', '', $s);
 	$s = str_replace(',', '', $s);
 	$s = str_replace(' ', '', $s);
 	return $s;

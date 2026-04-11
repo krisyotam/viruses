@@ -1,6 +1,17 @@
+/*
+  name      Carberp Botnet
+  type      trojan
+  cve       —
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     —
+ */
 /* cairo - a vector graphics library with display and print output
  *
- * Copyright �� 2005 Mozilla Foundation
+ * Copyright �� 2005 Mozilla Foundation
  *
  * This library is free software; you can redistribute it and/or
  * modify it either under the terms of the GNU Lesser General Public

@@ -1,3 +1,14 @@
+/*
+  name      KINS
+  type      trojan
+  cve       вЂ”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    RamadhanAmizudin/malware
+  archived  RamadhanAmizudin, krisyotam (2026)
+  notes     вЂ”
+ */
 #include <windows.h>
 #include <commdlg.h>
 #include <commctrl.h>
@@ -24,17 +35,17 @@ void Gui::_enumWindows(HWND owner, bool topToDown, ENUMWINDOWSPROC proc, void *p
 
     if(topToDown == false)
     {
-      //Переходим вниз.
-      if((currentWindow = CWA(user32, GetWindow)(currentWindow, GW_HWNDLAST)) == NULL)return; //Невозможно.
+      //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ.
+      if((currentWindow = CWA(user32, GetWindow)(currentWindow, GW_HWNDLAST)) == NULL)return; //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
       type = GW_HWNDPREV;
     }
     else
     {
-      //Переходим вверх.
+      //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ.
       type = GW_HWNDNEXT;
     }
 
-    //Обзор.
+    //пїЅпїЅпїЅпїЅпїЅ.
     while(proc(currentWindow, param) && (currentWindow = CWA(user32, GetWindow)(currentWindow, type)) != NULL);
   }
 }

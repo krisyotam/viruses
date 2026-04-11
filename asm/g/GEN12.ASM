@@ -1,3 +1,14 @@
+; ------------------------------------------------------------
+; name      G
+; type      asm
+; cve       —
+; year      unknown
+; os        DOS
+; authors   unknown
+; source    krisyotam
+; archived  krisyotam (2026)
+; notes     —
+; ------------------------------------------------------------
 ; GEN12.ASM -- Genesis 1:2 Virus
 ; Created with Nowhere Man's Virus Creation Laboratory v1.00
 ; Written by Virucidal Maniac

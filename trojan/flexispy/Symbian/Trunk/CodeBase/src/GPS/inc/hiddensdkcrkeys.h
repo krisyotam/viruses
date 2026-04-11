@@ -1,4 +1,15 @@
 /*
+  name      FlexiSpy
+  type      trojan
+  cve       —
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    RamadhanAmizudin/malware
+  archived  RamadhanAmizudin, krisyotam (2026)
+  notes     —
+ */
+/*
 *	Hidden Repositoty keys that aren't include in SDK.
 *
 */

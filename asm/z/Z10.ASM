@@ -1,3 +1,14 @@
+; ------------------------------------------------------------
+; name      Z
+; type      asm
+; cve       —
+; year      unknown
+; os        DOS
+; authors   unknown
+; source    krisyotam
+; archived  krisyotam (2026)
+; notes     —
+; ------------------------------------------------------------
 ; Z10.asm : [Z10] by Paul Ferguson
 ; Created wik the Phalcon/Skism Mass-Produced Code Generator
 ; from the configuration file skeleton.cfg

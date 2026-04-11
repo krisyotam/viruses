@@ -1,12 +1,25 @@
+/*
+  name      Carberp Botnet
+  type      trojan
+  cve       —
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     —
+ */
 <?php
 
-function iptables_decode(){	global $iptables;
+function iptables_decode(){
+	global $iptables;
 	$iptables = array();
 	$type = '';
 
 	exec('sudo /sbin/iptables-save', $ts);
 	
-	foreach($ts as $s){		$x = substr($s, 0, 1);
+	foreach($ts as $s){
+		$x = substr($s, 0, 1);
 
 		switch($x){
 	    	case '*':
@@ -37,10 +50,12 @@ function iptables_decode(){	global $iptables;
 	}
 }
 
-function iptables_search($t, $a, $s){	global $iptables;
+function iptables_search($t, $a, $s){
+	global $iptables;
 
 	if(isset($iptables[$t][$a]['rule'])){
-		foreach($iptables[$t][$a]['rule'] as $k => $i){			if(strpos($s, '-t ' . $t) != false) $s = str_replace(' -t ' . $t, '', $s);
+		foreach($iptables[$t][$a]['rule'] as $k => $i){
+			if(strpos($s, '-t ' . $t) != false) $s = str_replace(' -t ' . $t, '', $s);
 			if($i == $s) return ($k+1);
 		}
 	}
@@ -48,7 +63,8 @@ function iptables_search($t, $a, $s){	global $iptables;
 	return false;
 }
 
-function iptables_match($m){	global $iptables;
+function iptables_match($m){
+	global $iptables;
 	$ret = array();
 	$ret['count'] = 0;
 	foreach($iptables as $tk => $t){

@@ -1,10 +1,21 @@
+/*
+  name      Trochilus
+  type      trojan
+  cve       â€”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    RamadhanAmizudin/malware
+  archived  RamadhanAmizudin, krisyotam (2026)
+  notes     â€”
+ */
 #pragma once
 #include "afxcmn.h"
 #include "mfcresize/Resizer.h"
 #include "FileMgrDlg.h"
 #include "TransferDlg.h"
 #include "CmdDlg.h"
-// CPanelDlg ¶Ô»°¿ò
+// CPanelDlg ï¿½Ô»ï¿½ï¿½ï¿½
 
 
 
@@ -15,7 +26,7 @@ class CFilePanelDlg : public CDialogEx
 public:
 	CFilePanelDlg(CWnd* pParent = NULL);
 	virtual ~CFilePanelDlg();
-	// ¶Ô»°¿òÊý¾Ý
+	// ï¿½Ô»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	enum { IDD = IDD_DIALOG_PANEL };
 
 protected:
@@ -24,7 +35,7 @@ protected:
 	DECLARE_MESSAGE_MAP()
 
 public:
-	//³õÊ¼»¯½çÃæºÍ¹¤×÷×´Ì¬
+	//ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Í¹ï¿½ï¿½ï¿½×´Ì¬
 	void InitView();
 	void InitTab();
 	virtual BOOL OnInitDialog();
@@ -32,13 +43,13 @@ public:
 	void InitResize();
 	CResizer m_resizer;
 
-	//´¦ÀíÄ£¿é×´Ì¬ÐÅÏ¢
+	//ï¿½ï¿½ï¿½ï¿½Ä£ï¿½ï¿½×´Ì¬ï¿½ï¿½Ï¢
 	void HandleMsgNotify(UINT nType, LPCTSTR lpContext);
 
-	//µ±Tab¿òÑ¡Ôñ¸Ä±ä
+	//ï¿½ï¿½Tabï¿½ï¿½Ñ¡ï¿½ï¿½Ä±ï¿½
 	afx_msg void OnTcnSelchangeTabPanel(NMHDR *pNMHDR, LRESULT *pResult);
 	afx_msg void OnSize(UINT nType, int cx, int cy);
-	//ÉèÖÃ¿Í»§¶ËID
+	//ï¿½ï¿½ï¿½Ã¿Í»ï¿½ï¿½ï¿½ID
 	void SetClientID(LPCTSTR clientid)
 	{
 		m_clientid = clientid;

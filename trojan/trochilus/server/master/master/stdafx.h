@@ -1,36 +1,47 @@
-// stdafx.h : ±ê×¼ÏµÍ³°üº¬ÎÄ¼þµÄ°üº¬ÎÄ¼þ£¬
-// »òÊÇ¾­³£Ê¹ÓÃµ«²»³£¸ü¸ÄµÄ
-// ÌØ¶¨ÓÚÏîÄ¿µÄ°üº¬ÎÄ¼þ
+/*
+  name      Trochilus
+  type      trojan
+  cve       â€”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    RamadhanAmizudin/malware
+  archived  RamadhanAmizudin, krisyotam (2026)
+  notes     â€”
+ */
+// stdafx.h : ï¿½ï¿½×¼ÏµÍ³ï¿½ï¿½ï¿½ï¿½ï¿½Ä¼ï¿½ï¿½Ä°ï¿½ï¿½ï¿½ï¿½Ä¼ï¿½ï¿½ï¿½
+// ï¿½ï¿½ï¿½Ç¾ï¿½ï¿½ï¿½Ê¹ï¿½Ãµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Äµï¿½
+// ï¿½Ø¶ï¿½ï¿½ï¿½ï¿½ï¿½Ä¿ï¿½Ä°ï¿½ï¿½ï¿½ï¿½Ä¼ï¿½
 //
 
 #pragma once
 
 #include "targetver.h"
 
-#define WIN32_LEAN_AND_MEAN             //  ´Ó Windows Í·ÎÄ¼þÖÐÅÅ³ý¼«ÉÙÊ¹ÓÃµÄÐÅÏ¢
-#define _ATL_CSTRING_EXPLICIT_CONSTRUCTORS      // Ä³Ð© CString ¹¹Ôìº¯Êý½«ÊÇÏÔÊ½µÄ
+#define WIN32_LEAN_AND_MEAN             //  ï¿½ï¿½ Windows Í·ï¿½Ä¼ï¿½ï¿½ï¿½ï¿½Å³ï¿½ï¿½ï¿½ï¿½ï¿½Ê¹ï¿½Ãµï¿½ï¿½ï¿½Ï¢
+#define _ATL_CSTRING_EXPLICIT_CONSTRUCTORS      // Ä³Ð© CString ï¿½ï¿½ï¿½ìº¯ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê½ï¿½ï¿½
 
 #ifndef VC_EXTRALEAN
-#define VC_EXTRALEAN            //  ´Ó Windows Í·ÎÄ¼þÖÐÅÅ³ý¼«ÉÙÊ¹ÓÃµÄÐÅÏ¢
+#define VC_EXTRALEAN            //  ï¿½ï¿½ Windows Í·ï¿½Ä¼ï¿½ï¿½ï¿½ï¿½Å³ï¿½ï¿½ï¿½ï¿½ï¿½Ê¹ï¿½Ãµï¿½ï¿½ï¿½Ï¢
 #endif
 
 #include <afx.h>
-#include <afxwin.h>         // MFC ºËÐÄ×é¼þºÍ±ê×¼×é¼þ
-#include <afxext.h>         // MFC À©Õ¹
+#include <afxwin.h>         // MFC ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Í±ï¿½×¼ï¿½ï¿½ï¿½
+#include <afxext.h>         // MFC ï¿½ï¿½Õ¹
 #ifndef _AFX_NO_OLE_SUPPORT
-#include <afxdtctl.h>           // MFC ¶Ô Internet Explorer 4 ¹«¹²¿Ø¼þµÄÖ§³Ö
+#include <afxdtctl.h>           // MFC ï¿½ï¿½ Internet Explorer 4 ï¿½ï¿½ï¿½ï¿½ï¿½Ø¼ï¿½ï¿½ï¿½Ö§ï¿½ï¿½
 #endif
 #ifndef _AFX_NO_AFXCMN_SUPPORT
-#include <afxcmn.h>                     // MFC ¶Ô Windows ¹«¹²¿Ø¼þµÄÖ§³Ö
+#include <afxcmn.h>                     // MFC ï¿½ï¿½ Windows ï¿½ï¿½ï¿½ï¿½ï¿½Ø¼ï¿½ï¿½ï¿½Ö§ï¿½ï¿½
 #endif // _AFX_NO_AFXCMN_SUPPORT
 
 #include <iostream>
-// Windows Í·ÎÄ¼þ:
+// Windows Í·ï¿½Ä¼ï¿½:
 #include <windows.h>
 
 #define MAKE_PAIR(_a,b,c) _a::value_type((b),(c))
 
-// TODO: ÔÚ´Ë´¦ÒýÓÃ³ÌÐòÐèÒªµÄÆäËûÍ·ÎÄ¼þ
+// TODO: ï¿½Ú´Ë´ï¿½ï¿½ï¿½ï¿½Ã³ï¿½ï¿½ï¿½ï¿½ï¿½Òªï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Í·ï¿½Ä¼ï¿½
 #include "tstring.h"
 #include "CommonDefines.h"
 #include "AutoCleanup.h"

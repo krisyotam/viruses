@@ -1,3 +1,14 @@
+; ------------------------------------------------------------
+; name      A
+; type      asm
+; cve       —
+; year      unknown
+; os        DOS
+; authors   unknown
+; source    krisyotam
+; archived  krisyotam (2026)
+; notes     —
+; ------------------------------------------------------------
 ;REDCROSS/AMBULANCE CAR VIRUS for Crypt Newsletter #10, edited by Urnst Kouch
 ;December 1992
 ;Originally supplied as a Sourcer disassembly in a Scandinavian virus mag

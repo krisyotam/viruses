@@ -1,3 +1,14 @@
+/*
+  name      Carberp Botnet
+  type      trojan
+  cve       вЂ”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     вЂ”
+ */
 #pragma once
 
 class CClientDlg;
@@ -23,7 +34,7 @@ public:
 	bool m_bVFlip;
 	bool m_bHFlip;
 	CBitmap m_Canvas;
-	int lastProfile; //какой был последний выбран профиль 
+	int lastProfile; //пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ 
 	CClientDlg* parentDlg;
 
 	void SetFlips( bool bVert, bool bHorz );

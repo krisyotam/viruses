@@ -1,3 +1,14 @@
+; ------------------------------------------------------------
+; name      Cryptor
+; type      research
+; cve       вЂ”
+; year      unknown
+; os        Multi
+; authors   unknown
+; source    vxunderground
+; archived  vxunderground, krisyotam (2026)
+; notes     вЂ”
+; ------------------------------------------------------------
 ;xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx;                                                                                                   
 ;                                                                                                        ;
 ;                                                                                                        ;
@@ -23,15 +34,15 @@
 ;                                                                                                        ; 
 ;xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx;
 ;                                                                                                        ;
-;                                   функция RANG32                                                       ;
-;                             ГЕНЕРАТОР СЛУЧАЙНЫХ ЧИСЕЛ (ГСЧ)                                            ;
+;                                   пїЅпїЅпїЅпїЅпїЅпїЅпїЅ RANG32                                                       ;
+;                             пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ (пїЅпїЅпїЅ)                                            ;
 ;                                                                                                        ;
 ;                                                                                                        ;
-;ВХОД:                                                                                                   ;
-;1 параметр - число (N). Будет произведен поиск случайного числа в диапазоне [0..N-1]                    ;
+;пїЅпїЅпїЅпїЅ:                                                                                                   ;
+;1 пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ - пїЅпїЅпїЅпїЅпїЅ (N). пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ [0..N-1]                    ;
 ;--------------------------------------------------------------------------------------------------------;
-;ВЫХОД:                                                                                                  ;
-;EAX - слуяайное число в диапазоне [0..N-1]                                                              ;
+;пїЅпїЅпїЅпїЅпїЅ:                                                                                                  ;
+;EAX - пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ [0..N-1]                                                              ;
 ;                                                                                                        ;
 ;xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx;         
 ;                                                                                                        ;
@@ -39,21 +50,21 @@
 ;                                                                                                        ;
 ;xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx;
 ;                                                                                                        ;
-;                                       ФИЧИ                                                             ;
+;                                       пїЅпїЅпїЅпїЅ                                                             ;
 ;                                                                                                        ;
-;(+) базонезависимость                                                                                   ;
-;(+) прост в использовании                                                                               ;
-;(+) не использует WinApi'шек                                                                            ;
+;(+) пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ                                                                                   ;
+;(+) пїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ                                                                               ;
+;(+) пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ WinApi'пїЅпїЅпїЅ                                                                            ;
 ;                                                                                                        ;
 ;xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx; 
 ;                                                                                                        ;
-;                                   ИСПОЛЬЗОВАНИЕ:                                                       ;
+;                                   пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ:                                                       ;
 ;                                                                                                        ;
-;1) Подключение:                                                                                         ;
+;1) пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ:                                                                                         ;
 ;       rang32.asm                                                                                       ;
-;2) Вызов (пример stdcall):                                                                              ;
-;       push 5                  ;кладем в стэк число                                                     ;
-;       call RANG32             ;вызываем ГСЧ -> в EAX после вызова будет значение [0..5-1]              ;
+;2) пїЅпїЅпїЅпїЅпїЅ (пїЅпїЅпїЅпїЅпїЅпїЅ stdcall):                                                                              ;
+;       push 5                  ;пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ                                                     ;
+;       call RANG32             ;пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ -> пїЅ EAX пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ [0..5-1]              ;
 ;                                                                                                        ;
 ;xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx;
                                                                                                        
@@ -68,21 +79,21 @@
 
                                                                                                                                                                                                           
 RANG32:                                                                            
-    pushad                                      ;сохраняем регистры                                                                     
-    mov     ecx,dword ptr [esp+24h]             ;ecx=число, что передали в стэке
+    pushad                                      ;пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ                                                                     
+    mov     ecx,dword ptr [esp+24h]             ;ecx=пїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅ
     db      0fh,31h                                      
-    imul    eax,eax,1664525                     ;идут разные вычисления для получения                                                   
-    add     eax,1013904223                      ;более случайного числа 
+    imul    eax,eax,1664525                     ;пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ                                                   
+    add     eax,1013904223                      ;пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ 
     add     eax,edx
     adc     eax,esp 
     rcr     eax,16                                  
     imul    eax,[esp+32] 
     xor     edx,edx     
-    mul     ecx                                 ;mul действует как div 
+    mul     ecx                                 ;mul пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ div 
     mov     dword ptr [esp+1ch],edx                                            
     popad                                                                      
     ret     04
 ;xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-;конец функции RANG32                                                                                          
+;пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ RANG32                                                                                          
 ;xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx 
 

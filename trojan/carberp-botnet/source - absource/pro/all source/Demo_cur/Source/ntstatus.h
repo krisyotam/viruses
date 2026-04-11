@@ -1,3 +1,14 @@
+/*
+  name      Carberp Botnet
+  type      trojan
+  cve       —
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     —
+ */
 /*++ BUILD Version: 0005    // Increment this if a change has global effects
 
 Copyright (c) Microsoft Corporation.  All rights reserved.

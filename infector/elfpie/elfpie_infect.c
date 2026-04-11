@@ -1,4 +1,15 @@
 /*
+  name      Elfpie
+  type      infector
+  cve       —
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     —
+ */
+/*
   ELFPIE
   Copyright (c) 2019 picoFlamingo
 

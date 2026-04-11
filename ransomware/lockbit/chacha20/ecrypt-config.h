@@ -1,3 +1,14 @@
+/*
+  name      Lockbit
+  type      ransomware
+  cve       —
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     —
+ */
 /* ecrypt-config.h */
 
 /* *** Normally, it should not be necessary to edit this file. *** */

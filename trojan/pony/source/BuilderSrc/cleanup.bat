@@ -1,3 +1,14 @@
+:: ------------------------------------------------------------
+:: name      Pony
+:: type      trojan
+:: cve       —
+:: year      unknown
+:: os        Windows
+:: authors   unknown
+:: source    RamadhanAmizudin/malware
+:: archived  RamadhanAmizudin, krisyotam (2026)
+:: notes     —
+:: ------------------------------------------------------------
 @echo off
 if exist *.bak @del /Q *.bak
 if exist *.exe.log @del /Q *.exe.log

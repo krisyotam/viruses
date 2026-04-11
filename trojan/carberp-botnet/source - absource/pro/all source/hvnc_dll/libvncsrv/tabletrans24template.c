@@ -1,4 +1,15 @@
 /*
+  name      Carberp Botnet
+  type      trojan
+  cve       —
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     —
+ */
+/*
  * tabletranstemplate.c - template for translation using lookup tables.
  *
  * This file shouldn't be compiled.  It is included multiple times by

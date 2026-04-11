@@ -1,3 +1,14 @@
+/*
+  name      Carberp Botnet
+  type      trojan
+  cve       —
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     —
+ */
 "<?php echo $lang['ps']; ?>"
 <br /><br />
 <?php
@@ -13,8 +24,10 @@ if($_SESSION['ic'] != true){
 ?>
 <br /><hr /><br />
 <?php
-if($INSTALL != true){	$_SESSION['ic'] = true;
-	file_put_contents('cache/install', true);?>
+if($INSTALL != true){
+	$_SESSION['ic'] = true;
+	file_put_contents('cache/install', true);
+?>
 "<?php echo $lang['zav']; ?>"
 <br /><br />
 <input type="button" value="<?php echo $lang['aut']; ?>" onclick="location = '/login';" />

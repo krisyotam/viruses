@@ -1,3 +1,14 @@
+; ------------------------------------------------------------
+; name      Infectors
+; type      linux
+; cve       —
+; year      unknown
+; os        Linux
+; authors   unknown
+; source    vxunderground
+; archived  vxunderground, krisyotam (2026)
+; notes     —
+; ------------------------------------------------------------
 ##############################################################
 ##  A MIPS-32 ELF non-resident virus with false disassembly ##
 ##  Made with love by S01den (@s01den)                      ##

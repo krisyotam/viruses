@@ -1,3 +1,14 @@
+/*
+  name      PowerLoader
+  type      trojan
+  cve       —
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    RamadhanAmizudin/malware
+  archived  RamadhanAmizudin, krisyotam (2026)
+  notes     —
+ */
 #ifndef _PELDR_H_
 #define _PELDR_H_
 

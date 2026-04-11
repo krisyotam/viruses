@@ -1,3 +1,14 @@
+; ------------------------------------------------------------
+; name      B
+; type      asm
+; cve       —
+; year      unknown
+; os        DOS
+; authors   unknown
+; source    krisyotam
+; archived  krisyotam (2026)
+; notes     —
+; ------------------------------------------------------------
 ;----------------------------------------------------------------------
 ;  Fontedit - Loads the current screen font and lets you modify it.
 ;  Saves font in a COM file with integral loader. Requires EGA or VGA.

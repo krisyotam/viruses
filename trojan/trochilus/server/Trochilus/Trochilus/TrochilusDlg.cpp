@@ -1,5 +1,16 @@
+/*
+  name      Trochilus
+  type      trojan
+  cve       â€”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    RamadhanAmizudin/malware
+  archived  RamadhanAmizudin, krisyotam (2026)
+  notes     â€”
+ */
 
-// TrochilusDlg.cpp : ÊµÏÖÎÄ¼þ
+// TrochilusDlg.cpp : Êµï¿½ï¿½ï¿½Ä¼ï¿½
 //
 
 #include "stdafx.h"
@@ -13,20 +24,20 @@
 #endif
 
 
-// ÓÃÓÚÓ¦ÓÃ³ÌÐò¡°¹ØÓÚ¡±²Ëµ¥ÏîµÄ CAboutDlg ¶Ô»°¿ò
+// ï¿½ï¿½ï¿½ï¿½Ó¦ï¿½Ã³ï¿½ï¿½ò¡°¹ï¿½ï¿½Ú¡ï¿½ï¿½Ëµï¿½ï¿½ï¿½ï¿½ CAboutDlg ï¿½Ô»ï¿½ï¿½ï¿½
 
 class CAboutDlg : public CDialogEx
 {
 public:
 	CAboutDlg();
 
-// ¶Ô»°¿òÊý¾Ý
+// ï¿½Ô»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	enum { IDD = IDD_ABOUTBOX };
 
 	protected:
-	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV Ö§³Ö
+	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV Ö§ï¿½ï¿½
 
-// ÊµÏÖ
+// Êµï¿½ï¿½
 protected:
 	DECLARE_MESSAGE_MAP()
 
@@ -46,7 +57,7 @@ BEGIN_MESSAGE_MAP(CAboutDlg, CDialogEx)
 END_MESSAGE_MAP()
 
 
-// CTrochilusDlg ¶Ô»°¿ò
+// CTrochilusDlg ï¿½Ô»ï¿½ï¿½ï¿½
 
 
 
@@ -108,17 +119,17 @@ BOOL CTrochilusDlg::InitView()
 	m_LisDlg.MoveWindow(&rs);
 
 	m_HostDlg.ShowWindow(TRUE);
-	//³õÊ¼»¯×´Ì¬À¸
+	//ï¿½ï¿½Ê¼ï¿½ï¿½×´Ì¬ï¿½ï¿½
 	CRect rect;
 	GetClientRect(rect);
 	VERIFY( m_wndStatusBar.Create(WS_CHILD|WS_VISIBLE|CCS_BOTTOM|SBARS_SIZEGRIP,
 		CRect(0,0,0,0), this, ID_STATUS_BAR_CTRL) );        
-	//ÉèÖÃ×´Ì¬À¸Î»ÖÃ
+	//ï¿½ï¿½ï¿½ï¿½×´Ì¬ï¿½ï¿½Î»ï¿½ï¿½
 	m_wndStatusBar.GetClientRect(&rect);
 	int nWidths[4] ={ 400, 420, rect.right-150,-1};
 	VERIFY(m_wndStatusBar.SetParts(4, nWidths));
 
-	//Éè¶¨´°¸ñÎÄ±¾
+	//ï¿½è¶¨ï¿½ï¿½ï¿½ï¿½ï¿½Ä±ï¿½
 	m_wndStatusBar.SetText(_T("Host: 0"),2,0);
 	m_wndStatusBar.SetText(_T("0-0-0 0:0:0"),0,0);
 	m_wndStatusBar.SetText(_T("Version 0.0.2 Build 41"),3,0);

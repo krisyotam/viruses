@@ -1,3 +1,14 @@
+/*
+  name      Carberp Botnet
+  type      trojan
+  cve       —
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     —
+ */
 /* This is a dummy file.
  * The actual version info is in toplevel cairo-version.h.
  * The purpose of this file is to make most of the source files NOT depend

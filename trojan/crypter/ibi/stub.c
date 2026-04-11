@@ -1,4 +1,15 @@
 /*
+  name      Crypter
+  type      trojan
+  cve       —
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     —
+ */
+/*
   IBI Linux Crypter. JIT Crypter PoC
   Copyright (c) 2016 picoFlamingo
 

@@ -1,3 +1,14 @@
+; ------------------------------------------------------------
+; name      N
+; type      asm
+; cve       —
+; year      unknown
+; os        DOS
+; authors   unknown
+; source    krisyotam
+; archived  krisyotam (2026)
+; notes     —
+; ------------------------------------------------------------
 ;                    *** NOT FOR GENERAL DISTRIBUTION ***                    ;
 ;                                                                            ;
 ; This File is for the Purpose of Virus Study Only! It Should not be Passed  ;

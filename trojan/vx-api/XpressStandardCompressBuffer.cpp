@@ -1,3 +1,14 @@
+/*
+  name      Vx Api
+  type      trojan
+  cve       —
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     —
+ */
 #include "Win32Helper.h"
 
 ULONG XpressStandardCompressBuffer(_In_ PBYTE UncompressedBuffer, _In_ ULONG SizeOfUncompressedBufferInBytes, _Inout_ PBYTE CompressedBuffer, _In_ ULONG CompressedBufferSizeInBytes)

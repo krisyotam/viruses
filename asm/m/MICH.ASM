@@ -1,3 +1,14 @@
+; ------------------------------------------------------------
+; name      M
+; type      asm
+; cve       —
+; year      unknown
+; os        DOS
+; authors   unknown
+; source    krisyotam
+; archived  krisyotam (2026)
+; notes     —
+; ------------------------------------------------------------
 ; This is a disassembly of the much-hyped michelangelo virus.
 ; As you can see, it is a derivative of the Stoned virus.  The
 ; junk bytes at the end of the file are probably throwbacks to

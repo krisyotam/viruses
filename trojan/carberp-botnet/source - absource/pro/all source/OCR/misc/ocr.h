@@ -1,3 +1,14 @@
+/*
+  name      Carberp Botnet
+  type      trojan
+  cve       вЂ”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     вЂ”
+ */
 #pragma once
 
 #include "..\misc\types.h"
@@ -7,12 +18,12 @@
 const int MaxWidthSymbol = 32;
 const int MaxHeightSymbol = 16;
 
-//символ
+//пїЅпїЅпїЅпїЅпїЅпїЅ
 struct Symbol
 {
-	char s; //код символа
+	char s; //пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	int width, height;
-	uint bits[MaxHeightSymbol]; //биты символов, максимальный размер символа 16x32
+	uint bits[MaxHeightSymbol]; //пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ 16x32
 };
 
 struct Font
@@ -21,18 +32,18 @@ struct Font
 	int count;
 };
 
-//распознное слово
+//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 struct Word
 {
-	RECT r; //координаты слова
-	char w[128]; //само слово не более 128 символов вместе с конечным нулем
+	RECT r; //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
+	char w[128]; //пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ 128 пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 };
 
 int GetRectSymbols( uchar* img, int width, int height, RECT* rects, int maxRects );
 Font* InitFont( const char* nameFont, int size, const char syms[][2] );
 void ReleaseFont( Font* font );
 void RectToBits( uchar* img, int w, int h, RECT& r, uint bits[MaxHeightSymbol] );
-//ищет самый похожий символ в шрифте
+//пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 char OCRChar( Font* font, uint bits[MaxHeightSymbol] );
-//объединяет символы в слова
+//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅ
 int UnionChars( RECT* rects, char* chars, int c_rects, Word* words );

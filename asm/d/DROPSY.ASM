@@ -1,3 +1,14 @@
+; ------------------------------------------------------------
+; name      D
+; type      asm
+; cve       —
+; year      unknown
+; os        DOS
+; authors   unknown
+; source    krisyotam
+; archived  krisyotam (2026)
+; notes     —
+; ------------------------------------------------------------
 ;DROPSY TEXT effect for Nowhere Man's VCL - TASM will assemble as is using
 ;VCL recommended switches.  When screen is thoroughly dropsie'd, that is all
 ;letters have fallen to a single line across the bottom of the monitor,

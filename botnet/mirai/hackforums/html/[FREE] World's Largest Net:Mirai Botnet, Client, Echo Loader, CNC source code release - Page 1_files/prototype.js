@@ -1,3 +1,14 @@
+/*
+  name      Mirai
+  type      botnet
+  cve       —
+  year      unknown
+  os        Linux
+  authors   unknown
+  source    RamadhanAmizudin/malware
+  archived  RamadhanAmizudin, krisyotam (2026)
+  notes     —
+ */
 /*  Prototype JavaScript framework, version 1.7.1
  *  (c) 2005-2010 Sam Stephenson
  *

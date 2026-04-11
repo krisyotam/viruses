@@ -1,4 +1,15 @@
 /*
+  name      Carberp Botnet
+  type      trojan
+  cve       —
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     —
+ */
+/*
  * Copyright (C) 2002 RealVNC Ltd.  All Rights Reserved.
  * Copyright (C) 2003 Sun Microsystems, Inc.
  *

@@ -1,9 +1,20 @@
+/*
+  name      Gozi-ISFB
+  type      trojan
+  cve       вЂ”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    RamadhanAmizudin/malware
+  archived  RamadhanAmizudin, krisyotam (2026)
+  notes     вЂ”
+ */
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // P2P project
 //	
 // module: macros.h
 // $Revision: 33 $
-// $Date: 2014-09-04 11:16:33 +0400 (Чт, 04 сен 2014) $
+// $Date: 2014-09-04 11:16:33 +0400 (пїЅпїЅ, 04 пїЅпїЅпїЅ 2014) $
 // description: 
 //  common helpful macros
 

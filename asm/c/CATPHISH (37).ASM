@@ -1,3 +1,14 @@
+; ------------------------------------------------------------
+; name      C
+; type      asm
+; cve       â€”
+; year      unknown
+; os        DOS
+; authors   unknown
+; source    krisyotam
+; archived  krisyotam (2026)
+; notes     â€”
+; ------------------------------------------------------------
 From smtp Sun Jan 29 16:25 EST 1995
 Received: from ids.net by POBOX.jwu.edu; Sun, 29 Jan 95 16:25 EST
 Date: Sun, 29 Jan 1995 16:18:52 -0500 (EST)
@@ -541,12 +552,12 @@ like to trade, email me a list of your collection.
 
 Serious inquiries only. 
 
-       Ú ùùÄÄÄùÄ  ÄÄ-ÄùúÄÄÄÄÄ- - ÄÄÄÄÄùÂúÄÄÄÄ-- ÄÄÄÄùùÄ- ÄÄ-ÄùúÄÄú
-       ³  Yojimbo [íØëæí]              ù Fast as the Wind        ù
-       ù  SysOp: The Dojo BBS          ù Quiet as the Forest     ³
-       ³  1.7i3.436.1795               ³ Aggressive as Fire      ú
-       ú  QUaRaNTiNE HomeSite          ú And                     ³
-       ³  THe ULTiMaTE ViRaL InFeCTiON ³ Immovable as a Mountain ³
-        ùÄ -ÄùùúÄÄÄÄÄÄÄÄÄùùúÄÄÄÄ ÄÄúÄÄ úÄÄÄÄÄÄÄúù-ÄÄÄÄÄÄÄÄÄùúÄÄÄÄ
+       ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½  ï¿½ï¿½-ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½- - ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½-- ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½- ï¿½ï¿½-ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+       ï¿½  Yojimbo [ï¿½ï¿½ï¿½ï¿½ï¿½]              ï¿½ Fast as the Wind        ï¿½
+       ï¿½  SysOp: The Dojo BBS          ï¿½ Quiet as the Forest     ï¿½
+       ï¿½  1.7i3.436.1795               ï¿½ Aggressive as Fire      ï¿½
+       ï¿½  QUaRaNTiNE HomeSite          ï¿½ And                     ï¿½
+       ï¿½  THe ULTiMaTE ViRaL InFeCTiON ï¿½ Immovable as a Mountain ï¿½
+        ï¿½ï¿½ -ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½-ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 
 

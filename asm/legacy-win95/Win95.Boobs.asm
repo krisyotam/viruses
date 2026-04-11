@@ -1,3 +1,14 @@
+; ------------------------------------------------------------
+; name      Legacy Win95
+; type      asm
+; cve       —
+; year      unknown
+; os        DOS
+; authors   unknown
+; source    krisyotam
+; archived  krisyotam (2026)
+; notes     —
+; ------------------------------------------------------------
 ; B00bs virus
 ;******************************************************************************
 ; THIS IS FOR EDUCATIONAL PURPOSE ONLY                               Gi0rGeTt0

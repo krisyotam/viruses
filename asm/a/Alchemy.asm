@@ -1,3 +1,14 @@
+; ------------------------------------------------------------
+; name      A
+; type      asm
+; cve       —
+; year      unknown
+; os        DOS
+; authors   unknown
+; source    krisyotam
+; archived  krisyotam (2026)
+; notes     —
+; ------------------------------------------------------------
 ; Alchemy.asm : [Arachnyphobia] by Abraxas
 ; Created wik the Phalcon/Skism Mass-Produced Code Generator
 ; from the configuration file skeleton.cfg

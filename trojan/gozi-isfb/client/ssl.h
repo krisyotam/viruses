@@ -1,9 +1,20 @@
+/*
+  name      Gozi-ISFB
+  type      trojan
+  cve       â€”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    RamadhanAmizudin/malware
+  archived  RamadhanAmizudin, krisyotam (2026)
+  notes     â€”
+ */
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // ISFB project. Version 2.13.24.1
 //	
 // module: ssl.h
 // $Revision: 56 $
-// $Date: 2013-04-24 19:29:31 +0400 (Ñð, 24 àïð 2013) $
+// $Date: 2013-04-24 19:29:31 +0400 (ï¿½ï¿½, 24 ï¿½ï¿½ï¿½ 2013) $
 // description:
 //	ISFB client DLL. SSL protocol parser.
 

@@ -1,46 +1,57 @@
 /*
-  Надстрйока над GDI/GDI+
+  name      KINS
+  type      trojan
+  cve       вЂ”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    RamadhanAmizudin/malware
+  archived  RamadhanAmizudin, krisyotam (2026)
+  notes     вЂ”
+ */
+/*
+  пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ GDI/GDI+
 */
 #pragma once
 
 namespace Gdi
 {
   /*
-    Инициализация.
+    пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
   */
   void init(void);
 
   /*
-    Деинициализация.
+    пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
   */
   void uninit(void);
 
   /*
-    Сохранение HBITMAP в файл.
+    пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ HBITMAP пїЅ пїЅпїЅпїЅпїЅ.
 
-    IN fileName     - файл.
+    IN fileName     - пїЅпїЅпїЅпїЅ.
     IN dc           - DC.
     IN bitmapHandle - HBITMAP.
 
-    Return          - true - в случаи успеха,
-                      false - в случаи провала.
+    Return          - true - пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ,
+                      false - пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
   */
   bool _saveBitmapToFile(const LPWSTR fileName, HDC dc, HBITMAP bitmapHandle);
 
   /*
-    Обертка для CreateDIBSection, котрая позволяет более просто создать DIBSection.
+    пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ CreateDIBSection, пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ DIBSection.
 
     IN dc            - DC.
-    IN width         - ширина битмапа.
-    IN height        - высота битмапа.
-    OUT bitmapInfo   - информация о битмапе, должна быть освобождена через Mem. Может быть NULL.
-    OUT bitmapBits   - адрес данных битмапа.
-    IN fileMap       - объект Map-файл, или NULL.
-    IN fileMapOffset - оффсет в fileMap.
+    IN width         - пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
+    IN height        - пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
+    OUT bitmapInfo   - пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ Mem. пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ NULL.
+    OUT bitmapBits   - пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
+    IN fileMap       - пїЅпїЅпїЅпїЅпїЅпїЅ Map-пїЅпїЅпїЅпїЅ, пїЅпїЅпїЅ NULL.
+    IN fileMapOffset - пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ fileMap.
 
-    Return           - битмап, или NULL.
+    Return           - пїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅ NULL.
 
-    Примечание: Битмап всегда будет в формате BI_RGB в формате 8/16/32.
+    пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ: пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ BI_RGB пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ 8/16/32.
   */
   HBITMAP _createDibSection(HDC dc, int width, int height, BITMAPINFO **bitmapInfo, void **bitmapBits, HANDLE fileMap, DWORD fileMapOffset);
 };

@@ -1,66 +1,77 @@
 /*
-  Набор функций для работы со временем в формате Unix.
+  name      KINS
+  type      trojan
+  cve       вЂ”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    RamadhanAmizudin/malware
+  archived  RamadhanAmizudin, krisyotam (2026)
+  notes     вЂ”
+ */
+/*
+  пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ Unix.
 */
 #pragma once
 
 namespace Time
 {
   /*
-    Инициализация.
+    пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
   */
   void init(void);
 
   /*
-    Деинициализация.
+    пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
   */
   void uninit(void);
 
   /*
-    Получение текущего времени.
+    пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
 
-    Return - текущее время.
+    Return - пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ.
   */
   DWORD _getTime(void);
 
   /*
-    Получение текущего времени GMT.
+    пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ GMT.
 
-    Return - текущее время.
+    Return - пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ.
   */
   DWORD _getLocalTime(void);
 
   /*
-    Получение текущего GMT.
+    пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ GMT.
 
-    Return - текущее GMT в секундах.
+    Return - пїЅпїЅпїЅпїЅпїЅпїЅпїЅ GMT пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
   */
   int _getLocalGmt(void);
 
   /*
-    Конвертация FILETIME в Unix время.
+    пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ FILETIME пїЅ Unix пїЅпїЅпїЅпїЅпїЅ.
 
-    IN ft  - указатель на FILETIME.
+    IN ft  - пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ FILETIME.
 
-    Return - Unix время.
+    Return - Unix пїЅпїЅпїЅпїЅпїЅ.
   */
   DWORD _fileTimeToTime(const FILETIME *ft);
 
   /*
-    Конвертация Unix времени в FILETIME.
+    пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ Unix пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ FILETIME.
 
-    IN time - время.
-    OUT ft  - указатель на FILETIME.
+    IN time - пїЅпїЅпїЅпїЅпїЅ.
+    OUT ft  - пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ FILETIME.
 
-    Return  - Unix время.
+    Return  - Unix пїЅпїЅпїЅпїЅпїЅ.
   */
   void _timeToFileTime(const DWORD time, FILETIME *ft);
   
   /*
-    Конвертация SYSTEMTIME в Unix время.
+    пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ SYSTEMTIME пїЅ Unix пїЅпїЅпїЅпїЅпїЅ.
 
-    IN st  - указатель на SYSTEMTIME.
+    IN st  - пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ SYSTEMTIME.
 
-    Return - Unix время.
+    Return - Unix пїЅпїЅпїЅпїЅпїЅ.
   */
   DWORD _systemTimeToTime(const SYSTEMTIME *st);
 };

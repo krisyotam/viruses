@@ -1,3 +1,14 @@
+/*
+  name      Trochilus
+  type      trojan
+  cve       â€”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    RamadhanAmizudin/malware
+  archived  RamadhanAmizudin, krisyotam (2026)
+  notes     â€”
+ */
 #pragma once
 #include "CommData.h"
 #include "CommNames.h"
@@ -14,7 +25,7 @@ public:
 	BOOL DeleteModule(LPCTSTR modFilename);
 //	void AddAllLocalModules();
 
-	//CPGuidÏà¹Øº¯Êý
+	//CPGuidï¿½ï¿½Øºï¿½ï¿½ï¿½
 	static BOOL CreateCPGuid(CPGUID& cpguid);
 	static void CPGuid2Str(const CPGUID& cpguid, tstring& str);
 	static BOOL Str2CPGuid(LPCTSTR str, CPGUID& cpguid);

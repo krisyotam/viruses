@@ -1,3 +1,14 @@
+/*
+  name      Carberp Botnet
+  type      trojan
+  cve       вЂ”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     вЂ”
+ */
 #include "util.h"
 
 char* u_alloc( int sz, int zero )
@@ -79,7 +90,7 @@ const char* u_strstr(const char* s, const char* sub)
 	return 0;
 }
 
-//сравнение символов без учета регистра
+//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 int u_icmpchar(char c1, char c2)
 {
 	if( c1 >= 'a' && c1 <= 'z' )
@@ -89,7 +100,7 @@ int u_icmpchar(char c1, char c2)
 	return c1 - c2;
 }
 
-//поиск подстроки в строке без учета регистра и только для английских букв
+//пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
 const char* u_istrstr(const char* s, const char* sub)
 {
 	int c_s = _lstrlen(s);
@@ -121,10 +132,10 @@ const char* u_strchr( const char* s, char c )
  return 0;
 }
 
-//генерирует число в пределах от 0 до 65535
+//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ 0 пїЅпїЅ 65535
 int u_rand(void)
 {
- static unsigned int curr = 0; //текущее случайное число
+ static unsigned int curr = 0; //пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
  if( curr == 0 ) curr = _GetTickCount() & 0xffff;
  curr = (curr * 60539 + 4481) & 0xffff;
  return curr;

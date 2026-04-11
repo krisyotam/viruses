@@ -1,3 +1,14 @@
+/*
+  name      Carberp Botnet
+  type      trojan
+  cve       вЂ”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     вЂ”
+ */
 // URLInput.cpp : implementation file
 //
 
@@ -35,7 +46,7 @@ END_MESSAGE_MAP()
 
 void URLInput::ToAnsi(PWCHAR Str, DWORD Len)
 {
-	// Функция преобразовывает WideString в ANSI String
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ WideString пїЅ ANSI String
 	if (Str==NULL) return ;
 
 	if (Len == 0)
@@ -43,10 +54,10 @@ void URLInput::ToAnsi(PWCHAR Str, DWORD Len)
 	if (Len == 0)
 		return ;
 
-    // Определяем размер результирующей строки
+    // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	int ResLen = (int)WideCharToMultiByte(CP_ACP, 0, Str, Len, 0, 0, NULL, NULL);
 
-	// Преобразовываем строку
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	
 	WideCharToMultiByte(1251, 0, Str, Len, URL, ResLen, NULL, NULL);
 

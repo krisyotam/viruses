@@ -1,3 +1,14 @@
+; ------------------------------------------------------------
+; name      U
+; type      asm
+; cve       —
+; year      unknown
+; os        DOS
+; authors   unknown
+; source    krisyotam
+; archived  krisyotam (2026)
+; notes     —
+; ------------------------------------------------------------
 ;****************************************************************************
 ;*
 ;* 	UTILITY.ASM - Manipulation Task Code For Casper The Virus.         *

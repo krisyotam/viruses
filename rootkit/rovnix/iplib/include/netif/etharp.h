@@ -1,4 +1,15 @@
 /*
+  name      Rovnix
+  type      rootkit
+  cve       —
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    RamadhanAmizudin/malware
+  archived  RamadhanAmizudin, krisyotam (2026)
+  notes     —
+ */
+/*
  * Copyright (c) 2001-2003 Swedish Institute of Computer Science.
  * Copyright (c) 2003-2004 Leon Woestenberg <leon.woestenberg@axon.tv>
  * Copyright (c) 2003-2004 Axon Digital Design B.V., The Netherlands.

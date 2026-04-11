@@ -1,3 +1,14 @@
+/*
+  name      Trochilus
+  type      trojan
+  cve       —
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    RamadhanAmizudin/malware
+  archived  RamadhanAmizudin, krisyotam (2026)
+  notes     —
+ */
 /* krb5_asn.h */
 /* Written by Vern Staats <staatsvr@asc.hpc.mil> for the OpenSSL project,
 ** using ocsp/{*.h,*asn*.c} as a starting point

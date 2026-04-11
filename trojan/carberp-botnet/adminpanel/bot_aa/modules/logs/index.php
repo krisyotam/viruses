@@ -1,3 +1,14 @@
+/*
+  name      Carberp Botnet
+  type      trojan
+  cve       —
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     —
+ */
 <?php
 $smarty->allow_php_tag = true;
 $list = array();
@@ -30,7 +41,8 @@ function catalog_item_load($parent){
 	}
 }
 
-function load_admins($r){	global $admins;
+function load_admins($r){
+	global $admins;
 	$admins[$r->id] = $r->name;
 }
 
@@ -87,8 +99,10 @@ $pr = '';
 foreach($proc as $k => $p){
 	$proc[$k] = explode('|', file_get_contents('cache/proc/' . $p));
 	if(!empty($proc[$k])){
-		if($k & 1 == 1){			$bg = 'bg1';
-		}else{			$bg = 'bg2';
+		if($k & 1 == 1){
+			$bg = 'bg1';
+		}else{
+			$bg = 'bg2';
 		}
 		$pr .= '<tr align="center" class="'.$bg.'">';
 		$pr .= '<td>'.size_format($proc[$k][0]).'</td>';

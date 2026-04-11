@@ -1,5 +1,17 @@
+/*
+  name      Carberp Botnet
+  type      trojan
+  cve       —
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     —
+ */
 <?php
-class mysqli_db{	public $settings, $sql, $db, $errors;
+class mysqli_db{
+	public $settings, $sql, $db, $errors;
 
 	function __construct(){
 		$this->errors = array();

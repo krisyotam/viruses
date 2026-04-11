@@ -1,3 +1,14 @@
+; ------------------------------------------------------------
+; name      O
+; type      asm
+; cve       —
+; year      unknown
+; os        DOS
+; authors   unknown
+; source    krisyotam
+; archived  krisyotam (2026)
+; notes     —
+; ------------------------------------------------------------
 Main:           Lea Dx,FileSpec
                 Mov Ah,4eh
                 Int 21h

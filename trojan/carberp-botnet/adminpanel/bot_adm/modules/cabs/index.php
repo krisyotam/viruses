@@ -1,3 +1,14 @@
+/*
+  name      Carberp Botnet
+  type      trojan
+  cve       —
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     —
+ */
 <?php
 
 get_function('html_pages');
@@ -5,22 +16,28 @@ get_function('size_format');
 get_function('strtotime');
 get_function('smarty_assign_add');
 
-if(isset($_POST['type'])){	$_SESSION['ctype'] = $_POST['type'];
+if(isset($_POST['type'])){
+	$_SESSION['ctype'] = $_POST['type'];
 }
 
-if(!empty($_SESSION['user']->config['prefix'])){	$_POST['prefix'] = $_SESSION['user']->config['prefix'];
+if(!empty($_SESSION['user']->config['prefix'])){
+	$_POST['prefix'] = $_SESSION['user']->config['prefix'];
 }
 
-if(isset($_POST['prefix'])){	$_SESSION['search'][$_SESSION['ctype']]['prefix'] = $_POST['prefix'];
+if(isset($_POST['prefix'])){
+	$_SESSION['search'][$_SESSION['ctype']]['prefix'] = $_POST['prefix'];
 }
 
-if(isset($_POST['uid'])){	$_SESSION['search'][$_SESSION['ctype']]['uid'] = $_POST['uid'];
+if(isset($_POST['uid'])){
+	$_SESSION['search'][$_SESSION['ctype']]['uid'] = $_POST['uid'];
 }
 
-if(isset($_POST['country'])){	$_SESSION['search'][$_SESSION['ctype']]['country'] = $_POST['country'];
+if(isset($_POST['country'])){
+	$_SESSION['search'][$_SESSION['ctype']]['country'] = $_POST['country'];
 }
 
-if(isset($_POST['date'])){	$_SESSION['search'][$_SESSION['ctype']]['date'] = $_POST['date'];
+if(isset($_POST['date'])){
+	$_SESSION['search'][$_SESSION['ctype']]['date'] = $_POST['date'];
 }
 
 $filter = '';

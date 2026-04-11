@@ -1,4 +1,15 @@
-// TestMaster.cpp : ¶¨Òå¿ØÖÆÌ¨Ó¦ÓÃ³ÌÐòµÄÈë¿Úµã¡£
+/*
+  name      Trochilus
+  type      trojan
+  cve       â€”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    RamadhanAmizudin/malware
+  archived  RamadhanAmizudin, krisyotam (2026)
+  notes     â€”
+ */
+// TestMaster.cpp : ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ì¨Ó¦ï¿½Ã³ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Úµã¡£
 //
 
 #include "stdafx.h"
@@ -10,7 +21,7 @@
 #endif
 
 
-// Î¨Ò»µÄÓ¦ÓÃ³ÌÐò¶ÔÏó
+// Î¨Ò»ï¿½ï¿½Ó¦ï¿½Ã³ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 
 CWinApp theApp;
 
@@ -60,24 +71,24 @@ int _tmain(int argc, TCHAR* argv[], TCHAR* envp[])
 
 	if (hModule != NULL)
 	{
-		// ³õÊ¼»¯ MFC ²¢ÔÚÊ§°ÜÊ±ÏÔÊ¾´íÎó
+		// ï¿½ï¿½Ê¼ï¿½ï¿½ MFC ï¿½ï¿½ï¿½ï¿½Ê§ï¿½ï¿½Ê±ï¿½ï¿½Ê¾ï¿½ï¿½ï¿½ï¿½
 		if (!AfxWinInit(hModule, NULL, ::GetCommandLine(), 0))
 		{
-			// TODO: ¸ü¸Ä´íÎó´úÂëÒÔ·ûºÏÄúµÄÐèÒª
-			_tprintf(_T("´íÎó: MFC ³õÊ¼»¯Ê§°Ü\n"));
+			// TODO: ï¿½ï¿½ï¿½Ä´ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ô·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Òª
+			_tprintf(_T("ï¿½ï¿½ï¿½ï¿½: MFC ï¿½ï¿½Ê¼ï¿½ï¿½Ê§ï¿½ï¿½\n"));
 			nRetCode = 1;
 		}
 		else
 		{
-			// TODO: ÔÚ´Ë´¦ÎªÓ¦ÓÃ³ÌÐòµÄÐÐÎª±àÐ´´úÂë¡£
+			// TODO: ï¿½Ú´Ë´ï¿½ÎªÓ¦ï¿½Ã³ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Îªï¿½ï¿½Ð´ï¿½ï¿½ï¿½ë¡£
 			RawMain();
 			//system("")
 		}
 	}
 	else
 	{
-		// TODO: ¸ü¸Ä´íÎó´úÂëÒÔ·ûºÏÄúµÄÐèÒª
-		_tprintf(_T("´íÎó: GetModuleHandle Ê§°Ü\n"));
+		// TODO: ï¿½ï¿½ï¿½Ä´ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ô·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Òª
+		_tprintf(_T("ï¿½ï¿½ï¿½ï¿½: GetModuleHandle Ê§ï¿½ï¿½\n"));
 		nRetCode = 1;
 	}
 

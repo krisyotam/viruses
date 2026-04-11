@@ -1,6 +1,17 @@
+/*
+  name      Zeus
+  type      trojan
+  cve       вЂ”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    RamadhanAmizudin/malware
+  archived  RamadhanAmizudin, krisyotam (2026)
+  notes     вЂ”
+ */
 #pragma once
 /*
-  Модифицированый UCL 1.03.
+  пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ UCL 1.03.
   http://www.oberhumer.com/opensource/ucl/
 */
 
@@ -68,41 +79,41 @@ namespace UCL
   typedef struct
   {
     /*
-      IN dwTextSize - FIXME: переменная не известна. text size counter.
-      IN dwCodeSize - FIXME: переменная не известна. code size counter.
-      IN iStatus - состояние работы.
-                   -1 - подготовка.
-                    3 - прогресс.
-                    4 - успешно завершено.
-      IN pData - пользовательские данные.
+      IN dwTextSize - FIXME: пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ. text size counter.
+      IN dwCodeSize - FIXME: пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ. code size counter.
+      IN iStatus - пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ.
+                   -1 - пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
+                    3 - пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
+                    4 - пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
+      IN pData - пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ.
     */
     void (WINAPI *callback)(DWORD dwTextSize, DWORD dwCodeSize, int iStatus, void *pData);
     void *pData; //User data. sent to the callback.
   }PROGRESS_CALLBACK;
 
   /*
-    Инициализация.
+    пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
   */
   void Init(void);
 
   /*
-    Деинициализация.
+    пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
   */
   void Uninit(void);
 
   /*
-    Сжатие данных.
+    пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ.
 
-    IN pSource           - исходные данные.
-    IN dwSourceSize      - размер исходных данных в байтах.
-    OUT pBuffer          - буфер для сжатых данных.
-    IN OUT pdwBufferSize - на входе - максимальный размер pBuffer, рекомендуется расчитывать по
-                           формуле dwSourceSize + dwSourceSize / 8.
-                           на выходе - размер сжатых данных.
-    IN pCallback         - функция для получения состояния.
-    IN dwFlags           - флаги CF_*.
+    IN pSource           - пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ.
+    IN dwSourceSize      - пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ.
+    OUT pBuffer          - пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ.
+    IN OUT pdwBufferSize - пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ - пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ pBuffer, пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ
+                           пїЅпїЅпїЅпїЅпїЅпїЅпїЅ dwSourceSize + dwSourceSize / 8.
+                           пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ - пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ.
+    IN pCallback         - пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
+    IN dwFlags           - пїЅпїЅпїЅпїЅпїЅ CF_*.
 
-    Return               - код ошибки E_*.
+    Return               - пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ E_*.
   */
   int _Compress(LPBYTE pSource, DWORD dwSourceSize, LPBYTE pBuffer, LPDWORD pdwBufferSize, PROGRESS_CALLBACK *pCallback, DWORD dwFlags);
 

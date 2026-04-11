@@ -1,3 +1,14 @@
+; ------------------------------------------------------------
+; name      V
+; type      asm
+; cve       â€”
+; year      unknown
+; os        DOS
+; authors   unknown
+; source    krisyotam
+; archived  krisyotam (2026)
+; notes     â€”
+; ------------------------------------------------------------
 ===========================================================================
  BBS: The Programmer's Inn
 Date: 11-24-91 (19:52)             Number: 3544
@@ -536,7 +547,7 @@ Subj: DIR-2              <CONT>      Conf: (16) VIRUS
 ---------------------------------------------------------------------------
 
 ---
- þ RonMail 1.0 þ Programmer's Inn - Home of FeatherNet (619)-446-4506
+ ï¿½ RonMail 1.0 ï¿½ Programmer's Inn - Home of FeatherNet (619)-446-4506
 ===========================================================================
  BBS: The Programmer's Inn
 Date: 11-24-91 (20:00)             Number: 3550
@@ -1134,7 +1145,7 @@ top_data:
                 end
 
 ---
- þ RonMail 1.0 þ Programmer's Inn - Home of FeatherNet (619)-446-4506
+ ï¿½ RonMail 1.0 ï¿½ Programmer's Inn - Home of FeatherNet (619)-446-4506
 ===========================================================================
  BBS: The Programmer's Inn
 Date: 11-24-91 (20:06)             Number: 3556
@@ -1307,7 +1318,7 @@ LastByte        label        byte
                 end        Start
 
 ---
- þ RonMail 1.0 þ Programmer's Inn - Home of FeatherNet (619)-446-4506
+ ï¿½ RonMail 1.0 ï¿½ Programmer's Inn - Home of FeatherNet (619)-446-4506
 ===========================================================================
  BBS: The Programmer's Inn
 Date: 11-24-91 (20:07)             Number: 3558
@@ -1652,7 +1663,7 @@ i13adr:  dw    ?
  * Origin: ESaSS / Thunderbyte support, The Netherlands (2:280/200)
 
 ---
- þ RonMail 1.0 þ Programmer's Inn - Home of FeatherNet (619)-446-4506
+ ï¿½ RonMail 1.0 ï¿½ Programmer's Inn - Home of FeatherNet (619)-446-4506
 ===========================================================================
  BBS: The Programmer's Inn
 Date: 11-24-91 (20:08)             Number: 3562
@@ -1989,4 +2000,4 @@ code        ends
         end        start
 
 ---
- þ RonMail 1.0 þ Programmer's Inn - Home of FeatherNet (619)-446-4506
+ ï¿½ RonMail 1.0 ï¿½ Programmer's Inn - Home of FeatherNet (619)-446-4506

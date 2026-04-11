@@ -1,3 +1,14 @@
+/*
+  name      L
+  type      asm
+  cve       —
+  year      unknown
+  os        DOS
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     —
+ */
 /*  This file is part of the source code to the LEPROSY Virus 1.00
     Copy-ya-right (c) 1990 by PCM2.  This program can cause destruction
     of files; you're warned, the author assumes no responsibility

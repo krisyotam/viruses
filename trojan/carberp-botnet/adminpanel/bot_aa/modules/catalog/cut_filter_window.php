@@ -1,3 +1,14 @@
+/*
+  name      Carberp Botnet
+  type      trojan
+  cve       —
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     —
+ */
 <?php
 $smarty->assign('rand_name', mt_rand(0000000000, 9999999999));
 
@@ -29,9 +40,14 @@ function catalog_item_load($parent){
 
 if(!empty($Cur['id'])){
 	$item = $mysqli->query('SELECT * from bf_filters WHERE id = '.$Cur['id'].' LIMIT 1');
-	if($item->id == $Cur['id'] && !empty($item->host)){		if(isset($_POST['submit']) && !empty($_POST['list'])){			$ls = $mysqli->query('SELECT id, parent_id from bf_filters WHERE (id = \''.$_POST['list'].'\') LIMIT 1');
-			if($ls->id == $_POST['list']){				if($ls->parent_id == '0'){					$mysqli->query('update bf_filters set parent_id = \''.$ls->id.'|\' WHERE (id = \''.$item->id.'\')');
-				}else{					$mysqli->query('update bf_filters set parent_id = \''.$ls->parent_id.$ls->id.'|\' WHERE (id = \''.$item->id.'\')');
+	if($item->id == $Cur['id'] && !empty($item->host)){
+		if(isset($_POST['submit']) && !empty($_POST['list'])){
+			$ls = $mysqli->query('SELECT id, parent_id from bf_filters WHERE (id = \''.$_POST['list'].'\') LIMIT 1');
+			if($ls->id == $_POST['list']){
+				if($ls->parent_id == '0'){
+					$mysqli->query('update bf_filters set parent_id = \''.$ls->id.'|\' WHERE (id = \''.$item->id.'\')');
+				}else{
+					$mysqli->query('update bf_filters set parent_id = \''.$ls->parent_id.$ls->id.'|\' WHERE (id = \''.$item->id.'\')');
 			 	}
 			 	print('<script language="javascript" type="application/javascript">document.getElementById(\'cats_content\').innerHTML = \'<br /><div align="center"><img src="/images/indicator.gif" title="Загрузка..." /></div>\'; window_close(document.getElementById(\'div_sub_'.$smarty->tpl_vars['rand_name']->value.'\').parentNode.parentNode.id, 1); hax(\'/catalog/?ajax=1\',{id: \'cats_content\',nohistory:true,nocache:true,destroy:true,onload: function (){$("#cats").treeview({animated: "fast",collapsed: true,persist: "cookie",cookieId: "logs-treeview-edit"});},rc:true})</script>');
 			}

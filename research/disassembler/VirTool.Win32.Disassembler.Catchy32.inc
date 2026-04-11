@@ -1,3 +1,14 @@
+; ------------------------------------------------------------
+; name      Disassembler
+; type      research
+; cve       —
+; year      unknown
+; os        Multi
+; authors   unknown
+; source    vxunderground
+; archived  vxunderground, krisyotam (2026)
+; notes     —
+; ------------------------------------------------------------
 ; Catchy32 v1.6-2 - Length Disassembler Engine 32bit
 ; original source Catchy32.inc-orig (c) sars [HI-TECH] 2003
 ; this slightly opimized version - herm1t'2004

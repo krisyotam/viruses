@@ -1,3 +1,14 @@
+/*
+  name      Cocomelonc
+  type      research
+  cve       —
+  year      unknown
+  os        Multi
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     —
+ */
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>

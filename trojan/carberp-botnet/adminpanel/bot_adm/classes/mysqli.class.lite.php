@@ -1,5 +1,17 @@
+/*
+  name      Carberp Botnet
+  type      trojan
+  cve       —
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     —
+ */
 <?php
-class mysqli_db{	public $settings, $sql, $db, $errors;
+class mysqli_db{
+	public $settings, $sql, $db, $errors;
 
 	function __construct(){
 		$this->errors = array();
@@ -18,19 +30,27 @@ class mysqli_db{	public $settings, $sql, $db, $errors;
 	function connect($host, $user, $password, $use_db,$socket = ''){
 		$mysqli = mysqli_init();
 
-		if(count($this->settings["options"]) > 0){			foreach($this->settings["options"] as $key => $value){				if(is_array($value)){					if(count($value) > 0){						foreach($value as $a_value){							$mysqli->options($key, $a_value);
+		if(count($this->settings["options"]) > 0){
+			foreach($this->settings["options"] as $key => $value){
+				if(is_array($value)){
+					if(count($value) > 0){
+						foreach($value as $a_value){
+							$mysqli->options($key, $a_value);
 						}
 					}
-				}else{					$mysqli->options($key, $value);
+				}else{
+					$mysqli->options($key, $value);
 				}
 			}
 		}
 
 		@$mysqli->real_connect($host, $user, $password, $use_db);
 
-		if($mysqli->connect_error){			$this->errors[] = $mysqli->connect_error;
+		if($mysqli->connect_error){
+			$this->errors[] = $mysqli->connect_error;
 			unset($mysqli);
-		}else{			$this->db = $mysqli;
+		}else{
+			$this->db = $mysqli;
 			unset($mysqli);
 		}
 	}

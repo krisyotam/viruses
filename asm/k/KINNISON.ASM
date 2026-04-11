@@ -1,3 +1,14 @@
+; ------------------------------------------------------------
+; name      K
+; type      asm
+; cve       —
+; year      unknown
+; os        DOS
+; authors   unknown
+; source    krisyotam
+; archived  krisyotam (2026)
+; notes     —
+; ------------------------------------------------------------
 ; KINNISON.ASM -- Sam Kinnison virus  
 ; Created by Nowhere Man's Virus Creation Labratory v0.75
 ; Written by Nowhere Man

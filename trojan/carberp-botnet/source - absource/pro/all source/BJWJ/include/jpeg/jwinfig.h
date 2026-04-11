@@ -1,3 +1,14 @@
+/*
+  name      Carberp Botnet
+  type      trojan
+  cve       —
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     —
+ */
 /* jconfig.mc6 --- jconfig.h for Microsoft C on MS-DOS, version 6.00A & up. */
 /* see jconfig.doc for explanations */
 

@@ -1,3 +1,14 @@
+/*
+  name      Trochilus
+  type      trojan
+  cve       â€”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    RamadhanAmizudin/malware
+  archived  RamadhanAmizudin, krisyotam (2026)
+  notes     â€”
+ */
 #pragma once
 #include "MessageDefines.h"
 #include "ArrayData.h"
@@ -46,7 +57,7 @@ typedef struct
 }MODULE_INFO,*PMODULE_INFO;
 typedef std::map<int,MODULE_INFO> ModuleMap;
 
-//»Øµ÷º¯Êý
+//ï¿½Øµï¿½ï¿½ï¿½ï¿½ï¿½
 
 MASTERMODULE_API BOOL InitModule(LPCTSTR clientid,CLIENT_INFO& info,FnModuleNotifyProc fnCallback,LPVOID lpParameter);
 

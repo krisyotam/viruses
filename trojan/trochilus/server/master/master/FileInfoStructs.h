@@ -1,7 +1,18 @@
+/*
+  name      Trochilus
+  type      trojan
+  cve       â€”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    RamadhanAmizudin/malware
+  archived  RamadhanAmizudin, krisyotam (2026)
+  notes     â€”
+ */
 #pragma once
 #include <vector>
 
-//·ÖÇøÊý¾Ý½á¹¹
+//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ý½á¹¹
 typedef struct  
 {
 	CHAR	partition;
@@ -11,7 +22,7 @@ typedef struct
 } RDISK_INFO;
 typedef std::vector<RDISK_INFO> DiskInfoList;
 
-//ÎÄ¼þÊý¾Ý½á¹¹
+//ï¿½Ä¼ï¿½ï¿½ï¿½ï¿½Ý½á¹¹
 typedef struct RFILE_INFO
 {
 	WCHAR		filename[MAX_PATH];

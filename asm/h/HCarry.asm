@@ -1,3 +1,14 @@
+; ------------------------------------------------------------
+; name      H
+; type      asm
+; cve       —
+; year      unknown
+; os        DOS
+; authors   unknown
+; source    krisyotam
+; archived  krisyotam (2026)
+; notes     —
+; ------------------------------------------------------------
 ;This is the HCarry Virus
 ;dedicated to the late Harry Carry
 ;The only AV scanner that I know of that detects this virus is TBAV Scanner

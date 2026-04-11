@@ -1,4 +1,15 @@
 /*
+  name      Rovnix
+  type      rootkit
+  cve       —
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    RamadhanAmizudin/malware
+  archived  RamadhanAmizudin, krisyotam (2026)
+  notes     —
+ */
+/*
  * SETUP: Make sure we define everything we will need.
  *
  * We have create three types of pools:

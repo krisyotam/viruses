@@ -1,3 +1,14 @@
+; ------------------------------------------------------------
+; name      W
+; type      asm
+; cve       —
+; year      unknown
+; os        DOS
+; authors   unknown
+; source    krisyotam
+; archived  krisyotam (2026)
+; notes     —
+; ------------------------------------------------------------
 ;****************************************************************************
 ;  (c) Admiral Bailey and YAM.
 ;  Name: Who Cares                      Effective Length: 181 bytes

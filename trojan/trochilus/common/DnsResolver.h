@@ -1,3 +1,14 @@
+/*
+  name      Trochilus
+  type      trojan
+  cve       â€”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    RamadhanAmizudin/malware
+  archived  RamadhanAmizudin, krisyotam (2026)
+  notes     â€”
+ */
 #ifndef _RESOLVER_H_
 #define _RESOLVER_H_
 
@@ -44,30 +55,30 @@ const WORD QUESTION_CLASS_IN    = 0x0001; // Internet (IN) question class
 #pragma pack(1)
 typedef struct _DNSHEADER
 {
-    WORD    m_wTransId;             // ±êÊ¶
+    WORD    m_wTransId;             // ï¿½ï¿½Ê¶
     union
     {
         struct
         {
-            WORD fl_RD:1;           // ÆÚÍûµÝ¹é
-            WORD fl_TC:1;           // ¿É½Ø¶ÏµÄ
-            WORD fl_AA:1;           // ÊÚÈ¨»ØÓ¦
-            WORD fl_opCode:4;       // 0 - ±ê×¼²éÑ¯; 1 - ·´Ïò²éÑ¯;
-                                    // 2 - ·þÎñÆ÷×´Ì¬ÇëÇó
+            WORD fl_RD:1;           // ï¿½ï¿½ï¿½ï¿½ï¿½Ý¹ï¿½
+            WORD fl_TC:1;           // ï¿½É½Ø¶Ïµï¿½
+            WORD fl_AA:1;           // ï¿½ï¿½È¨ï¿½ï¿½Ó¦
+            WORD fl_opCode:4;       // 0 - ï¿½ï¿½×¼ï¿½ï¿½Ñ¯; 1 - ï¿½ï¿½ï¿½ï¿½ï¿½Ñ¯;
+                                    // 2 - ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½×´Ì¬ï¿½ï¿½ï¿½ï¿½
  
-            WORD fl_QR:1;           // 0 - ÇëÇó±¨ÎÄ; 1 - »ØÓ¦±¨ÎÄ
-            WORD fl_rcode:4;        // 0 - Ã»ÓÐ²î´í 1 - ±¨ÎÄ¸ñÊ½´íÎó
-                                    // 2 - ·þÎñÆ÷Ê§°Ü 3 - Ãû×Ö´íÎó 4 - Ã»ÓÐÊµÏÖ 5 - ¾Ü¾ø
+            WORD fl_QR:1;           // 0 - ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½; 1 - ï¿½ï¿½Ó¦ï¿½ï¿½ï¿½ï¿½
+            WORD fl_rcode:4;        // 0 - Ã»ï¿½Ð²ï¿½ï¿½ 1 - ï¿½ï¿½ï¿½Ä¸ï¿½Ê½ï¿½ï¿½ï¿½ï¿½
+                                    // 2 - ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê§ï¿½ï¿½ 3 - ï¿½ï¿½ï¿½Ö´ï¿½ï¿½ï¿½ 4 - Ã»ï¿½ï¿½Êµï¿½ï¿½ 5 - ï¿½Ü¾ï¿½
  
             WORD fl_reserved:3;     //
-            WORD fl_RA:1;           // ¿ÉÓÃµÝ¹é
+            WORD fl_RA:1;           // ï¿½ï¿½ï¿½ÃµÝ¹ï¿½
         } m_sFlag;
         WORD m_wFlag;
     } m_uFlag;
-    WORD    m_wQuestions;           // ÎÊÌâÊý
-    WORD    m_wAnswerRRs;           // ×ÊÔ´¼ÇÂ¼Êý
-    WORD    m_wAuthorityRRs;        // ÊÚÈ¨×ÊÔ´¼ÇÂ¼Êý
-    WORD    m_wAdditionalRRs;       // ¶îÍâ×ÊÔ´¼ÇÂ¼Êý
+    WORD    m_wQuestions;           // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+    WORD    m_wAnswerRRs;           // ï¿½ï¿½Ô´ï¿½ï¿½Â¼ï¿½ï¿½
+    WORD    m_wAuthorityRRs;        // ï¿½ï¿½È¨ï¿½ï¿½Ô´ï¿½ï¿½Â¼ï¿½ï¿½
+    WORD    m_wAdditionalRRs;       // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ô´ï¿½ï¿½Â¼ï¿½ï¿½
 } DNSHEADER, *LPDNSHEADER;
 #pragma pack()
 

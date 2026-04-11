@@ -1,3 +1,14 @@
+; ------------------------------------------------------------
+; name      D
+; type      asm
+; cve       â€”
+; year      unknown
+; os        DOS
+; authors   unknown
+; source    krisyotam
+; archived  krisyotam (2026)
+; notes     â€”
+; ------------------------------------------------------------
 ; DataRape! v2.0 Infector
 ;
 ; I know you won't dist this, DD.  Sorry its a bit sloppy, but it works.
@@ -67,14 +78,14 @@ config_2      db        13,10
               db        13,10
               db        "Enter Scrolling Message: $"
 config_3      db        'Enter Colors in form: "bf", where "b" is the background and "f" the foreground.',13,10
-              db        '                    ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¿',13,10
-              db        'Colors:             ³ FOREGROUND ONLY ³',13,10
-              db        '                    ÀÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¿³ ÚÄÄÄÄ',13,10
-              db        '0 : black            4 : red         ³³ ³ 8 : light grey       C : light red',13,10
-              db        '1 : blue             5 : magenta     ³ÀÄ´ 9 : light blue       D : light magenta'
-              db        '2 : green            6 : brown       ÀÄÄ´ A : light greenta    E : yellow',13,10
-              db        '3 : cyan             7 : white          ³ B : light cyan       F : bright white',13,10
-              db        '                                        ÀÄÄÄÄ',13,10
+              db        '                    ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä¿',13,10
+              db        'Colors:             ï¿½ FOREGROUND ONLY ï¿½',13,10
+              db        '                    ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä¿ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½',13,10
+              db        '0 : black            4 : red         ï¿½ï¿½ ï¿½ 8 : light grey       C : light red',13,10
+              db        '1 : blue             5 : magenta     ï¿½ï¿½Ä´ 9 : light blue       D : light magenta'
+              db        '2 : green            6 : brown       ï¿½ï¿½Ä´ A : light greenta    E : yellow',13,10
+              db        '3 : cyan             7 : white          ï¿½ B : light cyan       F : bright white',13,10
+              db        '                                        ï¿½ï¿½ï¿½ï¿½ï¿½',13,10
               db        13,10
               db        'Background Color : $'
 config_4      db        13,10

@@ -1,7 +1,18 @@
+/*
+  name      Trochilus
+  type      trojan
+  cve       â€”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    RamadhanAmizudin/malware
+  archived  RamadhanAmizudin, krisyotam (2026)
+  notes     â€”
+ */
 #pragma once
 #include "tstring.h"
 
-//²Ù×÷ÏµÍ³±êÊ¶ Ã¶¾ÙÀàÐÍ
+//ï¿½ï¿½ï¿½ï¿½ÏµÍ³ï¿½ï¿½Ê¶ Ã¶ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 typedef enum WIN_VER_DETAIL {
 	WINDOWS_VERSION_NONE = 0,   // 0
 	WINDOWS_VERSION_95,			// 1
@@ -21,25 +32,25 @@ typedef enum WIN_VER_DETAIL {
 	WINDOWS_VERSION_2012,		// 15
 } WIN_VER_DETAIL;
 
-//»ñÈ¡servant.dllËùÊôÄ¿Â¼£¬·µ»ØÖµÒÔ\½áÎ²
+//ï¿½ï¿½È¡servant.dllï¿½ï¿½ï¿½ï¿½Ä¿Â¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Öµï¿½ï¿½\ï¿½ï¿½Î²
 LPCTSTR GetBinFilepath();
 
-//»ñÈ¡µ±Ç°dllµÄÎÄ¼þÃû³Æ
+//ï¿½ï¿½È¡ï¿½ï¿½Ç°dllï¿½ï¿½ï¿½Ä¼ï¿½ï¿½ï¿½ï¿½ï¿½
 LPCTSTR GetBinFilename();
 
-//Òì»ò¼Ó½âÃÜ
+//ï¿½ï¿½ï¿½Ó½ï¿½ï¿½ï¿½
 void XorFibonacciCrypt(const LPVOID lpPlain, DWORD dwPlainLen, LPVOID lpEncrypted, UINT factor0, UINT factor1);
 
-//»ñÈ¡²Ù×÷ÏµÍ³°æ±¾
+//ï¿½ï¿½È¡ï¿½ï¿½ï¿½ï¿½ÏµÍ³ï¿½æ±¾
 WIN_VER_DETAIL GetWindowsVersion();
 
-//»ñÈ¡²Ù×÷ÏµÍ³Æ½Ì¨
+//ï¿½ï¿½È¡ï¿½ï¿½ï¿½ï¿½ÏµÍ³Æ½Ì¨
 BOOL IsWow64();
 
 #define DECLARE_TIMES(_prefix) FILETIME _prefix##CreationTime = {0}, _prefix##LastAccessTime = {0}, _prefix##LastWriteTime = {0};
 #define TIMES_PARAM(_prefix) _prefix##CreationTime, _prefix##LastAccessTime, _prefix##LastWriteTime
-//»ñÈ¡ÎÄ¼þµÄÊ±¼äÊôÐÔ
+//ï¿½ï¿½È¡ï¿½Ä¼ï¿½ï¿½ï¿½Ê±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 BOOL GetFileTimes(LPCTSTR filepath, BOOL bIsDir, FILETIME& ftCreationTime, FILETIME& ftLastAccessTime, FILETIME& ftLastWriteTime);
 
-//ÉèÖÃÎÄ¼þ»òÄ¿Â¼µÄÊ±¼ä
+//ï¿½ï¿½ï¿½ï¿½ï¿½Ä¼ï¿½ï¿½ï¿½Ä¿Â¼ï¿½ï¿½Ê±ï¿½ï¿½
 BOOL SetFileTimes(LPCTSTR filepath, BOOL bIsDir, const FILETIME& ftCreationTime, const FILETIME& ftLastAccessTime, const FILETIME& ftLastWriteTime);

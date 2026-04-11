@@ -1,3 +1,14 @@
+/*
+  name      PowerLoader
+  type      trojan
+  cve       —
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    RamadhanAmizudin/malware
+  archived  RamadhanAmizudin, krisyotam (2026)
+  notes     —
+ */
 <?php
 # Copyright 2003 Maxmind LLC All Rights Reserved
 $ISO = array(
@@ -1133,7 +1144,7 @@ $FIPS = array(
 "53" => "Tigray",
 "54" => "YeDebub Biheroch Bihereseboch na Hizboch"),
 "FI" => array(
-"01" => "�?land",
+"01" => "�?land",
 "06" => "Lapland",
 "08" => "Oulu",
 "13" => "Southern Finland",

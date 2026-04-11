@@ -1,3 +1,14 @@
+/*
+  name      Vx Api
+  type      trojan
+  cve       —
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     —
+ */
 #include "Win32Helper.h"
 
 BOOL SetHardwareBreakpoint(_In_ DWORD ThreadId, _In_ PUINT_VAR_T Address, _In_ UINT Position, _In_ BOOL Init)

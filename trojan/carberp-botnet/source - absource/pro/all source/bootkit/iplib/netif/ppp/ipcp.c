@@ -1,3 +1,14 @@
+/*
+  name      Carberp Botnet
+  type      trojan
+  cve       —
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     —
+ */
 /** In contrast to pppd 2.3.1, DNS support has been added, proxy-ARP and
     dial-on-demand has been stripped. */
 /*****************************************************************************

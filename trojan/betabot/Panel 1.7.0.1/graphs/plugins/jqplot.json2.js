@@ -1,4 +1,15 @@
 /*
+  name      Betabot
+  type      trojan
+  cve       —
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    RamadhanAmizudin/malware
+  archived  RamadhanAmizudin, krisyotam (2026)
+  notes     —
+ */
+/*
     2010-11-01 Chris Leonello
     
     Slightly modified version of the original json2.js to put JSON

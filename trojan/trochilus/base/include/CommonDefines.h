@@ -1,12 +1,23 @@
+/*
+  name      Trochilus
+  type      trojan
+  cve       â€”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    RamadhanAmizudin/malware
+  archived  RamadhanAmizudin, krisyotam (2026)
+  notes     â€”
+ */
 #pragma once
 
-//ÉùÃ÷Îª²»¿É¸´ÖÆµÄÀà
+//ï¿½ï¿½ï¿½ï¿½Îªï¿½ï¿½ï¿½É¸ï¿½ï¿½Æµï¿½ï¿½ï¿½
 #define DECLARE_UNCOPYABLE(className)			\
 	private:									\
 		className(const className&);			\
 		className& operator=(const className&);	
 
-//ÉùÃ÷Îªµ¥ÀýÀà
+//ï¿½ï¿½ï¿½ï¿½Îªï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 #define DECLARE_SINGLETON(className)			\
 	public:										\
 		static className& GetInstanceRef()		\

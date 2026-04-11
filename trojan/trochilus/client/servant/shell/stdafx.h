@@ -1,19 +1,30 @@
-// stdafx.h : ±ê×¼ÏµÍ³°üº¬ÎÄ¼þµÄ°üº¬ÎÄ¼þ£¬
-// »òÊÇ¾­³£Ê¹ÓÃµ«²»³£¸ü¸ÄµÄ
-// ÌØ¶¨ÓÚÏîÄ¿µÄ°üº¬ÎÄ¼þ
+/*
+  name      Trochilus
+  type      trojan
+  cve       â€”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    RamadhanAmizudin/malware
+  archived  RamadhanAmizudin, krisyotam (2026)
+  notes     â€”
+ */
+// stdafx.h : ï¿½ï¿½×¼ÏµÍ³ï¿½ï¿½ï¿½ï¿½ï¿½Ä¼ï¿½ï¿½Ä°ï¿½ï¿½ï¿½ï¿½Ä¼ï¿½ï¿½ï¿½
+// ï¿½ï¿½ï¿½Ç¾ï¿½ï¿½ï¿½Ê¹ï¿½Ãµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Äµï¿½
+// ï¿½Ø¶ï¿½ï¿½ï¿½ï¿½ï¿½Ä¿ï¿½Ä°ï¿½ï¿½ï¿½ï¿½Ä¼ï¿½
 //
 
 #pragma once
 
 #include "targetver.h"
 
-#define WIN32_LEAN_AND_MEAN             //  ´Ó Windows Í·ÎÄ¼þÖÐÅÅ³ý¼«ÉÙÊ¹ÓÃµÄÐÅÏ¢
-// Windows Í·ÎÄ¼þ:
+#define WIN32_LEAN_AND_MEAN             //  ï¿½ï¿½ Windows Í·ï¿½Ä¼ï¿½ï¿½ï¿½ï¿½Å³ï¿½ï¿½ï¿½ï¿½ï¿½Ê¹ï¿½Ãµï¿½ï¿½ï¿½Ï¢
+// Windows Í·ï¿½Ä¼ï¿½:
 #include <windows.h>
 
 
 
-// TODO: ÔÚ´Ë´¦ÒýÓÃ³ÌÐòÐèÒªµÄÆäËûÍ·ÎÄ¼þ
+// TODO: ï¿½Ú´Ë´ï¿½ï¿½ï¿½ï¿½Ã³ï¿½ï¿½ï¿½ï¿½ï¿½Òªï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Í·ï¿½Ä¼ï¿½
 #include "CommonHeader.h"
 #include "ConfigInfo.h"
 #include "CommNames.h"

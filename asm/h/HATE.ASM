@@ -1,3 +1,14 @@
+; ------------------------------------------------------------
+; name      H
+; type      asm
+; cve       —
+; year      unknown
+; os        DOS
+; authors   unknown
+; source    krisyotam
+; archived  krisyotam (2026)
+; notes     —
+; ------------------------------------------------------------
 ; Hate.524 (named by Moi because of Internal Text and Size)
 ; Uninteresting Encrypted COM Infector
 ; Source code compliments of PakiLad

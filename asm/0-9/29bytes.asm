@@ -1,3 +1,14 @@
+; ------------------------------------------------------------
+; name      0 9
+; type      asm
+; cve       —
+; year      unknown
+; os        DOS
+; authors   unknown
+; source    krisyotam
+; archived  krisyotam (2026)
+; notes     —
+; ------------------------------------------------------------
 ;Smallest in the trivial series of viruses, I think.... 
 ;Last I saw was 30 bytes - this one goes to 29.
 ;Code by Stormbringer... stupid virus, but small.

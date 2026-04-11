@@ -1,20 +1,31 @@
+/*
+  name      Trochilus
+  type      trojan
+  cve       â€”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    RamadhanAmizudin/malware
+  archived  RamadhanAmizudin, krisyotam (2026)
+  notes     â€”
+ */
 #pragma once
 
 #define MAX_BUFFER_SIZE 512*1024
-//ÎÄ¼þÍ·
+//ï¿½Ä¼ï¿½Í·
 typedef struct
 {
-	UINT64 nFileSize; 							//ÎÄ¼þ´óÐ¡
-	int nNodeNum;						//·Ö¿éÊýÁ¿
-	WCHAR szFileName[MAX_PATH];//ÎÄ¼þÃû
-	WCHAR szMD5[255];					//Ð£ÑéMD5Öµ
+	UINT64 nFileSize; 							//ï¿½Ä¼ï¿½ï¿½ï¿½Ð¡
+	int nNodeNum;						//ï¿½Ö¿ï¿½ï¿½ï¿½ï¿½ï¿½
+	WCHAR szFileName[MAX_PATH];//ï¿½Ä¼ï¿½ï¿½ï¿½
+	WCHAR szMD5[255];					//Ð£ï¿½ï¿½MD5Öµ
 }FILE_HEAD,*PFILE_HEAD;
 
-//Êý¾Ý½Úµã
+//ï¿½ï¿½ï¿½Ý½Úµï¿½
 typedef struct
 {
-	int nNodeSize;						//½Úµã´óÐ¡
-	int nOffset;								//½ÚµãÎÄ¼þÆ«ÒÆ
+	int nNodeSize;						//ï¿½Úµï¿½ï¿½Ð¡
+	int nOffset;								//ï¿½Úµï¿½ï¿½Ä¼ï¿½Æ«ï¿½ï¿½
 }FILE_NODE,*PFILE_NODE;
 
-//...N¸öÊý¾Ý½Úµã
+//...Nï¿½ï¿½ï¿½ï¿½ï¿½Ý½Úµï¿½

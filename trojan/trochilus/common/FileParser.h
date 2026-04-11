@@ -1,3 +1,14 @@
+/*
+  name      Trochilus
+  type      trojan
+  cve       â€”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    RamadhanAmizudin/malware
+  archived  RamadhanAmizudin, krisyotam (2026)
+  notes     â€”
+ */
 #pragma once
 #include "encrypt/encrypt.h"
 #include "file/MyFile.h"
@@ -6,7 +17,7 @@
 
 #define MAX_BLOCK_SIZE 1024*32
 
-//¶Ïµã´«ÊäÅäÖÃÎÄ¼þ
+//ï¿½Ïµã´«ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä¼ï¿½
 typedef struct
 {
 	char szMD5[255];
@@ -23,31 +34,31 @@ class CFileParser
 
 public:
 
-	//Ð´ÈëÎÄ¼þ¿é
+	//Ð´ï¿½ï¿½ï¿½Ä¼ï¿½ï¿½ï¿½
 	BOOL Write(LPCTSTR filepath,int nSize,std::wstring MD5,ByteBuffer& buffer);
 	
-	//¶ÁÈ¡ÎÄ¼þ¿é
+	//ï¿½ï¿½È¡ï¿½Ä¼ï¿½ï¿½ï¿½
 	int Read(LPCTSTR filepath,int nOffset,int nSize,std::wstring& MD5 ,ByteBuffer& buffer);
 
-	//ÅÐ¶ÏÎÄ¼þÊÇ·ñ´«ÊäÍê³É
+	//ï¿½Ð¶ï¿½ï¿½Ä¼ï¿½ï¿½Ç·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	BOOL IsFileFinish(LPCTSTR filepath);
 
-	//µÃµ½µ±Ç°´«Êä×´Ì¬
+	//ï¿½Ãµï¿½ï¿½ï¿½Ç°ï¿½ï¿½ï¿½ï¿½×´Ì¬
 	BOOL GetFileCurStatus(LPCTSTR filepath,FILE_OPTIONS& options);
 
-	//µÃµ½ÎÄ¼þÄÚÈÝ
+	//ï¿½Ãµï¿½ï¿½Ä¼ï¿½ï¿½ï¿½ï¿½ï¿½
 	int GetFileContent(LPCTSTR filepath,INT64 nPos,int nSize ,ByteBuffer& buffer);
 
-	//Ð´ÈëÎÄ¼þÄÚÈÝ
+	//Ð´ï¿½ï¿½ï¿½Ä¼ï¿½ï¿½ï¿½ï¿½ï¿½
 	BOOL PutFilecContent(LPCTSTR filepath,int nSize ,ByteBuffer& buffer);
 
-	//¸üÐÂµ±Ç°ÎÄ¼þ´«Êä×´Ì¬
+	//ï¿½ï¿½ï¿½Âµï¿½Ç°ï¿½Ä¼ï¿½ï¿½ï¿½ï¿½ï¿½×´Ì¬
 	BOOL UpdateFileStatus(LPCTSTR filepath,FILE_OPTIONS& options);
 
-	//´´½¨ÁÙÊ±ÎÄ¼þ
+	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê±ï¿½Ä¼ï¿½
 	BOOL CreateFileStatus(LPCTSTR filepath,LPCTSTR md5,int nTotal);
 
-	//ÅÐ¶ÏÎÄ¼þÊÇ·ñ´æÔÚ
+	//ï¿½Ð¶ï¿½ï¿½Ä¼ï¿½ï¿½Ç·ï¿½ï¿½ï¿½ï¿½
 	BOOL IsFileExist(LPCTSTR filepath);
 };
 

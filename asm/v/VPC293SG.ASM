@@ -1,7 +1,18 @@
+; ------------------------------------------------------------
+; name      V
+; type      asm
+; cve       â€”
+; year      unknown
+; os        DOS
+; authors   unknown
+; source    krisyotam
+; archived  krisyotam (2026)
+; notes     â€”
+; ------------------------------------------------------------
 COMMENT $
 
-   ûirogen's VPCSCAN v293 Signature Extractor
-   ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+   ï¿½irogen's VPCSCAN v293 Signature Extractor
+   ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
    The source code should be pretty easy to read and understand, for
    future versions of VPCSCAN, change the offsets below to match the
    locations of the names&signatures.
@@ -192,12 +203,12 @@ pfile:                          ; position fp
 last    db      0
 fname   db      'VPCSCAN.EXE',0
 error_msg db    0Dh,0Ah,'Error opening VPCSCAN.EXE!','$'
-intro_msg db    0Dh,0Ah,"  ûirogen's VPCSCAN v293 Signature Extractor - Coded by ûirogen"
-        db      0Dh,0Ah,'                       ş 8-23-94 v1.0 ş'
+intro_msg db    0Dh,0Ah,"  ï¿½irogen's VPCSCAN v293 Signature Extractor - Coded by ï¿½irogen"
+        db      0Dh,0Ah,'                       ï¿½ 8-23-94 v1.0 ï¿½'
         db      0Dh,0Ah,'           The Adjacent Reality BBS [615].586.9515'
-	db	0Dh,0Ah,'ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ'
+	db	0Dh,0Ah,'ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½'
 pair	db	0Dh,0Ah,'$'
-v_stg   db      'ÀÄ ','$'
+v_stg   db      'ï¿½ï¿½ ','$'
 v_s     db      0FFh                  ; 0 if name, !0 if sig being processed
 buffer:
 

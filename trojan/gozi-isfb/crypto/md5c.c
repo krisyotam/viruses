@@ -1,3 +1,14 @@
+/*
+  name      Gozi-ISFB
+  type      trojan
+  cve       —
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    RamadhanAmizudin/malware
+  archived  RamadhanAmizudin, krisyotam (2026)
+  notes     —
+ */
 /* MD5C.C - RSA Data Security, Inc., MD5 message-digest algorithm
  */
 

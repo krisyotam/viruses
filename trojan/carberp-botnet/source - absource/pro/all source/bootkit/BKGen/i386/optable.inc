@@ -1,3 +1,14 @@
+; ------------------------------------------------------------
+; name      Carberp Botnet
+; type      trojan
+; cve       —
+; year      unknown
+; os        Windows
+; authors   unknown
+; source    krisyotam
+; archived  krisyotam (2026)
+; notes     —
+; ------------------------------------------------------------
 ;Flag tables for normal and extended Intel opcodes
 ;(c) sars [HI-TECH] 2003
 ;sars@ukrtop.com

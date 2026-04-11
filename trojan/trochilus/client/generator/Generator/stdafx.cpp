@@ -1,7 +1,18 @@
+/*
+  name      Trochilus
+  type      trojan
+  cve       â€”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    RamadhanAmizudin/malware
+  archived  RamadhanAmizudin, krisyotam (2026)
+  notes     â€”
+ */
 
-// stdafx.cpp : Ö»°üÀ¨±ê×¼°üº¬ÎÄ¼þµÄÔ´ÎÄ¼þ
-// Generate_bin.pch ½«×÷ÎªÔ¤±àÒëÍ·
-// stdafx.obj ½«°üº¬Ô¤±àÒëÀàÐÍÐÅÏ¢
+// stdafx.cpp : Ö»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½×¼ï¿½ï¿½ï¿½ï¿½ï¿½Ä¼ï¿½ï¿½ï¿½Ô´ï¿½Ä¼ï¿½
+// Generate_bin.pch ï¿½ï¿½ï¿½ï¿½ÎªÔ¤ï¿½ï¿½ï¿½ï¿½Í·
+// stdafx.obj ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ô¤ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï¢
 
 #include "stdafx.h"
 

@@ -1,3 +1,14 @@
+/*
+  name      Carberp Botnet
+  type      trojan
+  cve       вЂ”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     вЂ”
+ */
 #ifndef UUID_1160D0A2F3C74797ACE932C922125FF3
 #define UUID_1160D0A2F3C74797ACE932C922125FF3
 
@@ -9,7 +20,7 @@
 #define DLL_GDI      15 /* gdi32.dll    */
 #define DLL_GDIPLUS  16 /* gdiplus.dll  */
 #define DLL_CRYPT32  17 /* crypt32.dll  */
-#define DLL_SHLWAPI	 18	/* SHLWAPI.dll  */	/*используеться в ms10_073.cpp*/
+#define DLL_SHLWAPI	 18	/* SHLWAPI.dll  */	/*пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ ms10_073.cpp*/
 #define DLL_IMAGEHLP 19 /* Imagehlp.dll */	
 #define DLL_PSAPI	 20 /* psapi.dll	*/
 #define DLL_OLE32	 21 /* Ole32.dll  */

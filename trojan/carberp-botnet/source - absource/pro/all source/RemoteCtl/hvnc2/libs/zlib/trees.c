@@ -1,3 +1,14 @@
+/*
+  name      Carberp Botnet
+  type      trojan
+  cve       —
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     —
+ */
 /* trees.c -- output deflated data using Huffman coding
  * Copyright (C) 1995-2012 Jean-loup Gailly
  * detect_data_type() function provided freely by Cosmin Truta, 2006

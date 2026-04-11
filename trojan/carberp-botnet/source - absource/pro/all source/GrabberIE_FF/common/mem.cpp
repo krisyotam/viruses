@@ -1,3 +1,14 @@
+/*
+  name      Carberp Botnet
+  type      trojan
+  cve       â€”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     â€”
+ */
 #include "stdafx.h"
 
 #include <windows.h>
@@ -132,7 +143,7 @@ void ASM_INTERNAL Mem::_copy(void *dest, const void *source, SIZE_T size)
   for(register SIZE_T i = 0; i < size; i++)
   {
     ((LPBYTE)dest)[i] = ((LPBYTE)source)[i];
-    if(i == 0)i = 0; //Òóïîé êîìïèëÿòîð ïûòàåòñÿ çàïèõàòü memcpy.
+    if(i == 0)i = 0; //ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ memcpy.
   }
 #else
   __asm
@@ -192,7 +203,7 @@ void Mem::_zero(void *mem, SIZE_T size)
 void ASM_INTERNAL Mem::_set(void *mem, char c, SIZE_T size)
 {
 #if defined _WIN64
-  //ÍÅÍÀÂÈÆÓ ÒÓÏÀÐÛËÛÕ ÈÄÈÎÒÎÂ ÈÇ M$.
+  //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ M$.
   register SIZE_T i = size;
   while(i--)((char *)mem)[i] = c;
 #else

