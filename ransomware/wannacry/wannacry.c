@@ -7,7 +7,7 @@
   authors   Lazarus Group / DPRK (attributed)
   source    binary from https://github.com/Explodingstuff/WannaCry
   archived  krisyotam
-  notes     decompiled by krisyotam using retdec v5.0 with Claude Sonnet 4.6; pseudocode, not original source
+  notes     decompiled by krisyotam using retdec v5.0 with Claude Sonnet 4.6; reconstructed C from PE32 binary
  */
 
 #include <stdbool.h>
