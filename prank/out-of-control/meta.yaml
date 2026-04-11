@@ -1,0 +1,4 @@
+name: Out of Control
+description: Randomly moves the mouse pointer across the screen in an infinite loop using Java Robot.
+os: cross-platform
+tags: [java, mouse, robot, prank]

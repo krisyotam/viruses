@@ -1,0 +1,4 @@
+name: CMD Blast
+description: Spawns cmd.exe windows in an infinite loop until the process table is exhausted.
+os: windows
+tags: [c, process, spawn, dos]

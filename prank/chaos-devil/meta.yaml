@@ -1,0 +1,4 @@
+name: Chaos Devil
+description: Moves the foreground window in circular motion. Ctrl+Alt+Del required to stop.
+os: windows
+tags: [c, winapi, window, prank]

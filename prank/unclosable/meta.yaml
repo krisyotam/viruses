@@ -1,0 +1,4 @@
+name: Unclosable
+description: Opens a new copy of itself on every page load. Rapidly fills the taskbar and crashes the browser.
+os: cross-platform
+tags: [html, javascript, browser, process, prank]

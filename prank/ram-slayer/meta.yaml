@@ -1,0 +1,4 @@
+name: RAM Slayer
+description: Allocates 1000 bytes in a tight loop until all RAM is consumed.
+os: cross-platform
+tags: [c, memory, malloc, dos]

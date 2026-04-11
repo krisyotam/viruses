@@ -1,0 +1,8 @@
+name: WannaCry
+description: Ransomware worm that used EternalBlue to spread globally in May 2017. Encrypted files and demanded Bitcoin ransom. Attributed to Lazarus Group (DPRK). Affected 200,000+ systems across 150 countries.
+author: Lazarus Group (attributed)
+year: 2017
+os: windows
+tags: [ransomware, worm, eternalblue, ms17-010, dprk, bitcoin]
+source: binary only — no public source code released
+sha256: 24d004a104d4d54034dbcffc2a4b19a11f39008a575aa614ea04703480b1022c

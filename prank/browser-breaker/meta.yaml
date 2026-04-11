@@ -1,0 +1,4 @@
+name: Browser Breaker
+description: Redirects to a site that generates an infinite string and crashes the browser via memory exhaustion.
+os: cross-platform
+tags: [html, browser, memory, dos]
