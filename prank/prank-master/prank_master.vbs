@@ -1,3 +1,15 @@
+' ------------------------------------------------------------
+' name      Prank Master
+' type      prank
+' cve       —
+' year      —
+' os        windows
+' authors   Minhas Kamal
+' source    https://github.com/MinhasKamal/CuteVirusCollection
+' archived  krisyotam
+' notes     loops fake error dialogs indefinitely
+' ------------------------------------------------------------
+
 ' Developer: Minhas Kamal
 ' Shows an unending sequence of annoying messages.
 

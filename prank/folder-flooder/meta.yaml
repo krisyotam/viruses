@@ -1,4 +1,0 @@
-name: Folder Flooder
-description: Creates folders with random names in an infinite loop. Can fill the disk if left running.
-os: windows
-tags: [batch, disk, flood, dos]

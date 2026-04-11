@@ -1,7 +1,0 @@
-name: LockBit 3.0
-description: LockBit Black — ransomware-as-a-service builder leaked by a disgruntled affiliate in 2022. Builder generates encryptor, decryptor, and keygen. Most prolific ransomware group 2022-2024.
-author: LockBit group; builder leaked by unknown affiliate
-year: 2022
-os: windows
-tags: [ransomware, raas, builder, affiliate, leak]
-source: leaked builder (compiled) — no original source code

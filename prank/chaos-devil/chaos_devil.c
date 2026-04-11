@@ -1,3 +1,15 @@
+/*
+  name      Chaos Devil
+  type      prank
+  cve       —
+  year      —
+  os        windows
+  authors   Minhas Kamal
+  source    https://github.com/MinhasKamal/CuteVirusCollection
+  archived  krisyotam
+  notes     moves foreground window in circular motion via WinAPI
+ */
+
 // Randomly moves the active window around. Only Ctrl+Alt+Del will stop it.
 #include <windows.h>
 #include <math.h>

@@ -1,4 +1,0 @@
-name: Consecutive Normal Punch
-description: Simple C fork bomb. Spawns processes until the OS process limit is hit.
-os: unix
-tags: [c, fork-bomb, process, dos]

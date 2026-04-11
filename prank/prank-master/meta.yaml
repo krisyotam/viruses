@@ -1,4 +1,0 @@
-name: Prank Master
-description: Loops fake error dialogs indefinitely. Annoying but harmless.
-os: windows
-tags: [vbs, dialog, loop, prank]

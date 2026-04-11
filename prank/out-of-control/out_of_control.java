@@ -1,3 +1,15 @@
+/*
+  name      Out of Control
+  type      prank
+  cve       —
+  year      —
+  os        cross-platform
+  authors   Minhas Kamal
+  source    https://github.com/MinhasKamal/CuteVirusCollection
+  archived  krisyotam
+  notes     random mouse movement via Java Robot
+ */
+
 // Developer: Minhas Kamal
 // Randomly moves the mouse pointer, & clicks different places on the screen.
 

@@ -1,7 +1,0 @@
-name: ILOVEYOU
-description: VBScript worm that spread via email with "LOVE-LETTER-FOR-YOU" subject. Overwrote files and propagated through Outlook contacts. Caused ~$10B in damage.
-author: Onel de Guzman
-year: 2000
-os: windows
-tags: [vbscript, email, worm, outlook, overwrite]
-source_url: https://github.com/rhatdan/iloveyou

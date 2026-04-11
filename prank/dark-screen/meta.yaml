@@ -1,4 +1,0 @@
-name: Dark Screen
-description: Immediately shuts down the system. Harmless if you know it's running.
-os: windows
-tags: [c, shutdown, prank]

@@ -1,4 +1,0 @@
-name: Fork Bomb
-description: The canonical bash fork bomb. Defines a function that calls itself twice in the background, exponentially consuming process slots.
-os: unix
-tags: [bash, fork-bomb, process, dos]

@@ -1,4 +1,0 @@
-name: CPU Eater
-description: Windows batch fork bomb that recursively pipes itself, consuming all CPU.
-os: windows
-tags: [batch, cpu, fork-bomb, dos]

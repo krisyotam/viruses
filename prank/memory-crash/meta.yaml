@@ -1,4 +1,0 @@
-name: Memory Crash
-description: Infinite string concatenation in JS that exhausts available RAM.
-os: cross-platform
-tags: [html, javascript, memory, dos]
