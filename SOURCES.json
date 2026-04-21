@@ -623,6 +623,18 @@
     "type": "exploit",
     "year": "unknown"
   },
+  "exploit/totalrecall": {
+    "archived_by": [
+      "xaitax",
+      "krisyotam"
+    ],
+    "authors": "Alexander Hagenah (@xaitax)",
+    "name": "TotalRecall",
+    "os": "Windows",
+    "source": "xaitax/TotalRecall",
+    "type": "exploit",
+    "year": "2024"
+  },
   "infector/donut-virus": {
     "archived_by": [
       "krisyotam"
